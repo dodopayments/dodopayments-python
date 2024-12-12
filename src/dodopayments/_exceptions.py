@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class DodoPaymentsError(Exception):
+class DodopaymentsError(Exception):
     pass
 
 
-class APIError(DodoPaymentsError):
+class APIError(DodopaymentsError):
     message: str
     request: httpx.Request
 

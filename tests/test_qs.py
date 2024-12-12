@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from dodo_payments._qs import Querystring, stringify
+from dodopayments._qs import Querystring, stringify
 
 
 def test_empty() -> None:

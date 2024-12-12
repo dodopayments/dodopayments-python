@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from dodo_payments._types import FileTypes
-from dodo_payments._utils import extract_files
+from dodopayments._types import FileTypes
+from dodopayments._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

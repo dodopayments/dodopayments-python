@@ -2,7 +2,7 @@ import operator
 from typing import Any
 from typing_extensions import override
 
-from dodo_payments._utils import LazyProxy
+from dodopayments._utils import LazyProxy
 
 
 class RecursiveLazyProxy(LazyProxy[Any]):

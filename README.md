@@ -1,8 +1,8 @@
-# Dodo Payments Python API library
+# Dodopayments Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/dodo_payments.svg)](https://pypi.org/project/dodo_payments/)
+[![PyPI version](https://img.shields.io/pypi/v/dodopayments.svg)](https://pypi.org/project/dodopayments/)
 
-The Dodo Payments Python library provides convenient access to the Dodo Payments REST API from any Python 3.8+
+The Dodopayments Python library provides convenient access to the Dodopayments REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -10,7 +10,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [docs.dodo-payments.com](https://docs.dodo-payments.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.dodopayments.com](https://docs.dodopayments.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -20,18 +20,18 @@ pip install git+ssh://git@github.com/stainless-sdks/dodo-payments-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre dodo_payments`
+> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre dodopayments`
 
 ## Usage
 
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-from dodo_payments import DodoPayments
+from dodopayments import Dodopayments
 
-client = DodoPayments(
-    # defaults to "production".
-    environment="environment_1",
+client = Dodopayments(
+    # defaults to "test_mode".
+    environment="live_mode",
 )
 
 payment = client.payments.create(
@@ -63,15 +63,15 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncDodoPayments` instead of `DodoPayments` and use `await` with each API call:
+Simply import `AsyncDodopayments` instead of `Dodopayments` and use `await` with each API call:
 
 ```python
 import asyncio
-from dodo_payments import AsyncDodoPayments
+from dodopayments import AsyncDodopayments
 
-client = AsyncDodoPayments(
-    # defaults to "production".
-    environment="environment_1",
+client = AsyncDodopayments(
+    # defaults to "test_mode".
+    environment="live_mode",
 )
 
 
@@ -114,18 +114,18 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `dodo_payments.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `dodopayments.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `dodo_payments.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `dodopayments.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `dodo_payments.APIError`.
+All errors inherit from `dodopayments.APIError`.
 
 ```python
-import dodo_payments
-from dodo_payments import DodoPayments
+import dodopayments
+from dodopayments import Dodopayments
 
-client = DodoPayments()
+client = Dodopayments()
 
 try:
     client.payments.create(
@@ -147,12 +147,12 @@ try:
             }
         ],
     )
-except dodo_payments.APIConnectionError as e:
+except dodopayments.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except dodo_payments.RateLimitError as e:
+except dodopayments.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except dodo_payments.APIStatusError as e:
+except dodopayments.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -180,10 +180,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from dodo_payments import DodoPayments
+from dodopayments import Dodopayments
 
 # Configure the default for all requests:
-client = DodoPayments(
+client = Dodopayments(
     # default is 2
     max_retries=0,
 )
@@ -216,16 +216,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from dodo_payments import DodoPayments
+from dodopayments import Dodopayments
 
 # Configure the default for all requests:
-client = DodoPayments(
+client = Dodopayments(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = DodoPayments(
+client = Dodopayments(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -261,10 +261,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `DODO_PAYMENTS_LOG` to `info`.
+You can enable logging by setting the environment variable `DODOPAYMENTS_LOG` to `info`.
 
 ```shell
-$ export DODO_PAYMENTS_LOG=info
+$ export DODOPAYMENTS_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -286,9 +286,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from dodo_payments import DodoPayments
+from dodopayments import Dodopayments
 
-client = DodoPayments()
+client = Dodopayments()
 response = client.payments.with_raw_response.create(
     billing={
         "city": "city",
@@ -312,9 +312,9 @@ payment = response.parse()  # get the object that `payments.create()` would have
 print(payment.payment_id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/dodo-payments-python/tree/main/src/dodo_payments/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/dodo-payments-python/tree/main/src/dodopayments/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/dodo-payments-python/tree/main/src/dodo_payments/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/dodo-payments-python/tree/main/src/dodopayments/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -395,10 +395,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from dodo_payments import DodoPayments, DefaultHttpxClient
+from dodopayments import Dodopayments, DefaultHttpxClient
 
-client = DodoPayments(
-    # Or use the `DODO_PAYMENTS_BASE_URL` env var
+client = Dodopayments(
+    # Or use the `DODOPAYMENTS_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
@@ -436,8 +436,8 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import dodo_payments
-print(dodo_payments.__version__)
+import dodopayments
+print(dodopayments.__version__)
 ```
 
 ## Requirements
