@@ -8,8 +8,8 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from dodo_payments._types import Omit, NoneType
-from dodo_payments._utils import (
+from dodopayments._types import Omit, NoneType
+from dodopayments._utils import (
     is_dict,
     is_list,
     is_list_type,
@@ -17,8 +17,8 @@ from dodo_payments._utils import (
     extract_type_arg,
     is_annotated_type,
 )
-from dodo_payments._compat import PYDANTIC_V2, field_outer_type, get_model_fields
-from dodo_payments._models import BaseModel
+from dodopayments._compat import PYDANTIC_V2, field_outer_type, get_model_fields
+from dodopayments._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 

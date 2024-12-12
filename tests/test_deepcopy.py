@@ -1,4 +1,4 @@
-from dodo_payments._utils import deepcopy_minimal
+from dodopayments._utils import deepcopy_minimal
 
 
 def assert_different_identities(obj1: object, obj2: object) -> None:

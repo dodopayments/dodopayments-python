@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from dodo_payments import DodoPayments, AsyncDodoPayments
-from dodo_payments.types import PayoutListResponse
+from dodopayments import Dodopayments, AsyncDodopayments
+from dodopayments.types import PayoutListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,12 +18,12 @@ class TestPayouts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_list(self, client: DodoPayments) -> None:
+    def test_method_list(self, client: Dodopayments) -> None:
         payout = client.payouts.list()
         assert_matches_type(PayoutListResponse, payout, path=["response"])
 
     @parametrize
-    def test_method_list_with_all_params(self, client: DodoPayments) -> None:
+    def test_method_list_with_all_params(self, client: Dodopayments) -> None:
         payout = client.payouts.list(
             page_number=0,
             page_size=0,
@@ -31,7 +31,7 @@ class TestPayouts:
         assert_matches_type(PayoutListResponse, payout, path=["response"])
 
     @parametrize
-    def test_raw_response_list(self, client: DodoPayments) -> None:
+    def test_raw_response_list(self, client: Dodopayments) -> None:
         response = client.payouts.with_raw_response.list()
 
         assert response.is_closed is True
@@ -40,7 +40,7 @@ class TestPayouts:
         assert_matches_type(PayoutListResponse, payout, path=["response"])
 
     @parametrize
-    def test_streaming_response_list(self, client: DodoPayments) -> None:
+    def test_streaming_response_list(self, client: Dodopayments) -> None:
         with client.payouts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -55,12 +55,12 @@ class TestAsyncPayouts:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
+    async def test_method_list(self, async_client: AsyncDodopayments) -> None:
         payout = await async_client.payouts.list()
         assert_matches_type(PayoutListResponse, payout, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncDodopayments) -> None:
         payout = await async_client.payouts.list(
             page_number=0,
             page_size=0,
@@ -68,7 +68,7 @@ class TestAsyncPayouts:
         assert_matches_type(PayoutListResponse, payout, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
+    async def test_raw_response_list(self, async_client: AsyncDodopayments) -> None:
         response = await async_client.payouts.with_raw_response.list()
 
         assert response.is_closed is True
@@ -77,7 +77,7 @@ class TestAsyncPayouts:
         assert_matches_type(PayoutListResponse, payout, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncDodopayments) -> None:
         async with async_client.payouts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

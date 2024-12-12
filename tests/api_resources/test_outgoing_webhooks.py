@@ -7,8 +7,8 @@ from typing import Any, cast
 
 import pytest
 
-from dodo_payments import DodoPayments, AsyncDodoPayments
-from dodo_payments._utils import parse_datetime
+from dodopayments import Dodopayments, AsyncDodopayments
+from dodopayments._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,7 @@ class TestOutgoingWebhooks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: DodoPayments) -> None:
+    def test_method_create(self, client: Dodopayments) -> None:
         outgoing_webhook = client.outgoing_webhooks.create(
             business_id="business_id",
             data={
@@ -63,7 +63,7 @@ class TestOutgoingWebhooks:
         assert outgoing_webhook is None
 
     @parametrize
-    def test_raw_response_create(self, client: DodoPayments) -> None:
+    def test_raw_response_create(self, client: Dodopayments) -> None:
         response = client.outgoing_webhooks.with_raw_response.create(
             business_id="business_id",
             data={
@@ -113,7 +113,7 @@ class TestOutgoingWebhooks:
         assert outgoing_webhook is None
 
     @parametrize
-    def test_streaming_response_create(self, client: DodoPayments) -> None:
+    def test_streaming_response_create(self, client: Dodopayments) -> None:
         with client.outgoing_webhooks.with_streaming_response.create(
             business_id="business_id",
             data={
@@ -169,7 +169,7 @@ class TestAsyncOutgoingWebhooks:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
+    async def test_method_create(self, async_client: AsyncDodopayments) -> None:
         outgoing_webhook = await async_client.outgoing_webhooks.create(
             business_id="business_id",
             data={
@@ -215,7 +215,7 @@ class TestAsyncOutgoingWebhooks:
         assert outgoing_webhook is None
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
+    async def test_raw_response_create(self, async_client: AsyncDodopayments) -> None:
         response = await async_client.outgoing_webhooks.with_raw_response.create(
             business_id="business_id",
             data={
@@ -265,7 +265,7 @@ class TestAsyncOutgoingWebhooks:
         assert outgoing_webhook is None
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncDodopayments) -> None:
         async with async_client.outgoing_webhooks.with_streaming_response.create(
             business_id="business_id",
             data={

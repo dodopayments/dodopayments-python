@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from dodo_payments import DodoPayments, AsyncDodoPayments
-from dodo_payments.types.products import ImageUpdateResponse
+from dodopayments import Dodopayments, AsyncDodopayments
+from dodopayments.types.products import ImageUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,14 +18,14 @@ class TestImages:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_update(self, client: DodoPayments) -> None:
+    def test_method_update(self, client: Dodopayments) -> None:
         image = client.products.images.update(
             "id",
         )
         assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
-    def test_raw_response_update(self, client: DodoPayments) -> None:
+    def test_raw_response_update(self, client: Dodopayments) -> None:
         response = client.products.images.with_raw_response.update(
             "id",
         )
@@ -36,7 +36,7 @@ class TestImages:
         assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
-    def test_streaming_response_update(self, client: DodoPayments) -> None:
+    def test_streaming_response_update(self, client: Dodopayments) -> None:
         with client.products.images.with_streaming_response.update(
             "id",
         ) as response:
@@ -49,7 +49,7 @@ class TestImages:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_update(self, client: DodoPayments) -> None:
+    def test_path_params_update(self, client: Dodopayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.products.images.with_raw_response.update(
                 "",
@@ -60,14 +60,14 @@ class TestAsyncImages:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
+    async def test_method_update(self, async_client: AsyncDodopayments) -> None:
         image = await async_client.products.images.update(
             "id",
         )
         assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
+    async def test_raw_response_update(self, async_client: AsyncDodopayments) -> None:
         response = await async_client.products.images.with_raw_response.update(
             "id",
         )
@@ -78,7 +78,7 @@ class TestAsyncImages:
         assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncDodopayments) -> None:
         async with async_client.products.images.with_streaming_response.update(
             "id",
         ) as response:
@@ -91,7 +91,7 @@ class TestAsyncImages:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncDodoPayments) -> None:
+    async def test_path_params_update(self, async_client: AsyncDodopayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.products.images.with_raw_response.update(
                 "",

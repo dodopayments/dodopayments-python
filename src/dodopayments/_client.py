@@ -25,7 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError, DodoPaymentsError
+from ._exceptions import APIStatusError, DodopaymentsError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -39,19 +39,19 @@ __all__ = [
     "ProxiesTypes",
     "RequestOptions",
     "resources",
-    "DodoPayments",
-    "AsyncDodoPayments",
+    "Dodopayments",
+    "AsyncDodopayments",
     "Client",
     "AsyncClient",
 ]
 
 ENVIRONMENTS: Dict[str, str] = {
-    "production": "https://test.dodopayments.com/",
-    "environment_1": "https://live.dodopayments.com/",
+    "test_mode": "https://test.dodopayments.com/",
+    "live_mode": "https://live.dodopayments.com/",
 }
 
 
-class DodoPayments(SyncAPIClient):
+class Dodopayments(SyncAPIClient):
     checkout: resources.CheckoutResource
     customers: resources.CustomersResource
     disputes: resources.DisputesResource
@@ -62,19 +62,19 @@ class DodoPayments(SyncAPIClient):
     subscriptions: resources.SubscriptionsResource
     webhook_events: resources.WebhookEventsResource
     outgoing_webhooks: resources.OutgoingWebhooksResource
-    with_raw_response: DodoPaymentsWithRawResponse
-    with_streaming_response: DodoPaymentsWithStreamedResponse
+    with_raw_response: DodopaymentsWithRawResponse
+    with_streaming_response: DodopaymentsWithStreamedResponse
 
     # client options
     api_key: str
 
-    _environment: Literal["production", "environment_1"] | NotGiven
+    _environment: Literal["test_mode", "live_mode"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "environment_1"] | NotGiven = NOT_GIVEN,
+        environment: Literal["test_mode", "live_mode"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -94,28 +94,28 @@ class DodoPayments(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous dodo-payments client instance.
+        """Construct a new synchronous dodopayments client instance.
 
         This automatically infers the `api_key` argument from the `API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
             api_key = os.environ.get("API_KEY")
         if api_key is None:
-            raise DodoPaymentsError(
+            raise DodopaymentsError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the API_KEY environment variable"
             )
         self.api_key = api_key
 
         self._environment = environment
 
-        base_url_env = os.environ.get("DODO_PAYMENTS_BASE_URL")
+        base_url_env = os.environ.get("DODOPAYMENTS_BASE_URL")
         if is_given(base_url) and base_url is not None:
             # cast required because mypy doesn't understand the type narrowing
             base_url = cast("str | httpx.URL", base_url)  # pyright: ignore[reportUnnecessaryCast]
         elif is_given(environment):
             if base_url_env and base_url is not None:
                 raise ValueError(
-                    "Ambiguous URL; The `DODO_PAYMENTS_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
+                    "Ambiguous URL; The `DODOPAYMENTS_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
                 )
 
             try:
@@ -125,7 +125,7 @@ class DodoPayments(SyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "production"
+            self._environment = environment = "test_mode"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -153,8 +153,8 @@ class DodoPayments(SyncAPIClient):
         self.subscriptions = resources.SubscriptionsResource(self)
         self.webhook_events = resources.WebhookEventsResource(self)
         self.outgoing_webhooks = resources.OutgoingWebhooksResource(self)
-        self.with_raw_response = DodoPaymentsWithRawResponse(self)
-        self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
+        self.with_raw_response = DodopaymentsWithRawResponse(self)
+        self.with_streaming_response = DodopaymentsWithStreamedResponse(self)
 
     @property
     @override
@@ -180,7 +180,7 @@ class DodoPayments(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "environment_1"] | None = None,
+        environment: Literal["test_mode", "live_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -263,7 +263,7 @@ class DodoPayments(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncDodoPayments(AsyncAPIClient):
+class AsyncDodopayments(AsyncAPIClient):
     checkout: resources.AsyncCheckoutResource
     customers: resources.AsyncCustomersResource
     disputes: resources.AsyncDisputesResource
@@ -274,19 +274,19 @@ class AsyncDodoPayments(AsyncAPIClient):
     subscriptions: resources.AsyncSubscriptionsResource
     webhook_events: resources.AsyncWebhookEventsResource
     outgoing_webhooks: resources.AsyncOutgoingWebhooksResource
-    with_raw_response: AsyncDodoPaymentsWithRawResponse
-    with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
+    with_raw_response: AsyncDodopaymentsWithRawResponse
+    with_streaming_response: AsyncDodopaymentsWithStreamedResponse
 
     # client options
     api_key: str
 
-    _environment: Literal["production", "environment_1"] | NotGiven
+    _environment: Literal["test_mode", "live_mode"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "environment_1"] | NotGiven = NOT_GIVEN,
+        environment: Literal["test_mode", "live_mode"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -306,28 +306,28 @@ class AsyncDodoPayments(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async dodo-payments client instance.
+        """Construct a new async dodopayments client instance.
 
         This automatically infers the `api_key` argument from the `API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
             api_key = os.environ.get("API_KEY")
         if api_key is None:
-            raise DodoPaymentsError(
+            raise DodopaymentsError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the API_KEY environment variable"
             )
         self.api_key = api_key
 
         self._environment = environment
 
-        base_url_env = os.environ.get("DODO_PAYMENTS_BASE_URL")
+        base_url_env = os.environ.get("DODOPAYMENTS_BASE_URL")
         if is_given(base_url) and base_url is not None:
             # cast required because mypy doesn't understand the type narrowing
             base_url = cast("str | httpx.URL", base_url)  # pyright: ignore[reportUnnecessaryCast]
         elif is_given(environment):
             if base_url_env and base_url is not None:
                 raise ValueError(
-                    "Ambiguous URL; The `DODO_PAYMENTS_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
+                    "Ambiguous URL; The `DODOPAYMENTS_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
                 )
 
             try:
@@ -337,7 +337,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "production"
+            self._environment = environment = "test_mode"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -365,8 +365,8 @@ class AsyncDodoPayments(AsyncAPIClient):
         self.subscriptions = resources.AsyncSubscriptionsResource(self)
         self.webhook_events = resources.AsyncWebhookEventsResource(self)
         self.outgoing_webhooks = resources.AsyncOutgoingWebhooksResource(self)
-        self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
-        self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
+        self.with_raw_response = AsyncDodopaymentsWithRawResponse(self)
+        self.with_streaming_response = AsyncDodopaymentsWithStreamedResponse(self)
 
     @property
     @override
@@ -392,7 +392,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "environment_1"] | None = None,
+        environment: Literal["test_mode", "live_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -475,8 +475,8 @@ class AsyncDodoPayments(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class DodoPaymentsWithRawResponse:
-    def __init__(self, client: DodoPayments) -> None:
+class DodopaymentsWithRawResponse:
+    def __init__(self, client: Dodopayments) -> None:
         self.checkout = resources.CheckoutResourceWithRawResponse(client.checkout)
         self.customers = resources.CustomersResourceWithRawResponse(client.customers)
         self.disputes = resources.DisputesResourceWithRawResponse(client.disputes)
@@ -489,8 +489,8 @@ class DodoPaymentsWithRawResponse:
         self.outgoing_webhooks = resources.OutgoingWebhooksResourceWithRawResponse(client.outgoing_webhooks)
 
 
-class AsyncDodoPaymentsWithRawResponse:
-    def __init__(self, client: AsyncDodoPayments) -> None:
+class AsyncDodopaymentsWithRawResponse:
+    def __init__(self, client: AsyncDodopayments) -> None:
         self.checkout = resources.AsyncCheckoutResourceWithRawResponse(client.checkout)
         self.customers = resources.AsyncCustomersResourceWithRawResponse(client.customers)
         self.disputes = resources.AsyncDisputesResourceWithRawResponse(client.disputes)
@@ -503,8 +503,8 @@ class AsyncDodoPaymentsWithRawResponse:
         self.outgoing_webhooks = resources.AsyncOutgoingWebhooksResourceWithRawResponse(client.outgoing_webhooks)
 
 
-class DodoPaymentsWithStreamedResponse:
-    def __init__(self, client: DodoPayments) -> None:
+class DodopaymentsWithStreamedResponse:
+    def __init__(self, client: Dodopayments) -> None:
         self.checkout = resources.CheckoutResourceWithStreamingResponse(client.checkout)
         self.customers = resources.CustomersResourceWithStreamingResponse(client.customers)
         self.disputes = resources.DisputesResourceWithStreamingResponse(client.disputes)
@@ -517,8 +517,8 @@ class DodoPaymentsWithStreamedResponse:
         self.outgoing_webhooks = resources.OutgoingWebhooksResourceWithStreamingResponse(client.outgoing_webhooks)
 
 
-class AsyncDodoPaymentsWithStreamedResponse:
-    def __init__(self, client: AsyncDodoPayments) -> None:
+class AsyncDodopaymentsWithStreamedResponse:
+    def __init__(self, client: AsyncDodopayments) -> None:
         self.checkout = resources.AsyncCheckoutResourceWithStreamingResponse(client.checkout)
         self.customers = resources.AsyncCustomersResourceWithStreamingResponse(client.customers)
         self.disputes = resources.AsyncDisputesResourceWithStreamingResponse(client.disputes)
@@ -531,6 +531,6 @@ class AsyncDodoPaymentsWithStreamedResponse:
         self.outgoing_webhooks = resources.AsyncOutgoingWebhooksResourceWithStreamingResponse(client.outgoing_webhooks)
 
 
-Client = DodoPayments
+Client = Dodopayments
 
-AsyncClient = AsyncDodoPayments
+AsyncClient = AsyncDodopayments

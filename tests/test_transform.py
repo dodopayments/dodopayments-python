@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from dodo_payments._types import Base64FileInput
-from dodo_payments._utils import (
+from dodopayments._types import Base64FileInput
+from dodopayments._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from dodo_payments._compat import PYDANTIC_V2
-from dodo_payments._models import BaseModel
+from dodopayments._compat import PYDANTIC_V2
+from dodopayments._models import BaseModel
 
 _T = TypeVar("_T")
 

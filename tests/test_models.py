@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from dodo_payments._utils import PropertyInfo
-from dodo_payments._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from dodo_payments._models import BaseModel, construct_type
+from dodopayments._utils import PropertyInfo
+from dodopayments._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from dodopayments._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

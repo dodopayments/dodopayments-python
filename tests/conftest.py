@@ -7,14 +7,14 @@ from typing import TYPE_CHECKING, Iterator, AsyncIterator
 import pytest
 from pytest_asyncio import is_async_test
 
-from dodo_payments import DodoPayments, AsyncDodoPayments
+from dodopayments import Dodopayments, AsyncDodopayments
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("dodo_payments").setLevel(logging.DEBUG)
+logging.getLogger("dodopayments").setLevel(logging.DEBUG)
 
 
 # automatically add `pytest.mark.asyncio()` to all of our async tests
@@ -32,20 +32,20 @@ api_key = "My API Key"
 
 
 @pytest.fixture(scope="session")
-def client(request: FixtureRequest) -> Iterator[DodoPayments]:
+def client(request: FixtureRequest) -> Iterator[Dodopayments]:
     strict = getattr(request, "param", True)
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    with DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
+    with Dodopayments(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
         yield client
 
 
 @pytest.fixture(scope="session")
-async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncDodoPayments]:
+async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncDodopayments]:
     strict = getattr(request, "param", True)
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    async with AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
+    async with AsyncDodopayments(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
         yield client

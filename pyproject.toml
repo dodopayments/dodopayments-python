@@ -1,11 +1,11 @@
 [project]
-name = "dodo_payments"
+name = "dodopayments"
 version = "0.0.1-alpha.0"
-description = "The official Python library for the dodo-payments API"
+description = "The official Python library for the dodopayments API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Dodo Payments", email = "dev-feedback@dodo-payments.com" },
+{ name = "Dodopayments", email = "support@dodopayments.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
@@ -76,14 +76,14 @@ format = { chain = [
 "check:ruff" = "ruff check ."
 "fix:ruff" = "ruff check --fix ."
 
-"check:importable" = "python -c 'import dodo_payments'"
+"check:importable" = "python -c 'import dodopayments'"
 
 typecheck = { chain = [
   "typecheck:pyright",
   "typecheck:mypy"
 ]}
 "typecheck:pyright" = "pyright"
-"typecheck:verify-types" = "pyright --verifytypes dodo_payments --ignoreexternal"
+"typecheck:verify-types" = "pyright --verifytypes dodopayments --ignoreexternal"
 "typecheck:mypy" = "mypy ."
 
 [build-system]
@@ -96,7 +96,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/dodo_payments"]
+packages = ["src/dodopayments"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
@@ -198,7 +198,7 @@ length-sort = true
 length-sort-straight = true
 combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
-known-first-party = ["dodo_payments", "tests"]
+known-first-party = ["dodopayments", "tests"]
 
 [tool.ruff.lint.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]
