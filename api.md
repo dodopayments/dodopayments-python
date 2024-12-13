@@ -69,13 +69,13 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Product, ProductCreateResponse, ProductListResponse
+from dodopayments.types import ProductCreateResponse, ProductRetrieveResponse, ProductListResponse
 ```
 
 Methods:
 
 - <code title="post /products">client.products.<a href="./src/dodopayments/resources/products/products.py">create</a>(\*\*<a href="src/dodopayments/types/product_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product_create_response.py">ProductCreateResponse</a></code>
-- <code title="get /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/product.py">Product</a></code>
+- <code title="get /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/product_retrieve_response.py">ProductRetrieveResponse</a></code>
 - <code title="patch /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">update</a>(id, \*\*<a href="src/dodopayments/types/product_update_params.py">params</a>) -> None</code>
 - <code title="get /products">client.products.<a href="./src/dodopayments/resources/products/products.py">list</a>(\*\*<a href="src/dodopayments/types/product_list_params.py">params</a>) -> <a href="./src/dodopayments/types/product_list_response.py">ProductListResponse</a></code>
 
@@ -132,9 +132,3 @@ Methods:
 
 - <code title="get /webhook_events/{webhook_event_id}">client.webhook_events.<a href="./src/dodopayments/resources/webhook_events.py">retrieve</a>(webhook_event_id) -> <a href="./src/dodopayments/types/webhook_event_log.py">WebhookEventLog</a></code>
 - <code title="get /webhook_events">client.webhook_events.<a href="./src/dodopayments/resources/webhook_events.py">list</a>(\*\*<a href="src/dodopayments/types/webhook_event_list_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_event_list_response.py">WebhookEventListResponse</a></code>
-
-# OutgoingWebhooks
-
-Methods:
-
-- <code title="post /your-webhook-url">client.outgoing_webhooks.<a href="./src/dodopayments/resources/outgoing_webhooks.py">create</a>(\*\*<a href="src/dodopayments/types/outgoing_webhook_create_params.py">params</a>) -> None</code>

@@ -552,12 +552,12 @@ class TestDodopayments:
         # explicit environment arg requires explicitness
         with update_env(DODOPAYMENTS_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                Dodopayments(api_key=api_key, _strict_response_validation=True, environment="test_mode")
+                Dodopayments(api_key=api_key, _strict_response_validation=True, environment="live_mode")
 
             client = Dodopayments(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="test_mode"
+                base_url=None, api_key=api_key, _strict_response_validation=True, environment="live_mode"
             )
-            assert str(client.base_url).startswith("https://test.dodopayments.com/")
+            assert str(client.base_url).startswith("https://live.dodopayments.com/")
 
     @pytest.mark.parametrize(
         "client",
@@ -1422,12 +1422,12 @@ class TestAsyncDodopayments:
         # explicit environment arg requires explicitness
         with update_env(DODOPAYMENTS_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                AsyncDodopayments(api_key=api_key, _strict_response_validation=True, environment="test_mode")
+                AsyncDodopayments(api_key=api_key, _strict_response_validation=True, environment="live_mode")
 
             client = AsyncDodopayments(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="test_mode"
+                base_url=None, api_key=api_key, _strict_response_validation=True, environment="live_mode"
             )
-            assert str(client.base_url).startswith("https://test.dodopayments.com/")
+            assert str(client.base_url).startswith("https://live.dodopayments.com/")
 
     @pytest.mark.parametrize(
         "client",
