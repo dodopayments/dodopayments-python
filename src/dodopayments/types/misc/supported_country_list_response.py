@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .country_code_alpha2 import CountryCodeAlpha2
+from .country_code import CountryCode
 
 __all__ = ["SupportedCountryListResponse"]
 
-SupportedCountryListResponse: TypeAlias = List[CountryCodeAlpha2]
+SupportedCountryListResponse: TypeAlias = List[CountryCode]

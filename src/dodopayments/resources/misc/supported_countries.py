@@ -14,7 +14,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.checkout.supported_country_list_response import SupportedCountryListResponse
+from ...types.misc.supported_country_list_response import SupportedCountryListResponse
 
 __all__ = ["SupportedCountriesResource", "AsyncSupportedCountriesResource"]
 

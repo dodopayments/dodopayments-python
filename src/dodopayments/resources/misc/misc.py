@@ -13,90 +13,90 @@ from .supported_countries import (
     AsyncSupportedCountriesResourceWithStreamingResponse,
 )
 
-__all__ = ["CheckoutResource", "AsyncCheckoutResource"]
+__all__ = ["MiscResource", "AsyncMiscResource"]
 
 
-class CheckoutResource(SyncAPIResource):
+class MiscResource(SyncAPIResource):
     @cached_property
     def supported_countries(self) -> SupportedCountriesResource:
         return SupportedCountriesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> CheckoutResourceWithRawResponse:
+    def with_raw_response(self) -> MiscResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/dodo-payments-python#accessing-raw-response-data-eg-headers
         """
-        return CheckoutResourceWithRawResponse(self)
+        return MiscResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CheckoutResourceWithStreamingResponse:
+    def with_streaming_response(self) -> MiscResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/dodo-payments-python#with_streaming_response
         """
-        return CheckoutResourceWithStreamingResponse(self)
+        return MiscResourceWithStreamingResponse(self)
 
 
-class AsyncCheckoutResource(AsyncAPIResource):
+class AsyncMiscResource(AsyncAPIResource):
     @cached_property
     def supported_countries(self) -> AsyncSupportedCountriesResource:
         return AsyncSupportedCountriesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCheckoutResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncMiscResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/dodo-payments-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncCheckoutResourceWithRawResponse(self)
+        return AsyncMiscResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCheckoutResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncMiscResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/dodo-payments-python#with_streaming_response
         """
-        return AsyncCheckoutResourceWithStreamingResponse(self)
+        return AsyncMiscResourceWithStreamingResponse(self)
 
 
-class CheckoutResourceWithRawResponse:
-    def __init__(self, checkout: CheckoutResource) -> None:
-        self._checkout = checkout
+class MiscResourceWithRawResponse:
+    def __init__(self, misc: MiscResource) -> None:
+        self._misc = misc
 
     @cached_property
     def supported_countries(self) -> SupportedCountriesResourceWithRawResponse:
-        return SupportedCountriesResourceWithRawResponse(self._checkout.supported_countries)
+        return SupportedCountriesResourceWithRawResponse(self._misc.supported_countries)
 
 
-class AsyncCheckoutResourceWithRawResponse:
-    def __init__(self, checkout: AsyncCheckoutResource) -> None:
-        self._checkout = checkout
+class AsyncMiscResourceWithRawResponse:
+    def __init__(self, misc: AsyncMiscResource) -> None:
+        self._misc = misc
 
     @cached_property
     def supported_countries(self) -> AsyncSupportedCountriesResourceWithRawResponse:
-        return AsyncSupportedCountriesResourceWithRawResponse(self._checkout.supported_countries)
+        return AsyncSupportedCountriesResourceWithRawResponse(self._misc.supported_countries)
 
 
-class CheckoutResourceWithStreamingResponse:
-    def __init__(self, checkout: CheckoutResource) -> None:
-        self._checkout = checkout
+class MiscResourceWithStreamingResponse:
+    def __init__(self, misc: MiscResource) -> None:
+        self._misc = misc
 
     @cached_property
     def supported_countries(self) -> SupportedCountriesResourceWithStreamingResponse:
-        return SupportedCountriesResourceWithStreamingResponse(self._checkout.supported_countries)
+        return SupportedCountriesResourceWithStreamingResponse(self._misc.supported_countries)
 
 
-class AsyncCheckoutResourceWithStreamingResponse:
-    def __init__(self, checkout: AsyncCheckoutResource) -> None:
-        self._checkout = checkout
+class AsyncMiscResourceWithStreamingResponse:
+    def __init__(self, misc: AsyncMiscResource) -> None:
+        self._misc = misc
 
     @cached_property
     def supported_countries(self) -> AsyncSupportedCountriesResourceWithStreamingResponse:
-        return AsyncSupportedCountriesResourceWithStreamingResponse(self._checkout.supported_countries)
+        return AsyncSupportedCountriesResourceWithStreamingResponse(self._misc.supported_countries)

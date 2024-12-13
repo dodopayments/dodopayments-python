@@ -22,7 +22,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.webhook_event_log import WebhookEventLog
+from ..types.webhook_event import WebhookEvent
 from ..types.webhook_event_list_response import WebhookEventListResponse
 
 __all__ = ["WebhookEventsResource", "AsyncWebhookEventsResource"]
@@ -58,7 +58,7 @@ class WebhookEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookEventLog:
+    ) -> WebhookEvent:
         """
         Args:
           extra_headers: Send extra headers
@@ -76,7 +76,7 @@ class WebhookEventsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookEventLog,
+            cast_to=WebhookEvent,
         )
 
     def list(
@@ -158,7 +158,7 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookEventLog:
+    ) -> WebhookEvent:
         """
         Args:
           extra_headers: Send extra headers
@@ -176,7 +176,7 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookEventLog,
+            cast_to=WebhookEvent,
         )
 
     async def list(

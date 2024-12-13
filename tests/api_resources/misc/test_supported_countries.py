@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from dodopayments import Dodopayments, AsyncDodopayments
-from dodopayments.types.checkout import SupportedCountryListResponse
+from dodopayments import DodoPayments, AsyncDodoPayments
+from dodopayments.types.misc import SupportedCountryListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,13 +18,13 @@ class TestSupportedCountries:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_list(self, client: Dodopayments) -> None:
-        supported_country = client.checkout.supported_countries.list()
+    def test_method_list(self, client: DodoPayments) -> None:
+        supported_country = client.misc.supported_countries.list()
         assert_matches_type(SupportedCountryListResponse, supported_country, path=["response"])
 
     @parametrize
-    def test_raw_response_list(self, client: Dodopayments) -> None:
-        response = client.checkout.supported_countries.with_raw_response.list()
+    def test_raw_response_list(self, client: DodoPayments) -> None:
+        response = client.misc.supported_countries.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -32,8 +32,8 @@ class TestSupportedCountries:
         assert_matches_type(SupportedCountryListResponse, supported_country, path=["response"])
 
     @parametrize
-    def test_streaming_response_list(self, client: Dodopayments) -> None:
-        with client.checkout.supported_countries.with_streaming_response.list() as response:
+    def test_streaming_response_list(self, client: DodoPayments) -> None:
+        with client.misc.supported_countries.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -47,13 +47,13 @@ class TestAsyncSupportedCountries:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_list(self, async_client: AsyncDodopayments) -> None:
-        supported_country = await async_client.checkout.supported_countries.list()
+    async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
+        supported_country = await async_client.misc.supported_countries.list()
         assert_matches_type(SupportedCountryListResponse, supported_country, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDodopayments) -> None:
-        response = await async_client.checkout.supported_countries.with_raw_response.list()
+    async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.misc.supported_countries.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,8 +61,8 @@ class TestAsyncSupportedCountries:
         assert_matches_type(SupportedCountryListResponse, supported_country, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDodopayments) -> None:
-        async with async_client.checkout.supported_countries.with_streaming_response.list() as response:
+    async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.misc.supported_countries.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
