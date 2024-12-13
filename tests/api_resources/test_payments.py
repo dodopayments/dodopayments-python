@@ -14,7 +14,7 @@ from dodopayments.types import (
     PaymentListResponse,
     PaymentCreateResponse,
 )
-from dodopayments.pagination import SyncPageNumberPage, AsyncPageNumberPage
+from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -168,7 +168,7 @@ class TestPayments:
     @parametrize
     def test_method_list(self, client: Dodopayments) -> None:
         payment = client.payments.list()
-        assert_matches_type(SyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Dodopayments) -> None:
@@ -176,7 +176,7 @@ class TestPayments:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Dodopayments) -> None:
@@ -185,7 +185,7 @@ class TestPayments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment = response.parse()
-        assert_matches_type(SyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Dodopayments) -> None:
@@ -194,7 +194,7 @@ class TestPayments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment = response.parse()
-            assert_matches_type(SyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+            assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -348,7 +348,7 @@ class TestAsyncPayments:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodopayments) -> None:
         payment = await async_client.payments.list()
-        assert_matches_type(AsyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodopayments) -> None:
@@ -356,7 +356,7 @@ class TestAsyncPayments:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodopayments) -> None:
@@ -365,7 +365,7 @@ class TestAsyncPayments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment = await response.parse()
-        assert_matches_type(AsyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodopayments) -> None:
@@ -374,6 +374,6 @@ class TestAsyncPayments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment = await response.parse()
-            assert_matches_type(AsyncPageNumberPage[PaymentListResponse], payment, path=["response"])
+            assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
         assert cast(Any, response.is_closed) is True

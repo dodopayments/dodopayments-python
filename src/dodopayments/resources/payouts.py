@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.payout_list_response import PayoutListResponse
 
@@ -55,7 +55,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberPage[PayoutListResponse]:
+    ) -> SyncDefaultPageNumberPagination[PayoutListResponse]:
         """
         Args:
           page_number: Page number default is 0
@@ -72,7 +72,7 @@ class PayoutsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/payouts",
-            page=SyncPageNumberPage[PayoutListResponse],
+            page=SyncDefaultPageNumberPagination[PayoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -121,7 +121,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PayoutListResponse, AsyncPageNumberPage[PayoutListResponse]]:
+    ) -> AsyncPaginator[PayoutListResponse, AsyncDefaultPageNumberPagination[PayoutListResponse]]:
         """
         Args:
           page_number: Page number default is 0
@@ -138,7 +138,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/payouts",
-            page=AsyncPageNumberPage[PayoutListResponse],
+            page=AsyncDefaultPageNumberPagination[PayoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

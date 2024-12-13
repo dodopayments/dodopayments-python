@@ -20,7 +20,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.refund import Refund
 
@@ -128,7 +128,7 @@ class RefundsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberPage[Refund]:
+    ) -> SyncDefaultPageNumberPagination[Refund]:
         """
         Args:
           page_number: Page number default is 0
@@ -145,7 +145,7 @@ class RefundsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/refunds",
-            page=SyncPageNumberPage[Refund],
+            page=SyncDefaultPageNumberPagination[Refund],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -264,7 +264,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Refund, AsyncPageNumberPage[Refund]]:
+    ) -> AsyncPaginator[Refund, AsyncDefaultPageNumberPagination[Refund]]:
         """
         Args:
           page_number: Page number default is 0
@@ -281,7 +281,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/refunds",
-            page=AsyncPageNumberPage[Refund],
+            page=AsyncDefaultPageNumberPagination[Refund],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
