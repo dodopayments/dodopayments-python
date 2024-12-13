@@ -72,14 +72,6 @@ from .webhook_events import (
     WebhookEventsResourceWithStreamingResponse,
     AsyncWebhookEventsResourceWithStreamingResponse,
 )
-from .outgoing_webhooks import (
-    OutgoingWebhooksResource,
-    AsyncOutgoingWebhooksResource,
-    OutgoingWebhooksResourceWithRawResponse,
-    AsyncOutgoingWebhooksResourceWithRawResponse,
-    OutgoingWebhooksResourceWithStreamingResponse,
-    AsyncOutgoingWebhooksResourceWithStreamingResponse,
-)
 
 __all__ = [
     "CheckoutResource",
@@ -136,10 +128,4 @@ __all__ = [
     "AsyncWebhookEventsResourceWithRawResponse",
     "WebhookEventsResourceWithStreamingResponse",
     "AsyncWebhookEventsResourceWithStreamingResponse",
-    "OutgoingWebhooksResource",
-    "AsyncOutgoingWebhooksResource",
-    "OutgoingWebhooksResourceWithRawResponse",
-    "AsyncOutgoingWebhooksResourceWithRawResponse",
-    "OutgoingWebhooksResourceWithStreamingResponse",
-    "AsyncOutgoingWebhooksResourceWithStreamingResponse",
 ]

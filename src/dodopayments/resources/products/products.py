@@ -30,9 +30,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.product import Product
 from ...types.product_list_response import ProductListResponse
 from ...types.product_create_response import ProductCreateResponse
+from ...types.product_retrieve_response import ProductRetrieveResponse
 
 __all__ = ["ProductsResource", "AsyncProductsResource"]
 
@@ -115,7 +115,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Product:
+    ) -> ProductRetrieveResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -133,7 +133,7 @@ class ProductsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Product,
+            cast_to=ProductRetrieveResponse,
         )
 
     def update(
@@ -307,7 +307,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Product:
+    ) -> ProductRetrieveResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -325,7 +325,7 @@ class AsyncProductsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Product,
+            cast_to=ProductRetrieveResponse,
         )
 
     async def update(

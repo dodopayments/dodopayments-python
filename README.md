@@ -30,8 +30,8 @@ The full API of this library can be found in [api.md](api.md).
 from dodopayments import Dodopayments
 
 client = Dodopayments(
-    # defaults to "test_mode".
-    environment="live_mode",
+    # defaults to "live_mode".
+    environment="test_mode",
 )
 
 payment = client.payments.create(
@@ -58,7 +58,7 @@ print(payment.payment_id)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `API_KEY="My API Key"` to your `.env` file
+to add `DODO_PAYMENTS_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -70,8 +70,8 @@ import asyncio
 from dodopayments import AsyncDodopayments
 
 client = AsyncDodopayments(
-    # defaults to "test_mode".
-    environment="live_mode",
+    # defaults to "live_mode".
+    environment="test_mode",
 )
 
 
