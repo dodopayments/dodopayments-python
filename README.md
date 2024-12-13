@@ -56,10 +56,10 @@ payment = client.payments.create(
 print(payment.payment_id)
 ```
 
-While you can provide an `api_key` keyword argument,
+While you can provide a `bearer_token` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `DODO_PAYMENTS_API_KEY="My API Key"` to your `.env` file
-so that your API Key is not stored in source control.
+to add `DOOD_PAYMENTS_API_KEY="My Bearer Token"` to your `.env` file
+so that your Bearer Token is not stored in source control.
 
 ## Async usage
 
