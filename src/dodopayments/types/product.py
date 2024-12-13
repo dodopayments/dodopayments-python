@@ -7,7 +7,7 @@ from typing_extensions import Literal, Annotated, TypeAlias
 from .._utils import PropertyInfo
 from .._models import BaseModel
 
-__all__ = ["ProductRetrieveResponse", "Price", "PriceOneTimePrice", "PriceRecurringPrice"]
+__all__ = ["Product", "Price", "PriceOneTimePrice", "PriceRecurringPrice"]
 
 
 class PriceOneTimePrice(BaseModel):
@@ -349,7 +349,7 @@ class PriceRecurringPrice(BaseModel):
 Price: TypeAlias = Annotated[Union[PriceOneTimePrice, PriceRecurringPrice], PropertyInfo(discriminator="type")]
 
 
-class ProductRetrieveResponse(BaseModel):
+class Product(BaseModel):
     business_id: str
 
     created_at: datetime

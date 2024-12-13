@@ -5,6 +5,7 @@ from __future__ import annotations
 from .refund import Refund as Refund
 from .dispute import Dispute as Dispute
 from .payment import Payment as Payment
+from .product import Product as Product
 from .customer import Customer as Customer
 from .subscription import Subscription as Subscription
 from .webhook_event_log import WebhookEventLog as WebhookEventLog
@@ -27,7 +28,6 @@ from .customer_list_response import CustomerListResponse as CustomerListResponse
 from .payment_create_response import PaymentCreateResponse as PaymentCreateResponse
 from .product_create_response import ProductCreateResponse as ProductCreateResponse
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
-from .product_retrieve_response import ProductRetrieveResponse as ProductRetrieveResponse
 from .webhook_event_list_params import WebhookEventListParams as WebhookEventListParams
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
