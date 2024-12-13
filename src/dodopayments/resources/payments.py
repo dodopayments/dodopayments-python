@@ -20,7 +20,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.payment import Payment
 from ..types.payment_list_response import PaymentListResponse
@@ -134,7 +134,7 @@ class PaymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberPage[PaymentListResponse]:
+    ) -> SyncDefaultPageNumberPagination[PaymentListResponse]:
         """
         Args:
           page_number: Page number default is 0
@@ -151,7 +151,7 @@ class PaymentsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/payments",
-            page=SyncPageNumberPage[PaymentListResponse],
+            page=SyncDefaultPageNumberPagination[PaymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,7 +274,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PaymentListResponse, AsyncPageNumberPage[PaymentListResponse]]:
+    ) -> AsyncPaginator[PaymentListResponse, AsyncDefaultPageNumberPagination[PaymentListResponse]]:
         """
         Args:
           page_number: Page number default is 0
@@ -291,7 +291,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/payments",
-            page=AsyncPageNumberPage[PaymentListResponse],
+            page=AsyncDefaultPageNumberPagination[PaymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -10,7 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from dodopayments import Dodopayments, AsyncDodopayments
 from dodopayments.types import PayoutListResponse
-from dodopayments.pagination import SyncPageNumberPage, AsyncPageNumberPage
+from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +21,7 @@ class TestPayouts:
     @parametrize
     def test_method_list(self, client: Dodopayments) -> None:
         payout = client.payouts.list()
-        assert_matches_type(SyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Dodopayments) -> None:
@@ -29,7 +29,7 @@ class TestPayouts:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Dodopayments) -> None:
@@ -38,7 +38,7 @@ class TestPayouts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payout = response.parse()
-        assert_matches_type(SyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Dodopayments) -> None:
@@ -47,7 +47,7 @@ class TestPayouts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payout = response.parse()
-            assert_matches_type(SyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+            assert_matches_type(SyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -58,7 +58,7 @@ class TestAsyncPayouts:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodopayments) -> None:
         payout = await async_client.payouts.list()
-        assert_matches_type(AsyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodopayments) -> None:
@@ -66,7 +66,7 @@ class TestAsyncPayouts:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodopayments) -> None:
@@ -75,7 +75,7 @@ class TestAsyncPayouts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payout = await response.parse()
-        assert_matches_type(AsyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodopayments) -> None:
@@ -84,6 +84,6 @@ class TestAsyncPayouts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payout = await response.parse()
-            assert_matches_type(AsyncPageNumberPage[PayoutListResponse], payout, path=["response"])
+            assert_matches_type(AsyncDefaultPageNumberPagination[PayoutListResponse], payout, path=["response"])
 
         assert cast(Any, response.is_closed) is True

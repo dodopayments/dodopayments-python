@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.dispute import Dispute
 
@@ -86,7 +86,7 @@ class DisputesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberPage[Dispute]:
+    ) -> SyncDefaultPageNumberPagination[Dispute]:
         """
         Args:
           page_number: Page number default is 0
@@ -103,7 +103,7 @@ class DisputesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/disputes",
-            page=SyncPageNumberPage[Dispute],
+            page=SyncDefaultPageNumberPagination[Dispute],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +183,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Dispute, AsyncPageNumberPage[Dispute]]:
+    ) -> AsyncPaginator[Dispute, AsyncDefaultPageNumberPagination[Dispute]]:
         """
         Args:
           page_number: Page number default is 0
@@ -200,7 +200,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/disputes",
-            page=AsyncPageNumberPage[Dispute],
+            page=AsyncDefaultPageNumberPagination[Dispute],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
