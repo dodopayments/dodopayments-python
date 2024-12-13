@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["ProductListResponse", "Item"]
+__all__ = ["ProductListResponse"]
 
 
-class Item(BaseModel):
+class ProductListResponse(BaseModel):
     business_id: str
 
     created_at: datetime
@@ -33,7 +33,3 @@ class Item(BaseModel):
     name: Optional[str] = None
 
     price: Optional[int] = None
-
-
-class ProductListResponse(BaseModel):
-    items: List[Item]

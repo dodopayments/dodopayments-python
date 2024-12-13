@@ -20,7 +20,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.payment import Payment
 from ..types.payment_list_response import PaymentListResponse
 from ..types.payment_create_response import PaymentCreateResponse
@@ -133,7 +134,7 @@ class PaymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaymentListResponse:
+    ) -> SyncPageNumberPage[PaymentListResponse]:
         """
         Args:
           page_number: Page number default is 0
@@ -148,8 +149,9 @@ class PaymentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/payments",
+            page=SyncPageNumberPage[PaymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -163,7 +165,7 @@ class PaymentsResource(SyncAPIResource):
                     payment_list_params.PaymentListParams,
                 ),
             ),
-            cast_to=PaymentListResponse,
+            model=PaymentListResponse,
         )
 
 
@@ -261,7 +263,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
             cast_to=Payment,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
@@ -272,7 +274,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaymentListResponse:
+    ) -> AsyncPaginator[PaymentListResponse, AsyncPageNumberPage[PaymentListResponse]]:
         """
         Args:
           page_number: Page number default is 0
@@ -287,14 +289,15 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/payments",
+            page=AsyncPageNumberPage[PaymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -302,7 +305,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     payment_list_params.PaymentListParams,
                 ),
             ),
-            cast_to=PaymentListResponse,
+            model=PaymentListResponse,
         )
 
 

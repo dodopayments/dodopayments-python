@@ -14,6 +14,7 @@ from dodopayments.types import (
     ProductListResponse,
     ProductCreateResponse,
 )
+from dodopayments.pagination import SyncPageNumberPage, AsyncPageNumberPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -185,7 +186,7 @@ class TestProducts:
     @parametrize
     def test_method_list(self, client: Dodopayments) -> None:
         product = client.products.list()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(SyncPageNumberPage[ProductListResponse], product, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Dodopayments) -> None:
@@ -193,7 +194,7 @@ class TestProducts:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(SyncPageNumberPage[ProductListResponse], product, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Dodopayments) -> None:
@@ -202,7 +203,7 @@ class TestProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = response.parse()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(SyncPageNumberPage[ProductListResponse], product, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Dodopayments) -> None:
@@ -211,7 +212,7 @@ class TestProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = response.parse()
-            assert_matches_type(ProductListResponse, product, path=["response"])
+            assert_matches_type(SyncPageNumberPage[ProductListResponse], product, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -383,7 +384,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodopayments) -> None:
         product = await async_client.products.list()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(AsyncPageNumberPage[ProductListResponse], product, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodopayments) -> None:
@@ -391,7 +392,7 @@ class TestAsyncProducts:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(AsyncPageNumberPage[ProductListResponse], product, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodopayments) -> None:
@@ -400,7 +401,7 @@ class TestAsyncProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = await response.parse()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(AsyncPageNumberPage[ProductListResponse], product, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodopayments) -> None:
@@ -409,6 +410,6 @@ class TestAsyncProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = await response.parse()
-            assert_matches_type(ProductListResponse, product, path=["response"])
+            assert_matches_type(AsyncPageNumberPage[ProductListResponse], product, path=["response"])
 
         assert cast(Any, response.is_closed) is True

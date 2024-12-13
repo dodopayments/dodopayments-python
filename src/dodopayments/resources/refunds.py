@@ -20,9 +20,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.refund import Refund
-from ..types.refund_list_response import RefundListResponse
 
 __all__ = ["RefundsResource", "AsyncRefundsResource"]
 
@@ -128,7 +128,7 @@ class RefundsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RefundListResponse:
+    ) -> SyncPageNumberPage[Refund]:
         """
         Args:
           page_number: Page number default is 0
@@ -143,8 +143,9 @@ class RefundsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/refunds",
+            page=SyncPageNumberPage[Refund],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,7 +159,7 @@ class RefundsResource(SyncAPIResource):
                     refund_list_params.RefundListParams,
                 ),
             ),
-            cast_to=RefundListResponse,
+            model=Refund,
         )
 
 
@@ -252,7 +253,7 @@ class AsyncRefundsResource(AsyncAPIResource):
             cast_to=Refund,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
@@ -263,7 +264,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RefundListResponse:
+    ) -> AsyncPaginator[Refund, AsyncPageNumberPage[Refund]]:
         """
         Args:
           page_number: Page number default is 0
@@ -278,14 +279,15 @@ class AsyncRefundsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/refunds",
+            page=AsyncPageNumberPage[Refund],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -293,7 +295,7 @@ class AsyncRefundsResource(AsyncAPIResource):
                     refund_list_params.RefundListParams,
                 ),
             ),
-            cast_to=RefundListResponse,
+            model=Refund,
         )
 
 

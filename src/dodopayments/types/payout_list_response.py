@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["PayoutListResponse", "Item"]
+__all__ = ["PayoutListResponse"]
 
 
-class Item(BaseModel):
+class PayoutListResponse(BaseModel):
     amount: int
 
     business_id: str
@@ -185,7 +185,3 @@ class Item(BaseModel):
     payout_document_url: Optional[str] = None
 
     remarks: Optional[str] = None
-
-
-class PayoutListResponse(BaseModel):
-    items: List[Item]
