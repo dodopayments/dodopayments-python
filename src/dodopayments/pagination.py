@@ -11,14 +11,14 @@ _T = TypeVar("_T")
 
 
 class SyncPageNumberPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    data: List[_T]
+    items: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        data = self.data
-        if not data:
+        items = self.items
+        if not items:
             return []
-        return data
+        return items
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
@@ -28,14 +28,14 @@ class SyncPageNumberPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
 
 class AsyncPageNumberPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    data: List[_T]
+    items: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        data = self.data
-        if not data:
+        items = self.items
+        if not items:
             return []
-        return data
+        return items
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:

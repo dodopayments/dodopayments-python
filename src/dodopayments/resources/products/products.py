@@ -29,7 +29,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPageNumberPage, AsyncPageNumberPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.product import Product
 from ...types.product_list_response import ProductListResponse
 from ...types.product_create_response import ProductCreateResponse
@@ -195,7 +196,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProductListResponse:
+    ) -> SyncPageNumberPage[ProductListResponse]:
         """
         Args:
           page_number: Page number default is 0
@@ -210,8 +211,9 @@ class ProductsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/products",
+            page=SyncPageNumberPage[ProductListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -225,7 +227,7 @@ class ProductsResource(SyncAPIResource):
                     product_list_params.ProductListParams,
                 ),
             ),
-            cast_to=ProductListResponse,
+            model=ProductListResponse,
         )
 
 
@@ -376,7 +378,7 @@ class AsyncProductsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
@@ -387,7 +389,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProductListResponse:
+    ) -> AsyncPaginator[ProductListResponse, AsyncPageNumberPage[ProductListResponse]]:
         """
         Args:
           page_number: Page number default is 0
@@ -402,14 +404,15 @@ class AsyncProductsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/products",
+            page=AsyncPageNumberPage[ProductListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -417,7 +420,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     product_list_params.ProductListParams,
                 ),
             ),
-            cast_to=ProductListResponse,
+            model=ProductListResponse,
         )
 
 

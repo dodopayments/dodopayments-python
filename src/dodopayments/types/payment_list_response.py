@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["PaymentListResponse", "Item", "ItemCustomer"]
+__all__ = ["PaymentListResponse", "Customer"]
 
 
-class ItemCustomer(BaseModel):
+class Customer(BaseModel):
     customer_id: str
 
     email: str
@@ -17,7 +17,7 @@ class ItemCustomer(BaseModel):
     name: str
 
 
-class Item(BaseModel):
+class PaymentListResponse(BaseModel):
     created_at: datetime
 
     currency: Literal[
@@ -168,7 +168,7 @@ class Item(BaseModel):
         "ZMW",
     ]
 
-    customer: ItemCustomer
+    customer: Customer
 
     payment_id: str
 
@@ -195,7 +195,3 @@ class Item(BaseModel):
     ] = None
 
     subscription_id: Optional[str] = None
-
-
-class PaymentListResponse(BaseModel):
-    items: List[Item]

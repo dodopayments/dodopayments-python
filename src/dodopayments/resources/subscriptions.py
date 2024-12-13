@@ -21,9 +21,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.subscription import Subscription
-from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
@@ -171,7 +171,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionListResponse:
+    ) -> SyncPageNumberPage[Subscription]:
         """
         Args:
           page_number: Page number default is 0
@@ -186,8 +186,9 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/subscriptions",
+            page=SyncPageNumberPage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,7 +202,7 @@ class SubscriptionsResource(SyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            cast_to=SubscriptionListResponse,
+            model=Subscription,
         )
 
 
@@ -336,7 +337,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=Subscription,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
@@ -347,7 +348,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionListResponse:
+    ) -> AsyncPaginator[Subscription, AsyncPageNumberPage[Subscription]]:
         """
         Args:
           page_number: Page number default is 0
@@ -362,14 +363,15 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/subscriptions",
+            page=AsyncPageNumberPage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -377,7 +379,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            cast_to=SubscriptionListResponse,
+            model=Subscription,
         )
 
 

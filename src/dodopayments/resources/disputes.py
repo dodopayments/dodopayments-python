@@ -8,10 +8,7 @@ import httpx
 
 from ..types import dispute_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -20,9 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.dispute import Dispute
-from ..types.dispute_list_response import DisputeListResponse
 
 __all__ = ["DisputesResource", "AsyncDisputesResource"]
 
@@ -89,7 +86,7 @@ class DisputesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DisputeListResponse:
+    ) -> SyncPageNumberPage[Dispute]:
         """
         Args:
           page_number: Page number default is 0
@@ -104,8 +101,9 @@ class DisputesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/disputes",
+            page=SyncPageNumberPage[Dispute],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,7 +117,7 @@ class DisputesResource(SyncAPIResource):
                     dispute_list_params.DisputeListParams,
                 ),
             ),
-            cast_to=DisputeListResponse,
+            model=Dispute,
         )
 
 
@@ -174,7 +172,7 @@ class AsyncDisputesResource(AsyncAPIResource):
             cast_to=Dispute,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
@@ -185,7 +183,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DisputeListResponse:
+    ) -> AsyncPaginator[Dispute, AsyncPageNumberPage[Dispute]]:
         """
         Args:
           page_number: Page number default is 0
@@ -200,14 +198,15 @@ class AsyncDisputesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/disputes",
+            page=AsyncPageNumberPage[Dispute],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -215,7 +214,7 @@ class AsyncDisputesResource(AsyncAPIResource):
                     dispute_list_params.DisputeListParams,
                 ),
             ),
-            cast_to=DisputeListResponse,
+            model=Dispute,
         )
 
 

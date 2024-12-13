@@ -8,10 +8,7 @@ import httpx
 
 from ..types import payout_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -20,7 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberPage, AsyncPageNumberPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.payout_list_response import PayoutListResponse
 
 __all__ = ["PayoutsResource", "AsyncPayoutsResource"]
@@ -57,7 +55,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayoutListResponse:
+    ) -> SyncPageNumberPage[PayoutListResponse]:
         """
         Args:
           page_number: Page number default is 0
@@ -72,8 +70,9 @@ class PayoutsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/payouts",
+            page=SyncPageNumberPage[PayoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,7 +86,7 @@ class PayoutsResource(SyncAPIResource):
                     payout_list_params.PayoutListParams,
                 ),
             ),
-            cast_to=PayoutListResponse,
+            model=PayoutListResponse,
         )
 
 
@@ -111,7 +110,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         """
         return AsyncPayoutsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
@@ -122,7 +121,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayoutListResponse:
+    ) -> AsyncPaginator[PayoutListResponse, AsyncPageNumberPage[PayoutListResponse]]:
         """
         Args:
           page_number: Page number default is 0
@@ -137,14 +136,15 @@ class AsyncPayoutsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/payouts",
+            page=AsyncPageNumberPage[PayoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -152,7 +152,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
                     payout_list_params.PayoutListParams,
                 ),
             ),
-            cast_to=PayoutListResponse,
+            model=PayoutListResponse,
         )
 
 
