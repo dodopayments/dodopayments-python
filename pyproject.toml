@@ -5,7 +5,7 @@ description = "The official Python library for the Dodo Payments API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Dodo Payments", email = "support@dodopayments.com" },
+{ name = "Dodo Payments", email = "founders@dodopayments.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
