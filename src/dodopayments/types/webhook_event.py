@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["WebhookEventLog"]
+__all__ = ["WebhookEvent"]
 
 
-class WebhookEventLog(BaseModel):
+class WebhookEvent(BaseModel):
     business_id: str
 
     created_at: datetime

@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .checkout import (
-    CheckoutResource,
-    AsyncCheckoutResource,
-    CheckoutResourceWithRawResponse,
-    AsyncCheckoutResourceWithRawResponse,
-    CheckoutResourceWithStreamingResponse,
-    AsyncCheckoutResourceWithStreamingResponse,
+from .misc import (
+    MiscResource,
+    AsyncMiscResource,
+    MiscResourceWithRawResponse,
+    AsyncMiscResourceWithRawResponse,
+    MiscResourceWithStreamingResponse,
+    AsyncMiscResourceWithStreamingResponse,
 )
 from .supported_countries import (
     SupportedCountriesResource,
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncSupportedCountriesResourceWithRawResponse",
     "SupportedCountriesResourceWithStreamingResponse",
     "AsyncSupportedCountriesResourceWithStreamingResponse",
-    "CheckoutResource",
-    "AsyncCheckoutResource",
-    "CheckoutResourceWithRawResponse",
-    "AsyncCheckoutResourceWithRawResponse",
-    "CheckoutResourceWithStreamingResponse",
-    "AsyncCheckoutResourceWithStreamingResponse",
+    "MiscResource",
+    "AsyncMiscResource",
+    "MiscResourceWithRawResponse",
+    "AsyncMiscResourceWithRawResponse",
+    "MiscResourceWithStreamingResponse",
+    "AsyncMiscResourceWithStreamingResponse",
 ]

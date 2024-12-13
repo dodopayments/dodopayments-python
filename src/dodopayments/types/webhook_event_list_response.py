@@ -3,10 +3,10 @@
 from typing import List
 
 from .._models import BaseModel
-from .webhook_event_log import WebhookEventLog
+from .webhook_event import WebhookEvent
 
 __all__ = ["WebhookEventListResponse"]
 
 
 class WebhookEventListResponse(BaseModel):
-    items: List[WebhookEventLog]
+    items: List[WebhookEvent]

@@ -8,7 +8,7 @@ from .payment import Payment as Payment
 from .product import Product as Product
 from .customer import Customer as Customer
 from .subscription import Subscription as Subscription
-from .webhook_event_log import WebhookEventLog as WebhookEventLog
+from .webhook_event import WebhookEvent as WebhookEvent
 from .payout_list_params import PayoutListParams as PayoutListParams
 from .refund_list_params import RefundListParams as RefundListParams
 from .dispute_list_params import DisputeListParams as DisputeListParams

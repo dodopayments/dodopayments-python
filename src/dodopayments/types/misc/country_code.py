@@ -2,9 +2,9 @@
 
 from typing_extensions import Literal, TypeAlias
 
-__all__ = ["CountryCodeAlpha2"]
+__all__ = ["CountryCode"]
 
-CountryCodeAlpha2: TypeAlias = Literal[
+CountryCode: TypeAlias = Literal[
     "AF",
     "AX",
     "AL",

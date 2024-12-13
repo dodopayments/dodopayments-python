@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from dodopayments import Dodopayments, AsyncDodopayments
+from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
     Payment,
     PaymentListResponse,
@@ -23,7 +23,7 @@ class TestPayments:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Dodopayments) -> None:
+    def test_method_create(self, client: DodoPayments) -> None:
         payment = client.payments.create(
             billing={
                 "city": "city",
@@ -46,7 +46,7 @@ class TestPayments:
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Dodopayments) -> None:
+    def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         payment = client.payments.create(
             billing={
                 "city": "city",
@@ -72,7 +72,7 @@ class TestPayments:
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Dodopayments) -> None:
+    def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.payments.with_raw_response.create(
             billing={
                 "city": "city",
@@ -99,7 +99,7 @@ class TestPayments:
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Dodopayments) -> None:
+    def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.payments.with_streaming_response.create(
             billing={
                 "city": "city",
@@ -128,14 +128,14 @@ class TestPayments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_retrieve(self, client: Dodopayments) -> None:
+    def test_method_retrieve(self, client: DodoPayments) -> None:
         payment = client.payments.retrieve(
             "payment_id",
         )
         assert_matches_type(Payment, payment, path=["response"])
 
     @parametrize
-    def test_raw_response_retrieve(self, client: Dodopayments) -> None:
+    def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.payments.with_raw_response.retrieve(
             "payment_id",
         )
@@ -146,7 +146,7 @@ class TestPayments:
         assert_matches_type(Payment, payment, path=["response"])
 
     @parametrize
-    def test_streaming_response_retrieve(self, client: Dodopayments) -> None:
+    def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.payments.with_streaming_response.retrieve(
             "payment_id",
         ) as response:
@@ -159,19 +159,19 @@ class TestPayments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_retrieve(self, client: Dodopayments) -> None:
+    def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
             client.payments.with_raw_response.retrieve(
                 "",
             )
 
     @parametrize
-    def test_method_list(self, client: Dodopayments) -> None:
+    def test_method_list(self, client: DodoPayments) -> None:
         payment = client.payments.list()
         assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
-    def test_method_list_with_all_params(self, client: Dodopayments) -> None:
+    def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         payment = client.payments.list(
             page_number=0,
             page_size=0,
@@ -179,7 +179,7 @@ class TestPayments:
         assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
-    def test_raw_response_list(self, client: Dodopayments) -> None:
+    def test_raw_response_list(self, client: DodoPayments) -> None:
         response = client.payments.with_raw_response.list()
 
         assert response.is_closed is True
@@ -188,7 +188,7 @@ class TestPayments:
         assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
-    def test_streaming_response_list(self, client: Dodopayments) -> None:
+    def test_streaming_response_list(self, client: DodoPayments) -> None:
         with client.payments.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -203,7 +203,7 @@ class TestAsyncPayments:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncDodopayments) -> None:
+    async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.create(
             billing={
                 "city": "city",
@@ -226,7 +226,7 @@ class TestAsyncPayments:
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncDodopayments) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.create(
             billing={
                 "city": "city",
@@ -252,7 +252,7 @@ class TestAsyncPayments:
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncDodopayments) -> None:
+    async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payments.with_raw_response.create(
             billing={
                 "city": "city",
@@ -279,7 +279,7 @@ class TestAsyncPayments:
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncDodopayments) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payments.with_streaming_response.create(
             billing={
                 "city": "city",
@@ -308,14 +308,14 @@ class TestAsyncPayments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncDodopayments) -> None:
+    async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.retrieve(
             "payment_id",
         )
         assert_matches_type(Payment, payment, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncDodopayments) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payments.with_raw_response.retrieve(
             "payment_id",
         )
@@ -326,7 +326,7 @@ class TestAsyncPayments:
         assert_matches_type(Payment, payment, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncDodopayments) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payments.with_streaming_response.retrieve(
             "payment_id",
         ) as response:
@@ -339,19 +339,19 @@ class TestAsyncPayments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncDodopayments) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
             await async_client.payments.with_raw_response.retrieve(
                 "",
             )
 
     @parametrize
-    async def test_method_list(self, async_client: AsyncDodopayments) -> None:
+    async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.list()
         assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDodopayments) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.list(
             page_number=0,
             page_size=0,
@@ -359,7 +359,7 @@ class TestAsyncPayments:
         assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDodopayments) -> None:
+    async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payments.with_raw_response.list()
 
         assert response.is_closed is True
@@ -368,7 +368,7 @@ class TestAsyncPayments:
         assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDodopayments) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payments.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

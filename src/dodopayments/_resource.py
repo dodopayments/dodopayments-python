@@ -8,13 +8,13 @@ from typing import TYPE_CHECKING
 import anyio
 
 if TYPE_CHECKING:
-    from ._client import Dodopayments, AsyncDodopayments
+    from ._client import DodoPayments, AsyncDodoPayments
 
 
 class SyncAPIResource:
-    _client: Dodopayments
+    _client: DodoPayments
 
-    def __init__(self, client: Dodopayments) -> None:
+    def __init__(self, client: DodoPayments) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post
@@ -28,9 +28,9 @@ class SyncAPIResource:
 
 
 class AsyncAPIResource:
-    _client: AsyncDodopayments
+    _client: AsyncDodoPayments
 
-    def __init__(self, client: AsyncDodopayments) -> None:
+    def __init__(self, client: AsyncDodoPayments) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post

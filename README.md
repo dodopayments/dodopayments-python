@@ -1,8 +1,8 @@
-# Dodopayments Python API library
+# Dodo Payments Python API library
 
 [![PyPI version](https://img.shields.io/pypi/v/dodopayments.svg)](https://pypi.org/project/dodopayments/)
 
-The Dodopayments Python library provides convenient access to the Dodopayments REST API from any Python 3.8+
+The Dodo Payments Python library provides convenient access to the Dodo Payments REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -27,9 +27,9 @@ pip install git+ssh://git@github.com/stainless-sdks/dodo-payments-python.git
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-from dodopayments import Dodopayments
+from dodopayments import DodoPayments
 
-client = Dodopayments(
+client = DodoPayments(
     # defaults to "live_mode".
     environment="test_mode",
 )
@@ -63,13 +63,13 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncDodopayments` instead of `Dodopayments` and use `await` with each API call:
+Simply import `AsyncDodoPayments` instead of `DodoPayments` and use `await` with each API call:
 
 ```python
 import asyncio
-from dodopayments import AsyncDodopayments
+from dodopayments import AsyncDodoPayments
 
-client = AsyncDodopayments(
+client = AsyncDodoPayments(
     # defaults to "live_mode".
     environment="test_mode",
 )
@@ -114,14 +114,14 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Pagination
 
-List methods in the Dodopayments API are paginated.
+List methods in the Dodo Payments API are paginated.
 
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```python
-from dodopayments import Dodopayments
+from dodopayments import DodoPayments
 
-client = Dodopayments()
+client = DodoPayments()
 
 all_payments = []
 # Automatically fetches more pages as needed.
@@ -135,9 +135,9 @@ Or, asynchronously:
 
 ```python
 import asyncio
-from dodopayments import AsyncDodopayments
+from dodopayments import AsyncDodoPayments
 
-client = AsyncDodopayments()
+client = AsyncDodoPayments()
 
 
 async def main() -> None:
@@ -184,9 +184,9 @@ All errors inherit from `dodopayments.APIError`.
 
 ```python
 import dodopayments
-from dodopayments import Dodopayments
+from dodopayments import DodoPayments
 
-client = Dodopayments()
+client = DodoPayments()
 
 try:
     client.payments.create(
@@ -241,10 +241,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from dodopayments import Dodopayments
+from dodopayments import DodoPayments
 
 # Configure the default for all requests:
-client = Dodopayments(
+client = DodoPayments(
     # default is 2
     max_retries=0,
 )
@@ -277,16 +277,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from dodopayments import Dodopayments
+from dodopayments import DodoPayments
 
 # Configure the default for all requests:
-client = Dodopayments(
+client = DodoPayments(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = Dodopayments(
+client = DodoPayments(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -322,10 +322,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `DODOPAYMENTS_LOG` to `info`.
+You can enable logging by setting the environment variable `DODO_PAYMENTS_LOG` to `info`.
 
 ```shell
-$ export DODOPAYMENTS_LOG=info
+$ export DODO_PAYMENTS_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -347,9 +347,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from dodopayments import Dodopayments
+from dodopayments import DodoPayments
 
-client = Dodopayments()
+client = DodoPayments()
 response = client.payments.with_raw_response.create(
     billing={
         "city": "city",
@@ -456,10 +456,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from dodopayments import Dodopayments, DefaultHttpxClient
+from dodopayments import DodoPayments, DefaultHttpxClient
 
-client = Dodopayments(
-    # Or use the `DODOPAYMENTS_BASE_URL` env var
+client = DodoPayments(
+    # Or use the `DODO_PAYMENTS_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",

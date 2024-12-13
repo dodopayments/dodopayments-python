@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-from .checkout.country_code_alpha2 import CountryCodeAlpha2
+from .misc.country_code import CountryCode
 
 __all__ = ["PaymentCreateParams", "Billing", "Customer", "ProductCart"]
 
@@ -25,7 +25,7 @@ class PaymentCreateParams(TypedDict, total=False):
 class Billing(TypedDict, total=False):
     city: Required[str]
 
-    country: Required[CountryCodeAlpha2]
+    country: Required[CountryCode]
     """ISO country code alpha2 variant"""
 
     state: Required[str]

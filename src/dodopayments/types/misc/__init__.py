@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .country_code_alpha2 import CountryCodeAlpha2 as CountryCodeAlpha2
+from .country_code import CountryCode as CountryCode
 from .supported_country_list_response import SupportedCountryListResponse as SupportedCountryListResponse
