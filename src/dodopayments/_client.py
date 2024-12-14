@@ -8,7 +8,7 @@ from typing_extensions import Self, Literal, override
 
 import httpx
 
-from . import _exceptions
+from . import resources, _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,7 +24,6 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import payouts, refunds, disputes, payments, customers, subscriptions, webhook_events
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, DodoPaymentsError
 from ._base_client import (
@@ -32,8 +31,6 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.misc import misc
-from .resources.products import products
 
 __all__ = [
     "ENVIRONMENTS",
@@ -41,6 +38,7 @@ __all__ = [
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
+    "resources",
     "DodoPayments",
     "AsyncDodoPayments",
     "Client",
@@ -54,15 +52,15 @@ ENVIRONMENTS: Dict[str, str] = {
 
 
 class DodoPayments(SyncAPIClient):
-    payments: payments.PaymentsResource
-    subscriptions: subscriptions.SubscriptionsResource
-    customers: customers.CustomersResource
-    refunds: refunds.RefundsResource
-    disputes: disputes.DisputesResource
-    payouts: payouts.PayoutsResource
-    webhook_events: webhook_events.WebhookEventsResource
-    products: products.ProductsResource
-    misc: misc.MiscResource
+    payments: resources.PaymentsResource
+    subscriptions: resources.SubscriptionsResource
+    customers: resources.CustomersResource
+    refunds: resources.RefundsResource
+    disputes: resources.DisputesResource
+    payouts: resources.PayoutsResource
+    webhook_events: resources.WebhookEventsResource
+    products: resources.ProductsResource
+    misc: resources.MiscResource
     with_raw_response: DodoPaymentsWithRawResponse
     with_streaming_response: DodoPaymentsWithStreamedResponse
 
@@ -144,15 +142,15 @@ class DodoPayments(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.payments = payments.PaymentsResource(self)
-        self.subscriptions = subscriptions.SubscriptionsResource(self)
-        self.customers = customers.CustomersResource(self)
-        self.refunds = refunds.RefundsResource(self)
-        self.disputes = disputes.DisputesResource(self)
-        self.payouts = payouts.PayoutsResource(self)
-        self.webhook_events = webhook_events.WebhookEventsResource(self)
-        self.products = products.ProductsResource(self)
-        self.misc = misc.MiscResource(self)
+        self.payments = resources.PaymentsResource(self)
+        self.subscriptions = resources.SubscriptionsResource(self)
+        self.customers = resources.CustomersResource(self)
+        self.refunds = resources.RefundsResource(self)
+        self.disputes = resources.DisputesResource(self)
+        self.payouts = resources.PayoutsResource(self)
+        self.webhook_events = resources.WebhookEventsResource(self)
+        self.products = resources.ProductsResource(self)
+        self.misc = resources.MiscResource(self)
         self.with_raw_response = DodoPaymentsWithRawResponse(self)
         self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
 
@@ -264,15 +262,15 @@ class DodoPayments(SyncAPIClient):
 
 
 class AsyncDodoPayments(AsyncAPIClient):
-    payments: payments.AsyncPaymentsResource
-    subscriptions: subscriptions.AsyncSubscriptionsResource
-    customers: customers.AsyncCustomersResource
-    refunds: refunds.AsyncRefundsResource
-    disputes: disputes.AsyncDisputesResource
-    payouts: payouts.AsyncPayoutsResource
-    webhook_events: webhook_events.AsyncWebhookEventsResource
-    products: products.AsyncProductsResource
-    misc: misc.AsyncMiscResource
+    payments: resources.AsyncPaymentsResource
+    subscriptions: resources.AsyncSubscriptionsResource
+    customers: resources.AsyncCustomersResource
+    refunds: resources.AsyncRefundsResource
+    disputes: resources.AsyncDisputesResource
+    payouts: resources.AsyncPayoutsResource
+    webhook_events: resources.AsyncWebhookEventsResource
+    products: resources.AsyncProductsResource
+    misc: resources.AsyncMiscResource
     with_raw_response: AsyncDodoPaymentsWithRawResponse
     with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
 
@@ -354,15 +352,15 @@ class AsyncDodoPayments(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.payments = payments.AsyncPaymentsResource(self)
-        self.subscriptions = subscriptions.AsyncSubscriptionsResource(self)
-        self.customers = customers.AsyncCustomersResource(self)
-        self.refunds = refunds.AsyncRefundsResource(self)
-        self.disputes = disputes.AsyncDisputesResource(self)
-        self.payouts = payouts.AsyncPayoutsResource(self)
-        self.webhook_events = webhook_events.AsyncWebhookEventsResource(self)
-        self.products = products.AsyncProductsResource(self)
-        self.misc = misc.AsyncMiscResource(self)
+        self.payments = resources.AsyncPaymentsResource(self)
+        self.subscriptions = resources.AsyncSubscriptionsResource(self)
+        self.customers = resources.AsyncCustomersResource(self)
+        self.refunds = resources.AsyncRefundsResource(self)
+        self.disputes = resources.AsyncDisputesResource(self)
+        self.payouts = resources.AsyncPayoutsResource(self)
+        self.webhook_events = resources.AsyncWebhookEventsResource(self)
+        self.products = resources.AsyncProductsResource(self)
+        self.misc = resources.AsyncMiscResource(self)
         self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
         self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
 
@@ -475,54 +473,54 @@ class AsyncDodoPayments(AsyncAPIClient):
 
 class DodoPaymentsWithRawResponse:
     def __init__(self, client: DodoPayments) -> None:
-        self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
-        self.subscriptions = subscriptions.SubscriptionsResourceWithRawResponse(client.subscriptions)
-        self.customers = customers.CustomersResourceWithRawResponse(client.customers)
-        self.refunds = refunds.RefundsResourceWithRawResponse(client.refunds)
-        self.disputes = disputes.DisputesResourceWithRawResponse(client.disputes)
-        self.payouts = payouts.PayoutsResourceWithRawResponse(client.payouts)
-        self.webhook_events = webhook_events.WebhookEventsResourceWithRawResponse(client.webhook_events)
-        self.products = products.ProductsResourceWithRawResponse(client.products)
-        self.misc = misc.MiscResourceWithRawResponse(client.misc)
+        self.payments = resources.PaymentsResourceWithRawResponse(client.payments)
+        self.subscriptions = resources.SubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.customers = resources.CustomersResourceWithRawResponse(client.customers)
+        self.refunds = resources.RefundsResourceWithRawResponse(client.refunds)
+        self.disputes = resources.DisputesResourceWithRawResponse(client.disputes)
+        self.payouts = resources.PayoutsResourceWithRawResponse(client.payouts)
+        self.webhook_events = resources.WebhookEventsResourceWithRawResponse(client.webhook_events)
+        self.products = resources.ProductsResourceWithRawResponse(client.products)
+        self.misc = resources.MiscResourceWithRawResponse(client.misc)
 
 
 class AsyncDodoPaymentsWithRawResponse:
     def __init__(self, client: AsyncDodoPayments) -> None:
-        self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
-        self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
-        self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
-        self.refunds = refunds.AsyncRefundsResourceWithRawResponse(client.refunds)
-        self.disputes = disputes.AsyncDisputesResourceWithRawResponse(client.disputes)
-        self.payouts = payouts.AsyncPayoutsResourceWithRawResponse(client.payouts)
-        self.webhook_events = webhook_events.AsyncWebhookEventsResourceWithRawResponse(client.webhook_events)
-        self.products = products.AsyncProductsResourceWithRawResponse(client.products)
-        self.misc = misc.AsyncMiscResourceWithRawResponse(client.misc)
+        self.payments = resources.AsyncPaymentsResourceWithRawResponse(client.payments)
+        self.subscriptions = resources.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.customers = resources.AsyncCustomersResourceWithRawResponse(client.customers)
+        self.refunds = resources.AsyncRefundsResourceWithRawResponse(client.refunds)
+        self.disputes = resources.AsyncDisputesResourceWithRawResponse(client.disputes)
+        self.payouts = resources.AsyncPayoutsResourceWithRawResponse(client.payouts)
+        self.webhook_events = resources.AsyncWebhookEventsResourceWithRawResponse(client.webhook_events)
+        self.products = resources.AsyncProductsResourceWithRawResponse(client.products)
+        self.misc = resources.AsyncMiscResourceWithRawResponse(client.misc)
 
 
 class DodoPaymentsWithStreamedResponse:
     def __init__(self, client: DodoPayments) -> None:
-        self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
-        self.subscriptions = subscriptions.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
-        self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
-        self.refunds = refunds.RefundsResourceWithStreamingResponse(client.refunds)
-        self.disputes = disputes.DisputesResourceWithStreamingResponse(client.disputes)
-        self.payouts = payouts.PayoutsResourceWithStreamingResponse(client.payouts)
-        self.webhook_events = webhook_events.WebhookEventsResourceWithStreamingResponse(client.webhook_events)
-        self.products = products.ProductsResourceWithStreamingResponse(client.products)
-        self.misc = misc.MiscResourceWithStreamingResponse(client.misc)
+        self.payments = resources.PaymentsResourceWithStreamingResponse(client.payments)
+        self.subscriptions = resources.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.customers = resources.CustomersResourceWithStreamingResponse(client.customers)
+        self.refunds = resources.RefundsResourceWithStreamingResponse(client.refunds)
+        self.disputes = resources.DisputesResourceWithStreamingResponse(client.disputes)
+        self.payouts = resources.PayoutsResourceWithStreamingResponse(client.payouts)
+        self.webhook_events = resources.WebhookEventsResourceWithStreamingResponse(client.webhook_events)
+        self.products = resources.ProductsResourceWithStreamingResponse(client.products)
+        self.misc = resources.MiscResourceWithStreamingResponse(client.misc)
 
 
 class AsyncDodoPaymentsWithStreamedResponse:
     def __init__(self, client: AsyncDodoPayments) -> None:
-        self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)
-        self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
-        self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
-        self.refunds = refunds.AsyncRefundsResourceWithStreamingResponse(client.refunds)
-        self.disputes = disputes.AsyncDisputesResourceWithStreamingResponse(client.disputes)
-        self.payouts = payouts.AsyncPayoutsResourceWithStreamingResponse(client.payouts)
-        self.webhook_events = webhook_events.AsyncWebhookEventsResourceWithStreamingResponse(client.webhook_events)
-        self.products = products.AsyncProductsResourceWithStreamingResponse(client.products)
-        self.misc = misc.AsyncMiscResourceWithStreamingResponse(client.misc)
+        self.payments = resources.AsyncPaymentsResourceWithStreamingResponse(client.payments)
+        self.subscriptions = resources.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.customers = resources.AsyncCustomersResourceWithStreamingResponse(client.customers)
+        self.refunds = resources.AsyncRefundsResourceWithStreamingResponse(client.refunds)
+        self.disputes = resources.AsyncDisputesResourceWithStreamingResponse(client.disputes)
+        self.payouts = resources.AsyncPayoutsResourceWithStreamingResponse(client.payouts)
+        self.webhook_events = resources.AsyncWebhookEventsResourceWithStreamingResponse(client.webhook_events)
+        self.products = resources.AsyncProductsResourceWithStreamingResponse(client.products)
+        self.misc = resources.AsyncMiscResourceWithStreamingResponse(client.misc)
 
 
 Client = DodoPayments
