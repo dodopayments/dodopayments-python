@@ -32,10 +32,7 @@ class TestPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -55,17 +52,14 @@ class TestPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-                "phone_number": "phone_number",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
                     "quantity": 0,
                 }
             ],
+            metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
         )
@@ -81,10 +75,7 @@ class TestPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -108,10 +99,7 @@ class TestPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -212,10 +200,7 @@ class TestAsyncPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -235,17 +220,14 @@ class TestAsyncPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-                "phone_number": "phone_number",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
                     "quantity": 0,
                 }
             ],
+            metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
         )
@@ -261,10 +243,7 @@ class TestAsyncPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -288,10 +267,7 @@ class TestAsyncPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",

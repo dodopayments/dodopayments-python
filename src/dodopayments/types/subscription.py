@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Dict
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -168,6 +169,8 @@ class Subscription(BaseModel):
     ]
 
     customer: Customer
+
+    metadata: Dict[str, str]
 
     next_billing_date: datetime
 
