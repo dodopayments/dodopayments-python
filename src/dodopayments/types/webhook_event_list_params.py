@@ -15,6 +15,9 @@ class WebhookEventListParams(TypedDict, total=False):
     created_at_gte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """Get events after this created time"""
 
+    created_at_lte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Get events created before this time"""
+
     limit: Optional[int]
     """Min : 1, Max : 100, default 10"""
 
@@ -22,3 +25,9 @@ class WebhookEventListParams(TypedDict, total=False):
     """
     Get events history of a specific object like payment/subscription/refund/dispute
     """
+
+    page_number: Optional[int]
+    """Page number default is 0"""
+
+    page_size: Optional[int]
+    """Page size default is 10 max is 100"""

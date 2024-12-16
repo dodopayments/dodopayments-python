@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -56,6 +56,7 @@ class SubscriptionsResource(SyncAPIResource):
         customer: subscription_create_params.Customer,
         product_id: str,
         quantity: int,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -85,6 +86,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
                 },
@@ -131,7 +133,9 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"],
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -153,7 +157,13 @@ class SubscriptionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
         return self._patch(
             f"/subscriptions/{subscription_id}",
-            body=maybe_transform({"status": status}, subscription_update_params.SubscriptionUpdateParams),
+            body=maybe_transform(
+                {
+                    "metadata": metadata,
+                    "status": status,
+                },
+                subscription_update_params.SubscriptionUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -233,6 +243,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer: subscription_create_params.Customer,
         product_id: str,
         quantity: int,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -262,6 +273,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
                 },
@@ -308,7 +320,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"],
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -330,7 +344,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
         return await self._patch(
             f"/subscriptions/{subscription_id}",
-            body=await async_maybe_transform({"status": status}, subscription_update_params.SubscriptionUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "metadata": metadata,
+                    "status": status,
+                },
+                subscription_update_params.SubscriptionUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

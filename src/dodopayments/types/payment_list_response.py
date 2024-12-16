@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -169,6 +169,8 @@ class PaymentListResponse(BaseModel):
     ]
 
     customer: Customer
+
+    metadata: Dict[str, str]
 
     payment_id: str
 

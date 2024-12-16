@@ -31,10 +31,7 @@ class TestSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
         )
@@ -50,13 +47,10 @@ class TestSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-                "phone_number": "phone_number",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
+            metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
         )
@@ -72,10 +66,7 @@ class TestSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
         )
@@ -95,10 +86,7 @@ class TestSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
         ) as response:
@@ -152,6 +140,14 @@ class TestSubscriptions:
     def test_method_update(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.update(
             subscription_id="subscription_id",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.update(
+            subscription_id="subscription_id",
+            metadata={"foo": "string"},
             status="pending",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
@@ -160,7 +156,6 @@ class TestSubscriptions:
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.update(
             subscription_id="subscription_id",
-            status="pending",
         )
 
         assert response.is_closed is True
@@ -172,7 +167,6 @@ class TestSubscriptions:
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.update(
             subscription_id="subscription_id",
-            status="pending",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -187,7 +181,6 @@ class TestSubscriptions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             client.subscriptions.with_raw_response.update(
                 subscription_id="",
-                status="pending",
             )
 
     @parametrize
@@ -237,10 +230,7 @@ class TestAsyncSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
         )
@@ -256,13 +246,10 @@ class TestAsyncSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-                "phone_number": "phone_number",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
+            metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
         )
@@ -278,10 +265,7 @@ class TestAsyncSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
         )
@@ -301,10 +285,7 @@ class TestAsyncSubscriptions:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
         ) as response:
@@ -358,6 +339,14 @@ class TestAsyncSubscriptions:
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.update(
             subscription_id="subscription_id",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.update(
+            subscription_id="subscription_id",
+            metadata={"foo": "string"},
             status="pending",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
@@ -366,7 +355,6 @@ class TestAsyncSubscriptions:
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.update(
             subscription_id="subscription_id",
-            status="pending",
         )
 
         assert response.is_closed is True
@@ -378,7 +366,6 @@ class TestAsyncSubscriptions:
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.update(
             subscription_id="subscription_id",
-            status="pending",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -393,7 +380,6 @@ class TestAsyncSubscriptions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             await async_client.subscriptions.with_raw_response.update(
                 subscription_id="",
-                status="pending",
             )
 
     @parametrize

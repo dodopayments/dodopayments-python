@@ -2,12 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing import Dict, Union, Iterable, Optional
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .misc.country_code import CountryCode
 
-__all__ = ["PaymentCreateParams", "Billing", "Customer", "ProductCart"]
+__all__ = [
+    "PaymentCreateParams",
+    "Billing",
+    "Customer",
+    "CustomerAttachExistingCustomer",
+    "CustomerCreateNewCustomer",
+    "ProductCart",
+]
 
 
 class PaymentCreateParams(TypedDict, total=False):
@@ -16,6 +23,8 @@ class PaymentCreateParams(TypedDict, total=False):
     customer: Required[Customer]
 
     product_cart: Required[Iterable[ProductCart]]
+
+    metadata: Dict[str, str]
 
     payment_link: Optional[bool]
 
@@ -35,12 +44,19 @@ class Billing(TypedDict, total=False):
     zipcode: Required[int]
 
 
-class Customer(TypedDict, total=False):
+class CustomerAttachExistingCustomer(TypedDict, total=False):
+    customer_id: Required[str]
+
+
+class CustomerCreateNewCustomer(TypedDict, total=False):
     email: Required[str]
 
     name: Required[str]
 
     phone_number: Optional[str]
+
+
+Customer: TypeAlias = Union[CustomerAttachExistingCustomer, CustomerCreateNewCustomer]
 
 
 class ProductCart(TypedDict, total=False):

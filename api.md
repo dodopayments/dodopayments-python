@@ -84,13 +84,13 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import WebhookEvent, WebhookEventListResponse
+from dodopayments.types import WebhookEvent
 ```
 
 Methods:
 
 - <code title="get /webhook_events/{webhook_event_id}">client.webhook_events.<a href="./src/dodopayments/resources/webhook_events.py">retrieve</a>(webhook_event_id) -> <a href="./src/dodopayments/types/webhook_event.py">WebhookEvent</a></code>
-- <code title="get /webhook_events">client.webhook_events.<a href="./src/dodopayments/resources/webhook_events.py">list</a>(\*\*<a href="src/dodopayments/types/webhook_event_list_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_event_list_response.py">WebhookEventListResponse</a></code>
+- <code title="get /webhook_events">client.webhook_events.<a href="./src/dodopayments/resources/webhook_events.py">list</a>(\*\*<a href="src/dodopayments/types/webhook_event_list_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_event.py">SyncDefaultPageNumberPagination[WebhookEvent]</a></code>
 
 # Products
 
