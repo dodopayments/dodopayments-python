@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 
 from .._models import BaseModel
 
@@ -17,6 +17,8 @@ class Customer(BaseModel):
 
 class SubscriptionCreateResponse(BaseModel):
     customer: Customer
+
+    metadata: Dict[str, str]
 
     recurring_pre_tax_amount: int
 

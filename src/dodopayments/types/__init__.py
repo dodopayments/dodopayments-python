@@ -28,5 +28,4 @@ from .subscription_list_params import SubscriptionListParams as SubscriptionList
 from .webhook_event_list_params import WebhookEventListParams as WebhookEventListParams
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
-from .webhook_event_list_response import WebhookEventListResponse as WebhookEventListResponse
 from .subscription_create_response import SubscriptionCreateResponse as SubscriptionCreateResponse
