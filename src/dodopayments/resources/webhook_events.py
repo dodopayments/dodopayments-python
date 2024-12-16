@@ -9,10 +9,7 @@ import httpx
 
 from ..types import webhook_event_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -21,9 +18,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.webhook_event import WebhookEvent
-from ..types.webhook_event_list_response import WebhookEventListResponse
 
 __all__ = ["WebhookEventsResource", "AsyncWebhookEventsResource"]
 
@@ -83,22 +80,31 @@ class WebhookEventsResource(SyncAPIResource):
         self,
         *,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         limit: Optional[int] | NotGiven = NOT_GIVEN,
         object_id: Optional[str] | NotGiven = NOT_GIVEN,
+        page_number: Optional[int] | NotGiven = NOT_GIVEN,
+        page_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookEventListResponse:
+    ) -> SyncDefaultPageNumberPagination[WebhookEvent]:
         """
         Args:
           created_at_gte: Get events after this created time
 
+          created_at_lte: Get events created before this time
+
           limit: Min : 1, Max : 100, default 10
 
           object_id: Get events history of a specific object like payment/subscription/refund/dispute
+
+          page_number: Page number default is 0
+
+          page_size: Page size default is 10 max is 100
 
           extra_headers: Send extra headers
 
@@ -108,8 +114,9 @@ class WebhookEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/webhook_events",
+            page=SyncDefaultPageNumberPagination[WebhookEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -118,13 +125,16 @@ class WebhookEventsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
                         "limit": limit,
                         "object_id": object_id,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     webhook_event_list_params.WebhookEventListParams,
                 ),
             ),
-            cast_to=WebhookEventListResponse,
+            model=WebhookEvent,
         )
 
 
@@ -179,26 +189,35 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
             cast_to=WebhookEvent,
         )
 
-    async def list(
+    def list(
         self,
         *,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         limit: Optional[int] | NotGiven = NOT_GIVEN,
         object_id: Optional[str] | NotGiven = NOT_GIVEN,
+        page_number: Optional[int] | NotGiven = NOT_GIVEN,
+        page_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookEventListResponse:
+    ) -> AsyncPaginator[WebhookEvent, AsyncDefaultPageNumberPagination[WebhookEvent]]:
         """
         Args:
           created_at_gte: Get events after this created time
 
+          created_at_lte: Get events created before this time
+
           limit: Min : 1, Max : 100, default 10
 
           object_id: Get events history of a specific object like payment/subscription/refund/dispute
+
+          page_number: Page number default is 0
+
+          page_size: Page size default is 10 max is 100
 
           extra_headers: Send extra headers
 
@@ -208,23 +227,27 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/webhook_events",
+            page=AsyncDefaultPageNumberPagination[WebhookEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
                         "limit": limit,
                         "object_id": object_id,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     webhook_event_list_params.WebhookEventListParams,
                 ),
             ),
-            cast_to=WebhookEventListResponse,
+            model=WebhookEvent,
         )
 
 

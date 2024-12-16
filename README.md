@@ -41,10 +41,7 @@ payment = client.payments.create(
         "street": "street",
         "zipcode": 0,
     },
-    customer={
-        "email": "email",
-        "name": "name",
-    },
+    customer={"customer_id": "customer_id"},
     product_cart=[
         {
             "product_id": "product_id",
@@ -85,10 +82,7 @@ async def main() -> None:
             "street": "street",
             "zipcode": 0,
         },
-        customer={
-            "email": "email",
-            "name": "name",
-        },
+        customer={"customer_id": "customer_id"},
         product_cart=[
             {
                 "product_id": "product_id",
@@ -198,10 +192,7 @@ try:
             "street": "street",
             "zipcode": 0,
         },
-        customer={
-            "email": "email",
-            "name": "name",
-        },
+        customer={"customer_id": "customer_id"},
         product_cart=[
             {
                 "product_id": "product_id",
@@ -259,10 +250,7 @@ client.with_options(max_retries=5).payments.create(
         "street": "street",
         "zipcode": 0,
     },
-    customer={
-        "email": "email",
-        "name": "name",
-    },
+    customer={"customer_id": "customer_id"},
     product_cart=[
         {
             "product_id": "product_id",
@@ -300,10 +288,7 @@ client.with_options(timeout=5.0).payments.create(
         "street": "street",
         "zipcode": 0,
     },
-    customer={
-        "email": "email",
-        "name": "name",
-    },
+    customer={"customer_id": "customer_id"},
     product_cart=[
         {
             "product_id": "product_id",
@@ -360,8 +345,7 @@ response = client.payments.with_raw_response.create(
         "zipcode": 0,
     },
     customer={
-        "email": "email",
-        "name": "name",
+        "customer_id": "customer_id"
     },
     product_cart=[{
         "product_id": "product_id",
@@ -393,10 +377,7 @@ with client.payments.with_streaming_response.create(
         "street": "street",
         "zipcode": 0,
     },
-    customer={
-        "email": "email",
-        "name": "name",
-    },
+    customer={"customer_id": "customer_id"},
     product_cart=[
         {
             "product_id": "product_id",

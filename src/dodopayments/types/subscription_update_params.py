@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, Optional
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["SubscriptionUpdateParams"]
 
 
 class SubscriptionUpdateParams(TypedDict, total=False):
-    status: Required[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
+    metadata: Optional[Dict[str, str]]
+
+    status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from .._models import BaseModel
 
@@ -25,6 +25,8 @@ class PaymentCreateResponse(BaseModel):
     client_secret: str
 
     customer: Customer
+
+    metadata: Dict[str, str]
 
     payment_id: str
 

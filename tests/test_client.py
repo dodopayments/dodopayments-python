@@ -764,10 +764,7 @@ class TestDodoPayments:
                             "street": "street",
                             "zipcode": 0,
                         },
-                        customer={
-                            "email": "email",
-                            "name": "name",
-                        },
+                        customer={"customer_id": "customer_id"},
                         product_cart=[
                             {
                                 "product_id": "product_id",
@@ -800,10 +797,7 @@ class TestDodoPayments:
                             "street": "street",
                             "zipcode": 0,
                         },
-                        customer={
-                            "email": "email",
-                            "name": "name",
-                        },
+                        customer={"customer_id": "customer_id"},
                         product_cart=[
                             {
                                 "product_id": "product_id",
@@ -852,10 +846,7 @@ class TestDodoPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -894,10 +885,7 @@ class TestDodoPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -936,10 +924,7 @@ class TestDodoPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -1668,10 +1653,7 @@ class TestAsyncDodoPayments:
                             "street": "street",
                             "zipcode": 0,
                         },
-                        customer={
-                            "email": "email",
-                            "name": "name",
-                        },
+                        customer={"customer_id": "customer_id"},
                         product_cart=[
                             {
                                 "product_id": "product_id",
@@ -1704,10 +1686,7 @@ class TestAsyncDodoPayments:
                             "street": "street",
                             "zipcode": 0,
                         },
-                        customer={
-                            "email": "email",
-                            "name": "name",
-                        },
+                        customer={"customer_id": "customer_id"},
                         product_cart=[
                             {
                                 "product_id": "product_id",
@@ -1757,10 +1736,7 @@ class TestAsyncDodoPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -1800,10 +1776,7 @@ class TestAsyncDodoPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -1843,10 +1816,7 @@ class TestAsyncDodoPayments:
                 "street": "street",
                 "zipcode": 0,
             },
-            customer={
-                "email": "email",
-                "name": "name",
-            },
+            customer={"customer_id": "customer_id"},
             product_cart=[
                 {
                     "product_id": "product_id",

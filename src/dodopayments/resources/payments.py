@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 
 import httpx
 
@@ -55,6 +55,7 @@ class PaymentsResource(SyncAPIResource):
         billing: payment_create_params.Billing,
         customer: payment_create_params.Customer,
         product_cart: Iterable[payment_create_params.ProductCart],
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -81,6 +82,7 @@ class PaymentsResource(SyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
                 },
@@ -195,6 +197,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         billing: payment_create_params.Billing,
         customer: payment_create_params.Customer,
         product_cart: Iterable[payment_create_params.ProductCart],
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -221,6 +224,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
                 },

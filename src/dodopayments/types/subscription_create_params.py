@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing import Dict, Union, Optional
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .misc.country_code import CountryCode
 
-__all__ = ["SubscriptionCreateParams", "Billing", "Customer"]
+__all__ = [
+    "SubscriptionCreateParams",
+    "Billing",
+    "Customer",
+    "CustomerAttachExistingCustomer",
+    "CustomerCreateNewCustomer",
+]
 
 
 class SubscriptionCreateParams(TypedDict, total=False):
@@ -18,6 +24,8 @@ class SubscriptionCreateParams(TypedDict, total=False):
     product_id: Required[str]
 
     quantity: Required[int]
+
+    metadata: Dict[str, str]
 
     payment_link: Optional[bool]
     """False by default"""
@@ -38,9 +46,16 @@ class Billing(TypedDict, total=False):
     zipcode: Required[int]
 
 
-class Customer(TypedDict, total=False):
+class CustomerAttachExistingCustomer(TypedDict, total=False):
+    customer_id: Required[str]
+
+
+class CustomerCreateNewCustomer(TypedDict, total=False):
     email: Required[str]
 
     name: Required[str]
 
     phone_number: Optional[str]
+
+
+Customer: TypeAlias = Union[CustomerAttachExistingCustomer, CustomerCreateNewCustomer]
