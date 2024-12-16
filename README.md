@@ -16,7 +16,7 @@ The REST API documentation can be found on [docs.dodopayments.com](https://docs.
 
 ```sh
 # install from PyPI
-pip install --pre dodopayments
+pip install dodopayments
 ```
 
 ## Usage
