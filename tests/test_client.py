@@ -24,7 +24,7 @@ from dodopayments import DodoPayments, AsyncDodoPayments, APIResponseValidationE
 from dodopayments._types import Omit
 from dodopayments._models import BaseModel, FinalRequestOptions
 from dodopayments._constants import RAW_RESPONSE_HEADER
-from dodopayments._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from dodopayments._exceptions import APIStatusError, APITimeoutError, DodoPaymentsError, APIResponseValidationError
 from dodopayments._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -338,6 +338,16 @@ class TestDodoPayments:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+
+    def test_validate_headers(self) -> None:
+        client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+
+        with pytest.raises(DodoPaymentsError):
+            with update_env(**{"DOOD_PAYMENTS_API_KEY": Omit()}):
+                client2 = DodoPayments(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = DodoPayments(
@@ -1226,6 +1236,16 @@ class TestAsyncDodoPayments:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+
+    def test_validate_headers(self) -> None:
+        client = AsyncDodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+
+        with pytest.raises(DodoPaymentsError):
+            with update_env(**{"DOOD_PAYMENTS_API_KEY": Omit()}):
+                client2 = AsyncDodoPayments(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = AsyncDodoPayments(
