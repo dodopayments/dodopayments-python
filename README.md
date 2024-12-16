@@ -24,9 +24,11 @@ pip install dodopayments
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from dodopayments import DodoPayments
 
 client = DodoPayments(
+    bearer_token=os.environ.get("DOOD_PAYMENTS_API_KEY"),  # This is the default and can be omitted
     # defaults to "live_mode".
     environment="test_mode",
 )
@@ -63,10 +65,12 @@ so that your Bearer Token is not stored in source control.
 Simply import `AsyncDodoPayments` instead of `DodoPayments` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from dodopayments import AsyncDodoPayments
 
 client = AsyncDodoPayments(
+    bearer_token=os.environ.get("DOOD_PAYMENTS_API_KEY"),  # This is the default and can be omitted
     # defaults to "live_mode".
     environment="test_mode",
 )
