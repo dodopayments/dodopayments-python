@@ -22,6 +22,8 @@ from .payment_list_response import PaymentListResponse as PaymentListResponse
 from .product_create_params import ProductCreateParams as ProductCreateParams
 from .product_list_response import ProductListResponse as ProductListResponse
 from .product_update_params import ProductUpdateParams as ProductUpdateParams
+from .customer_create_params import CustomerCreateParams as CustomerCreateParams
+from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
 from .payment_create_response import PaymentCreateResponse as PaymentCreateResponse
 from .product_create_response import ProductCreateResponse as ProductCreateResponse
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
