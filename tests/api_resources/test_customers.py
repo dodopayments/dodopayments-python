@@ -19,6 +19,49 @@ class TestCustomers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    def test_method_create(self, client: DodoPayments) -> None:
+        customer = client.customers.create(
+            email="email",
+            name="name",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: DodoPayments) -> None:
+        customer = client.customers.create(
+            email="email",
+            name="name",
+            phone_number="phone_number",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: DodoPayments) -> None:
+        response = client.customers.with_raw_response.create(
+            email="email",
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: DodoPayments) -> None:
+        with client.customers.with_streaming_response.create(
+            email="email",
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(Customer, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         customer = client.customers.retrieve(
             "customer_id",
@@ -54,6 +97,53 @@ class TestCustomers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
             client.customers.with_raw_response.retrieve(
                 "",
+            )
+
+    @parametrize
+    def test_method_update(self, client: DodoPayments) -> None:
+        customer = client.customers.update(
+            customer_id="customer_id",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: DodoPayments) -> None:
+        customer = client.customers.update(
+            customer_id="customer_id",
+            name="name",
+            phone_number="phone_number",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: DodoPayments) -> None:
+        response = client.customers.with_raw_response.update(
+            customer_id="customer_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: DodoPayments) -> None:
+        with client.customers.with_streaming_response.update(
+            customer_id="customer_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(Customer, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
+            client.customers.with_raw_response.update(
+                customer_id="",
             )
 
     @parametrize
@@ -94,6 +184,49 @@ class TestAsyncCustomers:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
+        customer = await async_client.customers.create(
+            email="email",
+            name="name",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        customer = await async_client.customers.create(
+            email="email",
+            name="name",
+            phone_number="phone_number",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.customers.with_raw_response.create(
+            email="email",
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.customers.with_streaming_response.create(
+            email="email",
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(Customer, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         customer = await async_client.customers.retrieve(
             "customer_id",
@@ -129,6 +262,53 @@ class TestAsyncCustomers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
             await async_client.customers.with_raw_response.retrieve(
                 "",
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
+        customer = await async_client.customers.update(
+            customer_id="customer_id",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        customer = await async_client.customers.update(
+            customer_id="customer_id",
+            name="name",
+            phone_number="phone_number",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.customers.with_raw_response.update(
+            customer_id="customer_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.customers.with_streaming_response.update(
+            customer_id="customer_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(Customer, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
+            await async_client.customers.with_raw_response.update(
+                customer_id="",
             )
 
     @parametrize
