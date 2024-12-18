@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.1 (2024-12-18)
+
+Full Changelog: [v0.12.0...v0.12.1](https://github.com/dodopayments/dodopayments-python/compare/v0.12.0...v0.12.1)
+
+### Chores
+
+* **internal:** fix some typos ([#13](https://github.com/dodopayments/dodopayments-python/issues/13)) ([9992490](https://github.com/dodopayments/dodopayments-python/commit/99924907412f2e80b4c7b84650495e27a9a879a1))
+
 ## 0.12.0 (2024-12-17)
 
 Full Changelog: [v0.11.1...v0.12.0](https://github.com/dodopayments/dodopayments-python/compare/v0.11.1...v0.12.0)
