@@ -7,7 +7,7 @@ from typing_extensions import Literal, Annotated, TypeAlias
 from .._utils import PropertyInfo
 from .._models import BaseModel
 
-__all__ = ["Product", "Price", "PriceOneTimePrice", "PriceRecurringPrice"]
+__all__ = ["Product", "Price", "PriceOneTimePrice", "PriceRecurringPrice", "LicenseKeyDuration"]
 
 
 class PriceOneTimePrice(BaseModel):
@@ -349,12 +349,20 @@ class PriceRecurringPrice(BaseModel):
 Price: TypeAlias = Annotated[Union[PriceOneTimePrice, PriceRecurringPrice], PropertyInfo(discriminator="type")]
 
 
+class LicenseKeyDuration(BaseModel):
+    count: int
+
+    interval: Literal["Day", "Week", "Month", "Year"]
+
+
 class Product(BaseModel):
     business_id: str
 
     created_at: datetime
 
     is_recurring: bool
+
+    license_key_enabled: bool
 
     price: Price
 
@@ -371,5 +379,11 @@ class Product(BaseModel):
     description: Optional[str] = None
 
     image: Optional[str] = None
+
+    license_key_activation_message: Optional[str] = None
+
+    license_key_activations_limit: Optional[int] = None
+
+    license_key_duration: Optional[LicenseKeyDuration] = None
 
     name: Optional[str] = None
