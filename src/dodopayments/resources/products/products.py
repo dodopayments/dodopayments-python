@@ -33,7 +33,6 @@ from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumbe
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.product import Product
 from ...types.product_list_response import ProductListResponse
-from ...types.product_create_response import ProductCreateResponse
 
 __all__ = ["ProductsResource", "AsyncProductsResource"]
 
@@ -68,6 +67,10 @@ class ProductsResource(SyncAPIResource):
         price: product_create_params.Price,
         tax_category: Literal["digital_products", "saas", "e_book"],
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[product_create_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -75,11 +78,15 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProductCreateResponse:
+    ) -> Product:
         """
         Args:
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
+
+          license_key_activations_limit: The number of times the license key can be activated
+
+          license_key_enabled: Put true to generate and send license key to your customer. Default is false
 
           extra_headers: Send extra headers
 
@@ -96,6 +103,10 @@ class ProductsResource(SyncAPIResource):
                     "price": price,
                     "tax_category": tax_category,
                     "description": description,
+                    "license_key_activation_message": license_key_activation_message,
+                    "license_key_activations_limit": license_key_activations_limit,
+                    "license_key_duration": license_key_duration,
+                    "license_key_enabled": license_key_enabled,
                     "name": name,
                 },
                 product_create_params.ProductCreateParams,
@@ -103,7 +114,7 @@ class ProductsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductCreateResponse,
+            cast_to=Product,
         )
 
     def retrieve(
@@ -142,6 +153,10 @@ class ProductsResource(SyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[product_update_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[product_update_params.Price] | NotGiven = NOT_GIVEN,
         tax_category: Optional[Literal["digital_products", "saas", "e_book"]] | NotGiven = NOT_GIVEN,
@@ -173,6 +188,10 @@ class ProductsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
+                    "license_key_activation_message": license_key_activation_message,
+                    "license_key_activations_limit": license_key_activations_limit,
+                    "license_key_duration": license_key_duration,
+                    "license_key_enabled": license_key_enabled,
                     "name": name,
                     "price": price,
                     "tax_category": tax_category,
@@ -261,6 +280,10 @@ class AsyncProductsResource(AsyncAPIResource):
         price: product_create_params.Price,
         tax_category: Literal["digital_products", "saas", "e_book"],
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[product_create_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -268,11 +291,15 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProductCreateResponse:
+    ) -> Product:
         """
         Args:
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
+
+          license_key_activations_limit: The number of times the license key can be activated
+
+          license_key_enabled: Put true to generate and send license key to your customer. Default is false
 
           extra_headers: Send extra headers
 
@@ -289,6 +316,10 @@ class AsyncProductsResource(AsyncAPIResource):
                     "price": price,
                     "tax_category": tax_category,
                     "description": description,
+                    "license_key_activation_message": license_key_activation_message,
+                    "license_key_activations_limit": license_key_activations_limit,
+                    "license_key_duration": license_key_duration,
+                    "license_key_enabled": license_key_enabled,
                     "name": name,
                 },
                 product_create_params.ProductCreateParams,
@@ -296,7 +327,7 @@ class AsyncProductsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProductCreateResponse,
+            cast_to=Product,
         )
 
     async def retrieve(
@@ -335,6 +366,10 @@ class AsyncProductsResource(AsyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
+        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[product_update_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[product_update_params.Price] | NotGiven = NOT_GIVEN,
         tax_category: Optional[Literal["digital_products", "saas", "e_book"]] | NotGiven = NOT_GIVEN,
@@ -366,6 +401,10 @@ class AsyncProductsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "description": description,
+                    "license_key_activation_message": license_key_activation_message,
+                    "license_key_activations_limit": license_key_activations_limit,
+                    "license_key_duration": license_key_duration,
+                    "license_key_enabled": license_key_enabled,
                     "name": name,
                     "price": price,
                     "tax_category": tax_category,

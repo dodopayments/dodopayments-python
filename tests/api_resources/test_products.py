@@ -12,7 +12,6 @@ from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
     Product,
     ProductListResponse,
-    ProductCreateResponse,
 )
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
@@ -34,7 +33,7 @@ class TestProducts:
             },
             tax_category="digital_products",
         )
-        assert_matches_type(ProductCreateResponse, product, path=["response"])
+        assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
@@ -48,9 +47,16 @@ class TestProducts:
             },
             tax_category="digital_products",
             description="description",
+            license_key_activation_message="license_key_activation_message",
+            license_key_activations_limit=0,
+            license_key_duration={
+                "count": 0,
+                "interval": "Day",
+            },
+            license_key_enabled=True,
             name="name",
         )
-        assert_matches_type(ProductCreateResponse, product, path=["response"])
+        assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
@@ -68,7 +74,7 @@ class TestProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = response.parse()
-        assert_matches_type(ProductCreateResponse, product, path=["response"])
+        assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
@@ -86,7 +92,7 @@ class TestProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = response.parse()
-            assert_matches_type(ProductCreateResponse, product, path=["response"])
+            assert_matches_type(Product, product, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -140,6 +146,13 @@ class TestProducts:
         product = client.products.update(
             id="id",
             description="description",
+            license_key_activation_message="license_key_activation_message",
+            license_key_activations_limit=0,
+            license_key_duration={
+                "count": 0,
+                "interval": "Day",
+            },
+            license_key_enabled=True,
             name="name",
             price={
                 "currency": "AED",
@@ -232,7 +245,7 @@ class TestAsyncProducts:
             },
             tax_category="digital_products",
         )
-        assert_matches_type(ProductCreateResponse, product, path=["response"])
+        assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -246,9 +259,16 @@ class TestAsyncProducts:
             },
             tax_category="digital_products",
             description="description",
+            license_key_activation_message="license_key_activation_message",
+            license_key_activations_limit=0,
+            license_key_duration={
+                "count": 0,
+                "interval": "Day",
+            },
+            license_key_enabled=True,
             name="name",
         )
-        assert_matches_type(ProductCreateResponse, product, path=["response"])
+        assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -266,7 +286,7 @@ class TestAsyncProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = await response.parse()
-        assert_matches_type(ProductCreateResponse, product, path=["response"])
+        assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -284,7 +304,7 @@ class TestAsyncProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = await response.parse()
-            assert_matches_type(ProductCreateResponse, product, path=["response"])
+            assert_matches_type(Product, product, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -338,6 +358,13 @@ class TestAsyncProducts:
         product = await async_client.products.update(
             id="id",
             description="description",
+            license_key_activation_message="license_key_activation_message",
+            license_key_activations_limit=0,
+            license_key_duration={
+                "count": 0,
+                "interval": "Day",
+            },
+            license_key_enabled=True,
             name="name",
             price={
                 "currency": "AED",
