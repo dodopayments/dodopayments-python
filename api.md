@@ -27,6 +27,48 @@ Methods:
 - <code title="patch /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
 - <code title="get /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">list</a>(\*\*<a href="src/dodopayments/types/subscription_list_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">SyncDefaultPageNumberPagination[Subscription]</a></code>
 
+# Licenses
+
+Types:
+
+```python
+from dodopayments.types import LicenseValidateResponse
+```
+
+Methods:
+
+- <code title="post /licenses/activate">client.licenses.<a href="./src/dodopayments/resources/licenses.py">activate</a>(\*\*<a href="src/dodopayments/types/license_activate_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_instance.py">LicenseKeyInstance</a></code>
+- <code title="post /licenses/deactivate">client.licenses.<a href="./src/dodopayments/resources/licenses.py">deactivate</a>(\*\*<a href="src/dodopayments/types/license_deactivate_params.py">params</a>) -> None</code>
+- <code title="post /licenses/validate">client.licenses.<a href="./src/dodopayments/resources/licenses.py">validate</a>(\*\*<a href="src/dodopayments/types/license_validate_params.py">params</a>) -> <a href="./src/dodopayments/types/license_validate_response.py">LicenseValidateResponse</a></code>
+
+# LicenseKeys
+
+Types:
+
+```python
+from dodopayments.types import LicenseKey, LicenseKeyListResponse
+```
+
+Methods:
+
+- <code title="get /license_keys/{id}">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/license_key.py">LicenseKey</a></code>
+- <code title="patch /license_keys/{id}">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">update</a>(id, \*\*<a href="src/dodopayments/types/license_key_update_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key.py">LicenseKey</a></code>
+- <code title="get /license_keys">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">list</a>(\*\*<a href="src/dodopayments/types/license_key_list_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_list_response.py">LicenseKeyListResponse</a></code>
+
+# LicenseKeyInstances
+
+Types:
+
+```python
+from dodopayments.types import LicenseKeyInstance, LicenseKeyInstanceListResponse
+```
+
+Methods:
+
+- <code title="get /license_key_instances/{id}">client.license_key_instances.<a href="./src/dodopayments/resources/license_key_instances.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/license_key_instance.py">LicenseKeyInstance</a></code>
+- <code title="patch /license_key_instances/{id}">client.license_key_instances.<a href="./src/dodopayments/resources/license_key_instances.py">update</a>(id, \*\*<a href="src/dodopayments/types/license_key_instance_update_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_instance.py">LicenseKeyInstance</a></code>
+- <code title="get /license_key_instances">client.license_key_instances.<a href="./src/dodopayments/resources/license_key_instances.py">list</a>(\*\*<a href="src/dodopayments/types/license_key_instance_list_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_instance_list_response.py">LicenseKeyInstanceListResponse</a></code>
+
 # Customers
 
 Types:
@@ -99,12 +141,12 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Product, ProductCreateResponse, ProductListResponse
+from dodopayments.types import Product, ProductListResponse
 ```
 
 Methods:
 
-- <code title="post /products">client.products.<a href="./src/dodopayments/resources/products/products.py">create</a>(\*\*<a href="src/dodopayments/types/product_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product_create_response.py">ProductCreateResponse</a></code>
+- <code title="post /products">client.products.<a href="./src/dodopayments/resources/products/products.py">create</a>(\*\*<a href="src/dodopayments/types/product_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product.py">Product</a></code>
 - <code title="get /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/product.py">Product</a></code>
 - <code title="patch /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">update</a>(id, \*\*<a href="src/dodopayments/types/product_update_params.py">params</a>) -> None</code>
 - <code title="get /products">client.products.<a href="./src/dodopayments/resources/products/products.py">list</a>(\*\*<a href="src/dodopayments/types/product_list_params.py">params</a>) -> <a href="./src/dodopayments/types/product_list_response.py">SyncDefaultPageNumberPagination[ProductListResponse]</a></code>

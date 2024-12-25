@@ -24,7 +24,18 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import payouts, refunds, disputes, payments, customers, subscriptions, webhook_events
+from .resources import (
+    payouts,
+    refunds,
+    disputes,
+    licenses,
+    payments,
+    customers,
+    license_keys,
+    subscriptions,
+    webhook_events,
+    license_key_instances,
+)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, DodoPaymentsError
 from ._base_client import (
@@ -56,6 +67,9 @@ ENVIRONMENTS: Dict[str, str] = {
 class DodoPayments(SyncAPIClient):
     payments: payments.PaymentsResource
     subscriptions: subscriptions.SubscriptionsResource
+    licenses: licenses.LicensesResource
+    license_keys: license_keys.LicenseKeysResource
+    license_key_instances: license_key_instances.LicenseKeyInstancesResource
     customers: customers.CustomersResource
     refunds: refunds.RefundsResource
     disputes: disputes.DisputesResource
@@ -146,6 +160,9 @@ class DodoPayments(SyncAPIClient):
 
         self.payments = payments.PaymentsResource(self)
         self.subscriptions = subscriptions.SubscriptionsResource(self)
+        self.licenses = licenses.LicensesResource(self)
+        self.license_keys = license_keys.LicenseKeysResource(self)
+        self.license_key_instances = license_key_instances.LicenseKeyInstancesResource(self)
         self.customers = customers.CustomersResource(self)
         self.refunds = refunds.RefundsResource(self)
         self.disputes = disputes.DisputesResource(self)
@@ -266,6 +283,9 @@ class DodoPayments(SyncAPIClient):
 class AsyncDodoPayments(AsyncAPIClient):
     payments: payments.AsyncPaymentsResource
     subscriptions: subscriptions.AsyncSubscriptionsResource
+    licenses: licenses.AsyncLicensesResource
+    license_keys: license_keys.AsyncLicenseKeysResource
+    license_key_instances: license_key_instances.AsyncLicenseKeyInstancesResource
     customers: customers.AsyncCustomersResource
     refunds: refunds.AsyncRefundsResource
     disputes: disputes.AsyncDisputesResource
@@ -356,6 +376,9 @@ class AsyncDodoPayments(AsyncAPIClient):
 
         self.payments = payments.AsyncPaymentsResource(self)
         self.subscriptions = subscriptions.AsyncSubscriptionsResource(self)
+        self.licenses = licenses.AsyncLicensesResource(self)
+        self.license_keys = license_keys.AsyncLicenseKeysResource(self)
+        self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResource(self)
         self.customers = customers.AsyncCustomersResource(self)
         self.refunds = refunds.AsyncRefundsResource(self)
         self.disputes = disputes.AsyncDisputesResource(self)
@@ -477,6 +500,11 @@ class DodoPaymentsWithRawResponse:
     def __init__(self, client: DodoPayments) -> None:
         self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
         self.subscriptions = subscriptions.SubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.licenses = licenses.LicensesResourceWithRawResponse(client.licenses)
+        self.license_keys = license_keys.LicenseKeysResourceWithRawResponse(client.license_keys)
+        self.license_key_instances = license_key_instances.LicenseKeyInstancesResourceWithRawResponse(
+            client.license_key_instances
+        )
         self.customers = customers.CustomersResourceWithRawResponse(client.customers)
         self.refunds = refunds.RefundsResourceWithRawResponse(client.refunds)
         self.disputes = disputes.DisputesResourceWithRawResponse(client.disputes)
@@ -490,6 +518,11 @@ class AsyncDodoPaymentsWithRawResponse:
     def __init__(self, client: AsyncDodoPayments) -> None:
         self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
         self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.licenses = licenses.AsyncLicensesResourceWithRawResponse(client.licenses)
+        self.license_keys = license_keys.AsyncLicenseKeysResourceWithRawResponse(client.license_keys)
+        self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResourceWithRawResponse(
+            client.license_key_instances
+        )
         self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
         self.refunds = refunds.AsyncRefundsResourceWithRawResponse(client.refunds)
         self.disputes = disputes.AsyncDisputesResourceWithRawResponse(client.disputes)
@@ -503,6 +536,11 @@ class DodoPaymentsWithStreamedResponse:
     def __init__(self, client: DodoPayments) -> None:
         self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
         self.subscriptions = subscriptions.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.licenses = licenses.LicensesResourceWithStreamingResponse(client.licenses)
+        self.license_keys = license_keys.LicenseKeysResourceWithStreamingResponse(client.license_keys)
+        self.license_key_instances = license_key_instances.LicenseKeyInstancesResourceWithStreamingResponse(
+            client.license_key_instances
+        )
         self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
         self.refunds = refunds.RefundsResourceWithStreamingResponse(client.refunds)
         self.disputes = disputes.DisputesResourceWithStreamingResponse(client.disputes)
@@ -516,6 +554,11 @@ class AsyncDodoPaymentsWithStreamedResponse:
     def __init__(self, client: AsyncDodoPayments) -> None:
         self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)
         self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.licenses = licenses.AsyncLicensesResourceWithStreamingResponse(client.licenses)
+        self.license_keys = license_keys.AsyncLicenseKeysResourceWithStreamingResponse(client.license_keys)
+        self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResourceWithStreamingResponse(
+            client.license_key_instances
+        )
         self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
         self.refunds = refunds.AsyncRefundsResourceWithStreamingResponse(client.refunds)
         self.disputes = disputes.AsyncDisputesResourceWithStreamingResponse(client.disputes)

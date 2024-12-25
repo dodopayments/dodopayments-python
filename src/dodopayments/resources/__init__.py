@@ -32,6 +32,14 @@ from .disputes import (
     DisputesResourceWithStreamingResponse,
     AsyncDisputesResourceWithStreamingResponse,
 )
+from .licenses import (
+    LicensesResource,
+    AsyncLicensesResource,
+    LicensesResourceWithRawResponse,
+    AsyncLicensesResourceWithRawResponse,
+    LicensesResourceWithStreamingResponse,
+    AsyncLicensesResourceWithStreamingResponse,
+)
 from .payments import (
     PaymentsResource,
     AsyncPaymentsResource,
@@ -56,6 +64,14 @@ from .customers import (
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
 )
+from .license_keys import (
+    LicenseKeysResource,
+    AsyncLicenseKeysResource,
+    LicenseKeysResourceWithRawResponse,
+    AsyncLicenseKeysResourceWithRawResponse,
+    LicenseKeysResourceWithStreamingResponse,
+    AsyncLicenseKeysResourceWithStreamingResponse,
+)
 from .subscriptions import (
     SubscriptionsResource,
     AsyncSubscriptionsResource,
@@ -72,6 +88,14 @@ from .webhook_events import (
     WebhookEventsResourceWithStreamingResponse,
     AsyncWebhookEventsResourceWithStreamingResponse,
 )
+from .license_key_instances import (
+    LicenseKeyInstancesResource,
+    AsyncLicenseKeyInstancesResource,
+    LicenseKeyInstancesResourceWithRawResponse,
+    AsyncLicenseKeyInstancesResourceWithRawResponse,
+    LicenseKeyInstancesResourceWithStreamingResponse,
+    AsyncLicenseKeyInstancesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "PaymentsResource",
@@ -86,6 +110,24 @@ __all__ = [
     "AsyncSubscriptionsResourceWithRawResponse",
     "SubscriptionsResourceWithStreamingResponse",
     "AsyncSubscriptionsResourceWithStreamingResponse",
+    "LicensesResource",
+    "AsyncLicensesResource",
+    "LicensesResourceWithRawResponse",
+    "AsyncLicensesResourceWithRawResponse",
+    "LicensesResourceWithStreamingResponse",
+    "AsyncLicensesResourceWithStreamingResponse",
+    "LicenseKeysResource",
+    "AsyncLicenseKeysResource",
+    "LicenseKeysResourceWithRawResponse",
+    "AsyncLicenseKeysResourceWithRawResponse",
+    "LicenseKeysResourceWithStreamingResponse",
+    "AsyncLicenseKeysResourceWithStreamingResponse",
+    "LicenseKeyInstancesResource",
+    "AsyncLicenseKeyInstancesResource",
+    "LicenseKeyInstancesResourceWithRawResponse",
+    "AsyncLicenseKeyInstancesResourceWithRawResponse",
+    "LicenseKeyInstancesResourceWithStreamingResponse",
+    "AsyncLicenseKeyInstancesResourceWithStreamingResponse",
     "CustomersResource",
     "AsyncCustomersResource",
     "CustomersResourceWithRawResponse",
