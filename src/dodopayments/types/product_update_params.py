@@ -5,11 +5,19 @@ from __future__ import annotations
 from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["ProductUpdateParams", "Price", "PriceOneTimePrice", "PriceRecurringPrice"]
+__all__ = ["ProductUpdateParams", "LicenseKeyDuration", "Price", "PriceOneTimePrice", "PriceRecurringPrice"]
 
 
 class ProductUpdateParams(TypedDict, total=False):
     description: Optional[str]
+
+    license_key_activation_message: Optional[str]
+
+    license_key_activations_limit: Optional[int]
+
+    license_key_duration: Optional[LicenseKeyDuration]
+
+    license_key_enabled: Optional[bool]
 
     name: Optional[str]
 
@@ -20,6 +28,12 @@ class ProductUpdateParams(TypedDict, total=False):
     Represents the different categories of taxation applicable to various products
     and services.
     """
+
+
+class LicenseKeyDuration(TypedDict, total=False):
+    count: Required[int]
+
+    interval: Required[Literal["Day", "Week", "Month", "Year"]]
 
 
 class PriceOneTimePrice(TypedDict, total=False):

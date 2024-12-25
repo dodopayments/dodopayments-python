@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["ProductCreateParams", "Price", "PriceOneTimePrice", "PriceRecurringPrice"]
+__all__ = ["ProductCreateParams", "Price", "PriceOneTimePrice", "PriceRecurringPrice", "LicenseKeyDuration"]
 
 
 class ProductCreateParams(TypedDict, total=False):
@@ -18,6 +18,16 @@ class ProductCreateParams(TypedDict, total=False):
     """
 
     description: Optional[str]
+
+    license_key_activation_message: Optional[str]
+
+    license_key_activations_limit: Optional[int]
+    """The number of times the license key can be activated"""
+
+    license_key_duration: Optional[LicenseKeyDuration]
+
+    license_key_enabled: Optional[bool]
+    """Put true to generate and send license key to your customer. Default is false"""
 
     name: Optional[str]
 
@@ -363,3 +373,9 @@ class PriceRecurringPrice(TypedDict, total=False):
 
 
 Price: TypeAlias = Union[PriceOneTimePrice, PriceRecurringPrice]
+
+
+class LicenseKeyDuration(TypedDict, total=False):
+    count: Required[int]
+
+    interval: Required[Literal["Day", "Week", "Month", "Year"]]

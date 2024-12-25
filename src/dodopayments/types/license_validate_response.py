@@ -3,8 +3,8 @@
 
 from .._models import BaseModel
 
-__all__ = ["ProductCreateResponse"]
+__all__ = ["LicenseValidateResponse"]
 
 
-class ProductCreateResponse(BaseModel):
-    product_id: str
+class LicenseValidateResponse(BaseModel):
+    valid: bool
