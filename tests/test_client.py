@@ -345,7 +345,7 @@ class TestDodoPayments:
         assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
 
         with pytest.raises(DodoPaymentsError):
-            with update_env(**{"DOOD_PAYMENTS_API_KEY": Omit()}):
+            with update_env(**{"DODO_PAYMENTS_API_KEY": Omit()}):
                 client2 = DodoPayments(base_url=base_url, bearer_token=None, _strict_response_validation=True)
             _ = client2
 
@@ -1228,7 +1228,7 @@ class TestAsyncDodoPayments:
         assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
 
         with pytest.raises(DodoPaymentsError):
-            with update_env(**{"DOOD_PAYMENTS_API_KEY": Omit()}):
+            with update_env(**{"DODO_PAYMENTS_API_KEY": Omit()}):
                 client2 = AsyncDodoPayments(base_url=base_url, bearer_token=None, _strict_response_validation=True)
             _ = client2
 

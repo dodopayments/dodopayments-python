@@ -111,13 +111,13 @@ class DodoPayments(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous Dodo Payments client instance.
 
-        This automatically infers the `bearer_token` argument from the `DOOD_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("DOOD_PAYMENTS_API_KEY")
+            bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
         if bearer_token is None:
             raise DodoPaymentsError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DOOD_PAYMENTS_API_KEY environment variable"
+                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
         self.bearer_token = bearer_token
 
@@ -327,13 +327,13 @@ class AsyncDodoPayments(AsyncAPIClient):
     ) -> None:
         """Construct a new async Dodo Payments client instance.
 
-        This automatically infers the `bearer_token` argument from the `DOOD_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("DOOD_PAYMENTS_API_KEY")
+            bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
         if bearer_token is None:
             raise DodoPaymentsError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DOOD_PAYMENTS_API_KEY environment variable"
+                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
         self.bearer_token = bearer_token
 
