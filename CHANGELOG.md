@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.15.1 (2025-01-03)
+
+Full Changelog: [v0.14.1...v0.15.1](https://github.com/dodopayments/dodopayments-python/compare/v0.14.1...v0.15.1)
+
+### Features
+
+* **api:** added invoice api and update openapi spec ([#24](https://github.com/dodopayments/dodopayments-python/issues/24)) ([2f38610](https://github.com/dodopayments/dodopayments-python/commit/2f38610150d623de7594496a3657407aaf027c07))
+
+
+### Chores
+
+* **internal:** codegen related update ([#22](https://github.com/dodopayments/dodopayments-python/issues/22)) ([853417d](https://github.com/dodopayments/dodopayments-python/commit/853417d938d024c8f9e350e62a38477d36677e13))
+
 ## 0.14.1 (2024-12-29)
 
 Full Changelog: [v0.14.0...v0.14.1](https://github.com/dodopayments/dodopayments-python/compare/v0.14.0...v0.14.1)
