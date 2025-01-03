@@ -59,6 +59,7 @@ class SubscriptionsResource(SyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
+        trial_period_days: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +70,9 @@ class SubscriptionsResource(SyncAPIResource):
         """
         Args:
           payment_link: False by default
+
+          trial_period_days: If specified this will override the trial period days given in the products
+              price
 
           extra_headers: Send extra headers
 
@@ -89,6 +93,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
+                    "trial_period_days": trial_period_days,
                 },
                 subscription_create_params.SubscriptionCreateParams,
             ),
@@ -246,6 +251,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
+        trial_period_days: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,6 +262,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         Args:
           payment_link: False by default
+
+          trial_period_days: If specified this will override the trial period days given in the products
+              price
 
           extra_headers: Send extra headers
 
@@ -276,6 +285,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
+                    "trial_period_days": trial_period_days,
                 },
                 subscription_create_params.SubscriptionCreateParams,
             ),
