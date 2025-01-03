@@ -44,6 +44,7 @@ from ._base_client import (
     AsyncAPIClient,
 )
 from .resources.misc import misc
+from .resources.invoices import invoices
 from .resources.products import products
 
 __all__ = [
@@ -67,6 +68,7 @@ ENVIRONMENTS: Dict[str, str] = {
 class DodoPayments(SyncAPIClient):
     payments: payments.PaymentsResource
     subscriptions: subscriptions.SubscriptionsResource
+    invoices: invoices.InvoicesResource
     licenses: licenses.LicensesResource
     license_keys: license_keys.LicenseKeysResource
     license_key_instances: license_key_instances.LicenseKeyInstancesResource
@@ -160,6 +162,7 @@ class DodoPayments(SyncAPIClient):
 
         self.payments = payments.PaymentsResource(self)
         self.subscriptions = subscriptions.SubscriptionsResource(self)
+        self.invoices = invoices.InvoicesResource(self)
         self.licenses = licenses.LicensesResource(self)
         self.license_keys = license_keys.LicenseKeysResource(self)
         self.license_key_instances = license_key_instances.LicenseKeyInstancesResource(self)
@@ -283,6 +286,7 @@ class DodoPayments(SyncAPIClient):
 class AsyncDodoPayments(AsyncAPIClient):
     payments: payments.AsyncPaymentsResource
     subscriptions: subscriptions.AsyncSubscriptionsResource
+    invoices: invoices.AsyncInvoicesResource
     licenses: licenses.AsyncLicensesResource
     license_keys: license_keys.AsyncLicenseKeysResource
     license_key_instances: license_key_instances.AsyncLicenseKeyInstancesResource
@@ -376,6 +380,7 @@ class AsyncDodoPayments(AsyncAPIClient):
 
         self.payments = payments.AsyncPaymentsResource(self)
         self.subscriptions = subscriptions.AsyncSubscriptionsResource(self)
+        self.invoices = invoices.AsyncInvoicesResource(self)
         self.licenses = licenses.AsyncLicensesResource(self)
         self.license_keys = license_keys.AsyncLicenseKeysResource(self)
         self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResource(self)
@@ -500,6 +505,7 @@ class DodoPaymentsWithRawResponse:
     def __init__(self, client: DodoPayments) -> None:
         self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
         self.subscriptions = subscriptions.SubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.invoices = invoices.InvoicesResourceWithRawResponse(client.invoices)
         self.licenses = licenses.LicensesResourceWithRawResponse(client.licenses)
         self.license_keys = license_keys.LicenseKeysResourceWithRawResponse(client.license_keys)
         self.license_key_instances = license_key_instances.LicenseKeyInstancesResourceWithRawResponse(
@@ -518,6 +524,7 @@ class AsyncDodoPaymentsWithRawResponse:
     def __init__(self, client: AsyncDodoPayments) -> None:
         self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
         self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.invoices = invoices.AsyncInvoicesResourceWithRawResponse(client.invoices)
         self.licenses = licenses.AsyncLicensesResourceWithRawResponse(client.licenses)
         self.license_keys = license_keys.AsyncLicenseKeysResourceWithRawResponse(client.license_keys)
         self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResourceWithRawResponse(
@@ -536,6 +543,7 @@ class DodoPaymentsWithStreamedResponse:
     def __init__(self, client: DodoPayments) -> None:
         self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
         self.subscriptions = subscriptions.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.invoices = invoices.InvoicesResourceWithStreamingResponse(client.invoices)
         self.licenses = licenses.LicensesResourceWithStreamingResponse(client.licenses)
         self.license_keys = license_keys.LicenseKeysResourceWithStreamingResponse(client.license_keys)
         self.license_key_instances = license_key_instances.LicenseKeyInstancesResourceWithStreamingResponse(
@@ -554,6 +562,7 @@ class AsyncDodoPaymentsWithStreamedResponse:
     def __init__(self, client: AsyncDodoPayments) -> None:
         self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)
         self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.invoices = invoices.AsyncInvoicesResourceWithStreamingResponse(client.invoices)
         self.licenses = licenses.AsyncLicensesResourceWithStreamingResponse(client.licenses)
         self.license_keys = license_keys.AsyncLicenseKeysResourceWithStreamingResponse(client.license_keys)
         self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResourceWithStreamingResponse(
