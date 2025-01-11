@@ -13,10 +13,13 @@ __all__ = ["Payment", "Customer", "ProductCart"]
 
 class Customer(BaseModel):
     customer_id: str
+    """Unique identifier for the customer"""
 
     email: str
+    """Email address of the customer"""
 
     name: str
+    """Full name of the customer"""
 
 
 class ProductCart(BaseModel):
@@ -27,8 +30,10 @@ class ProductCart(BaseModel):
 
 class Payment(BaseModel):
     business_id: str
+    """Identifier of the business associated with the payment"""
 
     created_at: datetime
+    """Timestamp when the payment was created"""
 
     currency: Literal[
         "AED",
@@ -181,28 +186,33 @@ class Payment(BaseModel):
     customer: Customer
 
     disputes: List[Dispute]
+    """List of disputes associated with this payment"""
 
     metadata: Dict[str, str]
 
     payment_id: str
+    """Unique identifier for the payment"""
 
     refunds: List[Refund]
+    """List of refunds issued for this payment"""
 
     total_amount: int
-    """Total amount taken from the customer including tax"""
+    """
+    Total amount charged to the customer including tax, in smallest currency unit
+    (e.g. cents)
+    """
 
     payment_link: Optional[str] = None
+    """Checkout URL"""
 
     payment_method: Optional[str] = None
+    """Payment method used by customer (e.g. "card", "bank_transfer")"""
 
     payment_method_type: Optional[str] = None
+    """Specific type of payment method (e.g. "visa", "mastercard")"""
 
     product_cart: Optional[List[ProductCart]] = None
-    """Product Cart of One time payment.
-
-    In case of subscription/recurring payment product id and quantity are available
-    in Get Subscription Api
-    """
+    """List of products purchased in a one-time payment"""
 
     status: Optional[
         Literal[
@@ -221,8 +231,10 @@ class Payment(BaseModel):
     ] = None
 
     subscription_id: Optional[str] = None
+    """Identifier of the subscription if payment is part of a subscription"""
 
     tax: Optional[int] = None
-    """Tax collected in this transaction"""
+    """Amount of tax collected in smallest currency unit (e.g. cents)"""
 
     updated_at: Optional[datetime] = None
+    """Timestamp when the payment was last updated"""

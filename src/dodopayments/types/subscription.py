@@ -11,14 +11,18 @@ __all__ = ["Subscription", "Customer"]
 
 class Customer(BaseModel):
     customer_id: str
+    """Unique identifier for the customer"""
 
     email: str
+    """Email address of the customer"""
 
     name: str
+    """Full name of the customer"""
 
 
 class Subscription(BaseModel):
     created_at: datetime
+    """Timestamp when the subscription was created"""
 
     currency: Literal[
         "AED",
@@ -173,23 +177,34 @@ class Subscription(BaseModel):
     metadata: Dict[str, str]
 
     next_billing_date: datetime
+    """Timestamp of the next scheduled billing"""
 
     payment_frequency_count: int
+    """Number of payment frequency intervals"""
 
     payment_frequency_interval: Literal["Day", "Week", "Month", "Year"]
 
     product_id: str
+    """Identifier of the product associated with this subscription"""
 
     quantity: int
+    """Number of units/items included in the subscription"""
 
     recurring_pre_tax_amount: int
+    """
+    Amount charged before tax for each recurring payment in smallest currency unit
+    (e.g. cents)
+    """
 
     status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
 
     subscription_id: str
+    """Unique identifier for the subscription"""
 
     subscription_period_count: int
+    """Number of subscription period intervals"""
 
     subscription_period_interval: Literal["Day", "Week", "Month", "Year"]
 
     trial_period_days: int
+    """Number of days in the trial period (0 if no trial)"""

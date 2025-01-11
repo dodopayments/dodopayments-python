@@ -762,7 +762,7 @@ class TestDodoPayments:
                             "country": "AF",
                             "state": "state",
                             "street": "street",
-                            "zipcode": 0,
+                            "zipcode": "zipcode",
                         },
                         customer={"customer_id": "customer_id"},
                         product_cart=[
@@ -795,7 +795,7 @@ class TestDodoPayments:
                             "country": "AF",
                             "state": "state",
                             "street": "street",
-                            "zipcode": 0,
+                            "zipcode": "zipcode",
                         },
                         customer={"customer_id": "customer_id"},
                         product_cart=[
@@ -844,7 +844,7 @@ class TestDodoPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -883,7 +883,7 @@ class TestDodoPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -922,7 +922,7 @@ class TestDodoPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -1651,7 +1651,7 @@ class TestAsyncDodoPayments:
                             "country": "AF",
                             "state": "state",
                             "street": "street",
-                            "zipcode": 0,
+                            "zipcode": "zipcode",
                         },
                         customer={"customer_id": "customer_id"},
                         product_cart=[
@@ -1684,7 +1684,7 @@ class TestAsyncDodoPayments:
                             "country": "AF",
                             "state": "state",
                             "street": "street",
-                            "zipcode": 0,
+                            "zipcode": "zipcode",
                         },
                         customer={"customer_id": "customer_id"},
                         product_cart=[
@@ -1734,7 +1734,7 @@ class TestAsyncDodoPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -1774,7 +1774,7 @@ class TestAsyncDodoPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -1814,7 +1814,7 @@ class TestAsyncDodoPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[

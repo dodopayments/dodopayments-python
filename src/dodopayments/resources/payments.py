@@ -65,8 +65,16 @@ class PaymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentCreateResponse:
-        """
-        Args:
+        """Args:
+          product_cart: List of products in the cart.
+
+        Must contain at least 1 and at most 100 items.
+
+          payment_link: Whether to generate a payment link. Defaults to false if not specified.
+
+          return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
+              provided.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -207,8 +215,16 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentCreateResponse:
-        """
-        Args:
+        """Args:
+          product_cart: List of products in the cart.
+
+        Must contain at least 1 and at most 100 items.
+
+          payment_link: Whether to generate a payment link. Defaults to false if not specified.
+
+          return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
+              provided.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
