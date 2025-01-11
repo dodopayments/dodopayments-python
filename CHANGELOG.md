@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.16.1 (2025-01-11)
+
+Full Changelog: [v0.15.1...v0.16.1](https://github.com/dodopayments/dodopayments-python/compare/v0.15.1...v0.16.1)
+
+### Features
+
+* **api:** updated openapi spec ([#33](https://github.com/dodopayments/dodopayments-python/issues/33)) ([9a99304](https://github.com/dodopayments/dodopayments-python/commit/9a99304bbe47ba3a37fec11ddc635e02b6e1dd9b))
+
+
+### Bug Fixes
+
+* **client:** only call .close() when needed ([#29](https://github.com/dodopayments/dodopayments-python/issues/29)) ([da78ed6](https://github.com/dodopayments/dodopayments-python/commit/da78ed69d8bc4d6407f58ae260088b8f8df91241))
+* correctly handle deserialising `cls` fields ([#32](https://github.com/dodopayments/dodopayments-python/issues/32)) ([db7377e](https://github.com/dodopayments/dodopayments-python/commit/db7377e9f0dc450ac9a78277da7fccde152f57da))
+
+
+### Chores
+
+* add missing isclass check ([#26](https://github.com/dodopayments/dodopayments-python/issues/26)) ([359e5aa](https://github.com/dodopayments/dodopayments-python/commit/359e5aaf9a6ef61b0a702c37b4ded51ead5d39b8))
+* **internal:** codegen related update ([#28](https://github.com/dodopayments/dodopayments-python/issues/28)) ([5aeb091](https://github.com/dodopayments/dodopayments-python/commit/5aeb091907bf7a0ad139e80c775d14a5fe2e36c8))
+* **internal:** codegen related update ([#31](https://github.com/dodopayments/dodopayments-python/issues/31)) ([9b5422d](https://github.com/dodopayments/dodopayments-python/commit/9b5422d94547ca59f9e9b4408c5162df1319c32d))
+
+
+### Documentation
+
+* fix typos ([#30](https://github.com/dodopayments/dodopayments-python/issues/30)) ([5d18f17](https://github.com/dodopayments/dodopayments-python/commit/5d18f17ce1894d99d139b2889908b6741ba75de6))
+
 ## 0.15.1 (2025-01-03)
 
 Full Changelog: [v0.14.1...v0.15.1](https://github.com/dodopayments/dodopayments-python/compare/v0.14.1...v0.15.1)
