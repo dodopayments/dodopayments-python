@@ -23,25 +23,35 @@ class PaymentCreateParams(TypedDict, total=False):
     customer: Required[Customer]
 
     product_cart: Required[Iterable[ProductCart]]
+    """List of products in the cart. Must contain at least 1 and at most 100 items."""
 
     metadata: Dict[str, str]
 
     payment_link: Optional[bool]
+    """Whether to generate a payment link. Defaults to false if not specified."""
 
     return_url: Optional[str]
+    """
+    Optional URL to redirect the customer after payment. Must be a valid URL if
+    provided.
+    """
 
 
 class Billing(TypedDict, total=False):
     city: Required[str]
+    """City name"""
 
     country: Required[CountryCode]
     """ISO country code alpha2 variant"""
 
     state: Required[str]
+    """State or province name"""
 
     street: Required[str]
+    """Street address including house number and unit/apartment if applicable"""
 
-    zipcode: Required[int]
+    zipcode: Required[str]
+    """Postal code or ZIP code"""
 
 
 class CustomerAttachExistingCustomer(TypedDict, total=False):

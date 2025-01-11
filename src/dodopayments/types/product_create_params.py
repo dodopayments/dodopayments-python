@@ -18,18 +18,23 @@ class ProductCreateParams(TypedDict, total=False):
     """
 
     description: Optional[str]
+    """Optional description of the product"""
 
     license_key_activation_message: Optional[str]
+    """Optional message displayed during license key activation"""
 
     license_key_activations_limit: Optional[int]
-    """The number of times the license key can be activated"""
+    """The number of times the license key can be activated. Must be 0 or greater"""
 
     license_key_duration: Optional[LicenseKeyDuration]
 
     license_key_enabled: Optional[bool]
-    """Put true to generate and send license key to your customer. Default is false"""
+    """
+    When true, generates and sends a license key to your customer. Defaults to false
+    """
 
     name: Optional[str]
+    """Optional name of the product"""
 
 
 class PriceOneTimePrice(TypedDict, total=False):
@@ -184,15 +189,20 @@ class PriceOneTimePrice(TypedDict, total=False):
     ]
 
     discount: Required[float]
+    """Discount applied to the price, represented as a percentage (0 to 100)."""
 
     price: Required[int]
     """The payment amount.
 
-    Amount for the payment in the lowest denomination of the currency, (i.e) in
-    cents for USD denomination. E.g., Pass 100 to charge $1.00
+    Represented in the lowest denomination of the currency (e.g., cents for USD).
+    For example, to charge $1.00, pass `100`.
     """
 
     purchasing_power_parity: Required[bool]
+    """
+    Indicates if purchasing power parity adjustments are applied to the price.
+    Purchasing power parity feature is not available as of now
+    """
 
     type: Required[Literal["one_time_price"]]
 
@@ -349,27 +359,41 @@ class PriceRecurringPrice(TypedDict, total=False):
     ]
 
     discount: Required[float]
+    """Discount applied to the price, represented as a percentage (0 to 100)."""
 
     payment_frequency_count: Required[int]
+    """
+    Number of units for the payment frequency. For example, a value of `1` with a
+    `payment_frequency_interval` of `month` represents monthly payments.
+    """
 
     payment_frequency_interval: Required[Literal["Day", "Week", "Month", "Year"]]
 
     price: Required[int]
     """The payment amount.
 
-    Amount for the payment in the lowest denomination of the currency, (i.e) in
-    cents for USD denomination. E.g., Pass 100 to charge $1.00
+    Represented in the lowest denomination of the currency (e.g., cents for USD).
+    For example, to charge $1.00, pass `100`.
     """
 
     purchasing_power_parity: Required[bool]
+    """
+    Indicates if purchasing power parity adjustments are applied to the price.
+    Purchasing power parity feature is not available as of now
+    """
 
     subscription_period_count: Required[int]
+    """
+    Number of units for the subscription period. For example, a value of `12` with a
+    `subscription_period_interval` of `month` represents a one-year subscription.
+    """
 
     subscription_period_interval: Required[Literal["Day", "Week", "Month", "Year"]]
 
-    trial_period_days: Required[int]
-
     type: Required[Literal["recurring_price"]]
+
+    trial_period_days: int
+    """Number of days for the trial period. A value of `0` indicates no trial period."""
 
 
 Price: TypeAlias = Union[PriceOneTimePrice, PriceRecurringPrice]

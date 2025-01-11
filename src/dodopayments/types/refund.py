@@ -11,16 +11,21 @@ __all__ = ["Refund"]
 
 class Refund(BaseModel):
     business_id: str
+    """The unique identifier of the business issuing the refund."""
 
     created_at: datetime
+    """The timestamp of when the refund was created in UTC."""
 
     payment_id: str
+    """The unique identifier of the payment associated with the refund."""
 
     refund_id: str
+    """The unique identifier of the refund."""
 
     status: Literal["succeeded", "failed", "pending", "review"]
 
     amount: Optional[int] = None
+    """The refunded amount."""
 
     currency: Optional[
         Literal[
@@ -173,3 +178,4 @@ class Refund(BaseModel):
     ] = None
 
     reason: Optional[str] = None
+    """The reason provided for the refund, if any. Optional."""

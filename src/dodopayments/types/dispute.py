@@ -10,14 +10,22 @@ __all__ = ["Dispute"]
 
 class Dispute(BaseModel):
     amount: str
+    """
+    The amount involved in the dispute, represented as a string to accommodate
+    precision.
+    """
 
     business_id: str
+    """The unique identifier of the business involved in the dispute."""
 
     created_at: datetime
+    """The timestamp of when the dispute was created, in UTC."""
 
     currency: str
+    """The currency of the disputed amount, represented as an ISO 4217 currency code."""
 
     dispute_id: str
+    """The unique identifier of the dispute."""
 
     dispute_stage: Literal["pre_dispute", "dispute", "pre_arbitration"]
 
@@ -32,3 +40,4 @@ class Dispute(BaseModel):
     ]
 
     payment_id: str
+    """The unique identifier of the payment associated with the dispute."""
