@@ -22,34 +22,41 @@ class SubscriptionCreateParams(TypedDict, total=False):
     customer: Required[Customer]
 
     product_id: Required[str]
+    """Unique identifier of the product to subscribe to"""
 
     quantity: Required[int]
+    """Number of units to subscribe for. Must be at least 1."""
 
     metadata: Dict[str, str]
 
     payment_link: Optional[bool]
-    """False by default"""
+    """If true, generates a payment link. Defaults to false if not specified."""
 
     return_url: Optional[str]
+    """Optional URL to redirect after successful subscription creation"""
 
     trial_period_days: Optional[int]
     """
-    If specified this will override the trial period days given in the products
-    price
+    Optional trial period in days If specified, this value overrides the trial
+    period set in the product's price Must be between 0 and 10000 days
     """
 
 
 class Billing(TypedDict, total=False):
     city: Required[str]
+    """City name"""
 
     country: Required[CountryCode]
     """ISO country code alpha2 variant"""
 
     state: Required[str]
+    """State or province name"""
 
     street: Required[str]
+    """Street address including house number and unit/apartment if applicable"""
 
-    zipcode: Required[int]
+    zipcode: Required[str]
+    """Postal code or ZIP code"""
 
 
 class CustomerAttachExistingCustomer(TypedDict, total=False):

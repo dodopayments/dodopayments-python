@@ -84,9 +84,15 @@ class ProductsResource(SyncAPIResource):
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
 
-          license_key_activations_limit: The number of times the license key can be activated
+          description: Optional description of the product
 
-          license_key_enabled: Put true to generate and send license key to your customer. Default is false
+          license_key_activation_message: Optional message displayed during license key activation
+
+          license_key_activations_limit: The number of times the license key can be activated. Must be 0 or greater
+
+          license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
+
+          name: Optional name of the product
 
           extra_headers: Send extra headers
 
@@ -169,6 +175,25 @@ class ProductsResource(SyncAPIResource):
     ) -> None:
         """
         Args:
+          description: Description of the product, optional and must be at most 1000 characters.
+
+          license_key_activation_message: Message sent to the customer upon license key activation.
+
+              Only applicable if `license_key_enabled` is `true`. This message contains
+              instructions for activating the license key.
+
+          license_key_activations_limit: Limit for the number of activations for the license key.
+
+              Only applicable if `license_key_enabled` is `true`. Represents the maximum
+              number of times the license key can be activated.
+
+          license_key_enabled: Whether the product requires a license key.
+
+              If `true`, additional fields related to license key (duration, activations
+              limit, activation message) become applicable.
+
+          name: Name of the product, optional and must be at most 100 characters.
+
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
 
@@ -297,9 +322,15 @@ class AsyncProductsResource(AsyncAPIResource):
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
 
-          license_key_activations_limit: The number of times the license key can be activated
+          description: Optional description of the product
 
-          license_key_enabled: Put true to generate and send license key to your customer. Default is false
+          license_key_activation_message: Optional message displayed during license key activation
+
+          license_key_activations_limit: The number of times the license key can be activated. Must be 0 or greater
+
+          license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
+
+          name: Optional name of the product
 
           extra_headers: Send extra headers
 
@@ -382,6 +413,25 @@ class AsyncProductsResource(AsyncAPIResource):
     ) -> None:
         """
         Args:
+          description: Description of the product, optional and must be at most 1000 characters.
+
+          license_key_activation_message: Message sent to the customer upon license key activation.
+
+              Only applicable if `license_key_enabled` is `true`. This message contains
+              instructions for activating the license key.
+
+          license_key_activations_limit: Limit for the number of activations for the license key.
+
+              Only applicable if `license_key_enabled` is `true`. Represents the maximum
+              number of times the license key can be activated.
+
+          license_key_enabled: Whether the product requires a license key.
+
+              If `true`, additional fields related to license key (duration, activations
+              limit, activation message) become applicable.
+
+          name: Name of the product, optional and must be at most 100 characters.
+
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
 

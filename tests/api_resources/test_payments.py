@@ -30,7 +30,7 @@ class TestPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -50,7 +50,7 @@ class TestPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -73,7 +73,7 @@ class TestPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -97,7 +97,7 @@ class TestPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -198,7 +198,7 @@ class TestAsyncPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -218,7 +218,7 @@ class TestAsyncPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -241,7 +241,7 @@ class TestAsyncPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[
@@ -265,7 +265,7 @@ class TestAsyncPayments:
                 "country": "AF",
                 "state": "state",
                 "street": "street",
-                "zipcode": 0,
+                "zipcode": "zipcode",
             },
             customer={"customer_id": "customer_id"},
             product_cart=[

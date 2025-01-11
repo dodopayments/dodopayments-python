@@ -94,8 +94,18 @@ class LicenseKeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LicenseKey:
-        """
-        Args:
+        """Args:
+          activations_limit: The updated activation limit for the license key.
+
+        Use `null` to remove the
+              limit, or omit this field to leave it unchanged.
+
+          disabled: Indicates whether the license key should be disabled. A value of `true` disables
+              the key, while `false` enables it. Omit this field to leave it unchanged.
+
+          expires_at: The updated expiration timestamp for the license key in UTC. Use `null` to
+              remove the expiration date, or omit this field to leave it unchanged.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -244,8 +254,18 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LicenseKey:
-        """
-        Args:
+        """Args:
+          activations_limit: The updated activation limit for the license key.
+
+        Use `null` to remove the
+              limit, or omit this field to leave it unchanged.
+
+          disabled: Indicates whether the license key should be disabled. A value of `true` disables
+              the key, while `false` enables it. Omit this field to leave it unchanged.
+
+          expires_at: The updated expiration timestamp for the license key in UTC. Use `null` to
+              remove the expiration date, or omit this field to leave it unchanged.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
