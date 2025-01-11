@@ -11,10 +11,13 @@ __all__ = ["PaymentListResponse", "Customer"]
 
 class Customer(BaseModel):
     customer_id: str
+    """Unique identifier for the customer"""
 
     email: str
+    """Email address of the customer"""
 
     name: str
+    """Full name of the customer"""
 
 
 class PaymentListResponse(BaseModel):

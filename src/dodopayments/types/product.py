@@ -160,15 +160,20 @@ class PriceOneTimePrice(BaseModel):
     ]
 
     discount: float
+    """Discount applied to the price, represented as a percentage (0 to 100)."""
 
     price: int
     """The payment amount.
 
-    Amount for the payment in the lowest denomination of the currency, (i.e) in
-    cents for USD denomination. E.g., Pass 100 to charge $1.00
+    Represented in the lowest denomination of the currency (e.g., cents for USD).
+    For example, to charge $1.00, pass `100`.
     """
 
     purchasing_power_parity: bool
+    """
+    Indicates if purchasing power parity adjustments are applied to the price.
+    Purchasing power parity feature is not available as of now
+    """
 
     type: Literal["one_time_price"]
 
@@ -323,27 +328,41 @@ class PriceRecurringPrice(BaseModel):
     ]
 
     discount: float
+    """Discount applied to the price, represented as a percentage (0 to 100)."""
 
     payment_frequency_count: int
+    """
+    Number of units for the payment frequency. For example, a value of `1` with a
+    `payment_frequency_interval` of `month` represents monthly payments.
+    """
 
     payment_frequency_interval: Literal["Day", "Week", "Month", "Year"]
 
     price: int
     """The payment amount.
 
-    Amount for the payment in the lowest denomination of the currency, (i.e) in
-    cents for USD denomination. E.g., Pass 100 to charge $1.00
+    Represented in the lowest denomination of the currency (e.g., cents for USD).
+    For example, to charge $1.00, pass `100`.
     """
 
     purchasing_power_parity: bool
+    """
+    Indicates if purchasing power parity adjustments are applied to the price.
+    Purchasing power parity feature is not available as of now
+    """
 
     subscription_period_count: int
+    """
+    Number of units for the subscription period. For example, a value of `12` with a
+    `subscription_period_interval` of `month` represents a one-year subscription.
+    """
 
     subscription_period_interval: Literal["Day", "Week", "Month", "Year"]
 
-    trial_period_days: int
-
     type: Literal["recurring_price"]
+
+    trial_period_days: Optional[int] = None
+    """Number of days for the trial period. A value of `0` indicates no trial period."""
 
 
 Price: TypeAlias = Annotated[Union[PriceOneTimePrice, PriceRecurringPrice], PropertyInfo(discriminator="type")]
@@ -357,16 +376,21 @@ class LicenseKeyDuration(BaseModel):
 
 class Product(BaseModel):
     business_id: str
+    """Unique identifier for the business to which the product belongs."""
 
     created_at: datetime
+    """Timestamp when the product was created."""
 
     is_recurring: bool
+    """Indicates if the product is recurring (e.g., subscriptions)."""
 
     license_key_enabled: bool
+    """Indicates whether the product requires a license key."""
 
     price: Price
 
     product_id: str
+    """Unique identifier for the product."""
 
     tax_category: Literal["digital_products", "saas", "e_book"]
     """
@@ -375,15 +399,21 @@ class Product(BaseModel):
     """
 
     updated_at: datetime
+    """Timestamp when the product was last updated."""
 
     description: Optional[str] = None
+    """Description of the product, optional."""
 
     image: Optional[str] = None
+    """URL of the product image, optional."""
 
     license_key_activation_message: Optional[str] = None
+    """Message sent upon license key activation, if applicable."""
 
     license_key_activations_limit: Optional[int] = None
+    """Limit on the number of activations for the license key, if enabled."""
 
     license_key_duration: Optional[LicenseKeyDuration] = None
 
     name: Optional[str] = None
+    """Name of the product, optional."""

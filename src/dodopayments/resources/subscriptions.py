@@ -69,10 +69,16 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> SubscriptionCreateResponse:
         """
         Args:
-          payment_link: False by default
+          product_id: Unique identifier of the product to subscribe to
 
-          trial_period_days: If specified this will override the trial period days given in the products
-              price
+          quantity: Number of units to subscribe for. Must be at least 1.
+
+          payment_link: If true, generates a payment link. Defaults to false if not specified.
+
+          return_url: Optional URL to redirect after successful subscription creation
+
+          trial_period_days: Optional trial period in days If specified, this value overrides the trial
+              period set in the product's price Must be between 0 and 10000 days
 
           extra_headers: Send extra headers
 
@@ -261,10 +267,16 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> SubscriptionCreateResponse:
         """
         Args:
-          payment_link: False by default
+          product_id: Unique identifier of the product to subscribe to
 
-          trial_period_days: If specified this will override the trial period days given in the products
-              price
+          quantity: Number of units to subscribe for. Must be at least 1.
+
+          payment_link: If true, generates a payment link. Defaults to false if not specified.
+
+          return_url: Optional URL to redirect after successful subscription creation
+
+          trial_period_days: Optional trial period in days If specified, this value overrides the trial
+              period set in the product's price Must be between 0 and 10000 days
 
           extra_headers: Send extra headers
 

@@ -62,6 +62,13 @@ class RefundsResource(SyncAPIResource):
     ) -> Refund:
         """
         Args:
+          payment_id: The unique identifier of the payment to be refunded.
+
+          amount: The amount to be refunded. Must be non-negative. Optional. Partial refunds are
+              currently disabled.
+
+          reason: The reason for the refund, if any. Maximum length is 3000 characters. Optional.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -198,6 +205,13 @@ class AsyncRefundsResource(AsyncAPIResource):
     ) -> Refund:
         """
         Args:
+          payment_id: The unique identifier of the payment to be refunded.
+
+          amount: The amount to be refunded. Must be non-negative. Optional. Partial refunds are
+              currently disabled.
+
+          reason: The reason for the refund, if any. Maximum length is 3000 characters. Optional.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -39,7 +39,7 @@ payment = client.payments.create(
         "country": "AF",
         "state": "state",
         "street": "street",
-        "zipcode": 0,
+        "zipcode": "zipcode",
     },
     customer={"customer_id": "customer_id"},
     product_cart=[
@@ -80,7 +80,7 @@ async def main() -> None:
             "country": "AF",
             "state": "state",
             "street": "street",
-            "zipcode": 0,
+            "zipcode": "zipcode",
         },
         customer={"customer_id": "customer_id"},
         product_cart=[
@@ -190,7 +190,7 @@ try:
             "country": "AF",
             "state": "state",
             "street": "street",
-            "zipcode": 0,
+            "zipcode": "zipcode",
         },
         customer={"customer_id": "customer_id"},
         product_cart=[
@@ -248,7 +248,7 @@ client.with_options(max_retries=5).payments.create(
         "country": "AF",
         "state": "state",
         "street": "street",
-        "zipcode": 0,
+        "zipcode": "zipcode",
     },
     customer={"customer_id": "customer_id"},
     product_cart=[
@@ -286,7 +286,7 @@ client.with_options(timeout=5.0).payments.create(
         "country": "AF",
         "state": "state",
         "street": "street",
-        "zipcode": 0,
+        "zipcode": "zipcode",
     },
     customer={"customer_id": "customer_id"},
     product_cart=[
@@ -342,7 +342,7 @@ response = client.payments.with_raw_response.create(
         "country": "AF",
         "state": "state",
         "street": "street",
-        "zipcode": 0,
+        "zipcode": "zipcode",
     },
     customer={
         "customer_id": "customer_id"
@@ -375,7 +375,7 @@ with client.payments.with_streaming_response.create(
         "country": "AF",
         "state": "state",
         "street": "street",
-        "zipcode": 0,
+        "zipcode": "zipcode",
     },
     customer={"customer_id": "customer_id"},
     product_cart=[
