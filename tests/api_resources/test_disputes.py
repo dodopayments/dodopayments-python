@@ -10,6 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import Dispute
+from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -64,6 +65,10 @@ class TestDisputes:
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         dispute = client.disputes.list(
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            dispute_stage="pre_dispute",
+            dispute_status="dispute_opened",
             page_number=0,
             page_size=0,
         )
@@ -139,6 +144,10 @@ class TestAsyncDisputes:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         dispute = await async_client.disputes.list(
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            dispute_stage="pre_dispute",
+            dispute_status="dispute_opened",
             page_number=0,
             page_size=0,
         )
