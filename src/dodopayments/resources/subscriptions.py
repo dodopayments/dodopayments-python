@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -184,8 +185,13 @@ class SubscriptionsResource(SyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,9 +201,17 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[Subscription]:
         """
         Args:
+          created_at_gte: Get events after this created time
+
+          created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer id
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          status: Filter by status
 
           extra_headers: Send extra headers
 
@@ -217,8 +231,12 @@ class SubscriptionsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "status": status,
                     },
                     subscription_list_params.SubscriptionListParams,
                 ),
@@ -382,8 +400,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -393,9 +416,17 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> AsyncPaginator[Subscription, AsyncDefaultPageNumberPagination[Subscription]]:
         """
         Args:
+          created_at_gte: Get events after this created time
+
+          created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer id
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          status: Filter by status
 
           extra_headers: Send extra headers
 
@@ -415,8 +446,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "status": status,
                     },
                     subscription_list_params.SubscriptionListParams,
                 ),

@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Union, Optional
+from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -78,6 +80,21 @@ class DisputesResource(SyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        dispute_stage: Optional[Literal["pre_dispute", "dispute", "pre_arbitration"]] | NotGiven = NOT_GIVEN,
+        dispute_status: Optional[
+            Literal[
+                "dispute_opened",
+                "dispute_expired",
+                "dispute_accepted",
+                "dispute_cancelled",
+                "dispute_challenged",
+                "dispute_won",
+                "dispute_lost",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -89,6 +106,14 @@ class DisputesResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[Dispute]:
         """
         Args:
+          created_at_gte: Get events after this created time
+
+          created_at_lte: Get events created before this time
+
+          dispute_stage: Filter by dispute stage
+
+          dispute_status: Filter by dispute status
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -111,6 +136,10 @@ class DisputesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
+                        "dispute_stage": dispute_stage,
+                        "dispute_status": dispute_status,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -175,6 +204,21 @@ class AsyncDisputesResource(AsyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        dispute_stage: Optional[Literal["pre_dispute", "dispute", "pre_arbitration"]] | NotGiven = NOT_GIVEN,
+        dispute_status: Optional[
+            Literal[
+                "dispute_opened",
+                "dispute_expired",
+                "dispute_accepted",
+                "dispute_cancelled",
+                "dispute_challenged",
+                "dispute_won",
+                "dispute_lost",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -186,6 +230,14 @@ class AsyncDisputesResource(AsyncAPIResource):
     ) -> AsyncPaginator[Dispute, AsyncDefaultPageNumberPagination[Dispute]]:
         """
         Args:
+          created_at_gte: Get events after this created time
+
+          created_at_lte: Get events created before this time
+
+          dispute_stage: Filter by dispute stage
+
+          dispute_status: Filter by dispute status
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -208,6 +260,10 @@ class AsyncDisputesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
+                        "dispute_stage": dispute_stage,
+                        "dispute_status": dispute_status,
                         "page_number": page_number,
                         "page_size": page_size,
                     },

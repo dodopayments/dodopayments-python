@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -136,8 +138,27 @@ class PaymentsResource(SyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        status: Optional[
+            Literal[
+                "succeeded",
+                "failed",
+                "cancelled",
+                "processing",
+                "requires_customer_action",
+                "requires_merchant_action",
+                "requires_payment_method",
+                "requires_confirmation",
+                "requires_capture",
+                "partially_captured",
+                "partially_captured_and_capturable",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,9 +168,17 @@ class PaymentsResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[PaymentListResponse]:
         """
         Args:
+          created_at_gte: Get events after this created time
+
+          created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer id
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          status: Filter by status
 
           extra_headers: Send extra headers
 
@@ -169,8 +198,12 @@ class PaymentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "status": status,
                     },
                     payment_list_params.PaymentListParams,
                 ),
@@ -286,8 +319,27 @@ class AsyncPaymentsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        status: Optional[
+            Literal[
+                "succeeded",
+                "failed",
+                "cancelled",
+                "processing",
+                "requires_customer_action",
+                "requires_merchant_action",
+                "requires_payment_method",
+                "requires_confirmation",
+                "requires_capture",
+                "partially_captured",
+                "partially_captured_and_capturable",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -297,9 +349,17 @@ class AsyncPaymentsResource(AsyncAPIResource):
     ) -> AsyncPaginator[PaymentListResponse, AsyncDefaultPageNumberPagination[PaymentListResponse]]:
         """
         Args:
+          created_at_gte: Get events after this created time
+
+          created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer id
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          status: Filter by status
 
           extra_headers: Send extra headers
 
@@ -319,8 +379,12 @@ class AsyncPaymentsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "status": status,
                     },
                     payment_list_params.PaymentListParams,
                 ),
