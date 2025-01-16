@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.17.0 (2025-01-16)
+
+Full Changelog: [v0.16.1...v0.17.0](https://github.com/dodopayments/dodopayments-python/compare/v0.16.1...v0.17.0)
+
+### Features
+
+* **api:** added filter apis ([#35](https://github.com/dodopayments/dodopayments-python/issues/35)) ([75dcbe4](https://github.com/dodopayments/dodopayments-python/commit/75dcbe42b1c2404b849b0729925142f8c75ef8d7))
+
 ## 0.16.1 (2025-01-11)
 
 Full Changelog: [v0.15.1...v0.16.1](https://github.com/dodopayments/dodopayments-python/compare/v0.15.1...v0.16.1)
