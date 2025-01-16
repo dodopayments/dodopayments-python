@@ -2,15 +2,44 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import TypedDict
+from typing import Union, Optional
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["PaymentListParams"]
 
 
 class PaymentListParams(TypedDict, total=False):
+    created_at_gte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Get events after this created time"""
+
+    created_at_lte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Get events created before this time"""
+
+    customer_id: Optional[str]
+    """Filter by customer id"""
+
     page_number: Optional[int]
     """Page number default is 0"""
 
     page_size: Optional[int]
     """Page size default is 10 max is 100"""
+
+    status: Optional[
+        Literal[
+            "succeeded",
+            "failed",
+            "cancelled",
+            "processing",
+            "requires_customer_action",
+            "requires_merchant_action",
+            "requires_payment_method",
+            "requires_confirmation",
+            "requires_capture",
+            "partially_captured",
+            "partially_captured_and_capturable",
+        ]
+    ]
+    """Filter by status"""
