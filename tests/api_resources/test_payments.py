@@ -14,6 +14,7 @@ from dodopayments.types import (
     PaymentListResponse,
     PaymentCreateResponse,
 )
+from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -161,8 +162,12 @@ class TestPayments:
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         payment = client.payments.list(
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            customer_id="customer_id",
             page_number=0,
             page_size=0,
+            status="succeeded",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
@@ -329,8 +334,12 @@ class TestAsyncPayments:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.list(
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            customer_id="customer_id",
             page_number=0,
             page_size=0,
+            status="succeeded",
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
