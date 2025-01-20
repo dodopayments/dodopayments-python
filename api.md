@@ -158,6 +158,7 @@ Methods:
 - <code title="get /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/product.py">Product</a></code>
 - <code title="patch /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">update</a>(id, \*\*<a href="src/dodopayments/types/product_update_params.py">params</a>) -> None</code>
 - <code title="get /products">client.products.<a href="./src/dodopayments/resources/products/products.py">list</a>(\*\*<a href="src/dodopayments/types/product_list_params.py">params</a>) -> <a href="./src/dodopayments/types/product_list_response.py">SyncDefaultPageNumberPagination[ProductListResponse]</a></code>
+- <code title="delete /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">delete</a>(id) -> None</code>
 
 ## Images
 
