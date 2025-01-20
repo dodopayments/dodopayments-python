@@ -206,5 +206,8 @@ class Subscription(BaseModel):
 
     subscription_period_interval: Literal["Day", "Week", "Month", "Year"]
 
+    tax_inclusive: bool
+    """Indicates if the recurring_pre_tax_amount is tax inclusive"""
+
     trial_period_days: int
     """Number of days in the trial period (0 if no trial)"""

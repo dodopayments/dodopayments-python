@@ -206,6 +206,9 @@ class PriceOneTimePrice(TypedDict, total=False):
 
     type: Required[Literal["one_time_price"]]
 
+    tax_inclusive: Optional[bool]
+    """Indicates if the price is tax inclusive"""
+
 
 class PriceRecurringPrice(TypedDict, total=False):
     currency: Required[
@@ -391,6 +394,9 @@ class PriceRecurringPrice(TypedDict, total=False):
     subscription_period_interval: Required[Literal["Day", "Week", "Month", "Year"]]
 
     type: Required[Literal["recurring_price"]]
+
+    tax_inclusive: Optional[bool]
+    """Indicates if the price is tax inclusive"""
 
     trial_period_days: int
     """Number of days for the trial period. A value of `0` indicates no trial period."""
