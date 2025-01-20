@@ -177,6 +177,9 @@ class PriceOneTimePrice(BaseModel):
 
     type: Literal["one_time_price"]
 
+    tax_inclusive: Optional[bool] = None
+    """Indicates if the price is tax inclusive"""
+
 
 class PriceRecurringPrice(BaseModel):
     currency: Literal[
@@ -360,6 +363,9 @@ class PriceRecurringPrice(BaseModel):
     subscription_period_interval: Literal["Day", "Week", "Month", "Year"]
 
     type: Literal["recurring_price"]
+
+    tax_inclusive: Optional[bool] = None
+    """Indicates if the price is tax inclusive"""
 
     trial_period_days: Optional[int] = None
     """Number of days for the trial period. A value of `0` indicates no trial period."""
