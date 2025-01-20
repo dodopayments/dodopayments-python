@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.18.0 (2025-01-20)
+
+Full Changelog: [v0.17.0...v0.18.0](https://github.com/dodopayments/dodopayments-python/compare/v0.17.0...v0.18.0)
+
+### Features
+
+* **api:** updated openapi sepc ([#40](https://github.com/dodopayments/dodopayments-python/issues/40)) ([290c0fe](https://github.com/dodopayments/dodopayments-python/commit/290c0fed5eb1ea9dfb6ebce62e9ec89abe59c1f0))
+
+
+### Chores
+
+* **internal:** codegen related update ([#38](https://github.com/dodopayments/dodopayments-python/issues/38)) ([2676646](https://github.com/dodopayments/dodopayments-python/commit/267664605d16126654c64f501bd828d7494f84b1))
+
 ## 0.17.0 (2025-01-16)
 
 Full Changelog: [v0.16.1...v0.17.0](https://github.com/dodopayments/dodopayments-python/compare/v0.16.1...v0.17.0)
