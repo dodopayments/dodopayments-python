@@ -44,6 +44,7 @@ class TestProducts:
                 "price": 0,
                 "purchasing_power_parity": True,
                 "type": "one_time_price",
+                "tax_inclusive": True,
             },
             tax_category="digital_products",
             description="description",
@@ -160,6 +161,7 @@ class TestProducts:
                 "price": 0,
                 "purchasing_power_parity": True,
                 "type": "one_time_price",
+                "tax_inclusive": True,
             },
             tax_category="digital_products",
         )
@@ -256,6 +258,7 @@ class TestAsyncProducts:
                 "price": 0,
                 "purchasing_power_parity": True,
                 "type": "one_time_price",
+                "tax_inclusive": True,
             },
             tax_category="digital_products",
             description="description",
@@ -372,6 +375,7 @@ class TestAsyncProducts:
                 "price": 0,
                 "purchasing_power_parity": True,
                 "type": "one_time_price",
+                "tax_inclusive": True,
             },
             tax_category="digital_products",
         )
