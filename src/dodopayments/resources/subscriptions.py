@@ -34,7 +34,7 @@ class SubscriptionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SubscriptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
@@ -249,7 +249,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
