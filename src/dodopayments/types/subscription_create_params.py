@@ -70,8 +70,9 @@ class CustomerCreateNewCustomer(TypedDict, total=False):
 
     create_new_customer: bool
     """
-    When true, the most recently created customer object with the given email is
-    used if exists. False by default
+    When false, the most recently created customer object with the given email is
+    used if exists. When true, a new customer object is always created False by
+    default
     """
 
     phone_number: Optional[str]
