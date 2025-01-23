@@ -232,6 +232,7 @@ class ProductsResource(SyncAPIResource):
     def list(
         self,
         *,
+        archived: bool | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -243,6 +244,8 @@ class ProductsResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[ProductListResponse]:
         """
         Args:
+          archived: List archived products
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -265,6 +268,7 @@ class ProductsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "archived": archived,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -502,6 +506,7 @@ class AsyncProductsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        archived: bool | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -513,6 +518,8 @@ class AsyncProductsResource(AsyncAPIResource):
     ) -> AsyncPaginator[ProductListResponse, AsyncDefaultPageNumberPagination[ProductListResponse]]:
         """
         Args:
+          archived: List archived products
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -535,6 +542,7 @@ class AsyncProductsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "archived": archived,
                         "page_number": page_number,
                         "page_size": page_size,
                     },

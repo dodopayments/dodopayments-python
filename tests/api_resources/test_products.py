@@ -206,6 +206,7 @@ class TestProducts:
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         product = client.products.list(
+            archived=True,
             page_number=0,
             page_size=0,
         )
@@ -458,6 +459,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         product = await async_client.products.list(
+            archived=True,
             page_number=0,
             page_size=0,
         )
