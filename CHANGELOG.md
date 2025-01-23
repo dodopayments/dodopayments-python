@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.19.0 (2025-01-23)
+
+Full Changelog: [v0.18.0...v0.19.0](https://github.com/dodopayments/dodopayments-python/compare/v0.18.0...v0.19.0)
+
+### Features
+
+* **api:** added archive product api ([#42](https://github.com/dodopayments/dodopayments-python/issues/42)) ([b093037](https://github.com/dodopayments/dodopayments-python/commit/b09303799ac6153e20534a202c108640d14d82b1))
+* **api:** manual updates ([#48](https://github.com/dodopayments/dodopayments-python/issues/48)) ([ebcb3a5](https://github.com/dodopayments/dodopayments-python/commit/ebcb3a540465007939522f6dddccfbe58b1b59b2))
+* **api:** manual updates ([#49](https://github.com/dodopayments/dodopayments-python/issues/49)) ([320d3ed](https://github.com/dodopayments/dodopayments-python/commit/320d3ed891ad7f5244571670ca3bc47041de3b9e))
+
+
+### Bug Fixes
+
+* **tests:** make test_get_platform less flaky ([#45](https://github.com/dodopayments/dodopayments-python/issues/45)) ([17adaaf](https://github.com/dodopayments/dodopayments-python/commit/17adaaf1617cbac71b4413d9ec08e5b6ae4b3478))
+
+
+### Chores
+
+* **internal:** avoid pytest-asyncio deprecation warning ([#46](https://github.com/dodopayments/dodopayments-python/issues/46)) ([1fefc76](https://github.com/dodopayments/dodopayments-python/commit/1fefc768a47d7823382423fec935c145c14d8297))
+* **internal:** minor style changes ([#47](https://github.com/dodopayments/dodopayments-python/issues/47)) ([588dfcf](https://github.com/dodopayments/dodopayments-python/commit/588dfcf5080c95dfaf4976c1c8344e7c0d3da375))
+
+
+### Documentation
+
+* **raw responses:** fix duplicate `the` ([#44](https://github.com/dodopayments/dodopayments-python/issues/44)) ([fd97103](https://github.com/dodopayments/dodopayments-python/commit/fd9710387f3f27bcc6e783bc59dcec63a2f3dc31))
+
 ## 0.18.0 (2025-01-20)
 
 Full Changelog: [v0.17.0...v0.18.0](https://github.com/dodopayments/dodopayments-python/compare/v0.17.0...v0.18.0)
