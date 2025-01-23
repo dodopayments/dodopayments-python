@@ -9,6 +9,9 @@ __all__ = ["ProductListParams"]
 
 
 class ProductListParams(TypedDict, total=False):
+    archived: bool
+    """List archived products"""
+
     page_number: Optional[int]
     """Page number default is 0"""
 
