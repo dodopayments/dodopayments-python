@@ -310,6 +310,38 @@ class ProductsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def unarchive(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._post(
+            f"/products/{id}/unarchive",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
 
 class AsyncProductsResource(AsyncAPIResource):
     @cached_property
@@ -584,6 +616,38 @@ class AsyncProductsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def unarchive(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._post(
+            f"/products/{id}/unarchive",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
 
 class ProductsResourceWithRawResponse:
     def __init__(self, products: ProductsResource) -> None:
@@ -603,6 +667,9 @@ class ProductsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             products.delete,
+        )
+        self.unarchive = to_raw_response_wrapper(
+            products.unarchive,
         )
 
     @cached_property
@@ -629,6 +696,9 @@ class AsyncProductsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             products.delete,
         )
+        self.unarchive = async_to_raw_response_wrapper(
+            products.unarchive,
+        )
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
@@ -654,6 +724,9 @@ class ProductsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             products.delete,
         )
+        self.unarchive = to_streamed_response_wrapper(
+            products.unarchive,
+        )
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
@@ -678,6 +751,9 @@ class AsyncProductsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             products.delete,
+        )
+        self.unarchive = async_to_streamed_response_wrapper(
+            products.unarchive,
         )
 
     @cached_property
