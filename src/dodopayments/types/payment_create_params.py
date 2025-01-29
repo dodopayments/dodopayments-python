@@ -80,3 +80,9 @@ class ProductCart(TypedDict, total=False):
     product_id: Required[str]
 
     quantity: Required[int]
+
+    amount: Optional[int]
+    """Amount the customer pays if pay_what_you_want is enabled.
+
+    If disabled then amount will be ignored
+    """
