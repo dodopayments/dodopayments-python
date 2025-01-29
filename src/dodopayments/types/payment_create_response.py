@@ -23,6 +23,12 @@ class ProductCart(BaseModel):
 
     quantity: int
 
+    amount: Optional[int] = None
+    """Amount the customer pays if pay_what_you_want is enabled.
+
+    If disabled then amount will be ignored
+    """
+
 
 class PaymentCreateResponse(BaseModel):
     client_secret: str
