@@ -192,22 +192,37 @@ class PriceOneTimePrice(TypedDict, total=False):
     """Discount applied to the price, represented as a percentage (0 to 100)."""
 
     price: Required[int]
-    """The payment amount.
+    """
+    The payment amount, in the smallest denomination of the currency (e.g., cents
+    for USD). For example, to charge $1.00, pass `100`.
 
-    Represented in the lowest denomination of the currency (e.g., cents for USD).
-    For example, to charge $1.00, pass `100`.
+    If [`pay_what_you_want`](Self::pay_what_you_want) is set to `true`, this field
+    represents the **minimum** amount the customer must pay.
     """
 
     purchasing_power_parity: Required[bool]
     """
     Indicates if purchasing power parity adjustments are applied to the price.
-    Purchasing power parity feature is not available as of now
+    Purchasing power parity feature is not available as of now.
     """
 
     type: Required[Literal["one_time_price"]]
 
+    pay_what_you_want: bool
+    """
+    Indicates whether the customer can pay any amount they choose. If set to `true`,
+    the [`price`](Self::price) field is the minimum amount.
+    """
+
+    suggested_price: Optional[int]
+    """A suggested price for the user to pay.
+
+    This value is only considered if [`pay_what_you_want`](Self::pay_what_you_want)
+    is `true`. Otherwise, it is ignored.
+    """
+
     tax_inclusive: Optional[bool]
-    """Indicates if the price is tax inclusive"""
+    """Indicates if the price is tax inclusive."""
 
 
 class PriceRecurringPrice(TypedDict, total=False):
