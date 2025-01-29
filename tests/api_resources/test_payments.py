@@ -58,6 +58,7 @@ class TestPayments:
                 {
                     "product_id": "product_id",
                     "quantity": 0,
+                    "amount": 0,
                 }
             ],
             metadata={"foo": "string"},
@@ -230,6 +231,7 @@ class TestAsyncPayments:
                 {
                     "product_id": "product_id",
                     "quantity": 0,
+                    "amount": 0,
                 }
             ],
             metadata={"foo": "string"},
