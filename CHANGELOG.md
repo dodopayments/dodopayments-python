@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.20.2 (2025-02-04)
+
+Full Changelog: [v0.20.1...v0.20.2](https://github.com/dodopayments/dodopayments-python/compare/v0.20.1...v0.20.2)
+
+### Chores
+
+* **internal:** bummp ruff dependency ([#57](https://github.com/dodopayments/dodopayments-python/issues/57)) ([e5c6363](https://github.com/dodopayments/dodopayments-python/commit/e5c6363eee138fbb9ef0ccf02f42a66be9fa76cd))
+* **internal:** change default timeout to an int ([#55](https://github.com/dodopayments/dodopayments-python/issues/55)) ([6ca033c](https://github.com/dodopayments/dodopayments-python/commit/6ca033c12b8fec8bfe27098953aca9ab76a41a05))
+
 ## 0.20.1 (2025-01-29)
 
 Full Changelog: [v0.19.0...v0.20.1](https://github.com/dodopayments/dodopayments-python/compare/v0.19.0...v0.20.1)
