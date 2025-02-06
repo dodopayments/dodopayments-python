@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.22.0 (2025-02-06)
+
+Full Changelog: [v0.20.2...v0.22.0](https://github.com/dodopayments/dodopayments-python/compare/v0.20.2...v0.22.0)
+
+### Features
+
+* **api:** updated API changes for v0.22.0 ([#61](https://github.com/dodopayments/dodopayments-python/issues/61)) ([cffb009](https://github.com/dodopayments/dodopayments-python/commit/cffb009c740851df8c0547c6d0bac70f423b6e57))
+* **client:** send `X-Stainless-Read-Timeout` header ([#59](https://github.com/dodopayments/dodopayments-python/issues/59)) ([c03b692](https://github.com/dodopayments/dodopayments-python/commit/c03b6922a2d17b5dd1034397ed30a311ab7a70ae))
+
 ## 0.20.2 (2025-02-04)
 
 Full Changelog: [v0.20.1...v0.20.2](https://github.com/dodopayments/dodopayments-python/compare/v0.20.1...v0.20.2)
