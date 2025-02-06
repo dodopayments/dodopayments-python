@@ -64,6 +64,7 @@ class TestPayments:
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
+            tax_id="tax_id",
         )
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 
@@ -237,6 +238,7 @@ class TestAsyncPayments:
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
+            tax_id="tax_id",
         )
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
 

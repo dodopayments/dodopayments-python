@@ -149,6 +149,7 @@ class TestProducts:
         product = client.products.update(
             id="id",
             description="description",
+            image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
             license_key_duration={
@@ -444,6 +445,7 @@ class TestAsyncProducts:
         product = await async_client.products.update(
             id="id",
             description="description",
+            image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
             license_key_duration={

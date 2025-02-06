@@ -36,6 +36,12 @@ class PaymentCreateParams(TypedDict, total=False):
     provided.
     """
 
+    tax_id: Optional[str]
+    """Tax ID in case the payment is B2B.
+
+    If tax id validation fails the payment creation will fail
+    """
+
 
 class Billing(TypedDict, total=False):
     city: Required[str]

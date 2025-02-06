@@ -12,6 +12,9 @@ class ProductUpdateParams(TypedDict, total=False):
     description: Optional[str]
     """Description of the product, optional and must be at most 1000 characters."""
 
+    image_id: Optional[str]
+    """Product image id after its uploaded to S3"""
+
     license_key_activation_message: Optional[str]
     """Message sent to the customer upon license key activation.
 
