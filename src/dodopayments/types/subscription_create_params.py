@@ -35,6 +35,12 @@ class SubscriptionCreateParams(TypedDict, total=False):
     return_url: Optional[str]
     """Optional URL to redirect after successful subscription creation"""
 
+    tax_id: Optional[str]
+    """Tax ID in case the payment is B2B.
+
+    If tax id validation fails the payment creation will fail
+    """
+
     trial_period_days: Optional[int]
     """
     Optional trial period in days If specified, this value overrides the trial

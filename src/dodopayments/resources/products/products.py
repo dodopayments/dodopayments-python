@@ -159,6 +159,7 @@ class ProductsResource(SyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[product_update_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
@@ -176,6 +177,8 @@ class ProductsResource(SyncAPIResource):
         """
         Args:
           description: Description of the product, optional and must be at most 1000 characters.
+
+          image_id: Product image id after its uploaded to S3
 
           license_key_activation_message: Message sent to the customer upon license key activation.
 
@@ -213,6 +216,7 @@ class ProductsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
+                    "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
@@ -465,6 +469,7 @@ class AsyncProductsResource(AsyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[product_update_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
@@ -482,6 +487,8 @@ class AsyncProductsResource(AsyncAPIResource):
         """
         Args:
           description: Description of the product, optional and must be at most 1000 characters.
+
+          image_id: Product image id after its uploaded to S3
 
           license_key_activation_message: Message sent to the customer upon license key activation.
 
@@ -519,6 +526,7 @@ class AsyncProductsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "description": description,
+                    "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
