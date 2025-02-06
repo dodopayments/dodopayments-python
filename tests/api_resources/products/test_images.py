@@ -20,14 +20,22 @@ class TestImages:
     @parametrize
     def test_method_update(self, client: DodoPayments) -> None:
         image = client.products.images.update(
-            "id",
+            id="id",
+        )
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: DodoPayments) -> None:
+        image = client.products.images.update(
+            id="id",
+            force_update=True,
         )
         assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.products.images.with_raw_response.update(
-            "id",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -38,7 +46,7 @@ class TestImages:
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.products.images.with_streaming_response.update(
-            "id",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -52,7 +60,7 @@ class TestImages:
     def test_path_params_update(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.products.images.with_raw_response.update(
-                "",
+                id="",
             )
 
 
@@ -62,14 +70,22 @@ class TestAsyncImages:
     @parametrize
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         image = await async_client.products.images.update(
-            "id",
+            id="id",
+        )
+        assert_matches_type(ImageUpdateResponse, image, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        image = await async_client.products.images.update(
+            id="id",
+            force_update=True,
         )
         assert_matches_type(ImageUpdateResponse, image, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.products.images.with_raw_response.update(
-            "id",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -80,7 +96,7 @@ class TestAsyncImages:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.products.images.with_streaming_response.update(
-            "id",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,5 +110,5 @@ class TestAsyncImages:
     async def test_path_params_update(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.products.images.with_raw_response.update(
-                "",
+                id="",
             )

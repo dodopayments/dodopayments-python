@@ -60,6 +60,7 @@ class SubscriptionsResource(SyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
+        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         trial_period_days: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -77,6 +78,9 @@ class SubscriptionsResource(SyncAPIResource):
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
           return_url: Optional URL to redirect after successful subscription creation
+
+          tax_id: Tax ID in case the payment is B2B. If tax id validation fails the payment
+              creation will fail
 
           trial_period_days: Optional trial period in days If specified, this value overrides the trial
               period set in the product's price Must be between 0 and 10000 days
@@ -100,6 +104,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
+                    "tax_id": tax_id,
                     "trial_period_days": trial_period_days,
                 },
                 subscription_create_params.SubscriptionCreateParams,
@@ -275,6 +280,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
+        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         trial_period_days: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -292,6 +298,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
           return_url: Optional URL to redirect after successful subscription creation
+
+          tax_id: Tax ID in case the payment is B2B. If tax id validation fails the payment
+              creation will fail
 
           trial_period_days: Optional trial period in days If specified, this value overrides the trial
               period set in the product's price Must be between 0 and 10000 days
@@ -315,6 +324,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
+                    "tax_id": tax_id,
                     "trial_period_days": trial_period_days,
                 },
                 subscription_create_params.SubscriptionCreateParams,

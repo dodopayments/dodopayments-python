@@ -171,7 +171,7 @@ from dodopayments.types.products import ImageUpdateResponse
 
 Methods:
 
-- <code title="put /products/{id}/images">client.products.images.<a href="./src/dodopayments/resources/products/images.py">update</a>(id) -> <a href="./src/dodopayments/types/products/image_update_response.py">ImageUpdateResponse</a></code>
+- <code title="put /products/{id}/images">client.products.images.<a href="./src/dodopayments/resources/products/images.py">update</a>(id, \*\*<a href="src/dodopayments/types/products/image_update_params.py">params</a>) -> <a href="./src/dodopayments/types/products/image_update_response.py">ImageUpdateResponse</a></code>
 
 # Misc
 

@@ -202,6 +202,9 @@ class Payment(BaseModel):
     (e.g. cents)
     """
 
+    error_message: Optional[str] = None
+    """An error message if the payment failed"""
+
     payment_link: Optional[str] = None
     """Checkout URL"""
 
