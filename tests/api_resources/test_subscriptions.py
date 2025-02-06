@@ -54,6 +54,7 @@ class TestSubscriptions:
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
+            tax_id="tax_id",
             trial_period_days=0,
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
@@ -258,6 +259,7 @@ class TestAsyncSubscriptions:
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
+            tax_id="tax_id",
             trial_period_days=0,
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])

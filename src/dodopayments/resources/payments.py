@@ -60,6 +60,7 @@ class PaymentsResource(SyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
+        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +77,9 @@ class PaymentsResource(SyncAPIResource):
 
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
+
+          tax_id: Tax ID in case the payment is B2B. If tax id validation fails the payment
+              creation will fail
 
           extra_headers: Send extra headers
 
@@ -95,6 +99,7 @@ class PaymentsResource(SyncAPIResource):
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
+                    "tax_id": tax_id,
                 },
                 payment_create_params.PaymentCreateParams,
             ),
@@ -241,6 +246,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
+        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -257,6 +263,9 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
+
+          tax_id: Tax ID in case the payment is B2B. If tax id validation fails the payment
+              creation will fail
 
           extra_headers: Send extra headers
 
@@ -276,6 +285,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
+                    "tax_id": tax_id,
                 },
                 payment_create_params.PaymentCreateParams,
             ),

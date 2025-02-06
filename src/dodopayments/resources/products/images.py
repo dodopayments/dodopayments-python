@@ -2,9 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -14,6 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.products import image_update_params
 from ...types.products.image_update_response import ImageUpdateResponse
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
@@ -43,6 +50,7 @@ class ImagesResource(SyncAPIResource):
         self,
         id: str,
         *,
+        force_update: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,7 +73,11 @@ class ImagesResource(SyncAPIResource):
         return self._put(
             f"/products/{id}/images",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"force_update": force_update}, image_update_params.ImageUpdateParams),
             ),
             cast_to=ImageUpdateResponse,
         )
@@ -95,6 +107,7 @@ class AsyncImagesResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        force_update: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,7 +130,13 @@ class AsyncImagesResource(AsyncAPIResource):
         return await self._put(
             f"/products/{id}/images",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"force_update": force_update}, image_update_params.ImageUpdateParams
+                ),
             ),
             cast_to=ImageUpdateResponse,
         )
