@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.22.1 (2025-02-11)
+
+Full Changelog: [v0.22.0...v0.22.1](https://github.com/dodopayments/dodopayments-python/compare/v0.22.0...v0.22.1)
+
+### Features
+
+* **api:** manual updates ([#66](https://github.com/dodopayments/dodopayments-python/issues/66)) ([ebd4c53](https://github.com/dodopayments/dodopayments-python/commit/ebd4c533852f3f63aad48f8e1efc5a1185bf01d2))
+
+
+### Chores
+
+* **internal:** fix type traversing dictionary params ([#63](https://github.com/dodopayments/dodopayments-python/issues/63)) ([1927cd8](https://github.com/dodopayments/dodopayments-python/commit/1927cd8f3e744c57d9c47d8a8dfd55823a7aa524))
+* **internal:** minor type handling changes ([#65](https://github.com/dodopayments/dodopayments-python/issues/65)) ([c516f36](https://github.com/dodopayments/dodopayments-python/commit/c516f36044abdfc180cba62e3cb9b07ef1edf54e))
+
 ## 0.22.0 (2025-02-06)
 
 Full Changelog: [v0.20.2...v0.22.0](https://github.com/dodopayments/dodopayments-python/compare/v0.20.2...v0.22.0)
