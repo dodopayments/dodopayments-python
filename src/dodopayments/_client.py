@@ -60,8 +60,8 @@ __all__ = [
 ]
 
 ENVIRONMENTS: Dict[str, str] = {
-    "live_mode": "https://live.dodopayments.com/",
-    "test_mode": "https://test.dodopayments.com/",
+    "live_mode": "https://live.dodopayments.com",
+    "test_mode": "https://test.dodopayments.com",
 }
 
 
