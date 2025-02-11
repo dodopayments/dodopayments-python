@@ -577,7 +577,7 @@ class TestDodoPayments:
             client = DodoPayments(
                 base_url=None, bearer_token=bearer_token, _strict_response_validation=True, environment="live_mode"
             )
-            assert str(client.base_url).startswith("https://live.dodopayments.com/")
+            assert str(client.base_url).startswith("https://live.dodopayments.com")
 
     @pytest.mark.parametrize(
         "client",
@@ -1460,7 +1460,7 @@ class TestAsyncDodoPayments:
             client = AsyncDodoPayments(
                 base_url=None, bearer_token=bearer_token, _strict_response_validation=True, environment="live_mode"
             )
-            assert str(client.base_url).startswith("https://live.dodopayments.com/")
+            assert str(client.base_url).startswith("https://live.dodopayments.com")
 
     @pytest.mark.parametrize(
         "client",
