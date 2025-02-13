@@ -23,6 +23,7 @@ from pydantic import ValidationError
 
 from dodopayments import DodoPayments, AsyncDodoPayments, APIResponseValidationError
 from dodopayments._types import Omit
+from dodopayments._utils import maybe_transform
 from dodopayments._models import BaseModel, FinalRequestOptions
 from dodopayments._constants import RAW_RESPONSE_HEADER
 from dodopayments._exceptions import APIStatusError, APITimeoutError, DodoPaymentsError, APIResponseValidationError
@@ -32,6 +33,7 @@ from dodopayments._base_client import (
     BaseClient,
     make_request_options,
 )
+from dodopayments.types.payment_create_params import PaymentCreateParams
 
 from .utils import update_env
 
@@ -757,21 +759,24 @@ class TestDodoPayments:
                 "/payments",
                 body=cast(
                     object,
-                    dict(
-                        billing={
-                            "city": "city",
-                            "country": "AF",
-                            "state": "state",
-                            "street": "street",
-                            "zipcode": "zipcode",
-                        },
-                        customer={"customer_id": "customer_id"},
-                        product_cart=[
-                            {
-                                "product_id": "product_id",
-                                "quantity": 0,
-                            }
-                        ],
+                    maybe_transform(
+                        dict(
+                            billing={
+                                "city": "city",
+                                "country": "AF",
+                                "state": "state",
+                                "street": "street",
+                                "zipcode": "zipcode",
+                            },
+                            customer={"customer_id": "customer_id"},
+                            product_cart=[
+                                {
+                                    "product_id": "product_id",
+                                    "quantity": 0,
+                                }
+                            ],
+                        ),
+                        PaymentCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -790,21 +795,24 @@ class TestDodoPayments:
                 "/payments",
                 body=cast(
                     object,
-                    dict(
-                        billing={
-                            "city": "city",
-                            "country": "AF",
-                            "state": "state",
-                            "street": "street",
-                            "zipcode": "zipcode",
-                        },
-                        customer={"customer_id": "customer_id"},
-                        product_cart=[
-                            {
-                                "product_id": "product_id",
-                                "quantity": 0,
-                            }
-                        ],
+                    maybe_transform(
+                        dict(
+                            billing={
+                                "city": "city",
+                                "country": "AF",
+                                "state": "state",
+                                "street": "street",
+                                "zipcode": "zipcode",
+                            },
+                            customer={"customer_id": "customer_id"},
+                            product_cart=[
+                                {
+                                    "product_id": "product_id",
+                                    "quantity": 0,
+                                }
+                            ],
+                        ),
+                        PaymentCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1646,21 +1654,24 @@ class TestAsyncDodoPayments:
                 "/payments",
                 body=cast(
                     object,
-                    dict(
-                        billing={
-                            "city": "city",
-                            "country": "AF",
-                            "state": "state",
-                            "street": "street",
-                            "zipcode": "zipcode",
-                        },
-                        customer={"customer_id": "customer_id"},
-                        product_cart=[
-                            {
-                                "product_id": "product_id",
-                                "quantity": 0,
-                            }
-                        ],
+                    maybe_transform(
+                        dict(
+                            billing={
+                                "city": "city",
+                                "country": "AF",
+                                "state": "state",
+                                "street": "street",
+                                "zipcode": "zipcode",
+                            },
+                            customer={"customer_id": "customer_id"},
+                            product_cart=[
+                                {
+                                    "product_id": "product_id",
+                                    "quantity": 0,
+                                }
+                            ],
+                        ),
+                        PaymentCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1679,21 +1690,24 @@ class TestAsyncDodoPayments:
                 "/payments",
                 body=cast(
                     object,
-                    dict(
-                        billing={
-                            "city": "city",
-                            "country": "AF",
-                            "state": "state",
-                            "street": "street",
-                            "zipcode": "zipcode",
-                        },
-                        customer={"customer_id": "customer_id"},
-                        product_cart=[
-                            {
-                                "product_id": "product_id",
-                                "quantity": 0,
-                            }
-                        ],
+                    maybe_transform(
+                        dict(
+                            billing={
+                                "city": "city",
+                                "country": "AF",
+                                "state": "state",
+                                "street": "street",
+                                "zipcode": "zipcode",
+                            },
+                            customer={"customer_id": "customer_id"},
+                            product_cart=[
+                                {
+                                    "product_id": "product_id",
+                                    "quantity": 0,
+                                }
+                            ],
+                        ),
+                        PaymentCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
