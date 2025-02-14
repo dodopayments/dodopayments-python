@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.22.2 (2025-02-14)
+
+Full Changelog: [v0.22.1...v0.22.2](https://github.com/dodopayments/dodopayments-python/compare/v0.22.1...v0.22.2)
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#70](https://github.com/dodopayments/dodopayments-python/issues/70)) ([bd7bda1](https://github.com/dodopayments/dodopayments-python/commit/bd7bda13fcc21c155e631a67e3f604a5ccdba2fb))
+
+
+### Chores
+
+* **internal:** update client tests ([#68](https://github.com/dodopayments/dodopayments-python/issues/68)) ([640f46a](https://github.com/dodopayments/dodopayments-python/commit/640f46a514b24a3594fc8ec52d78a889c22ccdbf))
+
 ## 0.22.1 (2025-02-11)
 
 Full Changelog: [v0.22.0...v0.22.1](https://github.com/dodopayments/dodopayments-python/compare/v0.22.0...v0.22.1)
