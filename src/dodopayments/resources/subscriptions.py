@@ -57,6 +57,7 @@ class SubscriptionsResource(SyncAPIResource):
         customer: subscription_create_params.Customer,
         product_id: str,
         quantity: int,
+        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
@@ -74,6 +75,8 @@ class SubscriptionsResource(SyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          discount_code: Discount Code to apply to the subscription
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
@@ -101,6 +104,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
@@ -277,6 +281,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer: subscription_create_params.Customer,
         product_id: str,
         quantity: int,
+        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
@@ -294,6 +299,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          discount_code: Discount Code to apply to the subscription
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
@@ -321,6 +328,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,

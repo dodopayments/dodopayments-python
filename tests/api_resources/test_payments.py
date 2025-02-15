@@ -61,6 +61,7 @@ class TestPayments:
                     "amount": 0,
                 }
             ],
+            discount_code="discount_code",
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
@@ -235,6 +236,7 @@ class TestAsyncPayments:
                     "amount": 0,
                 }
             ],
+            discount_code="discount_code",
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",

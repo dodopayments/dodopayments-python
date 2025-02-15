@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -211,3 +211,6 @@ class Subscription(BaseModel):
 
     trial_period_days: int
     """Number of days in the trial period (0 if no trial)"""
+
+    discount_id: Optional[str] = None
+    """The discount id if discount is applied"""

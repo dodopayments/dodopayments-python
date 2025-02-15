@@ -202,6 +202,9 @@ class Payment(BaseModel):
     (e.g. cents)
     """
 
+    discount_id: Optional[str] = None
+    """The discount id if discount is applied"""
+
     error_message: Optional[str] = None
     """An error message if the payment failed"""
 
