@@ -27,6 +27,9 @@ class SubscriptionCreateParams(TypedDict, total=False):
     quantity: Required[int]
     """Number of units to subscribe for. Must be at least 1."""
 
+    discount_code: Optional[str]
+    """Discount Code to apply to the subscription"""
+
     metadata: Dict[str, str]
 
     payment_link: Optional[bool]

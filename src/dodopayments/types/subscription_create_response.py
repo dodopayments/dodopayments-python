@@ -38,5 +38,8 @@ class SubscriptionCreateResponse(BaseModel):
     coming soon
     """
 
+    discount_id: Optional[str] = None
+    """The discount id if discount is applied"""
+
     payment_link: Optional[str] = None
     """URL to checkout page"""
