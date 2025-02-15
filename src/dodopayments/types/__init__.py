@@ -7,6 +7,7 @@ from .dispute import Dispute as Dispute
 from .payment import Payment as Payment
 from .product import Product as Product
 from .customer import Customer as Customer
+from .discount import Discount as Discount
 from .license_key import LicenseKey as LicenseKey
 from .subscription import Subscription as Subscription
 from .webhook_event import WebhookEvent as WebhookEvent
@@ -16,6 +17,7 @@ from .dispute_list_params import DisputeListParams as DisputeListParams
 from .payment_list_params import PaymentListParams as PaymentListParams
 from .product_list_params import ProductListParams as ProductListParams
 from .customer_list_params import CustomerListParams as CustomerListParams
+from .discount_list_params import DiscountListParams as DiscountListParams
 from .license_key_instance import LicenseKeyInstance as LicenseKeyInstance
 from .payout_list_response import PayoutListResponse as PayoutListResponse
 from .refund_create_params import RefundCreateParams as RefundCreateParams
@@ -26,6 +28,8 @@ from .product_list_response import ProductListResponse as ProductListResponse
 from .product_update_params import ProductUpdateParams as ProductUpdateParams
 from .customer_create_params import CustomerCreateParams as CustomerCreateParams
 from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
+from .discount_create_params import DiscountCreateParams as DiscountCreateParams
+from .discount_update_params import DiscountUpdateParams as DiscountUpdateParams
 from .license_activate_params import LicenseActivateParams as LicenseActivateParams
 from .license_key_list_params import LicenseKeyListParams as LicenseKeyListParams
 from .license_validate_params import LicenseValidateParams as LicenseValidateParams

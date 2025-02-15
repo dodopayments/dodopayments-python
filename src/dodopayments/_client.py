@@ -31,6 +31,7 @@ from .resources import (
     licenses,
     payments,
     customers,
+    discounts,
     license_keys,
     subscriptions,
     webhook_events,
@@ -79,6 +80,7 @@ class DodoPayments(SyncAPIClient):
     webhook_events: webhook_events.WebhookEventsResource
     products: products.ProductsResource
     misc: misc.MiscResource
+    discounts: discounts.DiscountsResource
     with_raw_response: DodoPaymentsWithRawResponse
     with_streaming_response: DodoPaymentsWithStreamedResponse
 
@@ -173,6 +175,7 @@ class DodoPayments(SyncAPIClient):
         self.webhook_events = webhook_events.WebhookEventsResource(self)
         self.products = products.ProductsResource(self)
         self.misc = misc.MiscResource(self)
+        self.discounts = discounts.DiscountsResource(self)
         self.with_raw_response = DodoPaymentsWithRawResponse(self)
         self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
 
@@ -297,6 +300,7 @@ class AsyncDodoPayments(AsyncAPIClient):
     webhook_events: webhook_events.AsyncWebhookEventsResource
     products: products.AsyncProductsResource
     misc: misc.AsyncMiscResource
+    discounts: discounts.AsyncDiscountsResource
     with_raw_response: AsyncDodoPaymentsWithRawResponse
     with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
 
@@ -391,6 +395,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         self.webhook_events = webhook_events.AsyncWebhookEventsResource(self)
         self.products = products.AsyncProductsResource(self)
         self.misc = misc.AsyncMiscResource(self)
+        self.discounts = discounts.AsyncDiscountsResource(self)
         self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
         self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
 
@@ -518,6 +523,7 @@ class DodoPaymentsWithRawResponse:
         self.webhook_events = webhook_events.WebhookEventsResourceWithRawResponse(client.webhook_events)
         self.products = products.ProductsResourceWithRawResponse(client.products)
         self.misc = misc.MiscResourceWithRawResponse(client.misc)
+        self.discounts = discounts.DiscountsResourceWithRawResponse(client.discounts)
 
 
 class AsyncDodoPaymentsWithRawResponse:
@@ -537,6 +543,7 @@ class AsyncDodoPaymentsWithRawResponse:
         self.webhook_events = webhook_events.AsyncWebhookEventsResourceWithRawResponse(client.webhook_events)
         self.products = products.AsyncProductsResourceWithRawResponse(client.products)
         self.misc = misc.AsyncMiscResourceWithRawResponse(client.misc)
+        self.discounts = discounts.AsyncDiscountsResourceWithRawResponse(client.discounts)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -556,6 +563,7 @@ class DodoPaymentsWithStreamedResponse:
         self.webhook_events = webhook_events.WebhookEventsResourceWithStreamingResponse(client.webhook_events)
         self.products = products.ProductsResourceWithStreamingResponse(client.products)
         self.misc = misc.MiscResourceWithStreamingResponse(client.misc)
+        self.discounts = discounts.DiscountsResourceWithStreamingResponse(client.discounts)
 
 
 class AsyncDodoPaymentsWithStreamedResponse:
@@ -575,6 +583,7 @@ class AsyncDodoPaymentsWithStreamedResponse:
         self.webhook_events = webhook_events.AsyncWebhookEventsResourceWithStreamingResponse(client.webhook_events)
         self.products = products.AsyncProductsResourceWithStreamingResponse(client.products)
         self.misc = misc.AsyncMiscResourceWithStreamingResponse(client.misc)
+        self.discounts = discounts.AsyncDiscountsResourceWithStreamingResponse(client.discounts)
 
 
 Client = DodoPayments
