@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.24.0 (2025-02-15)
+
+Full Changelog: [v0.22.1...v0.24.0](https://github.com/dodopayments/dodopayments-python/compare/v0.22.1...v0.24.0)
+
+### Features
+
+* **api:** added discount apis ([#72](https://github.com/dodopayments/dodopayments-python/issues/72)) ([13430e4](https://github.com/dodopayments/dodopayments-python/commit/13430e4e64319f2187b225fe887a4bf226609620))
+* **api:** openapi spec changes ([#71](https://github.com/dodopayments/dodopayments-python/issues/71)) ([d61ebfc](https://github.com/dodopayments/dodopayments-python/commit/d61ebfc0bb7f9d49cca167ac10abda28f9b944c3))
+
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#70](https://github.com/dodopayments/dodopayments-python/issues/70)) ([bd7bda1](https://github.com/dodopayments/dodopayments-python/commit/bd7bda13fcc21c155e631a67e3f604a5ccdba2fb))
+
+
+### Chores
+
+* **internal:** update client tests ([#68](https://github.com/dodopayments/dodopayments-python/issues/68)) ([640f46a](https://github.com/dodopayments/dodopayments-python/commit/640f46a514b24a3594fc8ec52d78a889c22ccdbf))
+
 ## 0.22.1 (2025-02-11)
 
 Full Changelog: [v0.22.0...v0.22.1](https://github.com/dodopayments/dodopayments-python/compare/v0.22.0...v0.22.1)
