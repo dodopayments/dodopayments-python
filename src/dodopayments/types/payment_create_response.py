@@ -47,6 +47,9 @@ class PaymentCreateResponse(BaseModel):
     total_amount: int
     """Total amount of the payment in smallest currency unit (e.g. cents)"""
 
+    discount_id: Optional[str] = None
+    """The discount id if discount is applied"""
+
     payment_link: Optional[str] = None
     """Optional URL to a hosted payment page"""
 

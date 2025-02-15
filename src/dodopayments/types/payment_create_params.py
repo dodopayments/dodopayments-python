@@ -25,6 +25,9 @@ class PaymentCreateParams(TypedDict, total=False):
     product_cart: Required[Iterable[ProductCart]]
     """List of products in the cart. Must contain at least 1 and at most 100 items."""
 
+    discount_code: Optional[str]
+    """Discount Code to apply to the transaction"""
+
     metadata: Dict[str, str]
 
     payment_link: Optional[bool]
