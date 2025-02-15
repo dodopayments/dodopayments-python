@@ -186,3 +186,19 @@ from dodopayments.types.misc import CountryCode, SupportedCountryListResponse
 Methods:
 
 - <code title="get /checkout/supported_countries">client.misc.supported_countries.<a href="./src/dodopayments/resources/misc/supported_countries.py">list</a>() -> <a href="./src/dodopayments/types/misc/supported_country_list_response.py">SupportedCountryListResponse</a></code>
+
+# Discounts
+
+Types:
+
+```python
+from dodopayments.types import Discount
+```
+
+Methods:
+
+- <code title="post /discounts">client.discounts.<a href="./src/dodopayments/resources/discounts.py">create</a>(\*\*<a href="src/dodopayments/types/discount_create_params.py">params</a>) -> <a href="./src/dodopayments/types/discount.py">Discount</a></code>
+- <code title="get /discounts/{discount_id}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">retrieve</a>(discount_id) -> <a href="./src/dodopayments/types/discount.py">Discount</a></code>
+- <code title="patch /discounts/{discount_id}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">update</a>(discount_id, \*\*<a href="src/dodopayments/types/discount_update_params.py">params</a>) -> <a href="./src/dodopayments/types/discount.py">Discount</a></code>
+- <code title="get /discounts">client.discounts.<a href="./src/dodopayments/resources/discounts.py">list</a>(\*\*<a href="src/dodopayments/types/discount_list_params.py">params</a>) -> <a href="./src/dodopayments/types/discount.py">SyncDefaultPageNumberPagination[Discount]</a></code>
+- <code title="delete /discounts/{discount_id}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">delete</a>(discount_id) -> None</code>

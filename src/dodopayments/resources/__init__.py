@@ -72,6 +72,14 @@ from .customers import (
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
 )
+from .discounts import (
+    DiscountsResource,
+    AsyncDiscountsResource,
+    DiscountsResourceWithRawResponse,
+    AsyncDiscountsResourceWithRawResponse,
+    DiscountsResourceWithStreamingResponse,
+    AsyncDiscountsResourceWithStreamingResponse,
+)
 from .license_keys import (
     LicenseKeysResource,
     AsyncLicenseKeysResource,
@@ -184,4 +192,10 @@ __all__ = [
     "AsyncMiscResourceWithRawResponse",
     "MiscResourceWithStreamingResponse",
     "AsyncMiscResourceWithStreamingResponse",
+    "DiscountsResource",
+    "AsyncDiscountsResource",
+    "DiscountsResourceWithRawResponse",
+    "AsyncDiscountsResourceWithRawResponse",
+    "DiscountsResourceWithStreamingResponse",
+    "AsyncDiscountsResourceWithStreamingResponse",
 ]
