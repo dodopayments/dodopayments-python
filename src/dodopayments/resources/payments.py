@@ -57,6 +57,7 @@ class PaymentsResource(SyncAPIResource):
         billing: payment_create_params.Billing,
         customer: payment_create_params.Customer,
         product_cart: Iterable[payment_create_params.ProductCart],
+        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
@@ -72,6 +73,8 @@ class PaymentsResource(SyncAPIResource):
           product_cart: List of products in the cart.
 
         Must contain at least 1 and at most 100 items.
+
+          discount_code: Discount Code to apply to the transaction
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
@@ -96,6 +99,7 @@ class PaymentsResource(SyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
@@ -243,6 +247,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         billing: payment_create_params.Billing,
         customer: payment_create_params.Customer,
         product_cart: Iterable[payment_create_params.ProductCart],
+        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
@@ -258,6 +263,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
           product_cart: List of products in the cart.
 
         Must contain at least 1 and at most 100 items.
+
+          discount_code: Discount Code to apply to the transaction
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
@@ -282,6 +289,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
