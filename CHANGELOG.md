@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.0 (2025-02-23)
+
+Full Changelog: [v0.24.0...v1.0.0](https://github.com/dodopayments/dodopayments-python/compare/v0.24.0...v1.0.0)
+
+### Features
+
+* **api:** fixed errors ([#78](https://github.com/dodopayments/dodopayments-python/issues/78)) ([d462ea1](https://github.com/dodopayments/dodopayments-python/commit/d462ea18b8782ac238923153aac010c0b80e5bb6))
+* **api:** updated config and updated version to v1.0.0 ([#77](https://github.com/dodopayments/dodopayments-python/issues/77)) ([dc95e7e](https://github.com/dodopayments/dodopayments-python/commit/dc95e7ee5c09489fbd9c8085c52a63fffb9684d2))
+* **client:** allow passing `NotGiven` for body ([#74](https://github.com/dodopayments/dodopayments-python/issues/74)) ([ae70adb](https://github.com/dodopayments/dodopayments-python/commit/ae70adb726dbd99229cf61f4bab2be6b4c423496))
+
+
+### Bug Fixes
+
+* **client:** mark some request bodies as optional ([ae70adb](https://github.com/dodopayments/dodopayments-python/commit/ae70adb726dbd99229cf61f4bab2be6b4c423496))
+
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#76](https://github.com/dodopayments/dodopayments-python/issues/76)) ([e5e7fbd](https://github.com/dodopayments/dodopayments-python/commit/e5e7fbdbc803b4ec4b12053f5b759228a1e6d3bf))
+
 ## 0.24.0 (2025-02-15)
 
 Full Changelog: [v0.22.1...v0.24.0](https://github.com/dodopayments/dodopayments-python/compare/v0.22.1...v0.24.0)
