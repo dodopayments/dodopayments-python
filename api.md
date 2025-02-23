@@ -82,7 +82,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Customer
+from dodopayments.types import Customer, CustomerPortalSession
 ```
 
 Methods:
