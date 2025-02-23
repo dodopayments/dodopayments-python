@@ -30,7 +30,6 @@ from .resources import (
     disputes,
     licenses,
     payments,
-    customers,
     discounts,
     license_keys,
     subscriptions,
@@ -47,6 +46,7 @@ from ._base_client import (
 from .resources.misc import misc
 from .resources.invoices import invoices
 from .resources.products import products
+from .resources.customers import customers
 
 __all__ = [
     "ENVIRONMENTS",
