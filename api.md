@@ -87,10 +87,18 @@ from dodopayments.types import Customer
 
 Methods:
 
-- <code title="post /customers">client.customers.<a href="./src/dodopayments/resources/customers.py">create</a>(\*\*<a href="src/dodopayments/types/customer_create_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
-- <code title="get /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers.py">retrieve</a>(customer_id) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
-- <code title="patch /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers.py">update</a>(customer_id, \*\*<a href="src/dodopayments/types/customer_update_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
-- <code title="get /customers">client.customers.<a href="./src/dodopayments/resources/customers.py">list</a>(\*\*<a href="src/dodopayments/types/customer_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">SyncDefaultPageNumberPagination[Customer]</a></code>
+- <code title="post /customers">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">create</a>(\*\*<a href="src/dodopayments/types/customer_create_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
+- <code title="get /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve</a>(customer_id) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
+- <code title="patch /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">update</a>(customer_id, \*\*<a href="src/dodopayments/types/customer_update_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
+- <code title="get /customers">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list</a>(\*\*<a href="src/dodopayments/types/customer_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">SyncDefaultPageNumberPagination[Customer]</a></code>
+
+## CustomerPortal
+
+### Session
+
+Methods:
+
+- <code title="post /customers/{customer_id}/customer-portal/session">client.customers.customer_portal.session.<a href="./src/dodopayments/resources/customers/customer_portal/session.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/customer_portal/session_create_params.py">params</a>) -> None</code>
 
 # Refunds
 
