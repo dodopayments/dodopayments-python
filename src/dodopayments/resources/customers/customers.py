@@ -6,28 +6,40 @@ from typing import Optional
 
 import httpx
 
-from ..types import customer_list_params, customer_create_params, customer_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
+from ...types import customer_list_params, customer_create_params, customer_update_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.customer import Customer
+from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.customer import Customer
+from .customer_portal.customer_portal import (
+    CustomerPortalResource,
+    AsyncCustomerPortalResource,
+    CustomerPortalResourceWithRawResponse,
+    AsyncCustomerPortalResourceWithRawResponse,
+    CustomerPortalResourceWithStreamingResponse,
+    AsyncCustomerPortalResourceWithStreamingResponse,
+)
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
 
 class CustomersResource(SyncAPIResource):
+    @cached_property
+    def customer_portal(self) -> CustomerPortalResource:
+        return CustomerPortalResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
         """
@@ -204,6 +216,10 @@ class CustomersResource(SyncAPIResource):
 
 
 class AsyncCustomersResource(AsyncAPIResource):
+    @cached_property
+    def customer_portal(self) -> AsyncCustomerPortalResource:
+        return AsyncCustomerPortalResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
         """
@@ -396,6 +412,10 @@ class CustomersResourceWithRawResponse:
             customers.list,
         )
 
+    @cached_property
+    def customer_portal(self) -> CustomerPortalResourceWithRawResponse:
+        return CustomerPortalResourceWithRawResponse(self._customers.customer_portal)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -413,6 +433,10 @@ class AsyncCustomersResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             customers.list,
         )
+
+    @cached_property
+    def customer_portal(self) -> AsyncCustomerPortalResourceWithRawResponse:
+        return AsyncCustomerPortalResourceWithRawResponse(self._customers.customer_portal)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -432,6 +456,10 @@ class CustomersResourceWithStreamingResponse:
             customers.list,
         )
 
+    @cached_property
+    def customer_portal(self) -> CustomerPortalResourceWithStreamingResponse:
+        return CustomerPortalResourceWithStreamingResponse(self._customers.customer_portal)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -449,3 +477,7 @@ class AsyncCustomersResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             customers.list,
         )
+
+    @cached_property
+    def customer_portal(self) -> AsyncCustomerPortalResourceWithStreamingResponse:
+        return AsyncCustomerPortalResourceWithStreamingResponse(self._customers.customer_portal)
