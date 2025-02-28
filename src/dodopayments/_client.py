@@ -113,7 +113,7 @@ class DodoPayments(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous Dodo Payments client instance.
+        """Construct a new synchronous DodoPayments client instance.
 
         This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
@@ -333,7 +333,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async Dodo Payments client instance.
+        """Construct a new async AsyncDodoPayments client instance.
 
         This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
