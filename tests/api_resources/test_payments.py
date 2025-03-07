@@ -171,6 +171,7 @@ class TestPayments:
             page_number=0,
             page_size=0,
             status="succeeded",
+            subscription_id="subscription_id",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
@@ -346,6 +347,7 @@ class TestAsyncPayments:
             page_number=0,
             page_size=0,
             status="succeeded",
+            subscription_id="subscription_id",
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[PaymentListResponse], payment, path=["response"])
 
