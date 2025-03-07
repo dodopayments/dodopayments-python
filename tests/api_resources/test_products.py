@@ -214,6 +214,7 @@ class TestProducts:
             archived=True,
             page_number=0,
             page_size=0,
+            recurring=True,
         )
         assert_matches_type(SyncDefaultPageNumberPagination[ProductListResponse], product, path=["response"])
 
@@ -510,6 +511,7 @@ class TestAsyncProducts:
             archived=True,
             page_number=0,
             page_size=0,
+            recurring=True,
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[ProductListResponse], product, path=["response"])
 

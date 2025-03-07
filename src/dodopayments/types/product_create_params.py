@@ -11,7 +11,7 @@ __all__ = ["ProductCreateParams", "Price", "PriceOneTimePrice", "PriceRecurringP
 class ProductCreateParams(TypedDict, total=False):
     price: Required[Price]
 
-    tax_category: Required[Literal["digital_products", "saas", "e_book"]]
+    tax_category: Required[Literal["digital_products", "saas", "e_book", "edtech"]]
     """
     Represents the different categories of taxation applicable to various products
     and services.
