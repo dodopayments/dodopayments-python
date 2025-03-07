@@ -43,7 +43,7 @@ class ProductUpdateParams(TypedDict, total=False):
 
     price: Optional[Price]
 
-    tax_category: Optional[Literal["digital_products", "saas", "e_book"]]
+    tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]]
     """
     Represents the different categories of taxation applicable to various products
     and services.

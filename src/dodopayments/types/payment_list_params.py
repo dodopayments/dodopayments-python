@@ -43,3 +43,6 @@ class PaymentListParams(TypedDict, total=False):
         ]
     ]
     """Filter by status"""
+
+    subscription_id: Optional[str]
+    """Filter by subscription id"""
