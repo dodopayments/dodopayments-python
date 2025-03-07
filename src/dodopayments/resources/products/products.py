@@ -65,7 +65,7 @@ class ProductsResource(SyncAPIResource):
         self,
         *,
         price: product_create_params.Price,
-        tax_category: Literal["digital_products", "saas", "e_book"],
+        tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -166,7 +166,7 @@ class ProductsResource(SyncAPIResource):
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[product_update_params.Price] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[Literal["digital_products", "saas", "e_book"]] | NotGiven = NOT_GIVEN,
+        tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,6 +239,7 @@ class ProductsResource(SyncAPIResource):
         archived: bool | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        recurring: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,6 +254,13 @@ class ProductsResource(SyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          recurring:
+              Filter products by pricing type:
+
+              - `true`: Show only recurring pricing products (e.g. subscriptions)
+              - `false`: Show only one-time price products
+              - `null` or absent: Show both types of products
 
           extra_headers: Send extra headers
 
@@ -275,6 +283,7 @@ class ProductsResource(SyncAPIResource):
                         "archived": archived,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "recurring": recurring,
                     },
                     product_list_params.ProductListParams,
                 ),
@@ -375,7 +384,7 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         *,
         price: product_create_params.Price,
-        tax_category: Literal["digital_products", "saas", "e_book"],
+        tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -476,7 +485,7 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[product_update_params.Price] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[Literal["digital_products", "saas", "e_book"]] | NotGiven = NOT_GIVEN,
+        tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -549,6 +558,7 @@ class AsyncProductsResource(AsyncAPIResource):
         archived: bool | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        recurring: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -563,6 +573,13 @@ class AsyncProductsResource(AsyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          recurring:
+              Filter products by pricing type:
+
+              - `true`: Show only recurring pricing products (e.g. subscriptions)
+              - `false`: Show only one-time price products
+              - `null` or absent: Show both types of products
 
           extra_headers: Send extra headers
 
@@ -585,6 +602,7 @@ class AsyncProductsResource(AsyncAPIResource):
                         "archived": archived,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "recurring": recurring,
                     },
                     product_list_params.ProductListParams,
                 ),

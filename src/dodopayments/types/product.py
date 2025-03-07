@@ -413,7 +413,7 @@ class Product(BaseModel):
     product_id: str
     """Unique identifier for the product."""
 
-    tax_category: Literal["digital_products", "saas", "e_book"]
+    tax_category: Literal["digital_products", "saas", "e_book", "edtech"]
     """
     Represents the different categories of taxation applicable to various products
     and services.

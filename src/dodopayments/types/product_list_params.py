@@ -17,3 +17,11 @@ class ProductListParams(TypedDict, total=False):
 
     page_size: Optional[int]
     """Page size default is 10 max is 100"""
+
+    recurring: Optional[bool]
+    """Filter products by pricing type:
+
+    - `true`: Show only recurring pricing products (e.g. subscriptions)
+    - `false`: Show only one-time price products
+    - `null` or absent: Show both types of products
+    """
