@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.5.0 (2025-03-07)
+
+Full Changelog: [v1.0.0...v1.5.0](https://github.com/dodopayments/dodopayments-python/compare/v1.0.0...v1.5.0)
+
+### Features
+
+* **api:** manual updates ([#85](https://github.com/dodopayments/dodopayments-python/issues/85)) ([43fba1d](https://github.com/dodopayments/dodopayments-python/commit/43fba1d0e01dacaf5a36f2322aaf658662475ec4))
+
+
+### Chores
+
+* **docs:** update client docstring ([#83](https://github.com/dodopayments/dodopayments-python/issues/83)) ([9634005](https://github.com/dodopayments/dodopayments-python/commit/96340059bb7d80ab7334bb68986a8758b0d12399))
+* **internal:** properly set __pydantic_private__ ([#80](https://github.com/dodopayments/dodopayments-python/issues/80)) ([b7501ec](https://github.com/dodopayments/dodopayments-python/commit/b7501ecd3854a02d4e9117ce45b96a315521eb4d))
+* **internal:** remove unused http client options forwarding ([#84](https://github.com/dodopayments/dodopayments-python/issues/84)) ([650c31e](https://github.com/dodopayments/dodopayments-python/commit/650c31e52294fbe96b9ba75f553d2dad0657ac18))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#82](https://github.com/dodopayments/dodopayments-python/issues/82)) ([ccf6dbb](https://github.com/dodopayments/dodopayments-python/commit/ccf6dbb0147fd5f1e108270d9867cd27f0b5963b))
+
 ## 1.0.0 (2025-02-23)
 
 Full Changelog: [v0.24.0...v1.0.0](https://github.com/dodopayments/dodopayments-python/compare/v0.24.0...v1.0.0)
