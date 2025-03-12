@@ -168,6 +168,34 @@ for payment in first_page.items:
 # Remove `await` for non-async usage.
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from dodopayments import DodoPayments
+
+client = DodoPayments()
+
+payment = client.payments.create(
+    billing={
+        "city": "city",
+        "country": "AF",
+        "state": "state",
+        "street": "street",
+        "zipcode": "zipcode",
+    },
+    customer={"customer_id": "customer_id"},
+    product_cart=[
+        {
+            "product_id": "product_id",
+            "quantity": 0,
+        }
+    ],
+)
+print(payment.billing)
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `dodopayments.APIConnectionError` is raised.
