@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
+
+from .license_key_status import LicenseKeyStatus
 
 __all__ = ["LicenseKeyListParams"]
 
@@ -21,5 +23,5 @@ class LicenseKeyListParams(TypedDict, total=False):
     product_id: Optional[str]
     """Filter by product ID"""
 
-    status: Optional[Literal["active", "expired", "disabled"]]
+    status: Optional[LicenseKeyStatus]
     """Filter by license key status"""

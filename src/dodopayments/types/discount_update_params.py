@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .discount_type import DiscountType
 
 __all__ = ["DiscountUpdateParams"]
 
@@ -35,6 +36,6 @@ class DiscountUpdateParams(TypedDict, total=False):
     restrictions, send empty array
     """
 
-    type: Optional[Literal["percentage"]]
+    type: Optional[DiscountType]
 
     usage_limit: Optional[int]

@@ -15,7 +15,11 @@ from .images import (
     ImagesResourceWithStreamingResponse,
     AsyncImagesResourceWithStreamingResponse,
 )
-from ...types import product_list_params, product_create_params, product_update_params
+from ...types import (
+    product_list_params,
+    product_create_params,
+    product_update_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -32,7 +36,9 @@ from ..._response import (
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.product import Product
+from ...types.price_param import PriceParam
 from ...types.product_list_response import ProductListResponse
+from ...types.license_key_duration_param import LicenseKeyDurationParam
 
 __all__ = ["ProductsResource", "AsyncProductsResource"]
 
@@ -64,13 +70,13 @@ class ProductsResource(SyncAPIResource):
     def create(
         self,
         *,
-        price: product_create_params.Price,
+        price: PriceParam,
         tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[product_create_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,10 +173,10 @@ class ProductsResource(SyncAPIResource):
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[product_update_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        price: Optional[product_update_params.Price] | NotGiven = NOT_GIVEN,
+        price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
         tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -391,13 +397,13 @@ class AsyncProductsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        price: product_create_params.Price,
+        price: PriceParam,
         tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[product_create_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -494,10 +500,10 @@ class AsyncProductsResource(AsyncAPIResource):
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[product_update_params.LicenseKeyDuration] | NotGiven = NOT_GIVEN,
+        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        price: Optional[product_update_params.Price] | NotGiven = NOT_GIVEN,
+        price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
         tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

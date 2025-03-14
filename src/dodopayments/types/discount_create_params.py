@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .discount_type import DiscountType
 
 __all__ = ["DiscountCreateParams"]
 
@@ -23,7 +24,7 @@ class DiscountCreateParams(TypedDict, total=False):
     Must be at least 1.
     """
 
-    type: Required[Literal["percentage"]]
+    type: Required[DiscountType]
 
     code: Optional[str]
     """Optionally supply a code (will be uppercased).

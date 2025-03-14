@@ -9,7 +9,10 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
-from dodopayments.types import LicenseKey, LicenseKeyListResponse
+from dodopayments.types import (
+    LicenseKey,
+    LicenseKeyListResponse,
+)
 from dodopayments._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")

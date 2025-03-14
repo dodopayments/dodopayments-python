@@ -25,6 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from .resources import (
+    misc,
     payouts,
     refunds,
     disputes,
@@ -43,7 +44,6 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.misc import misc
 from .resources.invoices import invoices
 from .resources.products import products
 from .resources.customers import customers

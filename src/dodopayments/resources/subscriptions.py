@@ -4,11 +4,15 @@ from __future__ import annotations
 
 from typing import Dict, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 import httpx
 
-from ..types import subscription_list_params, subscription_create_params, subscription_update_params
+from ..types import (
+    SubscriptionStatus,
+    subscription_list_params,
+    subscription_create_params,
+    subscription_update_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -25,6 +29,9 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.subscription import Subscription
+from ..types.subscription_status import SubscriptionStatus
+from ..types.billing_address_param import BillingAddressParam
+from ..types.customer_request_param import CustomerRequestParam
 from ..types.subscription_create_response import SubscriptionCreateResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
@@ -53,8 +60,8 @@ class SubscriptionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        billing: subscription_create_params.Billing,
-        customer: subscription_create_params.Customer,
+        billing: BillingAddressParam,
+        customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
@@ -155,8 +162,7 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
-        | NotGiven = NOT_GIVEN,
+        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,8 +205,7 @@ class SubscriptionsResource(SyncAPIResource):
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
-        | NotGiven = NOT_GIVEN,
+        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -277,8 +282,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        billing: subscription_create_params.Billing,
-        customer: subscription_create_params.Customer,
+        billing: BillingAddressParam,
+        customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
@@ -379,8 +384,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
-        | NotGiven = NOT_GIVEN,
+        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,8 +427,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
-        | NotGiven = NOT_GIVEN,
+        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -2,9 +2,9 @@
 
 from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .license_key_status import LicenseKeyStatus
 
 __all__ = ["LicenseKey"]
 
@@ -34,7 +34,7 @@ class LicenseKey(BaseModel):
     product_id: str
     """The unique identifier of the product associated with the license key."""
 
-    status: Literal["active", "expired", "disabled"]
+    status: LicenseKeyStatus
 
     activations_limit: Optional[int] = None
     """The maximum number of activations allowed for this license key."""

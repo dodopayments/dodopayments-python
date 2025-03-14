@@ -3,31 +3,10 @@
 from typing import Dict, List, Optional
 
 from .._models import BaseModel
+from .customer_limited_details import CustomerLimitedDetails
+from .one_time_product_cart_item import OneTimeProductCartItem
 
-__all__ = ["PaymentCreateResponse", "Customer", "ProductCart"]
-
-
-class Customer(BaseModel):
-    customer_id: str
-    """Unique identifier for the customer"""
-
-    email: str
-    """Email address of the customer"""
-
-    name: str
-    """Full name of the customer"""
-
-
-class ProductCart(BaseModel):
-    product_id: str
-
-    quantity: int
-
-    amount: Optional[int] = None
-    """Amount the customer pays if pay_what_you_want is enabled.
-
-    If disabled then amount will be ignored
-    """
+__all__ = ["PaymentCreateResponse"]
 
 
 class PaymentCreateResponse(BaseModel):
@@ -37,7 +16,7 @@ class PaymentCreateResponse(BaseModel):
     coming soon
     """
 
-    customer: Customer
+    customer: CustomerLimitedDetails
 
     metadata: Dict[str, str]
 
@@ -53,5 +32,5 @@ class PaymentCreateResponse(BaseModel):
     payment_link: Optional[str] = None
     """Optional URL to a hosted payment page"""
 
-    product_cart: Optional[List[ProductCart]] = None
+    product_cart: Optional[List[OneTimeProductCartItem]] = None
     """Optional list of products included in the payment"""

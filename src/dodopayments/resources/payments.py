@@ -4,11 +4,14 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 import httpx
 
-from ..types import payment_list_params, payment_create_params
+from ..types import (
+    IntentStatus,
+    payment_list_params,
+    payment_create_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -25,8 +28,12 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.payment import Payment
+from ..types.intent_status import IntentStatus
+from ..types.billing_address_param import BillingAddressParam
 from ..types.payment_list_response import PaymentListResponse
+from ..types.customer_request_param import CustomerRequestParam
 from ..types.payment_create_response import PaymentCreateResponse
+from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 
 __all__ = ["PaymentsResource", "AsyncPaymentsResource"]
 
@@ -54,9 +61,9 @@ class PaymentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        billing: payment_create_params.Billing,
-        customer: payment_create_params.Customer,
-        product_cart: Iterable[payment_create_params.ProductCart],
+        billing: BillingAddressParam,
+        customer: CustomerRequestParam,
+        product_cart: Iterable[OneTimeProductCartItemParam],
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -152,22 +159,7 @@ class PaymentsResource(SyncAPIResource):
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[
-            Literal[
-                "succeeded",
-                "failed",
-                "cancelled",
-                "processing",
-                "requires_customer_action",
-                "requires_merchant_action",
-                "requires_payment_method",
-                "requires_confirmation",
-                "requires_capture",
-                "partially_captured",
-                "partially_captured_and_capturable",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        status: Optional[IntentStatus] | NotGiven = NOT_GIVEN,
         subscription_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -248,9 +240,9 @@ class AsyncPaymentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        billing: payment_create_params.Billing,
-        customer: payment_create_params.Customer,
-        product_cart: Iterable[payment_create_params.ProductCart],
+        billing: BillingAddressParam,
+        customer: CustomerRequestParam,
+        product_cart: Iterable[OneTimeProductCartItemParam],
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -346,22 +338,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[
-            Literal[
-                "succeeded",
-                "failed",
-                "cancelled",
-                "processing",
-                "requires_customer_action",
-                "requires_merchant_action",
-                "requires_payment_method",
-                "requires_confirmation",
-                "requires_capture",
-                "partially_captured",
-                "partially_captured_and_capturable",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        status: Optional[IntentStatus] | NotGiven = NOT_GIVEN,
         subscription_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
