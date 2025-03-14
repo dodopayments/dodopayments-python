@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
@@ -421,6 +421,9 @@ class Product(BaseModel):
 
     updated_at: datetime
     """Timestamp when the product was last updated."""
+
+    addons: Optional[List[str]] = None
+    """Available Addons for subscription products"""
 
     description: Optional[str] = None
     """Description of the product, optional."""
