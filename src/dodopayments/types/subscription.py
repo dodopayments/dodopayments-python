@@ -212,5 +212,8 @@ class Subscription(BaseModel):
     trial_period_days: int
     """Number of days in the trial period (0 if no trial)"""
 
+    cancelled_at: Optional[datetime] = None
+    """Cancelled timestamp if the subscription is cancelled"""
+
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""

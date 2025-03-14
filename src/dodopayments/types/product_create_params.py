@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["ProductCreateParams", "Price", "PriceOneTimePrice", "PriceRecurringPrice", "LicenseKeyDuration"]
@@ -16,6 +16,9 @@ class ProductCreateParams(TypedDict, total=False):
     Represents the different categories of taxation applicable to various products
     and services.
     """
+
+    addons: Optional[List[str]]
+    """Addons available for subscription product"""
 
     description: Optional[str]
     """Optional description of the product"""

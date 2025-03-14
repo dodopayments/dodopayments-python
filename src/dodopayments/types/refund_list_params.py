@@ -18,6 +18,9 @@ class RefundListParams(TypedDict, total=False):
     created_at_lte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """Get events created before this time"""
 
+    customer_id: Optional[str]
+    """Filter by customer_id"""
+
     page_number: Optional[int]
     """Page number default is 0"""
 
