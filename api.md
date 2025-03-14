@@ -3,7 +3,18 @@
 Types:
 
 ```python
-from dodopayments.types import Payment, PaymentCreateResponse, PaymentListResponse
+from dodopayments.types import (
+    AttachExistingCustomer,
+    BillingAddress,
+    CreateNewCustomer,
+    CustomerLimitedDetails,
+    CustomerRequest,
+    IntentStatus,
+    OneTimeProductCartItem,
+    Payment,
+    PaymentCreateResponse,
+    PaymentListResponse,
+)
 ```
 
 Methods:
@@ -17,7 +28,12 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Subscription, SubscriptionCreateResponse
+from dodopayments.types import (
+    Subscription,
+    SubscriptionStatus,
+    TimeInterval,
+    SubscriptionCreateResponse,
+)
 ```
 
 Methods:
@@ -54,7 +70,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import LicenseKey, LicenseKeyListResponse
+from dodopayments.types import LicenseKey, LicenseKeyStatus, LicenseKeyListResponse
 ```
 
 Methods:
@@ -94,18 +110,16 @@ Methods:
 
 ## CustomerPortal
 
-### Session
-
 Methods:
 
-- <code title="post /customers/{customer_id}/customer-portal/session">client.customers.customer_portal.session.<a href="./src/dodopayments/resources/customers/customer_portal/session.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/customer_portal/session_create_params.py">params</a>) -> None</code>
+- <code title="post /customers/{customer_id}/customer-portal/session">client.customers.customer_portal.<a href="./src/dodopayments/resources/customers/customer_portal.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/customer_portal_create_params.py">params</a>) -> None</code>
 
 # Refunds
 
 Types:
 
 ```python
-from dodopayments.types import Refund
+from dodopayments.types import Refund, RefundStatus
 ```
 
 Methods:
@@ -119,7 +133,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Dispute
+from dodopayments.types import Dispute, DisputeStage, DisputeStatus
 ```
 
 Methods:
@@ -157,7 +171,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Product, ProductListResponse
+from dodopayments.types import LicenseKeyDuration, Price, Product, ProductListResponse
 ```
 
 Methods:
@@ -183,24 +197,22 @@ Methods:
 
 # Misc
 
-## SupportedCountries
-
 Types:
 
 ```python
-from dodopayments.types.misc import CountryCode, SupportedCountryListResponse
+from dodopayments.types import CountryCode, MiscListSupportedCountriesResponse
 ```
 
 Methods:
 
-- <code title="get /checkout/supported_countries">client.misc.supported_countries.<a href="./src/dodopayments/resources/misc/supported_countries.py">list</a>() -> <a href="./src/dodopayments/types/misc/supported_country_list_response.py">SupportedCountryListResponse</a></code>
+- <code title="get /checkout/supported_countries">client.misc.<a href="./src/dodopayments/resources/misc.py">list_supported_countries</a>() -> <a href="./src/dodopayments/types/misc_list_supported_countries_response.py">MiscListSupportedCountriesResponse</a></code>
 
 # Discounts
 
 Types:
 
 ```python
-from dodopayments.types import Discount
+from dodopayments.types import Discount, DiscountType
 ```
 
 Methods:

@@ -6,44 +6,44 @@ from typing import Optional
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.customers.customer_portal import session_create_params
+from ..._base_client import make_request_options
+from ...types.customers import customer_portal_create_params
 
-__all__ = ["SessionResource", "AsyncSessionResource"]
+__all__ = ["CustomerPortalResource", "AsyncCustomerPortalResource"]
 
 
-class SessionResource(SyncAPIResource):
+class CustomerPortalResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SessionResourceWithRawResponse:
+    def with_raw_response(self) -> CustomerPortalResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
         """
-        return SessionResourceWithRawResponse(self)
+        return CustomerPortalResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SessionResourceWithStreamingResponse:
+    def with_streaming_response(self) -> CustomerPortalResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
         """
-        return SessionResourceWithStreamingResponse(self)
+        return CustomerPortalResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -79,31 +79,33 @@ class SessionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"send_email": send_email}, session_create_params.SessionCreateParams),
+                query=maybe_transform(
+                    {"send_email": send_email}, customer_portal_create_params.CustomerPortalCreateParams
+                ),
             ),
             cast_to=NoneType,
         )
 
 
-class AsyncSessionResource(AsyncAPIResource):
+class AsyncCustomerPortalResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSessionResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncCustomerPortalResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncSessionResourceWithRawResponse(self)
+        return AsyncCustomerPortalResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSessionResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncCustomerPortalResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
         """
-        return AsyncSessionResourceWithStreamingResponse(self)
+        return AsyncCustomerPortalResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -140,44 +142,44 @@ class AsyncSessionResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"send_email": send_email}, session_create_params.SessionCreateParams
+                    {"send_email": send_email}, customer_portal_create_params.CustomerPortalCreateParams
                 ),
             ),
             cast_to=NoneType,
         )
 
 
-class SessionResourceWithRawResponse:
-    def __init__(self, session: SessionResource) -> None:
-        self._session = session
+class CustomerPortalResourceWithRawResponse:
+    def __init__(self, customer_portal: CustomerPortalResource) -> None:
+        self._customer_portal = customer_portal
 
         self.create = to_raw_response_wrapper(
-            session.create,
+            customer_portal.create,
         )
 
 
-class AsyncSessionResourceWithRawResponse:
-    def __init__(self, session: AsyncSessionResource) -> None:
-        self._session = session
+class AsyncCustomerPortalResourceWithRawResponse:
+    def __init__(self, customer_portal: AsyncCustomerPortalResource) -> None:
+        self._customer_portal = customer_portal
 
         self.create = async_to_raw_response_wrapper(
-            session.create,
+            customer_portal.create,
         )
 
 
-class SessionResourceWithStreamingResponse:
-    def __init__(self, session: SessionResource) -> None:
-        self._session = session
+class CustomerPortalResourceWithStreamingResponse:
+    def __init__(self, customer_portal: CustomerPortalResource) -> None:
+        self._customer_portal = customer_portal
 
         self.create = to_streamed_response_wrapper(
-            session.create,
+            customer_portal.create,
         )
 
 
-class AsyncSessionResourceWithStreamingResponse:
-    def __init__(self, session: AsyncSessionResource) -> None:
-        self._session = session
+class AsyncCustomerPortalResourceWithStreamingResponse:
+    def __init__(self, customer_portal: AsyncCustomerPortalResource) -> None:
+        self._customer_portal = customer_portal
 
         self.create = async_to_streamed_response_wrapper(
-            session.create,
+            customer_portal.create,
         )

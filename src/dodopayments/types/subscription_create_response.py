@@ -3,23 +3,13 @@
 from typing import Dict, Optional
 
 from .._models import BaseModel
+from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["SubscriptionCreateResponse", "Customer"]
-
-
-class Customer(BaseModel):
-    customer_id: str
-    """Unique identifier for the customer"""
-
-    email: str
-    """Email address of the customer"""
-
-    name: str
-    """Full name of the customer"""
+__all__ = ["SubscriptionCreateResponse"]
 
 
 class SubscriptionCreateResponse(BaseModel):
-    customer: Customer
+    customer: CustomerLimitedDetails
 
     metadata: Dict[str, str]
 

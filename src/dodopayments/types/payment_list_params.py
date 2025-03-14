@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .intent_status import IntentStatus
 
 __all__ = ["PaymentListParams"]
 
@@ -27,21 +28,7 @@ class PaymentListParams(TypedDict, total=False):
     page_size: Optional[int]
     """Page size default is 10 max is 100"""
 
-    status: Optional[
-        Literal[
-            "succeeded",
-            "failed",
-            "cancelled",
-            "processing",
-            "requires_customer_action",
-            "requires_merchant_action",
-            "requires_payment_method",
-            "requires_confirmation",
-            "requires_capture",
-            "partially_captured",
-            "partially_captured_and_capturable",
-        ]
-    ]
+    status: Optional[IntentStatus]
     """Filter by status"""
 
     subscription_id: Optional[str]

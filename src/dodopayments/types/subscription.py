@@ -5,19 +5,11 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .time_interval import TimeInterval
+from .subscription_status import SubscriptionStatus
+from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Subscription", "Customer"]
-
-
-class Customer(BaseModel):
-    customer_id: str
-    """Unique identifier for the customer"""
-
-    email: str
-    """Email address of the customer"""
-
-    name: str
-    """Full name of the customer"""
+__all__ = ["Subscription"]
 
 
 class Subscription(BaseModel):
@@ -172,7 +164,7 @@ class Subscription(BaseModel):
         "ZMW",
     ]
 
-    customer: Customer
+    customer: CustomerLimitedDetails
 
     metadata: Dict[str, str]
 
@@ -182,7 +174,7 @@ class Subscription(BaseModel):
     payment_frequency_count: int
     """Number of payment frequency intervals"""
 
-    payment_frequency_interval: Literal["Day", "Week", "Month", "Year"]
+    payment_frequency_interval: TimeInterval
 
     product_id: str
     """Identifier of the product associated with this subscription"""
@@ -196,7 +188,7 @@ class Subscription(BaseModel):
     (e.g. cents)
     """
 
-    status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
+    status: SubscriptionStatus
 
     subscription_id: str
     """Unique identifier for the subscription"""
@@ -204,7 +196,7 @@ class Subscription(BaseModel):
     subscription_period_count: int
     """Number of subscription period intervals"""
 
-    subscription_period_interval: Literal["Day", "Week", "Month", "Year"]
+    subscription_period_interval: TimeInterval
 
     tax_inclusive: bool
     """Indicates if the recurring_pre_tax_amount is tax inclusive"""

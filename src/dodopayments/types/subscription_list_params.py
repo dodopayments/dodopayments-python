@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .subscription_status import SubscriptionStatus
 
 __all__ = ["SubscriptionListParams"]
 
@@ -27,5 +28,5 @@ class SubscriptionListParams(TypedDict, total=False):
     page_size: Optional[int]
     """Page size default is 10 max is 100"""
 
-    status: Optional[Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]]
+    status: Optional[SubscriptionStatus]
     """Filter by status"""
