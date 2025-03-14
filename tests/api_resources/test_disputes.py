@@ -67,6 +67,7 @@ class TestDisputes:
         dispute = client.disputes.list(
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            customer_id="customer_id",
             dispute_stage="pre_dispute",
             dispute_status="dispute_opened",
             page_number=0,
@@ -146,6 +147,7 @@ class TestAsyncDisputes:
         dispute = await async_client.disputes.list(
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            customer_id="customer_id",
             dispute_stage="pre_dispute",
             dispute_status="dispute_opened",
             page_number=0,

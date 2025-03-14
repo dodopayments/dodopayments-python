@@ -82,6 +82,7 @@ class DisputesResource(SyncAPIResource):
         *,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         dispute_stage: Optional[Literal["pre_dispute", "dispute", "pre_arbitration"]] | NotGiven = NOT_GIVEN,
         dispute_status: Optional[
             Literal[
@@ -109,6 +110,8 @@ class DisputesResource(SyncAPIResource):
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer_id
 
           dispute_stage: Filter by dispute stage
 
@@ -138,6 +141,7 @@ class DisputesResource(SyncAPIResource):
                     {
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "dispute_stage": dispute_stage,
                         "dispute_status": dispute_status,
                         "page_number": page_number,
@@ -206,6 +210,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         *,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         dispute_stage: Optional[Literal["pre_dispute", "dispute", "pre_arbitration"]] | NotGiven = NOT_GIVEN,
         dispute_status: Optional[
             Literal[
@@ -233,6 +238,8 @@ class AsyncDisputesResource(AsyncAPIResource):
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer_id
 
           dispute_stage: Filter by dispute stage
 
@@ -262,6 +269,7 @@ class AsyncDisputesResource(AsyncAPIResource):
                     {
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "dispute_stage": dispute_stage,
                         "dispute_status": dispute_status,
                         "page_number": page_number,

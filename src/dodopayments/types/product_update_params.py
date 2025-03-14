@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["ProductUpdateParams", "LicenseKeyDuration", "Price", "PriceOneTimePrice", "PriceRecurringPrice"]
 
 
 class ProductUpdateParams(TypedDict, total=False):
+    addons: Optional[List[str]]
+    """Available Addons for subscription products"""
+
     description: Optional[str]
     """Description of the product, optional and must be at most 1000 characters."""
 
