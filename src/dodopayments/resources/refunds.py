@@ -4,11 +4,10 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 import httpx
 
-from ..types import refund_list_params, refund_create_params
+from ..types import RefundStatus, refund_list_params, refund_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -25,6 +24,7 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.refund import Refund
+from ..types.refund_status import RefundStatus
 
 __all__ = ["RefundsResource", "AsyncRefundsResource"]
 
@@ -134,7 +134,7 @@ class RefundsResource(SyncAPIResource):
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["succeeded", "failed", "pending", "review"]] | NotGiven = NOT_GIVEN,
+        status: Optional[RefundStatus] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,7 +293,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["succeeded", "failed", "pending", "review"]] | NotGiven = NOT_GIVEN,
+        status: Optional[RefundStatus] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -4,11 +4,10 @@ from __future__ import annotations
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 import httpx
 
-from ..types import discount_list_params, discount_create_params, discount_update_params
+from ..types import DiscountType, discount_list_params, discount_create_params, discount_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import (
     maybe_transform,
@@ -25,6 +24,7 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.discount import Discount
+from ..types.discount_type import DiscountType
 
 __all__ = ["DiscountsResource", "AsyncDiscountsResource"]
 
@@ -53,7 +53,7 @@ class DiscountsResource(SyncAPIResource):
         self,
         *,
         amount: int,
-        type: Literal["percentage"],
+        type: DiscountType,
         code: Optional[str] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -160,7 +160,7 @@ class DiscountsResource(SyncAPIResource):
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        type: Optional[Literal["percentage"]] | NotGiven = NOT_GIVEN,
+        type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
         usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -323,7 +323,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         self,
         *,
         amount: int,
-        type: Literal["percentage"],
+        type: DiscountType,
         code: Optional[str] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -430,7 +430,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        type: Optional[Literal["percentage"]] | NotGiven = NOT_GIVEN,
+        type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
         usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

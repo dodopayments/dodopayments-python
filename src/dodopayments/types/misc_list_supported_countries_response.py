@@ -5,6 +5,6 @@ from typing_extensions import TypeAlias
 
 from .country_code import CountryCode
 
-__all__ = ["SupportedCountryListResponse"]
+__all__ = ["MiscListSupportedCountriesResponse"]
 
-SupportedCountryListResponse: TypeAlias = List[CountryCode]
+MiscListSupportedCountriesResponse: TypeAlias = List[CountryCode]

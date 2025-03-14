@@ -5,19 +5,10 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .intent_status import IntentStatus
+from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["PaymentListResponse", "Customer"]
-
-
-class Customer(BaseModel):
-    customer_id: str
-    """Unique identifier for the customer"""
-
-    email: str
-    """Email address of the customer"""
-
-    name: str
-    """Full name of the customer"""
+__all__ = ["PaymentListResponse"]
 
 
 class PaymentListResponse(BaseModel):
@@ -171,7 +162,7 @@ class PaymentListResponse(BaseModel):
         "ZMW",
     ]
 
-    customer: Customer
+    customer: CustomerLimitedDetails
 
     metadata: Dict[str, str]
 
@@ -183,20 +174,6 @@ class PaymentListResponse(BaseModel):
 
     payment_method_type: Optional[str] = None
 
-    status: Optional[
-        Literal[
-            "succeeded",
-            "failed",
-            "cancelled",
-            "processing",
-            "requires_customer_action",
-            "requires_merchant_action",
-            "requires_payment_method",
-            "requires_confirmation",
-            "requires_capture",
-            "partially_captured",
-            "partially_captured_and_capturable",
-        ]
-    ] = None
+    status: Optional[IntentStatus] = None
 
     subscription_id: Optional[str] = None

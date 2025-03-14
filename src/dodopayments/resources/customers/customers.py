@@ -22,8 +22,7 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.customer import Customer
-from .customer_portal.customer_portal import (
+from .customer_portal import (
     CustomerPortalResource,
     AsyncCustomerPortalResource,
     CustomerPortalResourceWithRawResponse,
@@ -31,6 +30,7 @@ from .customer_portal.customer_portal import (
     CustomerPortalResourceWithStreamingResponse,
     AsyncCustomerPortalResourceWithStreamingResponse,
 )
+from ...types.customer import Customer
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 

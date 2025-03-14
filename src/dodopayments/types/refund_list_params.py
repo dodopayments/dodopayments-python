@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .refund_status import RefundStatus
 
 __all__ = ["RefundListParams"]
 
@@ -27,5 +28,5 @@ class RefundListParams(TypedDict, total=False):
     page_size: Optional[int]
     """Page size default is 10 max is 100"""
 
-    status: Optional[Literal["succeeded", "failed", "pending", "review"]]
+    status: Optional[RefundStatus]
     """Filter by status"""

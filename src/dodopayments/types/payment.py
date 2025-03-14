@@ -7,19 +7,10 @@ from typing_extensions import Literal
 from .refund import Refund
 from .dispute import Dispute
 from .._models import BaseModel
+from .intent_status import IntentStatus
+from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Payment", "Customer", "ProductCart"]
-
-
-class Customer(BaseModel):
-    customer_id: str
-    """Unique identifier for the customer"""
-
-    email: str
-    """Email address of the customer"""
-
-    name: str
-    """Full name of the customer"""
+__all__ = ["Payment", "ProductCart"]
 
 
 class ProductCart(BaseModel):
@@ -183,7 +174,7 @@ class Payment(BaseModel):
         "ZMW",
     ]
 
-    customer: Customer
+    customer: CustomerLimitedDetails
 
     disputes: List[Dispute]
     """List of disputes associated with this payment"""
@@ -220,21 +211,7 @@ class Payment(BaseModel):
     product_cart: Optional[List[ProductCart]] = None
     """List of products purchased in a one-time payment"""
 
-    status: Optional[
-        Literal[
-            "succeeded",
-            "failed",
-            "cancelled",
-            "processing",
-            "requires_customer_action",
-            "requires_merchant_action",
-            "requires_payment_method",
-            "requires_confirmation",
-            "requires_capture",
-            "partially_captured",
-            "partially_captured_and_capturable",
-        ]
-    ] = None
+    status: Optional[IntentStatus] = None
 
     subscription_id: Optional[str] = None
     """Identifier of the subscription if payment is part of a subscription"""

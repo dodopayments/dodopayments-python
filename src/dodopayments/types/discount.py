@@ -2,9 +2,9 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .discount_type import DiscountType
 
 __all__ = ["Discount"]
 
@@ -36,7 +36,7 @@ class Discount(BaseModel):
     times_used: int
     """How many times this discount has been used."""
 
-    type: Literal["percentage"]
+    type: DiscountType
 
     expires_at: Optional[datetime] = None
     """Optional date/time after which discount is expired."""
