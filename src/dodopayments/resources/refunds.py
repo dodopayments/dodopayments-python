@@ -131,6 +131,7 @@ class RefundsResource(SyncAPIResource):
         *,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["succeeded", "failed", "pending", "review"]] | NotGiven = NOT_GIVEN,
@@ -146,6 +147,8 @@ class RefundsResource(SyncAPIResource):
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer_id
 
           page_number: Page number default is 0
 
@@ -173,6 +176,7 @@ class RefundsResource(SyncAPIResource):
                     {
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "status": status,
@@ -286,6 +290,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         *,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["succeeded", "failed", "pending", "review"]] | NotGiven = NOT_GIVEN,
@@ -301,6 +306,8 @@ class AsyncRefundsResource(AsyncAPIResource):
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
+
+          customer_id: Filter by customer_id
 
           page_number: Page number default is 0
 
@@ -328,6 +335,7 @@ class AsyncRefundsResource(AsyncAPIResource):
                     {
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
+                        "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "status": status,

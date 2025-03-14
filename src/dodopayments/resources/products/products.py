@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -66,6 +66,7 @@ class ProductsResource(SyncAPIResource):
         *,
         price: product_create_params.Price,
         tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
+        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -83,6 +84,8 @@ class ProductsResource(SyncAPIResource):
         Args:
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
+
+          addons: Addons available for subscription product
 
           description: Optional description of the product
 
@@ -108,6 +111,7 @@ class ProductsResource(SyncAPIResource):
                 {
                     "price": price,
                     "tax_category": tax_category,
+                    "addons": addons,
                     "description": description,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -158,6 +162,7 @@ class ProductsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -176,6 +181,8 @@ class ProductsResource(SyncAPIResource):
     ) -> None:
         """
         Args:
+          addons: Available Addons for subscription products
+
           description: Description of the product, optional and must be at most 1000 characters.
 
           image_id: Product image id after its uploaded to S3
@@ -215,6 +222,7 @@ class ProductsResource(SyncAPIResource):
             f"/products/{id}",
             body=maybe_transform(
                 {
+                    "addons": addons,
                     "description": description,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
@@ -385,6 +393,7 @@ class AsyncProductsResource(AsyncAPIResource):
         *,
         price: product_create_params.Price,
         tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
+        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -402,6 +411,8 @@ class AsyncProductsResource(AsyncAPIResource):
         Args:
           tax_category: Represents the different categories of taxation applicable to various products
               and services.
+
+          addons: Addons available for subscription product
 
           description: Optional description of the product
 
@@ -427,6 +438,7 @@ class AsyncProductsResource(AsyncAPIResource):
                 {
                     "price": price,
                     "tax_category": tax_category,
+                    "addons": addons,
                     "description": description,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -477,6 +489,7 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -495,6 +508,8 @@ class AsyncProductsResource(AsyncAPIResource):
     ) -> None:
         """
         Args:
+          addons: Available Addons for subscription products
+
           description: Description of the product, optional and must be at most 1000 characters.
 
           image_id: Product image id after its uploaded to S3
@@ -534,6 +549,7 @@ class AsyncProductsResource(AsyncAPIResource):
             f"/products/{id}",
             body=await async_maybe_transform(
                 {
+                    "addons": addons,
                     "description": description,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,

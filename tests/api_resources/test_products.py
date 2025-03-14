@@ -49,6 +49,7 @@ class TestProducts:
                 "tax_inclusive": True,
             },
             tax_category="digital_products",
+            addons=["string"],
             description="description",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
@@ -148,6 +149,7 @@ class TestProducts:
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         product = client.products.update(
             id="id",
+            addons=["string"],
             description="description",
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",
@@ -346,6 +348,7 @@ class TestAsyncProducts:
                 "tax_inclusive": True,
             },
             tax_category="digital_products",
+            addons=["string"],
             description="description",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
@@ -445,6 +448,7 @@ class TestAsyncProducts:
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         product = await async_client.products.update(
             id="id",
+            addons=["string"],
             description="description",
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",

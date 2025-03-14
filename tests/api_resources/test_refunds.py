@@ -107,6 +107,7 @@ class TestRefunds:
         refund = client.refunds.list(
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            customer_id="customer_id",
             page_number=0,
             page_size=0,
             status="succeeded",
@@ -225,6 +226,7 @@ class TestAsyncRefunds:
         refund = await async_client.refunds.list(
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            customer_id="customer_id",
             page_number=0,
             page_size=0,
             status="succeeded",
