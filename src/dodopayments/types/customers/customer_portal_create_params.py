@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import TypedDict
 
-__all__ = ["SessionCreateParams"]
+__all__ = ["CustomerPortalCreateParams"]
 
 
-class SessionCreateParams(TypedDict, total=False):
+class CustomerPortalCreateParams(TypedDict, total=False):
     send_email: Optional[bool]
     """If true, will send link to user."""

@@ -4,9 +4,11 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .dispute_stage import DisputeStage
+from .dispute_status import DisputeStatus
 
 __all__ = ["DisputeListParams"]
 
@@ -21,20 +23,10 @@ class DisputeListParams(TypedDict, total=False):
     customer_id: Optional[str]
     """Filter by customer_id"""
 
-    dispute_stage: Optional[Literal["pre_dispute", "dispute", "pre_arbitration"]]
+    dispute_stage: Optional[DisputeStage]
     """Filter by dispute stage"""
 
-    dispute_status: Optional[
-        Literal[
-            "dispute_opened",
-            "dispute_expired",
-            "dispute_accepted",
-            "dispute_cancelled",
-            "dispute_challenged",
-            "dispute_won",
-            "dispute_lost",
-        ]
-    ]
+    dispute_status: Optional[DisputeStatus]
     """Filter by dispute status"""
 
     page_number: Optional[int]

@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .refund_status import RefundStatus
 
 __all__ = ["Refund"]
 
@@ -22,7 +23,7 @@ class Refund(BaseModel):
     refund_id: str
     """The unique identifier of the refund."""
 
-    status: Literal["succeeded", "failed", "pending", "review"]
+    status: RefundStatus
 
     amount: Optional[int] = None
     """The refunded amount."""
