@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.6.3 (2025-03-14)
+
+Full Changelog: [v1.5.1...v1.6.3](https://github.com/dodopayments/dodopayments-python/compare/v1.5.1...v1.6.3)
+
+### Features
+
+* **api:** openapi spec updated ([#92](https://github.com/dodopayments/dodopayments-python/issues/92)) ([1f75653](https://github.com/dodopayments/dodopayments-python/commit/1f75653005e0325012368b947ff7639073969320))
+* **api:** updated stainless config ([#93](https://github.com/dodopayments/dodopayments-python/issues/93)) ([8f8ad45](https://github.com/dodopayments/dodopayments-python/commit/8f8ad45c2f193774ff492859c6165a1ca5092d6d))
+
+
+### Chores
+
+* **internal:** remove extra empty newlines ([#90](https://github.com/dodopayments/dodopayments-python/issues/90)) ([0b43ad9](https://github.com/dodopayments/dodopayments-python/commit/0b43ad9b63cd881955ce8a7729436bcb118966b5))
+
 ## 1.5.1 (2025-03-12)
 
 Full Changelog: [v1.5.0...v1.5.1](https://github.com/dodopayments/dodopayments-python/compare/v1.5.0...v1.5.1)
