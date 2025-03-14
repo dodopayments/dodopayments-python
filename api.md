@@ -70,28 +70,28 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import LicenseKey, LicenseKeyStatus, LicenseKeyListResponse
+from dodopayments.types import LicenseKey, LicenseKeyStatus
 ```
 
 Methods:
 
 - <code title="get /license_keys/{id}">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/license_key.py">LicenseKey</a></code>
 - <code title="patch /license_keys/{id}">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">update</a>(id, \*\*<a href="src/dodopayments/types/license_key_update_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key.py">LicenseKey</a></code>
-- <code title="get /license_keys">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">list</a>(\*\*<a href="src/dodopayments/types/license_key_list_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_list_response.py">LicenseKeyListResponse</a></code>
+- <code title="get /license_keys">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">list</a>(\*\*<a href="src/dodopayments/types/license_key_list_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key.py">SyncDefaultPageNumberPagination[LicenseKey]</a></code>
 
 # LicenseKeyInstances
 
 Types:
 
 ```python
-from dodopayments.types import LicenseKeyInstance, LicenseKeyInstanceListResponse
+from dodopayments.types import LicenseKeyInstance
 ```
 
 Methods:
 
 - <code title="get /license_key_instances/{id}">client.license_key_instances.<a href="./src/dodopayments/resources/license_key_instances.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/license_key_instance.py">LicenseKeyInstance</a></code>
 - <code title="patch /license_key_instances/{id}">client.license_key_instances.<a href="./src/dodopayments/resources/license_key_instances.py">update</a>(id, \*\*<a href="src/dodopayments/types/license_key_instance_update_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_instance.py">LicenseKeyInstance</a></code>
-- <code title="get /license_key_instances">client.license_key_instances.<a href="./src/dodopayments/resources/license_key_instances.py">list</a>(\*\*<a href="src/dodopayments/types/license_key_instance_list_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_instance_list_response.py">LicenseKeyInstanceListResponse</a></code>
+- <code title="get /license_key_instances">client.license_key_instances.<a href="./src/dodopayments/resources/license_key_instances.py">list</a>(\*\*<a href="src/dodopayments/types/license_key_instance_list_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_instance.py">SyncDefaultPageNumberPagination[LicenseKeyInstance]</a></code>
 
 # Customers
 
