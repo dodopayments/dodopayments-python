@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.7.1 (2025-03-15)
+
+Full Changelog: [v1.7.0...v1.7.1](https://github.com/dodopayments/dodopayments-python/compare/v1.7.0...v1.7.1)
+
+### Bug Fixes
+
+* **types:** handle more discriminated union shapes ([#101](https://github.com/dodopayments/dodopayments-python/issues/101)) ([701dc57](https://github.com/dodopayments/dodopayments-python/commit/701dc577c04a4564a7e6f667499c40007e90b53a))
+
+
+### Chores
+
+* **internal:** bump rye to 0.44.0 ([#100](https://github.com/dodopayments/dodopayments-python/issues/100)) ([0ae8ed3](https://github.com/dodopayments/dodopayments-python/commit/0ae8ed354740d966c7c9f63e027896b47610d84b))
+* **internal:** codegen related update ([#98](https://github.com/dodopayments/dodopayments-python/issues/98)) ([0a8df0a](https://github.com/dodopayments/dodopayments-python/commit/0a8df0a0c10514547ea6cf594cc6a4b1830c679a))
+
 ## 1.7.0 (2025-03-14)
 
 Full Changelog: [v1.6.3...v1.7.0](https://github.com/dodopayments/dodopayments-python/compare/v1.6.3...v1.7.0)
