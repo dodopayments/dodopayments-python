@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -64,6 +65,30 @@ class PaymentsResource(SyncAPIResource):
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
         product_cart: Iterable[OneTimeProductCartItemParam],
+        allowed_payment_method_types: Optional[
+            List[
+                Literal[
+                    "credit",
+                    "debit",
+                    "upi_collect",
+                    "upi_intent",
+                    "apple_pay",
+                    "cashapp",
+                    "google_pay",
+                    "multibanco",
+                    "bancontact_card",
+                    "eps",
+                    "ideal",
+                    "przelewy24",
+                    "affirm",
+                    "klarna",
+                    "sepa",
+                    "ach",
+                    "amazon_pay",
+                ]
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -80,6 +105,13 @@ class PaymentsResource(SyncAPIResource):
           product_cart: List of products in the cart.
 
         Must contain at least 1 and at most 100 items.
+
+          allowed_payment_method_types: List of payment methods allowed during checkout.
+
+              Customers will **never** see payment methods that are **not** in this list.
+              However, adding a method here **does not guarantee** customers will see it.
+              Availability still depends on other factors (e.g., customer location, merchant
+              settings).
 
           discount_code: Discount Code to apply to the transaction
 
@@ -106,6 +138,7 @@ class PaymentsResource(SyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "allowed_payment_method_types": allowed_payment_method_types,
                     "discount_code": discount_code,
                     "metadata": metadata,
                     "payment_link": payment_link,
@@ -243,6 +276,30 @@ class AsyncPaymentsResource(AsyncAPIResource):
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
         product_cart: Iterable[OneTimeProductCartItemParam],
+        allowed_payment_method_types: Optional[
+            List[
+                Literal[
+                    "credit",
+                    "debit",
+                    "upi_collect",
+                    "upi_intent",
+                    "apple_pay",
+                    "cashapp",
+                    "google_pay",
+                    "multibanco",
+                    "bancontact_card",
+                    "eps",
+                    "ideal",
+                    "przelewy24",
+                    "affirm",
+                    "klarna",
+                    "sepa",
+                    "ach",
+                    "amazon_pay",
+                ]
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -259,6 +316,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
           product_cart: List of products in the cart.
 
         Must contain at least 1 and at most 100 items.
+
+          allowed_payment_method_types: List of payment methods allowed during checkout.
+
+              Customers will **never** see payment methods that are **not** in this list.
+              However, adding a method here **does not guarantee** customers will see it.
+              Availability still depends on other factors (e.g., customer location, merchant
+              settings).
 
           discount_code: Discount Code to apply to the transaction
 
@@ -285,6 +349,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "allowed_payment_method_types": allowed_payment_method_types,
                     "discount_code": discount_code,
                     "metadata": metadata,
                     "payment_link": payment_link,

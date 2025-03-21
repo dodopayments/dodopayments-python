@@ -11,6 +11,7 @@ from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
     Subscription,
+    SubscriptionChargeResponse,
     SubscriptionCreateResponse,
 )
 from dodopayments._utils import parse_datetime
@@ -51,8 +52,13 @@ class TestSubscriptions:
             customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
+            allowed_payment_method_types=["credit"],
             discount_code="discount_code",
             metadata={"foo": "string"},
+            on_demand={
+                "mandate_only": True,
+                "product_price": 0,
+            },
             payment_link=True,
             return_url="return_url",
             tax_id="tax_id",
@@ -224,6 +230,48 @@ class TestSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_charge(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+        )
+        assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_raw_response_charge(self, client: DodoPayments) -> None:
+        response = client.subscriptions.with_raw_response.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_streaming_response_charge(self, client: DodoPayments) -> None:
+        with client.subscriptions.with_streaming_response.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_charge(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            client.subscriptions.with_raw_response.charge(
+                subscription_id="",
+                product_price=0,
+            )
+
 
 class TestAsyncSubscriptions:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -257,8 +305,13 @@ class TestAsyncSubscriptions:
             customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
+            allowed_payment_method_types=["credit"],
             discount_code="discount_code",
             metadata={"foo": "string"},
+            on_demand={
+                "mandate_only": True,
+                "product_price": 0,
+            },
             payment_link=True,
             return_url="return_url",
             tax_id="tax_id",
@@ -429,3 +482,45 @@ class TestAsyncSubscriptions:
             assert_matches_type(AsyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_charge(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+        )
+        assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_raw_response_charge(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.subscriptions.with_raw_response.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_charge(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.subscriptions.with_streaming_response.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_charge(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            await async_client.subscriptions.with_raw_response.charge(
+                subscription_id="",
+                product_price=0,
+            )

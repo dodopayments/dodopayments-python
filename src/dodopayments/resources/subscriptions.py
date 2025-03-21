@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
 from ..types import (
     SubscriptionStatus,
     subscription_list_params,
+    subscription_charge_params,
     subscription_create_params,
     subscription_update_params,
 )
@@ -32,6 +34,7 @@ from ..types.subscription import Subscription
 from ..types.subscription_status import SubscriptionStatus
 from ..types.billing_address_param import BillingAddressParam
 from ..types.customer_request_param import CustomerRequestParam
+from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
@@ -64,8 +67,33 @@ class SubscriptionsResource(SyncAPIResource):
         customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
+        allowed_payment_method_types: Optional[
+            List[
+                Literal[
+                    "credit",
+                    "debit",
+                    "upi_collect",
+                    "upi_intent",
+                    "apple_pay",
+                    "cashapp",
+                    "google_pay",
+                    "multibanco",
+                    "bancontact_card",
+                    "eps",
+                    "ideal",
+                    "przelewy24",
+                    "affirm",
+                    "klarna",
+                    "sepa",
+                    "ach",
+                    "amazon_pay",
+                ]
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        on_demand: Optional[subscription_create_params.OnDemand] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         tax_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -82,6 +110,13 @@ class SubscriptionsResource(SyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          allowed_payment_method_types: List of payment methods allowed during checkout.
+
+              Customers will **never** see payment methods that are **not** in this list.
+              However, adding a method here **does not guarantee** customers will see it.
+              Availability still depends on other factors (e.g., customer location, merchant
+              settings).
 
           discount_code: Discount Code to apply to the subscription
 
@@ -111,8 +146,10 @@ class SubscriptionsResource(SyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "allowed_payment_method_types": allowed_payment_method_types,
                     "discount_code": discount_code,
                     "metadata": metadata,
+                    "on_demand": on_demand,
                     "payment_link": payment_link,
                     "return_url": return_url,
                     "tax_id": tax_id,
@@ -258,6 +295,39 @@ class SubscriptionsResource(SyncAPIResource):
             model=Subscription,
         )
 
+    def charge(
+        self,
+        subscription_id: str,
+        *,
+        product_price: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SubscriptionChargeResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._post(
+            f"/subscriptions/{subscription_id}/charge",
+            body=maybe_transform({"product_price": product_price}, subscription_charge_params.SubscriptionChargeParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionChargeResponse,
+        )
+
 
 class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
@@ -286,8 +356,33 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
+        allowed_payment_method_types: Optional[
+            List[
+                Literal[
+                    "credit",
+                    "debit",
+                    "upi_collect",
+                    "upi_intent",
+                    "apple_pay",
+                    "cashapp",
+                    "google_pay",
+                    "multibanco",
+                    "bancontact_card",
+                    "eps",
+                    "ideal",
+                    "przelewy24",
+                    "affirm",
+                    "klarna",
+                    "sepa",
+                    "ach",
+                    "amazon_pay",
+                ]
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        on_demand: Optional[subscription_create_params.OnDemand] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         tax_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -304,6 +399,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          allowed_payment_method_types: List of payment methods allowed during checkout.
+
+              Customers will **never** see payment methods that are **not** in this list.
+              However, adding a method here **does not guarantee** customers will see it.
+              Availability still depends on other factors (e.g., customer location, merchant
+              settings).
 
           discount_code: Discount Code to apply to the subscription
 
@@ -333,8 +435,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "allowed_payment_method_types": allowed_payment_method_types,
                     "discount_code": discount_code,
                     "metadata": metadata,
+                    "on_demand": on_demand,
                     "payment_link": payment_link,
                     "return_url": return_url,
                     "tax_id": tax_id,
@@ -480,6 +584,41 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             model=Subscription,
         )
 
+    async def charge(
+        self,
+        subscription_id: str,
+        *,
+        product_price: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SubscriptionChargeResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return await self._post(
+            f"/subscriptions/{subscription_id}/charge",
+            body=await async_maybe_transform(
+                {"product_price": product_price}, subscription_charge_params.SubscriptionChargeParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionChargeResponse,
+        )
+
 
 class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
@@ -496,6 +635,9 @@ class SubscriptionsResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             subscriptions.list,
+        )
+        self.charge = to_raw_response_wrapper(
+            subscriptions.charge,
         )
 
 
@@ -515,6 +657,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             subscriptions.list,
         )
+        self.charge = async_to_raw_response_wrapper(
+            subscriptions.charge,
+        )
 
 
 class SubscriptionsResourceWithStreamingResponse:
@@ -533,6 +678,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             subscriptions.list,
         )
+        self.charge = to_streamed_response_wrapper(
+            subscriptions.charge,
+        )
 
 
 class AsyncSubscriptionsResourceWithStreamingResponse:
@@ -550,4 +698,7 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             subscriptions.list,
+        )
+        self.charge = async_to_streamed_response_wrapper(
+            subscriptions.charge,
         )
