@@ -33,6 +33,7 @@ from dodopayments.types import (
     SubscriptionStatus,
     TimeInterval,
     SubscriptionCreateResponse,
+    SubscriptionChargeResponse,
 )
 ```
 
@@ -42,6 +43,7 @@ Methods:
 - <code title="get /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve</a>(subscription_id) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
 - <code title="patch /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
 - <code title="get /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">list</a>(\*\*<a href="src/dodopayments/types/subscription_list_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">SyncDefaultPageNumberPagination[Subscription]</a></code>
+- <code title="post /subscriptions/{subscription_id}/charge">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">charge</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_charge_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_charge_response.py">SubscriptionChargeResponse</a></code>
 
 # Invoices
 
