@@ -61,6 +61,7 @@ class TestPayments:
                     "amount": 0,
                 }
             ],
+            allowed_payment_method_types=["credit"],
             discount_code="discount_code",
             metadata={"foo": "string"},
             payment_link=True,
@@ -237,6 +238,7 @@ class TestAsyncPayments:
                     "amount": 0,
                 }
             ],
+            allowed_payment_method_types=["credit"],
             discount_code="discount_code",
             metadata={"foo": "string"},
             payment_link=True,

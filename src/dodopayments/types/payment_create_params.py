@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing import Dict, List, Iterable, Optional
+from typing_extensions import Literal, Required, TypedDict
 
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
@@ -19,6 +19,37 @@ class PaymentCreateParams(TypedDict, total=False):
 
     product_cart: Required[Iterable[OneTimeProductCartItemParam]]
     """List of products in the cart. Must contain at least 1 and at most 100 items."""
+
+    allowed_payment_method_types: Optional[
+        List[
+            Literal[
+                "credit",
+                "debit",
+                "upi_collect",
+                "upi_intent",
+                "apple_pay",
+                "cashapp",
+                "google_pay",
+                "multibanco",
+                "bancontact_card",
+                "eps",
+                "ideal",
+                "przelewy24",
+                "affirm",
+                "klarna",
+                "sepa",
+                "ach",
+                "amazon_pay",
+            ]
+        ]
+    ]
+    """List of payment methods allowed during checkout.
+
+    Customers will **never** see payment methods that are **not** in this list.
+    However, adding a method here **does not guarantee** customers will see it.
+    Availability still depends on other factors (e.g., customer location, merchant
+    settings).
+    """
 
     discount_code: Optional[str]
     """Discount Code to apply to the transaction"""
