@@ -182,7 +182,7 @@ class PayoutListResponse(BaseModel):
     refunds: int
     """The total value of refunds associated with the payout."""
 
-    status: Literal["in_progress", "failed", "success"]
+    status: Literal["not_initiated", "in_progress", "on_hold", "failed", "success"]
 
     tax: int
     """The tax applied to the payout."""
