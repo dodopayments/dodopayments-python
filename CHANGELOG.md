@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.10.1 (2025-03-21)
+
+Full Changelog: [v1.7.0...v1.10.1](https://github.com/dodopayments/dodopayments-python/compare/v1.7.0...v1.10.1)
+
+### Features
+
+* **api:** updated openapispec to v1.10.1 ([#104](https://github.com/dodopayments/dodopayments-python/issues/104)) ([1ddc877](https://github.com/dodopayments/dodopayments-python/commit/1ddc8773fccb48071a357b8f43125b8a5d525263))
+
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#102](https://github.com/dodopayments/dodopayments-python/issues/102)) ([30b1832](https://github.com/dodopayments/dodopayments-python/commit/30b183260b211be3de0b7c06a3209b15bd4811e2))
+* **ci:** remove publishing patch ([#103](https://github.com/dodopayments/dodopayments-python/issues/103)) ([c95e804](https://github.com/dodopayments/dodopayments-python/commit/c95e80468aa607f4a41434244db9f8414365e187))
+* **types:** handle more discriminated union shapes ([#101](https://github.com/dodopayments/dodopayments-python/issues/101)) ([701dc57](https://github.com/dodopayments/dodopayments-python/commit/701dc577c04a4564a7e6f667499c40007e90b53a))
+
+
+### Chores
+
+* **internal:** bump rye to 0.44.0 ([#100](https://github.com/dodopayments/dodopayments-python/issues/100)) ([0ae8ed3](https://github.com/dodopayments/dodopayments-python/commit/0ae8ed354740d966c7c9f63e027896b47610d84b))
+* **internal:** codegen related update ([#98](https://github.com/dodopayments/dodopayments-python/issues/98)) ([0a8df0a](https://github.com/dodopayments/dodopayments-python/commit/0a8df0a0c10514547ea6cf594cc6a4b1830c679a))
+
 ## 1.7.0 (2025-03-14)
 
 Full Changelog: [v1.6.3...v1.7.0](https://github.com/dodopayments/dodopayments-python/compare/v1.6.3...v1.7.0)
