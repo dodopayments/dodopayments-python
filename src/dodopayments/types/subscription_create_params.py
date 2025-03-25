@@ -89,5 +89,6 @@ class OnDemand(TypedDict, total=False):
     product_price: Optional[int]
     """
     Product price for the initial charge to customer If not specified the stored
-    price of the product will be used
+    price of the product will be used Represented in the lowest denomination of the
+    currency (e.g., cents for USD). For example, to charge $1.00, pass `100`.
     """

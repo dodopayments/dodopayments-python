@@ -307,8 +307,12 @@ class SubscriptionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SubscriptionChargeResponse:
-        """
-        Args:
+        """Args:
+          product_price: The product price.
+
+        Represented in the lowest denomination of the currency (e.g.,
+              cents for USD). For example, to charge $1.00, pass `100`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -596,8 +600,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SubscriptionChargeResponse:
-        """
-        Args:
+        """Args:
+          product_price: The product price.
+
+        Represented in the lowest denomination of the currency (e.g.,
+              cents for USD). For example, to charge $1.00, pass `100`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
