@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
     async_maybe_transform,
@@ -21,6 +21,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.customers import customer_portal_create_params
+from ...types.customer_portal_session import CustomerPortalSession
 
 __all__ = ["CustomerPortalResource", "AsyncCustomerPortalResource"]
 
@@ -56,7 +57,7 @@ class CustomerPortalResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> CustomerPortalSession:
         """
         Args:
           send_email: If true, will send link to user.
@@ -71,7 +72,6 @@ class CustomerPortalResource(SyncAPIResource):
         """
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/customers/{customer_id}/customer-portal/session",
             options=make_request_options(
@@ -83,7 +83,7 @@ class CustomerPortalResource(SyncAPIResource):
                     {"send_email": send_email}, customer_portal_create_params.CustomerPortalCreateParams
                 ),
             ),
-            cast_to=NoneType,
+            cast_to=CustomerPortalSession,
         )
 
 
@@ -118,7 +118,7 @@ class AsyncCustomerPortalResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> CustomerPortalSession:
         """
         Args:
           send_email: If true, will send link to user.
@@ -133,7 +133,6 @@ class AsyncCustomerPortalResource(AsyncAPIResource):
         """
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/customers/{customer_id}/customer-portal/session",
             options=make_request_options(
@@ -145,7 +144,7 @@ class AsyncCustomerPortalResource(AsyncAPIResource):
                     {"send_email": send_email}, customer_portal_create_params.CustomerPortalCreateParams
                 ),
             ),
-            cast_to=NoneType,
+            cast_to=CustomerPortalSession,
         )
 
 

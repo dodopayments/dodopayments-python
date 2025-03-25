@@ -114,7 +114,7 @@ Methods:
 
 Methods:
 
-- <code title="post /customers/{customer_id}/customer-portal/session">client.customers.customer_portal.<a href="./src/dodopayments/resources/customers/customer_portal.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/customer_portal_create_params.py">params</a>) -> None</code>
+- <code title="post /customers/{customer_id}/customer-portal/session">client.customers.customer_portal.<a href="./src/dodopayments/resources/customers/customer_portal.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/customer_portal_create_params.py">params</a>) -> <a href="./src/dodopayments/types/customer_portal_session.py">CustomerPortalSession</a></code>
 
 # Refunds
 
