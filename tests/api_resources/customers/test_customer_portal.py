@@ -7,7 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
+from dodopayments.types import CustomerPortalSession
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +22,7 @@ class TestCustomerPortal:
         customer_portal = client.customers.customer_portal.create(
             customer_id="customer_id",
         )
-        assert customer_portal is None
+        assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
@@ -28,7 +30,7 @@ class TestCustomerPortal:
             customer_id="customer_id",
             send_email=True,
         )
-        assert customer_portal is None
+        assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
@@ -39,7 +41,7 @@ class TestCustomerPortal:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer_portal = response.parse()
-        assert customer_portal is None
+        assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
@@ -50,7 +52,7 @@ class TestCustomerPortal:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer_portal = response.parse()
-            assert customer_portal is None
+            assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +72,7 @@ class TestAsyncCustomerPortal:
         customer_portal = await async_client.customers.customer_portal.create(
             customer_id="customer_id",
         )
-        assert customer_portal is None
+        assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -78,7 +80,7 @@ class TestAsyncCustomerPortal:
             customer_id="customer_id",
             send_email=True,
         )
-        assert customer_portal is None
+        assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -89,7 +91,7 @@ class TestAsyncCustomerPortal:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer_portal = await response.parse()
-        assert customer_portal is None
+        assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -100,7 +102,7 @@ class TestAsyncCustomerPortal:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer_portal = await response.parse()
-            assert customer_portal is None
+            assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
