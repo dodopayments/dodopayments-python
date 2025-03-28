@@ -62,10 +62,12 @@ class TestPayments:
                 }
             ],
             allowed_payment_method_types=["credit"],
+            billing_currency="AED",
             discount_code="discount_code",
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
+            show_saved_payment_methods=True,
             tax_id="tax_id",
         )
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
@@ -239,10 +241,12 @@ class TestAsyncPayments:
                 }
             ],
             allowed_payment_method_types=["credit"],
+            billing_currency="AED",
             discount_code="discount_code",
             metadata={"foo": "string"},
             payment_link=True,
             return_url="return_url",
+            show_saved_payment_methods=True,
             tax_id="tax_id",
         )
         assert_matches_type(PaymentCreateResponse, payment, path=["response"])
