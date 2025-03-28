@@ -1,6 +1,6 @@
 [project]
 name = "dodopayments"
-version = "1.10.3"
+version = "1.10.4"
 description = "The official Python library for the Dodo Payments API"
 dynamic = ["readme"]
 license = "Apache-2.0"
