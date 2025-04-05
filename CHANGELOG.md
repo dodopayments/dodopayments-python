@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.11.1 (2025-04-05)
+
+Full Changelog: [v1.11.0...v1.11.1](https://github.com/dodopayments/dodopayments-python/compare/v1.11.0...v1.11.1)
+
+### Chores
+
+* **internal:** remove trailing character ([#116](https://github.com/dodopayments/dodopayments-python/issues/116)) ([bf80473](https://github.com/dodopayments/dodopayments-python/commit/bf8047310a09bd4e6d166155f697cf17e069dabb))
+
 ## 1.11.0 (2025-03-28)
 
 Full Changelog: [v1.10.4...v1.11.0](https://github.com/dodopayments/dodopayments-python/compare/v1.10.4...v1.11.0)
