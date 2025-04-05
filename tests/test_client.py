@@ -1855,7 +1855,7 @@ class TestAsyncDodoPayments:
         import threading
 
         from dodopayments._utils import asyncify
-        from dodopayments._base_client import get_platform 
+        from dodopayments._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
