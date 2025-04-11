@@ -20,6 +20,7 @@ from .refund_status import RefundStatus as RefundStatus
 from .time_interval import TimeInterval as TimeInterval
 from .webhook_event import WebhookEvent as WebhookEvent
 from .dispute_status import DisputeStatus as DisputeStatus
+from .billing_address import BillingAddress as BillingAddress
 from .license_key_status import LicenseKeyStatus as LicenseKeyStatus
 from .payout_list_params import PayoutListParams as PayoutListParams
 from .refund_list_params import RefundListParams as RefundListParams

@@ -159,8 +159,16 @@ class TestSubscriptions:
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.update(
             subscription_id="subscription_id",
+            billing={
+                "city": "city",
+                "country": "AF",
+                "state": "state",
+                "street": "street",
+                "zipcode": "zipcode",
+            },
             metadata={"foo": "string"},
             status="pending",
+            tax_id="tax_id",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
@@ -414,8 +422,16 @@ class TestAsyncSubscriptions:
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.update(
             subscription_id="subscription_id",
+            billing={
+                "city": "city",
+                "country": "AF",
+                "state": "state",
+                "street": "street",
+                "zipcode": "zipcode",
+            },
             metadata={"foo": "string"},
             status="pending",
+            tax_id="tax_id",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
