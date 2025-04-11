@@ -9,11 +9,9 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
-from dodopayments.types import (
-    LicenseKey,
-    LicenseKeyListResponse,
-)
+from dodopayments.types import LicenseKey
 from dodopayments._utils import parse_datetime
+from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -110,7 +108,7 @@ class TestLicenseKeys:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         license_key = client.license_keys.list()
-        assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
@@ -121,7 +119,7 @@ class TestLicenseKeys:
             product_id="product_id",
             status="active",
         )
-        assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
@@ -130,7 +128,7 @@ class TestLicenseKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         license_key = response.parse()
-        assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
@@ -139,7 +137,7 @@ class TestLicenseKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             license_key = response.parse()
-            assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+            assert_matches_type(SyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -236,7 +234,7 @@ class TestAsyncLicenseKeys:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         license_key = await async_client.license_keys.list()
-        assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -247,7 +245,7 @@ class TestAsyncLicenseKeys:
             product_id="product_id",
             status="active",
         )
-        assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -256,7 +254,7 @@ class TestAsyncLicenseKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         license_key = await response.parse()
-        assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -265,6 +263,6 @@ class TestAsyncLicenseKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             license_key = await response.parse()
-            assert_matches_type(LicenseKeyListResponse, license_key, path=["response"])
+            assert_matches_type(AsyncDefaultPageNumberPagination[LicenseKey], license_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
