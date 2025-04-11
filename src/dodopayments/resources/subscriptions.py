@@ -353,8 +353,10 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
+        billing: Optional[BillingAddressParam] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
+        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -378,8 +380,10 @@ class SubscriptionsResource(SyncAPIResource):
             f"/subscriptions/{subscription_id}",
             body=maybe_transform(
                 {
+                    "billing": billing,
                     "metadata": metadata,
                     "status": status,
+                    "tax_id": tax_id,
                 },
                 subscription_update_params.SubscriptionUpdateParams,
             ),
@@ -801,8 +805,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
+        billing: Optional[BillingAddressParam] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
+        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -826,8 +832,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             f"/subscriptions/{subscription_id}",
             body=await async_maybe_transform(
                 {
+                    "billing": billing,
                     "metadata": metadata,
                     "status": status,
+                    "tax_id": tax_id,
                 },
                 subscription_update_params.SubscriptionUpdateParams,
             ),

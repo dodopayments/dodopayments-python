@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .time_interval import TimeInterval
+from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
 from .customer_limited_details import CustomerLimitedDetails
 
@@ -13,6 +14,8 @@ __all__ = ["Subscription"]
 
 
 class Subscription(BaseModel):
+    billing: BillingAddress
+
     created_at: datetime
     """Timestamp when the subscription was created"""
 
