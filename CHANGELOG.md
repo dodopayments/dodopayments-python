@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.14.0 (2025-04-11)
+
+Full Changelog: [v1.13.0...v1.14.0](https://github.com/dodopayments/dodopayments-python/compare/v1.13.0...v1.14.0)
+
+### Features
+
+* **api:** fixed license key pagination issues in openapi spec ([537ec87](https://github.com/dodopayments/dodopayments-python/commit/537ec87a279e8ad28df4cc72437237a4ba3d3d28))
+* **api:** updated openapi spec ([64b978a](https://github.com/dodopayments/dodopayments-python/commit/64b978ad6113409a30318535f36c95c9db34bc70))
+
+
+### Chores
+
+* **internal:** expand CI branch coverage ([6b90baf](https://github.com/dodopayments/dodopayments-python/commit/6b90baf9e0454e117537737944949fe47d2fe50d))
+* **internal:** reduce CI branch coverage ([1466ee2](https://github.com/dodopayments/dodopayments-python/commit/1466ee25d33cd01029d682491f66f578e6d98f6b))
+* **internal:** slight transform perf improvement ([#120](https://github.com/dodopayments/dodopayments-python/issues/120)) ([36e9378](https://github.com/dodopayments/dodopayments-python/commit/36e9378ae36a901a6cf681e04334485b518087d3))
+
 ## 1.13.0 (2025-04-08)
 
 Full Changelog: [v1.11.1...v1.13.0](https://github.com/dodopayments/dodopayments-python/compare/v1.11.1...v1.13.0)
