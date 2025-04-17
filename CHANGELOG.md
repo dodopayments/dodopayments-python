@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.14.1 (2025-04-17)
+
+Full Changelog: [v1.14.0...v1.14.1](https://github.com/dodopayments/dodopayments-python/compare/v1.14.0...v1.14.1)
+
+### Bug Fixes
+
+* **perf:** optimize some hot paths ([14b4eb6](https://github.com/dodopayments/dodopayments-python/commit/14b4eb67b69bc844cc230ad98acb11fb67019fcb))
+* **perf:** skip traversing types for NotGiven values ([a58ba0e](https://github.com/dodopayments/dodopayments-python/commit/a58ba0e05ab326c840f266524a51c33befe5ce87))
+
+
+### Chores
+
+* **client:** minor internal fixes ([ca2a33e](https://github.com/dodopayments/dodopayments-python/commit/ca2a33ebfda183f80945ee79438f7cf91e434050))
+* **internal:** base client updates ([f833a1f](https://github.com/dodopayments/dodopayments-python/commit/f833a1f1480c86fb3df8f473ff54e3abe6c0c2f6))
+* **internal:** bump pyright version ([2b2c993](https://github.com/dodopayments/dodopayments-python/commit/2b2c9933a6fb65ff6798ee689308f8383fd3b1a8))
+* **internal:** update pyright settings ([66c956f](https://github.com/dodopayments/dodopayments-python/commit/66c956f007c7fa00ff1c525a05253f1dce9921b9))
+
 ## 1.14.0 (2025-04-11)
 
 Full Changelog: [v1.13.0...v1.14.0](https://github.com/dodopayments/dodopayments-python/compare/v1.13.0...v1.14.0)
