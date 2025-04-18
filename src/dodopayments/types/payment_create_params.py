@@ -40,6 +40,7 @@ class PaymentCreateParams(TypedDict, total=False):
                 "sepa",
                 "ach",
                 "amazon_pay",
+                "afterpay_clearpay",
             ]
         ]
     ]

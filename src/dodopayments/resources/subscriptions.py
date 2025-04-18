@@ -87,6 +87,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "sepa",
                     "ach",
                     "amazon_pay",
+                    "afterpay_clearpay",
                 ]
             ]
         ]
@@ -539,6 +540,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "sepa",
                     "ach",
                     "amazon_pay",
+                    "afterpay_clearpay",
                 ]
             ]
         ]
