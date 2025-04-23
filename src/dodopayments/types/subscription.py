@@ -172,12 +172,18 @@ class Subscription(BaseModel):
     metadata: Dict[str, str]
 
     next_billing_date: datetime
-    """Timestamp of the next scheduled billing"""
+    """Timestamp of the next scheduled billing.
+
+    Indicates the end of current billing period
+    """
 
     payment_frequency_count: int
     """Number of payment frequency intervals"""
 
     payment_frequency_interval: TimeInterval
+
+    previous_billing_date: datetime
+    """Timestamp of the last payment. Indicates the start of current billing period"""
 
     product_id: str
     """Identifier of the product associated with this subscription"""
