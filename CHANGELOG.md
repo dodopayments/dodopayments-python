@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.18.0 (2025-04-23)
+
+Full Changelog: [v1.17.0...v1.18.0](https://github.com/dodopayments/dodopayments-python/compare/v1.17.0...v1.18.0)
+
+### Features
+
+* **api:** added change plan api ([f5e0221](https://github.com/dodopayments/dodopayments-python/commit/f5e02213139c65191452bf6281ec5f6cb8c4f6b4))
+* **api:** manual updates ([e2cb784](https://github.com/dodopayments/dodopayments-python/commit/e2cb78486eda546f99b1783401e334fbdfa98c6d))
+
+
+### Bug Fixes
+
+* **pydantic v1:** more robust ModelField.annotation check ([6a4dc96](https://github.com/dodopayments/dodopayments-python/commit/6a4dc9681e696699a96b355e7389cbe24ce25733))
+
+
+### Chores
+
+* **ci:** add timeout thresholds for CI jobs ([c08ec1a](https://github.com/dodopayments/dodopayments-python/commit/c08ec1a3d6accde1a2cb828a2cebaab03aa7b753))
+* **internal:** fix list file params ([eaadf56](https://github.com/dodopayments/dodopayments-python/commit/eaadf56084232a42029e07c647020ef70242f045))
+* **internal:** import reformatting ([a8ba43d](https://github.com/dodopayments/dodopayments-python/commit/a8ba43dd8f46bad16ed2987f67399c252fb7d561))
+* **internal:** refactor retries to not use recursion ([b8f7ac3](https://github.com/dodopayments/dodopayments-python/commit/b8f7ac34facfc3c1a7340aa3e247b29e5cb51809))
+
 ## 1.17.0 (2025-04-22)
 
 Full Changelog: [v1.16.1...v1.17.0](https://github.com/dodopayments/dodopayments-python/compare/v1.16.1...v1.17.0)
