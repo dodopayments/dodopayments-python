@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.18.1 (2025-04-24)
+
+Full Changelog: [v1.18.0...v1.18.1](https://github.com/dodopayments/dodopayments-python/compare/v1.18.0...v1.18.1)
+
+### Chores
+
+* broadly detect json family of content-type headers ([ea30879](https://github.com/dodopayments/dodopayments-python/commit/ea30879dfd6b18b4325f7759077e35dba4104ecf))
+* **ci:** only use depot for staging repos ([55a7fd9](https://github.com/dodopayments/dodopayments-python/commit/55a7fd9838e52ee851eee7a588f8f356fc521754))
+* **internal:** codegen related update ([bfcafe2](https://github.com/dodopayments/dodopayments-python/commit/bfcafe25fdc791b6384480ed8ac9e41dc17b7147))
+* **internal:** minor formatting changes ([7c43392](https://github.com/dodopayments/dodopayments-python/commit/7c43392fececb07827c5fbca9df4e3aba4409354))
+
 ## 1.18.0 (2025-04-23)
 
 Full Changelog: [v1.17.0...v1.18.0](https://github.com/dodopayments/dodopayments-python/compare/v1.17.0...v1.18.0)
