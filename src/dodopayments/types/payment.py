@@ -366,6 +366,13 @@ class Payment(BaseModel):
     product_cart: Optional[List[ProductCart]] = None
     """List of products purchased in a one-time payment"""
 
+    settlement_tax: Optional[int] = None
+    """
+    This represents the portion of settlement_amount that corresponds to taxes
+    collected. Especially relevant for adaptive pricing where the tax component must
+    be tracked separately in your Dodo balance.
+    """
+
     status: Optional[IntentStatus] = None
 
     subscription_id: Optional[str] = None
