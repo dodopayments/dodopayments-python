@@ -2,20 +2,28 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import TypedDict
+from typing import Dict, Union, Optional
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
+from .._utils import PropertyInfo
 from .subscription_status import SubscriptionStatus
 from .billing_address_param import BillingAddressParam
 
-__all__ = ["SubscriptionUpdateParams"]
+__all__ = ["SubscriptionUpdateParams", "DisableOnDemand"]
 
 
 class SubscriptionUpdateParams(TypedDict, total=False):
     billing: Optional[BillingAddressParam]
+
+    disable_on_demand: Optional[DisableOnDemand]
 
     metadata: Optional[Dict[str, str]]
 
     status: Optional[SubscriptionStatus]
 
     tax_id: Optional[str]
+
+
+class DisableOnDemand(TypedDict, total=False):
+    next_billing_date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
