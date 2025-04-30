@@ -8,6 +8,7 @@ from .refund import Refund
 from .dispute import Dispute
 from .._models import BaseModel
 from .intent_status import IntentStatus
+from .billing_address import BillingAddress
 from .customer_limited_details import CustomerLimitedDetails
 
 __all__ = ["Payment", "ProductCart"]
@@ -20,6 +21,8 @@ class ProductCart(BaseModel):
 
 
 class Payment(BaseModel):
+    billing: BillingAddress
+
     business_id: str
     """Identifier of the business associated with the payment"""
 

@@ -177,6 +177,9 @@ class Subscription(BaseModel):
     Indicates the end of current billing period
     """
 
+    on_demand: bool
+    """Wether the subscription is on-demand or not"""
+
     payment_frequency_count: int
     """Number of payment frequency intervals"""
 
