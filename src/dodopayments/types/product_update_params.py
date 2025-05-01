@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
 from .price_param import PriceParam
+from .tax_category import TaxCategory
 from .license_key_duration_param import LicenseKeyDurationParam
 
 __all__ = ["ProductUpdateParams"]
@@ -49,7 +50,7 @@ class ProductUpdateParams(TypedDict, total=False):
 
     price: Optional[PriceParam]
 
-    tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]]
+    tax_category: Optional[TaxCategory]
     """
     Represents the different categories of taxation applicable to various products
     and services.

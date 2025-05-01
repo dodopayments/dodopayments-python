@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 import httpx
 
@@ -15,7 +14,12 @@ from .images import (
     ImagesResourceWithStreamingResponse,
     AsyncImagesResourceWithStreamingResponse,
 )
-from ...types import product_list_params, product_create_params, product_update_params
+from ...types import (
+    TaxCategory,
+    product_list_params,
+    product_create_params,
+    product_update_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -30,6 +34,7 @@ from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumbe
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.product import Product
 from ...types.price_param import PriceParam
+from ...types.tax_category import TaxCategory
 from ...types.product_list_response import ProductListResponse
 from ...types.license_key_duration_param import LicenseKeyDurationParam
 
@@ -64,7 +69,7 @@ class ProductsResource(SyncAPIResource):
         self,
         *,
         price: PriceParam,
-        tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
+        tax_category: TaxCategory,
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -170,7 +175,7 @@ class ProductsResource(SyncAPIResource):
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]] | NotGiven = NOT_GIVEN,
+        tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -391,7 +396,7 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         *,
         price: PriceParam,
-        tax_category: Literal["digital_products", "saas", "e_book", "edtech"],
+        tax_category: TaxCategory,
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -497,7 +502,7 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[Literal["digital_products", "saas", "e_book", "edtech"]] | NotGiven = NOT_GIVEN,
+        tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
