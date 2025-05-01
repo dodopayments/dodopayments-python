@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .currency import Currency
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
 
-__all__ = ["SubscriptionCreateParams", "OnDemand"]
+__all__ = ["SubscriptionCreateParams", "Addon", "OnDemand"]
 
 
 class SubscriptionCreateParams(TypedDict, total=False):
@@ -21,6 +22,9 @@ class SubscriptionCreateParams(TypedDict, total=False):
 
     quantity: Required[int]
     """Number of units to subscribe for. Must be at least 1."""
+
+    addons: Optional[Iterable[Addon]]
+    """Attach addons to this subscription"""
 
     allowed_payment_method_types: Optional[
         List[
@@ -54,155 +58,7 @@ class SubscriptionCreateParams(TypedDict, total=False):
     settings).
     """
 
-    billing_currency: Optional[
-        Literal[
-            "AED",
-            "ALL",
-            "AMD",
-            "ANG",
-            "AOA",
-            "ARS",
-            "AUD",
-            "AWG",
-            "AZN",
-            "BAM",
-            "BBD",
-            "BDT",
-            "BGN",
-            "BHD",
-            "BIF",
-            "BMD",
-            "BND",
-            "BOB",
-            "BRL",
-            "BSD",
-            "BWP",
-            "BYN",
-            "BZD",
-            "CAD",
-            "CHF",
-            "CLP",
-            "CNY",
-            "COP",
-            "CRC",
-            "CUP",
-            "CVE",
-            "CZK",
-            "DJF",
-            "DKK",
-            "DOP",
-            "DZD",
-            "EGP",
-            "ETB",
-            "EUR",
-            "FJD",
-            "FKP",
-            "GBP",
-            "GEL",
-            "GHS",
-            "GIP",
-            "GMD",
-            "GNF",
-            "GTQ",
-            "GYD",
-            "HKD",
-            "HNL",
-            "HRK",
-            "HTG",
-            "HUF",
-            "IDR",
-            "ILS",
-            "INR",
-            "IQD",
-            "JMD",
-            "JOD",
-            "JPY",
-            "KES",
-            "KGS",
-            "KHR",
-            "KMF",
-            "KRW",
-            "KWD",
-            "KYD",
-            "KZT",
-            "LAK",
-            "LBP",
-            "LKR",
-            "LRD",
-            "LSL",
-            "LYD",
-            "MAD",
-            "MDL",
-            "MGA",
-            "MKD",
-            "MMK",
-            "MNT",
-            "MOP",
-            "MRU",
-            "MUR",
-            "MVR",
-            "MWK",
-            "MXN",
-            "MYR",
-            "MZN",
-            "NAD",
-            "NGN",
-            "NIO",
-            "NOK",
-            "NPR",
-            "NZD",
-            "OMR",
-            "PAB",
-            "PEN",
-            "PGK",
-            "PHP",
-            "PKR",
-            "PLN",
-            "PYG",
-            "QAR",
-            "RON",
-            "RSD",
-            "RUB",
-            "RWF",
-            "SAR",
-            "SBD",
-            "SCR",
-            "SEK",
-            "SGD",
-            "SHP",
-            "SLE",
-            "SLL",
-            "SOS",
-            "SRD",
-            "SSP",
-            "STN",
-            "SVC",
-            "SZL",
-            "THB",
-            "TND",
-            "TOP",
-            "TRY",
-            "TTD",
-            "TWD",
-            "TZS",
-            "UAH",
-            "UGX",
-            "USD",
-            "UYU",
-            "UZS",
-            "VES",
-            "VND",
-            "VUV",
-            "WST",
-            "XAF",
-            "XCD",
-            "XOF",
-            "XPF",
-            "YER",
-            "ZAR",
-            "ZMW",
-        ]
-    ]
+    billing_currency: Optional[Currency]
 
     discount_code: Optional[str]
     """Discount Code to apply to the subscription"""
@@ -231,6 +87,12 @@ class SubscriptionCreateParams(TypedDict, total=False):
     Optional trial period in days If specified, this value overrides the trial
     period set in the product's price Must be between 0 and 10000 days
     """
+
+
+class Addon(TypedDict, total=False):
+    addon_id: Required[str]
+
+    quantity: Required[int]
 
 
 class OnDemand(TypedDict, total=False):

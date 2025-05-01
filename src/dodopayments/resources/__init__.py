@@ -8,6 +8,14 @@ from .misc import (
     MiscResourceWithStreamingResponse,
     AsyncMiscResourceWithStreamingResponse,
 )
+from .addons import (
+    AddonsResource,
+    AsyncAddonsResource,
+    AddonsResourceWithRawResponse,
+    AsyncAddonsResourceWithRawResponse,
+    AddonsResourceWithStreamingResponse,
+    AsyncAddonsResourceWithStreamingResponse,
+)
 from .payouts import (
     PayoutsResource,
     AsyncPayoutsResource,
@@ -198,4 +206,10 @@ __all__ = [
     "AsyncDiscountsResourceWithRawResponse",
     "DiscountsResourceWithStreamingResponse",
     "AsyncDiscountsResourceWithStreamingResponse",
+    "AddonsResource",
+    "AsyncAddonsResource",
+    "AddonsResourceWithRawResponse",
+    "AsyncAddonsResourceWithRawResponse",
+    "AddonsResourceWithStreamingResponse",
+    "AsyncAddonsResourceWithStreamingResponse",
 ]

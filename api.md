@@ -29,10 +29,12 @@ Types:
 
 ```python
 from dodopayments.types import (
+    AddonCartResponseItem,
     Subscription,
     SubscriptionStatus,
     TimeInterval,
     SubscriptionCreateResponse,
+    SubscriptionListResponse,
     SubscriptionChargeResponse,
 )
 ```
@@ -42,7 +44,7 @@ Methods:
 - <code title="post /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">create</a>(\*\*<a href="src/dodopayments/types/subscription_create_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_create_response.py">SubscriptionCreateResponse</a></code>
 - <code title="get /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve</a>(subscription_id) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
 - <code title="patch /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
-- <code title="get /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">list</a>(\*\*<a href="src/dodopayments/types/subscription_list_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">SyncDefaultPageNumberPagination[Subscription]</a></code>
+- <code title="get /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">list</a>(\*\*<a href="src/dodopayments/types/subscription_list_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_list_response.py">SyncDefaultPageNumberPagination[SubscriptionListResponse]</a></code>
 - <code title="post /subscriptions/{subscription_id}/change-plan">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">change_plan</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_change_plan_params.py">params</a>) -> None</code>
 - <code title="post /subscriptions/{subscription_id}/charge">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">charge</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_charge_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_charge_response.py">SubscriptionChargeResponse</a></code>
 
@@ -203,7 +205,12 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import CountryCode, MiscListSupportedCountriesResponse
+from dodopayments.types import (
+    CountryCode,
+    Currency,
+    TaxCategory,
+    MiscListSupportedCountriesResponse,
+)
 ```
 
 Methods:
@@ -225,3 +232,19 @@ Methods:
 - <code title="patch /discounts/{discount_id}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">update</a>(discount_id, \*\*<a href="src/dodopayments/types/discount_update_params.py">params</a>) -> <a href="./src/dodopayments/types/discount.py">Discount</a></code>
 - <code title="get /discounts">client.discounts.<a href="./src/dodopayments/resources/discounts.py">list</a>(\*\*<a href="src/dodopayments/types/discount_list_params.py">params</a>) -> <a href="./src/dodopayments/types/discount.py">SyncDefaultPageNumberPagination[Discount]</a></code>
 - <code title="delete /discounts/{discount_id}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">delete</a>(discount_id) -> None</code>
+
+# Addons
+
+Types:
+
+```python
+from dodopayments.types import AddonResponse, AddonUpdateImagesResponse
+```
+
+Methods:
+
+- <code title="post /addons">client.addons.<a href="./src/dodopayments/resources/addons.py">create</a>(\*\*<a href="src/dodopayments/types/addon_create_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
+- <code title="get /addons/{id}">client.addons.<a href="./src/dodopayments/resources/addons.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
+- <code title="patch /addons/{id}">client.addons.<a href="./src/dodopayments/resources/addons.py">update</a>(id, \*\*<a href="src/dodopayments/types/addon_update_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
+- <code title="get /addons">client.addons.<a href="./src/dodopayments/resources/addons.py">list</a>(\*\*<a href="src/dodopayments/types/addon_list_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">SyncDefaultPageNumberPagination[AddonResponse]</a></code>
+- <code title="put /addons/{id}/images">client.addons.<a href="./src/dodopayments/resources/addons.py">update_images</a>(id) -> <a href="./src/dodopayments/types/addon_update_images_response.py">AddonUpdateImagesResponse</a></code>

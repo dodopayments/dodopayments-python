@@ -1,14 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 from .._models import BaseModel
+from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
 __all__ = ["SubscriptionCreateResponse"]
 
 
 class SubscriptionCreateResponse(BaseModel):
+    addons: List[AddonCartResponseItem]
+    """Addons associated with this subscription"""
+
     customer: CustomerLimitedDetails
 
     metadata: Dict[str, str]

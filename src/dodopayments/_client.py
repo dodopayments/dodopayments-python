@@ -23,6 +23,7 @@ from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
     misc,
+    addons,
     payouts,
     refunds,
     disputes,
@@ -78,18 +79,19 @@ class DodoPayments(SyncAPIClient):
     products: products.ProductsResource
     misc: misc.MiscResource
     discounts: discounts.DiscountsResource
+    addons: addons.AddonsResource
     with_raw_response: DodoPaymentsWithRawResponse
     with_streaming_response: DodoPaymentsWithStreamedResponse
 
     # client options
-    bearer_token: str
+    api_key: str
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
 
     def __init__(
         self,
         *,
-        bearer_token: str | None = None,
+        api_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -112,15 +114,15 @@ class DodoPayments(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous DodoPayments client instance.
 
-        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
-        if bearer_token is None:
-            bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
-        if bearer_token is None:
+        if api_key is None:
+            api_key = os.environ.get("DODO_PAYMENTS_API_KEY")
+        if api_key is None:
             raise DodoPaymentsError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
-        self.bearer_token = bearer_token
+        self.api_key = api_key
 
         self._environment = environment
 
@@ -173,6 +175,7 @@ class DodoPayments(SyncAPIClient):
         self.products = products.ProductsResource(self)
         self.misc = misc.MiscResource(self)
         self.discounts = discounts.DiscountsResource(self)
+        self.addons = addons.AddonsResource(self)
         self.with_raw_response = DodoPaymentsWithRawResponse(self)
         self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
 
@@ -184,8 +187,8 @@ class DodoPayments(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        bearer_token = self.bearer_token
-        return {"Authorization": f"Bearer {bearer_token}"}
+        api_key = self.api_key
+        return {"Authorization": f"Bearer {api_key}"}
 
     @property
     @override
@@ -199,7 +202,7 @@ class DodoPayments(SyncAPIClient):
     def copy(
         self,
         *,
-        bearer_token: str | None = None,
+        api_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -234,7 +237,7 @@ class DodoPayments(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -298,18 +301,19 @@ class AsyncDodoPayments(AsyncAPIClient):
     products: products.AsyncProductsResource
     misc: misc.AsyncMiscResource
     discounts: discounts.AsyncDiscountsResource
+    addons: addons.AsyncAddonsResource
     with_raw_response: AsyncDodoPaymentsWithRawResponse
     with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
 
     # client options
-    bearer_token: str
+    api_key: str
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
 
     def __init__(
         self,
         *,
-        bearer_token: str | None = None,
+        api_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -332,15 +336,15 @@ class AsyncDodoPayments(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncDodoPayments client instance.
 
-        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
-        if bearer_token is None:
-            bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
-        if bearer_token is None:
+        if api_key is None:
+            api_key = os.environ.get("DODO_PAYMENTS_API_KEY")
+        if api_key is None:
             raise DodoPaymentsError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
-        self.bearer_token = bearer_token
+        self.api_key = api_key
 
         self._environment = environment
 
@@ -393,6 +397,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         self.products = products.AsyncProductsResource(self)
         self.misc = misc.AsyncMiscResource(self)
         self.discounts = discounts.AsyncDiscountsResource(self)
+        self.addons = addons.AsyncAddonsResource(self)
         self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
         self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
 
@@ -404,8 +409,8 @@ class AsyncDodoPayments(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        bearer_token = self.bearer_token
-        return {"Authorization": f"Bearer {bearer_token}"}
+        api_key = self.api_key
+        return {"Authorization": f"Bearer {api_key}"}
 
     @property
     @override
@@ -419,7 +424,7 @@ class AsyncDodoPayments(AsyncAPIClient):
     def copy(
         self,
         *,
-        bearer_token: str | None = None,
+        api_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -454,7 +459,7 @@ class AsyncDodoPayments(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -521,6 +526,7 @@ class DodoPaymentsWithRawResponse:
         self.products = products.ProductsResourceWithRawResponse(client.products)
         self.misc = misc.MiscResourceWithRawResponse(client.misc)
         self.discounts = discounts.DiscountsResourceWithRawResponse(client.discounts)
+        self.addons = addons.AddonsResourceWithRawResponse(client.addons)
 
 
 class AsyncDodoPaymentsWithRawResponse:
@@ -541,6 +547,7 @@ class AsyncDodoPaymentsWithRawResponse:
         self.products = products.AsyncProductsResourceWithRawResponse(client.products)
         self.misc = misc.AsyncMiscResourceWithRawResponse(client.misc)
         self.discounts = discounts.AsyncDiscountsResourceWithRawResponse(client.discounts)
+        self.addons = addons.AsyncAddonsResourceWithRawResponse(client.addons)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -561,6 +568,7 @@ class DodoPaymentsWithStreamedResponse:
         self.products = products.ProductsResourceWithStreamingResponse(client.products)
         self.misc = misc.MiscResourceWithStreamingResponse(client.misc)
         self.discounts = discounts.DiscountsResourceWithStreamingResponse(client.discounts)
+        self.addons = addons.AddonsResourceWithStreamingResponse(client.addons)
 
 
 class AsyncDodoPaymentsWithStreamedResponse:
@@ -581,6 +589,7 @@ class AsyncDodoPaymentsWithStreamedResponse:
         self.products = products.AsyncProductsResourceWithStreamingResponse(client.products)
         self.misc = misc.AsyncMiscResourceWithStreamingResponse(client.misc)
         self.discounts = discounts.AsyncDiscountsResourceWithStreamingResponse(client.discounts)
+        self.addons = addons.AsyncAddonsResourceWithStreamingResponse(client.addons)
 
 
 Client = DodoPayments
