@@ -33,7 +33,7 @@ client = DodoPayments(
     environment="test_mode",
 )
 
-payment = client.payments.create(
+subscription = client.subscriptions.create(
     billing={
         "city": "city",
         "country": "AF",
@@ -42,14 +42,10 @@ payment = client.payments.create(
         "zipcode": "zipcode",
     },
     customer={"customer_id": "customer_id"},
-    product_cart=[
-        {
-            "product_id": "product_id",
-            "quantity": 0,
-        }
-    ],
+    product_id="product_id",
+    quantity=0,
 )
-print(payment.payment_id)
+print(subscription.subscription_id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -74,7 +70,7 @@ client = AsyncDodoPayments(
 
 
 async def main() -> None:
-    payment = await client.payments.create(
+    subscription = await client.subscriptions.create(
         billing={
             "city": "city",
             "country": "AF",
@@ -83,14 +79,10 @@ async def main() -> None:
             "zipcode": "zipcode",
         },
         customer={"customer_id": "customer_id"},
-        product_cart=[
-            {
-                "product_id": "product_id",
-                "quantity": 0,
-            }
-        ],
+        product_id="product_id",
+        quantity=0,
     )
-    print(payment.payment_id)
+    print(subscription.subscription_id)
 
 
 asyncio.run(main())
@@ -177,7 +169,7 @@ from dodopayments import DodoPayments
 
 client = DodoPayments()
 
-payment = client.payments.create(
+subscription = client.subscriptions.create(
     billing={
         "city": "city",
         "country": "AF",
@@ -186,14 +178,10 @@ payment = client.payments.create(
         "zipcode": "zipcode",
     },
     customer={"customer_id": "customer_id"},
-    product_cart=[
-        {
-            "product_id": "product_id",
-            "quantity": 0,
-        }
-    ],
+    product_id="product_id",
+    quantity=0,
 )
-print(payment.billing)
+print(subscription.billing)
 ```
 
 ## Handling errors
