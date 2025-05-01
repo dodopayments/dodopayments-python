@@ -38,7 +38,7 @@ from dodopayments.types.payment_create_params import PaymentCreateParams
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-bearer_token = "My Bearer Token"
+api_key = "My API Key"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -60,7 +60,7 @@ def _get_open_connections(client: DodoPayments | AsyncDodoPayments) -> int:
 
 
 class TestDodoPayments:
-    client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+    client = DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -86,9 +86,9 @@ class TestDodoPayments:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(bearer_token="another My Bearer Token")
-        assert copied.bearer_token == "another My Bearer Token"
-        assert self.client.bearer_token == "My Bearer Token"
+        copied = self.client.copy(api_key="another My API Key")
+        assert copied.api_key == "another My API Key"
+        assert self.client.api_key == "My API Key"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -108,10 +108,7 @@ class TestDodoPayments:
 
     def test_copy_default_headers(self) -> None:
         client = DodoPayments(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
 
@@ -145,7 +142,7 @@ class TestDodoPayments:
 
     def test_copy_default_query(self) -> None:
         client = DodoPayments(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, default_query={"foo": "bar"}
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -270,7 +267,7 @@ class TestDodoPayments:
 
     def test_client_timeout_option(self) -> None:
         client = DodoPayments(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -281,7 +278,7 @@ class TestDodoPayments:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
             client = DodoPayments(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -291,7 +288,7 @@ class TestDodoPayments:
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
             client = DodoPayments(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -301,7 +298,7 @@ class TestDodoPayments:
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = DodoPayments(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -313,17 +310,14 @@ class TestDodoPayments:
             async with httpx.AsyncClient() as http_client:
                 DodoPayments(
                     base_url=base_url,
-                    bearer_token=bearer_token,
+                    api_key=api_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
 
     def test_default_headers_option(self) -> None:
         client = DodoPayments(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
@@ -331,7 +325,7 @@ class TestDodoPayments:
 
         client2 = DodoPayments(
             base_url=base_url,
-            bearer_token=bearer_token,
+            api_key=api_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -343,21 +337,18 @@ class TestDodoPayments:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+        assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(DodoPaymentsError):
             with update_env(**{"DODO_PAYMENTS_API_KEY": Omit()}):
-                client2 = DodoPayments(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+                client2 = DodoPayments(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
         client = DodoPayments(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_query={"query_param": "bar"},
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
@@ -558,7 +549,7 @@ class TestDodoPayments:
 
     def test_base_url_setter(self) -> None:
         client = DodoPayments(
-            base_url="https://example.com/from_init", bearer_token=bearer_token, _strict_response_validation=True
+            base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -568,16 +559,16 @@ class TestDodoPayments:
 
     def test_base_url_env(self) -> None:
         with update_env(DODO_PAYMENTS_BASE_URL="http://localhost:5000/from/env"):
-            client = DodoPayments(bearer_token=bearer_token, _strict_response_validation=True)
+            client = DodoPayments(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
         # explicit environment arg requires explicitness
         with update_env(DODO_PAYMENTS_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                DodoPayments(bearer_token=bearer_token, _strict_response_validation=True, environment="live_mode")
+                DodoPayments(api_key=api_key, _strict_response_validation=True, environment="live_mode")
 
             client = DodoPayments(
-                base_url=None, bearer_token=bearer_token, _strict_response_validation=True, environment="live_mode"
+                base_url=None, api_key=api_key, _strict_response_validation=True, environment="live_mode"
             )
             assert str(client.base_url).startswith("https://live.dodopayments.com")
 
@@ -585,13 +576,11 @@ class TestDodoPayments:
         "client",
         [
             DodoPayments(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
             DodoPayments(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -612,13 +601,11 @@ class TestDodoPayments:
         "client",
         [
             DodoPayments(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
             DodoPayments(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -639,13 +626,11 @@ class TestDodoPayments:
         "client",
         [
             DodoPayments(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
             DodoPayments(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -663,7 +648,7 @@ class TestDodoPayments:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -674,7 +659,7 @@ class TestDodoPayments:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -696,10 +681,7 @@ class TestDodoPayments:
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             DodoPayments(
-                base_url=base_url,
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
-                max_retries=cast(Any, None),
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
     @pytest.mark.respx(base_url=base_url)
@@ -709,12 +691,12 @@ class TestDodoPayments:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        strict_client = DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=False)
+        client = DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -742,7 +724,7 @@ class TestDodoPayments:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = DodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = DodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -947,7 +929,7 @@ class TestDodoPayments:
 
 
 class TestAsyncDodoPayments:
-    client = AsyncDodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+    client = AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -975,9 +957,9 @@ class TestAsyncDodoPayments:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(bearer_token="another My Bearer Token")
-        assert copied.bearer_token == "another My Bearer Token"
-        assert self.client.bearer_token == "My Bearer Token"
+        copied = self.client.copy(api_key="another My API Key")
+        assert copied.api_key == "another My API Key"
+        assert self.client.api_key == "My API Key"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -997,10 +979,7 @@ class TestAsyncDodoPayments:
 
     def test_copy_default_headers(self) -> None:
         client = AsyncDodoPayments(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
 
@@ -1034,7 +1013,7 @@ class TestAsyncDodoPayments:
 
     def test_copy_default_query(self) -> None:
         client = AsyncDodoPayments(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, default_query={"foo": "bar"}
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -1159,7 +1138,7 @@ class TestAsyncDodoPayments:
 
     async def test_client_timeout_option(self) -> None:
         client = AsyncDodoPayments(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1170,7 +1149,7 @@ class TestAsyncDodoPayments:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
             client = AsyncDodoPayments(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1180,7 +1159,7 @@ class TestAsyncDodoPayments:
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
             client = AsyncDodoPayments(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1190,7 +1169,7 @@ class TestAsyncDodoPayments:
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = AsyncDodoPayments(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1202,17 +1181,14 @@ class TestAsyncDodoPayments:
             with httpx.Client() as http_client:
                 AsyncDodoPayments(
                     base_url=base_url,
-                    bearer_token=bearer_token,
+                    api_key=api_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
 
     def test_default_headers_option(self) -> None:
         client = AsyncDodoPayments(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
@@ -1220,7 +1196,7 @@ class TestAsyncDodoPayments:
 
         client2 = AsyncDodoPayments(
             base_url=base_url,
-            bearer_token=bearer_token,
+            api_key=api_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -1232,21 +1208,18 @@ class TestAsyncDodoPayments:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncDodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+        assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(DodoPaymentsError):
             with update_env(**{"DODO_PAYMENTS_API_KEY": Omit()}):
-                client2 = AsyncDodoPayments(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+                client2 = AsyncDodoPayments(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
         client = AsyncDodoPayments(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_query={"query_param": "bar"},
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
@@ -1447,7 +1420,7 @@ class TestAsyncDodoPayments:
 
     def test_base_url_setter(self) -> None:
         client = AsyncDodoPayments(
-            base_url="https://example.com/from_init", bearer_token=bearer_token, _strict_response_validation=True
+            base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -1457,16 +1430,16 @@ class TestAsyncDodoPayments:
 
     def test_base_url_env(self) -> None:
         with update_env(DODO_PAYMENTS_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncDodoPayments(bearer_token=bearer_token, _strict_response_validation=True)
+            client = AsyncDodoPayments(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
         # explicit environment arg requires explicitness
         with update_env(DODO_PAYMENTS_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                AsyncDodoPayments(bearer_token=bearer_token, _strict_response_validation=True, environment="live_mode")
+                AsyncDodoPayments(api_key=api_key, _strict_response_validation=True, environment="live_mode")
 
             client = AsyncDodoPayments(
-                base_url=None, bearer_token=bearer_token, _strict_response_validation=True, environment="live_mode"
+                base_url=None, api_key=api_key, _strict_response_validation=True, environment="live_mode"
             )
             assert str(client.base_url).startswith("https://live.dodopayments.com")
 
@@ -1474,13 +1447,11 @@ class TestAsyncDodoPayments:
         "client",
         [
             AsyncDodoPayments(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
             AsyncDodoPayments(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1501,13 +1472,11 @@ class TestAsyncDodoPayments:
         "client",
         [
             AsyncDodoPayments(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
             AsyncDodoPayments(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1528,13 +1497,11 @@ class TestAsyncDodoPayments:
         "client",
         [
             AsyncDodoPayments(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
             AsyncDodoPayments(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1552,7 +1519,7 @@ class TestAsyncDodoPayments:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncDodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1564,7 +1531,7 @@ class TestAsyncDodoPayments:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncDodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1587,10 +1554,7 @@ class TestAsyncDodoPayments:
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             AsyncDodoPayments(
-                base_url=base_url,
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
-                max_retries=cast(Any, None),
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
     @pytest.mark.respx(base_url=base_url)
@@ -1601,14 +1565,12 @@ class TestAsyncDodoPayments:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncDodoPayments(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True
-        )
+        strict_client = AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncDodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=False)
+        client = AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1637,7 +1599,7 @@ class TestAsyncDodoPayments:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncDodoPayments(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = AsyncDodoPayments(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)

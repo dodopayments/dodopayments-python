@@ -11,6 +11,7 @@ from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
     Subscription,
+    SubscriptionListResponse,
     SubscriptionChargeResponse,
     SubscriptionCreateResponse,
 )
@@ -52,6 +53,12 @@ class TestSubscriptions:
             customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
+            addons=[
+                {
+                    "addon_id": "addon_id",
+                    "quantity": 0,
+                }
+            ],
             allowed_payment_method_types=["credit"],
             billing_currency="AED",
             discount_code="discount_code",
@@ -207,7 +214,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.list()
-        assert_matches_type(SyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
@@ -219,7 +226,7 @@ class TestSubscriptions:
             page_size=0,
             status="pending",
         )
-        assert_matches_type(SyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
@@ -228,7 +235,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(SyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
@@ -237,7 +244,9 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(SyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+            assert_matches_type(
+                SyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -366,6 +375,12 @@ class TestAsyncSubscriptions:
             customer={"customer_id": "customer_id"},
             product_id="product_id",
             quantity=0,
+            addons=[
+                {
+                    "addon_id": "addon_id",
+                    "quantity": 0,
+                }
+            ],
             allowed_payment_method_types=["credit"],
             billing_currency="AED",
             discount_code="discount_code",
@@ -521,7 +536,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.list()
-        assert_matches_type(AsyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -533,7 +548,7 @@ class TestAsyncSubscriptions:
             page_size=0,
             status="pending",
         )
-        assert_matches_type(AsyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -542,7 +557,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(AsyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -551,7 +566,9 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(AsyncDefaultPageNumberPagination[Subscription], subscription, path=["response"])
+            assert_matches_type(
+                AsyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

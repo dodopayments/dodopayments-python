@@ -2,10 +2,10 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .price import Price
 from .._models import BaseModel
+from .tax_category import TaxCategory
 from .license_key_duration import LicenseKeyDuration
 
 __all__ = ["Product"]
@@ -29,7 +29,7 @@ class Product(BaseModel):
     product_id: str
     """Unique identifier for the product."""
 
-    tax_category: Literal["digital_products", "saas", "e_book", "edtech"]
+    tax_category: TaxCategory
     """
     Represents the different categories of taxation applicable to various products
     and services.

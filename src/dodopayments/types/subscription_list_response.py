@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -8,16 +8,12 @@ from .currency import Currency
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
-from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Subscription"]
+__all__ = ["SubscriptionListResponse"]
 
 
-class Subscription(BaseModel):
-    addons: List[AddonCartResponseItem]
-    """Addons associated with this subscription"""
-
+class SubscriptionListResponse(BaseModel):
     billing: BillingAddress
 
     created_at: datetime

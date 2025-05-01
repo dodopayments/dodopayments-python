@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import (
+    Currency,
     SubscriptionStatus,
     subscription_list_params,
     subscription_charge_params,
@@ -28,10 +29,12 @@ from .._response import (
 )
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.currency import Currency
 from ..types.subscription import Subscription
 from ..types.subscription_status import SubscriptionStatus
 from ..types.billing_address_param import BillingAddressParam
 from ..types.customer_request_param import CustomerRequestParam
+from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
 
@@ -65,6 +68,7 @@ class SubscriptionsResource(SyncAPIResource):
         customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
+        addons: Optional[Iterable[subscription_create_params.Addon]] | NotGiven = NOT_GIVEN,
         allowed_payment_method_types: Optional[
             List[
                 Literal[
@@ -90,156 +94,7 @@ class SubscriptionsResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        billing_currency: Optional[
-            Literal[
-                "AED",
-                "ALL",
-                "AMD",
-                "ANG",
-                "AOA",
-                "ARS",
-                "AUD",
-                "AWG",
-                "AZN",
-                "BAM",
-                "BBD",
-                "BDT",
-                "BGN",
-                "BHD",
-                "BIF",
-                "BMD",
-                "BND",
-                "BOB",
-                "BRL",
-                "BSD",
-                "BWP",
-                "BYN",
-                "BZD",
-                "CAD",
-                "CHF",
-                "CLP",
-                "CNY",
-                "COP",
-                "CRC",
-                "CUP",
-                "CVE",
-                "CZK",
-                "DJF",
-                "DKK",
-                "DOP",
-                "DZD",
-                "EGP",
-                "ETB",
-                "EUR",
-                "FJD",
-                "FKP",
-                "GBP",
-                "GEL",
-                "GHS",
-                "GIP",
-                "GMD",
-                "GNF",
-                "GTQ",
-                "GYD",
-                "HKD",
-                "HNL",
-                "HRK",
-                "HTG",
-                "HUF",
-                "IDR",
-                "ILS",
-                "INR",
-                "IQD",
-                "JMD",
-                "JOD",
-                "JPY",
-                "KES",
-                "KGS",
-                "KHR",
-                "KMF",
-                "KRW",
-                "KWD",
-                "KYD",
-                "KZT",
-                "LAK",
-                "LBP",
-                "LKR",
-                "LRD",
-                "LSL",
-                "LYD",
-                "MAD",
-                "MDL",
-                "MGA",
-                "MKD",
-                "MMK",
-                "MNT",
-                "MOP",
-                "MRU",
-                "MUR",
-                "MVR",
-                "MWK",
-                "MXN",
-                "MYR",
-                "MZN",
-                "NAD",
-                "NGN",
-                "NIO",
-                "NOK",
-                "NPR",
-                "NZD",
-                "OMR",
-                "PAB",
-                "PEN",
-                "PGK",
-                "PHP",
-                "PKR",
-                "PLN",
-                "PYG",
-                "QAR",
-                "RON",
-                "RSD",
-                "RUB",
-                "RWF",
-                "SAR",
-                "SBD",
-                "SCR",
-                "SEK",
-                "SGD",
-                "SHP",
-                "SLE",
-                "SLL",
-                "SOS",
-                "SRD",
-                "SSP",
-                "STN",
-                "SVC",
-                "SZL",
-                "THB",
-                "TND",
-                "TOP",
-                "TRY",
-                "TTD",
-                "TWD",
-                "TZS",
-                "UAH",
-                "UGX",
-                "USD",
-                "UYU",
-                "UZS",
-                "VES",
-                "VND",
-                "VUV",
-                "WST",
-                "XAF",
-                "XCD",
-                "XOF",
-                "XPF",
-                "YER",
-                "ZAR",
-                "ZMW",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         on_demand: Optional[subscription_create_params.OnDemand] | NotGiven = NOT_GIVEN,
@@ -260,6 +115,8 @@ class SubscriptionsResource(SyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Attach addons to this subscription
 
           allowed_payment_method_types: List of payment methods allowed during checkout.
 
@@ -298,6 +155,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "addons": addons,
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
@@ -409,7 +267,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncDefaultPageNumberPagination[Subscription]:
+    ) -> SyncDefaultPageNumberPagination[SubscriptionListResponse]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -434,7 +292,7 @@ class SubscriptionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/subscriptions",
-            page=SyncDefaultPageNumberPagination[Subscription],
+            page=SyncDefaultPageNumberPagination[SubscriptionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -452,7 +310,7 @@ class SubscriptionsResource(SyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            model=Subscription,
+            model=SubscriptionListResponse,
         )
 
     def change_plan(
@@ -567,6 +425,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
+        addons: Optional[Iterable[subscription_create_params.Addon]] | NotGiven = NOT_GIVEN,
         allowed_payment_method_types: Optional[
             List[
                 Literal[
@@ -592,156 +451,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        billing_currency: Optional[
-            Literal[
-                "AED",
-                "ALL",
-                "AMD",
-                "ANG",
-                "AOA",
-                "ARS",
-                "AUD",
-                "AWG",
-                "AZN",
-                "BAM",
-                "BBD",
-                "BDT",
-                "BGN",
-                "BHD",
-                "BIF",
-                "BMD",
-                "BND",
-                "BOB",
-                "BRL",
-                "BSD",
-                "BWP",
-                "BYN",
-                "BZD",
-                "CAD",
-                "CHF",
-                "CLP",
-                "CNY",
-                "COP",
-                "CRC",
-                "CUP",
-                "CVE",
-                "CZK",
-                "DJF",
-                "DKK",
-                "DOP",
-                "DZD",
-                "EGP",
-                "ETB",
-                "EUR",
-                "FJD",
-                "FKP",
-                "GBP",
-                "GEL",
-                "GHS",
-                "GIP",
-                "GMD",
-                "GNF",
-                "GTQ",
-                "GYD",
-                "HKD",
-                "HNL",
-                "HRK",
-                "HTG",
-                "HUF",
-                "IDR",
-                "ILS",
-                "INR",
-                "IQD",
-                "JMD",
-                "JOD",
-                "JPY",
-                "KES",
-                "KGS",
-                "KHR",
-                "KMF",
-                "KRW",
-                "KWD",
-                "KYD",
-                "KZT",
-                "LAK",
-                "LBP",
-                "LKR",
-                "LRD",
-                "LSL",
-                "LYD",
-                "MAD",
-                "MDL",
-                "MGA",
-                "MKD",
-                "MMK",
-                "MNT",
-                "MOP",
-                "MRU",
-                "MUR",
-                "MVR",
-                "MWK",
-                "MXN",
-                "MYR",
-                "MZN",
-                "NAD",
-                "NGN",
-                "NIO",
-                "NOK",
-                "NPR",
-                "NZD",
-                "OMR",
-                "PAB",
-                "PEN",
-                "PGK",
-                "PHP",
-                "PKR",
-                "PLN",
-                "PYG",
-                "QAR",
-                "RON",
-                "RSD",
-                "RUB",
-                "RWF",
-                "SAR",
-                "SBD",
-                "SCR",
-                "SEK",
-                "SGD",
-                "SHP",
-                "SLE",
-                "SLL",
-                "SOS",
-                "SRD",
-                "SSP",
-                "STN",
-                "SVC",
-                "SZL",
-                "THB",
-                "TND",
-                "TOP",
-                "TRY",
-                "TTD",
-                "TWD",
-                "TZS",
-                "UAH",
-                "UGX",
-                "USD",
-                "UYU",
-                "UZS",
-                "VES",
-                "VND",
-                "VUV",
-                "WST",
-                "XAF",
-                "XCD",
-                "XOF",
-                "XPF",
-                "YER",
-                "ZAR",
-                "ZMW",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         on_demand: Optional[subscription_create_params.OnDemand] | NotGiven = NOT_GIVEN,
@@ -762,6 +472,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Attach addons to this subscription
 
           allowed_payment_method_types: List of payment methods allowed during checkout.
 
@@ -800,6 +512,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "customer": customer,
                     "product_id": product_id,
                     "quantity": quantity,
+                    "addons": addons,
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
@@ -911,7 +624,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Subscription, AsyncDefaultPageNumberPagination[Subscription]]:
+    ) -> AsyncPaginator[SubscriptionListResponse, AsyncDefaultPageNumberPagination[SubscriptionListResponse]]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -936,7 +649,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/subscriptions",
-            page=AsyncDefaultPageNumberPagination[Subscription],
+            page=AsyncDefaultPageNumberPagination[SubscriptionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -954,7 +667,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            model=Subscription,
+            model=SubscriptionListResponse,
         )
 
     async def change_plan(
