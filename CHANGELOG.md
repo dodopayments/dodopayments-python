@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.21.0 (2025-05-06)
+
+Full Changelog: [v1.20.0...v1.21.0](https://github.com/dodopayments/dodopayments-python/compare/v1.20.0...v1.21.0)
+
+### Features
+
+* **api:** fixed api key schema to bearer ([ecaf908](https://github.com/dodopayments/dodopayments-python/commit/ecaf908a7f85b3909eb15081919f3112309c96ca))
+* **api:** manual updates ([fe68093](https://github.com/dodopayments/dodopayments-python/commit/fe6809341aa15f8654bc14832374bb8161587104))
+
 ## 1.20.0 (2025-05-01)
 
 Full Changelog: [v1.19.0...v1.20.0](https://github.com/dodopayments/dodopayments-python/compare/v1.19.0...v1.20.0)
