@@ -84,14 +84,14 @@ class DodoPayments(SyncAPIClient):
     with_streaming_response: DodoPaymentsWithStreamedResponse
 
     # client options
-    api_key: str
+    bearer_token: str
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
 
     def __init__(
         self,
         *,
-        api_key: str | None = None,
+        bearer_token: str | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -114,15 +114,15 @@ class DodoPayments(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous DodoPayments client instance.
 
-        This automatically infers the `api_key` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
-        if api_key is None:
-            api_key = os.environ.get("DODO_PAYMENTS_API_KEY")
-        if api_key is None:
+        if bearer_token is None:
+            bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
+        if bearer_token is None:
             raise DodoPaymentsError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
+                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
-        self.api_key = api_key
+        self.bearer_token = bearer_token
 
         self._environment = environment
 
@@ -187,8 +187,8 @@ class DodoPayments(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        return {"Authorization": f"Bearer {api_key}"}
+        bearer_token = self.bearer_token
+        return {"Authorization": f"Bearer {bearer_token}"}
 
     @property
     @override
@@ -202,7 +202,7 @@ class DodoPayments(SyncAPIClient):
     def copy(
         self,
         *,
-        api_key: str | None = None,
+        bearer_token: str | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -237,7 +237,7 @@ class DodoPayments(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            api_key=api_key or self.api_key,
+            bearer_token=bearer_token or self.bearer_token,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -306,14 +306,14 @@ class AsyncDodoPayments(AsyncAPIClient):
     with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
 
     # client options
-    api_key: str
+    bearer_token: str
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
 
     def __init__(
         self,
         *,
-        api_key: str | None = None,
+        bearer_token: str | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -336,15 +336,15 @@ class AsyncDodoPayments(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncDodoPayments client instance.
 
-        This automatically infers the `api_key` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
         """
-        if api_key is None:
-            api_key = os.environ.get("DODO_PAYMENTS_API_KEY")
-        if api_key is None:
+        if bearer_token is None:
+            bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
+        if bearer_token is None:
             raise DodoPaymentsError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
+                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
-        self.api_key = api_key
+        self.bearer_token = bearer_token
 
         self._environment = environment
 
@@ -409,8 +409,8 @@ class AsyncDodoPayments(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        return {"Authorization": f"Bearer {api_key}"}
+        bearer_token = self.bearer_token
+        return {"Authorization": f"Bearer {bearer_token}"}
 
     @property
     @override
@@ -424,7 +424,7 @@ class AsyncDodoPayments(AsyncAPIClient):
     def copy(
         self,
         *,
-        api_key: str | None = None,
+        bearer_token: str | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -459,7 +459,7 @@ class AsyncDodoPayments(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            api_key=api_key or self.api_key,
+            bearer_token=bearer_token or self.bearer_token,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
