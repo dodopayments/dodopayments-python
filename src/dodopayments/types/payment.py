@@ -7,6 +7,7 @@ from .refund import Refund
 from .dispute import Dispute
 from .._models import BaseModel
 from .currency import Currency
+from .country_code import CountryCode
 from .intent_status import IntentStatus
 from .billing_address import BillingAddress
 from .customer_limited_details import CustomerLimitedDetails
@@ -58,6 +59,18 @@ class Payment(BaseModel):
     Total amount charged to the customer including tax, in smallest currency unit
     (e.g. cents)
     """
+
+    card_issuing_country: Optional[CountryCode] = None
+    """ISO country code alpha2 variant"""
+
+    card_last_four: Optional[str] = None
+    """The last four digits of the card"""
+
+    card_network: Optional[str] = None
+    """Card network like VISA, MASTERCARD etc."""
+
+    card_type: Optional[str] = None
+    """The type of card DEBIT or CREDIT"""
 
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""

@@ -6,11 +6,12 @@ from datetime import datetime
 from .._models import BaseModel
 from .dispute_stage import DisputeStage
 from .dispute_status import DisputeStatus
+from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Dispute"]
+__all__ = ["DisputeRetrieveResponse"]
 
 
-class Dispute(BaseModel):
+class DisputeRetrieveResponse(BaseModel):
     amount: str
     """
     The amount involved in the dispute, represented as a string to accommodate
@@ -26,6 +27,8 @@ class Dispute(BaseModel):
     currency: str
     """The currency of the disputed amount, represented as an ISO 4217 currency code."""
 
+    customer: CustomerLimitedDetails
+
     dispute_id: str
     """The unique identifier of the dispute."""
 
@@ -35,6 +38,9 @@ class Dispute(BaseModel):
 
     payment_id: str
     """The unique identifier of the payment associated with the dispute."""
+
+    reason: Optional[str] = None
+    """Reason for the dispute"""
 
     remarks: Optional[str] = None
     """Remarks"""

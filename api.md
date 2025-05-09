@@ -54,7 +54,7 @@ Methods:
 
 Methods:
 
-- <code title="get /invoices/payments/{payment_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve</a>(payment_id) -> None</code>
+- <code title="get /invoices/payments/{payment_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve</a>(payment_id) -> BinaryAPIResponse</code>
 
 # Licenses
 
@@ -138,13 +138,19 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Dispute, DisputeStage, DisputeStatus
+from dodopayments.types import (
+    Dispute,
+    DisputeStage,
+    DisputeStatus,
+    DisputeRetrieveResponse,
+    DisputeListResponse,
+)
 ```
 
 Methods:
 
-- <code title="get /disputes/{dispute_id}">client.disputes.<a href="./src/dodopayments/resources/disputes.py">retrieve</a>(dispute_id) -> <a href="./src/dodopayments/types/dispute.py">Dispute</a></code>
-- <code title="get /disputes">client.disputes.<a href="./src/dodopayments/resources/disputes.py">list</a>(\*\*<a href="src/dodopayments/types/dispute_list_params.py">params</a>) -> <a href="./src/dodopayments/types/dispute.py">SyncDefaultPageNumberPagination[Dispute]</a></code>
+- <code title="get /disputes/{dispute_id}">client.disputes.<a href="./src/dodopayments/resources/disputes.py">retrieve</a>(dispute_id) -> <a href="./src/dodopayments/types/dispute_retrieve_response.py">DisputeRetrieveResponse</a></code>
+- <code title="get /disputes">client.disputes.<a href="./src/dodopayments/resources/disputes.py">list</a>(\*\*<a href="src/dodopayments/types/dispute_list_params.py">params</a>) -> <a href="./src/dodopayments/types/dispute_list_response.py">SyncDefaultPageNumberPagination[DisputeListResponse]</a></code>
 
 # Payouts
 

@@ -20,9 +20,10 @@ from .._response import (
 )
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.dispute import Dispute
 from ..types.dispute_stage import DisputeStage
 from ..types.dispute_status import DisputeStatus
+from ..types.dispute_list_response import DisputeListResponse
+from ..types.dispute_retrieve_response import DisputeRetrieveResponse
 
 __all__ = ["DisputesResource", "AsyncDisputesResource"]
 
@@ -57,7 +58,7 @@ class DisputesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Dispute:
+    ) -> DisputeRetrieveResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -75,7 +76,7 @@ class DisputesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Dispute,
+            cast_to=DisputeRetrieveResponse,
         )
 
     def list(
@@ -94,7 +95,7 @@ class DisputesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncDefaultPageNumberPagination[Dispute]:
+    ) -> SyncDefaultPageNumberPagination[DisputeListResponse]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -121,7 +122,7 @@ class DisputesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/disputes",
-            page=SyncDefaultPageNumberPagination[Dispute],
+            page=SyncDefaultPageNumberPagination[DisputeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -140,7 +141,7 @@ class DisputesResource(SyncAPIResource):
                     dispute_list_params.DisputeListParams,
                 ),
             ),
-            model=Dispute,
+            model=DisputeListResponse,
         )
 
 
@@ -174,7 +175,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Dispute:
+    ) -> DisputeRetrieveResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -192,7 +193,7 @@ class AsyncDisputesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Dispute,
+            cast_to=DisputeRetrieveResponse,
         )
 
     def list(
@@ -211,7 +212,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Dispute, AsyncDefaultPageNumberPagination[Dispute]]:
+    ) -> AsyncPaginator[DisputeListResponse, AsyncDefaultPageNumberPagination[DisputeListResponse]]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -238,7 +239,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/disputes",
-            page=AsyncDefaultPageNumberPagination[Dispute],
+            page=AsyncDefaultPageNumberPagination[DisputeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -257,7 +258,7 @@ class AsyncDisputesResource(AsyncAPIResource):
                     dispute_list_params.DisputeListParams,
                 ),
             ),
-            model=Dispute,
+            model=DisputeListResponse,
         )
 
 
