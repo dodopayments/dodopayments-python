@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.22.0 (2025-05-09)
+
+Full Changelog: [v1.21.0...v1.22.0](https://github.com/dodopayments/dodopayments-python/compare/v1.21.0...v1.22.0)
+
+### Features
+
+* **api:** updated openapi spec ([1387f36](https://github.com/dodopayments/dodopayments-python/commit/1387f36673bcffec0cc083d29134bcad55e1d7d1))
+
+
+### Chores
+
+* **internal:** avoid errors for isinstance checks on proxies ([a0adf04](https://github.com/dodopayments/dodopayments-python/commit/a0adf048949c53ab6cd6a8fe0f4153a6a99a4be3))
+
 ## 1.21.0 (2025-05-06)
 
 Full Changelog: [v1.20.0...v1.21.0](https://github.com/dodopayments/dodopayments-python/compare/v1.20.0...v1.21.0)
