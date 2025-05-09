@@ -320,6 +320,7 @@ class SubscriptionsResource(SyncAPIResource):
         product_id: str,
         proration_billing_mode: Literal["prorated_immediately"],
         quantity: int,
+        addons: Optional[Iterable[subscription_change_plan_params.Addon]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -332,6 +333,9 @@ class SubscriptionsResource(SyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
+              addons
 
           extra_headers: Send extra headers
 
@@ -351,6 +355,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "product_id": product_id,
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
+                    "addons": addons,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),
@@ -677,6 +682,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         product_id: str,
         proration_billing_mode: Literal["prorated_immediately"],
         quantity: int,
+        addons: Optional[Iterable[subscription_change_plan_params.Addon]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -689,6 +695,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
+              addons
 
           extra_headers: Send extra headers
 
@@ -708,6 +717,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "product_id": product_id,
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
+                    "addons": addons,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),

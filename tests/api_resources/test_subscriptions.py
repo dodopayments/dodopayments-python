@@ -261,6 +261,22 @@ class TestSubscriptions:
         assert subscription is None
 
     @parametrize
+    def test_method_change_plan_with_all_params(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.change_plan(
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
+            addons=[
+                {
+                    "addon_id": "addon_id",
+                    "quantity": 0,
+                }
+            ],
+        )
+        assert subscription is None
+
+    @parametrize
     def test_raw_response_change_plan(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.change_plan(
             subscription_id="subscription_id",
@@ -579,6 +595,22 @@ class TestAsyncSubscriptions:
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
+        )
+        assert subscription is None
+
+    @parametrize
+    async def test_method_change_plan_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.change_plan(
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
+            addons=[
+                {
+                    "addon_id": "addon_id",
+                    "quantity": 0,
+                }
+            ],
         )
         assert subscription is None
 

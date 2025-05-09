@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
 from datetime import datetime
 
 from .._models import BaseModel
 from .dispute_stage import DisputeStage
 from .dispute_status import DisputeStatus
 
-__all__ = ["Dispute"]
+__all__ = ["DisputeListResponse"]
 
 
-class Dispute(BaseModel):
+class DisputeListResponse(BaseModel):
     amount: str
     """
     The amount involved in the dispute, represented as a string to accommodate
@@ -35,6 +34,3 @@ class Dispute(BaseModel):
 
     payment_id: str
     """The unique identifier of the payment associated with the dispute."""
-
-    remarks: Optional[str] = None
-    """Remarks"""
