@@ -4,14 +4,18 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+    to_custom_raw_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
 
@@ -48,7 +52,7 @@ class PaymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> BinaryAPIResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -61,13 +65,13 @@ class PaymentsResource(SyncAPIResource):
         """
         if not payment_id:
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._get(
             f"/invoices/payments/{payment_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=BinaryAPIResponse,
         )
 
 
@@ -101,7 +105,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> AsyncBinaryAPIResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -114,13 +118,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
         """
         if not payment_id:
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._get(
             f"/invoices/payments/{payment_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
 
@@ -128,8 +132,9 @@ class PaymentsResourceWithRawResponse:
     def __init__(self, payments: PaymentsResource) -> None:
         self._payments = payments
 
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = to_custom_raw_response_wrapper(
             payments.retrieve,
+            BinaryAPIResponse,
         )
 
 
@@ -137,8 +142,9 @@ class AsyncPaymentsResourceWithRawResponse:
     def __init__(self, payments: AsyncPaymentsResource) -> None:
         self._payments = payments
 
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = async_to_custom_raw_response_wrapper(
             payments.retrieve,
+            AsyncBinaryAPIResponse,
         )
 
 
@@ -146,8 +152,9 @@ class PaymentsResourceWithStreamingResponse:
     def __init__(self, payments: PaymentsResource) -> None:
         self._payments = payments
 
-        self.retrieve = to_streamed_response_wrapper(
+        self.retrieve = to_custom_streamed_response_wrapper(
             payments.retrieve,
+            StreamedBinaryAPIResponse,
         )
 
 
@@ -155,6 +162,7 @@ class AsyncPaymentsResourceWithStreamingResponse:
     def __init__(self, payments: AsyncPaymentsResource) -> None:
         self._payments = payments
 
-        self.retrieve = async_to_streamed_response_wrapper(
+        self.retrieve = async_to_custom_streamed_response_wrapper(
             payments.retrieve,
+            AsyncStreamedBinaryAPIResponse,
         )

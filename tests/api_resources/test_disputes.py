@@ -9,7 +9,10 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
-from dodopayments.types import Dispute
+from dodopayments.types import (
+    DisputeListResponse,
+    DisputeRetrieveResponse,
+)
 from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
@@ -24,7 +27,7 @@ class TestDisputes:
         dispute = client.disputes.retrieve(
             "dispute_id",
         )
-        assert_matches_type(Dispute, dispute, path=["response"])
+        assert_matches_type(DisputeRetrieveResponse, dispute, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
@@ -35,7 +38,7 @@ class TestDisputes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dispute = response.parse()
-        assert_matches_type(Dispute, dispute, path=["response"])
+        assert_matches_type(DisputeRetrieveResponse, dispute, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
@@ -46,7 +49,7 @@ class TestDisputes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dispute = response.parse()
-            assert_matches_type(Dispute, dispute, path=["response"])
+            assert_matches_type(DisputeRetrieveResponse, dispute, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -60,7 +63,7 @@ class TestDisputes:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         dispute = client.disputes.list()
-        assert_matches_type(SyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
@@ -73,7 +76,7 @@ class TestDisputes:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
@@ -82,7 +85,7 @@ class TestDisputes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dispute = response.parse()
-        assert_matches_type(SyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
@@ -91,7 +94,7 @@ class TestDisputes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dispute = response.parse()
-            assert_matches_type(SyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+            assert_matches_type(SyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,7 +107,7 @@ class TestAsyncDisputes:
         dispute = await async_client.disputes.retrieve(
             "dispute_id",
         )
-        assert_matches_type(Dispute, dispute, path=["response"])
+        assert_matches_type(DisputeRetrieveResponse, dispute, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
@@ -115,7 +118,7 @@ class TestAsyncDisputes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dispute = await response.parse()
-        assert_matches_type(Dispute, dispute, path=["response"])
+        assert_matches_type(DisputeRetrieveResponse, dispute, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
@@ -126,7 +129,7 @@ class TestAsyncDisputes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dispute = await response.parse()
-            assert_matches_type(Dispute, dispute, path=["response"])
+            assert_matches_type(DisputeRetrieveResponse, dispute, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -140,7 +143,7 @@ class TestAsyncDisputes:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         dispute = await async_client.disputes.list()
-        assert_matches_type(AsyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -153,7 +156,7 @@ class TestAsyncDisputes:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -162,7 +165,7 @@ class TestAsyncDisputes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dispute = await response.parse()
-        assert_matches_type(AsyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -171,6 +174,6 @@ class TestAsyncDisputes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dispute = await response.parse()
-            assert_matches_type(AsyncDefaultPageNumberPagination[Dispute], dispute, path=["response"])
+            assert_matches_type(AsyncDefaultPageNumberPagination[DisputeListResponse], dispute, path=["response"])
 
         assert cast(Any, response.is_closed) is True

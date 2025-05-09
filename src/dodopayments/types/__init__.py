@@ -41,6 +41,7 @@ from .license_key_instance import LicenseKeyInstance as LicenseKeyInstance
 from .payout_list_response import PayoutListResponse as PayoutListResponse
 from .refund_create_params import RefundCreateParams as RefundCreateParams
 from .billing_address_param import BillingAddressParam as BillingAddressParam
+from .dispute_list_response import DisputeListResponse as DisputeListResponse
 from .payment_create_params import PaymentCreateParams as PaymentCreateParams
 from .payment_list_response import PaymentListResponse as PaymentListResponse
 from .product_create_params import ProductCreateParams as ProductCreateParams
@@ -60,6 +61,7 @@ from .addon_cart_response_item import AddonCartResponseItem as AddonCartResponse
 from .customer_limited_details import CustomerLimitedDetails as CustomerLimitedDetails
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
 from .create_new_customer_param import CreateNewCustomerParam as CreateNewCustomerParam
+from .dispute_retrieve_response import DisputeRetrieveResponse as DisputeRetrieveResponse
 from .license_deactivate_params import LicenseDeactivateParams as LicenseDeactivateParams
 from .license_key_update_params import LicenseKeyUpdateParams as LicenseKeyUpdateParams
 from .license_validate_response import LicenseValidateResponse as LicenseValidateResponse
