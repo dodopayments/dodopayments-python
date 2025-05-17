@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["SubscriptionChargeParams"]
@@ -14,3 +15,5 @@ class SubscriptionChargeParams(TypedDict, total=False):
     Represented in the lowest denomination of the currency (e.g., cents for USD).
     For example, to charge $1.00, pass `100`.
     """
+
+    metadata: Optional[Dict[str, str]]
