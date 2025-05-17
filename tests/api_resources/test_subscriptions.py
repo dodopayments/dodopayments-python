@@ -325,6 +325,15 @@ class TestSubscriptions:
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
 
     @parametrize
+    def test_method_charge_with_all_params(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+            metadata={"foo": "string"},
+        )
+        assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+    @parametrize
     def test_raw_response_charge(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.charge(
             subscription_id="subscription_id",
@@ -659,6 +668,15 @@ class TestAsyncSubscriptions:
         subscription = await async_client.subscriptions.charge(
             subscription_id="subscription_id",
             product_price=0,
+        )
+        assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_method_charge_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.charge(
+            subscription_id="subscription_id",
+            product_price=0,
+            metadata={"foo": "string"},
         )
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
 

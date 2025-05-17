@@ -370,6 +370,7 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         product_price: int,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -395,7 +396,13 @@ class SubscriptionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
         return self._post(
             f"/subscriptions/{subscription_id}/charge",
-            body=maybe_transform({"product_price": product_price}, subscription_charge_params.SubscriptionChargeParams),
+            body=maybe_transform(
+                {
+                    "product_price": product_price,
+                    "metadata": metadata,
+                },
+                subscription_charge_params.SubscriptionChargeParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -732,6 +739,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         product_price: int,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -758,7 +766,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         return await self._post(
             f"/subscriptions/{subscription_id}/charge",
             body=await async_maybe_transform(
-                {"product_price": product_price}, subscription_charge_params.SubscriptionChargeParams
+                {
+                    "product_price": product_price,
+                    "metadata": metadata,
+                },
+                subscription_charge_params.SubscriptionChargeParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
