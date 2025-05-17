@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.25.0 (2025-05-17)
+
+Full Changelog: [v1.22.0...v1.25.0](https://github.com/dodopayments/dodopayments-python/compare/v1.22.0...v1.25.0)
+
+### Features
+
+* **api:** updated openapi spec ([792e941](https://github.com/dodopayments/dodopayments-python/commit/792e941d70eea5d68c3aeaf6f62ece8e65e4d5e3))
+
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([da506b9](https://github.com/dodopayments/dodopayments-python/commit/da506b990e1995b637b305b1a143f9b3450a1db3))
+
+
+### Chores
+
+* **ci:** fix installation instructions ([c41560f](https://github.com/dodopayments/dodopayments-python/commit/c41560f5419a74820bd8892fac39e965d4edbe3e))
+* **ci:** upload sdks to package manager ([6644ed9](https://github.com/dodopayments/dodopayments-python/commit/6644ed959e12f46fc2a2d17efb712f21da0bdbe1))
+* **internal:** codegen related update ([5169a98](https://github.com/dodopayments/dodopayments-python/commit/5169a98039143d54dd29016267bafb913095180f))
+* **internal:** version bump ([eb5ca8a](https://github.com/dodopayments/dodopayments-python/commit/eb5ca8aed27afc7a2e85f0767713717fcc321e71))
+
 ## 1.22.0 (2025-05-09)
 
 Full Changelog: [v1.21.0...v1.22.0](https://github.com/dodopayments/dodopayments-python/compare/v1.21.0...v1.22.0)
