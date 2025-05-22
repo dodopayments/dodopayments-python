@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.25.1 (2025-05-22)
+
+Full Changelog: [v1.25.0...v1.25.1](https://github.com/dodopayments/dodopayments-python/compare/v1.25.0...v1.25.1)
+
+### Chores
+
+* **docs:** grammar improvements ([8aa60f1](https://github.com/dodopayments/dodopayments-python/commit/8aa60f1ca726282cc61bd573056f6bd1f8aaa51e))
+
 ## 1.25.0 (2025-05-17)
 
 Full Changelog: [v1.22.0...v1.25.0](https://github.com/dodopayments/dodopayments-python/compare/v1.22.0...v1.25.0)
