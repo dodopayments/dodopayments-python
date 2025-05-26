@@ -163,7 +163,7 @@ Or just work directly with the returned data:
 ```python
 first_page = await client.payments.list()
 for payment in first_page.items:
-    print(payment.payment_id)
+    print(payment.brand_id)
 
 # Remove `await` for non-async usage.
 ```

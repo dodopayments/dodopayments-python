@@ -24,6 +24,9 @@ class ProductCreateParams(TypedDict, total=False):
     addons: Optional[List[str]]
     """Addons available for subscription product"""
 
+    brand_id: Optional[str]
+    """Brand id for the product, if not provided will default to primary brand"""
+
     description: Optional[str]
     """Optional description of the product"""
 

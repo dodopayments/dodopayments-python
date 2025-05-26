@@ -16,6 +16,8 @@ class ProductUpdateParams(TypedDict, total=False):
     addons: Optional[List[str]]
     """Available Addons for subscription products"""
 
+    brand_id: Optional[str]
+
     description: Optional[str]
     """Description of the product, optional and must be at most 1000 characters."""
 

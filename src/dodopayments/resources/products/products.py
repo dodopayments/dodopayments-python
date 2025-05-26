@@ -71,6 +71,7 @@ class ProductsResource(SyncAPIResource):
         price: PriceParam,
         tax_category: TaxCategory,
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -90,6 +91,8 @@ class ProductsResource(SyncAPIResource):
               and services.
 
           addons: Addons available for subscription product
+
+          brand_id: Brand id for the product, if not provided will default to primary brand
 
           description: Optional description of the product
 
@@ -116,6 +119,7 @@ class ProductsResource(SyncAPIResource):
                     "price": price,
                     "tax_category": tax_category,
                     "addons": addons,
+                    "brand_id": brand_id,
                     "description": description,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -167,6 +171,7 @@ class ProductsResource(SyncAPIResource):
         id: str,
         *,
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -227,6 +232,7 @@ class ProductsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "addons": addons,
+                    "brand_id": brand_id,
                     "description": description,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
@@ -249,6 +255,7 @@ class ProductsResource(SyncAPIResource):
         self,
         *,
         archived: bool | NotGiven = NOT_GIVEN,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         recurring: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -262,6 +269,8 @@ class ProductsResource(SyncAPIResource):
         """
         Args:
           archived: List archived products
+
+          brand_id: filter by Brand id
 
           page_number: Page number default is 0
 
@@ -293,6 +302,7 @@ class ProductsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "archived": archived,
+                        "brand_id": brand_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "recurring": recurring,
@@ -398,6 +408,7 @@ class AsyncProductsResource(AsyncAPIResource):
         price: PriceParam,
         tax_category: TaxCategory,
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -417,6 +428,8 @@ class AsyncProductsResource(AsyncAPIResource):
               and services.
 
           addons: Addons available for subscription product
+
+          brand_id: Brand id for the product, if not provided will default to primary brand
 
           description: Optional description of the product
 
@@ -443,6 +456,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "price": price,
                     "tax_category": tax_category,
                     "addons": addons,
+                    "brand_id": brand_id,
                     "description": description,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -494,6 +508,7 @@ class AsyncProductsResource(AsyncAPIResource):
         id: str,
         *,
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -554,6 +569,7 @@ class AsyncProductsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "addons": addons,
+                    "brand_id": brand_id,
                     "description": description,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
@@ -576,6 +592,7 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         *,
         archived: bool | NotGiven = NOT_GIVEN,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
         recurring: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -589,6 +606,8 @@ class AsyncProductsResource(AsyncAPIResource):
         """
         Args:
           archived: List archived products
+
+          brand_id: filter by Brand id
 
           page_number: Page number default is 0
 
@@ -620,6 +639,7 @@ class AsyncProductsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "archived": archived,
+                        "brand_id": brand_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "recurring": recurring,

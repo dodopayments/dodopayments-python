@@ -12,6 +12,9 @@ class ProductListParams(TypedDict, total=False):
     archived: bool
     """List archived products"""
 
+    brand_id: Optional[str]
+    """filter by Brand id"""
+
     page_number: Optional[int]
     """Page number default is 0"""
 

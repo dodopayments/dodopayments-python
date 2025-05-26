@@ -13,6 +13,9 @@ __all__ = ["PaymentListParams"]
 
 
 class PaymentListParams(TypedDict, total=False):
+    brand_id: Optional[str]
+    """filter by Brand id"""
+
     created_at_gte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """Get events after this created time"""
 

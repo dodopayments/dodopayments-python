@@ -255,6 +255,7 @@ class SubscriptionsResource(SyncAPIResource):
     def list(
         self,
         *,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -270,6 +271,8 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[SubscriptionListResponse]:
         """
         Args:
+          brand_id: filter by Brand id
+
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
@@ -300,6 +303,7 @@ class SubscriptionsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "brand_id": brand_id,
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
@@ -624,6 +628,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -639,6 +644,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> AsyncPaginator[SubscriptionListResponse, AsyncDefaultPageNumberPagination[SubscriptionListResponse]]:
         """
         Args:
+          brand_id: filter by Brand id
+
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
@@ -669,6 +676,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "brand_id": brand_id,
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
