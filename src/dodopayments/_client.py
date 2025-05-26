@@ -24,6 +24,7 @@ from ._version import __version__
 from .resources import (
     misc,
     addons,
+    brands,
     payouts,
     refunds,
     disputes,
@@ -80,6 +81,7 @@ class DodoPayments(SyncAPIClient):
     misc: misc.MiscResource
     discounts: discounts.DiscountsResource
     addons: addons.AddonsResource
+    brands: brands.BrandsResource
     with_raw_response: DodoPaymentsWithRawResponse
     with_streaming_response: DodoPaymentsWithStreamedResponse
 
@@ -176,6 +178,7 @@ class DodoPayments(SyncAPIClient):
         self.misc = misc.MiscResource(self)
         self.discounts = discounts.DiscountsResource(self)
         self.addons = addons.AddonsResource(self)
+        self.brands = brands.BrandsResource(self)
         self.with_raw_response = DodoPaymentsWithRawResponse(self)
         self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
 
@@ -302,6 +305,7 @@ class AsyncDodoPayments(AsyncAPIClient):
     misc: misc.AsyncMiscResource
     discounts: discounts.AsyncDiscountsResource
     addons: addons.AsyncAddonsResource
+    brands: brands.AsyncBrandsResource
     with_raw_response: AsyncDodoPaymentsWithRawResponse
     with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
 
@@ -398,6 +402,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         self.misc = misc.AsyncMiscResource(self)
         self.discounts = discounts.AsyncDiscountsResource(self)
         self.addons = addons.AsyncAddonsResource(self)
+        self.brands = brands.AsyncBrandsResource(self)
         self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
         self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
 
@@ -527,6 +532,7 @@ class DodoPaymentsWithRawResponse:
         self.misc = misc.MiscResourceWithRawResponse(client.misc)
         self.discounts = discounts.DiscountsResourceWithRawResponse(client.discounts)
         self.addons = addons.AddonsResourceWithRawResponse(client.addons)
+        self.brands = brands.BrandsResourceWithRawResponse(client.brands)
 
 
 class AsyncDodoPaymentsWithRawResponse:
@@ -548,6 +554,7 @@ class AsyncDodoPaymentsWithRawResponse:
         self.misc = misc.AsyncMiscResourceWithRawResponse(client.misc)
         self.discounts = discounts.AsyncDiscountsResourceWithRawResponse(client.discounts)
         self.addons = addons.AsyncAddonsResourceWithRawResponse(client.addons)
+        self.brands = brands.AsyncBrandsResourceWithRawResponse(client.brands)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -569,6 +576,7 @@ class DodoPaymentsWithStreamedResponse:
         self.misc = misc.MiscResourceWithStreamingResponse(client.misc)
         self.discounts = discounts.DiscountsResourceWithStreamingResponse(client.discounts)
         self.addons = addons.AddonsResourceWithStreamingResponse(client.addons)
+        self.brands = brands.BrandsResourceWithStreamingResponse(client.brands)
 
 
 class AsyncDodoPaymentsWithStreamedResponse:
@@ -590,6 +598,7 @@ class AsyncDodoPaymentsWithStreamedResponse:
         self.misc = misc.AsyncMiscResourceWithStreamingResponse(client.misc)
         self.discounts = discounts.AsyncDiscountsResourceWithStreamingResponse(client.discounts)
         self.addons = addons.AsyncAddonsResourceWithStreamingResponse(client.addons)
+        self.brands = brands.AsyncBrandsResourceWithStreamingResponse(client.brands)
 
 
 Client = DodoPayments
