@@ -24,6 +24,9 @@ class ProductCart(BaseModel):
 class Payment(BaseModel):
     billing: BillingAddress
 
+    brand_id: str
+    """brand id this payment belongs to"""
+
     business_id: str
     """Identifier of the business associated with the payment"""
 

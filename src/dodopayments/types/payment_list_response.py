@@ -12,6 +12,8 @@ __all__ = ["PaymentListResponse"]
 
 
 class PaymentListResponse(BaseModel):
+    brand_id: str
+
     created_at: datetime
 
     currency: Currency

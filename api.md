@@ -14,6 +14,7 @@ from dodopayments.types import (
     Payment,
     PaymentCreateResponse,
     PaymentListResponse,
+    PaymentRetrieveLineItemsResponse,
 )
 ```
 
@@ -22,6 +23,7 @@ Methods:
 - <code title="post /payments">client.payments.<a href="./src/dodopayments/resources/payments.py">create</a>(\*\*<a href="src/dodopayments/types/payment_create_params.py">params</a>) -> <a href="./src/dodopayments/types/payment_create_response.py">PaymentCreateResponse</a></code>
 - <code title="get /payments/{payment_id}">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve</a>(payment_id) -> <a href="./src/dodopayments/types/payment.py">Payment</a></code>
 - <code title="get /payments">client.payments.<a href="./src/dodopayments/resources/payments.py">list</a>(\*\*<a href="src/dodopayments/types/payment_list_params.py">params</a>) -> <a href="./src/dodopayments/types/payment_list_response.py">SyncDefaultPageNumberPagination[PaymentListResponse]</a></code>
+- <code title="get /payments/{payment_id}/line-items">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve_line_items</a>(payment_id) -> <a href="./src/dodopayments/types/payment_retrieve_line_items_response.py">PaymentRetrieveLineItemsResponse</a></code>
 
 # Subscriptions
 

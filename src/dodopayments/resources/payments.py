@@ -29,6 +29,7 @@ from ..types.payment_list_response import PaymentListResponse
 from ..types.customer_request_param import CustomerRequestParam
 from ..types.payment_create_response import PaymentCreateResponse
 from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
+from ..types.payment_retrieve_line_items_response import PaymentRetrieveLineItemsResponse
 
 __all__ = ["PaymentsResource", "AsyncPaymentsResource"]
 
@@ -188,6 +189,7 @@ class PaymentsResource(SyncAPIResource):
     def list(
         self,
         *,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -204,6 +206,8 @@ class PaymentsResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[PaymentListResponse]:
         """
         Args:
+          brand_id: filter by Brand id
+
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
@@ -236,6 +240,7 @@ class PaymentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "brand_id": brand_id,
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
@@ -248,6 +253,37 @@ class PaymentsResource(SyncAPIResource):
                 ),
             ),
             model=PaymentListResponse,
+        )
+
+    def retrieve_line_items(
+        self,
+        payment_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PaymentRetrieveLineItemsResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not payment_id:
+            raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
+        return self._get(
+            f"/payments/{payment_id}/line-items",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PaymentRetrieveLineItemsResponse,
         )
 
 
@@ -406,6 +442,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         customer_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -422,6 +459,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
     ) -> AsyncPaginator[PaymentListResponse, AsyncDefaultPageNumberPagination[PaymentListResponse]]:
         """
         Args:
+          brand_id: filter by Brand id
+
           created_at_gte: Get events after this created time
 
           created_at_lte: Get events created before this time
@@ -454,6 +493,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "brand_id": brand_id,
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
@@ -466,6 +506,37 @@ class AsyncPaymentsResource(AsyncAPIResource):
                 ),
             ),
             model=PaymentListResponse,
+        )
+
+    async def retrieve_line_items(
+        self,
+        payment_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PaymentRetrieveLineItemsResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not payment_id:
+            raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
+        return await self._get(
+            f"/payments/{payment_id}/line-items",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PaymentRetrieveLineItemsResponse,
         )
 
 
@@ -482,6 +553,9 @@ class PaymentsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             payments.list,
         )
+        self.retrieve_line_items = to_raw_response_wrapper(
+            payments.retrieve_line_items,
+        )
 
 
 class AsyncPaymentsResourceWithRawResponse:
@@ -496,6 +570,9 @@ class AsyncPaymentsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             payments.list,
+        )
+        self.retrieve_line_items = async_to_raw_response_wrapper(
+            payments.retrieve_line_items,
         )
 
 
@@ -512,6 +589,9 @@ class PaymentsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             payments.list,
         )
+        self.retrieve_line_items = to_streamed_response_wrapper(
+            payments.retrieve_line_items,
+        )
 
 
 class AsyncPaymentsResourceWithStreamingResponse:
@@ -526,4 +606,7 @@ class AsyncPaymentsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             payments.list,
+        )
+        self.retrieve_line_items = async_to_streamed_response_wrapper(
+            payments.retrieve_line_items,
         )

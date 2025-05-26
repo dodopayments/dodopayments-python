@@ -17,6 +17,9 @@ class Refund(BaseModel):
     created_at: datetime
     """The timestamp of when the refund was created in UTC."""
 
+    is_partial: bool
+    """If true the refund is a partial refund"""
+
     payment_id: str
     """The unique identifier of the payment associated with the refund."""
 

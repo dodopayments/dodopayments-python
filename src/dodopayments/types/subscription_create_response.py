@@ -17,6 +17,9 @@ class SubscriptionCreateResponse(BaseModel):
 
     metadata: Dict[str, str]
 
+    payment_id: str
+    """First payment id for the subscription"""
+
     recurring_pre_tax_amount: int
     """
     Tax will be added to the amount and charged to the customer on each billing
