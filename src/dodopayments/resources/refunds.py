@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
 
 import httpx
@@ -50,6 +50,7 @@ class RefundsResource(SyncAPIResource):
         self,
         *,
         payment_id: str,
+        items: Optional[Iterable[refund_create_params.Item]] | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -61,6 +62,8 @@ class RefundsResource(SyncAPIResource):
         """
         Args:
           payment_id: The unique identifier of the payment to be refunded.
+
+          items: Partially Refund an Individual Item
 
           reason: The reason for the refund, if any. Maximum length is 3000 characters. Optional.
 
@@ -77,6 +80,7 @@ class RefundsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "payment_id": payment_id,
+                    "items": items,
                     "reason": reason,
                 },
                 refund_create_params.RefundCreateParams,
@@ -204,6 +208,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         self,
         *,
         payment_id: str,
+        items: Optional[Iterable[refund_create_params.Item]] | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -215,6 +220,8 @@ class AsyncRefundsResource(AsyncAPIResource):
         """
         Args:
           payment_id: The unique identifier of the payment to be refunded.
+
+          items: Partially Refund an Individual Item
 
           reason: The reason for the refund, if any. Maximum length is 3000 characters. Optional.
 
@@ -231,6 +238,7 @@ class AsyncRefundsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "payment_id": payment_id,
+                    "items": items,
                     "reason": reason,
                 },
                 refund_create_params.RefundCreateParams,

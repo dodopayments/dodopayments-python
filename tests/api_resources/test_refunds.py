@@ -30,6 +30,13 @@ class TestRefunds:
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         refund = client.refunds.create(
             payment_id="payment_id",
+            items=[
+                {
+                    "item_id": "item_id",
+                    "amount": 0,
+                    "tax_inclusive": True,
+                }
+            ],
             reason="reason",
         )
         assert_matches_type(Refund, refund, path=["response"])
@@ -148,6 +155,13 @@ class TestAsyncRefunds:
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         refund = await async_client.refunds.create(
             payment_id="payment_id",
+            items=[
+                {
+                    "item_id": "item_id",
+                    "amount": 0,
+                    "tax_inclusive": True,
+                }
+            ],
             reason="reason",
         )
         assert_matches_type(Refund, refund, path=["response"])

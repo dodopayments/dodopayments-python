@@ -50,6 +50,7 @@ class TestProducts:
             },
             tax_category="digital_products",
             addons=["string"],
+            brand_id="brand_id",
             description="description",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
@@ -150,6 +151,7 @@ class TestProducts:
         product = client.products.update(
             id="id",
             addons=["string"],
+            brand_id="brand_id",
             description="description",
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",
@@ -214,6 +216,7 @@ class TestProducts:
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         product = client.products.list(
             archived=True,
+            brand_id="brand_id",
             page_number=0,
             page_size=0,
             recurring=True,
@@ -349,6 +352,7 @@ class TestAsyncProducts:
             },
             tax_category="digital_products",
             addons=["string"],
+            brand_id="brand_id",
             description="description",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
@@ -449,6 +453,7 @@ class TestAsyncProducts:
         product = await async_client.products.update(
             id="id",
             addons=["string"],
+            brand_id="brand_id",
             description="description",
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",
@@ -513,6 +518,7 @@ class TestAsyncProducts:
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         product = await async_client.products.list(
             archived=True,
+            brand_id="brand_id",
             page_number=0,
             page_size=0,
             recurring=True,

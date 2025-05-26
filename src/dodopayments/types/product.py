@@ -12,6 +12,8 @@ __all__ = ["Product"]
 
 
 class Product(BaseModel):
+    brand_id: str
+
     business_id: str
     """Unique identifier for the business to which the product belongs."""
 
