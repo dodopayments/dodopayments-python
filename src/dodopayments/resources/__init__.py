@@ -16,6 +16,14 @@ from .addons import (
     AddonsResourceWithStreamingResponse,
     AsyncAddonsResourceWithStreamingResponse,
 )
+from .brands import (
+    BrandsResource,
+    AsyncBrandsResource,
+    BrandsResourceWithRawResponse,
+    AsyncBrandsResourceWithRawResponse,
+    BrandsResourceWithStreamingResponse,
+    AsyncBrandsResourceWithStreamingResponse,
+)
 from .payouts import (
     PayoutsResource,
     AsyncPayoutsResource,
@@ -212,4 +220,10 @@ __all__ = [
     "AsyncAddonsResourceWithRawResponse",
     "AddonsResourceWithStreamingResponse",
     "AsyncAddonsResourceWithStreamingResponse",
+    "BrandsResource",
+    "AsyncBrandsResource",
+    "BrandsResourceWithRawResponse",
+    "AsyncBrandsResourceWithRawResponse",
+    "BrandsResourceWithStreamingResponse",
+    "AsyncBrandsResourceWithStreamingResponse",
 ]
