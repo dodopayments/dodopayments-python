@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.27.0 (2025-05-26)
+
+Full Changelog: [v1.25.0...v1.27.0](https://github.com/dodopayments/dodopayments-python/compare/v1.25.0...v1.27.0)
+
+### Features
+
+* **api:** added brands api in our sdk ([b8f73d6](https://github.com/dodopayments/dodopayments-python/commit/b8f73d6acc84c460cf208e0e3c810b55682f0b80))
+* **api:** updated openapi spec to 1.27.0 ([80018eb](https://github.com/dodopayments/dodopayments-python/commit/80018eb91090140bb7c4336b8f6d9d0aae8db557))
+
+
+### Chores
+
+* **docs:** grammar improvements ([8aa60f1](https://github.com/dodopayments/dodopayments-python/commit/8aa60f1ca726282cc61bd573056f6bd1f8aaa51e))
+
 ## 1.25.0 (2025-05-17)
 
 Full Changelog: [v1.22.0...v1.25.0](https://github.com/dodopayments/dodopayments-python/compare/v1.22.0...v1.25.0)
