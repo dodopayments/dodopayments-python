@@ -15,7 +15,6 @@ from ..types import (
     subscription_charge_params,
     subscription_create_params,
     subscription_update_params,
-    subscription_change_plan_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
@@ -321,10 +320,6 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        product_id: str,
-        proration_billing_mode: Literal["prorated_immediately"],
-        quantity: int,
-        addons: Optional[Iterable[subscription_change_plan_params.Addon]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -334,13 +329,6 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> None:
         """
         Args:
-          product_id: Unique identifier of the product to subscribe to
-
-          quantity: Number of units to subscribe for. Must be at least 1.
-
-          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
-              addons
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -354,15 +342,6 @@ class SubscriptionsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/subscriptions/{subscription_id}/change-plan",
-            body=maybe_transform(
-                {
-                    "product_id": product_id,
-                    "proration_billing_mode": proration_billing_mode,
-                    "quantity": quantity,
-                    "addons": addons,
-                },
-                subscription_change_plan_params.SubscriptionChangePlanParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -694,10 +673,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        product_id: str,
-        proration_billing_mode: Literal["prorated_immediately"],
-        quantity: int,
-        addons: Optional[Iterable[subscription_change_plan_params.Addon]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -707,13 +682,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> None:
         """
         Args:
-          product_id: Unique identifier of the product to subscribe to
-
-          quantity: Number of units to subscribe for. Must be at least 1.
-
-          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
-              addons
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -727,15 +695,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/subscriptions/{subscription_id}/change-plan",
-            body=await async_maybe_transform(
-                {
-                    "product_id": product_id,
-                    "proration_billing_mode": proration_billing_mode,
-                    "quantity": quantity,
-                    "addons": addons,
-                },
-                subscription_change_plan_params.SubscriptionChangePlanParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
