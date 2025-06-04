@@ -102,14 +102,23 @@ class TestCustomers:
     @parametrize
     def test_method_update(self, client: DodoPayments) -> None:
         customer = client.customers.update(
-            "customer_id",
+            customer_id="customer_id",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: DodoPayments) -> None:
+        customer = client.customers.update(
+            customer_id="customer_id",
+            name="name",
+            phone_number="phone_number",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.customers.with_raw_response.update(
-            "customer_id",
+            customer_id="customer_id",
         )
 
         assert response.is_closed is True
@@ -120,7 +129,7 @@ class TestCustomers:
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.customers.with_streaming_response.update(
-            "customer_id",
+            customer_id="customer_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -134,7 +143,7 @@ class TestCustomers:
     def test_path_params_update(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
             client.customers.with_raw_response.update(
-                "",
+                customer_id="",
             )
 
     @parametrize
@@ -258,14 +267,23 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         customer = await async_client.customers.update(
-            "customer_id",
+            customer_id="customer_id",
+        )
+        assert_matches_type(Customer, customer, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        customer = await async_client.customers.update(
+            customer_id="customer_id",
+            name="name",
+            phone_number="phone_number",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.customers.with_raw_response.update(
-            "customer_id",
+            customer_id="customer_id",
         )
 
         assert response.is_closed is True
@@ -276,7 +294,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.customers.with_streaming_response.update(
-            "customer_id",
+            customer_id="customer_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -290,7 +308,7 @@ class TestAsyncCustomers:
     async def test_path_params_update(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
             await async_client.customers.with_raw_response.update(
-                "",
+                customer_id="",
             )
 
     @parametrize
