@@ -254,14 +254,36 @@ class TestSubscriptions:
     @parametrize
     def test_method_change_plan(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.change_plan(
-            "subscription_id",
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
+        )
+        assert subscription is None
+
+    @parametrize
+    def test_method_change_plan_with_all_params(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.change_plan(
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
+            addons=[
+                {
+                    "addon_id": "addon_id",
+                    "quantity": 0,
+                }
+            ],
         )
         assert subscription is None
 
     @parametrize
     def test_raw_response_change_plan(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.change_plan(
-            "subscription_id",
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
         )
 
         assert response.is_closed is True
@@ -272,7 +294,10 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_change_plan(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.change_plan(
-            "subscription_id",
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -286,7 +311,10 @@ class TestSubscriptions:
     def test_path_params_change_plan(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             client.subscriptions.with_raw_response.change_plan(
-                "",
+                subscription_id="",
+                product_id="product_id",
+                proration_billing_mode="prorated_immediately",
+                quantity=0,
             )
 
     @parametrize
@@ -574,14 +602,36 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_change_plan(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.change_plan(
-            "subscription_id",
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
+        )
+        assert subscription is None
+
+    @parametrize
+    async def test_method_change_plan_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.change_plan(
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
+            addons=[
+                {
+                    "addon_id": "addon_id",
+                    "quantity": 0,
+                }
+            ],
         )
         assert subscription is None
 
     @parametrize
     async def test_raw_response_change_plan(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.change_plan(
-            "subscription_id",
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
         )
 
         assert response.is_closed is True
@@ -592,7 +642,10 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_change_plan(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.change_plan(
-            "subscription_id",
+            subscription_id="subscription_id",
+            product_id="product_id",
+            proration_billing_mode="prorated_immediately",
+            quantity=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -606,7 +659,10 @@ class TestAsyncSubscriptions:
     async def test_path_params_change_plan(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             await async_client.subscriptions.with_raw_response.change_plan(
-                "",
+                subscription_id="",
+                product_id="product_id",
+                proration_billing_mode="prorated_immediately",
+                quantity=0,
             )
 
     @parametrize
