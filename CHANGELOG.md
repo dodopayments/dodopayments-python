@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.30.2 (2025-06-04)
+
+Full Changelog: [v1.30.0...v1.30.2](https://github.com/dodopayments/dodopayments-python/compare/v1.30.0...v1.30.2)
+
+### Features
+
+* **api:** fixed openapi spec ([15906d8](https://github.com/dodopayments/dodopayments-python/commit/15906d809eb6ab659e3b60ee1b5c92b3716c6730))
+* **client:** add follow_redirects request option ([fb63495](https://github.com/dodopayments/dodopayments-python/commit/fb63495b183be3cbe1c4d0eacfdfaeb7f00653e0))
+
+
+### Chores
+
+* **docs:** remove reference to rye shell ([865a4ac](https://github.com/dodopayments/dodopayments-python/commit/865a4acfec4f830bc4209267a7d937dba0c401be))
+
 ## 1.30.0 (2025-06-02)
 
 Full Changelog: [v1.27.0...v1.30.0](https://github.com/dodopayments/dodopayments-python/compare/v1.27.0...v1.30.0)
