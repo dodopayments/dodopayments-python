@@ -85,6 +85,7 @@ class WebhookEventsResource(SyncAPIResource):
         object_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        webhook_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,6 +106,8 @@ class WebhookEventsResource(SyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          webhook_id: Filter by webhook destination
 
           extra_headers: Send extra headers
 
@@ -130,6 +133,7 @@ class WebhookEventsResource(SyncAPIResource):
                         "object_id": object_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "webhook_id": webhook_id,
                     },
                     webhook_event_list_params.WebhookEventListParams,
                 ),
@@ -198,6 +202,7 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
         object_id: Optional[str] | NotGiven = NOT_GIVEN,
         page_number: Optional[int] | NotGiven = NOT_GIVEN,
         page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        webhook_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -218,6 +223,8 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          webhook_id: Filter by webhook destination
 
           extra_headers: Send extra headers
 
@@ -243,6 +250,7 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
                         "object_id": object_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "webhook_id": webhook_id,
                     },
                     webhook_event_list_params.WebhookEventListParams,
                 ),

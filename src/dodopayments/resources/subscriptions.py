@@ -211,6 +211,7 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         billing: Optional[BillingAddressParam] | NotGiven = NOT_GIVEN,
+        cancel_at_next_billing_date: Optional[bool] | NotGiven = NOT_GIVEN,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
@@ -239,6 +240,7 @@ class SubscriptionsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "billing": billing,
+                    "cancel_at_next_billing_date": cancel_at_next_billing_date,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
                     "status": status,
@@ -584,6 +586,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         billing: Optional[BillingAddressParam] | NotGiven = NOT_GIVEN,
+        cancel_at_next_billing_date: Optional[bool] | NotGiven = NOT_GIVEN,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
@@ -612,6 +615,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "billing": billing,
+                    "cancel_at_next_billing_date": cancel_at_next_billing_date,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
                     "status": status,

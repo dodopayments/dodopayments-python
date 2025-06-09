@@ -31,3 +31,6 @@ class WebhookEventListParams(TypedDict, total=False):
 
     page_size: Optional[int]
     """Page size default is 10 max is 100"""
+
+    webhook_id: Optional[str]
+    """Filter by webhook destination"""
