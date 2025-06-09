@@ -16,6 +16,8 @@ __all__ = ["SubscriptionUpdateParams", "DisableOnDemand"]
 class SubscriptionUpdateParams(TypedDict, total=False):
     billing: Optional[BillingAddressParam]
 
+    cancel_at_next_billing_date: Optional[bool]
+
     disable_on_demand: Optional[DisableOnDemand]
 
     metadata: Optional[Dict[str, str]]

@@ -16,6 +16,9 @@ __all__ = ["SubscriptionListResponse"]
 class SubscriptionListResponse(BaseModel):
     billing: BillingAddress
 
+    cancel_at_next_billing_date: bool
+    """Indicates if the subscription will cancel at the next billing date"""
+
     created_at: datetime
     """Timestamp when the subscription was created"""
 

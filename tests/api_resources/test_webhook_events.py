@@ -71,6 +71,7 @@ class TestWebhookEvents:
             object_id="object_id",
             page_number=0,
             page_size=0,
+            webhook_id="webhook_id",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[WebhookEvent], webhook_event, path=["response"])
 
@@ -150,6 +151,7 @@ class TestAsyncWebhookEvents:
             object_id="object_id",
             page_number=0,
             page_size=0,
+            webhook_id="webhook_id",
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[WebhookEvent], webhook_event, path=["response"])
 
