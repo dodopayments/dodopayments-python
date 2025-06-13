@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.32.1 (2025-06-13)
+
+Full Changelog: [v1.32.0...v1.32.1](https://github.com/dodopayments/dodopayments-python/compare/v1.32.0...v1.32.1)
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([4d41dc7](https://github.com/dodopayments/dodopayments-python/commit/4d41dc78632a83e98d91dd763858b61625d75cdc))
+
+
+### Chores
+
+* **tests:** run tests in parallel ([d46598b](https://github.com/dodopayments/dodopayments-python/commit/d46598b3cef4df023e692e84cb9265b7d9c8f22a))
+
 ## 1.32.0 (2025-06-09)
 
 Full Changelog: [v1.30.2...v1.32.0](https://github.com/dodopayments/dodopayments-python/compare/v1.30.2...v1.32.0)
