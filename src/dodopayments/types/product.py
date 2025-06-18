@@ -8,7 +8,26 @@ from .._models import BaseModel
 from .tax_category import TaxCategory
 from .license_key_duration import LicenseKeyDuration
 
-__all__ = ["Product"]
+__all__ = ["Product", "DigitalProductDelivery", "DigitalProductDeliveryFile"]
+
+
+class DigitalProductDeliveryFile(BaseModel):
+    file_id: str
+
+    file_name: str
+
+    url: str
+
+
+class DigitalProductDelivery(BaseModel):
+    external_url: Optional[str] = None
+    """External URL to digital product"""
+
+    files: Optional[List[DigitalProductDeliveryFile]] = None
+    """Uploaded files ids of digital product"""
+
+    instructions: Optional[str] = None
+    """Instructions to download and use the digital product"""
 
 
 class Product(BaseModel):
@@ -45,6 +64,8 @@ class Product(BaseModel):
 
     description: Optional[str] = None
     """Description of the product, optional."""
+
+    digital_product_delivery: Optional[DigitalProductDelivery] = None
 
     image: Optional[str] = None
     """URL of the product image, optional."""
