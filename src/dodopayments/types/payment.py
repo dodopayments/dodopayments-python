@@ -37,6 +37,9 @@ class Payment(BaseModel):
 
     customer: CustomerLimitedDetails
 
+    digital_products_delivered: bool
+    """brand id this payment belongs to"""
+
     disputes: List[Dispute]
     """List of disputes associated with this payment"""
 

@@ -20,6 +20,8 @@ class PaymentListResponse(BaseModel):
 
     customer: CustomerLimitedDetails
 
+    digital_products_delivered: bool
+
     metadata: Dict[str, str]
 
     payment_id: str

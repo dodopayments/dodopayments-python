@@ -12,7 +12,7 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     product_id: Required[str]
     """Unique identifier of the product to subscribe to"""
 
-    proration_billing_mode: Required[Literal["prorated_immediately"]]
+    proration_billing_mode: Required[Literal["prorated_immediately", "full_immediately"]]
 
     quantity: Required[int]
     """Number of units to subscribe for. Must be at least 1."""
