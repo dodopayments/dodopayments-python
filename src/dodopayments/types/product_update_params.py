@@ -9,7 +9,7 @@ from .price_param import PriceParam
 from .tax_category import TaxCategory
 from .license_key_duration_param import LicenseKeyDurationParam
 
-__all__ = ["ProductUpdateParams"]
+__all__ = ["ProductUpdateParams", "DigitalProductDelivery"]
 
 
 class ProductUpdateParams(TypedDict, total=False):
@@ -20,6 +20,8 @@ class ProductUpdateParams(TypedDict, total=False):
 
     description: Optional[str]
     """Description of the product, optional and must be at most 1000 characters."""
+
+    digital_product_delivery: Optional[DigitalProductDelivery]
 
     image_id: Optional[str]
     """Product image id after its uploaded to S3"""
@@ -57,3 +59,14 @@ class ProductUpdateParams(TypedDict, total=False):
     Represents the different categories of taxation applicable to various products
     and services.
     """
+
+
+class DigitalProductDelivery(TypedDict, total=False):
+    external_url: Optional[str]
+    """External URL to digital product"""
+
+    files: Optional[List[str]]
+    """Uploaded files ids of digital product"""
+
+    instructions: Optional[str]
+    """Instructions to download and use the digital product"""

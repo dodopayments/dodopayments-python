@@ -19,6 +19,7 @@ from ...types import (
     product_list_params,
     product_create_params,
     product_update_params,
+    product_update_files_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
@@ -37,6 +38,7 @@ from ...types.price_param import PriceParam
 from ...types.tax_category import TaxCategory
 from ...types.product_list_response import ProductListResponse
 from ...types.license_key_duration_param import LicenseKeyDurationParam
+from ...types.product_update_files_response import ProductUpdateFilesResponse
 
 __all__ = ["ProductsResource", "AsyncProductsResource"]
 
@@ -73,6 +75,7 @@ class ProductsResource(SyncAPIResource):
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
@@ -121,6 +124,7 @@ class ProductsResource(SyncAPIResource):
                     "addons": addons,
                     "brand_id": brand_id,
                     "description": description,
+                    "digital_product_delivery": digital_product_delivery,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
@@ -173,6 +177,7 @@ class ProductsResource(SyncAPIResource):
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -234,6 +239,7 @@ class ProductsResource(SyncAPIResource):
                     "addons": addons,
                     "brand_id": brand_id,
                     "description": description,
+                    "digital_product_delivery": digital_product_delivery,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -377,6 +383,39 @@ class ProductsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def update_files(
+        self,
+        id: str,
+        *,
+        file_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ProductUpdateFilesResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._put(
+            f"/products/{id}/files",
+            body=maybe_transform({"file_name": file_name}, product_update_files_params.ProductUpdateFilesParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ProductUpdateFilesResponse,
+        )
+
 
 class AsyncProductsResource(AsyncAPIResource):
     @cached_property
@@ -410,6 +449,7 @@ class AsyncProductsResource(AsyncAPIResource):
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
@@ -458,6 +498,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "addons": addons,
                     "brand_id": brand_id,
                     "description": description,
+                    "digital_product_delivery": digital_product_delivery,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
@@ -510,6 +551,7 @@ class AsyncProductsResource(AsyncAPIResource):
         addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
         image_id: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -571,6 +613,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "addons": addons,
                     "brand_id": brand_id,
                     "description": description,
+                    "digital_product_delivery": digital_product_delivery,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -714,6 +757,41 @@ class AsyncProductsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def update_files(
+        self,
+        id: str,
+        *,
+        file_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ProductUpdateFilesResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._put(
+            f"/products/{id}/files",
+            body=await async_maybe_transform(
+                {"file_name": file_name}, product_update_files_params.ProductUpdateFilesParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ProductUpdateFilesResponse,
+        )
+
 
 class ProductsResourceWithRawResponse:
     def __init__(self, products: ProductsResource) -> None:
@@ -736,6 +814,9 @@ class ProductsResourceWithRawResponse:
         )
         self.unarchive = to_raw_response_wrapper(
             products.unarchive,
+        )
+        self.update_files = to_raw_response_wrapper(
+            products.update_files,
         )
 
     @cached_property
@@ -765,6 +846,9 @@ class AsyncProductsResourceWithRawResponse:
         self.unarchive = async_to_raw_response_wrapper(
             products.unarchive,
         )
+        self.update_files = async_to_raw_response_wrapper(
+            products.update_files,
+        )
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
@@ -793,6 +877,9 @@ class ProductsResourceWithStreamingResponse:
         self.unarchive = to_streamed_response_wrapper(
             products.unarchive,
         )
+        self.update_files = to_streamed_response_wrapper(
+            products.update_files,
+        )
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
@@ -820,6 +907,9 @@ class AsyncProductsResourceWithStreamingResponse:
         )
         self.unarchive = async_to_streamed_response_wrapper(
             products.unarchive,
+        )
+        self.update_files = async_to_streamed_response_wrapper(
+            products.update_files,
         )
 
     @cached_property

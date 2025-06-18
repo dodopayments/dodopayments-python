@@ -9,7 +9,7 @@ from .price_param import PriceParam
 from .tax_category import TaxCategory
 from .license_key_duration_param import LicenseKeyDurationParam
 
-__all__ = ["ProductCreateParams"]
+__all__ = ["ProductCreateParams", "DigitalProductDelivery"]
 
 
 class ProductCreateParams(TypedDict, total=False):
@@ -30,6 +30,8 @@ class ProductCreateParams(TypedDict, total=False):
     description: Optional[str]
     """Optional description of the product"""
 
+    digital_product_delivery: Optional[DigitalProductDelivery]
+
     license_key_activation_message: Optional[str]
     """Optional message displayed during license key activation"""
 
@@ -45,3 +47,11 @@ class ProductCreateParams(TypedDict, total=False):
 
     name: Optional[str]
     """Optional name of the product"""
+
+
+class DigitalProductDelivery(TypedDict, total=False):
+    external_url: Optional[str]
+    """External URL to digital product"""
+
+    instructions: Optional[str]
+    """Instructions to download and use the digital product"""

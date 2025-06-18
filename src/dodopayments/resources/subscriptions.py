@@ -324,7 +324,7 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately"],
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately"],
         quantity: int,
         addons: Optional[Iterable[subscription_change_plan_params.Addon]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -699,7 +699,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately"],
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately"],
         quantity: int,
         addons: Optional[Iterable[subscription_change_plan_params.Addon]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

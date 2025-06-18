@@ -184,7 +184,13 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import LicenseKeyDuration, Price, Product, ProductListResponse
+from dodopayments.types import (
+    LicenseKeyDuration,
+    Price,
+    Product,
+    ProductListResponse,
+    ProductUpdateFilesResponse,
+)
 ```
 
 Methods:
@@ -195,6 +201,7 @@ Methods:
 - <code title="get /products">client.products.<a href="./src/dodopayments/resources/products/products.py">list</a>(\*\*<a href="src/dodopayments/types/product_list_params.py">params</a>) -> <a href="./src/dodopayments/types/product_list_response.py">SyncDefaultPageNumberPagination[ProductListResponse]</a></code>
 - <code title="delete /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">delete</a>(id) -> None</code>
 - <code title="post /products/{id}/unarchive">client.products.<a href="./src/dodopayments/resources/products/products.py">unarchive</a>(id) -> None</code>
+- <code title="put /products/{id}/files">client.products.<a href="./src/dodopayments/resources/products/products.py">update_files</a>(id, \*\*<a href="src/dodopayments/types/product_update_files_params.py">params</a>) -> <a href="./src/dodopayments/types/product_update_files_response.py">ProductUpdateFilesResponse</a></code>
 
 ## Images
 
