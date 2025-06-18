@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.34.0 (2025-06-18)
+
+Full Changelog: [v1.32.0...v1.34.0](https://github.com/dodopayments/dodopayments-python/compare/v1.32.0...v1.34.0)
+
+### Features
+
+* **api:** updated to version 1.34.0 ([b83c3a8](https://github.com/dodopayments/dodopayments-python/commit/b83c3a87e253e3c74e9160ffe98d9b8fedaa8af1))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([4d41dc7](https://github.com/dodopayments/dodopayments-python/commit/4d41dc78632a83e98d91dd763858b61625d75cdc))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([10cf09b](https://github.com/dodopayments/dodopayments-python/commit/10cf09b005788fff2e01ec99d1ec70f71f09a80d))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([ff898a1](https://github.com/dodopayments/dodopayments-python/commit/ff898a143cc3a7ce7ccccfc435f0af9a21f826d8))
+* **internal:** update conftest.py ([c0c8eef](https://github.com/dodopayments/dodopayments-python/commit/c0c8eefc8e397aeb0933476ffd8b48c7ab9c0c72))
+* **readme:** update badges ([6b1593c](https://github.com/dodopayments/dodopayments-python/commit/6b1593c2fe586d7fbabdeac3c7683fcad6256f63))
+* **tests:** add tests for httpx client instantiation & proxies ([c7b0949](https://github.com/dodopayments/dodopayments-python/commit/c7b09497f1fe1f83bbd5a259174276a57ab7fafa))
+* **tests:** run tests in parallel ([d46598b](https://github.com/dodopayments/dodopayments-python/commit/d46598b3cef4df023e692e84cb9265b7d9c8f22a))
+
 ## 1.32.0 (2025-06-09)
 
 Full Changelog: [v1.30.2...v1.32.0](https://github.com/dodopayments/dodopayments-python/compare/v1.30.2...v1.32.0)
