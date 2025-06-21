@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.34.1 (2025-06-21)
+
+Full Changelog: [v1.34.0...v1.34.1](https://github.com/dodopayments/dodopayments-python/compare/v1.34.0...v1.34.1)
+
+### Features
+
+* **client:** add support for aiohttp ([ff6068c](https://github.com/dodopayments/dodopayments-python/commit/ff6068c83742a492bd78888312976d79df35c34d))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([21e4aef](https://github.com/dodopayments/dodopayments-python/commit/21e4aef206be5ab337a2682c0833b2e850df1043))
+
 ## 1.34.0 (2025-06-18)
 
 Full Changelog: [v1.32.0...v1.34.0](https://github.com/dodopayments/dodopayments-python/compare/v1.32.0...v1.34.0)
