@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.34.2 (2025-06-24)
+
+Full Changelog: [v1.34.1...v1.34.2](https://github.com/dodopayments/dodopayments-python/compare/v1.34.1...v1.34.2)
+
+### Chores
+
+* **tests:** skip some failing tests on the latest python versions ([ec77a0f](https://github.com/dodopayments/dodopayments-python/commit/ec77a0f9130b51d4992d18ad59260a9ac35456e6))
+
 ## 1.34.1 (2025-06-21)
 
 Full Changelog: [v1.34.0...v1.34.1](https://github.com/dodopayments/dodopayments-python/compare/v1.34.0...v1.34.1)
