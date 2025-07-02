@@ -37,6 +37,7 @@ class Discount(BaseModel):
     """How many times this discount has been used."""
 
     type: DiscountType
+    """The type of discount, e.g. `percentage`, `flat`, or `flat_per_unit`."""
 
     expires_at: Optional[datetime] = None
     """Optional date/time after which discount is expired."""

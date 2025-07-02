@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
-from ..types import DisputeStage, DisputeStatus, dispute_list_params
+from ..types import dispute_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
@@ -20,8 +21,6 @@ from .._response import (
 )
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.dispute_stage import DisputeStage
-from ..types.dispute_status import DisputeStatus
 from ..types.dispute_list_response import DisputeListResponse
 from ..types.dispute_retrieve_response import DisputeRetrieveResponse
 
@@ -82,13 +81,22 @@ class DisputesResource(SyncAPIResource):
     def list(
         self,
         *,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        dispute_stage: Optional[DisputeStage] | NotGiven = NOT_GIVEN,
-        dispute_status: Optional[DisputeStatus] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        dispute_stage: Literal["pre_dispute", "dispute", "pre_arbitration"] | NotGiven = NOT_GIVEN,
+        dispute_status: Literal[
+            "dispute_opened",
+            "dispute_expired",
+            "dispute_accepted",
+            "dispute_cancelled",
+            "dispute_challenged",
+            "dispute_won",
+            "dispute_lost",
+        ]
+        | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,13 +207,22 @@ class AsyncDisputesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        dispute_stage: Optional[DisputeStage] | NotGiven = NOT_GIVEN,
-        dispute_status: Optional[DisputeStatus] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        dispute_stage: Literal["pre_dispute", "dispute", "pre_arbitration"] | NotGiven = NOT_GIVEN,
+        dispute_status: Literal[
+            "dispute_opened",
+            "dispute_expired",
+            "dispute_accepted",
+            "dispute_cancelled",
+            "dispute_challenged",
+            "dispute_won",
+            "dispute_lost",
+        ]
+        | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

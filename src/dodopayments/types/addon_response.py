@@ -21,6 +21,7 @@ class AddonResponse(BaseModel):
     """Created time"""
 
     currency: Currency
+    """Currency of the Addon"""
 
     name: str
     """Name of the Addon"""
@@ -29,10 +30,7 @@ class AddonResponse(BaseModel):
     """Amount of the addon"""
 
     tax_category: TaxCategory
-    """
-    Represents the different categories of taxation applicable to various products
-    and services.
-    """
+    """Tax category applied to this Addon"""
 
     updated_at: datetime
     """Updated time"""

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 
 from .._models import BaseModel
 from .customer_limited_details import CustomerLimitedDetails
@@ -17,8 +18,10 @@ class PaymentCreateResponse(BaseModel):
     """
 
     customer: CustomerLimitedDetails
+    """Limited details about the customer making the payment"""
 
     metadata: Dict[str, str]
+    """Additional metadata associated with the payment"""
 
     payment_id: str
     """Unique identifier for the payment"""
@@ -28,6 +31,9 @@ class PaymentCreateResponse(BaseModel):
 
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""
+
+    expires_on: Optional[datetime] = None
+    """Expiry timestamp of the payment link"""
 
     payment_link: Optional[str] = None
     """Optional URL to a hosted payment page"""

@@ -169,8 +169,9 @@ class CustomersResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        email: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,6 +181,8 @@ class CustomersResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[Customer]:
         """
         Args:
+          email: Filter by customer email
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -202,6 +205,7 @@ class CustomersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "email": email,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -349,8 +353,9 @@ class AsyncCustomersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        email: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,6 +365,8 @@ class AsyncCustomersResource(AsyncAPIResource):
     ) -> AsyncPaginator[Customer, AsyncDefaultPageNumberPagination[Customer]]:
         """
         Args:
+          email: Filter by customer email
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -382,6 +389,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "email": email,
                         "page_number": page_number,
                         "page_size": page_size,
                     },

@@ -14,8 +14,10 @@ __all__ = ["SubscriptionCreateParams", "Addon", "OnDemand"]
 
 class SubscriptionCreateParams(TypedDict, total=False):
     billing: Required[BillingAddressParam]
+    """Billing address information for the subscription"""
 
     customer: Required[CustomerRequestParam]
+    """Customer details for the subscription"""
 
     product_id: Required[str]
     """Unique identifier of the product to subscribe to"""
@@ -59,11 +61,16 @@ class SubscriptionCreateParams(TypedDict, total=False):
     """
 
     billing_currency: Optional[Currency]
+    """
+    Fix the currency in which the end customer is billed. If Dodo Payments cannot
+    support that currency for this transaction, it will not proceed
+    """
 
     discount_code: Optional[str]
     """Discount Code to apply to the subscription"""
 
     metadata: Dict[str, str]
+    """Additional metadata for the subscription Defaults to empty if not specified"""
 
     on_demand: Optional[OnDemand]
 

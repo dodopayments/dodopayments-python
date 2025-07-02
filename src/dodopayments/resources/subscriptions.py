@@ -112,6 +112,10 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> SubscriptionCreateResponse:
         """
         Args:
+          billing: Billing address information for the subscription
+
+          customer: Customer details for the subscription
+
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
@@ -125,7 +129,12 @@ class SubscriptionsResource(SyncAPIResource):
               Availability still depends on other factors (e.g., customer location, merchant
               settings).
 
+          billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
+              support that currency for this transaction, it will not proceed
+
           discount_code: Discount Code to apply to the subscription
+
+          metadata: Additional metadata for the subscription Defaults to empty if not specified
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
@@ -257,13 +266,14 @@ class SubscriptionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
+        brand_id: str | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -338,6 +348,8 @@ class SubscriptionsResource(SyncAPIResource):
         Args:
           product_id: Unique identifier of the product to subscribe to
 
+          proration_billing_mode: Proration Billing Mode
+
           quantity: Number of units to subscribe for. Must be at least 1.
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
@@ -389,6 +401,9 @@ class SubscriptionsResource(SyncAPIResource):
 
         Represented in the lowest denomination of the currency (e.g.,
               cents for USD). For example, to charge $1.00, pass `100`.
+
+          metadata: Metadata for the payment. If not passed, the metadata of the subscription will
+              be taken
 
           extra_headers: Send extra headers
 
@@ -487,6 +502,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> SubscriptionCreateResponse:
         """
         Args:
+          billing: Billing address information for the subscription
+
+          customer: Customer details for the subscription
+
           product_id: Unique identifier of the product to subscribe to
 
           quantity: Number of units to subscribe for. Must be at least 1.
@@ -500,7 +519,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
               Availability still depends on other factors (e.g., customer location, merchant
               settings).
 
+          billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
+              support that currency for this transaction, it will not proceed
+
           discount_code: Discount Code to apply to the subscription
+
+          metadata: Additional metadata for the subscription Defaults to empty if not specified
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
@@ -632,13 +656,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
+        brand_id: str | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -713,6 +738,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         Args:
           product_id: Unique identifier of the product to subscribe to
 
+          proration_billing_mode: Proration Billing Mode
+
           quantity: Number of units to subscribe for. Must be at least 1.
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
@@ -764,6 +791,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
         Represented in the lowest denomination of the currency (e.g.,
               cents for USD). For example, to charge $1.00, pass `100`.
+
+          metadata: Metadata for the payment. If not passed, the metadata of the subscription will
+              be taken
 
           extra_headers: Send extra headers
 

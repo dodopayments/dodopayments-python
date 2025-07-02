@@ -25,15 +25,13 @@ class ProductListResponse(BaseModel):
     """Unique identifier for the product."""
 
     tax_category: TaxCategory
-    """
-    Represents the different categories of taxation applicable to various products
-    and services.
-    """
+    """Tax category associated with the product."""
 
     updated_at: datetime
     """Timestamp when the product was last updated."""
 
     currency: Optional[Currency] = None
+    """Currency of the price"""
 
     description: Optional[str] = None
     """Description of the product, optional."""
@@ -58,6 +56,7 @@ class ProductListResponse(BaseModel):
     """
 
     price_detail: Optional[Price] = None
+    """Details of the price"""
 
     tax_inclusive: Optional[bool] = None
     """Indicates if the price is tax inclusive"""

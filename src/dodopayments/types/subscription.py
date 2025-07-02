@@ -19,6 +19,7 @@ class Subscription(BaseModel):
     """Addons associated with this subscription"""
 
     billing: BillingAddress
+    """Billing address details for payments"""
 
     cancel_at_next_billing_date: bool
     """Indicates if the subscription will cancel at the next billing date"""
@@ -27,10 +28,13 @@ class Subscription(BaseModel):
     """Timestamp when the subscription was created"""
 
     currency: Currency
+    """Currency used for the subscription payments"""
 
     customer: CustomerLimitedDetails
+    """Customer details associated with the subscription"""
 
     metadata: Dict[str, str]
+    """Additional custom data associated with the subscription"""
 
     next_billing_date: datetime
     """Timestamp of the next scheduled billing.
@@ -45,6 +49,7 @@ class Subscription(BaseModel):
     """Number of payment frequency intervals"""
 
     payment_frequency_interval: TimeInterval
+    """Time interval for payment frequency (e.g. month, year)"""
 
     previous_billing_date: datetime
     """Timestamp of the last payment. Indicates the start of current billing period"""
@@ -62,6 +67,7 @@ class Subscription(BaseModel):
     """
 
     status: SubscriptionStatus
+    """Current status of the subscription"""
 
     subscription_id: str
     """Unique identifier for the subscription"""
@@ -70,6 +76,7 @@ class Subscription(BaseModel):
     """Number of subscription period intervals"""
 
     subscription_period_interval: TimeInterval
+    """Time interval for the subscription period (e.g. month, year)"""
 
     tax_inclusive: bool
     """Indicates if the recurring_pre_tax_amount is tax inclusive"""

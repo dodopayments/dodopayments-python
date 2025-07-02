@@ -37,5 +37,6 @@ class DiscountUpdateParams(TypedDict, total=False):
     """
 
     type: Optional[DiscountType]
+    """If present, update the discount type."""
 
     usage_limit: Optional[int]

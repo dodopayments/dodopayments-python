@@ -23,6 +23,7 @@ class ProductCart(BaseModel):
 
 class Payment(BaseModel):
     billing: BillingAddress
+    """Billing address details for payments"""
 
     brand_id: str
     """brand id this payment belongs to"""
@@ -34,8 +35,10 @@ class Payment(BaseModel):
     """Timestamp when the payment was created"""
 
     currency: Currency
+    """Currency used for the payment"""
 
     customer: CustomerLimitedDetails
+    """Details about the customer who made the payment"""
 
     digital_products_delivered: bool
     """brand id this payment belongs to"""
@@ -44,6 +47,7 @@ class Payment(BaseModel):
     """List of disputes associated with this payment"""
 
     metadata: Dict[str, str]
+    """Additional custom data associated with the payment"""
 
     payment_id: str
     """Unique identifier for the payment"""
@@ -59,6 +63,11 @@ class Payment(BaseModel):
     """
 
     settlement_currency: Currency
+    """
+    The currency in which the settlement_amount will be credited to your Dodo
+    balance. This may differ from the customer's payment currency in adaptive
+    pricing scenarios.
+    """
 
     total_amount: int
     """
@@ -67,7 +76,7 @@ class Payment(BaseModel):
     """
 
     card_issuing_country: Optional[CountryCode] = None
-    """ISO country code alpha2 variant"""
+    """ISO2 country code of the card"""
 
     card_last_four: Optional[str] = None
     """The last four digits of the card"""
@@ -107,6 +116,7 @@ class Payment(BaseModel):
     """
 
     status: Optional[IntentStatus] = None
+    """Current status of the payment intent"""
 
     subscription_id: Optional[str] = None
     """Identifier of the subscription if payment is part of a subscription"""

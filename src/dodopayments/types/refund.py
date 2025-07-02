@@ -27,11 +27,13 @@ class Refund(BaseModel):
     """The unique identifier of the refund."""
 
     status: RefundStatus
+    """The current status of the refund."""
 
     amount: Optional[int] = None
     """The refunded amount."""
 
     currency: Optional[Currency] = None
+    """The currency of the refund, represented as an ISO 4217 currency code."""
 
     reason: Optional[str] = None
     """The reason provided for the refund, if any. Optional."""

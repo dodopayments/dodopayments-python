@@ -1,9 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal, TypeAlias
 
-from .._utils import PropertyInfo
 from .._models import BaseModel
 from .currency import Currency
 from .time_interval import TimeInterval
@@ -13,6 +12,7 @@ __all__ = ["Price", "OneTimePrice", "RecurringPrice"]
 
 class OneTimePrice(BaseModel):
     currency: Currency
+    """The currency in which the payment is made."""
 
     discount: float
     """Discount applied to the price, represented as a percentage (0 to 100)."""
@@ -53,6 +53,7 @@ class OneTimePrice(BaseModel):
 
 class RecurringPrice(BaseModel):
     currency: Currency
+    """The currency in which the payment is made."""
 
     discount: float
     """Discount applied to the price, represented as a percentage (0 to 100)."""
@@ -64,6 +65,7 @@ class RecurringPrice(BaseModel):
     """
 
     payment_frequency_interval: TimeInterval
+    """The time interval for the payment frequency (e.g., day, month, year)."""
 
     price: int
     """The payment amount.
@@ -85,6 +87,7 @@ class RecurringPrice(BaseModel):
     """
 
     subscription_period_interval: TimeInterval
+    """The time interval for the subscription period (e.g., day, month, year)."""
 
     type: Literal["recurring_price"]
 
@@ -95,4 +98,4 @@ class RecurringPrice(BaseModel):
     """Number of days for the trial period. A value of `0` indicates no trial period."""
 
 
-Price: TypeAlias = Annotated[Union[OneTimePrice, RecurringPrice], PropertyInfo(discriminator="type")]
+Price: TypeAlias = Union[OneTimePrice, RecurringPrice]

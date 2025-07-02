@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
-from ..types import LicenseKeyStatus, license_key_list_params, license_key_update_params
+from ..types import license_key_list_params, license_key_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -21,7 +22,6 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.license_key import LicenseKey
-from ..types.license_key_status import LicenseKeyStatus
 
 __all__ = ["LicenseKeysResource", "AsyncLicenseKeysResource"]
 
@@ -132,11 +132,11 @@ class LicenseKeysResource(SyncAPIResource):
     def list(
         self,
         *,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        product_id: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Optional[LicenseKeyStatus] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        product_id: str | NotGiven = NOT_GIVEN,
+        status: Literal["active", "expired", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,11 +293,11 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
     def list(
         self,
         *,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        product_id: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Optional[LicenseKeyStatus] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        product_id: str | NotGiven = NOT_GIVEN,
+        status: Literal["active", "expired", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
