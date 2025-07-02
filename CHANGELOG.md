@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.34.3 (2025-07-02)
+
+Full Changelog: [v1.34.2...v1.34.3](https://github.com/dodopayments/dodopayments-python/compare/v1.34.2...v1.34.3)
+
+### Bug Fixes
+
+* **ci:** correct conditional ([09abb22](https://github.com/dodopayments/dodopayments-python/commit/09abb22939f29c6d3b96ecd5a64bb0facc40db90))
+* **ci:** release-doctor — report correct token name ([84b7ffc](https://github.com/dodopayments/dodopayments-python/commit/84b7ffca299ebd7888f63d34ac32130c68c2b448))
+
+
+### Chores
+
+* **ci:** change upload type ([ebc5951](https://github.com/dodopayments/dodopayments-python/commit/ebc59514858e3782bd07305b8b16a1365bbd346d))
+* **ci:** only run for pushes and fork pull requests ([0e6b873](https://github.com/dodopayments/dodopayments-python/commit/0e6b873a9d03b3860f2402a04cfe72b6c54d3fef))
+
 ## 1.34.2 (2025-06-24)
 
 Full Changelog: [v1.34.1...v1.34.2](https://github.com/dodopayments/dodopayments-python/compare/v1.34.1...v1.34.2)
