@@ -13,6 +13,7 @@ __all__ = ["AddonUpdateParams"]
 
 class AddonUpdateParams(TypedDict, total=False):
     currency: Optional[Currency]
+    """The currency of the Addon"""
 
     description: Optional[str]
     """Description of the Addon, optional and must be at most 1000 characters."""
@@ -27,7 +28,4 @@ class AddonUpdateParams(TypedDict, total=False):
     """Amount of the addon"""
 
     tax_category: Optional[TaxCategory]
-    """
-    Represents the different categories of taxation applicable to various products
-    and services.
-    """
+    """Tax category of the Addon."""

@@ -9,10 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
-from dodopayments.types import (
-    DisputeListResponse,
-    DisputeRetrieveResponse,
-)
+from dodopayments.types import DisputeListResponse, DisputeRetrieveResponse
 from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 

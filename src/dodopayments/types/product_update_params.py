@@ -22,6 +22,7 @@ class ProductUpdateParams(TypedDict, total=False):
     """Description of the product, optional and must be at most 1000 characters."""
 
     digital_product_delivery: Optional[DigitalProductDelivery]
+    """Choose how you would like you digital product delivered"""
 
     image_id: Optional[str]
     """Product image id after its uploaded to S3"""
@@ -41,6 +42,11 @@ class ProductUpdateParams(TypedDict, total=False):
     """
 
     license_key_duration: Optional[LicenseKeyDurationParam]
+    """Duration of the license key if enabled.
+
+    Only applicable if `license_key_enabled` is `true`. Represents the duration in
+    days for which the license key is valid.
+    """
 
     license_key_enabled: Optional[bool]
     """Whether the product requires a license key.
@@ -53,12 +59,10 @@ class ProductUpdateParams(TypedDict, total=False):
     """Name of the product, optional and must be at most 100 characters."""
 
     price: Optional[PriceParam]
+    """Price details of the product."""
 
     tax_category: Optional[TaxCategory]
-    """
-    Represents the different categories of taxation applicable to various products
-    and services.
-    """
+    """Tax category of the product."""
 
 
 class DigitalProductDelivery(TypedDict, total=False):

@@ -90,8 +90,9 @@ class ProductsResource(SyncAPIResource):
     ) -> Product:
         """
         Args:
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          price: Price configuration for the product
+
+          tax_category: Tax category applied to this product
 
           addons: Addons available for subscription product
 
@@ -99,9 +100,15 @@ class ProductsResource(SyncAPIResource):
 
           description: Optional description of the product
 
+          digital_product_delivery: Choose how you would like you digital product delivered
+
           license_key_activation_message: Optional message displayed during license key activation
 
           license_key_activations_limit: The number of times the license key can be activated. Must be 0 or greater
+
+          license_key_duration: Duration configuration for the license key. Set to null if you don't want the
+              license key to expire. For subscriptions, the lifetime of the license key is
+              tied to the subscription period
 
           license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
 
@@ -199,6 +206,8 @@ class ProductsResource(SyncAPIResource):
 
           description: Description of the product, optional and must be at most 1000 characters.
 
+          digital_product_delivery: Choose how you would like you digital product delivered
+
           image_id: Product image id after its uploaded to S3
 
           license_key_activation_message: Message sent to the customer upon license key activation.
@@ -211,6 +220,11 @@ class ProductsResource(SyncAPIResource):
               Only applicable if `license_key_enabled` is `true`. Represents the maximum
               number of times the license key can be activated.
 
+          license_key_duration: Duration of the license key if enabled.
+
+              Only applicable if `license_key_enabled` is `true`. Represents the duration in
+              days for which the license key is valid.
+
           license_key_enabled: Whether the product requires a license key.
 
               If `true`, additional fields related to license key (duration, activations
@@ -218,8 +232,9 @@ class ProductsResource(SyncAPIResource):
 
           name: Name of the product, optional and must be at most 100 characters.
 
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          price: Price details of the product.
+
+          tax_category: Tax category of the product.
 
           extra_headers: Send extra headers
 
@@ -261,10 +276,10 @@ class ProductsResource(SyncAPIResource):
         self,
         *,
         archived: bool | NotGiven = NOT_GIVEN,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        recurring: Optional[bool] | NotGiven = NOT_GIVEN,
+        brand_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        recurring: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -464,8 +479,9 @@ class AsyncProductsResource(AsyncAPIResource):
     ) -> Product:
         """
         Args:
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          price: Price configuration for the product
+
+          tax_category: Tax category applied to this product
 
           addons: Addons available for subscription product
 
@@ -473,9 +489,15 @@ class AsyncProductsResource(AsyncAPIResource):
 
           description: Optional description of the product
 
+          digital_product_delivery: Choose how you would like you digital product delivered
+
           license_key_activation_message: Optional message displayed during license key activation
 
           license_key_activations_limit: The number of times the license key can be activated. Must be 0 or greater
+
+          license_key_duration: Duration configuration for the license key. Set to null if you don't want the
+              license key to expire. For subscriptions, the lifetime of the license key is
+              tied to the subscription period
 
           license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
 
@@ -573,6 +595,8 @@ class AsyncProductsResource(AsyncAPIResource):
 
           description: Description of the product, optional and must be at most 1000 characters.
 
+          digital_product_delivery: Choose how you would like you digital product delivered
+
           image_id: Product image id after its uploaded to S3
 
           license_key_activation_message: Message sent to the customer upon license key activation.
@@ -585,6 +609,11 @@ class AsyncProductsResource(AsyncAPIResource):
               Only applicable if `license_key_enabled` is `true`. Represents the maximum
               number of times the license key can be activated.
 
+          license_key_duration: Duration of the license key if enabled.
+
+              Only applicable if `license_key_enabled` is `true`. Represents the duration in
+              days for which the license key is valid.
+
           license_key_enabled: Whether the product requires a license key.
 
               If `true`, additional fields related to license key (duration, activations
@@ -592,8 +621,9 @@ class AsyncProductsResource(AsyncAPIResource):
 
           name: Name of the product, optional and must be at most 100 characters.
 
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          price: Price details of the product.
+
+          tax_category: Tax category of the product.
 
           extra_headers: Send extra headers
 
@@ -635,10 +665,10 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         *,
         archived: bool | NotGiven = NOT_GIVEN,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        recurring: Optional[bool] | NotGiven = NOT_GIVEN,
+        brand_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        recurring: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

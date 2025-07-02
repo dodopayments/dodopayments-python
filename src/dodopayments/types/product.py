@@ -46,15 +46,13 @@ class Product(BaseModel):
     """Indicates whether the product requires a license key."""
 
     price: Price
+    """Pricing information for the product."""
 
     product_id: str
     """Unique identifier for the product."""
 
     tax_category: TaxCategory
-    """
-    Represents the different categories of taxation applicable to various products
-    and services.
-    """
+    """Tax category associated with the product."""
 
     updated_at: datetime
     """Timestamp when the product was last updated."""
@@ -77,6 +75,7 @@ class Product(BaseModel):
     """Limit on the number of activations for the license key, if enabled."""
 
     license_key_duration: Optional[LicenseKeyDuration] = None
+    """Duration of the license key validity, if enabled."""
 
     name: Optional[str] = None
     """Name of the product, optional."""

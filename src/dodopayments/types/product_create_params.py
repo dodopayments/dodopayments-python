@@ -14,12 +14,10 @@ __all__ = ["ProductCreateParams", "DigitalProductDelivery"]
 
 class ProductCreateParams(TypedDict, total=False):
     price: Required[PriceParam]
+    """Price configuration for the product"""
 
     tax_category: Required[TaxCategory]
-    """
-    Represents the different categories of taxation applicable to various products
-    and services.
-    """
+    """Tax category applied to this product"""
 
     addons: Optional[List[str]]
     """Addons available for subscription product"""
@@ -31,6 +29,7 @@ class ProductCreateParams(TypedDict, total=False):
     """Optional description of the product"""
 
     digital_product_delivery: Optional[DigitalProductDelivery]
+    """Choose how you would like you digital product delivered"""
 
     license_key_activation_message: Optional[str]
     """Optional message displayed during license key activation"""
@@ -39,6 +38,11 @@ class ProductCreateParams(TypedDict, total=False):
     """The number of times the license key can be activated. Must be 0 or greater"""
 
     license_key_duration: Optional[LicenseKeyDurationParam]
+    """
+    Duration configuration for the license key. Set to null if you don't want the
+    license key to expire. For subscriptions, the lifetime of the license key is
+    tied to the subscription period
+    """
 
     license_key_enabled: Optional[bool]
     """

@@ -2,26 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import TypedDict
-
-from .license_key_status import LicenseKeyStatus
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["LicenseKeyListParams"]
 
 
 class LicenseKeyListParams(TypedDict, total=False):
-    customer_id: Optional[str]
+    customer_id: str
     """Filter by customer ID"""
 
-    page_number: Optional[int]
+    page_number: int
     """Page number default is 0"""
 
-    page_size: Optional[int]
+    page_size: int
     """Page size default is 10 max is 100"""
 
-    product_id: Optional[str]
+    product_id: str
     """Filter by product ID"""
 
-    status: Optional[LicenseKeyStatus]
+    status: Literal["active", "expired", "disabled"]
     """Filter by license key status"""

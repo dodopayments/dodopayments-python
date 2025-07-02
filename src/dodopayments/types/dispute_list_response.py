@@ -29,8 +29,10 @@ class DisputeListResponse(BaseModel):
     """The unique identifier of the dispute."""
 
     dispute_stage: DisputeStage
+    """The current stage of the dispute process."""
 
     dispute_status: DisputeStatus
+    """The current status of the dispute."""
 
     payment_id: str
     """The unique identifier of the payment associated with the dispute."""

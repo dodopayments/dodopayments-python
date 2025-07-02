@@ -17,3 +17,7 @@ class SubscriptionChargeParams(TypedDict, total=False):
     """
 
     metadata: Optional[Dict[str, str]]
+    """Metadata for the payment.
+
+    If not passed, the metadata of the subscription will be taken
+    """

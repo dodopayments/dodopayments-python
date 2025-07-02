@@ -25,6 +25,7 @@ class DiscountCreateParams(TypedDict, total=False):
     """
 
     type: Required[DiscountType]
+    """The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`)."""
 
     code: Optional[str]
     """Optionally supply a code (will be uppercased).

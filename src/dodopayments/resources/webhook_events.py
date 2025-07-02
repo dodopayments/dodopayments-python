@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+import typing_extensions
+from typing import Union
 from datetime import datetime
 
 import httpx
@@ -45,6 +46,7 @@ class WebhookEventsResource(SyncAPIResource):
         """
         return WebhookEventsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def retrieve(
         self,
         webhook_event_id: str,
@@ -79,13 +81,14 @@ class WebhookEventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        limit: Optional[int] | NotGiven = NOT_GIVEN,
-        object_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        webhook_id: Optional[str] | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        object_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        webhook_event_id: str | NotGiven = NOT_GIVEN,
+        webhook_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -106,6 +109,8 @@ class WebhookEventsResource(SyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          webhook_event_id: Filter by webhook event id
 
           webhook_id: Filter by webhook destination
 
@@ -133,6 +138,7 @@ class WebhookEventsResource(SyncAPIResource):
                         "object_id": object_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "webhook_event_id": webhook_event_id,
                         "webhook_id": webhook_id,
                     },
                     webhook_event_list_params.WebhookEventListParams,
@@ -162,6 +168,7 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
         """
         return AsyncWebhookEventsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def retrieve(
         self,
         webhook_event_id: str,
@@ -196,13 +203,14 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        limit: Optional[int] | NotGiven = NOT_GIVEN,
-        object_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        webhook_id: Optional[str] | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        object_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        webhook_event_id: str | NotGiven = NOT_GIVEN,
+        webhook_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -223,6 +231,8 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          webhook_event_id: Filter by webhook event id
 
           webhook_id: Filter by webhook destination
 
@@ -250,6 +260,7 @@ class AsyncWebhookEventsResource(AsyncAPIResource):
                         "object_id": object_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "webhook_event_id": webhook_event_id,
                         "webhook_id": webhook_id,
                     },
                     webhook_event_list_params.WebhookEventListParams,
@@ -263,8 +274,10 @@ class WebhookEventsResourceWithRawResponse:
     def __init__(self, webhook_events: WebhookEventsResource) -> None:
         self._webhook_events = webhook_events
 
-        self.retrieve = to_raw_response_wrapper(
-            webhook_events.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                webhook_events.retrieve  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_raw_response_wrapper(
             webhook_events.list,
@@ -275,8 +288,10 @@ class AsyncWebhookEventsResourceWithRawResponse:
     def __init__(self, webhook_events: AsyncWebhookEventsResource) -> None:
         self._webhook_events = webhook_events
 
-        self.retrieve = async_to_raw_response_wrapper(
-            webhook_events.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                webhook_events.retrieve  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_raw_response_wrapper(
             webhook_events.list,
@@ -287,8 +302,10 @@ class WebhookEventsResourceWithStreamingResponse:
     def __init__(self, webhook_events: WebhookEventsResource) -> None:
         self._webhook_events = webhook_events
 
-        self.retrieve = to_streamed_response_wrapper(
-            webhook_events.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                webhook_events.retrieve  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = to_streamed_response_wrapper(
             webhook_events.list,
@@ -299,8 +316,10 @@ class AsyncWebhookEventsResourceWithStreamingResponse:
     def __init__(self, webhook_events: AsyncWebhookEventsResource) -> None:
         self._webhook_events = webhook_events
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            webhook_events.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                webhook_events.retrieve  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list = async_to_streamed_response_wrapper(
             webhook_events.list,

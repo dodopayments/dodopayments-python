@@ -15,8 +15,10 @@ __all__ = ["PaymentCreateParams"]
 
 class PaymentCreateParams(TypedDict, total=False):
     billing: Required[BillingAddressParam]
+    """Billing address details for the payment"""
 
     customer: Required[CustomerRequestParam]
+    """Customer information for the payment"""
 
     product_cart: Required[Iterable[OneTimeProductCartItemParam]]
     """List of products in the cart. Must contain at least 1 and at most 100 items."""
@@ -54,11 +56,19 @@ class PaymentCreateParams(TypedDict, total=False):
     """
 
     billing_currency: Optional[Currency]
+    """
+    Fix the currency in which the end customer is billed. If Dodo Payments cannot
+    support that currency for this transaction, it will not proceed
+    """
 
     discount_code: Optional[str]
     """Discount Code to apply to the transaction"""
 
     metadata: Dict[str, str]
+    """
+    Additional metadata associated with the payment. Defaults to empty if not
+    provided.
+    """
 
     payment_link: Optional[bool]
     """Whether to generate a payment link. Defaults to false if not specified."""

@@ -13,6 +13,7 @@ __all__ = ["AddonCreateParams"]
 
 class AddonCreateParams(TypedDict, total=False):
     currency: Required[Currency]
+    """The currency of the Addon"""
 
     name: Required[str]
     """Name of the Addon"""
@@ -21,10 +22,7 @@ class AddonCreateParams(TypedDict, total=False):
     """Amount of the addon"""
 
     tax_category: Required[TaxCategory]
-    """
-    Represents the different categories of taxation applicable to various products
-    and services.
-    """
+    """Tax category applied to this Addon"""
 
     description: Optional[str]
     """Optional description of the Addon"""

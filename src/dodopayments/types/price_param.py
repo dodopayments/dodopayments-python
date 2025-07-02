@@ -13,6 +13,7 @@ __all__ = ["PriceParam", "OneTimePrice", "RecurringPrice"]
 
 class OneTimePrice(TypedDict, total=False):
     currency: Required[Currency]
+    """The currency in which the payment is made."""
 
     discount: Required[float]
     """Discount applied to the price, represented as a percentage (0 to 100)."""
@@ -53,6 +54,7 @@ class OneTimePrice(TypedDict, total=False):
 
 class RecurringPrice(TypedDict, total=False):
     currency: Required[Currency]
+    """The currency in which the payment is made."""
 
     discount: Required[float]
     """Discount applied to the price, represented as a percentage (0 to 100)."""
@@ -64,6 +66,7 @@ class RecurringPrice(TypedDict, total=False):
     """
 
     payment_frequency_interval: Required[TimeInterval]
+    """The time interval for the payment frequency (e.g., day, month, year)."""
 
     price: Required[int]
     """The payment amount.
@@ -85,6 +88,7 @@ class RecurringPrice(TypedDict, total=False):
     """
 
     subscription_period_interval: Required[TimeInterval]
+    """The time interval for the subscription period (e.g., day, month, year)."""
 
     type: Required[Literal["recurring_price"]]
 

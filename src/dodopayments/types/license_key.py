@@ -35,6 +35,7 @@ class LicenseKey(BaseModel):
     """The unique identifier of the product associated with the license key."""
 
     status: LicenseKeyStatus
+    """The current status of the license key (e.g., active, inactive, expired)."""
 
     activations_limit: Optional[int] = None
     """The maximum number of activations allowed for this license key."""
