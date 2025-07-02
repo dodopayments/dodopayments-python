@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["ImageUpdateParams"]
 
 
 class ImageUpdateParams(TypedDict, total=False):
-    force_update: Optional[bool]
+    force_update: bool

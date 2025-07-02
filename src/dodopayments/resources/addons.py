@@ -64,12 +64,13 @@ class AddonsResource(SyncAPIResource):
     ) -> AddonResponse:
         """
         Args:
+          currency: The currency of the Addon
+
           name: Name of the Addon
 
           price: Amount of the addon
 
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          tax_category: Tax category applied to this Addon
 
           description: Optional description of the Addon
 
@@ -149,6 +150,8 @@ class AddonsResource(SyncAPIResource):
     ) -> AddonResponse:
         """
         Args:
+          currency: The currency of the Addon
+
           description: Description of the Addon, optional and must be at most 1000 characters.
 
           image_id: Addon image id after its uploaded to S3
@@ -157,8 +160,7 @@ class AddonsResource(SyncAPIResource):
 
           price: Amount of the addon
 
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          tax_category: Tax category of the Addon.
 
           extra_headers: Send extra headers
 
@@ -192,8 +194,8 @@ class AddonsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -303,12 +305,13 @@ class AsyncAddonsResource(AsyncAPIResource):
     ) -> AddonResponse:
         """
         Args:
+          currency: The currency of the Addon
+
           name: Name of the Addon
 
           price: Amount of the addon
 
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          tax_category: Tax category applied to this Addon
 
           description: Optional description of the Addon
 
@@ -388,6 +391,8 @@ class AsyncAddonsResource(AsyncAPIResource):
     ) -> AddonResponse:
         """
         Args:
+          currency: The currency of the Addon
+
           description: Description of the Addon, optional and must be at most 1000 characters.
 
           image_id: Addon image id after its uploaded to S3
@@ -396,8 +401,7 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           price: Amount of the addon
 
-          tax_category: Represents the different categories of taxation applicable to various products
-              and services.
+          tax_category: Tax category of the Addon.
 
           extra_headers: Send extra headers
 
@@ -431,8 +435,8 @@ class AsyncAddonsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

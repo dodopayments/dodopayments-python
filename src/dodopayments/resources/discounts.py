@@ -64,7 +64,8 @@ class DiscountsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Discount:
         """
-        If `code` is omitted or empty, a random 16-char uppercase code is generated.
+        POST /discounts If `code` is omitted or empty, a random 16-char uppercase code
+        is generated.
 
         Args:
           amount: The discount amount.
@@ -75,6 +76,8 @@ class DiscountsResource(SyncAPIResource):
                 example, `540` means `5.4%`.
 
               Must be at least 1.
+
+          type: The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`).
 
           code: Optionally supply a code (will be uppercased).
 
@@ -184,6 +187,8 @@ class DiscountsResource(SyncAPIResource):
           restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
               restrictions, send empty array
 
+          type: If present, update the discount type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -217,8 +222,8 @@ class DiscountsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -334,7 +339,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Discount:
         """
-        If `code` is omitted or empty, a random 16-char uppercase code is generated.
+        POST /discounts If `code` is omitted or empty, a random 16-char uppercase code
+        is generated.
 
         Args:
           amount: The discount amount.
@@ -345,6 +351,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
                 example, `540` means `5.4%`.
 
               Must be at least 1.
+
+          type: The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`).
 
           code: Optionally supply a code (will be uppercased).
 
@@ -454,6 +462,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
           restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
               restrictions, send empty array
 
+          type: If present, update the discount type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -487,8 +497,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

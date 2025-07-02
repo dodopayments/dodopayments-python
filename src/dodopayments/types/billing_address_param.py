@@ -14,7 +14,7 @@ class BillingAddressParam(TypedDict, total=False):
     """City name"""
 
     country: Required[CountryCode]
-    """ISO country code alpha2 variant"""
+    """Two-letter ISO country code (ISO 3166-1 alpha-2)"""
 
     state: Required[str]
     """State or province name"""

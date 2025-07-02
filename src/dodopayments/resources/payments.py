@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import Currency, IntentStatus, payment_list_params, payment_create_params
+from ..types import Currency, payment_list_params, payment_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -23,7 +23,6 @@ from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumber
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.payment import Payment
 from ..types.currency import Currency
-from ..types.intent_status import IntentStatus
 from ..types.billing_address_param import BillingAddressParam
 from ..types.payment_list_response import PaymentListResponse
 from ..types.customer_request_param import CustomerRequestParam
@@ -99,10 +98,13 @@ class PaymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentCreateResponse:
-        """Args:
-          product_cart: List of products in the cart.
+        """
+        Args:
+          billing: Billing address details for the payment
 
-        Must contain at least 1 and at most 100 items.
+          customer: Customer information for the payment
+
+          product_cart: List of products in the cart. Must contain at least 1 and at most 100 items.
 
           allowed_payment_method_types: List of payment methods allowed during checkout.
 
@@ -111,7 +113,13 @@ class PaymentsResource(SyncAPIResource):
               Availability still depends on other factors (e.g., customer location, merchant
               settings).
 
+          billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
+              support that currency for this transaction, it will not proceed
+
           discount_code: Discount Code to apply to the transaction
+
+          metadata: Additional metadata associated with the payment. Defaults to empty if not
+              provided.
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
@@ -189,14 +197,27 @@ class PaymentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[IntentStatus] | NotGiven = NOT_GIVEN,
-        subscription_id: Optional[str] | NotGiven = NOT_GIVEN,
+        brand_id: str | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        status: Literal[
+            "succeeded",
+            "failed",
+            "cancelled",
+            "processing",
+            "requires_customer_action",
+            "requires_merchant_action",
+            "requires_payment_method",
+            "requires_confirmation",
+            "requires_capture",
+            "partially_captured",
+            "partially_captured_and_capturable",
+        ]
+        | NotGiven = NOT_GIVEN,
+        subscription_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,10 +373,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentCreateResponse:
-        """Args:
-          product_cart: List of products in the cart.
+        """
+        Args:
+          billing: Billing address details for the payment
 
-        Must contain at least 1 and at most 100 items.
+          customer: Customer information for the payment
+
+          product_cart: List of products in the cart. Must contain at least 1 and at most 100 items.
 
           allowed_payment_method_types: List of payment methods allowed during checkout.
 
@@ -364,7 +388,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
               Availability still depends on other factors (e.g., customer location, merchant
               settings).
 
+          billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
+              support that currency for this transaction, it will not proceed
+
           discount_code: Discount Code to apply to the transaction
+
+          metadata: Additional metadata associated with the payment. Defaults to empty if not
+              provided.
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
@@ -442,14 +472,27 @@ class AsyncPaymentsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        status: Optional[IntentStatus] | NotGiven = NOT_GIVEN,
-        subscription_id: Optional[str] | NotGiven = NOT_GIVEN,
+        brand_id: str | NotGiven = NOT_GIVEN,
+        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        status: Literal[
+            "succeeded",
+            "failed",
+            "cancelled",
+            "processing",
+            "requires_customer_action",
+            "requires_merchant_action",
+            "requires_payment_method",
+            "requires_confirmation",
+            "requires_capture",
+            "partially_captured",
+            "partially_captured_and_capturable",
+        ]
+        | NotGiven = NOT_GIVEN,
+        subscription_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

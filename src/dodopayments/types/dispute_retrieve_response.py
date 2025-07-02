@@ -28,13 +28,16 @@ class DisputeRetrieveResponse(BaseModel):
     """The currency of the disputed amount, represented as an ISO 4217 currency code."""
 
     customer: CustomerLimitedDetails
+    """The customer who filed the dispute"""
 
     dispute_id: str
     """The unique identifier of the dispute."""
 
     dispute_stage: DisputeStage
+    """The current stage of the dispute process."""
 
     dispute_status: DisputeStatus
+    """The current status of the dispute."""
 
     payment_id: str
     """The unique identifier of the payment associated with the dispute."""

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 
 from .._models import BaseModel
 from .addon_cart_response_item import AddonCartResponseItem
@@ -14,8 +15,10 @@ class SubscriptionCreateResponse(BaseModel):
     """Addons associated with this subscription"""
 
     customer: CustomerLimitedDetails
+    """Customer details associated with this subscription"""
 
     metadata: Dict[str, str]
+    """Additional metadata associated with the subscription"""
 
     payment_id: str
     """First payment id for the subscription"""
@@ -37,6 +40,9 @@ class SubscriptionCreateResponse(BaseModel):
 
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""
+
+    expires_on: Optional[datetime] = None
+    """Expiry timestamp of the payment link"""
 
     payment_link: Optional[str] = None
     """URL to checkout page"""

@@ -2,34 +2,33 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .subscription_status import SubscriptionStatus
 
 __all__ = ["SubscriptionListParams"]
 
 
 class SubscriptionListParams(TypedDict, total=False):
-    brand_id: Optional[str]
+    brand_id: str
     """filter by Brand id"""
 
-    created_at_gte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    created_at_gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Get events after this created time"""
 
-    created_at_lte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    created_at_lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Get events created before this time"""
 
-    customer_id: Optional[str]
+    customer_id: str
     """Filter by customer id"""
 
-    page_number: Optional[int]
+    page_number: int
     """Page number default is 0"""
 
-    page_size: Optional[int]
+    page_size: int
     """Page size default is 10 max is 100"""
 
-    status: Optional[SubscriptionStatus]
+    status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
     """Filter by status"""

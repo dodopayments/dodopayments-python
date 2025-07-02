@@ -2,31 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .refund_status import RefundStatus
 
 __all__ = ["RefundListParams"]
 
 
 class RefundListParams(TypedDict, total=False):
-    created_at_gte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    created_at_gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Get events after this created time"""
 
-    created_at_lte: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    created_at_lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Get events created before this time"""
 
-    customer_id: Optional[str]
+    customer_id: str
     """Filter by customer_id"""
 
-    page_number: Optional[int]
+    page_number: int
     """Page number default is 0"""
 
-    page_size: Optional[int]
+    page_size: int
     """Page size default is 10 max is 100"""
 
-    status: Optional[RefundStatus]
+    status: Literal["succeeded", "failed", "pending", "review"]
     """Filter by status"""

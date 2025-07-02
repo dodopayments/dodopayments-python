@@ -24,6 +24,7 @@ class PayoutListResponse(BaseModel):
     """The timestamp when the payout was created, in UTC."""
 
     currency: Currency
+    """The currency of the payout, represented as an ISO 4217 currency code."""
 
     fee: int
     """The fee charged for processing the payout."""
@@ -38,6 +39,7 @@ class PayoutListResponse(BaseModel):
     """The total value of refunds associated with the payout."""
 
     status: Literal["not_initiated", "in_progress", "on_hold", "failed", "success"]
+    """The current status of the payout."""
 
     tax: int
     """The tax applied to the payout."""

@@ -11,7 +11,7 @@ class BillingAddress(BaseModel):
     """City name"""
 
     country: CountryCode
-    """ISO country code alpha2 variant"""
+    """Two-letter ISO country code (ISO 3166-1 alpha-2)"""
 
     state: str
     """State or province name"""
