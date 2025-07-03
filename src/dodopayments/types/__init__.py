@@ -28,6 +28,7 @@ from .addon_list_params import AddonListParams as AddonListParams
 from .license_key_status import LicenseKeyStatus as LicenseKeyStatus
 from .payout_list_params import PayoutListParams as PayoutListParams
 from .refund_list_params import RefundListParams as RefundListParams
+from .webhook_event_type import WebhookEventType as WebhookEventType
 from .addon_create_params import AddonCreateParams as AddonCreateParams
 from .addon_update_params import AddonUpdateParams as AddonUpdateParams
 from .brand_create_params import BrandCreateParams as BrandCreateParams
