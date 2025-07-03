@@ -171,7 +171,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import WebhookEvent, WebhookPayload
+from dodopayments.types import WebhookEvent, WebhookEventType, WebhookPayload
 ```
 
 Methods:
