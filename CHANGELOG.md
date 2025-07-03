@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.37.1 (2025-07-03)
+
+Full Changelog: [v1.37.0...v1.37.1](https://github.com/dodopayments/dodopayments-python/compare/v1.37.0...v1.37.1)
+
+### Features
+
+* **api:** added webhook event type model ([5ce6fd3](https://github.com/dodopayments/dodopayments-python/commit/5ce6fd3edbbfbe36def6a1dd3b784af83527993d))
+* **api:** added webhook payload model ([1f231a1](https://github.com/dodopayments/dodopayments-python/commit/1f231a10af884c552cace741f9fc2623d7df8f84))
+
 ## 1.37.0 (2025-07-02)
 
 Full Changelog: [v1.34.3...v1.37.0](https://github.com/dodopayments/dodopayments-python/compare/v1.34.3...v1.37.0)
