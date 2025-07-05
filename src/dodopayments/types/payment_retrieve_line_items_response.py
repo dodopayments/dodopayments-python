@@ -13,6 +13,8 @@ class Item(BaseModel):
 
     items_id: str
 
+    refundable_amount: int
+
     tax: int
 
     description: Optional[str] = None
