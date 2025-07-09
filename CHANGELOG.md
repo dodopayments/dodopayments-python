@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.38.1 (2025-07-09)
+
+Full Changelog: [v1.38.0...v1.38.1](https://github.com/dodopayments/dodopayments-python/compare/v1.38.0...v1.38.1)
+
+### Chores
+
+* **internal:** bump pinned h11 dep ([15fb329](https://github.com/dodopayments/dodopayments-python/commit/15fb329df9bb33ff404749c52a669ba2186f8774))
+* **package:** mark python 3.13 as supported ([4b11468](https://github.com/dodopayments/dodopayments-python/commit/4b11468685b9d7c6a7ad157f51de41c89469ae81))
+
 ## 1.38.0 (2025-07-05)
 
 Full Changelog: [v1.37.1...v1.38.0](https://github.com/dodopayments/dodopayments-python/compare/v1.37.1...v1.38.0)
