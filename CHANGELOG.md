@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.38.2 (2025-07-12)
+
+Full Changelog: [v1.38.1...v1.38.2](https://github.com/dodopayments/dodopayments-python/compare/v1.38.1...v1.38.2)
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([9807cc2](https://github.com/dodopayments/dodopayments-python/commit/9807cc2f47241f9168c7eb766c7c9f0e8f32e4ad))
+* **parsing:** correctly handle nested discriminated unions ([4147e1f](https://github.com/dodopayments/dodopayments-python/commit/4147e1ffcf8c2790e21c9667ce759086612e4e1e))
+
+
+### Chores
+
+* **readme:** fix version rendering on pypi ([5f7a3c2](https://github.com/dodopayments/dodopayments-python/commit/5f7a3c2c710878faaa7840a9d82eb3cab5f761c5))
+
 ## 1.38.1 (2025-07-09)
 
 Full Changelog: [v1.38.0...v1.38.1](https://github.com/dodopayments/dodopayments-python/compare/v1.38.0...v1.38.1)
