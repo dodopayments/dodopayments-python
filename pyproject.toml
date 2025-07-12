@@ -39,7 +39,7 @@ Homepage = "https://github.com/dodopayments/dodopayments-python"
 Repository = "https://github.com/dodopayments/dodopayments-python"
 
 [project.optional-dependencies]
-aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.6"]
+aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.8"]
 
 [tool.rye]
 managed = true
