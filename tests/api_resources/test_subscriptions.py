@@ -65,6 +65,8 @@ class TestSubscriptions:
             metadata={"foo": "string"},
             on_demand={
                 "mandate_only": True,
+                "adaptive_currency_fees_inclusive": True,
+                "product_currency": "AED",
                 "product_price": 0,
             },
             payment_link=True,
@@ -331,7 +333,9 @@ class TestSubscriptions:
         subscription = client.subscriptions.charge(
             subscription_id="subscription_id",
             product_price=0,
+            adaptive_currency_fees_inclusive=True,
             metadata={"foo": "string"},
+            product_currency="AED",
         )
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
 
@@ -416,6 +420,8 @@ class TestAsyncSubscriptions:
             metadata={"foo": "string"},
             on_demand={
                 "mandate_only": True,
+                "adaptive_currency_fees_inclusive": True,
+                "product_currency": "AED",
                 "product_price": 0,
             },
             payment_link=True,
@@ -682,7 +688,9 @@ class TestAsyncSubscriptions:
         subscription = await async_client.subscriptions.charge(
             subscription_id="subscription_id",
             product_price=0,
+            adaptive_currency_fees_inclusive=True,
             metadata={"foo": "string"},
+            product_currency="AED",
         )
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
 

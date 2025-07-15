@@ -388,7 +388,9 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         product_price: int,
+        adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -402,8 +404,15 @@ class SubscriptionsResource(SyncAPIResource):
         Represented in the lowest denomination of the currency (e.g.,
               cents for USD). For example, to charge $1.00, pass `100`.
 
+          adaptive_currency_fees_inclusive: Whether adaptive currency fees should be included in the product_price (true) or
+              added on top (false). This field is ignored if adaptive pricing is not enabled
+              for the business.
+
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
+
+          product_currency: Optional currency of the product price. If not specified, defaults to the
+              currency of the product.
 
           extra_headers: Send extra headers
 
@@ -420,7 +429,9 @@ class SubscriptionsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "product_price": product_price,
+                    "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "metadata": metadata,
+                    "product_currency": product_currency,
                 },
                 subscription_charge_params.SubscriptionChargeParams,
             ),
@@ -778,7 +789,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         product_price: int,
+        adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -792,8 +805,15 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         Represented in the lowest denomination of the currency (e.g.,
               cents for USD). For example, to charge $1.00, pass `100`.
 
+          adaptive_currency_fees_inclusive: Whether adaptive currency fees should be included in the product_price (true) or
+              added on top (false). This field is ignored if adaptive pricing is not enabled
+              for the business.
+
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
+
+          product_currency: Optional currency of the product price. If not specified, defaults to the
+              currency of the product.
 
           extra_headers: Send extra headers
 
@@ -810,7 +830,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "product_price": product_price,
+                    "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "metadata": metadata,
+                    "product_currency": product_currency,
                 },
                 subscription_charge_params.SubscriptionChargeParams,
             ),
