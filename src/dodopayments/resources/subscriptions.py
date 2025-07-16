@@ -391,6 +391,7 @@ class SubscriptionsResource(SyncAPIResource):
         adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        product_description: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,6 +415,9 @@ class SubscriptionsResource(SyncAPIResource):
           product_currency: Optional currency of the product price. If not specified, defaults to the
               currency of the product.
 
+          product_description: Optional product description override for billing and line items. If not
+              specified, the stored description of the product will be used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -432,6 +436,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "metadata": metadata,
                     "product_currency": product_currency,
+                    "product_description": product_description,
                 },
                 subscription_charge_params.SubscriptionChargeParams,
             ),
@@ -792,6 +797,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        product_description: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -815,6 +821,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           product_currency: Optional currency of the product price. If not specified, defaults to the
               currency of the product.
 
+          product_description: Optional product description override for billing and line items. If not
+              specified, the stored description of the product will be used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -833,6 +842,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "metadata": metadata,
                     "product_currency": product_currency,
+                    "product_description": product_description,
                 },
                 subscription_charge_params.SubscriptionChargeParams,
             ),

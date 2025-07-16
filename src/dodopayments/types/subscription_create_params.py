@@ -122,6 +122,12 @@ class OnDemand(TypedDict, total=False):
     If not specified, defaults to the currency of the product.
     """
 
+    product_description: Optional[str]
+    """
+    Optional product description override for billing and line items. If not
+    specified, the stored description of the product will be used.
+    """
+
     product_price: Optional[int]
     """
     Product price for the initial charge to customer If not specified the stored
