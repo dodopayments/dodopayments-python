@@ -67,6 +67,7 @@ class TestSubscriptions:
                 "mandate_only": True,
                 "adaptive_currency_fees_inclusive": True,
                 "product_currency": "AED",
+                "product_description": "product_description",
                 "product_price": 0,
             },
             payment_link=True,
@@ -336,6 +337,7 @@ class TestSubscriptions:
             adaptive_currency_fees_inclusive=True,
             metadata={"foo": "string"},
             product_currency="AED",
+            product_description="product_description",
         )
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
 
@@ -422,6 +424,7 @@ class TestAsyncSubscriptions:
                 "mandate_only": True,
                 "adaptive_currency_fees_inclusive": True,
                 "product_currency": "AED",
+                "product_description": "product_description",
                 "product_price": 0,
             },
             payment_link=True,
@@ -691,6 +694,7 @@ class TestAsyncSubscriptions:
             adaptive_currency_fees_inclusive=True,
             metadata={"foo": "string"},
             product_currency="AED",
+            product_description="product_description",
         )
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
 
