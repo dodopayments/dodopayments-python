@@ -17,11 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..types.brand import Brand
 from .._base_client import make_request_options
 from ..types.brand_list_response import BrandListResponse
-from ..types.brand_create_response import BrandCreateResponse
-from ..types.brand_update_response import BrandUpdateResponse
-from ..types.brand_retrieve_response import BrandRetrieveResponse
 from ..types.brand_update_images_response import BrandUpdateImagesResponse
 
 __all__ = ["BrandsResource", "AsyncBrandsResource"]
@@ -61,7 +59,7 @@ class BrandsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandCreateResponse:
+    ) -> Brand:
         """
         Args:
           extra_headers: Send extra headers
@@ -87,7 +85,7 @@ class BrandsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandCreateResponse,
+            cast_to=Brand,
         )
 
     def retrieve(
@@ -100,7 +98,7 @@ class BrandsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandRetrieveResponse:
+    ) -> Brand:
         """
         Thin handler just calls `get_brand` and wraps in `Json(...)`
 
@@ -120,7 +118,7 @@ class BrandsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandRetrieveResponse,
+            cast_to=Brand,
         )
 
     def update(
@@ -137,7 +135,7 @@ class BrandsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandUpdateResponse:
+    ) -> Brand:
         """
         Args:
           image_id: The UUID you got back from the presigned‐upload call
@@ -166,7 +164,7 @@ class BrandsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandUpdateResponse,
+            cast_to=Brand,
         )
 
     def list(
@@ -253,7 +251,7 @@ class AsyncBrandsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandCreateResponse:
+    ) -> Brand:
         """
         Args:
           extra_headers: Send extra headers
@@ -279,7 +277,7 @@ class AsyncBrandsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandCreateResponse,
+            cast_to=Brand,
         )
 
     async def retrieve(
@@ -292,7 +290,7 @@ class AsyncBrandsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandRetrieveResponse:
+    ) -> Brand:
         """
         Thin handler just calls `get_brand` and wraps in `Json(...)`
 
@@ -312,7 +310,7 @@ class AsyncBrandsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandRetrieveResponse,
+            cast_to=Brand,
         )
 
     async def update(
@@ -329,7 +327,7 @@ class AsyncBrandsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandUpdateResponse:
+    ) -> Brand:
         """
         Args:
           image_id: The UUID you got back from the presigned‐upload call
@@ -358,7 +356,7 @@ class AsyncBrandsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandUpdateResponse,
+            cast_to=Brand,
         )
 
     async def list(

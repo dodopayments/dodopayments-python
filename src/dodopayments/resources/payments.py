@@ -23,6 +23,7 @@ from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumber
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.payment import Payment
 from ..types.currency import Currency
+from ..types.payment_method_types import PaymentMethodTypes
 from ..types.billing_address_param import BillingAddressParam
 from ..types.payment_list_response import PaymentListResponse
 from ..types.customer_request_param import CustomerRequestParam
@@ -59,31 +60,7 @@ class PaymentsResource(SyncAPIResource):
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
         product_cart: Iterable[OneTimeProductCartItemParam],
-        allowed_payment_method_types: Optional[
-            List[
-                Literal[
-                    "credit",
-                    "debit",
-                    "upi_collect",
-                    "upi_intent",
-                    "apple_pay",
-                    "cashapp",
-                    "google_pay",
-                    "multibanco",
-                    "bancontact_card",
-                    "eps",
-                    "ideal",
-                    "przelewy24",
-                    "affirm",
-                    "klarna",
-                    "sepa",
-                    "ach",
-                    "amazon_pay",
-                    "afterpay_clearpay",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | NotGiven = NOT_GIVEN,
         billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -334,31 +311,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
         product_cart: Iterable[OneTimeProductCartItemParam],
-        allowed_payment_method_types: Optional[
-            List[
-                Literal[
-                    "credit",
-                    "debit",
-                    "upi_collect",
-                    "upi_intent",
-                    "apple_pay",
-                    "cashapp",
-                    "google_pay",
-                    "multibanco",
-                    "bancontact_card",
-                    "eps",
-                    "ideal",
-                    "przelewy24",
-                    "affirm",
-                    "klarna",
-                    "sepa",
-                    "ach",
-                    "amazon_pay",
-                    "afterpay_clearpay",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | NotGiven = NOT_GIVEN,
         billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

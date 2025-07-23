@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 from typing import Dict, List, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 from .currency import Currency
+from .attach_addon_param import AttachAddonParam
+from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
 
-__all__ = ["SubscriptionCreateParams", "Addon", "OnDemand"]
+__all__ = ["SubscriptionCreateParams", "OnDemand"]
 
 
 class SubscriptionCreateParams(TypedDict, total=False):
@@ -25,33 +27,10 @@ class SubscriptionCreateParams(TypedDict, total=False):
     quantity: Required[int]
     """Number of units to subscribe for. Must be at least 1."""
 
-    addons: Optional[Iterable[Addon]]
+    addons: Optional[Iterable[AttachAddonParam]]
     """Attach addons to this subscription"""
 
-    allowed_payment_method_types: Optional[
-        List[
-            Literal[
-                "credit",
-                "debit",
-                "upi_collect",
-                "upi_intent",
-                "apple_pay",
-                "cashapp",
-                "google_pay",
-                "multibanco",
-                "bancontact_card",
-                "eps",
-                "ideal",
-                "przelewy24",
-                "affirm",
-                "klarna",
-                "sepa",
-                "ach",
-                "amazon_pay",
-                "afterpay_clearpay",
-            ]
-        ]
-    ]
+    allowed_payment_method_types: Optional[List[PaymentMethodTypes]]
     """List of payment methods allowed during checkout.
 
     Customers will **never** see payment methods that are **not** in this list.
@@ -94,12 +73,6 @@ class SubscriptionCreateParams(TypedDict, total=False):
     Optional trial period in days If specified, this value overrides the trial
     period set in the product's price Must be between 0 and 10000 days
     """
-
-
-class Addon(TypedDict, total=False):
-    addon_id: Required[str]
-
-    quantity: Required[int]
 
 
 class OnDemand(TypedDict, total=False):
