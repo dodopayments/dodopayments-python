@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .brand import Brand as Brand
 from .price import Price as Price
 from .refund import Refund as Refund
 from .dispute import Dispute as Dispute
@@ -10,6 +11,7 @@ from .product import Product as Product
 from .currency import Currency as Currency
 from .customer import Customer as Customer
 from .discount import Discount as Discount
+from .get_dispute import GetDispute as GetDispute
 from .license_key import LicenseKey as LicenseKey
 from .price_param import PriceParam as PriceParam
 from .country_code import CountryCode as CountryCode
@@ -25,6 +27,7 @@ from .addon_response import AddonResponse as AddonResponse
 from .dispute_status import DisputeStatus as DisputeStatus
 from .billing_address import BillingAddress as BillingAddress
 from .addon_list_params import AddonListParams as AddonListParams
+from .attach_addon_param import AttachAddonParam as AttachAddonParam
 from .license_key_status import LicenseKeyStatus as LicenseKeyStatus
 from .payout_list_params import PayoutListParams as PayoutListParams
 from .refund_list_params import RefundListParams as RefundListParams
@@ -42,11 +45,10 @@ from .customer_list_params import CustomerListParams as CustomerListParams
 from .discount_list_params import DiscountListParams as DiscountListParams
 from .license_key_duration import LicenseKeyDuration as LicenseKeyDuration
 from .license_key_instance import LicenseKeyInstance as LicenseKeyInstance
+from .payment_method_types import PaymentMethodTypes as PaymentMethodTypes
 from .payout_list_response import PayoutListResponse as PayoutListResponse
 from .refund_create_params import RefundCreateParams as RefundCreateParams
 from .billing_address_param import BillingAddressParam as BillingAddressParam
-from .brand_create_response import BrandCreateResponse as BrandCreateResponse
-from .brand_update_response import BrandUpdateResponse as BrandUpdateResponse
 from .dispute_list_response import DisputeListResponse as DisputeListResponse
 from .payment_create_params import PaymentCreateParams as PaymentCreateParams
 from .payment_list_response import PaymentListResponse as PaymentListResponse
@@ -58,7 +60,6 @@ from .customer_request_param import CustomerRequestParam as CustomerRequestParam
 from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
 from .discount_create_params import DiscountCreateParams as DiscountCreateParams
 from .discount_update_params import DiscountUpdateParams as DiscountUpdateParams
-from .brand_retrieve_response import BrandRetrieveResponse as BrandRetrieveResponse
 from .customer_portal_session import CustomerPortalSession as CustomerPortalSession
 from .license_activate_params import LicenseActivateParams as LicenseActivateParams
 from .license_key_list_params import LicenseKeyListParams as LicenseKeyListParams
@@ -68,7 +69,6 @@ from .addon_cart_response_item import AddonCartResponseItem as AddonCartResponse
 from .customer_limited_details import CustomerLimitedDetails as CustomerLimitedDetails
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
 from .create_new_customer_param import CreateNewCustomerParam as CreateNewCustomerParam
-from .dispute_retrieve_response import DisputeRetrieveResponse as DisputeRetrieveResponse
 from .license_deactivate_params import LicenseDeactivateParams as LicenseDeactivateParams
 from .license_key_update_params import LicenseKeyUpdateParams as LicenseKeyUpdateParams
 from .license_validate_response import LicenseValidateResponse as LicenseValidateResponse

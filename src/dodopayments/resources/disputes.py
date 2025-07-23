@@ -21,8 +21,8 @@ from .._response import (
 )
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.get_dispute import GetDispute
 from ..types.dispute_list_response import DisputeListResponse
-from ..types.dispute_retrieve_response import DisputeRetrieveResponse
 
 __all__ = ["DisputesResource", "AsyncDisputesResource"]
 
@@ -57,7 +57,7 @@ class DisputesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DisputeRetrieveResponse:
+    ) -> GetDispute:
         """
         Args:
           extra_headers: Send extra headers
@@ -75,7 +75,7 @@ class DisputesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DisputeRetrieveResponse,
+            cast_to=GetDispute,
         )
 
     def list(
@@ -183,7 +183,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DisputeRetrieveResponse:
+    ) -> GetDispute:
         """
         Args:
           extra_headers: Send extra headers
@@ -201,7 +201,7 @@ class AsyncDisputesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DisputeRetrieveResponse,
+            cast_to=GetDispute,
         )
 
     def list(
