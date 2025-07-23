@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["BrandCreateResponse"]
+__all__ = ["Brand"]
 
 
-class BrandCreateResponse(BaseModel):
+class Brand(BaseModel):
     brand_id: str
 
     business_id: str

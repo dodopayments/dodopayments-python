@@ -12,6 +12,7 @@ from dodopayments.types import (
     IntentStatus,
     OneTimeProductCartItem,
     Payment,
+    PaymentMethodTypes,
     PaymentCreateResponse,
     PaymentListResponse,
     PaymentRetrieveLineItemsResponse,
@@ -32,6 +33,7 @@ Types:
 ```python
 from dodopayments.types import (
     AddonCartResponseItem,
+    AttachAddon,
     Subscription,
     SubscriptionStatus,
     TimeInterval,
@@ -140,18 +142,12 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import (
-    Dispute,
-    DisputeStage,
-    DisputeStatus,
-    DisputeRetrieveResponse,
-    DisputeListResponse,
-)
+from dodopayments.types import Dispute, DisputeStage, DisputeStatus, GetDispute, DisputeListResponse
 ```
 
 Methods:
 
-- <code title="get /disputes/{dispute_id}">client.disputes.<a href="./src/dodopayments/resources/disputes.py">retrieve</a>(dispute_id) -> <a href="./src/dodopayments/types/dispute_retrieve_response.py">DisputeRetrieveResponse</a></code>
+- <code title="get /disputes/{dispute_id}">client.disputes.<a href="./src/dodopayments/resources/disputes.py">retrieve</a>(dispute_id) -> <a href="./src/dodopayments/types/get_dispute.py">GetDispute</a></code>
 - <code title="get /disputes">client.disputes.<a href="./src/dodopayments/resources/disputes.py">list</a>(\*\*<a href="src/dodopayments/types/dispute_list_params.py">params</a>) -> <a href="./src/dodopayments/types/dispute_list_response.py">SyncDefaultPageNumberPagination[DisputeListResponse]</a></code>
 
 # Payouts
@@ -269,19 +265,13 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import (
-    BrandCreateResponse,
-    BrandRetrieveResponse,
-    BrandUpdateResponse,
-    BrandListResponse,
-    BrandUpdateImagesResponse,
-)
+from dodopayments.types import Brand, BrandListResponse, BrandUpdateImagesResponse
 ```
 
 Methods:
 
-- <code title="post /brands">client.brands.<a href="./src/dodopayments/resources/brands.py">create</a>(\*\*<a href="src/dodopayments/types/brand_create_params.py">params</a>) -> <a href="./src/dodopayments/types/brand_create_response.py">BrandCreateResponse</a></code>
-- <code title="get /brands/{id}">client.brands.<a href="./src/dodopayments/resources/brands.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/brand_retrieve_response.py">BrandRetrieveResponse</a></code>
-- <code title="patch /brands/{id}">client.brands.<a href="./src/dodopayments/resources/brands.py">update</a>(id, \*\*<a href="src/dodopayments/types/brand_update_params.py">params</a>) -> <a href="./src/dodopayments/types/brand_update_response.py">BrandUpdateResponse</a></code>
+- <code title="post /brands">client.brands.<a href="./src/dodopayments/resources/brands.py">create</a>(\*\*<a href="src/dodopayments/types/brand_create_params.py">params</a>) -> <a href="./src/dodopayments/types/brand.py">Brand</a></code>
+- <code title="get /brands/{id}">client.brands.<a href="./src/dodopayments/resources/brands.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/brand.py">Brand</a></code>
+- <code title="patch /brands/{id}">client.brands.<a href="./src/dodopayments/resources/brands.py">update</a>(id, \*\*<a href="src/dodopayments/types/brand_update_params.py">params</a>) -> <a href="./src/dodopayments/types/brand.py">Brand</a></code>
 - <code title="get /brands">client.brands.<a href="./src/dodopayments/resources/brands.py">list</a>() -> <a href="./src/dodopayments/types/brand_list_response.py">BrandListResponse</a></code>
 - <code title="put /brands/{id}/images">client.brands.<a href="./src/dodopayments/resources/brands.py">update_images</a>(id) -> <a href="./src/dodopayments/types/brand_update_images_response.py">BrandUpdateImagesResponse</a></code>

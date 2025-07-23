@@ -8,10 +8,10 @@ from .dispute_stage import DisputeStage
 from .dispute_status import DisputeStatus
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["DisputeRetrieveResponse"]
+__all__ = ["GetDispute"]
 
 
-class DisputeRetrieveResponse(BaseModel):
+class GetDispute(BaseModel):
     amount: str
     """
     The amount involved in the dispute, represented as a string to accommodate
