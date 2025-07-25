@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.43.1 (2025-07-25)
+
+Full Changelog: [v1.43.0...v1.43.1](https://github.com/dodopayments/dodopayments-python/compare/v1.43.0...v1.43.1)
+
+### Chores
+
+* **project:** add settings file for vscode ([dcc13b8](https://github.com/dodopayments/dodopayments-python/commit/dcc13b814a78d0147d9d621aca865edd779a8b31))
+
 ## 1.43.0 (2025-07-23)
 
 Full Changelog: [v1.42.0...v1.43.0](https://github.com/dodopayments/dodopayments-python/compare/v1.42.0...v1.43.0)
