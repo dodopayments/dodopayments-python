@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.44.0 (2025-07-31)
+
+Full Changelog: [v1.43.1...v1.44.0](https://github.com/dodopayments/dodopayments-python/compare/v1.43.1...v1.44.0)
+
+### Features
+
+* **client:** support file upload requests ([4ebfcb1](https://github.com/dodopayments/dodopayments-python/commit/4ebfcb160f5ecb4c8f86e46d5767395344614165))
+
 ## 1.43.1 (2025-07-25)
 
 Full Changelog: [v1.43.0...v1.43.1](https://github.com/dodopayments/dodopayments-python/compare/v1.43.0...v1.43.1)
