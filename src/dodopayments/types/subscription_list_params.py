@@ -30,5 +30,5 @@ class SubscriptionListParams(TypedDict, total=False):
     page_size: int
     """Page size default is 10 max is 100"""
 
-    status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
+    status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"]
     """Filter by status"""

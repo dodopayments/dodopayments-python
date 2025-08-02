@@ -250,8 +250,7 @@ class SubscriptionsResource(SyncAPIResource):
         customer_id: str | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
-        | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -312,7 +311,7 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately", "full_immediately"],
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -632,8 +631,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer_id: str | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
-        | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -694,7 +692,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately", "full_immediately"],
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

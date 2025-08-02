@@ -22,7 +22,6 @@ from .dispute_stage import DisputeStage as DisputeStage
 from .intent_status import IntentStatus as IntentStatus
 from .refund_status import RefundStatus as RefundStatus
 from .time_interval import TimeInterval as TimeInterval
-from .webhook_event import WebhookEvent as WebhookEvent
 from .addon_response import AddonResponse as AddonResponse
 from .dispute_status import DisputeStatus as DisputeStatus
 from .billing_address import BillingAddress as BillingAddress
@@ -72,7 +71,6 @@ from .create_new_customer_param import CreateNewCustomerParam as CreateNewCustom
 from .license_deactivate_params import LicenseDeactivateParams as LicenseDeactivateParams
 from .license_key_update_params import LicenseKeyUpdateParams as LicenseKeyUpdateParams
 from .license_validate_response import LicenseValidateResponse as LicenseValidateResponse
-from .webhook_event_list_params import WebhookEventListParams as WebhookEventListParams
 from .license_key_duration_param import LicenseKeyDurationParam as LicenseKeyDurationParam
 from .one_time_product_cart_item import OneTimeProductCartItem as OneTimeProductCartItem
 from .subscription_charge_params import SubscriptionChargeParams as SubscriptionChargeParams

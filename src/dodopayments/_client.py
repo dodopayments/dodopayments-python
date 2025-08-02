@@ -33,7 +33,6 @@ from .resources import (
     discounts,
     license_keys,
     subscriptions,
-    webhook_events,
     license_key_instances,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -76,7 +75,6 @@ class DodoPayments(SyncAPIClient):
     refunds: refunds.RefundsResource
     disputes: disputes.DisputesResource
     payouts: payouts.PayoutsResource
-    webhook_events: webhook_events.WebhookEventsResource
     products: products.ProductsResource
     misc: misc.MiscResource
     discounts: discounts.DiscountsResource
@@ -173,7 +171,6 @@ class DodoPayments(SyncAPIClient):
         self.refunds = refunds.RefundsResource(self)
         self.disputes = disputes.DisputesResource(self)
         self.payouts = payouts.PayoutsResource(self)
-        self.webhook_events = webhook_events.WebhookEventsResource(self)
         self.products = products.ProductsResource(self)
         self.misc = misc.MiscResource(self)
         self.discounts = discounts.DiscountsResource(self)
@@ -300,7 +297,6 @@ class AsyncDodoPayments(AsyncAPIClient):
     refunds: refunds.AsyncRefundsResource
     disputes: disputes.AsyncDisputesResource
     payouts: payouts.AsyncPayoutsResource
-    webhook_events: webhook_events.AsyncWebhookEventsResource
     products: products.AsyncProductsResource
     misc: misc.AsyncMiscResource
     discounts: discounts.AsyncDiscountsResource
@@ -397,7 +393,6 @@ class AsyncDodoPayments(AsyncAPIClient):
         self.refunds = refunds.AsyncRefundsResource(self)
         self.disputes = disputes.AsyncDisputesResource(self)
         self.payouts = payouts.AsyncPayoutsResource(self)
-        self.webhook_events = webhook_events.AsyncWebhookEventsResource(self)
         self.products = products.AsyncProductsResource(self)
         self.misc = misc.AsyncMiscResource(self)
         self.discounts = discounts.AsyncDiscountsResource(self)
@@ -527,7 +522,6 @@ class DodoPaymentsWithRawResponse:
         self.refunds = refunds.RefundsResourceWithRawResponse(client.refunds)
         self.disputes = disputes.DisputesResourceWithRawResponse(client.disputes)
         self.payouts = payouts.PayoutsResourceWithRawResponse(client.payouts)
-        self.webhook_events = webhook_events.WebhookEventsResourceWithRawResponse(client.webhook_events)
         self.products = products.ProductsResourceWithRawResponse(client.products)
         self.misc = misc.MiscResourceWithRawResponse(client.misc)
         self.discounts = discounts.DiscountsResourceWithRawResponse(client.discounts)
@@ -549,7 +543,6 @@ class AsyncDodoPaymentsWithRawResponse:
         self.refunds = refunds.AsyncRefundsResourceWithRawResponse(client.refunds)
         self.disputes = disputes.AsyncDisputesResourceWithRawResponse(client.disputes)
         self.payouts = payouts.AsyncPayoutsResourceWithRawResponse(client.payouts)
-        self.webhook_events = webhook_events.AsyncWebhookEventsResourceWithRawResponse(client.webhook_events)
         self.products = products.AsyncProductsResourceWithRawResponse(client.products)
         self.misc = misc.AsyncMiscResourceWithRawResponse(client.misc)
         self.discounts = discounts.AsyncDiscountsResourceWithRawResponse(client.discounts)
@@ -571,7 +564,6 @@ class DodoPaymentsWithStreamedResponse:
         self.refunds = refunds.RefundsResourceWithStreamingResponse(client.refunds)
         self.disputes = disputes.DisputesResourceWithStreamingResponse(client.disputes)
         self.payouts = payouts.PayoutsResourceWithStreamingResponse(client.payouts)
-        self.webhook_events = webhook_events.WebhookEventsResourceWithStreamingResponse(client.webhook_events)
         self.products = products.ProductsResourceWithStreamingResponse(client.products)
         self.misc = misc.MiscResourceWithStreamingResponse(client.misc)
         self.discounts = discounts.DiscountsResourceWithStreamingResponse(client.discounts)
@@ -593,7 +585,6 @@ class AsyncDodoPaymentsWithStreamedResponse:
         self.refunds = refunds.AsyncRefundsResourceWithStreamingResponse(client.refunds)
         self.disputes = disputes.AsyncDisputesResourceWithStreamingResponse(client.disputes)
         self.payouts = payouts.AsyncPayoutsResourceWithStreamingResponse(client.payouts)
-        self.webhook_events = webhook_events.AsyncWebhookEventsResourceWithStreamingResponse(client.webhook_events)
         self.products = products.AsyncProductsResourceWithStreamingResponse(client.products)
         self.misc = misc.AsyncMiscResourceWithStreamingResponse(client.misc)
         self.discounts = discounts.AsyncDiscountsResourceWithStreamingResponse(client.discounts)
