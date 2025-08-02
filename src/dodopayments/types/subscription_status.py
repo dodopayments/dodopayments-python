@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["SubscriptionStatus"]
 
-SubscriptionStatus: TypeAlias = Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
+SubscriptionStatus: TypeAlias = Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"]
