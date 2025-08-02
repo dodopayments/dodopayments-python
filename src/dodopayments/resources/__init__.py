@@ -112,14 +112,6 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
-from .webhook_events import (
-    WebhookEventsResource,
-    AsyncWebhookEventsResource,
-    WebhookEventsResourceWithRawResponse,
-    AsyncWebhookEventsResourceWithRawResponse,
-    WebhookEventsResourceWithStreamingResponse,
-    AsyncWebhookEventsResourceWithStreamingResponse,
-)
 from .license_key_instances import (
     LicenseKeyInstancesResource,
     AsyncLicenseKeyInstancesResource,
@@ -190,12 +182,6 @@ __all__ = [
     "AsyncPayoutsResourceWithRawResponse",
     "PayoutsResourceWithStreamingResponse",
     "AsyncPayoutsResourceWithStreamingResponse",
-    "WebhookEventsResource",
-    "AsyncWebhookEventsResource",
-    "WebhookEventsResourceWithRawResponse",
-    "AsyncWebhookEventsResourceWithRawResponse",
-    "WebhookEventsResourceWithStreamingResponse",
-    "AsyncWebhookEventsResourceWithStreamingResponse",
     "ProductsResource",
     "AsyncProductsResource",
     "ProductsResourceWithRawResponse",
