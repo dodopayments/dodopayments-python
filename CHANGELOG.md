@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.47.0 (2025-08-11)
+
+Full Changelog: [v1.44.0...v1.47.0](https://github.com/dodopayments/dodopayments-python/compare/v1.44.0...v1.47.0)
+
+### Features
+
+* **api:** updated openapi spec to 1.47.0 ([afc16dd](https://github.com/dodopayments/dodopayments-python/commit/afc16dd0b858b3a7e91287156733fa6b7c4e4572))
+
+
+### Chores
+
+* **internal:** fix ruff target version ([0f496bc](https://github.com/dodopayments/dodopayments-python/commit/0f496bcc9fb01e3ed5568b58d536fefd1e333df7))
+* **internal:** update comment in script ([d40fb67](https://github.com/dodopayments/dodopayments-python/commit/d40fb67d7fa0bea2455969835debcbbb8aa2ab73))
+* update @stainless-api/prism-cli to v5.15.0 ([772b0ca](https://github.com/dodopayments/dodopayments-python/commit/772b0cae7a82a93f2d8e6f45b83ebca6941bd93d))
+
 ## 1.44.0 (2025-08-02)
 
 Full Changelog: [v1.43.1...v1.44.0](https://github.com/dodopayments/dodopayments-python/compare/v1.43.1...v1.44.0)
