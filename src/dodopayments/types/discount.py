@@ -45,5 +45,12 @@ class Discount(BaseModel):
     name: Optional[str] = None
     """Name for the Discount"""
 
+    subscription_cycles: Optional[int] = None
+    """
+    Number of subscription billing cycles this discount is valid for. If not
+    provided, the discount will be applied indefinitely to all recurring payments
+    related to the subscription.
+    """
+
     usage_limit: Optional[int] = None
     """Usage limit for this discount, if any."""

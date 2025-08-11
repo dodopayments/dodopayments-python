@@ -36,6 +36,13 @@ class DiscountUpdateParams(TypedDict, total=False):
     restrictions, send empty array
     """
 
+    subscription_cycles: Optional[int]
+    """
+    Number of subscription billing cycles this discount is valid for. If not
+    provided, the discount will be applied indefinitely to all recurring payments
+    related to the subscription.
+    """
+
     type: Optional[DiscountType]
     """If present, update the discount type."""
 

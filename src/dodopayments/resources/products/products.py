@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 import httpx
 
@@ -80,6 +80,7 @@ class ProductsResource(SyncAPIResource):
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -112,6 +113,8 @@ class ProductsResource(SyncAPIResource):
 
           license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
 
+          metadata: Additional metadata for the product
+
           name: Optional name of the product
 
           extra_headers: Send extra headers
@@ -136,6 +139,7 @@ class ProductsResource(SyncAPIResource):
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
+                    "metadata": metadata,
                     "name": name,
                 },
                 product_create_params.ProductCreateParams,
@@ -190,6 +194,7 @@ class ProductsResource(SyncAPIResource):
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
         tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
@@ -230,6 +235,8 @@ class ProductsResource(SyncAPIResource):
               If `true`, additional fields related to license key (duration, activations
               limit, activation message) become applicable.
 
+          metadata: Additional metadata for the product
+
           name: Name of the product, optional and must be at most 100 characters.
 
           price: Price details of the product.
@@ -260,6 +267,7 @@ class ProductsResource(SyncAPIResource):
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
+                    "metadata": metadata,
                     "name": name,
                     "price": price,
                     "tax_category": tax_category,
@@ -469,6 +477,7 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -501,6 +510,8 @@ class AsyncProductsResource(AsyncAPIResource):
 
           license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
 
+          metadata: Additional metadata for the product
+
           name: Optional name of the product
 
           extra_headers: Send extra headers
@@ -525,6 +536,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
+                    "metadata": metadata,
                     "name": name,
                 },
                 product_create_params.ProductCreateParams,
@@ -579,6 +591,7 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
         license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
         license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
         tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
@@ -619,6 +632,8 @@ class AsyncProductsResource(AsyncAPIResource):
               If `true`, additional fields related to license key (duration, activations
               limit, activation message) become applicable.
 
+          metadata: Additional metadata for the product
+
           name: Name of the product, optional and must be at most 100 characters.
 
           price: Price details of the product.
@@ -649,6 +664,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
+                    "metadata": metadata,
                     "name": name,
                     "price": price,
                     "tax_category": tax_category,

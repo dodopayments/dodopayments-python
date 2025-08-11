@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from .price import Price
@@ -20,6 +20,9 @@ class ProductListResponse(BaseModel):
 
     is_recurring: bool
     """Indicates if the product is recurring (e.g., subscriptions)."""
+
+    metadata: Dict[str, str]
+    """Additional custom data associated with the product"""
 
     product_id: str
     """Unique identifier for the product."""

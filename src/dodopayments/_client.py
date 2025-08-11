@@ -33,6 +33,7 @@ from .resources import (
     discounts,
     license_keys,
     subscriptions,
+    your_webhook_url,
     license_key_instances,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -44,6 +45,7 @@ from ._base_client import (
 )
 from .resources.invoices import invoices
 from .resources.products import products
+from .resources.webhooks import webhooks
 from .resources.customers import customers
 
 __all__ = [
@@ -80,6 +82,8 @@ class DodoPayments(SyncAPIClient):
     discounts: discounts.DiscountsResource
     addons: addons.AddonsResource
     brands: brands.BrandsResource
+    webhooks: webhooks.WebhooksResource
+    your_webhook_url: your_webhook_url.YourWebhookURLResource
     with_raw_response: DodoPaymentsWithRawResponse
     with_streaming_response: DodoPaymentsWithStreamedResponse
 
@@ -176,6 +180,8 @@ class DodoPayments(SyncAPIClient):
         self.discounts = discounts.DiscountsResource(self)
         self.addons = addons.AddonsResource(self)
         self.brands = brands.BrandsResource(self)
+        self.webhooks = webhooks.WebhooksResource(self)
+        self.your_webhook_url = your_webhook_url.YourWebhookURLResource(self)
         self.with_raw_response = DodoPaymentsWithRawResponse(self)
         self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
 
@@ -302,6 +308,8 @@ class AsyncDodoPayments(AsyncAPIClient):
     discounts: discounts.AsyncDiscountsResource
     addons: addons.AsyncAddonsResource
     brands: brands.AsyncBrandsResource
+    webhooks: webhooks.AsyncWebhooksResource
+    your_webhook_url: your_webhook_url.AsyncYourWebhookURLResource
     with_raw_response: AsyncDodoPaymentsWithRawResponse
     with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
 
@@ -398,6 +406,8 @@ class AsyncDodoPayments(AsyncAPIClient):
         self.discounts = discounts.AsyncDiscountsResource(self)
         self.addons = addons.AsyncAddonsResource(self)
         self.brands = brands.AsyncBrandsResource(self)
+        self.webhooks = webhooks.AsyncWebhooksResource(self)
+        self.your_webhook_url = your_webhook_url.AsyncYourWebhookURLResource(self)
         self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
         self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
 
@@ -527,6 +537,8 @@ class DodoPaymentsWithRawResponse:
         self.discounts = discounts.DiscountsResourceWithRawResponse(client.discounts)
         self.addons = addons.AddonsResourceWithRawResponse(client.addons)
         self.brands = brands.BrandsResourceWithRawResponse(client.brands)
+        self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
+        self.your_webhook_url = your_webhook_url.YourWebhookURLResourceWithRawResponse(client.your_webhook_url)
 
 
 class AsyncDodoPaymentsWithRawResponse:
@@ -548,6 +560,8 @@ class AsyncDodoPaymentsWithRawResponse:
         self.discounts = discounts.AsyncDiscountsResourceWithRawResponse(client.discounts)
         self.addons = addons.AsyncAddonsResourceWithRawResponse(client.addons)
         self.brands = brands.AsyncBrandsResourceWithRawResponse(client.brands)
+        self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
+        self.your_webhook_url = your_webhook_url.AsyncYourWebhookURLResourceWithRawResponse(client.your_webhook_url)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -569,6 +583,8 @@ class DodoPaymentsWithStreamedResponse:
         self.discounts = discounts.DiscountsResourceWithStreamingResponse(client.discounts)
         self.addons = addons.AddonsResourceWithStreamingResponse(client.addons)
         self.brands = brands.BrandsResourceWithStreamingResponse(client.brands)
+        self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
+        self.your_webhook_url = your_webhook_url.YourWebhookURLResourceWithStreamingResponse(client.your_webhook_url)
 
 
 class AsyncDodoPaymentsWithStreamedResponse:
@@ -590,6 +606,10 @@ class AsyncDodoPaymentsWithStreamedResponse:
         self.discounts = discounts.AsyncDiscountsResourceWithStreamingResponse(client.discounts)
         self.addons = addons.AsyncAddonsResourceWithStreamingResponse(client.addons)
         self.brands = brands.AsyncBrandsResourceWithStreamingResponse(client.brands)
+        self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
+        self.your_webhook_url = your_webhook_url.AsyncYourWebhookURLResourceWithStreamingResponse(
+            client.your_webhook_url
+        )
 
 
 Client = DodoPayments

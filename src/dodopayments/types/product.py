@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .price import Price
@@ -44,6 +44,9 @@ class Product(BaseModel):
 
     license_key_enabled: bool
     """Indicates whether the product requires a license key."""
+
+    metadata: Dict[str, str]
+    """Additional custom data associated with the product"""
 
     price: Price
     """Pricing information for the product."""

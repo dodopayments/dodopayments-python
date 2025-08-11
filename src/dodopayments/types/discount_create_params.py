@@ -42,5 +42,12 @@ class DiscountCreateParams(TypedDict, total=False):
     restricted_to: Optional[List[str]]
     """List of product IDs to restrict usage (if any)."""
 
+    subscription_cycles: Optional[int]
+    """
+    Number of subscription billing cycles this discount is valid for. If not
+    provided, the discount will be applied indefinitely to all recurring payments
+    related to the subscription.
+    """
+
     usage_limit: Optional[int]
     """How many times this discount can be used (if any). Must be >= 1 if provided."""
