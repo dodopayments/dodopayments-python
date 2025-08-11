@@ -64,6 +64,7 @@ class TestProducts:
                 "interval": "Day",
             },
             license_key_enabled=True,
+            metadata={"foo": "string"},
             name="name",
         )
         assert_matches_type(Product, product, path=["response"])
@@ -171,6 +172,7 @@ class TestProducts:
                 "interval": "Day",
             },
             license_key_enabled=True,
+            metadata={"foo": "string"},
             name="name",
             price={
                 "currency": "AED",
@@ -419,6 +421,7 @@ class TestAsyncProducts:
                 "interval": "Day",
             },
             license_key_enabled=True,
+            metadata={"foo": "string"},
             name="name",
         )
         assert_matches_type(Product, product, path=["response"])
@@ -526,6 +529,7 @@ class TestAsyncProducts:
                 "interval": "Day",
             },
             license_key_enabled=True,
+            metadata={"foo": "string"},
             name="name",
             price={
                 "currency": "AED",

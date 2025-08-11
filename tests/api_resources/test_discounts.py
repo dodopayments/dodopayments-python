@@ -38,6 +38,7 @@ class TestDiscounts:
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             name="name",
             restricted_to=["string"],
+            subscription_cycles=0,
             usage_limit=0,
         )
         assert_matches_type(Discount, discount, path=["response"])
@@ -122,6 +123,7 @@ class TestDiscounts:
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             name="name",
             restricted_to=["string"],
+            subscription_cycles=0,
             type="percentage",
             usage_limit=0,
         )
@@ -252,6 +254,7 @@ class TestAsyncDiscounts:
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             name="name",
             restricted_to=["string"],
+            subscription_cycles=0,
             usage_limit=0,
         )
         assert_matches_type(Discount, discount, path=["response"])
@@ -336,6 +339,7 @@ class TestAsyncDiscounts:
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             name="name",
             restricted_to=["string"],
+            subscription_cycles=0,
             type="percentage",
             usage_limit=0,
         )

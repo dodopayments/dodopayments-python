@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import TypedDict
 
 from .price_param import PriceParam
@@ -54,6 +54,9 @@ class ProductUpdateParams(TypedDict, total=False):
     If `true`, additional fields related to license key (duration, activations
     limit, activation message) become applicable.
     """
+
+    metadata: Optional[Dict[str, str]]
+    """Additional metadata for the product"""
 
     name: Optional[str]
     """Name of the product, optional and must be at most 100 characters."""

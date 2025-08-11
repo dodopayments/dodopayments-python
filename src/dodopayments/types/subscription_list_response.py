@@ -83,5 +83,8 @@ class SubscriptionListResponse(BaseModel):
     cancelled_at: Optional[datetime] = None
     """Cancelled timestamp if the subscription is cancelled"""
 
+    discount_cycles_remaining: Optional[int] = None
+    """Number of remaining discount cycles if discount is applied"""
+
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""
