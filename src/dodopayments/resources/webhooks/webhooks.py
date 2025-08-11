@@ -2,98 +2,101 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
-from datetime import datetime
+from typing import Dict, List, Optional
 
 import httpx
 
-from ..types import DiscountType, discount_list_params, discount_create_params, discount_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from .._utils import maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...types import webhook_list_params, webhook_create_params, webhook_update_params
+from .headers import (
+    HeadersResource,
+    AsyncHeadersResource,
+    HeadersResourceWithRawResponse,
+    AsyncHeadersResourceWithRawResponse,
+    HeadersResourceWithStreamingResponse,
+    AsyncHeadersResourceWithStreamingResponse,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.discount import Discount
-from ..types.discount_type import DiscountType
+from ...pagination import SyncCursorPagePagination, AsyncCursorPagePagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.webhook_event_type import WebhookEventType
+from ...types.webhook_list_response import WebhookListResponse
+from ...types.webhook_create_response import WebhookCreateResponse
+from ...types.webhook_update_response import WebhookUpdateResponse
+from ...types.webhook_retrieve_response import WebhookRetrieveResponse
 
-__all__ = ["DiscountsResource", "AsyncDiscountsResource"]
+__all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
 
-class DiscountsResource(SyncAPIResource):
+class WebhooksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DiscountsResourceWithRawResponse:
+    def headers(self) -> HeadersResource:
+        return HeadersResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> WebhooksResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
         """
-        return DiscountsResourceWithRawResponse(self)
+        return WebhooksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DiscountsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> WebhooksResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
         """
-        return DiscountsResourceWithStreamingResponse(self)
+        return WebhooksResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
-        amount: int,
-        type: DiscountType,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        url: str,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        disabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        filter_types: List[WebhookEventType] | NotGiven = NOT_GIVEN,
+        headers: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        idempotency_key: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        rate_limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Discount:
+    ) -> WebhookCreateResponse:
         """
-        POST /discounts If `code` is omitted or empty, a random 16-char uppercase code
-        is generated.
+        Create a new webhook
 
         Args:
-          amount: The discount amount.
+          url: Url of the webhook
 
-              - If `discount_type` is **not** `percentage`, `amount` is in **USD cents**. For
-                example, `100` means `$1.00`. Only USD is allowed.
-              - If `discount_type` **is** `percentage`, `amount` is in **basis points**. For
-                example, `540` means `5.4%`.
+          description: Filter events to the webhook.
 
-              Must be at least 1.
+              Webhook event will only be sent for events in the list.
 
-          type: The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`).
+          disabled: Create the webhook in a disabled state.
 
-          code: Optionally supply a code (will be uppercased).
+              Default is false
 
-              - Must be at least 3 characters if provided.
-              - If omitted, a random 16-character code is generated.
+          headers: Custom headers to be passed
 
-          expires_at: When the discount expires, if ever.
+          idempotency_key: The request's idempotency key
 
-          restricted_to: List of product IDs to restrict usage (if any).
-
-          subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
-              provided, the discount will be applied indefinitely to all recurring payments
-              related to the subscription.
-
-          usage_limit: How many times this discount can be used (if any). Must be >= 1 if provided.
+          metadata: Metadata to be passed to the webhook Defaut is {}
 
           extra_headers: Send extra headers
 
@@ -104,29 +107,29 @@ class DiscountsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/discounts",
+            "/webhooks",
             body=maybe_transform(
                 {
-                    "amount": amount,
-                    "type": type,
-                    "code": code,
-                    "expires_at": expires_at,
-                    "name": name,
-                    "restricted_to": restricted_to,
-                    "subscription_cycles": subscription_cycles,
-                    "usage_limit": usage_limit,
+                    "url": url,
+                    "description": description,
+                    "disabled": disabled,
+                    "filter_types": filter_types,
+                    "headers": headers,
+                    "idempotency_key": idempotency_key,
+                    "metadata": metadata,
+                    "rate_limit": rate_limit,
                 },
-                discount_create_params.DiscountCreateParams,
+                webhook_create_params.WebhookCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Discount,
+            cast_to=WebhookCreateResponse,
         )
 
     def retrieve(
         self,
-        discount_id: str,
+        webhook_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -134,9 +137,9 @@ class DiscountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Discount:
+    ) -> WebhookRetrieveResponse:
         """
-        GET /discounts/{discount_id}
+        Get a webhook by id
 
         Args:
           extra_headers: Send extra headers
@@ -147,58 +150,50 @@ class DiscountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not discount_id:
-            raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
+        if not webhook_id:
+            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return self._get(
-            f"/discounts/{discount_id}",
+            f"/webhooks/{webhook_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Discount,
+            cast_to=WebhookRetrieveResponse,
         )
 
     def update(
         self,
-        discount_id: str,
+        webhook_id: str,
         *,
-        amount: Optional[int] | NotGiven = NOT_GIVEN,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        disabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        filter_types: Optional[List[WebhookEventType]] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        rate_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        url: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Discount:
+    ) -> WebhookUpdateResponse:
         """
-        PATCH /discounts/{discount_id}
+        Patch a webhook by id
 
         Args:
-          amount:
-              If present, update the discount amount:
+          description: Description of the webhook
 
-              - If `discount_type` is `percentage`, this represents **basis points** (e.g.,
-                `540` = `5.4%`).
-              - Otherwise, this represents **USD cents** (e.g., `100` = `$1.00`).
+          disabled: To Disable the endpoint, set it to true.
 
-              Must be at least 1 if provided.
+          filter_types: Filter events to the endpoint.
 
-          code: If present, update the discount code (uppercase).
+              Webhook event will only be sent for events in the list.
 
-          restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
-              restrictions, send empty array
+          metadata: Metadata
 
-          subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
-              provided, the discount will be applied indefinitely to all recurring payments
-              related to the subscription.
+          rate_limit: Rate limit
 
-          type: If present, update the discount type.
+          url: Url endpoint
 
           extra_headers: Send extra headers
 
@@ -208,48 +203,46 @@ class DiscountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not discount_id:
-            raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
+        if not webhook_id:
+            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return self._patch(
-            f"/discounts/{discount_id}",
+            f"/webhooks/{webhook_id}",
             body=maybe_transform(
                 {
-                    "amount": amount,
-                    "code": code,
-                    "expires_at": expires_at,
-                    "name": name,
-                    "restricted_to": restricted_to,
-                    "subscription_cycles": subscription_cycles,
-                    "type": type,
-                    "usage_limit": usage_limit,
+                    "description": description,
+                    "disabled": disabled,
+                    "filter_types": filter_types,
+                    "metadata": metadata,
+                    "rate_limit": rate_limit,
+                    "url": url,
                 },
-                discount_update_params.DiscountUpdateParams,
+                webhook_update_params.WebhookUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Discount,
+            cast_to=WebhookUpdateResponse,
         )
 
     def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        iterator: Optional[str] | NotGiven = NOT_GIVEN,
+        limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncDefaultPageNumberPagination[Discount]:
+    ) -> SyncCursorPagePagination[WebhookListResponse]:
         """
-        GET /discounts
+        List all webhooks
 
         Args:
-          page_number: Page number (default = 0).
+          iterator: The iterator returned from a prior invocation
 
-          page_size: Page size (default = 10, max = 100).
+          limit: Limit the number of returned items
 
           extra_headers: Send extra headers
 
@@ -260,8 +253,8 @@ class DiscountsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/discounts",
-            page=SyncDefaultPageNumberPagination[Discount],
+            "/webhooks",
+            page=SyncCursorPagePagination[WebhookListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -269,18 +262,18 @@ class DiscountsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "iterator": iterator,
+                        "limit": limit,
                     },
-                    discount_list_params.DiscountListParams,
+                    webhook_list_params.WebhookListParams,
                 ),
             ),
-            model=Discount,
+            model=WebhookListResponse,
         )
 
     def delete(
         self,
-        discount_id: str,
+        webhook_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -290,7 +283,7 @@ class DiscountsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        DELETE /discounts/{discount_id}
+        Delete a webhook by id
 
         Args:
           extra_headers: Send extra headers
@@ -301,11 +294,11 @@ class DiscountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not discount_id:
-            raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
+        if not webhook_id:
+            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/discounts/{discount_id}",
+            f"/webhooks/{webhook_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -313,74 +306,67 @@ class DiscountsResource(SyncAPIResource):
         )
 
 
-class AsyncDiscountsResource(AsyncAPIResource):
+class AsyncWebhooksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDiscountsResourceWithRawResponse:
+    def headers(self) -> AsyncHeadersResource:
+        return AsyncHeadersResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncWebhooksResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncDiscountsResourceWithRawResponse(self)
+        return AsyncWebhooksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDiscountsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncWebhooksResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
         """
-        return AsyncDiscountsResourceWithStreamingResponse(self)
+        return AsyncWebhooksResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
-        amount: int,
-        type: DiscountType,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        url: str,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        disabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        filter_types: List[WebhookEventType] | NotGiven = NOT_GIVEN,
+        headers: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        idempotency_key: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        rate_limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Discount:
+    ) -> WebhookCreateResponse:
         """
-        POST /discounts If `code` is omitted or empty, a random 16-char uppercase code
-        is generated.
+        Create a new webhook
 
         Args:
-          amount: The discount amount.
+          url: Url of the webhook
 
-              - If `discount_type` is **not** `percentage`, `amount` is in **USD cents**. For
-                example, `100` means `$1.00`. Only USD is allowed.
-              - If `discount_type` **is** `percentage`, `amount` is in **basis points**. For
-                example, `540` means `5.4%`.
+          description: Filter events to the webhook.
 
-              Must be at least 1.
+              Webhook event will only be sent for events in the list.
 
-          type: The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`).
+          disabled: Create the webhook in a disabled state.
 
-          code: Optionally supply a code (will be uppercased).
+              Default is false
 
-              - Must be at least 3 characters if provided.
-              - If omitted, a random 16-character code is generated.
+          headers: Custom headers to be passed
 
-          expires_at: When the discount expires, if ever.
+          idempotency_key: The request's idempotency key
 
-          restricted_to: List of product IDs to restrict usage (if any).
-
-          subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
-              provided, the discount will be applied indefinitely to all recurring payments
-              related to the subscription.
-
-          usage_limit: How many times this discount can be used (if any). Must be >= 1 if provided.
+          metadata: Metadata to be passed to the webhook Defaut is {}
 
           extra_headers: Send extra headers
 
@@ -391,29 +377,29 @@ class AsyncDiscountsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/discounts",
+            "/webhooks",
             body=await async_maybe_transform(
                 {
-                    "amount": amount,
-                    "type": type,
-                    "code": code,
-                    "expires_at": expires_at,
-                    "name": name,
-                    "restricted_to": restricted_to,
-                    "subscription_cycles": subscription_cycles,
-                    "usage_limit": usage_limit,
+                    "url": url,
+                    "description": description,
+                    "disabled": disabled,
+                    "filter_types": filter_types,
+                    "headers": headers,
+                    "idempotency_key": idempotency_key,
+                    "metadata": metadata,
+                    "rate_limit": rate_limit,
                 },
-                discount_create_params.DiscountCreateParams,
+                webhook_create_params.WebhookCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Discount,
+            cast_to=WebhookCreateResponse,
         )
 
     async def retrieve(
         self,
-        discount_id: str,
+        webhook_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -421,9 +407,9 @@ class AsyncDiscountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Discount:
+    ) -> WebhookRetrieveResponse:
         """
-        GET /discounts/{discount_id}
+        Get a webhook by id
 
         Args:
           extra_headers: Send extra headers
@@ -434,58 +420,50 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not discount_id:
-            raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
+        if not webhook_id:
+            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return await self._get(
-            f"/discounts/{discount_id}",
+            f"/webhooks/{webhook_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Discount,
+            cast_to=WebhookRetrieveResponse,
         )
 
     async def update(
         self,
-        discount_id: str,
+        webhook_id: str,
         *,
-        amount: Optional[int] | NotGiven = NOT_GIVEN,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        disabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        filter_types: Optional[List[WebhookEventType]] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        rate_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        url: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Discount:
+    ) -> WebhookUpdateResponse:
         """
-        PATCH /discounts/{discount_id}
+        Patch a webhook by id
 
         Args:
-          amount:
-              If present, update the discount amount:
+          description: Description of the webhook
 
-              - If `discount_type` is `percentage`, this represents **basis points** (e.g.,
-                `540` = `5.4%`).
-              - Otherwise, this represents **USD cents** (e.g., `100` = `$1.00`).
+          disabled: To Disable the endpoint, set it to true.
 
-              Must be at least 1 if provided.
+          filter_types: Filter events to the endpoint.
 
-          code: If present, update the discount code (uppercase).
+              Webhook event will only be sent for events in the list.
 
-          restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
-              restrictions, send empty array
+          metadata: Metadata
 
-          subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
-              provided, the discount will be applied indefinitely to all recurring payments
-              related to the subscription.
+          rate_limit: Rate limit
 
-          type: If present, update the discount type.
+          url: Url endpoint
 
           extra_headers: Send extra headers
 
@@ -495,48 +473,46 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not discount_id:
-            raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
+        if not webhook_id:
+            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return await self._patch(
-            f"/discounts/{discount_id}",
+            f"/webhooks/{webhook_id}",
             body=await async_maybe_transform(
                 {
-                    "amount": amount,
-                    "code": code,
-                    "expires_at": expires_at,
-                    "name": name,
-                    "restricted_to": restricted_to,
-                    "subscription_cycles": subscription_cycles,
-                    "type": type,
-                    "usage_limit": usage_limit,
+                    "description": description,
+                    "disabled": disabled,
+                    "filter_types": filter_types,
+                    "metadata": metadata,
+                    "rate_limit": rate_limit,
+                    "url": url,
                 },
-                discount_update_params.DiscountUpdateParams,
+                webhook_update_params.WebhookUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Discount,
+            cast_to=WebhookUpdateResponse,
         )
 
     def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        iterator: Optional[str] | NotGiven = NOT_GIVEN,
+        limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Discount, AsyncDefaultPageNumberPagination[Discount]]:
+    ) -> AsyncPaginator[WebhookListResponse, AsyncCursorPagePagination[WebhookListResponse]]:
         """
-        GET /discounts
+        List all webhooks
 
         Args:
-          page_number: Page number (default = 0).
+          iterator: The iterator returned from a prior invocation
 
-          page_size: Page size (default = 10, max = 100).
+          limit: Limit the number of returned items
 
           extra_headers: Send extra headers
 
@@ -547,8 +523,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/discounts",
-            page=AsyncDefaultPageNumberPagination[Discount],
+            "/webhooks",
+            page=AsyncCursorPagePagination[WebhookListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -556,18 +532,18 @@ class AsyncDiscountsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "iterator": iterator,
+                        "limit": limit,
                     },
-                    discount_list_params.DiscountListParams,
+                    webhook_list_params.WebhookListParams,
                 ),
             ),
-            model=Discount,
+            model=WebhookListResponse,
         )
 
     async def delete(
         self,
-        discount_id: str,
+        webhook_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -577,7 +553,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        DELETE /discounts/{discount_id}
+        Delete a webhook by id
 
         Args:
           extra_headers: Send extra headers
@@ -588,11 +564,11 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not discount_id:
-            raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
+        if not webhook_id:
+            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/discounts/{discount_id}",
+            f"/webhooks/{webhook_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -600,85 +576,101 @@ class AsyncDiscountsResource(AsyncAPIResource):
         )
 
 
-class DiscountsResourceWithRawResponse:
-    def __init__(self, discounts: DiscountsResource) -> None:
-        self._discounts = discounts
+class WebhooksResourceWithRawResponse:
+    def __init__(self, webhooks: WebhooksResource) -> None:
+        self._webhooks = webhooks
 
         self.create = to_raw_response_wrapper(
-            discounts.create,
+            webhooks.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            discounts.retrieve,
+            webhooks.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            discounts.update,
+            webhooks.update,
         )
         self.list = to_raw_response_wrapper(
-            discounts.list,
+            webhooks.list,
         )
         self.delete = to_raw_response_wrapper(
-            discounts.delete,
+            webhooks.delete,
         )
 
+    @cached_property
+    def headers(self) -> HeadersResourceWithRawResponse:
+        return HeadersResourceWithRawResponse(self._webhooks.headers)
 
-class AsyncDiscountsResourceWithRawResponse:
-    def __init__(self, discounts: AsyncDiscountsResource) -> None:
-        self._discounts = discounts
+
+class AsyncWebhooksResourceWithRawResponse:
+    def __init__(self, webhooks: AsyncWebhooksResource) -> None:
+        self._webhooks = webhooks
 
         self.create = async_to_raw_response_wrapper(
-            discounts.create,
+            webhooks.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            discounts.retrieve,
+            webhooks.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            discounts.update,
+            webhooks.update,
         )
         self.list = async_to_raw_response_wrapper(
-            discounts.list,
+            webhooks.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            discounts.delete,
+            webhooks.delete,
         )
 
+    @cached_property
+    def headers(self) -> AsyncHeadersResourceWithRawResponse:
+        return AsyncHeadersResourceWithRawResponse(self._webhooks.headers)
 
-class DiscountsResourceWithStreamingResponse:
-    def __init__(self, discounts: DiscountsResource) -> None:
-        self._discounts = discounts
+
+class WebhooksResourceWithStreamingResponse:
+    def __init__(self, webhooks: WebhooksResource) -> None:
+        self._webhooks = webhooks
 
         self.create = to_streamed_response_wrapper(
-            discounts.create,
+            webhooks.create,
         )
         self.retrieve = to_streamed_response_wrapper(
-            discounts.retrieve,
+            webhooks.retrieve,
         )
         self.update = to_streamed_response_wrapper(
-            discounts.update,
+            webhooks.update,
         )
         self.list = to_streamed_response_wrapper(
-            discounts.list,
+            webhooks.list,
         )
         self.delete = to_streamed_response_wrapper(
-            discounts.delete,
+            webhooks.delete,
         )
 
+    @cached_property
+    def headers(self) -> HeadersResourceWithStreamingResponse:
+        return HeadersResourceWithStreamingResponse(self._webhooks.headers)
 
-class AsyncDiscountsResourceWithStreamingResponse:
-    def __init__(self, discounts: AsyncDiscountsResource) -> None:
-        self._discounts = discounts
+
+class AsyncWebhooksResourceWithStreamingResponse:
+    def __init__(self, webhooks: AsyncWebhooksResource) -> None:
+        self._webhooks = webhooks
 
         self.create = async_to_streamed_response_wrapper(
-            discounts.create,
+            webhooks.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
-            discounts.retrieve,
+            webhooks.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
-            discounts.update,
+            webhooks.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            discounts.list,
+            webhooks.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            discounts.delete,
+            webhooks.delete,
         )
+
+    @cached_property
+    def headers(self) -> AsyncHeadersResourceWithStreamingResponse:
+        return AsyncHeadersResourceWithStreamingResponse(self._webhooks.headers)

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Required, TypedDict
 
 from .price_param import PriceParam
@@ -48,6 +48,9 @@ class ProductCreateParams(TypedDict, total=False):
     """
     When true, generates and sends a license key to your customer. Defaults to false
     """
+
+    metadata: Dict[str, str]
+    """Additional metadata for the product"""
 
     name: Optional[str]
     """Optional name of the product"""
