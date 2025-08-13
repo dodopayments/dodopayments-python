@@ -14,6 +14,7 @@ from dodopayments.types import (
     WebhookCreateResponse,
     WebhookUpdateResponse,
     WebhookRetrieveResponse,
+    WebhookRetrieveSecretResponse,
 )
 from dodopayments.pagination import SyncCursorPagePagination, AsyncCursorPagePagination
 
@@ -228,6 +229,44 @@ class TestWebhooks:
                 "",
             )
 
+    @parametrize
+    def test_method_retrieve_secret(self, client: DodoPayments) -> None:
+        webhook = client.webhooks.retrieve_secret(
+            "webhook_id",
+        )
+        assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_secret(self, client: DodoPayments) -> None:
+        response = client.webhooks.with_raw_response.retrieve_secret(
+            "webhook_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        webhook = response.parse()
+        assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_secret(self, client: DodoPayments) -> None:
+        with client.webhooks.with_streaming_response.retrieve_secret(
+            "webhook_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            webhook = response.parse()
+            assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve_secret(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `webhook_id` but received ''"):
+            client.webhooks.with_raw_response.retrieve_secret(
+                "",
+            )
+
 
 class TestAsyncWebhooks:
     parametrize = pytest.mark.parametrize(
@@ -436,5 +475,43 @@ class TestAsyncWebhooks:
     async def test_path_params_delete(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `webhook_id` but received ''"):
             await async_client.webhooks.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
+    async def test_method_retrieve_secret(self, async_client: AsyncDodoPayments) -> None:
+        webhook = await async_client.webhooks.retrieve_secret(
+            "webhook_id",
+        )
+        assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_secret(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.webhooks.with_raw_response.retrieve_secret(
+            "webhook_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        webhook = await response.parse()
+        assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_secret(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.webhooks.with_streaming_response.retrieve_secret(
+            "webhook_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            webhook = await response.parse()
+            assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve_secret(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `webhook_id` but received ''"):
+            await async_client.webhooks.with_raw_response.retrieve_secret(
                 "",
             )
