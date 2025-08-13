@@ -15,10 +15,6 @@ class WebhookCreateParams(TypedDict, total=False):
     """Url of the webhook"""
 
     description: Optional[str]
-    """Filter events to the webhook.
-
-    Webhook event will only be sent for events in the list.
-    """
 
     disabled: Optional[bool]
     """Create the webhook in a disabled state.
@@ -27,6 +23,10 @@ class WebhookCreateParams(TypedDict, total=False):
     """
 
     filter_types: List[WebhookEventType]
+    """Filter events to the webhook.
+
+    Webhook event will only be sent for events in the list.
+    """
 
     headers: Optional[Dict[str, str]]
     """Custom headers to be passed"""

@@ -179,6 +179,7 @@ class TestSubscriptions:
             cancel_at_next_billing_date=True,
             disable_on_demand={"next_billing_date": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},
+            next_billing_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             status="pending",
             tax_id="tax_id",
         )
@@ -536,6 +537,7 @@ class TestAsyncSubscriptions:
             cancel_at_next_billing_date=True,
             disable_on_demand={"next_billing_date": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},
+            next_billing_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             status="pending",
             tax_id="tax_id",
         )
