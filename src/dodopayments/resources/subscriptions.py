@@ -201,6 +201,7 @@ class SubscriptionsResource(SyncAPIResource):
         cancel_at_next_billing_date: Optional[bool] | NotGiven = NOT_GIVEN,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        next_billing_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
         tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -230,6 +231,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
+                    "next_billing_date": next_billing_date,
                     "status": status,
                     "tax_id": tax_id,
                 },
@@ -582,6 +584,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         cancel_at_next_billing_date: Optional[bool] | NotGiven = NOT_GIVEN,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        next_billing_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
         tax_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -611,6 +614,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
+                    "next_billing_date": next_billing_date,
                     "status": status,
                     "tax_id": tax_id,
                 },

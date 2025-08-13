@@ -19,9 +19,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.license_key import LicenseKey
+from ..types.license_key_list_response import LicenseKeyListResponse
 
 __all__ = ["LicenseKeysResource", "AsyncLicenseKeysResource"]
 
@@ -143,7 +143,7 @@ class LicenseKeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncDefaultPageNumberPagination[LicenseKey]:
+    ) -> LicenseKeyListResponse:
         """
         Args:
           customer_id: Filter by customer ID
@@ -164,9 +164,8 @@ class LicenseKeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/license_keys",
-            page=SyncDefaultPageNumberPagination[LicenseKey],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +182,7 @@ class LicenseKeysResource(SyncAPIResource):
                     license_key_list_params.LicenseKeyListParams,
                 ),
             ),
-            model=LicenseKey,
+            cast_to=LicenseKeyListResponse,
         )
 
 
@@ -290,7 +289,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
             cast_to=LicenseKey,
         )
 
-    def list(
+    async def list(
         self,
         *,
         customer_id: str | NotGiven = NOT_GIVEN,
@@ -304,7 +303,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[LicenseKey, AsyncDefaultPageNumberPagination[LicenseKey]]:
+    ) -> LicenseKeyListResponse:
         """
         Args:
           customer_id: Filter by customer ID
@@ -325,15 +324,14 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/license_keys",
-            page=AsyncDefaultPageNumberPagination[LicenseKey],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "customer_id": customer_id,
                         "page_number": page_number,
@@ -344,7 +342,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
                     license_key_list_params.LicenseKeyListParams,
                 ),
             ),
-            model=LicenseKey,
+            cast_to=LicenseKeyListResponse,
         )
 
 
