@@ -84,13 +84,13 @@ class WebhooksResource(SyncAPIResource):
         Args:
           url: Url of the webhook
 
-          description: Filter events to the webhook.
-
-              Webhook event will only be sent for events in the list.
-
           disabled: Create the webhook in a disabled state.
 
               Default is false
+
+          filter_types: Filter events to the webhook.
+
+              Webhook event will only be sent for events in the list.
 
           headers: Custom headers to be passed
 
@@ -354,13 +354,13 @@ class AsyncWebhooksResource(AsyncAPIResource):
         Args:
           url: Url of the webhook
 
-          description: Filter events to the webhook.
-
-              Webhook event will only be sent for events in the list.
-
           disabled: Create the webhook in a disabled state.
 
               Default is false
+
+          filter_types: Filter events to the webhook.
+
+              Webhook event will only be sent for events in the list.
 
           headers: Custom headers to be passed
 

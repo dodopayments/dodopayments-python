@@ -22,6 +22,8 @@ class SubscriptionUpdateParams(TypedDict, total=False):
 
     metadata: Optional[Dict[str, str]]
 
+    next_billing_date: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+
     status: Optional[SubscriptionStatus]
 
     tax_id: Optional[str]
