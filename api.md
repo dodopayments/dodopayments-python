@@ -282,6 +282,7 @@ from dodopayments.types import (
     WebhookRetrieveResponse,
     WebhookUpdateResponse,
     WebhookListResponse,
+    WebhookRetrieveSecretResponse,
 )
 ```
 
@@ -292,6 +293,7 @@ Methods:
 - <code title="patch /webhooks/{webhook_id}">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">update</a>(webhook_id, \*\*<a href="src/dodopayments/types/webhook_update_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
 - <code title="get /webhooks">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">list</a>(\*\*<a href="src/dodopayments/types/webhook_list_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_list_response.py">SyncCursorPagePagination[WebhookListResponse]</a></code>
 - <code title="delete /webhooks/{webhook_id}">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">delete</a>(webhook_id) -> None</code>
+- <code title="get /webhooks/{webhook_id}/secret">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">retrieve_secret</a>(webhook_id) -> <a href="./src/dodopayments/types/webhook_retrieve_secret_response.py">WebhookRetrieveSecretResponse</a></code>
 
 ## Headers
 
