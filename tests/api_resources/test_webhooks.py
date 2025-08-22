@@ -10,10 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
-    WebhookListResponse,
-    WebhookCreateResponse,
-    WebhookUpdateResponse,
-    WebhookRetrieveResponse,
+    WebhookDetails,
     WebhookRetrieveSecretResponse,
 )
 from dodopayments.pagination import SyncCursorPagePagination, AsyncCursorPagePagination
@@ -29,7 +26,7 @@ class TestWebhooks:
         webhook = client.webhooks.create(
             url="url",
         )
-        assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
@@ -43,7 +40,7 @@ class TestWebhooks:
             metadata={"foo": "string"},
             rate_limit=0,
         )
-        assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
@@ -54,7 +51,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
@@ -65,7 +62,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+            assert_matches_type(WebhookDetails, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +71,7 @@ class TestWebhooks:
         webhook = client.webhooks.retrieve(
             "webhook_id",
         )
-        assert_matches_type(WebhookRetrieveResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
@@ -85,7 +82,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhookRetrieveResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
@@ -96,7 +93,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhookRetrieveResponse, webhook, path=["response"])
+            assert_matches_type(WebhookDetails, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +109,7 @@ class TestWebhooks:
         webhook = client.webhooks.update(
             webhook_id="webhook_id",
         )
-        assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
@@ -125,7 +122,7 @@ class TestWebhooks:
             rate_limit=0,
             url="url",
         )
-        assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
@@ -136,7 +133,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
@@ -147,7 +144,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+            assert_matches_type(WebhookDetails, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +158,7 @@ class TestWebhooks:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         webhook = client.webhooks.list()
-        assert_matches_type(SyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(SyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
@@ -169,7 +166,7 @@ class TestWebhooks:
             iterator="iterator",
             limit=0,
         )
-        assert_matches_type(SyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(SyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
@@ -178,7 +175,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(SyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(SyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
@@ -187,7 +184,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(SyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+            assert_matches_type(SyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,7 +275,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.webhooks.create(
             url="url",
         )
-        assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -292,7 +289,7 @@ class TestAsyncWebhooks:
             metadata={"foo": "string"},
             rate_limit=0,
         )
-        assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -303,7 +300,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -314,7 +311,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhookCreateResponse, webhook, path=["response"])
+            assert_matches_type(WebhookDetails, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -323,7 +320,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.webhooks.retrieve(
             "webhook_id",
         )
-        assert_matches_type(WebhookRetrieveResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
@@ -334,7 +331,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhookRetrieveResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
@@ -345,7 +342,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhookRetrieveResponse, webhook, path=["response"])
+            assert_matches_type(WebhookDetails, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -361,7 +358,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.webhooks.update(
             webhook_id="webhook_id",
         )
-        assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -374,7 +371,7 @@ class TestAsyncWebhooks:
             rate_limit=0,
             url="url",
         )
-        assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
@@ -385,7 +382,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+        assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
@@ -396,7 +393,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhookUpdateResponse, webhook, path=["response"])
+            assert_matches_type(WebhookDetails, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -410,7 +407,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         webhook = await async_client.webhooks.list()
-        assert_matches_type(AsyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(AsyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -418,7 +415,7 @@ class TestAsyncWebhooks:
             iterator="iterator",
             limit=0,
         )
-        assert_matches_type(AsyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(AsyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -427,7 +424,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(AsyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(AsyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -436,7 +433,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(AsyncCursorPagePagination[WebhookListResponse], webhook, path=["response"])
+            assert_matches_type(AsyncCursorPagePagination[WebhookDetails], webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

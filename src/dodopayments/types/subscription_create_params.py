@@ -10,8 +10,9 @@ from .attach_addon_param import AttachAddonParam
 from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
+from .on_demand_subscription_param import OnDemandSubscriptionParam
 
-__all__ = ["SubscriptionCreateParams", "OnDemand"]
+__all__ = ["SubscriptionCreateParams"]
 
 
 class SubscriptionCreateParams(TypedDict, total=False):
@@ -51,7 +52,7 @@ class SubscriptionCreateParams(TypedDict, total=False):
     metadata: Dict[str, str]
     """Additional metadata for the subscription Defaults to empty if not specified"""
 
-    on_demand: Optional[OnDemand]
+    on_demand: Optional[OnDemandSubscriptionParam]
 
     payment_link: Optional[bool]
     """If true, generates a payment link. Defaults to false if not specified."""
@@ -72,38 +73,4 @@ class SubscriptionCreateParams(TypedDict, total=False):
     """
     Optional trial period in days If specified, this value overrides the trial
     period set in the product's price Must be between 0 and 10000 days
-    """
-
-
-class OnDemand(TypedDict, total=False):
-    mandate_only: Required[bool]
-    """
-    If set as True, does not perform any charge and only authorizes payment method
-    details for future use.
-    """
-
-    adaptive_currency_fees_inclusive: Optional[bool]
-    """
-    Whether adaptive currency fees should be included in the product_price (true) or
-    added on top (false). This field is ignored if adaptive pricing is not enabled
-    for the business.
-    """
-
-    product_currency: Optional[Currency]
-    """Optional currency of the product price.
-
-    If not specified, defaults to the currency of the product.
-    """
-
-    product_description: Optional[str]
-    """
-    Optional product description override for billing and line items. If not
-    specified, the stored description of the product will be used.
-    """
-
-    product_price: Optional[int]
-    """
-    Product price for the initial charge to customer If not specified the stored
-    price of the product will be used Represented in the lowest denomination of the
-    currency (e.g., cents for USD). For example, to charge $1.00, pass `100`.
     """

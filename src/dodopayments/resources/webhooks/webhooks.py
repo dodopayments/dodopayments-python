@@ -27,11 +27,8 @@ from ..._response import (
 )
 from ...pagination import SyncCursorPagePagination, AsyncCursorPagePagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.webhook_details import WebhookDetails
 from ...types.webhook_event_type import WebhookEventType
-from ...types.webhook_list_response import WebhookListResponse
-from ...types.webhook_create_response import WebhookCreateResponse
-from ...types.webhook_update_response import WebhookUpdateResponse
-from ...types.webhook_retrieve_response import WebhookRetrieveResponse
 from ...types.webhook_retrieve_secret_response import WebhookRetrieveSecretResponse
 
 __all__ = ["WebhooksResource", "AsyncWebhooksResource"]
@@ -78,7 +75,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookCreateResponse:
+    ) -> WebhookDetails:
         """
         Create a new webhook
 
@@ -125,7 +122,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookCreateResponse,
+            cast_to=WebhookDetails,
         )
 
     def retrieve(
@@ -138,7 +135,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookRetrieveResponse:
+    ) -> WebhookDetails:
         """
         Get a webhook by id
 
@@ -158,7 +155,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookRetrieveResponse,
+            cast_to=WebhookDetails,
         )
 
     def update(
@@ -177,7 +174,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> WebhookDetails:
         """
         Patch a webhook by id
 
@@ -222,7 +219,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookUpdateResponse,
+            cast_to=WebhookDetails,
         )
 
     def list(
@@ -236,7 +233,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagePagination[WebhookListResponse]:
+    ) -> SyncCursorPagePagination[WebhookDetails]:
         """
         List all webhooks
 
@@ -255,7 +252,7 @@ class WebhooksResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/webhooks",
-            page=SyncCursorPagePagination[WebhookListResponse],
+            page=SyncCursorPagePagination[WebhookDetails],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -269,7 +266,7 @@ class WebhooksResource(SyncAPIResource):
                     webhook_list_params.WebhookListParams,
                 ),
             ),
-            model=WebhookListResponse,
+            model=WebhookDetails,
         )
 
     def delete(
@@ -381,7 +378,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookCreateResponse:
+    ) -> WebhookDetails:
         """
         Create a new webhook
 
@@ -428,7 +425,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookCreateResponse,
+            cast_to=WebhookDetails,
         )
 
     async def retrieve(
@@ -441,7 +438,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookRetrieveResponse:
+    ) -> WebhookDetails:
         """
         Get a webhook by id
 
@@ -461,7 +458,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookRetrieveResponse,
+            cast_to=WebhookDetails,
         )
 
     async def update(
@@ -480,7 +477,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> WebhookDetails:
         """
         Patch a webhook by id
 
@@ -525,7 +522,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhookUpdateResponse,
+            cast_to=WebhookDetails,
         )
 
     def list(
@@ -539,7 +536,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WebhookListResponse, AsyncCursorPagePagination[WebhookListResponse]]:
+    ) -> AsyncPaginator[WebhookDetails, AsyncCursorPagePagination[WebhookDetails]]:
         """
         List all webhooks
 
@@ -558,7 +555,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/webhooks",
-            page=AsyncCursorPagePagination[WebhookListResponse],
+            page=AsyncCursorPagePagination[WebhookDetails],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -572,7 +569,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
                     webhook_list_params.WebhookListParams,
                 ),
             ),
-            model=WebhookListResponse,
+            model=WebhookDetails,
         )
 
     async def delete(

@@ -120,13 +120,13 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
-from .your_webhook_url import (
-    YourWebhookURLResource,
-    AsyncYourWebhookURLResource,
-    YourWebhookURLResourceWithRawResponse,
-    AsyncYourWebhookURLResourceWithRawResponse,
-    YourWebhookURLResourceWithStreamingResponse,
-    AsyncYourWebhookURLResourceWithStreamingResponse,
+from .checkout_sessions import (
+    CheckoutSessionsResource,
+    AsyncCheckoutSessionsResource,
+    CheckoutSessionsResourceWithRawResponse,
+    AsyncCheckoutSessionsResourceWithRawResponse,
+    CheckoutSessionsResourceWithStreamingResponse,
+    AsyncCheckoutSessionsResourceWithStreamingResponse,
 )
 from .license_key_instances import (
     LicenseKeyInstancesResource,
@@ -138,6 +138,12 @@ from .license_key_instances import (
 )
 
 __all__ = [
+    "CheckoutSessionsResource",
+    "AsyncCheckoutSessionsResource",
+    "CheckoutSessionsResourceWithRawResponse",
+    "AsyncCheckoutSessionsResourceWithRawResponse",
+    "CheckoutSessionsResourceWithStreamingResponse",
+    "AsyncCheckoutSessionsResourceWithStreamingResponse",
     "PaymentsResource",
     "AsyncPaymentsResource",
     "PaymentsResourceWithRawResponse",
@@ -234,10 +240,4 @@ __all__ = [
     "AsyncWebhooksResourceWithRawResponse",
     "WebhooksResourceWithStreamingResponse",
     "AsyncWebhooksResourceWithStreamingResponse",
-    "YourWebhookURLResource",
-    "AsyncYourWebhookURLResource",
-    "YourWebhookURLResourceWithRawResponse",
-    "AsyncYourWebhookURLResourceWithRawResponse",
-    "YourWebhookURLResourceWithStreamingResponse",
-    "AsyncYourWebhookURLResourceWithStreamingResponse",
 ]
