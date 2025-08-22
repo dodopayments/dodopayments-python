@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.51.0 (2025-08-22)
+
+Full Changelog: [v1.49.0...v1.51.0](https://github.com/dodopayments/dodopayments-python/compare/v1.49.0...v1.51.0)
+
+### Features
+
+* **api:** updated example ([d066c34](https://github.com/dodopayments/dodopayments-python/commit/d066c34600592052a4688ff37b14de7f7002c3c9))
+* **api:** updated openapi spec to v1.51.0 and added checkout sessions ([79855e9](https://github.com/dodopayments/dodopayments-python/commit/79855e96b3157175ba2cfa3662f67b61bc68c160))
+
+
+### Chores
+
+* update github action ([660f3d7](https://github.com/dodopayments/dodopayments-python/commit/660f3d7f30460bf3b971f33981b42fff3c4a636e))
+
 ## 1.49.0 (2025-08-13)
 
 Full Changelog: [v1.47.0...v1.49.0](https://github.com/dodopayments/dodopayments-python/compare/v1.47.0...v1.49.0)
