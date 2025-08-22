@@ -92,3 +92,6 @@ class Subscription(BaseModel):
 
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""
+
+    expires_at: Optional[datetime] = None
+    """Timestamp when the subscription will expire"""

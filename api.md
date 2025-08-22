@@ -1,3 +1,15 @@
+# CheckoutSessions
+
+Types:
+
+```python
+from dodopayments.types import CheckoutSessionRequest, CheckoutSessionResponse
+```
+
+Methods:
+
+- <code title="post /checkouts">client.checkout_sessions.<a href="./src/dodopayments/resources/checkout_sessions.py">create</a>(\*\*<a href="src/dodopayments/types/checkout_session_create_params.py">params</a>) -> <a href="./src/dodopayments/types/checkout_session_response.py">CheckoutSessionResponse</a></code>
+
 # Payments
 
 Types:
@@ -35,6 +47,7 @@ Types:
 from dodopayments.types import (
     AddonCartResponseItem,
     AttachAddon,
+    OnDemandSubscription,
     Subscription,
     SubscriptionStatus,
     TimeInterval,
@@ -277,21 +290,15 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import (
-    WebhookCreateResponse,
-    WebhookRetrieveResponse,
-    WebhookUpdateResponse,
-    WebhookListResponse,
-    WebhookRetrieveSecretResponse,
-)
+from dodopayments.types import WebhookDetails, WebhookRetrieveSecretResponse
 ```
 
 Methods:
 
-- <code title="post /webhooks">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">create</a>(\*\*<a href="src/dodopayments/types/webhook_create_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_create_response.py">WebhookCreateResponse</a></code>
-- <code title="get /webhooks/{webhook_id}">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">retrieve</a>(webhook_id) -> <a href="./src/dodopayments/types/webhook_retrieve_response.py">WebhookRetrieveResponse</a></code>
-- <code title="patch /webhooks/{webhook_id}">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">update</a>(webhook_id, \*\*<a href="src/dodopayments/types/webhook_update_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
-- <code title="get /webhooks">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">list</a>(\*\*<a href="src/dodopayments/types/webhook_list_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_list_response.py">SyncCursorPagePagination[WebhookListResponse]</a></code>
+- <code title="post /webhooks">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">create</a>(\*\*<a href="src/dodopayments/types/webhook_create_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_details.py">WebhookDetails</a></code>
+- <code title="get /webhooks/{webhook_id}">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">retrieve</a>(webhook_id) -> <a href="./src/dodopayments/types/webhook_details.py">WebhookDetails</a></code>
+- <code title="patch /webhooks/{webhook_id}">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">update</a>(webhook_id, \*\*<a href="src/dodopayments/types/webhook_update_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_details.py">WebhookDetails</a></code>
+- <code title="get /webhooks">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">list</a>(\*\*<a href="src/dodopayments/types/webhook_list_params.py">params</a>) -> <a href="./src/dodopayments/types/webhook_details.py">SyncCursorPagePagination[WebhookDetails]</a></code>
 - <code title="delete /webhooks/{webhook_id}">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">delete</a>(webhook_id) -> None</code>
 - <code title="get /webhooks/{webhook_id}/secret">client.webhooks.<a href="./src/dodopayments/resources/webhooks/webhooks.py">retrieve_secret</a>(webhook_id) -> <a href="./src/dodopayments/types/webhook_retrieve_secret_response.py">WebhookRetrieveSecretResponse</a></code>
 
@@ -307,9 +314,3 @@ Methods:
 
 - <code title="get /webhooks/{webhook_id}/headers">client.webhooks.headers.<a href="./src/dodopayments/resources/webhooks/headers.py">retrieve</a>(webhook_id) -> <a href="./src/dodopayments/types/webhooks/header_retrieve_response.py">HeaderRetrieveResponse</a></code>
 - <code title="patch /webhooks/{webhook_id}/headers">client.webhooks.headers.<a href="./src/dodopayments/resources/webhooks/headers.py">update</a>(webhook_id, \*\*<a href="src/dodopayments/types/webhooks/header_update_params.py">params</a>) -> None</code>
-
-# YourWebhookURL
-
-Methods:
-
-- <code title="post /your-webhook-url">client.your_webhook_url.<a href="./src/dodopayments/resources/your_webhook_url.py">create</a>(\*\*<a href="src/dodopayments/types/your_webhook_url_create_params.py">params</a>) -> None</code>
