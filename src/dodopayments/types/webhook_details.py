@@ -4,10 +4,10 @@ from typing import Dict, List, Optional
 
 from .._models import BaseModel
 
-__all__ = ["WebhookUpdateResponse"]
+__all__ = ["WebhookDetails"]
 
 
-class WebhookUpdateResponse(BaseModel):
+class WebhookDetails(BaseModel):
     id: str
     """The webhook's ID."""
 

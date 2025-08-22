@@ -17,6 +17,7 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     billing: Optional[BillingAddressParam]
 
     cancel_at_next_billing_date: Optional[bool]
+    """When set, the subscription will remain active until the end of billing period"""
 
     disable_on_demand: Optional[DisableOnDemand]
 

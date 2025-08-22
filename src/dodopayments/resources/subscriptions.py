@@ -37,6 +37,7 @@ from ..types.payment_method_types import PaymentMethodTypes
 from ..types.billing_address_param import BillingAddressParam
 from ..types.customer_request_param import CustomerRequestParam
 from ..types.subscription_list_response import SubscriptionListResponse
+from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
 
@@ -75,7 +76,7 @@ class SubscriptionsResource(SyncAPIResource):
         billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        on_demand: Optional[subscription_create_params.OnDemand] | NotGiven = NOT_GIVEN,
+        on_demand: Optional[OnDemandSubscriptionParam] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         show_saved_payment_methods: bool | NotGiven = NOT_GIVEN,
@@ -213,6 +214,8 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> Subscription:
         """
         Args:
+          cancel_at_next_billing_date: When set, the subscription will remain active until the end of billing period
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -458,7 +461,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         discount_code: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        on_demand: Optional[subscription_create_params.OnDemand] | NotGiven = NOT_GIVEN,
+        on_demand: Optional[OnDemandSubscriptionParam] | NotGiven = NOT_GIVEN,
         payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
         return_url: Optional[str] | NotGiven = NOT_GIVEN,
         show_saved_payment_methods: bool | NotGiven = NOT_GIVEN,
@@ -596,6 +599,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> Subscription:
         """
         Args:
+          cancel_at_next_billing_date: When set, the subscription will remain active until the end of billing period
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
