@@ -34,15 +34,7 @@ client = DodoPayments(
     environment="test_mode",
 )
 
-payment = client.payments.create(
-    billing={
-        "city": "city",
-        "country": "AF",
-        "state": "state",
-        "street": "street",
-        "zipcode": "zipcode",
-    },
-    customer={"customer_id": "customer_id"},
+checkout_session_response = client.checkout_sessions.create(
     product_cart=[
         {
             "product_id": "product_id",
@@ -50,7 +42,7 @@ payment = client.payments.create(
         }
     ],
 )
-print(payment.payment_id)
+print(checkout_session_response.session_id)
 ```
 
 While you can provide a `bearer_token` keyword argument,
@@ -75,15 +67,7 @@ client = AsyncDodoPayments(
 
 
 async def main() -> None:
-    payment = await client.payments.create(
-        billing={
-            "city": "city",
-            "country": "AF",
-            "state": "state",
-            "street": "street",
-            "zipcode": "zipcode",
-        },
-        customer={"customer_id": "customer_id"},
+    checkout_session_response = await client.checkout_sessions.create(
         product_cart=[
             {
                 "product_id": "product_id",
@@ -91,7 +75,7 @@ async def main() -> None:
             }
         ],
     )
-    print(payment.payment_id)
+    print(checkout_session_response.session_id)
 
 
 asyncio.run(main())
@@ -123,15 +107,7 @@ async def main() -> None:
         bearer_token="My Bearer Token",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        payment = await client.payments.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
+        checkout_session_response = await client.checkout_sessions.create(
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -139,7 +115,7 @@ async def main() -> None:
                 }
             ],
         )
-        print(payment.payment_id)
+        print(checkout_session_response.session_id)
 
 
 asyncio.run(main())
@@ -224,23 +200,16 @@ from dodopayments import DodoPayments
 
 client = DodoPayments()
 
-payment = client.payments.create(
-    billing={
-        "city": "city",
-        "country": "AF",
-        "state": "state",
-        "street": "street",
-        "zipcode": "zipcode",
-    },
-    customer={"customer_id": "customer_id"},
+checkout_session_response = client.checkout_sessions.create(
     product_cart=[
         {
             "product_id": "product_id",
             "quantity": 0,
         }
     ],
+    billing_address={"country": "AF"},
 )
-print(payment.billing)
+print(checkout_session_response.billing_address)
 ```
 
 ## Handling errors
@@ -259,15 +228,7 @@ from dodopayments import DodoPayments
 client = DodoPayments()
 
 try:
-    client.payments.create(
-        billing={
-            "city": "city",
-            "country": "AF",
-            "state": "state",
-            "street": "street",
-            "zipcode": "zipcode",
-        },
-        customer={"customer_id": "customer_id"},
+    client.checkout_sessions.create(
         product_cart=[
             {
                 "product_id": "product_id",
@@ -317,15 +278,7 @@ client = DodoPayments(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).payments.create(
-    billing={
-        "city": "city",
-        "country": "AF",
-        "state": "state",
-        "street": "street",
-        "zipcode": "zipcode",
-    },
-    customer={"customer_id": "customer_id"},
+client.with_options(max_retries=5).checkout_sessions.create(
     product_cart=[
         {
             "product_id": "product_id",
@@ -355,15 +308,7 @@ client = DodoPayments(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).payments.create(
-    billing={
-        "city": "city",
-        "country": "AF",
-        "state": "state",
-        "street": "street",
-        "zipcode": "zipcode",
-    },
-    customer={"customer_id": "customer_id"},
+client.with_options(timeout=5.0).checkout_sessions.create(
     product_cart=[
         {
             "product_id": "product_id",
@@ -411,17 +356,7 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from dodopayments import DodoPayments
 
 client = DodoPayments()
-response = client.payments.with_raw_response.create(
-    billing={
-        "city": "city",
-        "country": "AF",
-        "state": "state",
-        "street": "street",
-        "zipcode": "zipcode",
-    },
-    customer={
-        "customer_id": "customer_id"
-    },
+response = client.checkout_sessions.with_raw_response.create(
     product_cart=[{
         "product_id": "product_id",
         "quantity": 0,
@@ -429,8 +364,8 @@ response = client.payments.with_raw_response.create(
 )
 print(response.headers.get('X-My-Header'))
 
-payment = response.parse()  # get the object that `payments.create()` would have returned
-print(payment.payment_id)
+checkout_session = response.parse()  # get the object that `checkout_sessions.create()` would have returned
+print(checkout_session.session_id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/dodopayments/dodopayments-python/tree/main/src/dodopayments/_response.py) object.
@@ -444,15 +379,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.payments.with_streaming_response.create(
-    billing={
-        "city": "city",
-        "country": "AF",
-        "state": "state",
-        "street": "street",
-        "zipcode": "zipcode",
-    },
-    customer={"customer_id": "customer_id"},
+with client.checkout_sessions.with_streaming_response.create(
     product_cart=[
         {
             "product_id": "product_id",
