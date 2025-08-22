@@ -752,24 +752,16 @@ class TestDodoPayments:
     @mock.patch("dodopayments._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: DodoPayments) -> None:
-        respx_mock.post("/payments").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/checkouts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.payments.with_streaming_response.create(
-                billing={
-                    "city": "city",
-                    "country": "AF",
-                    "state": "state",
-                    "street": "street",
-                    "zipcode": "zipcode",
-                },
-                customer={"customer_id": "customer_id"},
+            client.checkout_sessions.with_streaming_response.create(
                 product_cart=[
                     {
                         "product_id": "product_id",
                         "quantity": 0,
                     }
-                ],
+                ]
             ).__enter__()
 
         assert _get_open_connections(self.client) == 0
@@ -777,24 +769,16 @@ class TestDodoPayments:
     @mock.patch("dodopayments._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: DodoPayments) -> None:
-        respx_mock.post("/payments").mock(return_value=httpx.Response(500))
+        respx_mock.post("/checkouts").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.payments.with_streaming_response.create(
-                billing={
-                    "city": "city",
-                    "country": "AF",
-                    "state": "state",
-                    "street": "street",
-                    "zipcode": "zipcode",
-                },
-                customer={"customer_id": "customer_id"},
+            client.checkout_sessions.with_streaming_response.create(
                 product_cart=[
                     {
                         "product_id": "product_id",
                         "quantity": 0,
                     }
-                ],
+                ]
             ).__enter__()
         assert _get_open_connections(self.client) == 0
 
@@ -822,23 +806,15 @@ class TestDodoPayments:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/payments").mock(side_effect=retry_handler)
+        respx_mock.post("/checkouts").mock(side_effect=retry_handler)
 
-        response = client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
+        response = client.checkout_sessions.with_raw_response.create(
             product_cart=[
                 {
                     "product_id": "product_id",
                     "quantity": 0,
                 }
-            ],
+            ]
         )
 
         assert response.retries_taken == failures_before_success
@@ -861,17 +837,9 @@ class TestDodoPayments:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/payments").mock(side_effect=retry_handler)
+        respx_mock.post("/checkouts").mock(side_effect=retry_handler)
 
-        response = client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
+        response = client.checkout_sessions.with_raw_response.create(
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -900,17 +868,9 @@ class TestDodoPayments:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/payments").mock(side_effect=retry_handler)
+        respx_mock.post("/checkouts").mock(side_effect=retry_handler)
 
-        response = client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
+        response = client.checkout_sessions.with_raw_response.create(
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -1676,24 +1636,16 @@ class TestAsyncDodoPayments:
     async def test_retrying_timeout_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncDodoPayments
     ) -> None:
-        respx_mock.post("/payments").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/checkouts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.payments.with_streaming_response.create(
-                billing={
-                    "city": "city",
-                    "country": "AF",
-                    "state": "state",
-                    "street": "street",
-                    "zipcode": "zipcode",
-                },
-                customer={"customer_id": "customer_id"},
+            await async_client.checkout_sessions.with_streaming_response.create(
                 product_cart=[
                     {
                         "product_id": "product_id",
                         "quantity": 0,
                     }
-                ],
+                ]
             ).__aenter__()
 
         assert _get_open_connections(self.client) == 0
@@ -1703,24 +1655,16 @@ class TestAsyncDodoPayments:
     async def test_retrying_status_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncDodoPayments
     ) -> None:
-        respx_mock.post("/payments").mock(return_value=httpx.Response(500))
+        respx_mock.post("/checkouts").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.payments.with_streaming_response.create(
-                billing={
-                    "city": "city",
-                    "country": "AF",
-                    "state": "state",
-                    "street": "street",
-                    "zipcode": "zipcode",
-                },
-                customer={"customer_id": "customer_id"},
+            await async_client.checkout_sessions.with_streaming_response.create(
                 product_cart=[
                     {
                         "product_id": "product_id",
                         "quantity": 0,
                     }
-                ],
+                ]
             ).__aenter__()
         assert _get_open_connections(self.client) == 0
 
@@ -1749,23 +1693,15 @@ class TestAsyncDodoPayments:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/payments").mock(side_effect=retry_handler)
+        respx_mock.post("/checkouts").mock(side_effect=retry_handler)
 
-        response = await client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
+        response = await client.checkout_sessions.with_raw_response.create(
             product_cart=[
                 {
                     "product_id": "product_id",
                     "quantity": 0,
                 }
-            ],
+            ]
         )
 
         assert response.retries_taken == failures_before_success
@@ -1789,17 +1725,9 @@ class TestAsyncDodoPayments:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/payments").mock(side_effect=retry_handler)
+        respx_mock.post("/checkouts").mock(side_effect=retry_handler)
 
-        response = await client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
+        response = await client.checkout_sessions.with_raw_response.create(
             product_cart=[
                 {
                     "product_id": "product_id",
@@ -1829,17 +1757,9 @@ class TestAsyncDodoPayments:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/payments").mock(side_effect=retry_handler)
+        respx_mock.post("/checkouts").mock(side_effect=retry_handler)
 
-        response = await client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
+        response = await client.checkout_sessions.with_raw_response.create(
             product_cart=[
                 {
                     "product_id": "product_id",
