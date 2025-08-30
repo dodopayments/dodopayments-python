@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.51.1 (2025-08-30)
+
+Full Changelog: [v1.51.0...v1.51.1](https://github.com/dodopayments/dodopayments-python/compare/v1.51.0...v1.51.1)
+
+### Bug Fixes
+
+* avoid newer type syntax ([9480de5](https://github.com/dodopayments/dodopayments-python/commit/9480de5e0192ec77a8536457c3628a0ad386721d))
+
+
+### Chores
+
+* **internal:** add Sequence related utils ([aa4240b](https://github.com/dodopayments/dodopayments-python/commit/aa4240b143433f2f1964440595fa0be5fb14de7c))
+* **internal:** change ci workflow machines ([2dd4020](https://github.com/dodopayments/dodopayments-python/commit/2dd4020d357b4ed6cb6d992340b6869186046282))
+* **internal:** update pyright exclude list ([f6024a4](https://github.com/dodopayments/dodopayments-python/commit/f6024a4956e635c49679d3fa19b4a383e1aec444))
+
 ## 1.51.0 (2025-08-22)
 
 Full Changelog: [v1.49.0...v1.51.0](https://github.com/dodopayments/dodopayments-python/compare/v1.49.0...v1.51.0)
