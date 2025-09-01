@@ -54,6 +54,7 @@ from dodopayments.types import (
     SubscriptionCreateResponse,
     SubscriptionListResponse,
     SubscriptionChargeResponse,
+    SubscriptionRetrieveUsageHistoryResponse,
 )
 ```
 
@@ -65,6 +66,7 @@ Methods:
 - <code title="get /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">list</a>(\*\*<a href="src/dodopayments/types/subscription_list_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_list_response.py">SyncDefaultPageNumberPagination[SubscriptionListResponse]</a></code>
 - <code title="post /subscriptions/{subscription_id}/change-plan">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">change_plan</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_change_plan_params.py">params</a>) -> None</code>
 - <code title="post /subscriptions/{subscription_id}/charge">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">charge</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_charge_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_charge_response.py">SubscriptionChargeResponse</a></code>
+- <code title="get /subscriptions/{subscription_id}/usage-history">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_usage_history</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_retrieve_usage_history_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_retrieve_usage_history_response.py">SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse]</a></code>
 
 # Invoices
 
@@ -73,6 +75,7 @@ Methods:
 Methods:
 
 - <code title="get /invoices/payments/{payment_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve</a>(payment_id) -> BinaryAPIResponse</code>
+- <code title="get /invoices/refunds/{refund_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve_refund</a>(refund_id) -> BinaryAPIResponse</code>
 
 # Licenses
 
@@ -190,6 +193,7 @@ Types:
 
 ```python
 from dodopayments.types import (
+    AddMeterToPrice,
     LicenseKeyDuration,
     Price,
     Product,
@@ -314,3 +318,33 @@ Methods:
 
 - <code title="get /webhooks/{webhook_id}/headers">client.webhooks.headers.<a href="./src/dodopayments/resources/webhooks/headers.py">retrieve</a>(webhook_id) -> <a href="./src/dodopayments/types/webhooks/header_retrieve_response.py">HeaderRetrieveResponse</a></code>
 - <code title="patch /webhooks/{webhook_id}/headers">client.webhooks.headers.<a href="./src/dodopayments/resources/webhooks/headers.py">update</a>(webhook_id, \*\*<a href="src/dodopayments/types/webhooks/header_update_params.py">params</a>) -> None</code>
+
+# UsageEvents
+
+Types:
+
+```python
+from dodopayments.types import Event, EventInput, UsageEventIngestResponse
+```
+
+Methods:
+
+- <code title="get /events/{event_id}">client.usage_events.<a href="./src/dodopayments/resources/usage_events.py">retrieve</a>(event_id) -> <a href="./src/dodopayments/types/event.py">Event</a></code>
+- <code title="get /events">client.usage_events.<a href="./src/dodopayments/resources/usage_events.py">list</a>(\*\*<a href="src/dodopayments/types/usage_event_list_params.py">params</a>) -> <a href="./src/dodopayments/types/event.py">SyncDefaultPageNumberPagination[Event]</a></code>
+- <code title="post /events/ingest">client.usage_events.<a href="./src/dodopayments/resources/usage_events.py">ingest</a>(\*\*<a href="src/dodopayments/types/usage_event_ingest_params.py">params</a>) -> <a href="./src/dodopayments/types/usage_event_ingest_response.py">UsageEventIngestResponse</a></code>
+
+# Meters
+
+Types:
+
+```python
+from dodopayments.types import Meter, MeterAggregation, MeterFilter
+```
+
+Methods:
+
+- <code title="post /meters">client.meters.<a href="./src/dodopayments/resources/meters.py">create</a>(\*\*<a href="src/dodopayments/types/meter_create_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">Meter</a></code>
+- <code title="get /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/meter.py">Meter</a></code>
+- <code title="get /meters">client.meters.<a href="./src/dodopayments/resources/meters.py">list</a>(\*\*<a href="src/dodopayments/types/meter_list_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">SyncDefaultPageNumberPagination[Meter]</a></code>
+- <code title="delete /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters.py">delete</a>(id) -> None</code>
+- <code title="post /meters/{id}/unarchive">client.meters.<a href="./src/dodopayments/resources/meters.py">unarchive</a>(id) -> None</code>

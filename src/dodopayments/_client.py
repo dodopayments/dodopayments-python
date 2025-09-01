@@ -25,6 +25,7 @@ from .resources import (
     misc,
     addons,
     brands,
+    meters,
     payouts,
     refunds,
     disputes,
@@ -32,6 +33,7 @@ from .resources import (
     payments,
     discounts,
     license_keys,
+    usage_events,
     subscriptions,
     checkout_sessions,
     license_key_instances,
@@ -84,6 +86,8 @@ class DodoPayments(SyncAPIClient):
     addons: addons.AddonsResource
     brands: brands.BrandsResource
     webhooks: webhooks.WebhooksResource
+    usage_events: usage_events.UsageEventsResource
+    meters: meters.MetersResource
     with_raw_response: DodoPaymentsWithRawResponse
     with_streaming_response: DodoPaymentsWithStreamedResponse
 
@@ -182,6 +186,8 @@ class DodoPayments(SyncAPIClient):
         self.addons = addons.AddonsResource(self)
         self.brands = brands.BrandsResource(self)
         self.webhooks = webhooks.WebhooksResource(self)
+        self.usage_events = usage_events.UsageEventsResource(self)
+        self.meters = meters.MetersResource(self)
         self.with_raw_response = DodoPaymentsWithRawResponse(self)
         self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
 
@@ -310,6 +316,8 @@ class AsyncDodoPayments(AsyncAPIClient):
     addons: addons.AsyncAddonsResource
     brands: brands.AsyncBrandsResource
     webhooks: webhooks.AsyncWebhooksResource
+    usage_events: usage_events.AsyncUsageEventsResource
+    meters: meters.AsyncMetersResource
     with_raw_response: AsyncDodoPaymentsWithRawResponse
     with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
 
@@ -408,6 +416,8 @@ class AsyncDodoPayments(AsyncAPIClient):
         self.addons = addons.AsyncAddonsResource(self)
         self.brands = brands.AsyncBrandsResource(self)
         self.webhooks = webhooks.AsyncWebhooksResource(self)
+        self.usage_events = usage_events.AsyncUsageEventsResource(self)
+        self.meters = meters.AsyncMetersResource(self)
         self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
         self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
 
@@ -539,6 +549,8 @@ class DodoPaymentsWithRawResponse:
         self.addons = addons.AddonsResourceWithRawResponse(client.addons)
         self.brands = brands.BrandsResourceWithRawResponse(client.brands)
         self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
+        self.usage_events = usage_events.UsageEventsResourceWithRawResponse(client.usage_events)
+        self.meters = meters.MetersResourceWithRawResponse(client.meters)
 
 
 class AsyncDodoPaymentsWithRawResponse:
@@ -564,6 +576,8 @@ class AsyncDodoPaymentsWithRawResponse:
         self.addons = addons.AsyncAddonsResourceWithRawResponse(client.addons)
         self.brands = brands.AsyncBrandsResourceWithRawResponse(client.brands)
         self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
+        self.usage_events = usage_events.AsyncUsageEventsResourceWithRawResponse(client.usage_events)
+        self.meters = meters.AsyncMetersResourceWithRawResponse(client.meters)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -589,6 +603,8 @@ class DodoPaymentsWithStreamedResponse:
         self.addons = addons.AddonsResourceWithStreamingResponse(client.addons)
         self.brands = brands.BrandsResourceWithStreamingResponse(client.brands)
         self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
+        self.usage_events = usage_events.UsageEventsResourceWithStreamingResponse(client.usage_events)
+        self.meters = meters.MetersResourceWithStreamingResponse(client.meters)
 
 
 class AsyncDodoPaymentsWithStreamedResponse:
@@ -614,6 +630,8 @@ class AsyncDodoPaymentsWithStreamedResponse:
         self.addons = addons.AsyncAddonsResourceWithStreamingResponse(client.addons)
         self.brands = brands.AsyncBrandsResourceWithStreamingResponse(client.brands)
         self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
+        self.usage_events = usage_events.AsyncUsageEventsResourceWithStreamingResponse(client.usage_events)
+        self.meters = meters.AsyncMetersResourceWithStreamingResponse(client.meters)
 
 
 Client = DodoPayments
