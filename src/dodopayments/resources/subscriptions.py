@@ -16,6 +16,7 @@ from ..types import (
     subscription_create_params,
     subscription_update_params,
     subscription_change_plan_params,
+    subscription_retrieve_usage_history_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
@@ -40,6 +41,7 @@ from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
+from ..types.subscription_retrieve_usage_history_response import SubscriptionRetrieveUsageHistoryResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
@@ -428,6 +430,109 @@ class SubscriptionsResource(SyncAPIResource):
             cast_to=SubscriptionChargeResponse,
         )
 
+    def retrieve_usage_history(
+        self,
+        subscription_id: str,
+        *,
+        end_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        meter_id: Optional[str] | NotGiven = NOT_GIVEN,
+        page_number: Optional[int] | NotGiven = NOT_GIVEN,
+        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        start_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse]:
+        """
+        Get detailed usage history for a subscription that includes usage-based billing
+        (metered components). This endpoint provides insights into customer usage
+        patterns and billing calculations over time.
+
+        ## What You'll Get:
+
+        - **Billing periods**: Each item represents a billing cycle with start and end
+          dates
+        - **Meter usage**: Detailed breakdown of usage for each meter configured on the
+          subscription
+        - **Usage calculations**: Total units consumed, free threshold units, and
+          chargeable units
+        - **Historical tracking**: Complete audit trail of usage-based charges
+
+        ## Use Cases:
+
+        - **Customer support**: Investigate billing questions and usage discrepancies
+        - **Usage analytics**: Analyze customer consumption patterns over time
+        - **Billing transparency**: Provide customers with detailed usage breakdowns
+        - **Revenue optimization**: Identify usage trends to optimize pricing strategies
+
+        ## Filtering Options:
+
+        - **Date range filtering**: Get usage history for specific time periods
+        - **Meter-specific filtering**: Focus on usage for a particular meter
+        - **Pagination**: Navigate through large usage histories efficiently
+
+        ## Important Notes:
+
+        - Only returns data for subscriptions with usage-based (metered) components
+        - Usage history is organized by billing periods (subscription cycles)
+        - Free threshold units are calculated and displayed separately from chargeable
+          units
+        - Historical data is preserved even if meter configurations change
+
+        ## Example Query Patterns:
+
+        - Get last 3 months:
+          `?start_date=2024-01-01T00:00:00Z&end_date=2024-03-31T23:59:59Z`
+        - Filter by meter: `?meter_id=mtr_api_requests`
+        - Paginate results: `?page_size=20&page_number=1`
+        - Recent usage: `?start_date=2024-03-01T00:00:00Z` (from March 1st to now)
+
+        Args:
+          end_date: Filter by end date (inclusive)
+
+          meter_id: Filter by specific meter ID
+
+          page_number: Page number (default: 0)
+
+          page_size: Page size (default: 10, max: 100)
+
+          start_date: Filter by start date (inclusive)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._get_api_list(
+            f"/subscriptions/{subscription_id}/usage-history",
+            page=SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "end_date": end_date,
+                        "meter_id": meter_id,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                        "start_date": start_date,
+                    },
+                    subscription_retrieve_usage_history_params.SubscriptionRetrieveUsageHistoryParams,
+                ),
+            ),
+            model=SubscriptionRetrieveUsageHistoryResponse,
+        )
+
 
 class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
@@ -813,6 +918,112 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=SubscriptionChargeResponse,
         )
 
+    def retrieve_usage_history(
+        self,
+        subscription_id: str,
+        *,
+        end_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        meter_id: Optional[str] | NotGiven = NOT_GIVEN,
+        page_number: Optional[int] | NotGiven = NOT_GIVEN,
+        page_size: Optional[int] | NotGiven = NOT_GIVEN,
+        start_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[
+        SubscriptionRetrieveUsageHistoryResponse,
+        AsyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse],
+    ]:
+        """
+        Get detailed usage history for a subscription that includes usage-based billing
+        (metered components). This endpoint provides insights into customer usage
+        patterns and billing calculations over time.
+
+        ## What You'll Get:
+
+        - **Billing periods**: Each item represents a billing cycle with start and end
+          dates
+        - **Meter usage**: Detailed breakdown of usage for each meter configured on the
+          subscription
+        - **Usage calculations**: Total units consumed, free threshold units, and
+          chargeable units
+        - **Historical tracking**: Complete audit trail of usage-based charges
+
+        ## Use Cases:
+
+        - **Customer support**: Investigate billing questions and usage discrepancies
+        - **Usage analytics**: Analyze customer consumption patterns over time
+        - **Billing transparency**: Provide customers with detailed usage breakdowns
+        - **Revenue optimization**: Identify usage trends to optimize pricing strategies
+
+        ## Filtering Options:
+
+        - **Date range filtering**: Get usage history for specific time periods
+        - **Meter-specific filtering**: Focus on usage for a particular meter
+        - **Pagination**: Navigate through large usage histories efficiently
+
+        ## Important Notes:
+
+        - Only returns data for subscriptions with usage-based (metered) components
+        - Usage history is organized by billing periods (subscription cycles)
+        - Free threshold units are calculated and displayed separately from chargeable
+          units
+        - Historical data is preserved even if meter configurations change
+
+        ## Example Query Patterns:
+
+        - Get last 3 months:
+          `?start_date=2024-01-01T00:00:00Z&end_date=2024-03-31T23:59:59Z`
+        - Filter by meter: `?meter_id=mtr_api_requests`
+        - Paginate results: `?page_size=20&page_number=1`
+        - Recent usage: `?start_date=2024-03-01T00:00:00Z` (from March 1st to now)
+
+        Args:
+          end_date: Filter by end date (inclusive)
+
+          meter_id: Filter by specific meter ID
+
+          page_number: Page number (default: 0)
+
+          page_size: Page size (default: 10, max: 100)
+
+          start_date: Filter by start date (inclusive)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._get_api_list(
+            f"/subscriptions/{subscription_id}/usage-history",
+            page=AsyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "end_date": end_date,
+                        "meter_id": meter_id,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                        "start_date": start_date,
+                    },
+                    subscription_retrieve_usage_history_params.SubscriptionRetrieveUsageHistoryParams,
+                ),
+            ),
+            model=SubscriptionRetrieveUsageHistoryResponse,
+        )
+
 
 class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
@@ -835,6 +1046,9 @@ class SubscriptionsResourceWithRawResponse:
         )
         self.charge = to_raw_response_wrapper(
             subscriptions.charge,
+        )
+        self.retrieve_usage_history = to_raw_response_wrapper(
+            subscriptions.retrieve_usage_history,
         )
 
 
@@ -860,6 +1074,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         self.charge = async_to_raw_response_wrapper(
             subscriptions.charge,
         )
+        self.retrieve_usage_history = async_to_raw_response_wrapper(
+            subscriptions.retrieve_usage_history,
+        )
 
 
 class SubscriptionsResourceWithStreamingResponse:
@@ -884,6 +1101,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.charge = to_streamed_response_wrapper(
             subscriptions.charge,
         )
+        self.retrieve_usage_history = to_streamed_response_wrapper(
+            subscriptions.retrieve_usage_history,
+        )
 
 
 class AsyncSubscriptionsResourceWithStreamingResponse:
@@ -907,4 +1127,7 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.charge = async_to_streamed_response_wrapper(
             subscriptions.charge,
+        )
+        self.retrieve_usage_history = async_to_streamed_response_wrapper(
+            subscriptions.retrieve_usage_history,
         )
