@@ -342,7 +342,7 @@ class ProductsResource(SyncAPIResource):
             model=ProductListResponse,
         )
 
-    def delete(
+    def archive(
         self,
         id: str,
         *,
@@ -739,7 +739,7 @@ class AsyncProductsResource(AsyncAPIResource):
             model=ProductListResponse,
         )
 
-    async def delete(
+    async def archive(
         self,
         id: str,
         *,
@@ -855,8 +855,8 @@ class ProductsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             products.list,
         )
-        self.delete = to_raw_response_wrapper(
-            products.delete,
+        self.archive = to_raw_response_wrapper(
+            products.archive,
         )
         self.unarchive = to_raw_response_wrapper(
             products.unarchive,
@@ -886,8 +886,8 @@ class AsyncProductsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             products.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            products.delete,
+        self.archive = async_to_raw_response_wrapper(
+            products.archive,
         )
         self.unarchive = async_to_raw_response_wrapper(
             products.unarchive,
@@ -917,8 +917,8 @@ class ProductsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             products.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            products.delete,
+        self.archive = to_streamed_response_wrapper(
+            products.archive,
         )
         self.unarchive = to_streamed_response_wrapper(
             products.unarchive,
@@ -948,8 +948,8 @@ class AsyncProductsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             products.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            products.delete,
+        self.archive = async_to_streamed_response_wrapper(
+            products.archive,
         )
         self.unarchive = async_to_streamed_response_wrapper(
             products.unarchive,
