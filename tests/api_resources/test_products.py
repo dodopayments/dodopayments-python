@@ -256,15 +256,15 @@ class TestProducts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_delete(self, client: DodoPayments) -> None:
-        product = client.products.delete(
+    def test_method_archive(self, client: DodoPayments) -> None:
+        product = client.products.archive(
             "id",
         )
         assert product is None
 
     @parametrize
-    def test_raw_response_delete(self, client: DodoPayments) -> None:
-        response = client.products.with_raw_response.delete(
+    def test_raw_response_archive(self, client: DodoPayments) -> None:
+        response = client.products.with_raw_response.archive(
             "id",
         )
 
@@ -274,8 +274,8 @@ class TestProducts:
         assert product is None
 
     @parametrize
-    def test_streaming_response_delete(self, client: DodoPayments) -> None:
-        with client.products.with_streaming_response.delete(
+    def test_streaming_response_archive(self, client: DodoPayments) -> None:
+        with client.products.with_streaming_response.archive(
             "id",
         ) as response:
             assert not response.is_closed
@@ -287,9 +287,9 @@ class TestProducts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_delete(self, client: DodoPayments) -> None:
+    def test_path_params_archive(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.products.with_raw_response.delete(
+            client.products.with_raw_response.archive(
                 "",
             )
 
@@ -613,15 +613,15 @@ class TestAsyncProducts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
-        product = await async_client.products.delete(
+    async def test_method_archive(self, async_client: AsyncDodoPayments) -> None:
+        product = await async_client.products.archive(
             "id",
         )
         assert product is None
 
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
-        response = await async_client.products.with_raw_response.delete(
+    async def test_raw_response_archive(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.products.with_raw_response.archive(
             "id",
         )
 
@@ -631,8 +631,8 @@ class TestAsyncProducts:
         assert product is None
 
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
-        async with async_client.products.with_streaming_response.delete(
+    async def test_streaming_response_archive(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.products.with_streaming_response.archive(
             "id",
         ) as response:
             assert not response.is_closed
@@ -644,9 +644,9 @@ class TestAsyncProducts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncDodoPayments) -> None:
+    async def test_path_params_archive(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.products.with_raw_response.delete(
+            await async_client.products.with_raw_response.archive(
                 "",
             )
 
