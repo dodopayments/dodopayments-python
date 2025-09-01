@@ -183,7 +183,7 @@ class MetersResource(SyncAPIResource):
             model=Meter,
         )
 
-    def delete(
+    def archive(
         self,
         id: str,
         *,
@@ -405,7 +405,7 @@ class AsyncMetersResource(AsyncAPIResource):
             model=Meter,
         )
 
-    async def delete(
+    async def archive(
         self,
         id: str,
         *,
@@ -483,8 +483,8 @@ class MetersResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             meters.list,
         )
-        self.delete = to_raw_response_wrapper(
-            meters.delete,
+        self.archive = to_raw_response_wrapper(
+            meters.archive,
         )
         self.unarchive = to_raw_response_wrapper(
             meters.unarchive,
@@ -504,8 +504,8 @@ class AsyncMetersResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             meters.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            meters.delete,
+        self.archive = async_to_raw_response_wrapper(
+            meters.archive,
         )
         self.unarchive = async_to_raw_response_wrapper(
             meters.unarchive,
@@ -525,8 +525,8 @@ class MetersResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             meters.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            meters.delete,
+        self.archive = to_streamed_response_wrapper(
+            meters.archive,
         )
         self.unarchive = to_streamed_response_wrapper(
             meters.unarchive,
@@ -546,8 +546,8 @@ class AsyncMetersResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             meters.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            meters.delete,
+        self.archive = async_to_streamed_response_wrapper(
+            meters.archive,
         )
         self.unarchive = async_to_streamed_response_wrapper(
             meters.unarchive,

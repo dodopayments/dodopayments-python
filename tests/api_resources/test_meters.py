@@ -160,15 +160,15 @@ class TestMeters:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_delete(self, client: DodoPayments) -> None:
-        meter = client.meters.delete(
+    def test_method_archive(self, client: DodoPayments) -> None:
+        meter = client.meters.archive(
             "id",
         )
         assert meter is None
 
     @parametrize
-    def test_raw_response_delete(self, client: DodoPayments) -> None:
-        response = client.meters.with_raw_response.delete(
+    def test_raw_response_archive(self, client: DodoPayments) -> None:
+        response = client.meters.with_raw_response.archive(
             "id",
         )
 
@@ -178,8 +178,8 @@ class TestMeters:
         assert meter is None
 
     @parametrize
-    def test_streaming_response_delete(self, client: DodoPayments) -> None:
-        with client.meters.with_streaming_response.delete(
+    def test_streaming_response_archive(self, client: DodoPayments) -> None:
+        with client.meters.with_streaming_response.archive(
             "id",
         ) as response:
             assert not response.is_closed
@@ -191,9 +191,9 @@ class TestMeters:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_delete(self, client: DodoPayments) -> None:
+    def test_path_params_archive(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.meters.with_raw_response.delete(
+            client.meters.with_raw_response.archive(
                 "",
             )
 
@@ -383,15 +383,15 @@ class TestAsyncMeters:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
-        meter = await async_client.meters.delete(
+    async def test_method_archive(self, async_client: AsyncDodoPayments) -> None:
+        meter = await async_client.meters.archive(
             "id",
         )
         assert meter is None
 
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
-        response = await async_client.meters.with_raw_response.delete(
+    async def test_raw_response_archive(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.meters.with_raw_response.archive(
             "id",
         )
 
@@ -401,8 +401,8 @@ class TestAsyncMeters:
         assert meter is None
 
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
-        async with async_client.meters.with_streaming_response.delete(
+    async def test_streaming_response_archive(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.meters.with_streaming_response.archive(
             "id",
         ) as response:
             assert not response.is_closed
@@ -414,9 +414,9 @@ class TestAsyncMeters:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncDodoPayments) -> None:
+    async def test_path_params_archive(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.meters.with_raw_response.delete(
+            await async_client.meters.with_raw_response.archive(
                 "",
             )
 
