@@ -74,6 +74,38 @@ class PaymentsResource(SyncAPIResource):
             cast_to=BinaryAPIResponse,
         )
 
+    def retrieve_refund(
+        self,
+        refund_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BinaryAPIResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not refund_id:
+            raise ValueError(f"Expected a non-empty value for `refund_id` but received {refund_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return self._get(
+            f"/invoices/refunds/{refund_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BinaryAPIResponse,
+        )
+
 
 class AsyncPaymentsResource(AsyncAPIResource):
     @cached_property
@@ -127,6 +159,38 @@ class AsyncPaymentsResource(AsyncAPIResource):
             cast_to=AsyncBinaryAPIResponse,
         )
 
+    async def retrieve_refund(
+        self,
+        refund_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncBinaryAPIResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not refund_id:
+            raise ValueError(f"Expected a non-empty value for `refund_id` but received {refund_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return await self._get(
+            f"/invoices/refunds/{refund_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AsyncBinaryAPIResponse,
+        )
+
 
 class PaymentsResourceWithRawResponse:
     def __init__(self, payments: PaymentsResource) -> None:
@@ -134,6 +198,10 @@ class PaymentsResourceWithRawResponse:
 
         self.retrieve = to_custom_raw_response_wrapper(
             payments.retrieve,
+            BinaryAPIResponse,
+        )
+        self.retrieve_refund = to_custom_raw_response_wrapper(
+            payments.retrieve_refund,
             BinaryAPIResponse,
         )
 
@@ -146,6 +214,10 @@ class AsyncPaymentsResourceWithRawResponse:
             payments.retrieve,
             AsyncBinaryAPIResponse,
         )
+        self.retrieve_refund = async_to_custom_raw_response_wrapper(
+            payments.retrieve_refund,
+            AsyncBinaryAPIResponse,
+        )
 
 
 class PaymentsResourceWithStreamingResponse:
@@ -156,6 +228,10 @@ class PaymentsResourceWithStreamingResponse:
             payments.retrieve,
             StreamedBinaryAPIResponse,
         )
+        self.retrieve_refund = to_custom_streamed_response_wrapper(
+            payments.retrieve_refund,
+            StreamedBinaryAPIResponse,
+        )
 
 
 class AsyncPaymentsResourceWithStreamingResponse:
@@ -164,5 +240,9 @@ class AsyncPaymentsResourceWithStreamingResponse:
 
         self.retrieve = async_to_custom_streamed_response_wrapper(
             payments.retrieve,
+            AsyncStreamedBinaryAPIResponse,
+        )
+        self.retrieve_refund = async_to_custom_streamed_response_wrapper(
+            payments.retrieve_refund,
             AsyncStreamedBinaryAPIResponse,
         )
