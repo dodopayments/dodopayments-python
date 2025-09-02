@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -19,4 +19,8 @@ class Event(BaseModel):
 
     timestamp: datetime
 
-    metadata: Optional[Dict[str, object]] = None
+    metadata: Optional[Dict[str, Union[str, float, bool]]] = None
+    """Arbitrary key-value metadata.
+
+    Values can be string, integer, number, or boolean.
+    """
