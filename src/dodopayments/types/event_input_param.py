@@ -24,7 +24,7 @@ class EventInputParam(TypedDict, total=False):
     event_name: Required[str]
     """Name of the event"""
 
-    metadata: Optional[Dict[str, object]]
+    metadata: Optional[Dict[str, Union[str, float, bool]]]
     """Custom metadata.
 
     Only key value pairs are accepted, objects or arrays submitted will be rejected.
