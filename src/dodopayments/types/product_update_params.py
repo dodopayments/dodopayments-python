@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import TypedDict
 
+from .._types import SequenceNotStr
 from .price_param import PriceParam
 from .tax_category import TaxCategory
 from .license_key_duration_param import LicenseKeyDurationParam
@@ -13,7 +14,7 @@ __all__ = ["ProductUpdateParams", "DigitalProductDelivery"]
 
 
 class ProductUpdateParams(TypedDict, total=False):
-    addons: Optional[List[str]]
+    addons: Optional[SequenceNotStr[str]]
     """Available Addons for subscription products"""
 
     brand_id: Optional[str]
@@ -72,7 +73,7 @@ class DigitalProductDelivery(TypedDict, total=False):
     external_url: Optional[str]
     """External URL to digital product"""
 
-    files: Optional[List[str]]
+    files: Optional[SequenceNotStr[str]]
     """Uploaded files ids of digital product"""
 
     instructions: Optional[str]
