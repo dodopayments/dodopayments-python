@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
+from .._types import SequenceNotStr
 from .price_param import PriceParam
 from .tax_category import TaxCategory
 from .license_key_duration_param import LicenseKeyDurationParam
@@ -19,7 +20,7 @@ class ProductCreateParams(TypedDict, total=False):
     tax_category: Required[TaxCategory]
     """Tax category applied to this product"""
 
-    addons: Optional[List[str]]
+    addons: Optional[SequenceNotStr[str]]
     """Addons available for subscription product"""
 
     brand_id: Optional[str]

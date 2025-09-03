@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .discount_type import DiscountType
 
@@ -39,7 +40,7 @@ class DiscountCreateParams(TypedDict, total=False):
 
     name: Optional[str]
 
-    restricted_to: Optional[List[str]]
+    restricted_to: Optional[SequenceNotStr[str]]
     """List of product IDs to restrict usage (if any)."""
 
     subscription_cycles: Optional[int]
