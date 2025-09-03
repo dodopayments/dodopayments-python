@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.52.4 (2025-09-03)
+
+Full Changelog: [v1.51.1...v1.52.4](https://github.com/dodopayments/dodopayments-python/compare/v1.51.1...v1.52.4)
+
+### Features
+
+* **api:** manual updates ([c7a7380](https://github.com/dodopayments/dodopayments-python/commit/c7a7380d715423f969d5cff24862ec38258d42f2))
+* **api:** updated openapi spec ([dfc4ad4](https://github.com/dodopayments/dodopayments-python/commit/dfc4ad4c1920f57f9fe4e7629caaa1eab72913bf))
+* **api:** updated openapi spec to v1.52.4 ([e0ca092](https://github.com/dodopayments/dodopayments-python/commit/e0ca0926d8093b5e65b24ed7a0306872d372ea0a))
+* **types:** replace List[str] with SequenceNotStr in params ([42cf186](https://github.com/dodopayments/dodopayments-python/commit/42cf186779ff891c84db5bd1b8e888870d358697))
+* updated openapi spec and added model and API functions for Usage Based Billing ([3c62736](https://github.com/dodopayments/dodopayments-python/commit/3c6273618b0c453aaa82df3aa97dbb3e2ae06ca4))
+
 ## 1.51.1 (2025-08-30)
 
 Full Changelog: [v1.51.0...v1.51.1](https://github.com/dodopayments/dodopayments-python/compare/v1.51.0...v1.51.1)
