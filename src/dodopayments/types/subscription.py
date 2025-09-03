@@ -11,7 +11,23 @@ from .subscription_status import SubscriptionStatus
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Subscription"]
+__all__ = ["Subscription", "Meter"]
+
+
+class Meter(BaseModel):
+    currency: Currency
+
+    free_threshold: int
+
+    measurement_unit: str
+
+    meter_id: str
+
+    name: str
+
+    price_per_unit: str
+
+    description: Optional[str] = None
 
 
 class Subscription(BaseModel):
@@ -35,6 +51,9 @@ class Subscription(BaseModel):
 
     metadata: Dict[str, str]
     """Additional custom data associated with the subscription"""
+
+    meters: List[Meter]
+    """Meters associated with this subscription (for usage-based billing)"""
 
     next_billing_date: datetime
     """Timestamp of the next scheduled billing.
