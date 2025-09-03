@@ -87,6 +87,12 @@ class Payment(BaseModel):
     card_type: Optional[str] = None
     """The type of card DEBIT or CREDIT"""
 
+    checkout_session_id: Optional[str] = None
+    """
+    If payment is made using a checkout session, this field is set to the id of the
+    session.
+    """
+
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""
 

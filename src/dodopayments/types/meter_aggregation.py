@@ -9,7 +9,7 @@ __all__ = ["MeterAggregation"]
 
 
 class MeterAggregation(BaseModel):
-    type: Literal["count", "sum", "unique_count", "max", "last"]
+    type: Literal["count", "sum", "max", "last"]
     """Aggregation type for the meter"""
 
     key: Optional[str] = None

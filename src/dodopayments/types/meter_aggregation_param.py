@@ -9,7 +9,7 @@ __all__ = ["MeterAggregationParam"]
 
 
 class MeterAggregationParam(TypedDict, total=False):
-    type: Required[Literal["count", "sum", "unique_count", "max", "last"]]
+    type: Required[Literal["count", "sum", "max", "last"]]
     """Aggregation type for the meter"""
 
     key: Optional[str]
