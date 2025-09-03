@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 
 import httpx
 
 from ..types import DiscountType, discount_list_params, discount_create_params, discount_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -54,7 +54,7 @@ class DiscountsResource(SyncAPIResource):
         code: Optional[str] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
         usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -165,7 +165,7 @@ class DiscountsResource(SyncAPIResource):
         code: Optional[str] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
         type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
         usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
@@ -341,7 +341,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         code: Optional[str] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
         usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -452,7 +452,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         code: Optional[str] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
         type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
         usage_limit: Optional[int] | NotGiven = NOT_GIVEN,

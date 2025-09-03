@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -21,7 +21,7 @@ from ...types import (
     product_update_params,
     product_update_files_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -72,7 +72,7 @@ class ProductsResource(SyncAPIResource):
         *,
         price: PriceParam,
         tax_category: TaxCategory,
-        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
@@ -185,7 +185,7 @@ class ProductsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
@@ -469,7 +469,7 @@ class AsyncProductsResource(AsyncAPIResource):
         *,
         price: PriceParam,
         tax_category: TaxCategory,
-        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
@@ -582,7 +582,7 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        addons: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         brand_id: Optional[str] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
