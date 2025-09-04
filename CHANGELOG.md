@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.52.5 (2025-09-04)
+
+Full Changelog: [v1.52.4...v1.52.5](https://github.com/dodopayments/dodopayments-python/compare/v1.52.4...v1.52.5)
+
+### Features
+
+* improve future compat with pydantic v3 ([e1d25a8](https://github.com/dodopayments/dodopayments-python/commit/e1d25a86243b79ca7a13b4e54548edcda0cff23a))
+
 ## 1.52.4 (2025-09-03)
 
 Full Changelog: [v1.51.1...v1.52.4](https://github.com/dodopayments/dodopayments-python/compare/v1.51.1...v1.52.4)
