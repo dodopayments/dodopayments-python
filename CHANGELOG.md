@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.52.6 (2025-09-06)
+
+Full Changelog: [v1.52.5...v1.52.6](https://github.com/dodopayments/dodopayments-python/compare/v1.52.5...v1.52.6)
+
+### Chores
+
+* **internal:** move mypy configurations to `pyproject.toml` file ([1f2346b](https://github.com/dodopayments/dodopayments-python/commit/1f2346bbe5752fd8454d51cb54f0b2ae5e3f265b))
+* **tests:** simplify `get_platform` test ([784f7d6](https://github.com/dodopayments/dodopayments-python/commit/784f7d6ac46d9d84db4fe0efe9ca739df6c082f0))
+
 ## 1.52.5 (2025-09-04)
 
 Full Changelog: [v1.52.4...v1.52.5](https://github.com/dodopayments/dodopayments-python/compare/v1.52.4...v1.52.5)
