@@ -7,7 +7,7 @@ from typing_extensions import Required, TypedDict
 
 from .currency import Currency
 
-__all__ = ["SubscriptionChargeParams"]
+__all__ = ["SubscriptionChargeParams", "CustomerBalanceConfig"]
 
 
 class SubscriptionChargeParams(TypedDict, total=False):
@@ -24,6 +24,9 @@ class SubscriptionChargeParams(TypedDict, total=False):
     added on top (false). This field is ignored if adaptive pricing is not enabled
     for the business.
     """
+
+    customer_balance_config: Optional[CustomerBalanceConfig]
+    """Specify how customer balance is used for the payment"""
 
     metadata: Optional[Dict[str, str]]
     """Metadata for the payment.
@@ -42,3 +45,11 @@ class SubscriptionChargeParams(TypedDict, total=False):
     Optional product description override for billing and line items. If not
     specified, the stored description of the product will be used.
     """
+
+
+class CustomerBalanceConfig(TypedDict, total=False):
+    allow_customer_credits_purchase: Optional[bool]
+    """Allows Customer Credit to be purchased to settle payments"""
+
+    allow_customer_credits_usage: Optional[bool]
+    """Allows Customer Credit Balance to be used to settle payments"""

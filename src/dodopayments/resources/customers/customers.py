@@ -27,6 +27,14 @@ from .customer_portal import (
     CustomerPortalResourceWithStreamingResponse,
     AsyncCustomerPortalResourceWithStreamingResponse,
 )
+from .wallets.wallets import (
+    WalletsResource,
+    AsyncWalletsResource,
+    WalletsResourceWithRawResponse,
+    AsyncWalletsResourceWithRawResponse,
+    WalletsResourceWithStreamingResponse,
+    AsyncWalletsResourceWithStreamingResponse,
+)
 from ...types.customer import Customer
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
@@ -36,6 +44,10 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def customer_portal(self) -> CustomerPortalResource:
         return CustomerPortalResource(self._client)
+
+    @cached_property
+    def wallets(self) -> WalletsResource:
+        return WalletsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -220,6 +232,10 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def customer_portal(self) -> AsyncCustomerPortalResource:
         return AsyncCustomerPortalResource(self._client)
+
+    @cached_property
+    def wallets(self) -> AsyncWalletsResource:
+        return AsyncWalletsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -421,6 +437,10 @@ class CustomersResourceWithRawResponse:
     def customer_portal(self) -> CustomerPortalResourceWithRawResponse:
         return CustomerPortalResourceWithRawResponse(self._customers.customer_portal)
 
+    @cached_property
+    def wallets(self) -> WalletsResourceWithRawResponse:
+        return WalletsResourceWithRawResponse(self._customers.wallets)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -442,6 +462,10 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def customer_portal(self) -> AsyncCustomerPortalResourceWithRawResponse:
         return AsyncCustomerPortalResourceWithRawResponse(self._customers.customer_portal)
+
+    @cached_property
+    def wallets(self) -> AsyncWalletsResourceWithRawResponse:
+        return AsyncWalletsResourceWithRawResponse(self._customers.wallets)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -465,6 +489,10 @@ class CustomersResourceWithStreamingResponse:
     def customer_portal(self) -> CustomerPortalResourceWithStreamingResponse:
         return CustomerPortalResourceWithStreamingResponse(self._customers.customer_portal)
 
+    @cached_property
+    def wallets(self) -> WalletsResourceWithStreamingResponse:
+        return WalletsResourceWithStreamingResponse(self._customers.wallets)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -486,3 +514,7 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def customer_portal(self) -> AsyncCustomerPortalResourceWithStreamingResponse:
         return AsyncCustomerPortalResourceWithStreamingResponse(self._customers.customer_portal)
+
+    @cached_property
+    def wallets(self) -> AsyncWalletsResourceWithStreamingResponse:
+        return AsyncWalletsResourceWithStreamingResponse(self._customers.wallets)

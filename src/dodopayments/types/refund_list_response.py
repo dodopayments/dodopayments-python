@@ -6,20 +6,16 @@ from datetime import datetime
 from .._models import BaseModel
 from .currency import Currency
 from .refund_status import RefundStatus
-from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Refund"]
+__all__ = ["RefundListResponse"]
 
 
-class Refund(BaseModel):
+class RefundListResponse(BaseModel):
     business_id: str
     """The unique identifier of the business issuing the refund."""
 
     created_at: datetime
     """The timestamp of when the refund was created in UTC."""
-
-    customer: CustomerLimitedDetails
-    """Details about the customer for this refund (from the associated payment)"""
 
     is_partial: bool
     """If true the refund is a partial refund"""
