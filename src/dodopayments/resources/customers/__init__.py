@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .wallets import (
+    WalletsResource,
+    AsyncWalletsResource,
+    WalletsResourceWithRawResponse,
+    AsyncWalletsResourceWithRawResponse,
+    WalletsResourceWithStreamingResponse,
+    AsyncWalletsResourceWithStreamingResponse,
+)
 from .customers import (
     CustomersResource,
     AsyncCustomersResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncCustomerPortalResourceWithRawResponse",
     "CustomerPortalResourceWithStreamingResponse",
     "AsyncCustomerPortalResourceWithStreamingResponse",
+    "WalletsResource",
+    "AsyncWalletsResource",
+    "WalletsResourceWithRawResponse",
+    "AsyncWalletsResourceWithRawResponse",
+    "WalletsResourceWithStreamingResponse",
+    "AsyncWalletsResourceWithStreamingResponse",
     "CustomersResource",
     "AsyncCustomersResource",
     "CustomersResourceWithRawResponse",

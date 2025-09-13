@@ -337,6 +337,10 @@ class TestSubscriptions:
             subscription_id="subscription_id",
             product_price=0,
             adaptive_currency_fees_inclusive=True,
+            customer_balance_config={
+                "allow_customer_credits_purchase": True,
+                "allow_customer_credits_usage": True,
+            },
             metadata={"foo": "string"},
             product_currency="AED",
             product_description="product_description",
@@ -755,6 +759,10 @@ class TestAsyncSubscriptions:
             subscription_id="subscription_id",
             product_price=0,
             adaptive_currency_fees_inclusive=True,
+            customer_balance_config={
+                "allow_customer_credits_purchase": True,
+                "allow_customer_credits_usage": True,
+            },
             metadata={"foo": "string"},
             product_currency="AED",
             product_description="product_description",
