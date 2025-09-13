@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.53.3 (2025-09-13)
+
+Full Changelog: [v1.53.2...v1.53.3](https://github.com/dodopayments/dodopayments-python/compare/v1.53.2...v1.53.3)
+
+### Features
+
+* **api:** added typescript sdk for migration and updated org info ([ea25f2f](https://github.com/dodopayments/dodopayments-python/commit/ea25f2f326df4000d1e85051398a9e1c2b49cd73))
+* **api:** manual updates ([9db9f66](https://github.com/dodopayments/dodopayments-python/commit/9db9f66ae13049550c852d33a43eacfaf867fed4))
+
 ## 1.53.2 (2025-09-13)
 
 Full Changelog: [v1.52.6...v1.53.2](https://github.com/dodopayments/dodopayments-python/compare/v1.52.6...v1.53.2)
