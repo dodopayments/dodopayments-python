@@ -22,6 +22,7 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.refund import Refund
+from ..types.refund_list_response import RefundListResponse
 
 __all__ = ["RefundsResource", "AsyncRefundsResource"]
 
@@ -137,7 +138,7 @@ class RefundsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncDefaultPageNumberPagination[Refund]:
+    ) -> SyncDefaultPageNumberPagination[RefundListResponse]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -162,7 +163,7 @@ class RefundsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/refunds",
-            page=SyncDefaultPageNumberPagination[Refund],
+            page=SyncDefaultPageNumberPagination[RefundListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -180,7 +181,7 @@ class RefundsResource(SyncAPIResource):
                     refund_list_params.RefundListParams,
                 ),
             ),
-            model=Refund,
+            model=RefundListResponse,
         )
 
 
@@ -295,7 +296,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Refund, AsyncDefaultPageNumberPagination[Refund]]:
+    ) -> AsyncPaginator[RefundListResponse, AsyncDefaultPageNumberPagination[RefundListResponse]]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -320,7 +321,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/refunds",
-            page=AsyncDefaultPageNumberPagination[Refund],
+            page=AsyncDefaultPageNumberPagination[RefundListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -338,7 +339,7 @@ class AsyncRefundsResource(AsyncAPIResource):
                     refund_list_params.RefundListParams,
                 ),
             ),
-            model=Refund,
+            model=RefundListResponse,
         )
 
 

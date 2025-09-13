@@ -18,7 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.license_key_instance import LicenseKeyInstance
+from ..types.license_activate_response import LicenseActivateResponse
 from ..types.license_validate_response import LicenseValidateResponse
 
 __all__ = ["LicensesResource", "AsyncLicensesResource"]
@@ -55,7 +55,7 @@ class LicensesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LicenseKeyInstance:
+    ) -> LicenseActivateResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -78,7 +78,7 @@ class LicensesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LicenseKeyInstance,
+            cast_to=LicenseActivateResponse,
         )
 
     def deactivate(
@@ -188,7 +188,7 @@ class AsyncLicensesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LicenseKeyInstance:
+    ) -> LicenseActivateResponse:
         """
         Args:
           extra_headers: Send extra headers
@@ -211,7 +211,7 @@ class AsyncLicensesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LicenseKeyInstance,
+            cast_to=LicenseActivateResponse,
         )
 
     async def deactivate(

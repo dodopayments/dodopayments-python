@@ -82,12 +82,12 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import LicenseValidateResponse
+from dodopayments.types import LicenseActivateResponse, LicenseValidateResponse
 ```
 
 Methods:
 
-- <code title="post /licenses/activate">client.licenses.<a href="./src/dodopayments/resources/licenses.py">activate</a>(\*\*<a href="src/dodopayments/types/license_activate_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key_instance.py">LicenseKeyInstance</a></code>
+- <code title="post /licenses/activate">client.licenses.<a href="./src/dodopayments/resources/licenses.py">activate</a>(\*\*<a href="src/dodopayments/types/license_activate_params.py">params</a>) -> <a href="./src/dodopayments/types/license_activate_response.py">LicenseActivateResponse</a></code>
 - <code title="post /licenses/deactivate">client.licenses.<a href="./src/dodopayments/resources/licenses.py">deactivate</a>(\*\*<a href="src/dodopayments/types/license_deactivate_params.py">params</a>) -> None</code>
 - <code title="post /licenses/validate">client.licenses.<a href="./src/dodopayments/resources/licenses.py">validate</a>(\*\*<a href="src/dodopayments/types/license_validate_params.py">params</a>) -> <a href="./src/dodopayments/types/license_validate_response.py">LicenseValidateResponse</a></code>
 
@@ -140,19 +140,44 @@ Methods:
 
 - <code title="post /customers/{customer_id}/customer-portal/session">client.customers.customer_portal.<a href="./src/dodopayments/resources/customers/customer_portal.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/customer_portal_create_params.py">params</a>) -> <a href="./src/dodopayments/types/customer_portal_session.py">CustomerPortalSession</a></code>
 
+## Wallets
+
+Types:
+
+```python
+from dodopayments.types.customers import CustomerWallet, WalletListResponse
+```
+
+Methods:
+
+- <code title="get /customers/{customer_id}/wallets">client.customers.wallets.<a href="./src/dodopayments/resources/customers/wallets/wallets.py">list</a>(customer_id) -> <a href="./src/dodopayments/types/customers/wallet_list_response.py">WalletListResponse</a></code>
+
+### LedgerEntries
+
+Types:
+
+```python
+from dodopayments.types.customers.wallets import CustomerWalletTransaction
+```
+
+Methods:
+
+- <code title="post /customers/{customer_id}/wallets/ledger-entries">client.customers.wallets.ledger_entries.<a href="./src/dodopayments/resources/customers/wallets/ledger_entries.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/wallets/ledger_entry_create_params.py">params</a>) -> <a href="./src/dodopayments/types/customers/customer_wallet.py">CustomerWallet</a></code>
+- <code title="get /customers/{customer_id}/wallets/ledger-entries">client.customers.wallets.ledger_entries.<a href="./src/dodopayments/resources/customers/wallets/ledger_entries.py">list</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/wallets/ledger_entry_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customers/wallets/customer_wallet_transaction.py">SyncDefaultPageNumberPagination[CustomerWalletTransaction]</a></code>
+
 # Refunds
 
 Types:
 
 ```python
-from dodopayments.types import Refund, RefundStatus
+from dodopayments.types import Refund, RefundStatus, RefundListResponse
 ```
 
 Methods:
 
 - <code title="post /refunds">client.refunds.<a href="./src/dodopayments/resources/refunds.py">create</a>(\*\*<a href="src/dodopayments/types/refund_create_params.py">params</a>) -> <a href="./src/dodopayments/types/refund.py">Refund</a></code>
 - <code title="get /refunds/{refund_id}">client.refunds.<a href="./src/dodopayments/resources/refunds.py">retrieve</a>(refund_id) -> <a href="./src/dodopayments/types/refund.py">Refund</a></code>
-- <code title="get /refunds">client.refunds.<a href="./src/dodopayments/resources/refunds.py">list</a>(\*\*<a href="src/dodopayments/types/refund_list_params.py">params</a>) -> <a href="./src/dodopayments/types/refund.py">SyncDefaultPageNumberPagination[Refund]</a></code>
+- <code title="get /refunds">client.refunds.<a href="./src/dodopayments/resources/refunds.py">list</a>(\*\*<a href="src/dodopayments/types/refund_list_params.py">params</a>) -> <a href="./src/dodopayments/types/refund_list_response.py">SyncDefaultPageNumberPagination[RefundListResponse]</a></code>
 
 # Disputes
 

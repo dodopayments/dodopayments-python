@@ -373,6 +373,7 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         product_price: int,
         adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
+        customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         product_description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -392,6 +393,8 @@ class SubscriptionsResource(SyncAPIResource):
           adaptive_currency_fees_inclusive: Whether adaptive currency fees should be included in the product_price (true) or
               added on top (false). This field is ignored if adaptive pricing is not enabled
               for the business.
+
+          customer_balance_config: Specify how customer balance is used for the payment
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -418,6 +421,7 @@ class SubscriptionsResource(SyncAPIResource):
                 {
                     "product_price": product_price,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
+                    "customer_balance_config": customer_balance_config,
                     "metadata": metadata,
                     "product_currency": product_currency,
                     "product_description": product_description,
@@ -861,6 +865,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         product_price: int,
         adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
+        customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         product_description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -880,6 +885,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           adaptive_currency_fees_inclusive: Whether adaptive currency fees should be included in the product_price (true) or
               added on top (false). This field is ignored if adaptive pricing is not enabled
               for the business.
+
+          customer_balance_config: Specify how customer balance is used for the payment
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -906,6 +913,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 {
                     "product_price": product_price,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
+                    "customer_balance_config": customer_balance_config,
                     "metadata": metadata,
                     "product_currency": product_currency,
                     "product_description": product_description,
