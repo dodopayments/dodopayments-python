@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.53.4 (2025-09-17)
+
+Full Changelog: [v1.53.3...v1.53.4](https://github.com/dodopayments/dodopayments-python/compare/v1.53.3...v1.53.4)
+
+### Chores
+
+* **internal:** update pydantic dependency ([459d36f](https://github.com/dodopayments/dodopayments-python/commit/459d36f9ddf754b3f921e7e6e5b846ec6d353766))
+
 ## 1.53.3 (2025-09-13)
 
 Full Changelog: [v1.53.2...v1.53.3](https://github.com/dodopayments/dodopayments-python/compare/v1.53.2...v1.53.3)
