@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..types import brand_create_params, brand_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -48,17 +48,17 @@ class BrandsResource(SyncAPIResource):
     def create(
         self,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        support_email: Optional[str] | NotGiven = NOT_GIVEN,
-        url: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        statement_descriptor: Optional[str] | Omit = omit,
+        support_email: Optional[str] | Omit = omit,
+        url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Brand:
         """
         Args:
@@ -97,7 +97,7 @@ class BrandsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Brand:
         """
         Thin handler just calls `get_brand` and wraps in `Json(...)`
@@ -125,16 +125,16 @@ class BrandsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        support_email: Optional[str] | NotGiven = NOT_GIVEN,
+        image_id: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        statement_descriptor: Optional[str] | Omit = omit,
+        support_email: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Brand:
         """
         Args:
@@ -175,7 +175,7 @@ class BrandsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandListResponse:
         return self._get(
             "/brands",
@@ -194,7 +194,7 @@ class BrandsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandUpdateImagesResponse:
         """
         Args:
@@ -240,17 +240,17 @@ class AsyncBrandsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        support_email: Optional[str] | NotGiven = NOT_GIVEN,
-        url: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        statement_descriptor: Optional[str] | Omit = omit,
+        support_email: Optional[str] | Omit = omit,
+        url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Brand:
         """
         Args:
@@ -289,7 +289,7 @@ class AsyncBrandsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Brand:
         """
         Thin handler just calls `get_brand` and wraps in `Json(...)`
@@ -317,16 +317,16 @@ class AsyncBrandsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        support_email: Optional[str] | NotGiven = NOT_GIVEN,
+        image_id: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        statement_descriptor: Optional[str] | Omit = omit,
+        support_email: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Brand:
         """
         Args:
@@ -367,7 +367,7 @@ class AsyncBrandsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandListResponse:
         return await self._get(
             "/brands",
@@ -386,7 +386,7 @@ class AsyncBrandsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandUpdateImagesResponse:
         """
         Args:

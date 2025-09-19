@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..types import usage_event_list_params, usage_event_ingest_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class UsageEventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """Fetch detailed information about a single event using its unique event ID.
 
@@ -111,19 +111,19 @@ class UsageEventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        customer_id: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_name: str | NotGiven = NOT_GIVEN,
-        meter_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | Omit = omit,
+        end: Union[str, datetime] | Omit = omit,
+        event_name: str | Omit = omit,
+        meter_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        start: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[Event]:
         """Fetch events from your account with powerful filtering capabilities.
 
@@ -219,7 +219,7 @@ class UsageEventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageEventIngestResponse:
         """
         This endpoint allows you to ingest custom events that can be used for:
@@ -311,7 +311,7 @@ class AsyncUsageEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """Fetch detailed information about a single event using its unique event ID.
 
@@ -366,19 +366,19 @@ class AsyncUsageEventsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        customer_id: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_name: str | NotGiven = NOT_GIVEN,
-        meter_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        customer_id: str | Omit = omit,
+        end: Union[str, datetime] | Omit = omit,
+        event_name: str | Omit = omit,
+        meter_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        start: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Event, AsyncDefaultPageNumberPagination[Event]]:
         """Fetch events from your account with powerful filtering capabilities.
 
@@ -474,7 +474,7 @@ class AsyncUsageEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageEventIngestResponse:
         """
         This endpoint allows you to ingest custom events that can be used for:

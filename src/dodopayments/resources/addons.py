@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..types import Currency, TaxCategory, addon_list_params, addon_create_params, addon_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -54,13 +54,13 @@ class AddonsResource(SyncAPIResource):
         name: str,
         price: int,
         tax_category: TaxCategory,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonResponse:
         """
         Args:
@@ -109,7 +109,7 @@ class AddonsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonResponse:
         """
         Args:
@@ -135,18 +135,18 @@ class AddonsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        price: Optional[int] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        image_id: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        price: Optional[int] | Omit = omit,
+        tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonResponse:
         """
         Args:
@@ -194,14 +194,14 @@ class AddonsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[AddonResponse]:
         """
         Args:
@@ -245,7 +245,7 @@ class AddonsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonUpdateImagesResponse:
         """
         Args:
@@ -295,13 +295,13 @@ class AsyncAddonsResource(AsyncAPIResource):
         name: str,
         price: int,
         tax_category: TaxCategory,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonResponse:
         """
         Args:
@@ -350,7 +350,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonResponse:
         """
         Args:
@@ -376,18 +376,18 @@ class AsyncAddonsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        price: Optional[int] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        image_id: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        price: Optional[int] | Omit = omit,
+        tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonResponse:
         """
         Args:
@@ -435,14 +435,14 @@ class AsyncAddonsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AddonResponse, AsyncDefaultPageNumberPagination[AddonResponse]]:
         """
         Args:
@@ -486,7 +486,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddonUpdateImagesResponse:
         """
         Args:

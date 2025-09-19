@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ...types import customer_list_params, customer_create_params, customer_update_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -73,13 +73,13 @@ class CustomersResource(SyncAPIResource):
         *,
         email: str,
         name: str,
-        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
+        phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Args:
@@ -116,7 +116,7 @@ class CustomersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Args:
@@ -142,14 +142,14 @@ class CustomersResource(SyncAPIResource):
         self,
         customer_id: str,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Args:
@@ -181,15 +181,15 @@ class CustomersResource(SyncAPIResource):
     def list(
         self,
         *,
-        email: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        email: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[Customer]:
         """
         Args:
@@ -261,13 +261,13 @@ class AsyncCustomersResource(AsyncAPIResource):
         *,
         email: str,
         name: str,
-        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
+        phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Args:
@@ -304,7 +304,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Args:
@@ -330,14 +330,14 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         customer_id: str,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        phone_number: Optional[str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Args:
@@ -369,15 +369,15 @@ class AsyncCustomersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        email: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        email: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Customer, AsyncDefaultPageNumberPagination[Customer]]:
         """
         Args:
