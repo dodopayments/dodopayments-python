@@ -18,7 +18,7 @@ from ..types import (
     subscription_change_plan_params,
     subscription_retrieve_usage_history_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -73,23 +73,23 @@ class SubscriptionsResource(SyncAPIResource):
         customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
-        addons: Optional[Iterable[AttachAddonParam]] | NotGiven = NOT_GIVEN,
-        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | NotGiven = NOT_GIVEN,
-        billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        on_demand: Optional[OnDemandSubscriptionParam] | NotGiven = NOT_GIVEN,
-        payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
-        return_url: Optional[str] | NotGiven = NOT_GIVEN,
-        show_saved_payment_methods: bool | NotGiven = NOT_GIVEN,
-        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
-        trial_period_days: Optional[int] | NotGiven = NOT_GIVEN,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
+        billing_currency: Optional[Currency] | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
+        payment_link: Optional[bool] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
+        show_saved_payment_methods: bool | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
+        trial_period_days: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionCreateResponse:
         """
         Args:
@@ -174,7 +174,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Args:
@@ -200,19 +200,19 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        billing: Optional[BillingAddressParam] | NotGiven = NOT_GIVEN,
-        cancel_at_next_billing_date: Optional[bool] | NotGiven = NOT_GIVEN,
-        disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        next_billing_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
-        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
+        billing: Optional[BillingAddressParam] | Omit = omit,
+        cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        next_billing_date: Union[str, datetime, None] | Omit = omit,
+        status: Optional[SubscriptionStatus] | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Args:
@@ -251,19 +251,19 @@ class SubscriptionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        brand_id: str | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        customer_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | NotGiven = NOT_GIVEN,
+        brand_id: str | Omit = omit,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
+        customer_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[SubscriptionListResponse]:
         """
         Args:
@@ -320,13 +320,13 @@ class SubscriptionsResource(SyncAPIResource):
         product_id: str,
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
-        addons: Optional[Iterable[AttachAddonParam]] | NotGiven = NOT_GIVEN,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -372,17 +372,17 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         product_price: int,
-        adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
-        customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        product_description: Optional[str] | NotGiven = NOT_GIVEN,
+        adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
+        customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        product_currency: Optional[Currency] | Omit = omit,
+        product_description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionChargeResponse:
         """Args:
           product_price: The product price.
@@ -438,17 +438,17 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        end_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        meter_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        start_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        end_date: Union[str, datetime, None] | Omit = omit,
+        meter_id: Optional[str] | Omit = omit,
+        page_number: Optional[int] | Omit = omit,
+        page_size: Optional[int] | Omit = omit,
+        start_date: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse]:
         """
         Get detailed usage history for a subscription that includes usage-based billing
@@ -565,23 +565,23 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer: CustomerRequestParam,
         product_id: str,
         quantity: int,
-        addons: Optional[Iterable[AttachAddonParam]] | NotGiven = NOT_GIVEN,
-        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | NotGiven = NOT_GIVEN,
-        billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        on_demand: Optional[OnDemandSubscriptionParam] | NotGiven = NOT_GIVEN,
-        payment_link: Optional[bool] | NotGiven = NOT_GIVEN,
-        return_url: Optional[str] | NotGiven = NOT_GIVEN,
-        show_saved_payment_methods: bool | NotGiven = NOT_GIVEN,
-        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
-        trial_period_days: Optional[int] | NotGiven = NOT_GIVEN,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
+        billing_currency: Optional[Currency] | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
+        payment_link: Optional[bool] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
+        show_saved_payment_methods: bool | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
+        trial_period_days: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionCreateResponse:
         """
         Args:
@@ -666,7 +666,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Args:
@@ -692,19 +692,19 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        billing: Optional[BillingAddressParam] | NotGiven = NOT_GIVEN,
-        cancel_at_next_billing_date: Optional[bool] | NotGiven = NOT_GIVEN,
-        disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        next_billing_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        status: Optional[SubscriptionStatus] | NotGiven = NOT_GIVEN,
-        tax_id: Optional[str] | NotGiven = NOT_GIVEN,
+        billing: Optional[BillingAddressParam] | Omit = omit,
+        cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        next_billing_date: Union[str, datetime, None] | Omit = omit,
+        status: Optional[SubscriptionStatus] | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Args:
@@ -743,19 +743,19 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        brand_id: str | NotGiven = NOT_GIVEN,
-        created_at_gte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_lte: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        customer_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | NotGiven = NOT_GIVEN,
+        brand_id: str | Omit = omit,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
+        customer_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SubscriptionListResponse, AsyncDefaultPageNumberPagination[SubscriptionListResponse]]:
         """
         Args:
@@ -812,13 +812,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         product_id: str,
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
-        addons: Optional[Iterable[AttachAddonParam]] | NotGiven = NOT_GIVEN,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -864,17 +864,17 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         product_price: int,
-        adaptive_currency_fees_inclusive: Optional[bool] | NotGiven = NOT_GIVEN,
-        customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        product_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        product_description: Optional[str] | NotGiven = NOT_GIVEN,
+        adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
+        customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        product_currency: Optional[Currency] | Omit = omit,
+        product_description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionChargeResponse:
         """Args:
           product_price: The product price.
@@ -930,17 +930,17 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        end_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        meter_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page_number: Optional[int] | NotGiven = NOT_GIVEN,
-        page_size: Optional[int] | NotGiven = NOT_GIVEN,
-        start_date: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        end_date: Union[str, datetime, None] | Omit = omit,
+        meter_id: Optional[str] | Omit = omit,
+        page_number: Optional[int] | Omit = omit,
+        page_size: Optional[int] | Omit = omit,
+        start_date: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[
         SubscriptionRetrieveUsageHistoryResponse,
         AsyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse],
