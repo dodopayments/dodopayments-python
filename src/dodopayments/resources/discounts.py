@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..types import DiscountType, discount_list_params, discount_create_params, discount_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,18 +51,18 @@ class DiscountsResource(SyncAPIResource):
         *,
         amount: int,
         type: DiscountType,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        code: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        subscription_cycles: Optional[int] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Discount:
         """
         POST /discounts If `code` is omitted or empty, a random 16-char uppercase code
@@ -133,7 +133,7 @@ class DiscountsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Discount:
         """
         GET /discounts/{discount_id}
@@ -161,20 +161,20 @@ class DiscountsResource(SyncAPIResource):
         self,
         discount_id: str,
         *,
-        amount: Optional[int] | NotGiven = NOT_GIVEN,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        amount: Optional[int] | Omit = omit,
+        code: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        subscription_cycles: Optional[int] | Omit = omit,
+        type: Optional[DiscountType] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Discount:
         """
         PATCH /discounts/{discount_id}
@@ -234,14 +234,14 @@ class DiscountsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[Discount]:
         """
         GET /discounts
@@ -287,7 +287,7 @@ class DiscountsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         DELETE /discounts/{discount_id}
@@ -338,18 +338,18 @@ class AsyncDiscountsResource(AsyncAPIResource):
         *,
         amount: int,
         type: DiscountType,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        code: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        subscription_cycles: Optional[int] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Discount:
         """
         POST /discounts If `code` is omitted or empty, a random 16-char uppercase code
@@ -420,7 +420,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Discount:
         """
         GET /discounts/{discount_id}
@@ -448,20 +448,20 @@ class AsyncDiscountsResource(AsyncAPIResource):
         self,
         discount_id: str,
         *,
-        amount: Optional[int] | NotGiven = NOT_GIVEN,
-        code: Optional[str] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        restricted_to: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        subscription_cycles: Optional[int] | NotGiven = NOT_GIVEN,
-        type: Optional[DiscountType] | NotGiven = NOT_GIVEN,
-        usage_limit: Optional[int] | NotGiven = NOT_GIVEN,
+        amount: Optional[int] | Omit = omit,
+        code: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        subscription_cycles: Optional[int] | Omit = omit,
+        type: Optional[DiscountType] | Omit = omit,
+        usage_limit: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Discount:
         """
         PATCH /discounts/{discount_id}
@@ -521,14 +521,14 @@ class AsyncDiscountsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Discount, AsyncDefaultPageNumberPagination[Discount]]:
         """
         GET /discounts
@@ -574,7 +574,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         DELETE /discounts/{discount_id}

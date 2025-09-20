@@ -21,7 +21,7 @@ from ...types import (
     product_update_params,
     product_update_files_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -72,22 +72,22 @@ class ProductsResource(SyncAPIResource):
         *,
         price: PriceParam,
         tax_category: TaxCategory,
-        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
-        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
-        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
-        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | Omit = omit,
+        brand_id: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
+        license_key_activation_message: Optional[str] | Omit = omit,
+        license_key_activations_limit: Optional[int] | Omit = omit,
+        license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
+        license_key_enabled: Optional[bool] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Product:
         """
         Args:
@@ -159,7 +159,7 @@ class ProductsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Product:
         """
         Args:
@@ -185,25 +185,25 @@ class ProductsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
-        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
-        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | Omit = omit,
+        brand_id: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
+        image_id: Optional[str] | Omit = omit,
+        license_key_activation_message: Optional[str] | Omit = omit,
+        license_key_activations_limit: Optional[int] | Omit = omit,
+        license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
+        license_key_enabled: Optional[bool] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        price: Optional[PriceParam] | Omit = omit,
+        tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -283,17 +283,17 @@ class ProductsResource(SyncAPIResource):
     def list(
         self,
         *,
-        archived: bool | NotGiven = NOT_GIVEN,
-        brand_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recurring: bool | NotGiven = NOT_GIVEN,
+        archived: bool | Omit = omit,
+        brand_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        recurring: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[ProductListResponse]:
         """
         Args:
@@ -351,7 +351,7 @@ class ProductsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -383,7 +383,7 @@ class ProductsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -416,7 +416,7 @@ class ProductsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductUpdateFilesResponse:
         """
         Args:
@@ -469,22 +469,22 @@ class AsyncProductsResource(AsyncAPIResource):
         *,
         price: PriceParam,
         tax_category: TaxCategory,
-        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
-        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
-        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
-        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | Omit = omit,
+        brand_id: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
+        license_key_activation_message: Optional[str] | Omit = omit,
+        license_key_activations_limit: Optional[int] | Omit = omit,
+        license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
+        license_key_enabled: Optional[bool] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Product:
         """
         Args:
@@ -556,7 +556,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Product:
         """
         Args:
@@ -582,25 +582,25 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        addons: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        brand_id: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | NotGiven = NOT_GIVEN,
-        image_id: Optional[str] | NotGiven = NOT_GIVEN,
-        license_key_activation_message: Optional[str] | NotGiven = NOT_GIVEN,
-        license_key_activations_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        license_key_duration: Optional[LicenseKeyDurationParam] | NotGiven = NOT_GIVEN,
-        license_key_enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        price: Optional[PriceParam] | NotGiven = NOT_GIVEN,
-        tax_category: Optional[TaxCategory] | NotGiven = NOT_GIVEN,
+        addons: Optional[SequenceNotStr[str]] | Omit = omit,
+        brand_id: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
+        image_id: Optional[str] | Omit = omit,
+        license_key_activation_message: Optional[str] | Omit = omit,
+        license_key_activations_limit: Optional[int] | Omit = omit,
+        license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
+        license_key_enabled: Optional[bool] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        price: Optional[PriceParam] | Omit = omit,
+        tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -680,17 +680,17 @@ class AsyncProductsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        archived: bool | NotGiven = NOT_GIVEN,
-        brand_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        recurring: bool | NotGiven = NOT_GIVEN,
+        archived: bool | Omit = omit,
+        brand_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        recurring: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ProductListResponse, AsyncDefaultPageNumberPagination[ProductListResponse]]:
         """
         Args:
@@ -748,7 +748,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -780,7 +780,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Args:
@@ -813,7 +813,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductUpdateFilesResponse:
         """
         Args:

@@ -7,7 +7,7 @@ from typing import Dict, List, Iterable, Optional
 import httpx
 
 from ..types import Currency, checkout_session_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,24 +50,24 @@ class CheckoutSessionsResource(SyncAPIResource):
         self,
         *,
         product_cart: Iterable[checkout_session_create_params.ProductCart],
-        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | NotGiven = NOT_GIVEN,
-        billing_address: Optional[checkout_session_create_params.BillingAddress] | NotGiven = NOT_GIVEN,
-        billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        confirm: bool | NotGiven = NOT_GIVEN,
-        customer: Optional[CustomerRequestParam] | NotGiven = NOT_GIVEN,
-        customization: checkout_session_create_params.Customization | NotGiven = NOT_GIVEN,
-        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
-        feature_flags: checkout_session_create_params.FeatureFlags | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        return_url: Optional[str] | NotGiven = NOT_GIVEN,
-        show_saved_payment_methods: bool | NotGiven = NOT_GIVEN,
-        subscription_data: Optional[checkout_session_create_params.SubscriptionData] | NotGiven = NOT_GIVEN,
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
+        billing_address: Optional[checkout_session_create_params.BillingAddress] | Omit = omit,
+        billing_currency: Optional[Currency] | Omit = omit,
+        confirm: bool | Omit = omit,
+        customer: Optional[CustomerRequestParam] | Omit = omit,
+        customization: checkout_session_create_params.Customization | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
+        feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
+        show_saved_payment_methods: bool | Omit = omit,
+        subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CheckoutSessionResponse:
         """
         Args:
@@ -155,24 +155,24 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         self,
         *,
         product_cart: Iterable[checkout_session_create_params.ProductCart],
-        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | NotGiven = NOT_GIVEN,
-        billing_address: Optional[checkout_session_create_params.BillingAddress] | NotGiven = NOT_GIVEN,
-        billing_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
-        confirm: bool | NotGiven = NOT_GIVEN,
-        customer: Optional[CustomerRequestParam] | NotGiven = NOT_GIVEN,
-        customization: checkout_session_create_params.Customization | NotGiven = NOT_GIVEN,
-        discount_code: Optional[str] | NotGiven = NOT_GIVEN,
-        feature_flags: checkout_session_create_params.FeatureFlags | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        return_url: Optional[str] | NotGiven = NOT_GIVEN,
-        show_saved_payment_methods: bool | NotGiven = NOT_GIVEN,
-        subscription_data: Optional[checkout_session_create_params.SubscriptionData] | NotGiven = NOT_GIVEN,
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
+        billing_address: Optional[checkout_session_create_params.BillingAddress] | Omit = omit,
+        billing_currency: Optional[Currency] | Omit = omit,
+        confirm: bool | Omit = omit,
+        customer: Optional[CustomerRequestParam] | Omit = omit,
+        customization: checkout_session_create_params.Customization | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
+        feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
+        show_saved_payment_methods: bool | Omit = omit,
+        subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CheckoutSessionResponse:
         """
         Args:
