@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.53.5 (2025-09-23)
+
+Full Changelog: [v1.53.4...v1.53.5](https://github.com/dodopayments/dodopayments-python/compare/v1.53.4...v1.53.5)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([fd89d01](https://github.com/dodopayments/dodopayments-python/commit/fd89d01ee0e65b99a08cf1a139c587c83ef8588e))
+* improve example values ([cab2f1e](https://github.com/dodopayments/dodopayments-python/commit/cab2f1e01ad09a478834024e3c5f83fef2cf7ab2))
+* **types:** change optional parameter type from NotGiven to Omit ([cf2bf2d](https://github.com/dodopayments/dodopayments-python/commit/cf2bf2dc9c94a859186765cc87c8fdb0017286ce))
+
 ## 1.53.4 (2025-09-17)
 
 Full Changelog: [v1.53.3...v1.53.4](https://github.com/dodopayments/dodopayments-python/compare/v1.53.3...v1.53.4)
