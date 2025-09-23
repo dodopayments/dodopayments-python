@@ -22,14 +22,14 @@ class TestLicenseKeys:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         license_key = client.license_keys.retrieve(
-            "id",
+            "lic_123",
         )
         assert_matches_type(LicenseKey, license_key, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.license_keys.with_raw_response.retrieve(
-            "id",
+            "lic_123",
         )
 
         assert response.is_closed is True
@@ -40,7 +40,7 @@ class TestLicenseKeys:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.license_keys.with_streaming_response.retrieve(
-            "id",
+            "lic_123",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -150,14 +150,14 @@ class TestAsyncLicenseKeys:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         license_key = await async_client.license_keys.retrieve(
-            "id",
+            "lic_123",
         )
         assert_matches_type(LicenseKey, license_key, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.license_keys.with_raw_response.retrieve(
-            "id",
+            "lic_123",
         )
 
         assert response.is_closed is True
@@ -168,7 +168,7 @@ class TestAsyncLicenseKeys:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.license_keys.with_streaming_response.retrieve(
-            "id",
+            "lic_123",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
