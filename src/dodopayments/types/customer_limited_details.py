@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
+
 from .._models import BaseModel
 
 __all__ = ["CustomerLimitedDetails"]
@@ -14,3 +16,6 @@ class CustomerLimitedDetails(BaseModel):
 
     name: str
     """Full name of the customer"""
+
+    phone_number: Optional[str] = None
+    """Phone number of the customer"""

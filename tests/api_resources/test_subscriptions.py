@@ -63,6 +63,7 @@ class TestSubscriptions:
             allowed_payment_method_types=["credit"],
             billing_currency="AED",
             discount_code="discount_code",
+            force_3ds=True,
             metadata={"foo": "string"},
             on_demand={
                 "mandate_only": True,
@@ -485,6 +486,7 @@ class TestAsyncSubscriptions:
             allowed_payment_method_types=["credit"],
             billing_currency="AED",
             discount_code="discount_code",
+            force_3ds=True,
             metadata={"foo": "string"},
             on_demand={
                 "mandate_only": True,
