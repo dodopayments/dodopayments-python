@@ -57,6 +57,9 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
 
     feature_flags: FeatureFlags
 
+    force_3ds: Optional[bool]
+    """Override merchant default 3DS behaviour for this session"""
+
     metadata: Optional[Dict[str, str]]
     """Additional metadata associated with the payment.
 
@@ -111,6 +114,9 @@ class BillingAddress(TypedDict, total=False):
 
 
 class Customization(TypedDict, total=False):
+    force_language: Optional[str]
+    """Force the checkout interface to render in a specific language (e.g. `en`, `es`)"""
+
     show_on_demand_tag: bool
     """Show on demand tag
 

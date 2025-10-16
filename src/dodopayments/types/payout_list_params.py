@@ -2,12 +2,22 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["PayoutListParams"]
 
 
 class PayoutListParams(TypedDict, total=False):
+    created_at_gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Get payouts created after this time (inclusive)"""
+
+    created_at_lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Get payouts created before this time (inclusive)"""
+
     page_number: int
     """Page number default is 0"""
 

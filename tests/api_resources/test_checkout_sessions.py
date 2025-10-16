@@ -57,6 +57,7 @@ class TestCheckoutSessions:
             confirm=True,
             customer={"customer_id": "customer_id"},
             customization={
+                "force_language": "force_language",
                 "show_on_demand_tag": True,
                 "show_order_details": True,
                 "theme": "dark",
@@ -69,6 +70,7 @@ class TestCheckoutSessions:
                 "allow_tax_id": True,
                 "always_create_new_customer": True,
             },
+            force_3ds=True,
             metadata={"foo": "string"},
             return_url="return_url",
             show_saved_payment_methods=True,
@@ -165,6 +167,7 @@ class TestAsyncCheckoutSessions:
             confirm=True,
             customer={"customer_id": "customer_id"},
             customization={
+                "force_language": "force_language",
                 "show_on_demand_tag": True,
                 "show_order_details": True,
                 "theme": "dark",
@@ -177,6 +180,7 @@ class TestAsyncCheckoutSessions:
                 "allow_tax_id": True,
                 "always_create_new_customer": True,
             },
+            force_3ds=True,
             metadata={"foo": "string"},
             return_url="return_url",
             show_saved_payment_methods=True,

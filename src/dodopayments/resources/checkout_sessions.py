@@ -58,6 +58,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         customization: checkout_session_create_params.Customization | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -89,6 +90,8 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           customization: Customization for the checkout session page
 
+          force_3ds: Override merchant default 3DS behaviour for this session
+
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
 
@@ -117,6 +120,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "customization": customization,
                     "discount_code": discount_code,
                     "feature_flags": feature_flags,
+                    "force_3ds": force_3ds,
                     "metadata": metadata,
                     "return_url": return_url,
                     "show_saved_payment_methods": show_saved_payment_methods,
@@ -163,6 +167,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         customization: checkout_session_create_params.Customization | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -194,6 +199,8 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           customization: Customization for the checkout session page
 
+          force_3ds: Override merchant default 3DS behaviour for this session
+
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
 
@@ -222,6 +229,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "customization": customization,
                     "discount_code": discount_code,
                     "feature_flags": feature_flags,
+                    "force_3ds": force_3ds,
                     "metadata": metadata,
                     "return_url": return_url,
                     "show_saved_payment_methods": show_saved_payment_methods,

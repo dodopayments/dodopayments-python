@@ -49,6 +49,9 @@ class SubscriptionCreateParams(TypedDict, total=False):
     discount_code: Optional[str]
     """Discount Code to apply to the subscription"""
 
+    force_3ds: Optional[bool]
+    """Override merchant default 3DS behaviour for this subscription"""
+
     metadata: Dict[str, str]
     """Additional metadata for the subscription Defaults to empty if not specified"""
 

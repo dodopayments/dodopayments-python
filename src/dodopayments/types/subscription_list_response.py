@@ -88,3 +88,6 @@ class SubscriptionListResponse(BaseModel):
 
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""
+
+    tax_id: Optional[str] = None
+    """Tax identifier provided for this subscription (if applicable)"""

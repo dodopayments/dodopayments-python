@@ -77,6 +77,7 @@ class SubscriptionsResource(SyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
@@ -115,6 +116,8 @@ class SubscriptionsResource(SyncAPIResource):
 
           discount_code: Discount Code to apply to the subscription
 
+          force_3ds: Override merchant default 3DS behaviour for this subscription
+
           metadata: Additional metadata for the subscription Defaults to empty if not specified
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
@@ -149,6 +152,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "force_3ds": force_3ds,
                     "metadata": metadata,
                     "on_demand": on_demand,
                     "payment_link": payment_link,
@@ -569,6 +573,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
@@ -607,6 +612,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           discount_code: Discount Code to apply to the subscription
 
+          force_3ds: Override merchant default 3DS behaviour for this subscription
+
           metadata: Additional metadata for the subscription Defaults to empty if not specified
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
@@ -641,6 +648,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "force_3ds": force_3ds,
                     "metadata": metadata,
                     "on_demand": on_demand,
                     "payment_link": payment_link,
