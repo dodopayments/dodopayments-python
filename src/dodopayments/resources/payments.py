@@ -63,6 +63,7 @@ class PaymentsResource(SyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -95,6 +96,8 @@ class PaymentsResource(SyncAPIResource):
 
           discount_code: Discount Code to apply to the transaction
 
+          force_3ds: Override merchant default 3DS behaviour for this payment
+
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
 
@@ -126,6 +129,7 @@ class PaymentsResource(SyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,
@@ -314,6 +318,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -346,6 +351,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           discount_code: Discount Code to apply to the transaction
 
+          force_3ds: Override merchant default 3DS behaviour for this payment
+
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
 
@@ -377,6 +384,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
                     "return_url": return_url,

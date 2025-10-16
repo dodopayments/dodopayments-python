@@ -114,3 +114,6 @@ class Subscription(BaseModel):
 
     expires_at: Optional[datetime] = None
     """Timestamp when the subscription will expire"""
+
+    tax_id: Optional[str] = None
+    """Tax identifier provided for this subscription (if applicable)"""

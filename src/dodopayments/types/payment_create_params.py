@@ -42,6 +42,9 @@ class PaymentCreateParams(TypedDict, total=False):
     discount_code: Optional[str]
     """Discount Code to apply to the transaction"""
 
+    force_3ds: Optional[bool]
+    """Override merchant default 3DS behaviour for this payment"""
+
     metadata: Dict[str, str]
     """
     Additional metadata associated with the payment. Defaults to empty if not
