@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.55.0 (2025-10-16)
+
+Full Changelog: [v1.53.5...v1.55.0](https://github.com/dodopayments/dodopayments-python/compare/v1.53.5...v1.55.0)
+
+### Features
+
+* **api:** updated openapi spec to v1.55.0 ([28c4ab1](https://github.com/dodopayments/dodopayments-python/commit/28c4ab1f8e76410575e3646c425d36cd3fae3abc))
+
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([70df264](https://github.com/dodopayments/dodopayments-python/commit/70df2646b6fa82309691fdd974d44f0968fc2e80))
+
 ## 1.53.5 (2025-09-23)
 
 Full Changelog: [v1.53.4...v1.53.5](https://github.com/dodopayments/dodopayments-python/compare/v1.53.4...v1.53.5)
