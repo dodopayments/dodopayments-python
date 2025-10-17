@@ -10,7 +10,13 @@ __all__ = ["NewCustomerParam"]
 
 class NewCustomerParam(TypedDict, total=False):
     email: Required[str]
+    """Email is required for creating a new customer"""
 
-    name: Required[str]
+    name: Optional[str]
+    """Optional full name of the customer.
+
+    If provided during session creation, it is persisted and becomes immutable for
+    the session. If omitted here, it can be provided later via the confirm API.
+    """
 
     phone_number: Optional[str]
