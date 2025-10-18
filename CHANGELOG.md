@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.55.8 (2025-10-18)
+
+Full Changelog: [v1.55.7...v1.55.8](https://github.com/dodopayments/dodopayments-python/compare/v1.55.7...v1.55.8)
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([e4792b3](https://github.com/dodopayments/dodopayments-python/commit/e4792b35b4bcf7365c815f3543eac7a5bda724ad))
+
 ## 1.55.7 (2025-10-17)
 
 Full Changelog: [v1.55.0...v1.55.7](https://github.com/dodopayments/dodopayments-python/compare/v1.55.0...v1.55.7)
