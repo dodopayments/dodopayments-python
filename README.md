@@ -191,6 +191,25 @@ for payment in first_page.items:
 # Remove `await` for non-async usage.
 ```
 
+## Webhook Verification
+
+Dodo Payments uses Standard Webhooks to send webhook events to your application. To verify webhook payloads, use the standardwebhooks Python library.
+```python
+from standardwebhooks.webhooks import Webhook
+wh = Webhook(DODO_SECRET)
+wh.verify(webhook_payload, webhook_headers)
+```
+
+If you're using FastAPI, you can verify webhooks in your endpoint handler
+
+```python
+@router.post("/webhook_handler")
+async def webhook_handler(request: Request):
+    wh = Webhook(DODO_SECRET)
+    body = await request.body()
+    res = wh.verify(body, request.headers)
+```
+
 ## Nested params
 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
