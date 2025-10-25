@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.56.0 (2025-10-25)
+
+Full Changelog: [v1.55.7...v1.56.0](https://github.com/dodopayments/dodopayments-python/compare/v1.55.7...v1.56.0)
+
+### Features
+
+* **api:** added unwrap functions for webhooks ([9bf339a](https://github.com/dodopayments/dodopayments-python/commit/9bf339a52c8660f603de53d68be20304e46cae57))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([e4792b3](https://github.com/dodopayments/dodopayments-python/commit/e4792b35b4bcf7365c815f3543eac7a5bda724ad))
+
 ## 1.55.7 (2025-10-17)
 
 Full Changelog: [v1.55.0...v1.55.7](https://github.com/dodopayments/dodopayments-python/compare/v1.55.0...v1.55.7)
