@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import os
 from typing import Any, cast
+from datetime import datetime, timezone
 
 import pytest
+import standardwebhooks
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
@@ -264,6 +266,34 @@ class TestWebhooks:
                 "",
             )
 
+    def test_method_unwrap(self, client: DodoPayments) -> None:
+        key = b"secret"
+        hook = standardwebhooks.Webhook(key)
+
+        data = """{"business_id":"business_id","data":{"amount":"amount","business_id":"business_id","created_at":"2019-12-27T18:11:19.117Z","currency":"currency","dispute_id":"dispute_id","dispute_stage":"pre_dispute","dispute_status":"dispute_opened","payment_id":"payment_id","remarks":"remarks","payload_type":"Dispute"},"timestamp":"2019-12-27T18:11:19.117Z","type":"dispute.accepted"}"""
+        msg_id = "1"
+        timestamp = datetime.now(tz=timezone.utc)
+        sig = hook.sign(msg_id=msg_id, timestamp=timestamp, data=data)
+        headers = {
+            "webhook-id": msg_id,
+            "webhook-timestamp": str(int(timestamp.timestamp())),
+            "webhook-signature": sig,
+        }
+
+        try:
+            _ = client.webhooks.unwrap(data, headers=headers, key=key)
+        except standardwebhooks.WebhookVerificationError as e:
+            raise AssertionError("Failed to unwrap valid webhook") from e
+
+        bad_headers = [
+            {**headers, "webhook-signature": hook.sign(msg_id=msg_id, timestamp=timestamp, data="xxx")},
+            {**headers, "webhook-id": "bad"},
+            {**headers, "webhook-timestamp": "0"},
+        ]
+        for bad_header in bad_headers:
+            with pytest.raises(standardwebhooks.WebhookVerificationError):
+                _ = client.webhooks.unwrap(data, headers=bad_header, key=key)
+
 
 class TestAsyncWebhooks:
     parametrize = pytest.mark.parametrize(
@@ -512,3 +542,31 @@ class TestAsyncWebhooks:
             await async_client.webhooks.with_raw_response.retrieve_secret(
                 "",
             )
+
+    def test_method_unwrap(self, client: DodoPayments) -> None:
+        key = b"secret"
+        hook = standardwebhooks.Webhook(key)
+
+        data = """{"business_id":"business_id","data":{"amount":"amount","business_id":"business_id","created_at":"2019-12-27T18:11:19.117Z","currency":"currency","dispute_id":"dispute_id","dispute_stage":"pre_dispute","dispute_status":"dispute_opened","payment_id":"payment_id","remarks":"remarks","payload_type":"Dispute"},"timestamp":"2019-12-27T18:11:19.117Z","type":"dispute.accepted"}"""
+        msg_id = "1"
+        timestamp = datetime.now(tz=timezone.utc)
+        sig = hook.sign(msg_id=msg_id, timestamp=timestamp, data=data)
+        headers = {
+            "webhook-id": msg_id,
+            "webhook-timestamp": str(int(timestamp.timestamp())),
+            "webhook-signature": sig,
+        }
+
+        try:
+            _ = client.webhooks.unwrap(data, headers=headers, key=key)
+        except standardwebhooks.WebhookVerificationError as e:
+            raise AssertionError("Failed to unwrap valid webhook") from e
+
+        bad_headers = [
+            {**headers, "webhook-signature": hook.sign(msg_id=msg_id, timestamp=timestamp, data="xxx")},
+            {**headers, "webhook-id": "bad"},
+            {**headers, "webhook-timestamp": "0"},
+        ]
+        for bad_header in bad_headers:
+            with pytest.raises(standardwebhooks.WebhookVerificationError):
+                _ = client.webhooks.unwrap(data, headers=bad_header, key=key)

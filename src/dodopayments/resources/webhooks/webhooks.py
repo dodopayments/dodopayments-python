@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+import json
+from typing import Dict, List, Mapping, Optional, cast
 
 import httpx
 
@@ -18,6 +19,7 @@ from .headers import (
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
+from ..._models import construct_type
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -26,9 +28,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncCursorPagePagination, AsyncCursorPagePagination
+from ..._exceptions import DodoPaymentsError
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.webhook_details import WebhookDetails
 from ...types.webhook_event_type import WebhookEventType
+from ...types.unwrap_webhook_event import UnwrapWebhookEvent
+from ...types.unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent
 from ...types.webhook_retrieve_secret_response import WebhookRetrieveSecretResponse
 
 __all__ = ["WebhooksResource", "AsyncWebhooksResource"]
@@ -336,6 +341,41 @@ class WebhooksResource(SyncAPIResource):
             cast_to=WebhookRetrieveSecretResponse,
         )
 
+    def unsafe_unwrap(self, payload: str) -> UnsafeUnwrapWebhookEvent:
+        return cast(
+            UnsafeUnwrapWebhookEvent,
+            construct_type(
+                type_=UnsafeUnwrapWebhookEvent,
+                value=json.loads(payload),
+            ),
+        )
+
+    def unwrap(self, payload: str, *, headers: Mapping[str, str], key: str | bytes | None = None) -> UnwrapWebhookEvent:
+        try:
+            from standardwebhooks import Webhook
+        except ImportError as exc:
+            raise DodoPaymentsError("You need to install `dodopayments[webhooks]` to use this method") from exc
+
+        if key is None:
+            key = self._client.webhook_key
+            if key is None:
+                raise ValueError(
+                    "Cannot verify a webhook without a key on either the client's webhook_key or passed in as an argument"
+                )
+
+        if not isinstance(headers, dict):
+            headers = dict(headers)
+
+        Webhook(key).verify(payload, headers)
+
+        return cast(
+            UnwrapWebhookEvent,
+            construct_type(
+                type_=UnwrapWebhookEvent,
+                value=json.loads(payload),
+            ),
+        )
+
 
 class AsyncWebhooksResource(AsyncAPIResource):
     @cached_property
@@ -637,6 +677,41 @@ class AsyncWebhooksResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=WebhookRetrieveSecretResponse,
+        )
+
+    def unsafe_unwrap(self, payload: str) -> UnsafeUnwrapWebhookEvent:
+        return cast(
+            UnsafeUnwrapWebhookEvent,
+            construct_type(
+                type_=UnsafeUnwrapWebhookEvent,
+                value=json.loads(payload),
+            ),
+        )
+
+    def unwrap(self, payload: str, *, headers: Mapping[str, str], key: str | bytes | None = None) -> UnwrapWebhookEvent:
+        try:
+            from standardwebhooks import Webhook
+        except ImportError as exc:
+            raise DodoPaymentsError("You need to install `dodopayments[webhooks]` to use this method") from exc
+
+        if key is None:
+            key = self._client.webhook_key
+            if key is None:
+                raise ValueError(
+                    "Cannot verify a webhook without a key on either the client's webhook_key or passed in as an argument"
+                )
+
+        if not isinstance(headers, dict):
+            headers = dict(headers)
+
+        Webhook(key).verify(payload, headers)
+
+        return cast(
+            UnwrapWebhookEvent,
+            construct_type(
+                type_=UnwrapWebhookEvent,
+                value=json.loads(payload),
+            ),
         )
 
 
