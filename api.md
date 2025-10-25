@@ -204,14 +204,6 @@ Methods:
 
 - <code title="get /payouts">client.payouts.<a href="./src/dodopayments/resources/payouts.py">list</a>(\*\*<a href="src/dodopayments/types/payout_list_params.py">params</a>) -> <a href="./src/dodopayments/types/payout_list_response.py">SyncDefaultPageNumberPagination[PayoutListResponse]</a></code>
 
-# WebhookEvents
-
-Types:
-
-```python
-from dodopayments.types import WebhookEventType, WebhookPayload
-```
-
 # Products
 
 Types:
@@ -319,7 +311,54 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import WebhookDetails, WebhookRetrieveSecretResponse
+from dodopayments.types import (
+    WebhookDetails,
+    WebhookRetrieveSecretResponse,
+    DisputeAcceptedWebhookEvent,
+    DisputeCancelledWebhookEvent,
+    DisputeChallengedWebhookEvent,
+    DisputeExpiredWebhookEvent,
+    DisputeLostWebhookEvent,
+    DisputeOpenedWebhookEvent,
+    DisputeWonWebhookEvent,
+    LicenseKeyCreatedWebhookEvent,
+    PaymentCancelledWebhookEvent,
+    PaymentFailedWebhookEvent,
+    PaymentProcessingWebhookEvent,
+    PaymentSucceededWebhookEvent,
+    RefundFailedWebhookEvent,
+    RefundSucceededWebhookEvent,
+    SubscriptionActiveWebhookEvent,
+    SubscriptionCancelledWebhookEvent,
+    SubscriptionExpiredWebhookEvent,
+    SubscriptionFailedWebhookEvent,
+    SubscriptionOnHoldWebhookEvent,
+    SubscriptionPlanChangedWebhookEvent,
+    SubscriptionRenewedWebhookEvent,
+    DisputeAcceptedWebhookEvent,
+    DisputeCancelledWebhookEvent,
+    DisputeChallengedWebhookEvent,
+    DisputeExpiredWebhookEvent,
+    DisputeLostWebhookEvent,
+    DisputeOpenedWebhookEvent,
+    DisputeWonWebhookEvent,
+    LicenseKeyCreatedWebhookEvent,
+    PaymentCancelledWebhookEvent,
+    PaymentFailedWebhookEvent,
+    PaymentProcessingWebhookEvent,
+    PaymentSucceededWebhookEvent,
+    RefundFailedWebhookEvent,
+    RefundSucceededWebhookEvent,
+    SubscriptionActiveWebhookEvent,
+    SubscriptionCancelledWebhookEvent,
+    SubscriptionExpiredWebhookEvent,
+    SubscriptionFailedWebhookEvent,
+    SubscriptionOnHoldWebhookEvent,
+    SubscriptionPlanChangedWebhookEvent,
+    SubscriptionRenewedWebhookEvent,
+    UnsafeUnwrapWebhookEvent,
+    UnwrapWebhookEvent,
+)
 ```
 
 Methods:
@@ -343,6 +382,14 @@ Methods:
 
 - <code title="get /webhooks/{webhook_id}/headers">client.webhooks.headers.<a href="./src/dodopayments/resources/webhooks/headers.py">retrieve</a>(webhook_id) -> <a href="./src/dodopayments/types/webhooks/header_retrieve_response.py">HeaderRetrieveResponse</a></code>
 - <code title="patch /webhooks/{webhook_id}/headers">client.webhooks.headers.<a href="./src/dodopayments/resources/webhooks/headers.py">update</a>(webhook_id, \*\*<a href="src/dodopayments/types/webhooks/header_update_params.py">params</a>) -> None</code>
+
+# WebhookEvents
+
+Types:
+
+```python
+from dodopayments.types import WebhookEventType, WebhookPayload
+```
 
 # UsageEvents
 
