@@ -93,6 +93,7 @@ class DodoPayments(SyncAPIClient):
 
     # client options
     bearer_token: str
+    webhook_key: str | None
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
 
@@ -100,6 +101,7 @@ class DodoPayments(SyncAPIClient):
         self,
         *,
         bearer_token: str | None = None,
+        webhook_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = not_given,
         base_url: str | httpx.URL | None | NotGiven = not_given,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -122,7 +124,9 @@ class DodoPayments(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous DodoPayments client instance.
 
-        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `bearer_token` from `DODO_PAYMENTS_API_KEY`
+        - `webhook_key` from `DODO_PAYMENTS_WEBHOOK_KEY`
         """
         if bearer_token is None:
             bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
@@ -131,6 +135,10 @@ class DodoPayments(SyncAPIClient):
                 "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
         self.bearer_token = bearer_token
+
+        if webhook_key is None:
+            webhook_key = os.environ.get("DODO_PAYMENTS_WEBHOOK_KEY")
+        self.webhook_key = webhook_key
 
         self._environment = environment
 
@@ -215,6 +223,7 @@ class DodoPayments(SyncAPIClient):
         self,
         *,
         bearer_token: str | None = None,
+        webhook_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -250,6 +259,7 @@ class DodoPayments(SyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             bearer_token=bearer_token or self.bearer_token,
+            webhook_key=webhook_key or self.webhook_key,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -323,6 +333,7 @@ class AsyncDodoPayments(AsyncAPIClient):
 
     # client options
     bearer_token: str
+    webhook_key: str | None
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
 
@@ -330,6 +341,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         self,
         *,
         bearer_token: str | None = None,
+        webhook_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = not_given,
         base_url: str | httpx.URL | None | NotGiven = not_given,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -352,7 +364,9 @@ class AsyncDodoPayments(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncDodoPayments client instance.
 
-        This automatically infers the `bearer_token` argument from the `DODO_PAYMENTS_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `bearer_token` from `DODO_PAYMENTS_API_KEY`
+        - `webhook_key` from `DODO_PAYMENTS_WEBHOOK_KEY`
         """
         if bearer_token is None:
             bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
@@ -361,6 +375,10 @@ class AsyncDodoPayments(AsyncAPIClient):
                 "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
         self.bearer_token = bearer_token
+
+        if webhook_key is None:
+            webhook_key = os.environ.get("DODO_PAYMENTS_WEBHOOK_KEY")
+        self.webhook_key = webhook_key
 
         self._environment = environment
 
@@ -445,6 +463,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         self,
         *,
         bearer_token: str | None = None,
+        webhook_key: str | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -480,6 +499,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             bearer_token=bearer_token or self.bearer_token,
+            webhook_key=webhook_key or self.webhook_key,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
