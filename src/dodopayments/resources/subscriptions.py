@@ -206,6 +206,7 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
@@ -238,6 +239,7 @@ class SubscriptionsResource(SyncAPIResource):
                 {
                     "billing": billing,
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
+                    "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
                     "next_billing_date": next_billing_date,
@@ -702,6 +704,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
@@ -734,6 +737,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 {
                     "billing": billing,
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
+                    "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
                     "next_billing_date": next_billing_date,

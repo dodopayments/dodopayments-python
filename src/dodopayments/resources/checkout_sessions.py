@@ -21,6 +21,7 @@ from .._base_client import make_request_options
 from ..types.currency import Currency
 from ..types.payment_method_types import PaymentMethodTypes
 from ..types.customer_request_param import CustomerRequestParam
+from ..types.checkout_session_status import CheckoutSessionStatus
 from ..types.checkout_session_response import CheckoutSessionResponse
 
 __all__ = ["CheckoutSessionsResource", "AsyncCheckoutSessionsResource"]
@@ -134,6 +135,37 @@ class CheckoutSessionsResource(SyncAPIResource):
             cast_to=CheckoutSessionResponse,
         )
 
+    def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CheckoutSessionStatus:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/checkouts/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CheckoutSessionStatus,
+        )
+
 
 class AsyncCheckoutSessionsResource(AsyncAPIResource):
     @cached_property
@@ -243,6 +275,37 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
             cast_to=CheckoutSessionResponse,
         )
 
+    async def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CheckoutSessionStatus:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/checkouts/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CheckoutSessionStatus,
+        )
+
 
 class CheckoutSessionsResourceWithRawResponse:
     def __init__(self, checkout_sessions: CheckoutSessionsResource) -> None:
@@ -250,6 +313,9 @@ class CheckoutSessionsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             checkout_sessions.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            checkout_sessions.retrieve,
         )
 
 
@@ -260,6 +326,9 @@ class AsyncCheckoutSessionsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             checkout_sessions.create,
         )
+        self.retrieve = async_to_raw_response_wrapper(
+            checkout_sessions.retrieve,
+        )
 
 
 class CheckoutSessionsResourceWithStreamingResponse:
@@ -269,6 +338,9 @@ class CheckoutSessionsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             checkout_sessions.create,
         )
+        self.retrieve = to_streamed_response_wrapper(
+            checkout_sessions.retrieve,
+        )
 
 
 class AsyncCheckoutSessionsResourceWithStreamingResponse:
@@ -277,4 +349,7 @@ class AsyncCheckoutSessionsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             checkout_sessions.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            checkout_sessions.retrieve,
         )

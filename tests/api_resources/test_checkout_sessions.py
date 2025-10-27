@@ -9,7 +9,10 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
-from dodopayments.types import CheckoutSessionResponse
+from dodopayments.types import (
+    CheckoutSessionStatus,
+    CheckoutSessionResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -121,6 +124,44 @@ class TestCheckoutSessions:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_retrieve(self, client: DodoPayments) -> None:
+        checkout_session = client.checkout_sessions.retrieve(
+            "id",
+        )
+        assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: DodoPayments) -> None:
+        response = client.checkout_sessions.with_raw_response.retrieve(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        checkout_session = response.parse()
+        assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
+        with client.checkout_sessions.with_streaming_response.retrieve(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            checkout_session = response.parse()
+            assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.checkout_sessions.with_raw_response.retrieve(
+                "",
+            )
+
 
 class TestAsyncCheckoutSessions:
     parametrize = pytest.mark.parametrize(
@@ -230,3 +271,41 @@ class TestAsyncCheckoutSessions:
             assert_matches_type(CheckoutSessionResponse, checkout_session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
+        checkout_session = await async_client.checkout_sessions.retrieve(
+            "id",
+        )
+        assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.checkout_sessions.with_raw_response.retrieve(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        checkout_session = await response.parse()
+        assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.checkout_sessions.with_streaming_response.retrieve(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            checkout_session = await response.parse()
+            assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.checkout_sessions.with_raw_response.retrieve(
+                "",
+            )

@@ -3,12 +3,17 @@
 Types:
 
 ```python
-from dodopayments.types import CheckoutSessionRequest, CheckoutSessionResponse
+from dodopayments.types import (
+    CheckoutSessionRequest,
+    CheckoutSessionResponse,
+    CheckoutSessionStatus,
+)
 ```
 
 Methods:
 
 - <code title="post /checkouts">client.checkout_sessions.<a href="./src/dodopayments/resources/checkout_sessions.py">create</a>(\*\*<a href="src/dodopayments/types/checkout_session_create_params.py">params</a>) -> <a href="./src/dodopayments/types/checkout_session_response.py">CheckoutSessionResponse</a></code>
+- <code title="get /checkouts/{id}">client.checkout_sessions.<a href="./src/dodopayments/resources/checkout_sessions.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/checkout_session_status.py">CheckoutSessionStatus</a></code>
 
 # Payments
 

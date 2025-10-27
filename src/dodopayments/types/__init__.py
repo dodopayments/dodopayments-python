@@ -75,6 +75,7 @@ from .customer_request_param import CustomerRequestParam as CustomerRequestParam
 from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
 from .discount_create_params import DiscountCreateParams as DiscountCreateParams
 from .discount_update_params import DiscountUpdateParams as DiscountUpdateParams
+from .checkout_session_status import CheckoutSessionStatus as CheckoutSessionStatus
 from .customer_portal_session import CustomerPortalSession as CustomerPortalSession
 from .license_activate_params import LicenseActivateParams as LicenseActivateParams
 from .license_key_list_params import LicenseKeyListParams as LicenseKeyListParams
