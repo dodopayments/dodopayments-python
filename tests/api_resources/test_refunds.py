@@ -37,6 +37,7 @@ class TestRefunds:
                     "tax_inclusive": True,
                 }
             ],
+            metadata={"foo": "string"},
             reason="reason",
         )
         assert_matches_type(Refund, refund, path=["response"])
@@ -164,6 +165,7 @@ class TestAsyncRefunds:
                     "tax_inclusive": True,
                 }
             ],
+            metadata={"foo": "string"},
             reason="reason",
         )
         assert_matches_type(Refund, refund, path=["response"])

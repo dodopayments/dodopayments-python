@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -23,6 +23,9 @@ class Refund(BaseModel):
 
     is_partial: bool
     """If true the refund is a partial refund"""
+
+    metadata: Dict[str, str]
+    """Additional metadata stored with the refund."""
 
     payment_id: str
     """The unique identifier of the payment associated with the refund."""
