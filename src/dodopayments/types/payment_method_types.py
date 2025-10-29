@@ -17,6 +17,7 @@ PaymentMethodTypes: TypeAlias = Literal[
     "eps",
     "ideal",
     "przelewy24",
+    "paypal",
     "affirm",
     "klarna",
     "sepa",
