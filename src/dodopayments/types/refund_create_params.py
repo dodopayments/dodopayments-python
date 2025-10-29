@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["RefundCreateParams", "Item"]
@@ -14,6 +14,9 @@ class RefundCreateParams(TypedDict, total=False):
 
     items: Optional[Iterable[Item]]
     """Partially Refund an Individual Item"""
+
+    metadata: Dict[str, str]
+    """Additional metadata associated with the refund."""
 
     reason: Optional[str]
     """The reason for the refund, if any. Maximum length is 3000 characters. Optional."""
