@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.56.4 (2025-10-30)
+
+Full Changelog: [v1.56.3...v1.56.4](https://github.com/dodopayments/dodopayments-python/compare/v1.56.3...v1.56.4)
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([2f5eedd](https://github.com/dodopayments/dodopayments-python/commit/2f5eedda5739ad357d0a61579fb306140c468ad0))
+
 ## 1.56.3 (2025-10-29)
 
 Full Changelog: [v1.56.2...v1.56.3](https://github.com/dodopayments/dodopayments-python/compare/v1.56.2...v1.56.3)
