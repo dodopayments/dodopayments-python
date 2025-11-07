@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.56.5 (2025-11-07)
+
+Full Changelog: [v1.56.4...v1.56.5](https://github.com/dodopayments/dodopayments-python/compare/v1.56.4...v1.56.5)
+
+### Chores
+
+* **internal/tests:** avoid race condition with implicit client cleanup ([780f7c2](https://github.com/dodopayments/dodopayments-python/commit/780f7c2389bc973b355130d2860c734dd569cf71))
+* **internal:** codegen related update ([c27693d](https://github.com/dodopayments/dodopayments-python/commit/c27693dd7f198bb81bb1e0c43e315c91558d4554))
+* **internal:** codegen related update ([edc21df](https://github.com/dodopayments/dodopayments-python/commit/edc21df89d16d1f72f3a6a82acd4b06e7c8d4d3e))
+* **internal:** fix test definition ([d0e580e](https://github.com/dodopayments/dodopayments-python/commit/d0e580eea73ba5312de55c792d0318a8ad1143e1))
+* **internal:** grammar fix (it's -&gt; its) ([519ecfa](https://github.com/dodopayments/dodopayments-python/commit/519ecfa053027914fd2f796631a75fca8e0336bd))
+
 ## 1.56.4 (2025-10-30)
 
 Full Changelog: [v1.56.3...v1.56.4](https://github.com/dodopayments/dodopayments-python/compare/v1.56.3...v1.56.4)
