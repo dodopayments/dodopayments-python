@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.56.6 (2025-11-08)
+
+Full Changelog: [v1.56.5...v1.56.6](https://github.com/dodopayments/dodopayments-python/compare/v1.56.5...v1.56.6)
+
+### Chores
+
+* **internal:** codegen related update ([380a413](https://github.com/dodopayments/dodopayments-python/commit/380a4136a377e5f94896381a1d0e8e7a112ebd63))
+
 ## 1.56.5 (2025-11-07)
 
 Full Changelog: [v1.56.4...v1.56.5](https://github.com/dodopayments/dodopayments-python/compare/v1.56.4...v1.56.5)
