@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.56.7 (2025-11-12)
+
+Full Changelog: [v1.56.6...v1.56.7](https://github.com/dodopayments/dodopayments-python/compare/v1.56.6...v1.56.7)
+
+### Bug Fixes
+
+* compat with Python 3.14 ([8aa3fe5](https://github.com/dodopayments/dodopayments-python/commit/8aa3fe57d419077ca43fec02092a3cf92b88c3b0))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([763bb2b](https://github.com/dodopayments/dodopayments-python/commit/763bb2b25b61308e99e783c8e8fb9adf61cbabe6))
+
+
+### Chores
+
+* **package:** drop Python 3.8 support ([d7d9c93](https://github.com/dodopayments/dodopayments-python/commit/d7d9c93751304ab0117ba69564372a2e1f95055b))
+
 ## 1.56.6 (2025-11-08)
 
 Full Changelog: [v1.56.5...v1.56.6](https://github.com/dodopayments/dodopayments-python/compare/v1.56.5...v1.56.6)
