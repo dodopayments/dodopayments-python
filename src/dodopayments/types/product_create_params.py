@@ -14,6 +14,9 @@ __all__ = ["ProductCreateParams", "DigitalProductDelivery"]
 
 
 class ProductCreateParams(TypedDict, total=False):
+    name: Required[str]
+    """Name of the product"""
+
     price: Required[PriceParam]
     """Price configuration for the product"""
 
@@ -52,9 +55,6 @@ class ProductCreateParams(TypedDict, total=False):
 
     metadata: Dict[str, str]
     """Additional metadata for the product"""
-
-    name: Optional[str]
-    """Optional name of the product"""
 
 
 class DigitalProductDelivery(TypedDict, total=False):

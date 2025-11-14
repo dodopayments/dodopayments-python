@@ -25,6 +25,7 @@ class TestProducts:
     @parametrize
     def test_method_create(self, client: DodoPayments) -> None:
         product = client.products.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,
@@ -39,6 +40,7 @@ class TestProducts:
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         product = client.products.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,
@@ -65,13 +67,13 @@ class TestProducts:
             },
             license_key_enabled=True,
             metadata={"foo": "string"},
-            name="name",
         )
         assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.products.with_raw_response.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,
@@ -90,6 +92,7 @@ class TestProducts:
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.products.with_streaming_response.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,
@@ -382,6 +385,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         product = await async_client.products.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,
@@ -396,6 +400,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         product = await async_client.products.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,
@@ -422,13 +427,13 @@ class TestAsyncProducts:
             },
             license_key_enabled=True,
             metadata={"foo": "string"},
-            name="name",
         )
         assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.products.with_raw_response.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,
@@ -447,6 +452,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.products.with_streaming_response.create(
+            name="name",
             price={
                 "currency": "AED",
                 "discount": 0,

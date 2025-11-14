@@ -142,8 +142,17 @@ from .misc_list_supported_countries_response import (
 from .subscription_plan_changed_webhook_event import (
     SubscriptionPlanChangedWebhookEvent as SubscriptionPlanChangedWebhookEvent,
 )
+from .subscription_update_payment_method_params import (
+    SubscriptionUpdatePaymentMethodParams as SubscriptionUpdatePaymentMethodParams,
+)
+from .customer_retrieve_payment_methods_response import (
+    CustomerRetrievePaymentMethodsResponse as CustomerRetrievePaymentMethodsResponse,
+)
 from .subscription_retrieve_usage_history_params import (
     SubscriptionRetrieveUsageHistoryParams as SubscriptionRetrieveUsageHistoryParams,
+)
+from .subscription_update_payment_method_response import (
+    SubscriptionUpdatePaymentMethodResponse as SubscriptionUpdatePaymentMethodResponse,
 )
 from .subscription_retrieve_usage_history_response import (
     SubscriptionRetrieveUsageHistoryResponse as SubscriptionRetrieveUsageHistoryResponse,
