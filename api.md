@@ -60,6 +60,7 @@ from dodopayments.types import (
     SubscriptionListResponse,
     SubscriptionChargeResponse,
     SubscriptionRetrieveUsageHistoryResponse,
+    SubscriptionUpdatePaymentMethodResponse,
 )
 ```
 
@@ -72,6 +73,7 @@ Methods:
 - <code title="post /subscriptions/{subscription_id}/change-plan">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">change_plan</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_change_plan_params.py">params</a>) -> None</code>
 - <code title="post /subscriptions/{subscription_id}/charge">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">charge</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_charge_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_charge_response.py">SubscriptionChargeResponse</a></code>
 - <code title="get /subscriptions/{subscription_id}/usage-history">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_usage_history</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_retrieve_usage_history_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_retrieve_usage_history_response.py">SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse]</a></code>
+- <code title="post /subscriptions/{subscription_id}/update-payment-method">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update_payment_method</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_payment_method_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_update_payment_method_response.py">SubscriptionUpdatePaymentMethodResponse</a></code>
 
 # Invoices
 
@@ -129,7 +131,11 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Customer, CustomerPortalSession
+from dodopayments.types import (
+    Customer,
+    CustomerPortalSession,
+    CustomerRetrievePaymentMethodsResponse,
+)
 ```
 
 Methods:
@@ -138,6 +144,7 @@ Methods:
 - <code title="get /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve</a>(customer_id) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
 - <code title="patch /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">update</a>(customer_id, \*\*<a href="src/dodopayments/types/customer_update_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
 - <code title="get /customers">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list</a>(\*\*<a href="src/dodopayments/types/customer_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">SyncDefaultPageNumberPagination[Customer]</a></code>
+- <code title="get /customers/{customer_id}/payment-methods">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve_payment_methods</a>(customer_id) -> <a href="./src/dodopayments/types/customer_retrieve_payment_methods_response.py">CustomerRetrievePaymentMethodsResponse</a></code>
 
 ## CustomerPortal
 
