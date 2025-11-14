@@ -89,5 +89,8 @@ class SubscriptionListResponse(BaseModel):
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""
 
+    payment_method_id: Optional[str] = None
+    """Saved payment method id used for recurring charges"""
+
     tax_id: Optional[str] = None
     """Tax identifier provided for this subscription (if applicable)"""

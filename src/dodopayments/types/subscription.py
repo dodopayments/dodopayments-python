@@ -115,5 +115,8 @@ class Subscription(BaseModel):
     expires_at: Optional[datetime] = None
     """Timestamp when the subscription will expire"""
 
+    payment_method_id: Optional[str] = None
+    """Saved payment method id used for recurring charges"""
+
     tax_id: Optional[str] = None
     """Tax identifier provided for this subscription (if applicable)"""

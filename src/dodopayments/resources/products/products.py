@@ -70,6 +70,7 @@ class ProductsResource(SyncAPIResource):
     def create(
         self,
         *,
+        name: str,
         price: PriceParam,
         tax_category: TaxCategory,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -81,7 +82,6 @@ class ProductsResource(SyncAPIResource):
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,6 +91,8 @@ class ProductsResource(SyncAPIResource):
     ) -> Product:
         """
         Args:
+          name: Name of the product
+
           price: Price configuration for the product
 
           tax_category: Tax category applied to this product
@@ -115,8 +117,6 @@ class ProductsResource(SyncAPIResource):
 
           metadata: Additional metadata for the product
 
-          name: Optional name of the product
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -129,6 +129,7 @@ class ProductsResource(SyncAPIResource):
             "/products",
             body=maybe_transform(
                 {
+                    "name": name,
                     "price": price,
                     "tax_category": tax_category,
                     "addons": addons,
@@ -140,7 +141,6 @@ class ProductsResource(SyncAPIResource):
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
                     "metadata": metadata,
-                    "name": name,
                 },
                 product_create_params.ProductCreateParams,
             ),
@@ -467,6 +467,7 @@ class AsyncProductsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        name: str,
         price: PriceParam,
         tax_category: TaxCategory,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -478,7 +479,6 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,6 +488,8 @@ class AsyncProductsResource(AsyncAPIResource):
     ) -> Product:
         """
         Args:
+          name: Name of the product
+
           price: Price configuration for the product
 
           tax_category: Tax category applied to this product
@@ -512,8 +514,6 @@ class AsyncProductsResource(AsyncAPIResource):
 
           metadata: Additional metadata for the product
 
-          name: Optional name of the product
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -526,6 +526,7 @@ class AsyncProductsResource(AsyncAPIResource):
             "/products",
             body=await async_maybe_transform(
                 {
+                    "name": name,
                     "price": price,
                     "tax_category": tax_category,
                     "addons": addons,
@@ -537,7 +538,6 @@ class AsyncProductsResource(AsyncAPIResource):
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
                     "metadata": metadata,
-                    "name": name,
                 },
                 product_create_params.ProductCreateParams,
             ),

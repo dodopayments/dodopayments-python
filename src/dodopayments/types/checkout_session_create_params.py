@@ -143,6 +143,20 @@ class FeatureFlags(TypedDict, total=False):
     Default is true
     """
 
+    allow_customer_editing_city: bool
+
+    allow_customer_editing_country: bool
+
+    allow_customer_editing_email: bool
+
+    allow_customer_editing_name: bool
+
+    allow_customer_editing_state: bool
+
+    allow_customer_editing_street: bool
+
+    allow_customer_editing_zipcode: bool
+
     allow_discount_code: bool
     """If the customer is allowed to apply discount code, set it to true.
 

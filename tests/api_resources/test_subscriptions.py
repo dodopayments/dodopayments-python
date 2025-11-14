@@ -14,6 +14,7 @@ from dodopayments.types import (
     SubscriptionListResponse,
     SubscriptionChargeResponse,
     SubscriptionCreateResponse,
+    SubscriptionUpdatePaymentMethodResponse,
     SubscriptionRetrieveUsageHistoryResponse,
 )
 from dodopayments._utils import parse_datetime
@@ -443,6 +444,103 @@ class TestSubscriptions:
                 subscription_id="",
             )
 
+    @parametrize
+    def test_method_update_payment_method_overload_1(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+        )
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_method_update_payment_method_with_all_params_overload_1(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+            return_url="return_url",
+        )
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_raw_response_update_payment_method_overload_1(self, client: DodoPayments) -> None:
+        response = client.subscriptions.with_raw_response.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update_payment_method_overload_1(self, client: DodoPayments) -> None:
+        with client.subscriptions.with_streaming_response.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update_payment_method_overload_1(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            client.subscriptions.with_raw_response.update_payment_method(
+                subscription_id="",
+                type="new",
+            )
+
+    @parametrize
+    def test_method_update_payment_method_overload_2(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.update_payment_method(
+            subscription_id="subscription_id",
+            payment_method_id="payment_method_id",
+            type="existing",
+        )
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_raw_response_update_payment_method_overload_2(self, client: DodoPayments) -> None:
+        response = client.subscriptions.with_raw_response.update_payment_method(
+            subscription_id="subscription_id",
+            payment_method_id="payment_method_id",
+            type="existing",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update_payment_method_overload_2(self, client: DodoPayments) -> None:
+        with client.subscriptions.with_streaming_response.update_payment_method(
+            subscription_id="subscription_id",
+            payment_method_id="payment_method_id",
+            type="existing",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update_payment_method_overload_2(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            client.subscriptions.with_raw_response.update_payment_method(
+                subscription_id="",
+                payment_method_id="payment_method_id",
+                type="existing",
+            )
+
 
 class TestAsyncSubscriptions:
     parametrize = pytest.mark.parametrize(
@@ -865,4 +963,103 @@ class TestAsyncSubscriptions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             await async_client.subscriptions.with_raw_response.retrieve_usage_history(
                 subscription_id="",
+            )
+
+    @parametrize
+    async def test_method_update_payment_method_overload_1(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+        )
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_method_update_payment_method_with_all_params_overload_1(
+        self, async_client: AsyncDodoPayments
+    ) -> None:
+        subscription = await async_client.subscriptions.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+            return_url="return_url",
+        )
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update_payment_method_overload_1(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.subscriptions.with_raw_response.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update_payment_method_overload_1(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.subscriptions.with_streaming_response.update_payment_method(
+            subscription_id="subscription_id",
+            type="new",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update_payment_method_overload_1(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            await async_client.subscriptions.with_raw_response.update_payment_method(
+                subscription_id="",
+                type="new",
+            )
+
+    @parametrize
+    async def test_method_update_payment_method_overload_2(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.update_payment_method(
+            subscription_id="subscription_id",
+            payment_method_id="payment_method_id",
+            type="existing",
+        )
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update_payment_method_overload_2(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.subscriptions.with_raw_response.update_payment_method(
+            subscription_id="subscription_id",
+            payment_method_id="payment_method_id",
+            type="existing",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update_payment_method_overload_2(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.subscriptions.with_streaming_response.update_payment_method(
+            subscription_id="subscription_id",
+            payment_method_id="payment_method_id",
+            type="existing",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update_payment_method_overload_2(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            await async_client.subscriptions.with_raw_response.update_payment_method(
+                subscription_id="",
+                payment_method_id="payment_method_id",
+                type="existing",
             )
