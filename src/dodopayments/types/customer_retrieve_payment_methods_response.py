@@ -1,25 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .currency import Currency
 from .country_code import CountryCode
 from .payment_method_types import PaymentMethodTypes
 
-__all__ = ["CustomerRetrievePaymentMethodsResponse", "Item", "ItemConnectorPaymentMethods", "ItemCard"]
-
-
-class ItemConnectorPaymentMethods(BaseModel):
-    connector_mandate_id: str
-
-    original_payment_authorized_amount: int
-
-    original_payment_authorized_currency: Currency
-
-    payment_method_type: Optional[PaymentMethodTypes] = None
+__all__ = ["CustomerRetrievePaymentMethodsResponse", "Item", "ItemCard"]
 
 
 class ItemCard(BaseModel):
@@ -38,8 +27,6 @@ class ItemCard(BaseModel):
 
 
 class Item(BaseModel):
-    connector_payment_methods: Dict[str, ItemConnectorPaymentMethods]
-
     payment_method: Literal[
         "card",
         "card_redirect",
@@ -64,11 +51,11 @@ class Item(BaseModel):
 
     payment_method_id: str
 
-    profile_map: Dict[str, str]
-
     card: Optional[ItemCard] = None
 
     last_used_at: Optional[datetime] = None
+
+    payment_method_type: Optional[PaymentMethodTypes] = None
 
     recurring_enabled: Optional[bool] = None
 
