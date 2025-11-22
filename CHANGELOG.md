@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.61.6 (2025-11-22)
+
+Full Changelog: [v1.61.5...v1.61.6](https://github.com/dodopayments/dodopayments-python/compare/v1.61.5...v1.61.6)
+
+### Chores
+
+* add Python 3.14 classifier and testing ([b06ff6b](https://github.com/dodopayments/dodopayments-python/commit/b06ff6bae8bdad8f501a215127f3c361bea33e70))
+
 ## 1.61.5 (2025-11-17)
 
 Full Changelog: [v1.60.0...v1.61.5](https://github.com/dodopayments/dodopayments-python/compare/v1.60.0...v1.61.5)
