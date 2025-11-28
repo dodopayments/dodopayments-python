@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.61.6 (2025-11-28)
+
+Full Changelog: [v1.61.5...v1.61.6](https://github.com/dodopayments/dodopayments-python/compare/v1.61.5...v1.61.6)
+
+### Bug Fixes
+
+* ensure streams are always closed ([404bff6](https://github.com/dodopayments/dodopayments-python/commit/404bff687fee8ac9d399aafebceb36375b37ac62))
+
+
+### Chores
+
+* add Python 3.14 classifier and testing ([b06ff6b](https://github.com/dodopayments/dodopayments-python/commit/b06ff6bae8bdad8f501a215127f3c361bea33e70))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([4bfb430](https://github.com/dodopayments/dodopayments-python/commit/4bfb430e41637e1385e04d18d323ba4dda55b106))
+
 ## 1.61.5 (2025-11-17)
 
 Full Changelog: [v1.60.0...v1.61.5](https://github.com/dodopayments/dodopayments-python/compare/v1.60.0...v1.61.5)
