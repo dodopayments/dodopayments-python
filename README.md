@@ -97,6 +97,7 @@ pip install dodopayments[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from dodopayments import DefaultAioHttpClient
 from dodopayments import AsyncDodoPayments
@@ -104,7 +105,9 @@ from dodopayments import AsyncDodoPayments
 
 async def main() -> None:
     async with AsyncDodoPayments(
-        bearer_token="My Bearer Token",
+        bearer_token=os.environ.get(
+            "DODO_PAYMENTS_API_KEY"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         checkout_session_response = await client.checkout_sessions.create(

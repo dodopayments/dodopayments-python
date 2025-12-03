@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.61.7 (2025-12-03)
+
+Full Changelog: [v1.61.6...v1.61.7](https://github.com/dodopayments/dodopayments-python/compare/v1.61.6...v1.61.7)
+
+### Chores
+
+* **docs:** use environment variables for authentication in code snippets ([b7a6103](https://github.com/dodopayments/dodopayments-python/commit/b7a61030974a56a5afabb2f4cec4f1921dfc53f9))
+* update lockfile ([e58ee31](https://github.com/dodopayments/dodopayments-python/commit/e58ee315dba2c08c21b5e820f1210d7a19206b00))
+
 ## 1.61.6 (2025-11-28)
 
 Full Changelog: [v1.61.5...v1.61.6](https://github.com/dodopayments/dodopayments-python/compare/v1.61.5...v1.61.6)
