@@ -59,6 +59,7 @@ from dodopayments.types import (
     SubscriptionCreateResponse,
     SubscriptionListResponse,
     SubscriptionChargeResponse,
+    SubscriptionPreviewChangePlanResponse,
     SubscriptionRetrieveUsageHistoryResponse,
     SubscriptionUpdatePaymentMethodResponse,
 )
@@ -72,6 +73,7 @@ Methods:
 - <code title="get /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">list</a>(\*\*<a href="src/dodopayments/types/subscription_list_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_list_response.py">SyncDefaultPageNumberPagination[SubscriptionListResponse]</a></code>
 - <code title="post /subscriptions/{subscription_id}/change-plan">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">change_plan</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_change_plan_params.py">params</a>) -> None</code>
 - <code title="post /subscriptions/{subscription_id}/charge">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">charge</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_charge_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_charge_response.py">SubscriptionChargeResponse</a></code>
+- <code title="post /subscriptions/{subscription_id}/change-plan/preview">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">preview_change_plan</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_preview_change_plan_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_preview_change_plan_response.py">SubscriptionPreviewChangePlanResponse</a></code>
 - <code title="get /subscriptions/{subscription_id}/usage-history">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_usage_history</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_retrieve_usage_history_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_retrieve_usage_history_response.py">SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse]</a></code>
 - <code title="post /subscriptions/{subscription_id}/update-payment-method">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update_payment_method</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_payment_method_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_update_payment_method_response.py">SubscriptionUpdatePaymentMethodResponse</a></code>
 
@@ -347,6 +349,7 @@ from dodopayments.types import (
     SubscriptionOnHoldWebhookEvent,
     SubscriptionPlanChangedWebhookEvent,
     SubscriptionRenewedWebhookEvent,
+    SubscriptionUpdatedWebhookEvent,
     DisputeAcceptedWebhookEvent,
     DisputeCancelledWebhookEvent,
     DisputeChallengedWebhookEvent,
@@ -368,6 +371,7 @@ from dodopayments.types import (
     SubscriptionOnHoldWebhookEvent,
     SubscriptionPlanChangedWebhookEvent,
     SubscriptionRenewedWebhookEvent,
+    SubscriptionUpdatedWebhookEvent,
     UnsafeUnwrapWebhookEvent,
     UnwrapWebhookEvent,
 )

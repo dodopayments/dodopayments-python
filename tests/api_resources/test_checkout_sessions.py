@@ -82,6 +82,7 @@ class TestCheckoutSessions:
             },
             force_3ds=True,
             metadata={"foo": "string"},
+            minimal_address=True,
             return_url="return_url",
             show_saved_payment_methods=True,
             subscription_data={
@@ -237,6 +238,7 @@ class TestAsyncCheckoutSessions:
             },
             force_3ds=True,
             metadata={"foo": "string"},
+            minimal_address=True,
             return_url="return_url",
             show_saved_payment_methods=True,
             subscription_data={

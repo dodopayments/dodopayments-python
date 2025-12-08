@@ -134,6 +134,7 @@ from .license_key_instance_update_params import LicenseKeyInstanceUpdateParams a
 from .subscription_expired_webhook_event import SubscriptionExpiredWebhookEvent as SubscriptionExpiredWebhookEvent
 from .subscription_on_hold_webhook_event import SubscriptionOnHoldWebhookEvent as SubscriptionOnHoldWebhookEvent
 from .subscription_renewed_webhook_event import SubscriptionRenewedWebhookEvent as SubscriptionRenewedWebhookEvent
+from .subscription_updated_webhook_event import SubscriptionUpdatedWebhookEvent as SubscriptionUpdatedWebhookEvent
 from .payment_retrieve_line_items_response import PaymentRetrieveLineItemsResponse as PaymentRetrieveLineItemsResponse
 from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEvent as SubscriptionCancelledWebhookEvent
 from .misc_list_supported_countries_response import (
@@ -141,6 +142,12 @@ from .misc_list_supported_countries_response import (
 )
 from .subscription_plan_changed_webhook_event import (
     SubscriptionPlanChangedWebhookEvent as SubscriptionPlanChangedWebhookEvent,
+)
+from .subscription_preview_change_plan_params import (
+    SubscriptionPreviewChangePlanParams as SubscriptionPreviewChangePlanParams,
+)
+from .subscription_preview_change_plan_response import (
+    SubscriptionPreviewChangePlanResponse as SubscriptionPreviewChangePlanResponse,
 )
 from .subscription_update_payment_method_params import (
     SubscriptionUpdatePaymentMethodParams as SubscriptionUpdatePaymentMethodParams,
