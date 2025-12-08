@@ -27,13 +27,7 @@ class TestPayments:
     @parametrize
     def test_method_create(self, client: DodoPayments) -> None:
         payment = client.payments.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
+            billing={"country": "AF"},
             customer={"customer_id": "customer_id"},
             product_cart=[
                 {
@@ -48,8 +42,8 @@ class TestPayments:
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         payment = client.payments.create(
             billing={
-                "city": "city",
                 "country": "AF",
+                "city": "city",
                 "state": "state",
                 "street": "street",
                 "zipcode": "zipcode",
@@ -77,13 +71,7 @@ class TestPayments:
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
+            billing={"country": "AF"},
             customer={"customer_id": "customer_id"},
             product_cart=[
                 {
@@ -101,13 +89,7 @@ class TestPayments:
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.payments.with_streaming_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
+            billing={"country": "AF"},
             customer={"customer_id": "customer_id"},
             product_cart=[
                 {
@@ -248,13 +230,7 @@ class TestAsyncPayments:
     @parametrize
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
+            billing={"country": "AF"},
             customer={"customer_id": "customer_id"},
             product_cart=[
                 {
@@ -269,8 +245,8 @@ class TestAsyncPayments:
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.create(
             billing={
-                "city": "city",
                 "country": "AF",
+                "city": "city",
                 "state": "state",
                 "street": "street",
                 "zipcode": "zipcode",
@@ -298,13 +274,7 @@ class TestAsyncPayments:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payments.with_raw_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
+            billing={"country": "AF"},
             customer={"customer_id": "customer_id"},
             product_cart=[
                 {
@@ -322,13 +292,7 @@ class TestAsyncPayments:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payments.with_streaming_response.create(
-            billing={
-                "city": "city",
-                "country": "AF",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
+            billing={"country": "AF"},
             customer={"customer_id": "customer_id"},
             product_cart=[
                 {

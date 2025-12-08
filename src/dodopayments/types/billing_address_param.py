@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 from .country_code import CountryCode
@@ -10,17 +11,17 @@ __all__ = ["BillingAddressParam"]
 
 
 class BillingAddressParam(TypedDict, total=False):
-    city: Required[str]
-    """City name"""
-
     country: Required[CountryCode]
     """Two-letter ISO country code (ISO 3166-1 alpha-2)"""
 
-    state: Required[str]
+    city: Optional[str]
+    """City name"""
+
+    state: Optional[str]
     """State or province name"""
 
-    street: Required[str]
+    street: Optional[str]
     """Street address including house number and unit/apartment if applicable"""
 
-    zipcode: Required[str]
+    zipcode: Optional[str]
     """Postal code or ZIP code"""

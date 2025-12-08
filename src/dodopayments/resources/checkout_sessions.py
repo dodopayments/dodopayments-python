@@ -61,6 +61,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
+        minimal_address: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
@@ -96,6 +97,9 @@ class CheckoutSessionsResource(SyncAPIResource):
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
 
+          minimal_address: If true, only zipcode is required when confirm is true; other address fields
+              remain optional
+
           return_url: The url to redirect after payment failure or success.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
@@ -123,6 +127,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
                     "metadata": metadata,
+                    "minimal_address": minimal_address,
                     "return_url": return_url,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,
@@ -201,6 +206,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
+        minimal_address: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
@@ -236,6 +242,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
 
+          minimal_address: If true, only zipcode is required when confirm is true; other address fields
+              remain optional
+
           return_url: The url to redirect after payment failure or success.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
@@ -263,6 +272,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
                     "metadata": metadata,
+                    "minimal_address": minimal_address,
                     "return_url": return_url,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,

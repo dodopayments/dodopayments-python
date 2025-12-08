@@ -16,6 +16,7 @@ from ..types import (
     subscription_create_params,
     subscription_update_params,
     subscription_change_plan_params,
+    subscription_preview_change_plan_params,
     subscription_update_payment_method_params,
     subscription_retrieve_usage_history_params,
 )
@@ -42,6 +43,7 @@ from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
+from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
 from ..types.subscription_retrieve_usage_history_response import SubscriptionRetrieveUsageHistoryResponse
 
@@ -440,6 +442,59 @@ class SubscriptionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=SubscriptionChargeResponse,
+        )
+
+    def preview_change_plan(
+        self,
+        subscription_id: str,
+        *,
+        product_id: str,
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        quantity: int,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionPreviewChangePlanResponse:
+        """
+        Args:
+          product_id: Unique identifier of the product to subscribe to
+
+          proration_billing_mode: Proration Billing Mode
+
+          quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
+              addons
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._post(
+            f"/subscriptions/{subscription_id}/change-plan/preview",
+            body=maybe_transform(
+                {
+                    "product_id": product_id,
+                    "proration_billing_mode": proration_billing_mode,
+                    "quantity": quantity,
+                    "addons": addons,
+                },
+                subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionPreviewChangePlanResponse,
         )
 
     def retrieve_usage_history(
@@ -1025,6 +1080,59 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=SubscriptionChargeResponse,
         )
 
+    async def preview_change_plan(
+        self,
+        subscription_id: str,
+        *,
+        product_id: str,
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        quantity: int,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionPreviewChangePlanResponse:
+        """
+        Args:
+          product_id: Unique identifier of the product to subscribe to
+
+          proration_billing_mode: Proration Billing Mode
+
+          quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
+              addons
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return await self._post(
+            f"/subscriptions/{subscription_id}/change-plan/preview",
+            body=await async_maybe_transform(
+                {
+                    "product_id": product_id,
+                    "proration_billing_mode": proration_billing_mode,
+                    "quantity": quantity,
+                    "addons": addons,
+                },
+                subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionPreviewChangePlanResponse,
+        )
+
     def retrieve_usage_history(
         self,
         subscription_id: str,
@@ -1239,6 +1347,9 @@ class SubscriptionsResourceWithRawResponse:
         self.charge = to_raw_response_wrapper(
             subscriptions.charge,
         )
+        self.preview_change_plan = to_raw_response_wrapper(
+            subscriptions.preview_change_plan,
+        )
         self.retrieve_usage_history = to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -1268,6 +1379,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         )
         self.charge = async_to_raw_response_wrapper(
             subscriptions.charge,
+        )
+        self.preview_change_plan = async_to_raw_response_wrapper(
+            subscriptions.preview_change_plan,
         )
         self.retrieve_usage_history = async_to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
@@ -1299,6 +1413,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.charge = to_streamed_response_wrapper(
             subscriptions.charge,
         )
+        self.preview_change_plan = to_streamed_response_wrapper(
+            subscriptions.preview_change_plan,
+        )
         self.retrieve_usage_history = to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -1328,6 +1445,9 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.charge = async_to_streamed_response_wrapper(
             subscriptions.charge,
+        )
+        self.preview_change_plan = async_to_streamed_response_wrapper(
+            subscriptions.preview_change_plan,
         )
         self.retrieve_usage_history = async_to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,
