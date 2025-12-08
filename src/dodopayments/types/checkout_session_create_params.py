@@ -66,6 +66,12 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     Defaults to empty if not provided.
     """
 
+    minimal_address: bool
+    """
+    If true, only zipcode is required when confirm is true; other address fields
+    remain optional
+    """
+
     return_url: Optional[str]
     """The url to redirect after payment failure or success."""
 
