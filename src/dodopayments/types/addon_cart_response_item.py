@@ -6,6 +6,8 @@ __all__ = ["AddonCartResponseItem"]
 
 
 class AddonCartResponseItem(BaseModel):
+    """Response struct representing subscription details"""
+
     addon_id: str
 
     quantity: int

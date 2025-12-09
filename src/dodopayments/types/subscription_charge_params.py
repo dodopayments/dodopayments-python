@@ -48,6 +48,8 @@ class SubscriptionChargeParams(TypedDict, total=False):
 
 
 class CustomerBalanceConfig(TypedDict, total=False):
+    """Specify how customer balance is used for the payment"""
+
     allow_customer_credits_purchase: Optional[bool]
     """Allows Customer Credit to be purchased to settle payments"""
 
