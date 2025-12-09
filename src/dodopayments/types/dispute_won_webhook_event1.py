@@ -11,6 +11,8 @@ __all__ = ["DisputeWonWebhookEvent", "Data"]
 
 
 class Data(Dispute):
+    """Event-specific data"""
+
     payload_type: Optional[Literal["Dispute"]] = None
     """The type of payload in the data field"""
 

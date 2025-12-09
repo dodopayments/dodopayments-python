@@ -10,6 +10,8 @@ __all__ = ["LicenseActivateResponse", "Product"]
 
 
 class Product(BaseModel):
+    """Related product info. Present if the license key is tied to a product."""
+
     product_id: str
     """Unique identifier for the product."""
 
