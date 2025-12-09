@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.66.1 (2025-12-09)
+
+Full Changelog: [v1.66.0...v1.66.1](https://github.com/dodopayments/dodopayments-python/compare/v1.66.0...v1.66.1)
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([b72a3db](https://github.com/dodopayments/dodopayments-python/commit/b72a3db8c753bc71f037290268a0ade1b77b09fe))
+
+
+### Chores
+
+* add missing docstrings ([d90b3ba](https://github.com/dodopayments/dodopayments-python/commit/d90b3bacdfa6f399ac6f678c786a4280f8660241))
+
 ## 1.66.0 (2025-12-08)
 
 Full Changelog: [v1.61.7...v1.66.0](https://github.com/dodopayments/dodopayments-python/compare/v1.61.7...v1.66.0)
