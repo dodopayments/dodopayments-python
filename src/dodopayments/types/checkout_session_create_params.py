@@ -103,6 +103,8 @@ class ProductCart(TypedDict, total=False):
 
 
 class BillingAddress(TypedDict, total=False):
+    """Billing address information for the session"""
+
     country: Required[CountryCode]
     """Two-letter ISO country code (ISO 3166-1 alpha-2)"""
 
@@ -120,6 +122,8 @@ class BillingAddress(TypedDict, total=False):
 
 
 class Customization(TypedDict, total=False):
+    """Customization for the checkout session page"""
+
     force_language: Optional[str]
     """Force the checkout interface to render in a specific language (e.g. `en`, `es`)"""
 

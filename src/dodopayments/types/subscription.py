@@ -15,6 +15,8 @@ __all__ = ["Subscription", "Meter"]
 
 
 class Meter(BaseModel):
+    """Response struct representing usage-based meter cart details for a subscription"""
+
     currency: Currency
 
     free_threshold: int
@@ -31,6 +33,8 @@ class Meter(BaseModel):
 
 
 class Subscription(BaseModel):
+    """Response struct representing subscription details"""
+
     addons: List[AddonCartResponseItem]
     """Addons associated with this subscription"""
 

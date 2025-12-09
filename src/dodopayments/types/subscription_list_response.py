@@ -14,6 +14,8 @@ __all__ = ["SubscriptionListResponse"]
 
 
 class SubscriptionListResponse(BaseModel):
+    """Response struct representing subscription details"""
+
     billing: BillingAddress
     """Billing address details for payments"""
 

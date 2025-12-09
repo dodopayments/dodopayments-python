@@ -11,6 +11,8 @@ __all__ = ["SubscriptionFailedWebhookEvent", "Data"]
 
 
 class Data(Subscription):
+    """Event-specific data"""
+
     payload_type: Optional[Literal["Subscription"]] = None
     """The type of payload in the data field"""
 

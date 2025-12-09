@@ -11,6 +11,8 @@ __all__ = ["LicenseKeyCreatedWebhookEvent", "Data"]
 
 
 class Data(LicenseKey):
+    """Event-specific data"""
+
     payload_type: Optional[Literal["LicenseKey"]] = None
     """The type of payload in the data field"""
 

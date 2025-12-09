@@ -58,6 +58,8 @@ class ProductCreateParams(TypedDict, total=False):
 
 
 class DigitalProductDelivery(TypedDict, total=False):
+    """Choose how you would like you digital product delivered"""
+
     external_url: Optional[str]
     """External URL to digital product"""
 

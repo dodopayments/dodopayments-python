@@ -12,6 +12,8 @@ __all__ = ["Price", "OneTimePrice", "RecurringPrice", "UsageBasedPrice"]
 
 
 class OneTimePrice(BaseModel):
+    """One-time price details."""
+
     currency: Currency
     """The currency in which the payment is made."""
 
@@ -53,6 +55,8 @@ class OneTimePrice(BaseModel):
 
 
 class RecurringPrice(BaseModel):
+    """Recurring price details."""
+
     currency: Currency
     """The currency in which the payment is made."""
 
@@ -100,6 +104,8 @@ class RecurringPrice(BaseModel):
 
 
 class UsageBasedPrice(BaseModel):
+    """Usage Based price details."""
+
     currency: Currency
     """The currency in which the payment is made."""
 
