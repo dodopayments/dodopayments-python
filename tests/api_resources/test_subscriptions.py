@@ -21,6 +21,8 @@ from dodopayments.types import (
 from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -29,61 +31,73 @@ class TestSubscriptions:
 
     @parametrize
     def test_method_create(self, client: DodoPayments) -> None:
-        subscription = client.subscriptions.create(
-            billing={"country": "AF"},
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            subscription = client.subscriptions.create(
+                billing={"country": "AF"},
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+            )
+
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
-        subscription = client.subscriptions.create(
-            billing={
-                "country": "AF",
-                "city": "city",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-            addons=[
-                {
-                    "addon_id": "addon_id",
-                    "quantity": 0,
-                }
-            ],
-            allowed_payment_method_types=["credit"],
-            billing_currency="AED",
-            discount_code="discount_code",
-            force_3ds=True,
-            metadata={"foo": "string"},
-            on_demand={
-                "mandate_only": True,
-                "adaptive_currency_fees_inclusive": True,
-                "product_currency": "AED",
-                "product_description": "product_description",
-                "product_price": 0,
-            },
-            payment_link=True,
-            return_url="return_url",
-            show_saved_payment_methods=True,
-            tax_id="tax_id",
-            trial_period_days=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            subscription = client.subscriptions.create(
+                billing={
+                    "country": "AF",
+                    "city": "city",
+                    "state": "state",
+                    "street": "street",
+                    "zipcode": "zipcode",
+                },
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+                addons=[
+                    {
+                        "addon_id": "addon_id",
+                        "quantity": 0,
+                    }
+                ],
+                allowed_payment_method_types=["credit"],
+                billing_currency="AED",
+                discount_code="discount_code",
+                force_3ds=True,
+                metadata={"foo": "string"},
+                on_demand={
+                    "mandate_only": True,
+                    "adaptive_currency_fees_inclusive": True,
+                    "product_currency": "AED",
+                    "product_description": "product_description",
+                    "product_price": 0,
+                },
+                one_time_product_cart=[
+                    {
+                        "product_id": "product_id",
+                        "quantity": 0,
+                        "amount": 0,
+                    }
+                ],
+                payment_link=True,
+                return_url="return_url",
+                show_saved_payment_methods=True,
+                tax_id="tax_id",
+                trial_period_days=0,
+            )
+
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
-        response = client.subscriptions.with_raw_response.create(
-            billing={"country": "AF"},
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.subscriptions.with_raw_response.create(
+                billing={"country": "AF"},
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -92,17 +106,18 @@ class TestSubscriptions:
 
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
-        with client.subscriptions.with_streaming_response.create(
-            billing={"country": "AF"},
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.subscriptions.with_streaming_response.create(
+                billing={"country": "AF"},
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            subscription = response.parse()
-            assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+                subscription = response.parse()
+                assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -598,61 +613,73 @@ class TestAsyncSubscriptions:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
-        subscription = await async_client.subscriptions.create(
-            billing={"country": "AF"},
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            subscription = await async_client.subscriptions.create(
+                billing={"country": "AF"},
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+            )
+
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
-        subscription = await async_client.subscriptions.create(
-            billing={
-                "country": "AF",
-                "city": "city",
-                "state": "state",
-                "street": "street",
-                "zipcode": "zipcode",
-            },
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-            addons=[
-                {
-                    "addon_id": "addon_id",
-                    "quantity": 0,
-                }
-            ],
-            allowed_payment_method_types=["credit"],
-            billing_currency="AED",
-            discount_code="discount_code",
-            force_3ds=True,
-            metadata={"foo": "string"},
-            on_demand={
-                "mandate_only": True,
-                "adaptive_currency_fees_inclusive": True,
-                "product_currency": "AED",
-                "product_description": "product_description",
-                "product_price": 0,
-            },
-            payment_link=True,
-            return_url="return_url",
-            show_saved_payment_methods=True,
-            tax_id="tax_id",
-            trial_period_days=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            subscription = await async_client.subscriptions.create(
+                billing={
+                    "country": "AF",
+                    "city": "city",
+                    "state": "state",
+                    "street": "street",
+                    "zipcode": "zipcode",
+                },
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+                addons=[
+                    {
+                        "addon_id": "addon_id",
+                        "quantity": 0,
+                    }
+                ],
+                allowed_payment_method_types=["credit"],
+                billing_currency="AED",
+                discount_code="discount_code",
+                force_3ds=True,
+                metadata={"foo": "string"},
+                on_demand={
+                    "mandate_only": True,
+                    "adaptive_currency_fees_inclusive": True,
+                    "product_currency": "AED",
+                    "product_description": "product_description",
+                    "product_price": 0,
+                },
+                one_time_product_cart=[
+                    {
+                        "product_id": "product_id",
+                        "quantity": 0,
+                        "amount": 0,
+                    }
+                ],
+                payment_link=True,
+                return_url="return_url",
+                show_saved_payment_methods=True,
+                tax_id="tax_id",
+                trial_period_days=0,
+            )
+
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
-        response = await async_client.subscriptions.with_raw_response.create(
-            billing={"country": "AF"},
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.subscriptions.with_raw_response.create(
+                billing={"country": "AF"},
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -661,17 +688,18 @@ class TestAsyncSubscriptions:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
-        async with async_client.subscriptions.with_streaming_response.create(
-            billing={"country": "AF"},
-            customer={"customer_id": "customer_id"},
-            product_id="product_id",
-            quantity=0,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.subscriptions.with_streaming_response.create(
+                billing={"country": "AF"},
+                customer={"customer_id": "customer_id"},
+                product_id="product_id",
+                quantity=0,
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            subscription = await response.parse()
-            assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+                subscription = await response.parse()
+                assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
