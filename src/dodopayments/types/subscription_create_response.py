@@ -7,7 +7,13 @@ from .._models import BaseModel
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["SubscriptionCreateResponse"]
+__all__ = ["SubscriptionCreateResponse", "OneTimeProductCart"]
+
+
+class OneTimeProductCart(BaseModel):
+    product_id: str
+
+    quantity: int
 
 
 class SubscriptionCreateResponse(BaseModel):
@@ -43,6 +49,9 @@ class SubscriptionCreateResponse(BaseModel):
 
     expires_on: Optional[datetime] = None
     """Expiry timestamp of the payment link"""
+
+    one_time_product_cart: Optional[List[OneTimeProductCart]] = None
+    """One time products associated with the purchase of subscription"""
 
     payment_link: Optional[str] = None
     """URL to checkout page"""

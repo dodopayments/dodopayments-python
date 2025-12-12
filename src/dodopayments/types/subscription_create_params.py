@@ -11,6 +11,7 @@ from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
 from .on_demand_subscription_param import OnDemandSubscriptionParam
+from .one_time_product_cart_item_param import OneTimeProductCartItemParam
 
 __all__ = ["SubscriptionCreateParams"]
 
@@ -56,6 +57,12 @@ class SubscriptionCreateParams(TypedDict, total=False):
     """Additional metadata for the subscription Defaults to empty if not specified"""
 
     on_demand: Optional[OnDemandSubscriptionParam]
+
+    one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]]
+    """
+    List of one time products that will be bundled with the first payment for this
+    subscription
+    """
 
     payment_link: Optional[bool]
     """If true, generates a payment link. Defaults to false if not specified."""
