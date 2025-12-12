@@ -12,14 +12,14 @@ __all__ = [
     "SubscriptionPreviewChangePlanResponse",
     "ImmediateCharge",
     "ImmediateChargeLineItem",
-    "ImmediateChargeLineItemUnionMember0",
-    "ImmediateChargeLineItemUnionMember1",
-    "ImmediateChargeLineItemUnionMember2",
+    "ImmediateChargeLineItemSubscription",
+    "ImmediateChargeLineItemAddon",
+    "ImmediateChargeLineItemMeter",
     "ImmediateChargeSummary",
 ]
 
 
-class ImmediateChargeLineItemUnionMember0(BaseModel):
+class ImmediateChargeLineItemSubscription(BaseModel):
     id: str
 
     currency: Currency
@@ -45,7 +45,7 @@ class ImmediateChargeLineItemUnionMember0(BaseModel):
     tax_rate: Optional[float] = None
 
 
-class ImmediateChargeLineItemUnionMember1(BaseModel):
+class ImmediateChargeLineItemAddon(BaseModel):
     id: str
 
     currency: Currency
@@ -75,7 +75,7 @@ class ImmediateChargeLineItemUnionMember1(BaseModel):
     tax: Optional[int] = None
 
 
-class ImmediateChargeLineItemUnionMember2(BaseModel):
+class ImmediateChargeLineItemMeter(BaseModel):
     id: str
 
     chargeable_units: str
@@ -104,7 +104,7 @@ class ImmediateChargeLineItemUnionMember2(BaseModel):
 
 
 ImmediateChargeLineItem: TypeAlias = Union[
-    ImmediateChargeLineItemUnionMember0, ImmediateChargeLineItemUnionMember1, ImmediateChargeLineItemUnionMember2
+    ImmediateChargeLineItemSubscription, ImmediateChargeLineItemAddon, ImmediateChargeLineItemMeter
 ]
 
 

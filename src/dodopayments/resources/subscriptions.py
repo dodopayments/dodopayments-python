@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, overload
@@ -43,6 +44,7 @@ from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
+from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
 from ..types.subscription_retrieve_usage_history_response import SubscriptionRetrieveUsageHistoryResponse
@@ -70,6 +72,7 @@ class SubscriptionsResource(SyncAPIResource):
         """
         return SubscriptionsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -84,6 +87,7 @@ class SubscriptionsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -124,6 +128,9 @@ class SubscriptionsResource(SyncAPIResource):
 
           metadata: Additional metadata for the subscription Defaults to empty if not specified
 
+          one_time_product_cart: List of one time products that will be bundled with the first payment for this
+              subscription
+
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
           return_url: Optional URL to redirect after successful subscription creation
@@ -159,6 +166,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "on_demand": on_demand,
+                    "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
                     "return_url": return_url,
                     "show_saved_payment_methods": show_saved_payment_methods,
@@ -706,6 +714,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         return AsyncSubscriptionsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -720,6 +729,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -760,6 +770,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           metadata: Additional metadata for the subscription Defaults to empty if not specified
 
+          one_time_product_cart: List of one time products that will be bundled with the first payment for this
+              subscription
+
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
           return_url: Optional URL to redirect after successful subscription creation
@@ -795,6 +808,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "on_demand": on_demand,
+                    "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
                     "return_url": return_url,
                     "show_saved_payment_methods": show_saved_payment_methods,
@@ -1329,8 +1343,10 @@ class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = to_raw_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_raw_response_wrapper(
             subscriptions.retrieve,
@@ -1362,8 +1378,10 @@ class AsyncSubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = async_to_raw_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_raw_response_wrapper(
             subscriptions.retrieve,
@@ -1395,8 +1413,10 @@ class SubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = to_streamed_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_streamed_response_wrapper(
             subscriptions.retrieve,
@@ -1428,8 +1448,10 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = async_to_streamed_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_streamed_response_wrapper(
             subscriptions.retrieve,
