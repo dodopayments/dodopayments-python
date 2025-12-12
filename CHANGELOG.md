@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.66.2 (2025-12-12)
+
+Full Changelog: [v1.66.1...v1.66.2](https://github.com/dodopayments/dodopayments-python/compare/v1.66.1...v1.66.2)
+
+### Features
+
+* **api:** manual updates ([5525a18](https://github.com/dodopayments/dodopayments-python/commit/5525a18d9fa48c4ee0cf8f7d4075cdfbcbdf4ee8))
+
 ## 1.66.1 (2025-12-09)
 
 Full Changelog: [v1.66.0...v1.66.1](https://github.com/dodopayments/dodopayments-python/compare/v1.66.0...v1.66.1)
