@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.67.0 (2025-12-16)
+
+Full Changelog: [v1.66.2...v1.67.0](https://github.com/dodopayments/dodopayments-python/compare/v1.66.2...v1.67.0)
+
+### Features
+
+* **api:** updated openapi spec to 1.67.0 ([f5b9e26](https://github.com/dodopayments/dodopayments-python/commit/f5b9e26e4d8aece37f00c37e53d8242696a3e599))
+
+
+### Chores
+
+* **internal:** add missing files argument to base client ([3b53953](https://github.com/dodopayments/dodopayments-python/commit/3b539538c96ad8e72573efaf152a69071e821007))
+
 ## 1.66.2 (2025-12-12)
 
 Full Changelog: [v1.66.1...v1.66.2](https://github.com/dodopayments/dodopayments-python/compare/v1.66.1...v1.66.2)
