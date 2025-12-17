@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.67.1 (2025-12-17)
+
+Full Changelog: [v1.67.0...v1.67.1](https://github.com/dodopayments/dodopayments-python/compare/v1.67.0...v1.67.1)
+
+### Chores
+
+* speedup initial import ([7d9c41f](https://github.com/dodopayments/dodopayments-python/commit/7d9c41fa12b6b8d3358b6f8707b2904f85ac9f2b))
+
 ## 1.67.0 (2025-12-16)
 
 Full Changelog: [v1.66.2...v1.67.0](https://github.com/dodopayments/dodopayments-python/compare/v1.66.2...v1.67.0)
