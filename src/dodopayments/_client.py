@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Dict, Mapping, cast
+from typing import TYPE_CHECKING, Any, Dict, Mapping, cast
 from typing_extensions import Self, Literal, override
 
 import httpx
@@ -20,24 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    misc,
-    addons,
-    brands,
-    meters,
-    payouts,
-    refunds,
-    disputes,
-    licenses,
-    payments,
-    discounts,
-    license_keys,
-    usage_events,
-    subscriptions,
-    checkout_sessions,
-    license_key_instances,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, DodoPaymentsError
 from ._base_client import (
@@ -45,10 +29,48 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.invoices import invoices
-from .resources.products import products
-from .resources.webhooks import webhooks
-from .resources.customers import customers
+
+if TYPE_CHECKING:
+    from .resources import (
+        misc,
+        addons,
+        brands,
+        meters,
+        payouts,
+        refunds,
+        disputes,
+        invoices,
+        licenses,
+        payments,
+        products,
+        webhooks,
+        customers,
+        discounts,
+        license_keys,
+        usage_events,
+        subscriptions,
+        checkout_sessions,
+        license_key_instances,
+    )
+    from .resources.misc import MiscResource, AsyncMiscResource
+    from .resources.addons import AddonsResource, AsyncAddonsResource
+    from .resources.brands import BrandsResource, AsyncBrandsResource
+    from .resources.meters import MetersResource, AsyncMetersResource
+    from .resources.payouts import PayoutsResource, AsyncPayoutsResource
+    from .resources.refunds import RefundsResource, AsyncRefundsResource
+    from .resources.disputes import DisputesResource, AsyncDisputesResource
+    from .resources.licenses import LicensesResource, AsyncLicensesResource
+    from .resources.payments import PaymentsResource, AsyncPaymentsResource
+    from .resources.discounts import DiscountsResource, AsyncDiscountsResource
+    from .resources.license_keys import LicenseKeysResource, AsyncLicenseKeysResource
+    from .resources.usage_events import UsageEventsResource, AsyncUsageEventsResource
+    from .resources.subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
+    from .resources.checkout_sessions import CheckoutSessionsResource, AsyncCheckoutSessionsResource
+    from .resources.invoices.invoices import InvoicesResource, AsyncInvoicesResource
+    from .resources.products.products import ProductsResource, AsyncProductsResource
+    from .resources.webhooks.webhooks import WebhooksResource, AsyncWebhooksResource
+    from .resources.customers.customers import CustomersResource, AsyncCustomersResource
+    from .resources.license_key_instances import LicenseKeyInstancesResource, AsyncLicenseKeyInstancesResource
 
 __all__ = [
     "ENVIRONMENTS",
@@ -69,28 +91,6 @@ ENVIRONMENTS: Dict[str, str] = {
 
 
 class DodoPayments(SyncAPIClient):
-    checkout_sessions: checkout_sessions.CheckoutSessionsResource
-    payments: payments.PaymentsResource
-    subscriptions: subscriptions.SubscriptionsResource
-    invoices: invoices.InvoicesResource
-    licenses: licenses.LicensesResource
-    license_keys: license_keys.LicenseKeysResource
-    license_key_instances: license_key_instances.LicenseKeyInstancesResource
-    customers: customers.CustomersResource
-    refunds: refunds.RefundsResource
-    disputes: disputes.DisputesResource
-    payouts: payouts.PayoutsResource
-    products: products.ProductsResource
-    misc: misc.MiscResource
-    discounts: discounts.DiscountsResource
-    addons: addons.AddonsResource
-    brands: brands.BrandsResource
-    webhooks: webhooks.WebhooksResource
-    usage_events: usage_events.UsageEventsResource
-    meters: meters.MetersResource
-    with_raw_response: DodoPaymentsWithRawResponse
-    with_streaming_response: DodoPaymentsWithStreamedResponse
-
     # client options
     bearer_token: str
     webhook_key: str | None
@@ -177,27 +177,127 @@ class DodoPayments(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.checkout_sessions = checkout_sessions.CheckoutSessionsResource(self)
-        self.payments = payments.PaymentsResource(self)
-        self.subscriptions = subscriptions.SubscriptionsResource(self)
-        self.invoices = invoices.InvoicesResource(self)
-        self.licenses = licenses.LicensesResource(self)
-        self.license_keys = license_keys.LicenseKeysResource(self)
-        self.license_key_instances = license_key_instances.LicenseKeyInstancesResource(self)
-        self.customers = customers.CustomersResource(self)
-        self.refunds = refunds.RefundsResource(self)
-        self.disputes = disputes.DisputesResource(self)
-        self.payouts = payouts.PayoutsResource(self)
-        self.products = products.ProductsResource(self)
-        self.misc = misc.MiscResource(self)
-        self.discounts = discounts.DiscountsResource(self)
-        self.addons = addons.AddonsResource(self)
-        self.brands = brands.BrandsResource(self)
-        self.webhooks = webhooks.WebhooksResource(self)
-        self.usage_events = usage_events.UsageEventsResource(self)
-        self.meters = meters.MetersResource(self)
-        self.with_raw_response = DodoPaymentsWithRawResponse(self)
-        self.with_streaming_response = DodoPaymentsWithStreamedResponse(self)
+    @cached_property
+    def checkout_sessions(self) -> CheckoutSessionsResource:
+        from .resources.checkout_sessions import CheckoutSessionsResource
+
+        return CheckoutSessionsResource(self)
+
+    @cached_property
+    def payments(self) -> PaymentsResource:
+        from .resources.payments import PaymentsResource
+
+        return PaymentsResource(self)
+
+    @cached_property
+    def subscriptions(self) -> SubscriptionsResource:
+        from .resources.subscriptions import SubscriptionsResource
+
+        return SubscriptionsResource(self)
+
+    @cached_property
+    def invoices(self) -> InvoicesResource:
+        from .resources.invoices import InvoicesResource
+
+        return InvoicesResource(self)
+
+    @cached_property
+    def licenses(self) -> LicensesResource:
+        from .resources.licenses import LicensesResource
+
+        return LicensesResource(self)
+
+    @cached_property
+    def license_keys(self) -> LicenseKeysResource:
+        from .resources.license_keys import LicenseKeysResource
+
+        return LicenseKeysResource(self)
+
+    @cached_property
+    def license_key_instances(self) -> LicenseKeyInstancesResource:
+        from .resources.license_key_instances import LicenseKeyInstancesResource
+
+        return LicenseKeyInstancesResource(self)
+
+    @cached_property
+    def customers(self) -> CustomersResource:
+        from .resources.customers import CustomersResource
+
+        return CustomersResource(self)
+
+    @cached_property
+    def refunds(self) -> RefundsResource:
+        from .resources.refunds import RefundsResource
+
+        return RefundsResource(self)
+
+    @cached_property
+    def disputes(self) -> DisputesResource:
+        from .resources.disputes import DisputesResource
+
+        return DisputesResource(self)
+
+    @cached_property
+    def payouts(self) -> PayoutsResource:
+        from .resources.payouts import PayoutsResource
+
+        return PayoutsResource(self)
+
+    @cached_property
+    def products(self) -> ProductsResource:
+        from .resources.products import ProductsResource
+
+        return ProductsResource(self)
+
+    @cached_property
+    def misc(self) -> MiscResource:
+        from .resources.misc import MiscResource
+
+        return MiscResource(self)
+
+    @cached_property
+    def discounts(self) -> DiscountsResource:
+        from .resources.discounts import DiscountsResource
+
+        return DiscountsResource(self)
+
+    @cached_property
+    def addons(self) -> AddonsResource:
+        from .resources.addons import AddonsResource
+
+        return AddonsResource(self)
+
+    @cached_property
+    def brands(self) -> BrandsResource:
+        from .resources.brands import BrandsResource
+
+        return BrandsResource(self)
+
+    @cached_property
+    def webhooks(self) -> WebhooksResource:
+        from .resources.webhooks import WebhooksResource
+
+        return WebhooksResource(self)
+
+    @cached_property
+    def usage_events(self) -> UsageEventsResource:
+        from .resources.usage_events import UsageEventsResource
+
+        return UsageEventsResource(self)
+
+    @cached_property
+    def meters(self) -> MetersResource:
+        from .resources.meters import MetersResource
+
+        return MetersResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> DodoPaymentsWithRawResponse:
+        return DodoPaymentsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DodoPaymentsWithStreamedResponse:
+        return DodoPaymentsWithStreamedResponse(self)
 
     @property
     @override
@@ -309,28 +409,6 @@ class DodoPayments(SyncAPIClient):
 
 
 class AsyncDodoPayments(AsyncAPIClient):
-    checkout_sessions: checkout_sessions.AsyncCheckoutSessionsResource
-    payments: payments.AsyncPaymentsResource
-    subscriptions: subscriptions.AsyncSubscriptionsResource
-    invoices: invoices.AsyncInvoicesResource
-    licenses: licenses.AsyncLicensesResource
-    license_keys: license_keys.AsyncLicenseKeysResource
-    license_key_instances: license_key_instances.AsyncLicenseKeyInstancesResource
-    customers: customers.AsyncCustomersResource
-    refunds: refunds.AsyncRefundsResource
-    disputes: disputes.AsyncDisputesResource
-    payouts: payouts.AsyncPayoutsResource
-    products: products.AsyncProductsResource
-    misc: misc.AsyncMiscResource
-    discounts: discounts.AsyncDiscountsResource
-    addons: addons.AsyncAddonsResource
-    brands: brands.AsyncBrandsResource
-    webhooks: webhooks.AsyncWebhooksResource
-    usage_events: usage_events.AsyncUsageEventsResource
-    meters: meters.AsyncMetersResource
-    with_raw_response: AsyncDodoPaymentsWithRawResponse
-    with_streaming_response: AsyncDodoPaymentsWithStreamedResponse
-
     # client options
     bearer_token: str
     webhook_key: str | None
@@ -417,27 +495,127 @@ class AsyncDodoPayments(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.checkout_sessions = checkout_sessions.AsyncCheckoutSessionsResource(self)
-        self.payments = payments.AsyncPaymentsResource(self)
-        self.subscriptions = subscriptions.AsyncSubscriptionsResource(self)
-        self.invoices = invoices.AsyncInvoicesResource(self)
-        self.licenses = licenses.AsyncLicensesResource(self)
-        self.license_keys = license_keys.AsyncLicenseKeysResource(self)
-        self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResource(self)
-        self.customers = customers.AsyncCustomersResource(self)
-        self.refunds = refunds.AsyncRefundsResource(self)
-        self.disputes = disputes.AsyncDisputesResource(self)
-        self.payouts = payouts.AsyncPayoutsResource(self)
-        self.products = products.AsyncProductsResource(self)
-        self.misc = misc.AsyncMiscResource(self)
-        self.discounts = discounts.AsyncDiscountsResource(self)
-        self.addons = addons.AsyncAddonsResource(self)
-        self.brands = brands.AsyncBrandsResource(self)
-        self.webhooks = webhooks.AsyncWebhooksResource(self)
-        self.usage_events = usage_events.AsyncUsageEventsResource(self)
-        self.meters = meters.AsyncMetersResource(self)
-        self.with_raw_response = AsyncDodoPaymentsWithRawResponse(self)
-        self.with_streaming_response = AsyncDodoPaymentsWithStreamedResponse(self)
+    @cached_property
+    def checkout_sessions(self) -> AsyncCheckoutSessionsResource:
+        from .resources.checkout_sessions import AsyncCheckoutSessionsResource
+
+        return AsyncCheckoutSessionsResource(self)
+
+    @cached_property
+    def payments(self) -> AsyncPaymentsResource:
+        from .resources.payments import AsyncPaymentsResource
+
+        return AsyncPaymentsResource(self)
+
+    @cached_property
+    def subscriptions(self) -> AsyncSubscriptionsResource:
+        from .resources.subscriptions import AsyncSubscriptionsResource
+
+        return AsyncSubscriptionsResource(self)
+
+    @cached_property
+    def invoices(self) -> AsyncInvoicesResource:
+        from .resources.invoices import AsyncInvoicesResource
+
+        return AsyncInvoicesResource(self)
+
+    @cached_property
+    def licenses(self) -> AsyncLicensesResource:
+        from .resources.licenses import AsyncLicensesResource
+
+        return AsyncLicensesResource(self)
+
+    @cached_property
+    def license_keys(self) -> AsyncLicenseKeysResource:
+        from .resources.license_keys import AsyncLicenseKeysResource
+
+        return AsyncLicenseKeysResource(self)
+
+    @cached_property
+    def license_key_instances(self) -> AsyncLicenseKeyInstancesResource:
+        from .resources.license_key_instances import AsyncLicenseKeyInstancesResource
+
+        return AsyncLicenseKeyInstancesResource(self)
+
+    @cached_property
+    def customers(self) -> AsyncCustomersResource:
+        from .resources.customers import AsyncCustomersResource
+
+        return AsyncCustomersResource(self)
+
+    @cached_property
+    def refunds(self) -> AsyncRefundsResource:
+        from .resources.refunds import AsyncRefundsResource
+
+        return AsyncRefundsResource(self)
+
+    @cached_property
+    def disputes(self) -> AsyncDisputesResource:
+        from .resources.disputes import AsyncDisputesResource
+
+        return AsyncDisputesResource(self)
+
+    @cached_property
+    def payouts(self) -> AsyncPayoutsResource:
+        from .resources.payouts import AsyncPayoutsResource
+
+        return AsyncPayoutsResource(self)
+
+    @cached_property
+    def products(self) -> AsyncProductsResource:
+        from .resources.products import AsyncProductsResource
+
+        return AsyncProductsResource(self)
+
+    @cached_property
+    def misc(self) -> AsyncMiscResource:
+        from .resources.misc import AsyncMiscResource
+
+        return AsyncMiscResource(self)
+
+    @cached_property
+    def discounts(self) -> AsyncDiscountsResource:
+        from .resources.discounts import AsyncDiscountsResource
+
+        return AsyncDiscountsResource(self)
+
+    @cached_property
+    def addons(self) -> AsyncAddonsResource:
+        from .resources.addons import AsyncAddonsResource
+
+        return AsyncAddonsResource(self)
+
+    @cached_property
+    def brands(self) -> AsyncBrandsResource:
+        from .resources.brands import AsyncBrandsResource
+
+        return AsyncBrandsResource(self)
+
+    @cached_property
+    def webhooks(self) -> AsyncWebhooksResource:
+        from .resources.webhooks import AsyncWebhooksResource
+
+        return AsyncWebhooksResource(self)
+
+    @cached_property
+    def usage_events(self) -> AsyncUsageEventsResource:
+        from .resources.usage_events import AsyncUsageEventsResource
+
+        return AsyncUsageEventsResource(self)
+
+    @cached_property
+    def meters(self) -> AsyncMetersResource:
+        from .resources.meters import AsyncMetersResource
+
+        return AsyncMetersResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncDodoPaymentsWithRawResponse:
+        return AsyncDodoPaymentsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDodoPaymentsWithStreamedResponse:
+        return AsyncDodoPaymentsWithStreamedResponse(self)
 
     @property
     @override
@@ -549,109 +727,487 @@ class AsyncDodoPayments(AsyncAPIClient):
 
 
 class DodoPaymentsWithRawResponse:
+    _client: DodoPayments
+
     def __init__(self, client: DodoPayments) -> None:
-        self.checkout_sessions = checkout_sessions.CheckoutSessionsResourceWithRawResponse(client.checkout_sessions)
-        self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
-        self.subscriptions = subscriptions.SubscriptionsResourceWithRawResponse(client.subscriptions)
-        self.invoices = invoices.InvoicesResourceWithRawResponse(client.invoices)
-        self.licenses = licenses.LicensesResourceWithRawResponse(client.licenses)
-        self.license_keys = license_keys.LicenseKeysResourceWithRawResponse(client.license_keys)
-        self.license_key_instances = license_key_instances.LicenseKeyInstancesResourceWithRawResponse(
-            client.license_key_instances
-        )
-        self.customers = customers.CustomersResourceWithRawResponse(client.customers)
-        self.refunds = refunds.RefundsResourceWithRawResponse(client.refunds)
-        self.disputes = disputes.DisputesResourceWithRawResponse(client.disputes)
-        self.payouts = payouts.PayoutsResourceWithRawResponse(client.payouts)
-        self.products = products.ProductsResourceWithRawResponse(client.products)
-        self.misc = misc.MiscResourceWithRawResponse(client.misc)
-        self.discounts = discounts.DiscountsResourceWithRawResponse(client.discounts)
-        self.addons = addons.AddonsResourceWithRawResponse(client.addons)
-        self.brands = brands.BrandsResourceWithRawResponse(client.brands)
-        self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
-        self.usage_events = usage_events.UsageEventsResourceWithRawResponse(client.usage_events)
-        self.meters = meters.MetersResourceWithRawResponse(client.meters)
+        self._client = client
+
+    @cached_property
+    def checkout_sessions(self) -> checkout_sessions.CheckoutSessionsResourceWithRawResponse:
+        from .resources.checkout_sessions import CheckoutSessionsResourceWithRawResponse
+
+        return CheckoutSessionsResourceWithRawResponse(self._client.checkout_sessions)
+
+    @cached_property
+    def payments(self) -> payments.PaymentsResourceWithRawResponse:
+        from .resources.payments import PaymentsResourceWithRawResponse
+
+        return PaymentsResourceWithRawResponse(self._client.payments)
+
+    @cached_property
+    def subscriptions(self) -> subscriptions.SubscriptionsResourceWithRawResponse:
+        from .resources.subscriptions import SubscriptionsResourceWithRawResponse
+
+        return SubscriptionsResourceWithRawResponse(self._client.subscriptions)
+
+    @cached_property
+    def invoices(self) -> invoices.InvoicesResourceWithRawResponse:
+        from .resources.invoices import InvoicesResourceWithRawResponse
+
+        return InvoicesResourceWithRawResponse(self._client.invoices)
+
+    @cached_property
+    def licenses(self) -> licenses.LicensesResourceWithRawResponse:
+        from .resources.licenses import LicensesResourceWithRawResponse
+
+        return LicensesResourceWithRawResponse(self._client.licenses)
+
+    @cached_property
+    def license_keys(self) -> license_keys.LicenseKeysResourceWithRawResponse:
+        from .resources.license_keys import LicenseKeysResourceWithRawResponse
+
+        return LicenseKeysResourceWithRawResponse(self._client.license_keys)
+
+    @cached_property
+    def license_key_instances(self) -> license_key_instances.LicenseKeyInstancesResourceWithRawResponse:
+        from .resources.license_key_instances import LicenseKeyInstancesResourceWithRawResponse
+
+        return LicenseKeyInstancesResourceWithRawResponse(self._client.license_key_instances)
+
+    @cached_property
+    def customers(self) -> customers.CustomersResourceWithRawResponse:
+        from .resources.customers import CustomersResourceWithRawResponse
+
+        return CustomersResourceWithRawResponse(self._client.customers)
+
+    @cached_property
+    def refunds(self) -> refunds.RefundsResourceWithRawResponse:
+        from .resources.refunds import RefundsResourceWithRawResponse
+
+        return RefundsResourceWithRawResponse(self._client.refunds)
+
+    @cached_property
+    def disputes(self) -> disputes.DisputesResourceWithRawResponse:
+        from .resources.disputes import DisputesResourceWithRawResponse
+
+        return DisputesResourceWithRawResponse(self._client.disputes)
+
+    @cached_property
+    def payouts(self) -> payouts.PayoutsResourceWithRawResponse:
+        from .resources.payouts import PayoutsResourceWithRawResponse
+
+        return PayoutsResourceWithRawResponse(self._client.payouts)
+
+    @cached_property
+    def products(self) -> products.ProductsResourceWithRawResponse:
+        from .resources.products import ProductsResourceWithRawResponse
+
+        return ProductsResourceWithRawResponse(self._client.products)
+
+    @cached_property
+    def misc(self) -> misc.MiscResourceWithRawResponse:
+        from .resources.misc import MiscResourceWithRawResponse
+
+        return MiscResourceWithRawResponse(self._client.misc)
+
+    @cached_property
+    def discounts(self) -> discounts.DiscountsResourceWithRawResponse:
+        from .resources.discounts import DiscountsResourceWithRawResponse
+
+        return DiscountsResourceWithRawResponse(self._client.discounts)
+
+    @cached_property
+    def addons(self) -> addons.AddonsResourceWithRawResponse:
+        from .resources.addons import AddonsResourceWithRawResponse
+
+        return AddonsResourceWithRawResponse(self._client.addons)
+
+    @cached_property
+    def brands(self) -> brands.BrandsResourceWithRawResponse:
+        from .resources.brands import BrandsResourceWithRawResponse
+
+        return BrandsResourceWithRawResponse(self._client.brands)
+
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithRawResponse:
+        from .resources.webhooks import WebhooksResourceWithRawResponse
+
+        return WebhooksResourceWithRawResponse(self._client.webhooks)
+
+    @cached_property
+    def usage_events(self) -> usage_events.UsageEventsResourceWithRawResponse:
+        from .resources.usage_events import UsageEventsResourceWithRawResponse
+
+        return UsageEventsResourceWithRawResponse(self._client.usage_events)
+
+    @cached_property
+    def meters(self) -> meters.MetersResourceWithRawResponse:
+        from .resources.meters import MetersResourceWithRawResponse
+
+        return MetersResourceWithRawResponse(self._client.meters)
 
 
 class AsyncDodoPaymentsWithRawResponse:
+    _client: AsyncDodoPayments
+
     def __init__(self, client: AsyncDodoPayments) -> None:
-        self.checkout_sessions = checkout_sessions.AsyncCheckoutSessionsResourceWithRawResponse(
-            client.checkout_sessions
-        )
-        self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
-        self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
-        self.invoices = invoices.AsyncInvoicesResourceWithRawResponse(client.invoices)
-        self.licenses = licenses.AsyncLicensesResourceWithRawResponse(client.licenses)
-        self.license_keys = license_keys.AsyncLicenseKeysResourceWithRawResponse(client.license_keys)
-        self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResourceWithRawResponse(
-            client.license_key_instances
-        )
-        self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
-        self.refunds = refunds.AsyncRefundsResourceWithRawResponse(client.refunds)
-        self.disputes = disputes.AsyncDisputesResourceWithRawResponse(client.disputes)
-        self.payouts = payouts.AsyncPayoutsResourceWithRawResponse(client.payouts)
-        self.products = products.AsyncProductsResourceWithRawResponse(client.products)
-        self.misc = misc.AsyncMiscResourceWithRawResponse(client.misc)
-        self.discounts = discounts.AsyncDiscountsResourceWithRawResponse(client.discounts)
-        self.addons = addons.AsyncAddonsResourceWithRawResponse(client.addons)
-        self.brands = brands.AsyncBrandsResourceWithRawResponse(client.brands)
-        self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
-        self.usage_events = usage_events.AsyncUsageEventsResourceWithRawResponse(client.usage_events)
-        self.meters = meters.AsyncMetersResourceWithRawResponse(client.meters)
+        self._client = client
+
+    @cached_property
+    def checkout_sessions(self) -> checkout_sessions.AsyncCheckoutSessionsResourceWithRawResponse:
+        from .resources.checkout_sessions import AsyncCheckoutSessionsResourceWithRawResponse
+
+        return AsyncCheckoutSessionsResourceWithRawResponse(self._client.checkout_sessions)
+
+    @cached_property
+    def payments(self) -> payments.AsyncPaymentsResourceWithRawResponse:
+        from .resources.payments import AsyncPaymentsResourceWithRawResponse
+
+        return AsyncPaymentsResourceWithRawResponse(self._client.payments)
+
+    @cached_property
+    def subscriptions(self) -> subscriptions.AsyncSubscriptionsResourceWithRawResponse:
+        from .resources.subscriptions import AsyncSubscriptionsResourceWithRawResponse
+
+        return AsyncSubscriptionsResourceWithRawResponse(self._client.subscriptions)
+
+    @cached_property
+    def invoices(self) -> invoices.AsyncInvoicesResourceWithRawResponse:
+        from .resources.invoices import AsyncInvoicesResourceWithRawResponse
+
+        return AsyncInvoicesResourceWithRawResponse(self._client.invoices)
+
+    @cached_property
+    def licenses(self) -> licenses.AsyncLicensesResourceWithRawResponse:
+        from .resources.licenses import AsyncLicensesResourceWithRawResponse
+
+        return AsyncLicensesResourceWithRawResponse(self._client.licenses)
+
+    @cached_property
+    def license_keys(self) -> license_keys.AsyncLicenseKeysResourceWithRawResponse:
+        from .resources.license_keys import AsyncLicenseKeysResourceWithRawResponse
+
+        return AsyncLicenseKeysResourceWithRawResponse(self._client.license_keys)
+
+    @cached_property
+    def license_key_instances(self) -> license_key_instances.AsyncLicenseKeyInstancesResourceWithRawResponse:
+        from .resources.license_key_instances import AsyncLicenseKeyInstancesResourceWithRawResponse
+
+        return AsyncLicenseKeyInstancesResourceWithRawResponse(self._client.license_key_instances)
+
+    @cached_property
+    def customers(self) -> customers.AsyncCustomersResourceWithRawResponse:
+        from .resources.customers import AsyncCustomersResourceWithRawResponse
+
+        return AsyncCustomersResourceWithRawResponse(self._client.customers)
+
+    @cached_property
+    def refunds(self) -> refunds.AsyncRefundsResourceWithRawResponse:
+        from .resources.refunds import AsyncRefundsResourceWithRawResponse
+
+        return AsyncRefundsResourceWithRawResponse(self._client.refunds)
+
+    @cached_property
+    def disputes(self) -> disputes.AsyncDisputesResourceWithRawResponse:
+        from .resources.disputes import AsyncDisputesResourceWithRawResponse
+
+        return AsyncDisputesResourceWithRawResponse(self._client.disputes)
+
+    @cached_property
+    def payouts(self) -> payouts.AsyncPayoutsResourceWithRawResponse:
+        from .resources.payouts import AsyncPayoutsResourceWithRawResponse
+
+        return AsyncPayoutsResourceWithRawResponse(self._client.payouts)
+
+    @cached_property
+    def products(self) -> products.AsyncProductsResourceWithRawResponse:
+        from .resources.products import AsyncProductsResourceWithRawResponse
+
+        return AsyncProductsResourceWithRawResponse(self._client.products)
+
+    @cached_property
+    def misc(self) -> misc.AsyncMiscResourceWithRawResponse:
+        from .resources.misc import AsyncMiscResourceWithRawResponse
+
+        return AsyncMiscResourceWithRawResponse(self._client.misc)
+
+    @cached_property
+    def discounts(self) -> discounts.AsyncDiscountsResourceWithRawResponse:
+        from .resources.discounts import AsyncDiscountsResourceWithRawResponse
+
+        return AsyncDiscountsResourceWithRawResponse(self._client.discounts)
+
+    @cached_property
+    def addons(self) -> addons.AsyncAddonsResourceWithRawResponse:
+        from .resources.addons import AsyncAddonsResourceWithRawResponse
+
+        return AsyncAddonsResourceWithRawResponse(self._client.addons)
+
+    @cached_property
+    def brands(self) -> brands.AsyncBrandsResourceWithRawResponse:
+        from .resources.brands import AsyncBrandsResourceWithRawResponse
+
+        return AsyncBrandsResourceWithRawResponse(self._client.brands)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithRawResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithRawResponse
+
+        return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
+
+    @cached_property
+    def usage_events(self) -> usage_events.AsyncUsageEventsResourceWithRawResponse:
+        from .resources.usage_events import AsyncUsageEventsResourceWithRawResponse
+
+        return AsyncUsageEventsResourceWithRawResponse(self._client.usage_events)
+
+    @cached_property
+    def meters(self) -> meters.AsyncMetersResourceWithRawResponse:
+        from .resources.meters import AsyncMetersResourceWithRawResponse
+
+        return AsyncMetersResourceWithRawResponse(self._client.meters)
 
 
 class DodoPaymentsWithStreamedResponse:
+    _client: DodoPayments
+
     def __init__(self, client: DodoPayments) -> None:
-        self.checkout_sessions = checkout_sessions.CheckoutSessionsResourceWithStreamingResponse(
-            client.checkout_sessions
-        )
-        self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
-        self.subscriptions = subscriptions.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
-        self.invoices = invoices.InvoicesResourceWithStreamingResponse(client.invoices)
-        self.licenses = licenses.LicensesResourceWithStreamingResponse(client.licenses)
-        self.license_keys = license_keys.LicenseKeysResourceWithStreamingResponse(client.license_keys)
-        self.license_key_instances = license_key_instances.LicenseKeyInstancesResourceWithStreamingResponse(
-            client.license_key_instances
-        )
-        self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
-        self.refunds = refunds.RefundsResourceWithStreamingResponse(client.refunds)
-        self.disputes = disputes.DisputesResourceWithStreamingResponse(client.disputes)
-        self.payouts = payouts.PayoutsResourceWithStreamingResponse(client.payouts)
-        self.products = products.ProductsResourceWithStreamingResponse(client.products)
-        self.misc = misc.MiscResourceWithStreamingResponse(client.misc)
-        self.discounts = discounts.DiscountsResourceWithStreamingResponse(client.discounts)
-        self.addons = addons.AddonsResourceWithStreamingResponse(client.addons)
-        self.brands = brands.BrandsResourceWithStreamingResponse(client.brands)
-        self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
-        self.usage_events = usage_events.UsageEventsResourceWithStreamingResponse(client.usage_events)
-        self.meters = meters.MetersResourceWithStreamingResponse(client.meters)
+        self._client = client
+
+    @cached_property
+    def checkout_sessions(self) -> checkout_sessions.CheckoutSessionsResourceWithStreamingResponse:
+        from .resources.checkout_sessions import CheckoutSessionsResourceWithStreamingResponse
+
+        return CheckoutSessionsResourceWithStreamingResponse(self._client.checkout_sessions)
+
+    @cached_property
+    def payments(self) -> payments.PaymentsResourceWithStreamingResponse:
+        from .resources.payments import PaymentsResourceWithStreamingResponse
+
+        return PaymentsResourceWithStreamingResponse(self._client.payments)
+
+    @cached_property
+    def subscriptions(self) -> subscriptions.SubscriptionsResourceWithStreamingResponse:
+        from .resources.subscriptions import SubscriptionsResourceWithStreamingResponse
+
+        return SubscriptionsResourceWithStreamingResponse(self._client.subscriptions)
+
+    @cached_property
+    def invoices(self) -> invoices.InvoicesResourceWithStreamingResponse:
+        from .resources.invoices import InvoicesResourceWithStreamingResponse
+
+        return InvoicesResourceWithStreamingResponse(self._client.invoices)
+
+    @cached_property
+    def licenses(self) -> licenses.LicensesResourceWithStreamingResponse:
+        from .resources.licenses import LicensesResourceWithStreamingResponse
+
+        return LicensesResourceWithStreamingResponse(self._client.licenses)
+
+    @cached_property
+    def license_keys(self) -> license_keys.LicenseKeysResourceWithStreamingResponse:
+        from .resources.license_keys import LicenseKeysResourceWithStreamingResponse
+
+        return LicenseKeysResourceWithStreamingResponse(self._client.license_keys)
+
+    @cached_property
+    def license_key_instances(self) -> license_key_instances.LicenseKeyInstancesResourceWithStreamingResponse:
+        from .resources.license_key_instances import LicenseKeyInstancesResourceWithStreamingResponse
+
+        return LicenseKeyInstancesResourceWithStreamingResponse(self._client.license_key_instances)
+
+    @cached_property
+    def customers(self) -> customers.CustomersResourceWithStreamingResponse:
+        from .resources.customers import CustomersResourceWithStreamingResponse
+
+        return CustomersResourceWithStreamingResponse(self._client.customers)
+
+    @cached_property
+    def refunds(self) -> refunds.RefundsResourceWithStreamingResponse:
+        from .resources.refunds import RefundsResourceWithStreamingResponse
+
+        return RefundsResourceWithStreamingResponse(self._client.refunds)
+
+    @cached_property
+    def disputes(self) -> disputes.DisputesResourceWithStreamingResponse:
+        from .resources.disputes import DisputesResourceWithStreamingResponse
+
+        return DisputesResourceWithStreamingResponse(self._client.disputes)
+
+    @cached_property
+    def payouts(self) -> payouts.PayoutsResourceWithStreamingResponse:
+        from .resources.payouts import PayoutsResourceWithStreamingResponse
+
+        return PayoutsResourceWithStreamingResponse(self._client.payouts)
+
+    @cached_property
+    def products(self) -> products.ProductsResourceWithStreamingResponse:
+        from .resources.products import ProductsResourceWithStreamingResponse
+
+        return ProductsResourceWithStreamingResponse(self._client.products)
+
+    @cached_property
+    def misc(self) -> misc.MiscResourceWithStreamingResponse:
+        from .resources.misc import MiscResourceWithStreamingResponse
+
+        return MiscResourceWithStreamingResponse(self._client.misc)
+
+    @cached_property
+    def discounts(self) -> discounts.DiscountsResourceWithStreamingResponse:
+        from .resources.discounts import DiscountsResourceWithStreamingResponse
+
+        return DiscountsResourceWithStreamingResponse(self._client.discounts)
+
+    @cached_property
+    def addons(self) -> addons.AddonsResourceWithStreamingResponse:
+        from .resources.addons import AddonsResourceWithStreamingResponse
+
+        return AddonsResourceWithStreamingResponse(self._client.addons)
+
+    @cached_property
+    def brands(self) -> brands.BrandsResourceWithStreamingResponse:
+        from .resources.brands import BrandsResourceWithStreamingResponse
+
+        return BrandsResourceWithStreamingResponse(self._client.brands)
+
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import WebhooksResourceWithStreamingResponse
+
+        return WebhooksResourceWithStreamingResponse(self._client.webhooks)
+
+    @cached_property
+    def usage_events(self) -> usage_events.UsageEventsResourceWithStreamingResponse:
+        from .resources.usage_events import UsageEventsResourceWithStreamingResponse
+
+        return UsageEventsResourceWithStreamingResponse(self._client.usage_events)
+
+    @cached_property
+    def meters(self) -> meters.MetersResourceWithStreamingResponse:
+        from .resources.meters import MetersResourceWithStreamingResponse
+
+        return MetersResourceWithStreamingResponse(self._client.meters)
 
 
 class AsyncDodoPaymentsWithStreamedResponse:
+    _client: AsyncDodoPayments
+
     def __init__(self, client: AsyncDodoPayments) -> None:
-        self.checkout_sessions = checkout_sessions.AsyncCheckoutSessionsResourceWithStreamingResponse(
-            client.checkout_sessions
-        )
-        self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)
-        self.subscriptions = subscriptions.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
-        self.invoices = invoices.AsyncInvoicesResourceWithStreamingResponse(client.invoices)
-        self.licenses = licenses.AsyncLicensesResourceWithStreamingResponse(client.licenses)
-        self.license_keys = license_keys.AsyncLicenseKeysResourceWithStreamingResponse(client.license_keys)
-        self.license_key_instances = license_key_instances.AsyncLicenseKeyInstancesResourceWithStreamingResponse(
-            client.license_key_instances
-        )
-        self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
-        self.refunds = refunds.AsyncRefundsResourceWithStreamingResponse(client.refunds)
-        self.disputes = disputes.AsyncDisputesResourceWithStreamingResponse(client.disputes)
-        self.payouts = payouts.AsyncPayoutsResourceWithStreamingResponse(client.payouts)
-        self.products = products.AsyncProductsResourceWithStreamingResponse(client.products)
-        self.misc = misc.AsyncMiscResourceWithStreamingResponse(client.misc)
-        self.discounts = discounts.AsyncDiscountsResourceWithStreamingResponse(client.discounts)
-        self.addons = addons.AsyncAddonsResourceWithStreamingResponse(client.addons)
-        self.brands = brands.AsyncBrandsResourceWithStreamingResponse(client.brands)
-        self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
-        self.usage_events = usage_events.AsyncUsageEventsResourceWithStreamingResponse(client.usage_events)
-        self.meters = meters.AsyncMetersResourceWithStreamingResponse(client.meters)
+        self._client = client
+
+    @cached_property
+    def checkout_sessions(self) -> checkout_sessions.AsyncCheckoutSessionsResourceWithStreamingResponse:
+        from .resources.checkout_sessions import AsyncCheckoutSessionsResourceWithStreamingResponse
+
+        return AsyncCheckoutSessionsResourceWithStreamingResponse(self._client.checkout_sessions)
+
+    @cached_property
+    def payments(self) -> payments.AsyncPaymentsResourceWithStreamingResponse:
+        from .resources.payments import AsyncPaymentsResourceWithStreamingResponse
+
+        return AsyncPaymentsResourceWithStreamingResponse(self._client.payments)
+
+    @cached_property
+    def subscriptions(self) -> subscriptions.AsyncSubscriptionsResourceWithStreamingResponse:
+        from .resources.subscriptions import AsyncSubscriptionsResourceWithStreamingResponse
+
+        return AsyncSubscriptionsResourceWithStreamingResponse(self._client.subscriptions)
+
+    @cached_property
+    def invoices(self) -> invoices.AsyncInvoicesResourceWithStreamingResponse:
+        from .resources.invoices import AsyncInvoicesResourceWithStreamingResponse
+
+        return AsyncInvoicesResourceWithStreamingResponse(self._client.invoices)
+
+    @cached_property
+    def licenses(self) -> licenses.AsyncLicensesResourceWithStreamingResponse:
+        from .resources.licenses import AsyncLicensesResourceWithStreamingResponse
+
+        return AsyncLicensesResourceWithStreamingResponse(self._client.licenses)
+
+    @cached_property
+    def license_keys(self) -> license_keys.AsyncLicenseKeysResourceWithStreamingResponse:
+        from .resources.license_keys import AsyncLicenseKeysResourceWithStreamingResponse
+
+        return AsyncLicenseKeysResourceWithStreamingResponse(self._client.license_keys)
+
+    @cached_property
+    def license_key_instances(self) -> license_key_instances.AsyncLicenseKeyInstancesResourceWithStreamingResponse:
+        from .resources.license_key_instances import AsyncLicenseKeyInstancesResourceWithStreamingResponse
+
+        return AsyncLicenseKeyInstancesResourceWithStreamingResponse(self._client.license_key_instances)
+
+    @cached_property
+    def customers(self) -> customers.AsyncCustomersResourceWithStreamingResponse:
+        from .resources.customers import AsyncCustomersResourceWithStreamingResponse
+
+        return AsyncCustomersResourceWithStreamingResponse(self._client.customers)
+
+    @cached_property
+    def refunds(self) -> refunds.AsyncRefundsResourceWithStreamingResponse:
+        from .resources.refunds import AsyncRefundsResourceWithStreamingResponse
+
+        return AsyncRefundsResourceWithStreamingResponse(self._client.refunds)
+
+    @cached_property
+    def disputes(self) -> disputes.AsyncDisputesResourceWithStreamingResponse:
+        from .resources.disputes import AsyncDisputesResourceWithStreamingResponse
+
+        return AsyncDisputesResourceWithStreamingResponse(self._client.disputes)
+
+    @cached_property
+    def payouts(self) -> payouts.AsyncPayoutsResourceWithStreamingResponse:
+        from .resources.payouts import AsyncPayoutsResourceWithStreamingResponse
+
+        return AsyncPayoutsResourceWithStreamingResponse(self._client.payouts)
+
+    @cached_property
+    def products(self) -> products.AsyncProductsResourceWithStreamingResponse:
+        from .resources.products import AsyncProductsResourceWithStreamingResponse
+
+        return AsyncProductsResourceWithStreamingResponse(self._client.products)
+
+    @cached_property
+    def misc(self) -> misc.AsyncMiscResourceWithStreamingResponse:
+        from .resources.misc import AsyncMiscResourceWithStreamingResponse
+
+        return AsyncMiscResourceWithStreamingResponse(self._client.misc)
+
+    @cached_property
+    def discounts(self) -> discounts.AsyncDiscountsResourceWithStreamingResponse:
+        from .resources.discounts import AsyncDiscountsResourceWithStreamingResponse
+
+        return AsyncDiscountsResourceWithStreamingResponse(self._client.discounts)
+
+    @cached_property
+    def addons(self) -> addons.AsyncAddonsResourceWithStreamingResponse:
+        from .resources.addons import AsyncAddonsResourceWithStreamingResponse
+
+        return AsyncAddonsResourceWithStreamingResponse(self._client.addons)
+
+    @cached_property
+    def brands(self) -> brands.AsyncBrandsResourceWithStreamingResponse:
+        from .resources.brands import AsyncBrandsResourceWithStreamingResponse
+
+        return AsyncBrandsResourceWithStreamingResponse(self._client.brands)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithStreamingResponse
+
+        return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)
+
+    @cached_property
+    def usage_events(self) -> usage_events.AsyncUsageEventsResourceWithStreamingResponse:
+        from .resources.usage_events import AsyncUsageEventsResourceWithStreamingResponse
+
+        return AsyncUsageEventsResourceWithStreamingResponse(self._client.usage_events)
+
+    @cached_property
+    def meters(self) -> meters.AsyncMetersResourceWithStreamingResponse:
+        from .resources.meters import AsyncMetersResourceWithStreamingResponse
+
+        return AsyncMetersResourceWithStreamingResponse(self._client.meters)
 
 
 Client = DodoPayments
