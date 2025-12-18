@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.67.2 (2025-12-18)
+
+Full Changelog: [v1.67.1...v1.67.2](https://github.com/dodopayments/dodopayments-python/compare/v1.67.1...v1.67.2)
+
+### Bug Fixes
+
+* use async_to_httpx_files in patch method ([9940090](https://github.com/dodopayments/dodopayments-python/commit/99400909784d8b785c4e4baacd173c36a360b75f))
+
 ## 1.67.1 (2025-12-17)
 
 Full Changelog: [v1.67.0...v1.67.1](https://github.com/dodopayments/dodopayments-python/compare/v1.67.0...v1.67.1)
