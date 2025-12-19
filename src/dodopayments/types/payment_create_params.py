@@ -54,11 +54,20 @@ class PaymentCreateParams(TypedDict, total=False):
     payment_link: Optional[bool]
     """Whether to generate a payment link. Defaults to false if not specified."""
 
+    redirect_immediately: bool
+    """
+    If true, redirects the customer immediately after payment completion False by
+    default
+    """
+
     return_url: Optional[str]
     """
     Optional URL to redirect the customer after payment. Must be a valid URL if
     provided.
     """
+
+    short_link: Optional[bool]
+    """If true, returns a shortened payment link. Defaults to false if not specified."""
 
     show_saved_payment_methods: bool
     """Display saved payment methods of a returning customer False by default"""

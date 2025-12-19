@@ -81,7 +81,9 @@ class TestSubscriptions:
                     }
                 ],
                 payment_link=True,
+                redirect_immediately=True,
                 return_url="return_url",
+                short_link=True,
                 show_saved_payment_methods=True,
                 tax_id="tax_id",
                 trial_period_days=0,
@@ -663,7 +665,9 @@ class TestAsyncSubscriptions:
                     }
                 ],
                 payment_link=True,
+                redirect_immediately=True,
                 return_url="return_url",
+                short_link=True,
                 show_saved_payment_methods=True,
                 tax_id="tax_id",
                 trial_period_days=0,
