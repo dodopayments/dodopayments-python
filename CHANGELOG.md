@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.67.3 (2025-12-19)
+
+Full Changelog: [v1.67.2...v1.67.3](https://github.com/dodopayments/dodopayments-python/compare/v1.67.2...v1.67.3)
+
+### Chores
+
+* **internal:** add `--fix` argument to lint script ([27a274b](https://github.com/dodopayments/dodopayments-python/commit/27a274bead9a089cefcc53b48c4c5e7a80689de0))
+
 ## 1.67.2 (2025-12-18)
 
 Full Changelog: [v1.67.1...v1.67.2](https://github.com/dodopayments/dodopayments-python/compare/v1.67.1...v1.67.2)
