@@ -89,7 +89,9 @@ class SubscriptionsResource(SyncAPIResource):
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         trial_period_days: Optional[int] | Omit = omit,
@@ -133,7 +135,12 @@ class SubscriptionsResource(SyncAPIResource):
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect after successful subscription creation
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -168,7 +175,9 @@ class SubscriptionsResource(SyncAPIResource):
                     "on_demand": on_demand,
                     "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                     "trial_period_days": trial_period_days,
@@ -731,7 +740,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         trial_period_days: Optional[int] | Omit = omit,
@@ -775,7 +786,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect after successful subscription creation
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -810,7 +826,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "on_demand": on_demand,
                     "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                     "trial_period_days": trial_period_days,

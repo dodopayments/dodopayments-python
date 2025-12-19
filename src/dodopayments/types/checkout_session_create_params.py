@@ -75,6 +75,9 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     return_url: Optional[str]
     """The url to redirect after payment failure or success."""
 
+    short_link: bool
+    """If true, returns a shortened checkout URL. Defaults to false if not specified."""
+
     show_saved_payment_methods: bool
     """Display saved payment methods of a returning customer False by default"""
 
@@ -189,6 +192,12 @@ class FeatureFlags(TypedDict, total=False):
     """
     Set to true if a new customer object should be created. By default email is used
     to find an existing customer to attach the session to
+
+    Default is false
+    """
+
+    redirect_immediately: bool
+    """If true, redirects the customer immediately after payment completion
 
     Default is false
     """

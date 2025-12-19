@@ -68,7 +68,9 @@ class PaymentsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -105,8 +107,13 @@ class PaymentsResource(SyncAPIResource):
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -134,7 +141,9 @@ class PaymentsResource(SyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                 },
@@ -324,7 +333,9 @@ class AsyncPaymentsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -361,8 +372,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -390,7 +406,9 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                 },
