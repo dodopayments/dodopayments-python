@@ -63,6 +63,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -102,6 +103,8 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           return_url: The url to redirect after payment failure or success.
 
+          short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
+
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
           extra_headers: Send extra headers
@@ -129,6 +132,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,
                 },
@@ -208,6 +212,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -247,6 +252,8 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           return_url: The url to redirect after payment failure or success.
 
+          short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
+
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
           extra_headers: Send extra headers
@@ -274,6 +281,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,
                 },
