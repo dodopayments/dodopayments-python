@@ -54,6 +54,13 @@ class PaymentCreateParams(TypedDict, total=False):
     payment_link: Optional[bool]
     """Whether to generate a payment link. Defaults to false if not specified."""
 
+    payment_method_id: Optional[str]
+    """
+    Optional payment method ID to use for this payment. If provided, customer_id
+    must also be provided. The payment method will be validated for eligibility with
+    the payment's currency.
+    """
+
     redirect_immediately: bool
     """
     If true, redirects the customer immediately after payment completion False by

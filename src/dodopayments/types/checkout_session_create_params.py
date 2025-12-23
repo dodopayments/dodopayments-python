@@ -72,6 +72,12 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     remain optional
     """
 
+    payment_method_id: Optional[str]
+    """
+    Optional payment method ID to use for this checkout session. Only allowed when
+    `confirm` is true. If provided, existing customer id must also be provided.
+    """
+
     return_url: Optional[str]
     """The url to redirect after payment failure or success."""
 
