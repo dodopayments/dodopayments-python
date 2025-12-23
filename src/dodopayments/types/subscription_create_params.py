@@ -67,6 +67,13 @@ class SubscriptionCreateParams(TypedDict, total=False):
     payment_link: Optional[bool]
     """If true, generates a payment link. Defaults to false if not specified."""
 
+    payment_method_id: Optional[str]
+    """
+    Optional payment method ID to use for this subscription. If provided,
+    customer_id must also be provided (via AttachExistingCustomer). The payment
+    method will be validated for eligibility with the subscription's currency.
+    """
+
     redirect_immediately: bool
     """
     If true, redirects the customer immediately after payment completion False by

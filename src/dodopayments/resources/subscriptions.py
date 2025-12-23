@@ -89,6 +89,7 @@ class SubscriptionsResource(SyncAPIResource):
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: Optional[bool] | Omit = omit,
@@ -135,6 +136,10 @@ class SubscriptionsResource(SyncAPIResource):
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this subscription. If provided,
+              customer_id must also be provided (via AttachExistingCustomer). The payment
+              method will be validated for eligibility with the subscription's currency.
+
           redirect_immediately: If true, redirects the customer immediately after payment completion False by
               default
 
@@ -175,6 +180,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "on_demand": on_demand,
                     "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
                     "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
                     "short_link": short_link,
@@ -740,6 +746,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: Optional[bool] | Omit = omit,
@@ -786,6 +793,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this subscription. If provided,
+              customer_id must also be provided (via AttachExistingCustomer). The payment
+              method will be validated for eligibility with the subscription's currency.
+
           redirect_immediately: If true, redirects the customer immediately after payment completion False by
               default
 
@@ -826,6 +837,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "on_demand": on_demand,
                     "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
                     "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
                     "short_link": short_link,

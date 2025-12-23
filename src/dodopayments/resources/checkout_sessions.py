@@ -62,6 +62,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -101,6 +102,9 @@ class CheckoutSessionsResource(SyncAPIResource):
           minimal_address: If true, only zipcode is required when confirm is true; other address fields
               remain optional
 
+          payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
+              `confirm` is true. If provided, existing customer id must also be provided.
+
           return_url: The url to redirect after payment failure or success.
 
           short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
@@ -131,6 +135,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "minimal_address": minimal_address,
+                    "payment_method_id": payment_method_id,
                     "return_url": return_url,
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
@@ -211,6 +216,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -250,6 +256,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           minimal_address: If true, only zipcode is required when confirm is true; other address fields
               remain optional
 
+          payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
+              `confirm` is true. If provided, existing customer id must also be provided.
+
           return_url: The url to redirect after payment failure or success.
 
           short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
@@ -280,6 +289,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "minimal_address": minimal_address,
+                    "payment_method_id": payment_method_id,
                     "return_url": return_url,
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
