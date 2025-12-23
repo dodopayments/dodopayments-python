@@ -81,6 +81,7 @@ class TestSubscriptions:
                     }
                 ],
                 payment_link=True,
+                payment_method_id="payment_method_id",
                 redirect_immediately=True,
                 return_url="return_url",
                 short_link=True,
@@ -665,6 +666,7 @@ class TestAsyncSubscriptions:
                     }
                 ],
                 payment_link=True,
+                payment_method_id="payment_method_id",
                 redirect_immediately=True,
                 return_url="return_url",
                 short_link=True,

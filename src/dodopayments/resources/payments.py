@@ -68,6 +68,7 @@ class PaymentsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: Optional[bool] | Omit = omit,
@@ -107,6 +108,10 @@ class PaymentsResource(SyncAPIResource):
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this payment. If provided, customer_id
+              must also be provided. The payment method will be validated for eligibility with
+              the payment's currency.
+
           redirect_immediately: If true, redirects the customer immediately after payment completion False by
               default
 
@@ -141,6 +146,7 @@ class PaymentsResource(SyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
                     "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
                     "short_link": short_link,
@@ -333,6 +339,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: Optional[bool] | Omit = omit,
@@ -372,6 +379,10 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this payment. If provided, customer_id
+              must also be provided. The payment method will be validated for eligibility with
+              the payment's currency.
+
           redirect_immediately: If true, redirects the customer immediately after payment completion False by
               default
 
@@ -406,6 +417,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
                     "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
                     "short_link": short_link,
