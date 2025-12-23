@@ -79,10 +79,14 @@ class TestCheckoutSessions:
                 "allow_phone_number_collection": True,
                 "allow_tax_id": True,
                 "always_create_new_customer": True,
+                "redirect_immediately": True,
             },
             force_3ds=True,
             metadata={"foo": "string"},
+            minimal_address=True,
+            payment_method_id="payment_method_id",
             return_url="return_url",
+            short_link=True,
             show_saved_payment_methods=True,
             subscription_data={
                 "on_demand": {
@@ -234,10 +238,14 @@ class TestAsyncCheckoutSessions:
                 "allow_phone_number_collection": True,
                 "allow_tax_id": True,
                 "always_create_new_customer": True,
+                "redirect_immediately": True,
             },
             force_3ds=True,
             metadata={"foo": "string"},
+            minimal_address=True,
+            payment_method_id="payment_method_id",
             return_url="return_url",
+            short_link=True,
             show_saved_payment_methods=True,
             subscription_data={
                 "on_demand": {

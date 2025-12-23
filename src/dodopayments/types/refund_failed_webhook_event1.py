@@ -11,6 +11,8 @@ __all__ = ["RefundFailedWebhookEvent", "Data"]
 
 
 class Data(Refund):
+    """Event-specific data"""
+
     payload_type: Optional[Literal["Refund"]] = None
     """The type of payload in the data field"""
 

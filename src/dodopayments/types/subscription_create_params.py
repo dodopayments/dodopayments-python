@@ -11,6 +11,7 @@ from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
 from .on_demand_subscription_param import OnDemandSubscriptionParam
+from .one_time_product_cart_item_param import OneTimeProductCartItemParam
 
 __all__ = ["SubscriptionCreateParams"]
 
@@ -57,11 +58,33 @@ class SubscriptionCreateParams(TypedDict, total=False):
 
     on_demand: Optional[OnDemandSubscriptionParam]
 
+    one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]]
+    """
+    List of one time products that will be bundled with the first payment for this
+    subscription
+    """
+
     payment_link: Optional[bool]
     """If true, generates a payment link. Defaults to false if not specified."""
 
+    payment_method_id: Optional[str]
+    """
+    Optional payment method ID to use for this subscription. If provided,
+    customer_id must also be provided (via AttachExistingCustomer). The payment
+    method will be validated for eligibility with the subscription's currency.
+    """
+
+    redirect_immediately: bool
+    """
+    If true, redirects the customer immediately after payment completion False by
+    default
+    """
+
     return_url: Optional[str]
     """Optional URL to redirect after successful subscription creation"""
+
+    short_link: Optional[bool]
+    """If true, returns a shortened payment link. Defaults to false if not specified."""
 
     show_saved_payment_methods: bool
     """Display saved payment methods of a returning customer False by default"""

@@ -66,8 +66,23 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     Defaults to empty if not provided.
     """
 
+    minimal_address: bool
+    """
+    If true, only zipcode is required when confirm is true; other address fields
+    remain optional
+    """
+
+    payment_method_id: Optional[str]
+    """
+    Optional payment method ID to use for this checkout session. Only allowed when
+    `confirm` is true. If provided, existing customer id must also be provided.
+    """
+
     return_url: Optional[str]
     """The url to redirect after payment failure or success."""
+
+    short_link: bool
+    """If true, returns a shortened checkout URL. Defaults to false if not specified."""
 
     show_saved_payment_methods: bool
     """Display saved payment methods of a returning customer False by default"""
@@ -97,6 +112,8 @@ class ProductCart(TypedDict, total=False):
 
 
 class BillingAddress(TypedDict, total=False):
+    """Billing address information for the session"""
+
     country: Required[CountryCode]
     """Two-letter ISO country code (ISO 3166-1 alpha-2)"""
 
@@ -114,6 +131,8 @@ class BillingAddress(TypedDict, total=False):
 
 
 class Customization(TypedDict, total=False):
+    """Customization for the checkout session page"""
+
     force_language: Optional[str]
     """Force the checkout interface to render in a specific language (e.g. `en`, `es`)"""
 
@@ -179,6 +198,12 @@ class FeatureFlags(TypedDict, total=False):
     """
     Set to true if a new customer object should be created. By default email is used
     to find an existing customer to attach the session to
+
+    Default is false
+    """
+
+    redirect_immediately: bool
+    """If true, redirects the customer immediately after payment completion
 
     Default is false
     """

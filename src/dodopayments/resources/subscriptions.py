@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, overload
@@ -16,6 +17,7 @@ from ..types import (
     subscription_create_params,
     subscription_update_params,
     subscription_change_plan_params,
+    subscription_preview_change_plan_params,
     subscription_update_payment_method_params,
     subscription_retrieve_usage_history_params,
 )
@@ -42,6 +44,8 @@ from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
+from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
+from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
 from ..types.subscription_retrieve_usage_history_response import SubscriptionRetrieveUsageHistoryResponse
 
@@ -68,6 +72,7 @@ class SubscriptionsResource(SyncAPIResource):
         """
         return SubscriptionsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -82,8 +87,12 @@ class SubscriptionsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         trial_period_days: Optional[int] | Omit = omit,
@@ -122,9 +131,21 @@ class SubscriptionsResource(SyncAPIResource):
 
           metadata: Additional metadata for the subscription Defaults to empty if not specified
 
+          one_time_product_cart: List of one time products that will be bundled with the first payment for this
+              subscription
+
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this subscription. If provided,
+              customer_id must also be provided (via AttachExistingCustomer). The payment
+              method will be validated for eligibility with the subscription's currency.
+
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect after successful subscription creation
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -157,8 +178,12 @@ class SubscriptionsResource(SyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "on_demand": on_demand,
+                    "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                     "trial_period_days": trial_period_days,
@@ -442,6 +467,59 @@ class SubscriptionsResource(SyncAPIResource):
             cast_to=SubscriptionChargeResponse,
         )
 
+    def preview_change_plan(
+        self,
+        subscription_id: str,
+        *,
+        product_id: str,
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        quantity: int,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionPreviewChangePlanResponse:
+        """
+        Args:
+          product_id: Unique identifier of the product to subscribe to
+
+          proration_billing_mode: Proration Billing Mode
+
+          quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
+              addons
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._post(
+            f"/subscriptions/{subscription_id}/change-plan/preview",
+            body=maybe_transform(
+                {
+                    "product_id": product_id,
+                    "proration_billing_mode": proration_billing_mode,
+                    "quantity": quantity,
+                    "addons": addons,
+                },
+                subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionPreviewChangePlanResponse,
+        )
+
     def retrieve_usage_history(
         self,
         subscription_id: str,
@@ -651,6 +729,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         return AsyncSubscriptionsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -665,8 +744,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         trial_period_days: Optional[int] | Omit = omit,
@@ -705,9 +788,21 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           metadata: Additional metadata for the subscription Defaults to empty if not specified
 
+          one_time_product_cart: List of one time products that will be bundled with the first payment for this
+              subscription
+
           payment_link: If true, generates a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this subscription. If provided,
+              customer_id must also be provided (via AttachExistingCustomer). The payment
+              method will be validated for eligibility with the subscription's currency.
+
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect after successful subscription creation
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -740,8 +835,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "on_demand": on_demand,
+                    "one_time_product_cart": one_time_product_cart,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                     "trial_period_days": trial_period_days,
@@ -1025,6 +1124,59 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=SubscriptionChargeResponse,
         )
 
+    async def preview_change_plan(
+        self,
+        subscription_id: str,
+        *,
+        product_id: str,
+        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        quantity: int,
+        addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionPreviewChangePlanResponse:
+        """
+        Args:
+          product_id: Unique identifier of the product to subscribe to
+
+          proration_billing_mode: Proration Billing Mode
+
+          quantity: Number of units to subscribe for. Must be at least 1.
+
+          addons: Addons for the new plan. Note : Leaving this empty would remove any existing
+              addons
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return await self._post(
+            f"/subscriptions/{subscription_id}/change-plan/preview",
+            body=await async_maybe_transform(
+                {
+                    "product_id": product_id,
+                    "proration_billing_mode": proration_billing_mode,
+                    "quantity": quantity,
+                    "addons": addons,
+                },
+                subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionPreviewChangePlanResponse,
+        )
+
     def retrieve_usage_history(
         self,
         subscription_id: str,
@@ -1221,8 +1373,10 @@ class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = to_raw_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_raw_response_wrapper(
             subscriptions.retrieve,
@@ -1239,6 +1393,9 @@ class SubscriptionsResourceWithRawResponse:
         self.charge = to_raw_response_wrapper(
             subscriptions.charge,
         )
+        self.preview_change_plan = to_raw_response_wrapper(
+            subscriptions.preview_change_plan,
+        )
         self.retrieve_usage_history = to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -1251,8 +1408,10 @@ class AsyncSubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = async_to_raw_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_raw_response_wrapper(
             subscriptions.retrieve,
@@ -1269,6 +1428,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         self.charge = async_to_raw_response_wrapper(
             subscriptions.charge,
         )
+        self.preview_change_plan = async_to_raw_response_wrapper(
+            subscriptions.preview_change_plan,
+        )
         self.retrieve_usage_history = async_to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -1281,8 +1443,10 @@ class SubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = to_streamed_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_streamed_response_wrapper(
             subscriptions.retrieve,
@@ -1299,6 +1463,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.charge = to_streamed_response_wrapper(
             subscriptions.charge,
         )
+        self.preview_change_plan = to_streamed_response_wrapper(
+            subscriptions.preview_change_plan,
+        )
         self.retrieve_usage_history = to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -1311,8 +1478,10 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
-        self.create = async_to_streamed_response_wrapper(
-            subscriptions.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                subscriptions.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_streamed_response_wrapper(
             subscriptions.retrieve,
@@ -1328,6 +1497,9 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.charge = async_to_streamed_response_wrapper(
             subscriptions.charge,
+        )
+        self.preview_change_plan = async_to_streamed_response_wrapper(
+            subscriptions.preview_change_plan,
         )
         self.retrieve_usage_history = async_to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,

@@ -13,6 +13,8 @@ __all__ = ["PriceParam", "OneTimePrice", "RecurringPrice", "UsageBasedPrice"]
 
 
 class OneTimePrice(TypedDict, total=False):
+    """One-time price details."""
+
     currency: Required[Currency]
     """The currency in which the payment is made."""
 
@@ -54,6 +56,8 @@ class OneTimePrice(TypedDict, total=False):
 
 
 class RecurringPrice(TypedDict, total=False):
+    """Recurring price details."""
+
     currency: Required[Currency]
     """The currency in which the payment is made."""
 
@@ -101,6 +105,8 @@ class RecurringPrice(TypedDict, total=False):
 
 
 class UsageBasedPrice(TypedDict, total=False):
+    """Usage Based price details."""
+
     currency: Required[Currency]
     """The currency in which the payment is made."""
 

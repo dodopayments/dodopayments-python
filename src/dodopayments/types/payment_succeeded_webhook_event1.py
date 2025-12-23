@@ -11,6 +11,8 @@ __all__ = ["PaymentSucceededWebhookEvent", "Data"]
 
 
 class Data(Payment):
+    """Event-specific data"""
+
     payload_type: Optional[Literal["Payment"]] = None
     """The type of payload in the data field"""
 

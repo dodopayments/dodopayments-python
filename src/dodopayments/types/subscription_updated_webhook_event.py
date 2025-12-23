@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .subscription import Subscription
 
-__all__ = ["SubscriptionExpiredWebhookEvent", "Data"]
+__all__ = ["SubscriptionUpdatedWebhookEvent", "Data"]
 
 
 class Data(Subscription):
@@ -17,7 +17,7 @@ class Data(Subscription):
     """The type of payload in the data field"""
 
 
-class SubscriptionExpiredWebhookEvent(BaseModel):
+class SubscriptionUpdatedWebhookEvent(BaseModel):
     business_id: str
     """The business identifier"""
 
@@ -27,5 +27,5 @@ class SubscriptionExpiredWebhookEvent(BaseModel):
     timestamp: datetime
     """The timestamp of when the event occurred"""
 
-    type: Literal["subscription.expired"]
+    type: Literal["subscription.updated"]
     """The event type"""

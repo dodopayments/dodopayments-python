@@ -22,6 +22,7 @@ from .subscription_failed_webhook_event import SubscriptionFailedWebhookEvent
 from .subscription_expired_webhook_event import SubscriptionExpiredWebhookEvent
 from .subscription_on_hold_webhook_event import SubscriptionOnHoldWebhookEvent
 from .subscription_renewed_webhook_event import SubscriptionRenewedWebhookEvent
+from .subscription_updated_webhook_event import SubscriptionUpdatedWebhookEvent
 from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEvent
 from .subscription_plan_changed_webhook_event import SubscriptionPlanChangedWebhookEvent
 
@@ -49,4 +50,5 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     SubscriptionOnHoldWebhookEvent,
     SubscriptionPlanChangedWebhookEvent,
     SubscriptionRenewedWebhookEvent,
+    SubscriptionUpdatedWebhookEvent,
 ]

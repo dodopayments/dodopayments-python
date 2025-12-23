@@ -1,5 +1,104 @@
 # Changelog
 
+## 1.70.0 (2025-12-23)
+
+Full Changelog: [v1.69.0...v1.70.0](https://github.com/dodopayments/dodopayments-python/compare/v1.69.0...v1.70.0)
+
+### Features
+
+* **api:** manual updates ([cdd4603](https://github.com/dodopayments/dodopayments-python/commit/cdd4603e8675798dfdebe299a606d1e03f07c4ad))
+
+## 1.69.0 (2025-12-23)
+
+Full Changelog: [v1.68.0...v1.69.0](https://github.com/dodopayments/dodopayments-python/compare/v1.68.0...v1.69.0)
+
+### Features
+
+* **api:** manual updates ([dde00a7](https://github.com/dodopayments/dodopayments-python/commit/dde00a7f6e1cf5b33ad4c3a04d9db75169c7d2e1))
+
+## 1.68.0 (2025-12-19)
+
+Full Changelog: [v1.67.3...v1.68.0](https://github.com/dodopayments/dodopayments-python/compare/v1.67.3...v1.68.0)
+
+### Features
+
+* **api:** updated openapi spec to v1.68.4 ([79d7040](https://github.com/dodopayments/dodopayments-python/commit/79d7040aa4408b417b8d7acfccdb1240cd9edff8))
+
+## 1.67.3 (2025-12-19)
+
+Full Changelog: [v1.67.2...v1.67.3](https://github.com/dodopayments/dodopayments-python/compare/v1.67.2...v1.67.3)
+
+### Chores
+
+* **internal:** add `--fix` argument to lint script ([27a274b](https://github.com/dodopayments/dodopayments-python/commit/27a274bead9a089cefcc53b48c4c5e7a80689de0))
+
+## 1.67.2 (2025-12-18)
+
+Full Changelog: [v1.67.1...v1.67.2](https://github.com/dodopayments/dodopayments-python/compare/v1.67.1...v1.67.2)
+
+### Bug Fixes
+
+* use async_to_httpx_files in patch method ([9940090](https://github.com/dodopayments/dodopayments-python/commit/99400909784d8b785c4e4baacd173c36a360b75f))
+
+## 1.67.1 (2025-12-17)
+
+Full Changelog: [v1.67.0...v1.67.1](https://github.com/dodopayments/dodopayments-python/compare/v1.67.0...v1.67.1)
+
+### Chores
+
+* speedup initial import ([7d9c41f](https://github.com/dodopayments/dodopayments-python/commit/7d9c41fa12b6b8d3358b6f8707b2904f85ac9f2b))
+
+## 1.67.0 (2025-12-16)
+
+Full Changelog: [v1.66.2...v1.67.0](https://github.com/dodopayments/dodopayments-python/compare/v1.66.2...v1.67.0)
+
+### Features
+
+* **api:** updated openapi spec to 1.67.0 ([f5b9e26](https://github.com/dodopayments/dodopayments-python/commit/f5b9e26e4d8aece37f00c37e53d8242696a3e599))
+
+
+### Chores
+
+* **internal:** add missing files argument to base client ([3b53953](https://github.com/dodopayments/dodopayments-python/commit/3b539538c96ad8e72573efaf152a69071e821007))
+
+## 1.66.2 (2025-12-12)
+
+Full Changelog: [v1.66.1...v1.66.2](https://github.com/dodopayments/dodopayments-python/compare/v1.66.1...v1.66.2)
+
+### Features
+
+* **api:** manual updates ([5525a18](https://github.com/dodopayments/dodopayments-python/commit/5525a18d9fa48c4ee0cf8f7d4075cdfbcbdf4ee8))
+
+## 1.66.1 (2025-12-09)
+
+Full Changelog: [v1.66.0...v1.66.1](https://github.com/dodopayments/dodopayments-python/compare/v1.66.0...v1.66.1)
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([b72a3db](https://github.com/dodopayments/dodopayments-python/commit/b72a3db8c753bc71f037290268a0ade1b77b09fe))
+
+
+### Chores
+
+* add missing docstrings ([d90b3ba](https://github.com/dodopayments/dodopayments-python/commit/d90b3bacdfa6f399ac6f678c786a4280f8660241))
+
+## 1.66.0 (2025-12-08)
+
+Full Changelog: [v1.61.7...v1.66.0](https://github.com/dodopayments/dodopayments-python/compare/v1.61.7...v1.66.0)
+
+### Features
+
+* **api:** updated openapi spec to v1.66.1 ([178d890](https://github.com/dodopayments/dodopayments-python/commit/178d89003f56d20d5edd0ab8c7cccaed18fcdddc))
+
+## 1.61.7 (2025-12-03)
+
+Full Changelog: [v1.61.6...v1.61.7](https://github.com/dodopayments/dodopayments-python/compare/v1.61.6...v1.61.7)
+
+### Chores
+
+* **docs:** use environment variables for authentication in code snippets ([b7a6103](https://github.com/dodopayments/dodopayments-python/commit/b7a61030974a56a5afabb2f4cec4f1921dfc53f9))
+* update lockfile ([e58ee31](https://github.com/dodopayments/dodopayments-python/commit/e58ee315dba2c08c21b5e820f1210d7a19206b00))
+
 ## 1.61.6 (2025-11-28)
 
 Full Changelog: [v1.61.5...v1.61.6](https://github.com/dodopayments/dodopayments-python/compare/v1.61.5...v1.61.6)

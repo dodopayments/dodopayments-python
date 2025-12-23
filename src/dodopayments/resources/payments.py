@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -54,6 +55,7 @@ class PaymentsResource(SyncAPIResource):
         """
         return PaymentsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -66,7 +68,10 @@ class PaymentsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -103,8 +108,17 @@ class PaymentsResource(SyncAPIResource):
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this payment. If provided, customer_id
+              must also be provided. The payment method will be validated for eligibility with
+              the payment's currency.
+
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -132,7 +146,10 @@ class PaymentsResource(SyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                 },
@@ -309,6 +326,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         """
         return AsyncPaymentsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -321,7 +339,10 @@ class AsyncPaymentsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        redirect_immediately: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
+        short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -358,8 +379,17 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           payment_link: Whether to generate a payment link. Defaults to false if not specified.
 
+          payment_method_id: Optional payment method ID to use for this payment. If provided, customer_id
+              must also be provided. The payment method will be validated for eligibility with
+              the payment's currency.
+
+          redirect_immediately: If true, redirects the customer immediately after payment completion False by
+              default
+
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
+
+          short_link: If true, returns a shortened payment link. Defaults to false if not specified.
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
@@ -387,7 +417,10 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
+                    "payment_method_id": payment_method_id,
+                    "redirect_immediately": redirect_immediately,
                     "return_url": return_url,
+                    "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "tax_id": tax_id,
                 },
@@ -548,8 +581,10 @@ class PaymentsResourceWithRawResponse:
     def __init__(self, payments: PaymentsResource) -> None:
         self._payments = payments
 
-        self.create = to_raw_response_wrapper(
-            payments.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                payments.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_raw_response_wrapper(
             payments.retrieve,
@@ -566,8 +601,10 @@ class AsyncPaymentsResourceWithRawResponse:
     def __init__(self, payments: AsyncPaymentsResource) -> None:
         self._payments = payments
 
-        self.create = async_to_raw_response_wrapper(
-            payments.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                payments.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_raw_response_wrapper(
             payments.retrieve,
@@ -584,8 +621,10 @@ class PaymentsResourceWithStreamingResponse:
     def __init__(self, payments: PaymentsResource) -> None:
         self._payments = payments
 
-        self.create = to_streamed_response_wrapper(
-            payments.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                payments.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_streamed_response_wrapper(
             payments.retrieve,
@@ -602,8 +641,10 @@ class AsyncPaymentsResourceWithStreamingResponse:
     def __init__(self, payments: AsyncPaymentsResource) -> None:
         self._payments = payments
 
-        self.create = async_to_streamed_response_wrapper(
-            payments.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                payments.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_streamed_response_wrapper(
             payments.retrieve,
