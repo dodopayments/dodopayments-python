@@ -31,6 +31,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .short_links import (
+    ShortLinksResource,
+    AsyncShortLinksResource,
+    ShortLinksResourceWithRawResponse,
+    AsyncShortLinksResourceWithRawResponse,
+    ShortLinksResourceWithStreamingResponse,
+    AsyncShortLinksResourceWithStreamingResponse,
+)
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.product import Product
@@ -47,6 +55,10 @@ class ProductsResource(SyncAPIResource):
     @cached_property
     def images(self) -> ImagesResource:
         return ImagesResource(self._client)
+
+    @cached_property
+    def short_links(self) -> ShortLinksResource:
+        return ShortLinksResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ProductsResourceWithRawResponse:
@@ -444,6 +456,10 @@ class AsyncProductsResource(AsyncAPIResource):
     @cached_property
     def images(self) -> AsyncImagesResource:
         return AsyncImagesResource(self._client)
+
+    @cached_property
+    def short_links(self) -> AsyncShortLinksResource:
+        return AsyncShortLinksResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncProductsResourceWithRawResponse:
@@ -869,6 +885,10 @@ class ProductsResourceWithRawResponse:
     def images(self) -> ImagesResourceWithRawResponse:
         return ImagesResourceWithRawResponse(self._products.images)
 
+    @cached_property
+    def short_links(self) -> ShortLinksResourceWithRawResponse:
+        return ShortLinksResourceWithRawResponse(self._products.short_links)
+
 
 class AsyncProductsResourceWithRawResponse:
     def __init__(self, products: AsyncProductsResource) -> None:
@@ -899,6 +919,10 @@ class AsyncProductsResourceWithRawResponse:
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
         return AsyncImagesResourceWithRawResponse(self._products.images)
+
+    @cached_property
+    def short_links(self) -> AsyncShortLinksResourceWithRawResponse:
+        return AsyncShortLinksResourceWithRawResponse(self._products.short_links)
 
 
 class ProductsResourceWithStreamingResponse:
@@ -931,6 +955,10 @@ class ProductsResourceWithStreamingResponse:
     def images(self) -> ImagesResourceWithStreamingResponse:
         return ImagesResourceWithStreamingResponse(self._products.images)
 
+    @cached_property
+    def short_links(self) -> ShortLinksResourceWithStreamingResponse:
+        return ShortLinksResourceWithStreamingResponse(self._products.short_links)
+
 
 class AsyncProductsResourceWithStreamingResponse:
     def __init__(self, products: AsyncProductsResource) -> None:
@@ -961,3 +989,7 @@ class AsyncProductsResourceWithStreamingResponse:
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
         return AsyncImagesResourceWithStreamingResponse(self._products.images)
+
+    @cached_property
+    def short_links(self) -> AsyncShortLinksResourceWithStreamingResponse:
+        return AsyncShortLinksResourceWithStreamingResponse(self._products.short_links)

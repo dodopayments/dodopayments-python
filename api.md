@@ -255,6 +255,19 @@ Methods:
 
 - <code title="put /products/{id}/images">client.products.images.<a href="./src/dodopayments/resources/products/images.py">update</a>(id, \*\*<a href="src/dodopayments/types/products/image_update_params.py">params</a>) -> <a href="./src/dodopayments/types/products/image_update_response.py">ImageUpdateResponse</a></code>
 
+## ShortLinks
+
+Types:
+
+```python
+from dodopayments.types.products import ShortLinkCreateResponse, ShortLinkListResponse
+```
+
+Methods:
+
+- <code title="post /products/{id}/short_links">client.products.short_links.<a href="./src/dodopayments/resources/products/short_links.py">create</a>(id, \*\*<a href="src/dodopayments/types/products/short_link_create_params.py">params</a>) -> <a href="./src/dodopayments/types/products/short_link_create_response.py">ShortLinkCreateResponse</a></code>
+- <code title="get /products/short_links">client.products.short_links.<a href="./src/dodopayments/resources/products/short_links.py">list</a>(\*\*<a href="src/dodopayments/types/products/short_link_list_params.py">params</a>) -> <a href="./src/dodopayments/types/products/short_link_list_response.py">SyncDefaultPageNumberPagination[ShortLinkListResponse]</a></code>
+
 # Misc
 
 Types:
