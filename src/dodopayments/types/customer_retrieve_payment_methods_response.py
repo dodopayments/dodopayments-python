@@ -12,6 +12,8 @@ __all__ = ["CustomerRetrievePaymentMethodsResponse", "Item", "ItemCard"]
 
 
 class ItemCard(BaseModel):
+    card_holder_name: Optional[str] = None
+
     card_issuing_country: Optional[CountryCode] = None
     """ISO country code alpha2 variant"""
 
@@ -44,10 +46,6 @@ class Item(BaseModel):
         "open_banking",
         "mobile_payment",
     ]
-    """PaymentMethod enum from hyperswitch
-
-    https://github.com/juspay/hyperswitch/blob/ecd05d53c99ae701ac94893ec632a3988afe3238/crates/common_enums/src/enums.rs#L2097
-    """
 
     payment_method_id: str
 
