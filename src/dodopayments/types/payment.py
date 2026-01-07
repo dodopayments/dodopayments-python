@@ -104,6 +104,9 @@ class Payment(BaseModel):
     (e.g. cents)
     """
 
+    card_holder_name: Optional[str] = None
+    """Cardholder name"""
+
     card_issuing_country: Optional[CountryCode] = None
     """ISO2 country code of the card"""
 

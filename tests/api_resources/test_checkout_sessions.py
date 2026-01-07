@@ -48,7 +48,7 @@ class TestCheckoutSessions:
                     "amount": 0,
                 }
             ],
-            allowed_payment_method_types=["credit"],
+            allowed_payment_method_types=["ach"],
             billing_address={
                 "country": "AF",
                 "city": "city",
@@ -207,7 +207,7 @@ class TestAsyncCheckoutSessions:
                     "amount": 0,
                 }
             ],
-            allowed_payment_method_types=["credit"],
+            allowed_payment_method_types=["ach"],
             billing_address={
                 "country": "AF",
                 "city": "city",
