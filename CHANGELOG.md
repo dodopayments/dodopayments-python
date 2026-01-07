@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.71.0 (2026-01-07)
+
+Full Changelog: [v1.70.0...v1.71.0](https://github.com/dodopayments/dodopayments-python/compare/v1.70.0...v1.71.0)
+
+### Features
+
+* **api:** updated openapi spec to v1.70.0 ([5245616](https://github.com/dodopayments/dodopayments-python/commit/5245616144eb2d5b2495a20b4c8f8260917fb38c))
+
+
+### Chores
+
+* **internal:** codegen related update ([5da6ef5](https://github.com/dodopayments/dodopayments-python/commit/5da6ef57350beb7163ae9e91cce10ee18734b6bd))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([216bc64](https://github.com/dodopayments/dodopayments-python/commit/216bc64b16b445dc2bbe98ec388f671ee516b404))
+
 ## 1.70.0 (2025-12-23)
 
 Full Changelog: [v1.69.0...v1.70.0](https://github.com/dodopayments/dodopayments-python/compare/v1.69.0...v1.70.0)
