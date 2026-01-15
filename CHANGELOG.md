@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.71.1 (2026-01-15)
+
+Full Changelog: [v1.71.0...v1.71.1](https://github.com/dodopayments/dodopayments-python/compare/v1.71.0...v1.71.1)
+
+### Features
+
+* **client:** add support for binary request streaming ([07a5b28](https://github.com/dodopayments/dodopayments-python/commit/07a5b2815a268f4f6bc0a89e88c2c6432f2e86ae))
+
 ## 1.71.0 (2026-01-07)
 
 Full Changelog: [v1.70.0...v1.71.0](https://github.com/dodopayments/dodopayments-python/compare/v1.70.0...v1.71.0)
