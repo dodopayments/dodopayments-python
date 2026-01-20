@@ -82,3 +82,6 @@ class Product(BaseModel):
 
     name: Optional[str] = None
     """Name of the product, optional."""
+
+    product_collection_id: Optional[str] = None
+    """The product collection ID this product belongs to, if any"""

@@ -354,6 +354,7 @@ class SubscriptionsResource(SyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -371,6 +372,9 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          metadata: Metadata for the payment. If not passed, the metadata of the subscription will
+              be taken
 
           extra_headers: Send extra headers
 
@@ -391,6 +395,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "metadata": metadata,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),
@@ -475,6 +480,7 @@ class SubscriptionsResource(SyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -492,6 +498,9 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          metadata: Metadata for the payment. If not passed, the metadata of the subscription will
+              be taken
 
           extra_headers: Send extra headers
 
@@ -511,6 +520,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "metadata": metadata,
                 },
                 subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
             ),
@@ -1011,6 +1021,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1028,6 +1039,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          metadata: Metadata for the payment. If not passed, the metadata of the subscription will
+              be taken
 
           extra_headers: Send extra headers
 
@@ -1048,6 +1062,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "metadata": metadata,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),
@@ -1132,6 +1147,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1149,6 +1165,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          metadata: Metadata for the payment. If not passed, the metadata of the subscription will
+              be taken
 
           extra_headers: Send extra headers
 
@@ -1168,6 +1187,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "metadata": metadata,
                 },
                 subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
             ),

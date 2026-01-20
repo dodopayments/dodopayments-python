@@ -61,7 +61,7 @@ class TestSubscriptions:
                         "quantity": 0,
                     }
                 ],
-                allowed_payment_method_types=["ach"],
+                allowed_payment_method_types=["credit"],
                 billing_currency="AED",
                 discount_code="discount_code",
                 force_3ds=True,
@@ -284,6 +284,7 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            metadata={"foo": "string"},
         )
         assert subscription is None
 
@@ -408,6 +409,7 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            metadata={"foo": "string"},
         )
         assert_matches_type(SubscriptionPreviewChangePlanResponse, subscription, path=["response"])
 
@@ -646,7 +648,7 @@ class TestAsyncSubscriptions:
                         "quantity": 0,
                     }
                 ],
-                allowed_payment_method_types=["ach"],
+                allowed_payment_method_types=["credit"],
                 billing_currency="AED",
                 discount_code="discount_code",
                 force_3ds=True,
@@ -869,6 +871,7 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            metadata={"foo": "string"},
         )
         assert subscription is None
 
@@ -993,6 +996,7 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            metadata={"foo": "string"},
         )
         assert_matches_type(SubscriptionPreviewChangePlanResponse, subscription, path=["response"])
 
