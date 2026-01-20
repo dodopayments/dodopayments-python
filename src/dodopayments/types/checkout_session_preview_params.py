@@ -13,7 +13,7 @@ from .customer_request_param import CustomerRequestParam
 from .on_demand_subscription_param import OnDemandSubscriptionParam
 
 __all__ = [
-    "CheckoutSessionCreateParams",
+    "CheckoutSessionPreviewParams",
     "ProductCart",
     "BillingAddress",
     "Customization",
@@ -22,7 +22,7 @@ __all__ = [
 ]
 
 
-class CheckoutSessionCreateParams(TypedDict, total=False):
+class CheckoutSessionPreviewParams(TypedDict, total=False):
     product_cart: Required[Iterable[ProductCart]]
 
     allowed_payment_method_types: Optional[List[PaymentMethodTypes]]

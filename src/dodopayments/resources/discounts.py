@@ -312,6 +312,42 @@ class DiscountsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def retrieve_by_code(
+        self,
+        code: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Discount:
+        """Validate and fetch a discount by its code name (e.g., "SAVE20").
+
+        This allows
+        real-time validation directly against the API using the human-readable discount
+        code instead of requiring the internal discount_id.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not code:
+            raise ValueError(f"Expected a non-empty value for `code` but received {code!r}")
+        return self._get(
+            f"/discounts/code/{code}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Discount,
+        )
+
 
 class AsyncDiscountsResource(AsyncAPIResource):
     @cached_property
@@ -599,6 +635,42 @@ class AsyncDiscountsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def retrieve_by_code(
+        self,
+        code: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Discount:
+        """Validate and fetch a discount by its code name (e.g., "SAVE20").
+
+        This allows
+        real-time validation directly against the API using the human-readable discount
+        code instead of requiring the internal discount_id.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not code:
+            raise ValueError(f"Expected a non-empty value for `code` but received {code!r}")
+        return await self._get(
+            f"/discounts/code/{code}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Discount,
+        )
+
 
 class DiscountsResourceWithRawResponse:
     def __init__(self, discounts: DiscountsResource) -> None:
@@ -618,6 +690,9 @@ class DiscountsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             discounts.delete,
+        )
+        self.retrieve_by_code = to_raw_response_wrapper(
+            discounts.retrieve_by_code,
         )
 
 
@@ -640,6 +715,9 @@ class AsyncDiscountsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             discounts.delete,
         )
+        self.retrieve_by_code = async_to_raw_response_wrapper(
+            discounts.retrieve_by_code,
+        )
 
 
 class DiscountsResourceWithStreamingResponse:
@@ -661,6 +739,9 @@ class DiscountsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             discounts.delete,
         )
+        self.retrieve_by_code = to_streamed_response_wrapper(
+            discounts.retrieve_by_code,
+        )
 
 
 class AsyncDiscountsResourceWithStreamingResponse:
@@ -681,4 +762,7 @@ class AsyncDiscountsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             discounts.delete,
+        )
+        self.retrieve_by_code = async_to_streamed_response_wrapper(
+            discounts.retrieve_by_code,
         )

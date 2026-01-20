@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .attach_addon_param import AttachAddonParam
@@ -24,4 +24,10 @@ class SubscriptionPreviewChangePlanParams(TypedDict, total=False):
     """
     Addons for the new plan. Note : Leaving this empty would remove any existing
     addons
+    """
+
+    metadata: Optional[Dict[str, str]]
+    """Metadata for the payment.
+
+    If not passed, the metadata of the subscription will be taken
     """
