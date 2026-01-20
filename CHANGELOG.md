@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.73.0 (2026-01-20)
+
+Full Changelog: [v1.71.1...v1.73.0](https://github.com/dodopayments/dodopayments-python/compare/v1.71.1...v1.73.0)
+
+### Features
+
+* **api:** update openapi spec to v1.73.0 ([72a8711](https://github.com/dodopayments/dodopayments-python/commit/72a8711eaf188eed0bbb20f0389a88f97eaa09c8))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([710ba09](https://github.com/dodopayments/dodopayments-python/commit/710ba09be1cf9e515db38d5200905f3b9db50e39))
+
 ## 1.71.1 (2026-01-15)
 
 Full Changelog: [v1.71.0...v1.71.1](https://github.com/dodopayments/dodopayments-python/compare/v1.71.0...v1.71.1)
