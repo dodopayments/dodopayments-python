@@ -7,6 +7,7 @@ from dodopayments.types import (
     CheckoutSessionRequest,
     CheckoutSessionResponse,
     CheckoutSessionStatus,
+    CheckoutSessionPreviewResponse,
 )
 ```
 
@@ -14,6 +15,7 @@ Methods:
 
 - <code title="post /checkouts">client.checkout_sessions.<a href="./src/dodopayments/resources/checkout_sessions.py">create</a>(\*\*<a href="src/dodopayments/types/checkout_session_create_params.py">params</a>) -> <a href="./src/dodopayments/types/checkout_session_response.py">CheckoutSessionResponse</a></code>
 - <code title="get /checkouts/{id}">client.checkout_sessions.<a href="./src/dodopayments/resources/checkout_sessions.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/checkout_session_status.py">CheckoutSessionStatus</a></code>
+- <code title="post /checkouts/preview">client.checkout_sessions.<a href="./src/dodopayments/resources/checkout_sessions.py">preview</a>(\*\*<a href="src/dodopayments/types/checkout_session_preview_params.py">params</a>) -> <a href="./src/dodopayments/types/checkout_session_preview_response.py">CheckoutSessionPreviewResponse</a></code>
 
 # Payments
 
@@ -300,6 +302,7 @@ Methods:
 - <code title="patch /discounts/{discount_id}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">update</a>(discount_id, \*\*<a href="src/dodopayments/types/discount_update_params.py">params</a>) -> <a href="./src/dodopayments/types/discount.py">Discount</a></code>
 - <code title="get /discounts">client.discounts.<a href="./src/dodopayments/resources/discounts.py">list</a>(\*\*<a href="src/dodopayments/types/discount_list_params.py">params</a>) -> <a href="./src/dodopayments/types/discount.py">SyncDefaultPageNumberPagination[Discount]</a></code>
 - <code title="delete /discounts/{discount_id}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">delete</a>(discount_id) -> None</code>
+- <code title="get /discounts/code/{code}">client.discounts.<a href="./src/dodopayments/resources/discounts.py">retrieve_by_code</a>(code) -> <a href="./src/dodopayments/types/discount.py">Discount</a></code>
 
 # Addons
 

@@ -137,6 +137,9 @@ class Payment(BaseModel):
     invoice_id: Optional[str] = None
     """Invoice ID for this payment. Uses India-specific invoice ID if available."""
 
+    invoice_url: Optional[str] = None
+    """URL to download the invoice PDF for this payment."""
+
     payment_link: Optional[str] = None
     """Checkout URL"""
 

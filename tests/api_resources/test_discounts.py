@@ -231,6 +231,44 @@ class TestDiscounts:
                 "",
             )
 
+    @parametrize
+    def test_method_retrieve_by_code(self, client: DodoPayments) -> None:
+        discount = client.discounts.retrieve_by_code(
+            "code",
+        )
+        assert_matches_type(Discount, discount, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_by_code(self, client: DodoPayments) -> None:
+        response = client.discounts.with_raw_response.retrieve_by_code(
+            "code",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        discount = response.parse()
+        assert_matches_type(Discount, discount, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_by_code(self, client: DodoPayments) -> None:
+        with client.discounts.with_streaming_response.retrieve_by_code(
+            "code",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            discount = response.parse()
+            assert_matches_type(Discount, discount, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve_by_code(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
+            client.discounts.with_raw_response.retrieve_by_code(
+                "",
+            )
+
 
 class TestAsyncDiscounts:
     parametrize = pytest.mark.parametrize(
@@ -444,5 +482,43 @@ class TestAsyncDiscounts:
     async def test_path_params_delete(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `discount_id` but received ''"):
             await async_client.discounts.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
+    async def test_method_retrieve_by_code(self, async_client: AsyncDodoPayments) -> None:
+        discount = await async_client.discounts.retrieve_by_code(
+            "code",
+        )
+        assert_matches_type(Discount, discount, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_by_code(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.discounts.with_raw_response.retrieve_by_code(
+            "code",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        discount = await response.parse()
+        assert_matches_type(Discount, discount, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_by_code(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.discounts.with_streaming_response.retrieve_by_code(
+            "code",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            discount = await response.parse()
+            assert_matches_type(Discount, discount, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve_by_code(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
+            await async_client.discounts.with_raw_response.retrieve_by_code(
                 "",
             )

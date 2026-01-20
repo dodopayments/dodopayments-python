@@ -6,7 +6,7 @@ from typing import Dict, List, Iterable, Optional
 
 import httpx
 
-from ..types import Currency, checkout_session_create_params
+from ..types import Currency, checkout_session_create_params, checkout_session_preview_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -23,6 +23,7 @@ from ..types.payment_method_types import PaymentMethodTypes
 from ..types.customer_request_param import CustomerRequestParam
 from ..types.checkout_session_status import CheckoutSessionStatus
 from ..types.checkout_session_response import CheckoutSessionResponse
+from ..types.checkout_session_preview_response import CheckoutSessionPreviewResponse
 
 __all__ = ["CheckoutSessionsResource", "AsyncCheckoutSessionsResource"]
 
@@ -63,6 +64,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
+        product_collection_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -105,6 +107,8 @@ class CheckoutSessionsResource(SyncAPIResource):
           payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
               `confirm` is true. If provided, existing customer id must also be provided.
 
+          product_collection_id: Product collection ID for collection-based checkout flow
+
           return_url: The url to redirect after payment failure or success.
 
           short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
@@ -136,6 +140,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "payment_method_id": payment_method_id,
+                    "product_collection_id": product_collection_id,
                     "return_url": return_url,
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
@@ -180,6 +185,112 @@ class CheckoutSessionsResource(SyncAPIResource):
             cast_to=CheckoutSessionStatus,
         )
 
+    def preview(
+        self,
+        *,
+        product_cart: Iterable[checkout_session_preview_params.ProductCart],
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
+        billing_address: Optional[checkout_session_preview_params.BillingAddress] | Omit = omit,
+        billing_currency: Optional[Currency] | Omit = omit,
+        confirm: bool | Omit = omit,
+        customer: Optional[CustomerRequestParam] | Omit = omit,
+        customization: checkout_session_preview_params.Customization | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
+        feature_flags: checkout_session_preview_params.FeatureFlags | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        minimal_address: bool | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        product_collection_id: Optional[str] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
+        short_link: bool | Omit = omit,
+        show_saved_payment_methods: bool | Omit = omit,
+        subscription_data: Optional[checkout_session_preview_params.SubscriptionData] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CheckoutSessionPreviewResponse:
+        """
+        Args:
+          allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
+              adding a method here does not guarantee customers will see it. Availability
+              still depends on other factors (e.g., customer location, merchant settings).
+
+              Disclaimar: Always provide 'credit' and 'debit' as a fallback. If all payment
+              methods are unavailable, checkout session will fail.
+
+          billing_address: Billing address information for the session
+
+          billing_currency: This field is ingored if adaptive pricing is disabled
+
+          confirm: If confirm is true, all the details will be finalized. If required data is
+              missing, an API error is thrown.
+
+          customer: Customer details for the session
+
+          customization: Customization for the checkout session page
+
+          force_3ds: Override merchant default 3DS behaviour for this session
+
+          metadata: Additional metadata associated with the payment. Defaults to empty if not
+              provided.
+
+          minimal_address: If true, only zipcode is required when confirm is true; other address fields
+              remain optional
+
+          payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
+              `confirm` is true. If provided, existing customer id must also be provided.
+
+          product_collection_id: Product collection ID for collection-based checkout flow
+
+          return_url: The url to redirect after payment failure or success.
+
+          short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
+
+          show_saved_payment_methods: Display saved payment methods of a returning customer False by default
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/checkouts/preview",
+            body=maybe_transform(
+                {
+                    "product_cart": product_cart,
+                    "allowed_payment_method_types": allowed_payment_method_types,
+                    "billing_address": billing_address,
+                    "billing_currency": billing_currency,
+                    "confirm": confirm,
+                    "customer": customer,
+                    "customization": customization,
+                    "discount_code": discount_code,
+                    "feature_flags": feature_flags,
+                    "force_3ds": force_3ds,
+                    "metadata": metadata,
+                    "minimal_address": minimal_address,
+                    "payment_method_id": payment_method_id,
+                    "product_collection_id": product_collection_id,
+                    "return_url": return_url,
+                    "short_link": short_link,
+                    "show_saved_payment_methods": show_saved_payment_methods,
+                    "subscription_data": subscription_data,
+                },
+                checkout_session_preview_params.CheckoutSessionPreviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CheckoutSessionPreviewResponse,
+        )
+
 
 class AsyncCheckoutSessionsResource(AsyncAPIResource):
     @cached_property
@@ -217,6 +328,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
+        product_collection_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -259,6 +371,8 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
               `confirm` is true. If provided, existing customer id must also be provided.
 
+          product_collection_id: Product collection ID for collection-based checkout flow
+
           return_url: The url to redirect after payment failure or success.
 
           short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
@@ -290,6 +404,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "payment_method_id": payment_method_id,
+                    "product_collection_id": product_collection_id,
                     "return_url": return_url,
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
@@ -334,6 +449,112 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
             cast_to=CheckoutSessionStatus,
         )
 
+    async def preview(
+        self,
+        *,
+        product_cart: Iterable[checkout_session_preview_params.ProductCart],
+        allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
+        billing_address: Optional[checkout_session_preview_params.BillingAddress] | Omit = omit,
+        billing_currency: Optional[Currency] | Omit = omit,
+        confirm: bool | Omit = omit,
+        customer: Optional[CustomerRequestParam] | Omit = omit,
+        customization: checkout_session_preview_params.Customization | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
+        feature_flags: checkout_session_preview_params.FeatureFlags | Omit = omit,
+        force_3ds: Optional[bool] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        minimal_address: bool | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        product_collection_id: Optional[str] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
+        short_link: bool | Omit = omit,
+        show_saved_payment_methods: bool | Omit = omit,
+        subscription_data: Optional[checkout_session_preview_params.SubscriptionData] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CheckoutSessionPreviewResponse:
+        """
+        Args:
+          allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
+              adding a method here does not guarantee customers will see it. Availability
+              still depends on other factors (e.g., customer location, merchant settings).
+
+              Disclaimar: Always provide 'credit' and 'debit' as a fallback. If all payment
+              methods are unavailable, checkout session will fail.
+
+          billing_address: Billing address information for the session
+
+          billing_currency: This field is ingored if adaptive pricing is disabled
+
+          confirm: If confirm is true, all the details will be finalized. If required data is
+              missing, an API error is thrown.
+
+          customer: Customer details for the session
+
+          customization: Customization for the checkout session page
+
+          force_3ds: Override merchant default 3DS behaviour for this session
+
+          metadata: Additional metadata associated with the payment. Defaults to empty if not
+              provided.
+
+          minimal_address: If true, only zipcode is required when confirm is true; other address fields
+              remain optional
+
+          payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
+              `confirm` is true. If provided, existing customer id must also be provided.
+
+          product_collection_id: Product collection ID for collection-based checkout flow
+
+          return_url: The url to redirect after payment failure or success.
+
+          short_link: If true, returns a shortened checkout URL. Defaults to false if not specified.
+
+          show_saved_payment_methods: Display saved payment methods of a returning customer False by default
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/checkouts/preview",
+            body=await async_maybe_transform(
+                {
+                    "product_cart": product_cart,
+                    "allowed_payment_method_types": allowed_payment_method_types,
+                    "billing_address": billing_address,
+                    "billing_currency": billing_currency,
+                    "confirm": confirm,
+                    "customer": customer,
+                    "customization": customization,
+                    "discount_code": discount_code,
+                    "feature_flags": feature_flags,
+                    "force_3ds": force_3ds,
+                    "metadata": metadata,
+                    "minimal_address": minimal_address,
+                    "payment_method_id": payment_method_id,
+                    "product_collection_id": product_collection_id,
+                    "return_url": return_url,
+                    "short_link": short_link,
+                    "show_saved_payment_methods": show_saved_payment_methods,
+                    "subscription_data": subscription_data,
+                },
+                checkout_session_preview_params.CheckoutSessionPreviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CheckoutSessionPreviewResponse,
+        )
+
 
 class CheckoutSessionsResourceWithRawResponse:
     def __init__(self, checkout_sessions: CheckoutSessionsResource) -> None:
@@ -344,6 +565,9 @@ class CheckoutSessionsResourceWithRawResponse:
         )
         self.retrieve = to_raw_response_wrapper(
             checkout_sessions.retrieve,
+        )
+        self.preview = to_raw_response_wrapper(
+            checkout_sessions.preview,
         )
 
 
@@ -357,6 +581,9 @@ class AsyncCheckoutSessionsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             checkout_sessions.retrieve,
         )
+        self.preview = async_to_raw_response_wrapper(
+            checkout_sessions.preview,
+        )
 
 
 class CheckoutSessionsResourceWithStreamingResponse:
@@ -369,6 +596,9 @@ class CheckoutSessionsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             checkout_sessions.retrieve,
         )
+        self.preview = to_streamed_response_wrapper(
+            checkout_sessions.preview,
+        )
 
 
 class AsyncCheckoutSessionsResourceWithStreamingResponse:
@@ -380,4 +610,7 @@ class AsyncCheckoutSessionsResourceWithStreamingResponse:
         )
         self.retrieve = async_to_streamed_response_wrapper(
             checkout_sessions.retrieve,
+        )
+        self.preview = async_to_streamed_response_wrapper(
+            checkout_sessions.preview,
         )
