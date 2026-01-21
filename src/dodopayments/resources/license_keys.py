@@ -132,6 +132,8 @@ class LicenseKeysResource(SyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -146,6 +148,10 @@ class LicenseKeysResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[LicenseKey]:
         """
         Args:
+          created_at_gte: Filter license keys created on or after this timestamp
+
+          created_at_lte: Filter license keys created on or before this timestamp
+
           customer_id: Filter by customer ID
 
           page_number: Page number default is 0
@@ -174,6 +180,8 @@ class LicenseKeysResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -293,6 +301,8 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -307,6 +317,10 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
     ) -> AsyncPaginator[LicenseKey, AsyncDefaultPageNumberPagination[LicenseKey]]:
         """
         Args:
+          created_at_gte: Filter license keys created on or after this timestamp
+
+          created_at_lte: Filter license keys created on or before this timestamp
+
           customer_id: Filter by customer ID
 
           page_number: Page number default is 0
@@ -335,6 +349,8 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,

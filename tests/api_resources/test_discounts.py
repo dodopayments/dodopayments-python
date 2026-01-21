@@ -168,8 +168,12 @@ class TestDiscounts:
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         discount = client.discounts.list(
+            active=True,
+            code="code",
+            discount_type="percentage",
             page_number=0,
             page_size=0,
+            product_id="product_id",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[Discount], discount, path=["response"])
 
@@ -422,8 +426,12 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         discount = await async_client.discounts.list(
+            active=True,
+            code="code",
+            discount_type="percentage",
             page_number=0,
             page_size=0,
+            product_id="product_id",
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[Discount], discount, path=["response"])
 

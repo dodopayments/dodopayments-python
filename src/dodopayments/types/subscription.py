@@ -11,7 +11,7 @@ from .subscription_status import SubscriptionStatus
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Subscription", "Meter"]
+__all__ = ["Subscription", "Meter", "CustomFieldResponse"]
 
 
 class Meter(BaseModel):
@@ -30,6 +30,16 @@ class Meter(BaseModel):
     price_per_unit: str
 
     description: Optional[str] = None
+
+
+class CustomFieldResponse(BaseModel):
+    """Customer's response to a custom field"""
+
+    key: str
+    """Key matching the custom field definition"""
+
+    value: str
+    """Value provided by customer"""
 
 
 class Subscription(BaseModel):
@@ -109,6 +119,9 @@ class Subscription(BaseModel):
 
     cancelled_at: Optional[datetime] = None
     """Cancelled timestamp if the subscription is cancelled"""
+
+    custom_field_responses: Optional[List[CustomFieldResponse]] = None
+    """Customer's responses to custom fields collected during checkout"""
 
     discount_cycles_remaining: Optional[int] = None
     """Number of remaining discount cycles if discount is applied"""

@@ -28,6 +28,12 @@ class PaymentListResponse(BaseModel):
 
     total_amount: int
 
+    invoice_id: Optional[str] = None
+    """Invoice ID for this payment. Uses India-specific invoice ID if available."""
+
+    invoice_url: Optional[str] = None
+    """URL to download the invoice PDF for this payment."""
+
     payment_method: Optional[str] = None
 
     payment_method_type: Optional[str] = None

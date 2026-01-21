@@ -59,6 +59,16 @@ class TestCheckoutSessions:
             },
             billing_currency="AED",
             confirm=True,
+            custom_fields=[
+                {
+                    "field_type": "text",
+                    "key": "key",
+                    "label": "label",
+                    "options": ["string"],
+                    "placeholder": "placeholder",
+                    "required": True,
+                }
+            ],
             customer={"customer_id": "customer_id"},
             customization={
                 "force_language": "force_language",
@@ -213,6 +223,16 @@ class TestCheckoutSessions:
             },
             billing_currency="AED",
             confirm=True,
+            custom_fields=[
+                {
+                    "field_type": "text",
+                    "key": "key",
+                    "label": "label",
+                    "options": ["string"],
+                    "placeholder": "placeholder",
+                    "required": True,
+                }
+            ],
             customer={"customer_id": "customer_id"},
             customization={
                 "force_language": "force_language",
@@ -335,6 +355,16 @@ class TestAsyncCheckoutSessions:
             },
             billing_currency="AED",
             confirm=True,
+            custom_fields=[
+                {
+                    "field_type": "text",
+                    "key": "key",
+                    "label": "label",
+                    "options": ["string"],
+                    "placeholder": "placeholder",
+                    "required": True,
+                }
+            ],
             customer={"customer_id": "customer_id"},
             customization={
                 "force_language": "force_language",
@@ -489,6 +519,16 @@ class TestAsyncCheckoutSessions:
             },
             billing_currency="AED",
             confirm=True,
+            custom_fields=[
+                {
+                    "field_type": "text",
+                    "key": "key",
+                    "label": "label",
+                    "options": ["string"],
+                    "placeholder": "placeholder",
+                    "required": True,
+                }
+            ],
             customer={"customer_id": "customer_id"},
             customization={
                 "force_language": "force_language",

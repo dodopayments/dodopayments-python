@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .currency import Currency
 from .country_code import CountryCode
 from .attach_addon_param import AttachAddonParam
@@ -16,6 +17,7 @@ __all__ = [
     "CheckoutSessionCreateParams",
     "ProductCart",
     "BillingAddress",
+    "CustomField",
     "Customization",
     "FeatureFlags",
     "SubscriptionData",
@@ -46,6 +48,9 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
 
     If required data is missing, an API error is thrown.
     """
+
+    custom_fields: Optional[Iterable[CustomField]]
+    """Custom fields to collect from customer during checkout (max 5 fields)"""
 
     customer: Optional[CustomerRequestParam]
     """Customer details for the session"""
@@ -131,6 +136,28 @@ class BillingAddress(TypedDict, total=False):
 
     zipcode: Optional[str]
     """Postal code or ZIP code"""
+
+
+class CustomField(TypedDict, total=False):
+    """Definition of a custom field for checkout"""
+
+    field_type: Required[Literal["text", "number", "email", "url", "phone", "date", "datetime", "dropdown", "boolean"]]
+    """Type of field determining validation rules"""
+
+    key: Required[str]
+    """Unique identifier for this field (used as key in responses)"""
+
+    label: Required[str]
+    """Display label shown to customer"""
+
+    options: Optional[SequenceNotStr[str]]
+    """Options for dropdown type (required for dropdown, ignored for others)"""
+
+    placeholder: Optional[str]
+    """Placeholder text for the input"""
+
+    required: bool
+    """Whether this field is required"""
 
 
 class Customization(TypedDict, total=False):
