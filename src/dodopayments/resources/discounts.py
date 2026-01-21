@@ -234,8 +234,12 @@ class DiscountsResource(SyncAPIResource):
     def list(
         self,
         *,
+        active: bool | Omit = omit,
+        code: str | Omit = omit,
+        discount_type: DiscountType | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        product_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -247,9 +251,17 @@ class DiscountsResource(SyncAPIResource):
         GET /discounts
 
         Args:
+          active: Filter by active status (true = not expired, false = expired)
+
+          code: Filter by discount code (partial match, case-insensitive)
+
+          discount_type: Filter by discount type (percentage)
+
           page_number: Page number (default = 0).
 
           page_size: Page size (default = 10, max = 100).
+
+          product_id: Filter by product restriction (only discounts that apply to this product)
 
           extra_headers: Send extra headers
 
@@ -269,8 +281,12 @@ class DiscountsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "active": active,
+                        "code": code,
+                        "discount_type": discount_type,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "product_id": product_id,
                     },
                     discount_list_params.DiscountListParams,
                 ),
@@ -557,8 +573,12 @@ class AsyncDiscountsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        active: bool | Omit = omit,
+        code: str | Omit = omit,
+        discount_type: DiscountType | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        product_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -570,9 +590,17 @@ class AsyncDiscountsResource(AsyncAPIResource):
         GET /discounts
 
         Args:
+          active: Filter by active status (true = not expired, false = expired)
+
+          code: Filter by discount code (partial match, case-insensitive)
+
+          discount_type: Filter by discount type (percentage)
+
           page_number: Page number (default = 0).
 
           page_size: Page size (default = 10, max = 100).
+
+          product_id: Filter by product restriction (only discounts that apply to this product)
 
           extra_headers: Send extra headers
 
@@ -592,8 +620,12 @@ class AsyncDiscountsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "active": active,
+                        "code": code,
+                        "discount_type": discount_type,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "product_id": product_id,
                     },
                     discount_list_params.DiscountListParams,
                 ),
