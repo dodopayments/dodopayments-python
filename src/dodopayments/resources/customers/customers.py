@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 
 import httpx
 
@@ -190,7 +191,10 @@ class CustomersResource(SyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
         email: str | Omit = omit,
+        name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -202,7 +206,13 @@ class CustomersResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[Customer]:
         """
         Args:
+          created_at_gte: Filter customers created on or after this timestamp
+
+          created_at_lte: Filter customers created on or before this timestamp
+
           email: Filter by customer email
+
+          name: Filter by customer name (partial match, case-insensitive)
 
           page_number: Page number default is 0
 
@@ -226,7 +236,10 @@ class CustomersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
                         "email": email,
+                        "name": name,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -417,7 +430,10 @@ class AsyncCustomersResource(AsyncAPIResource):
     def list(
         self,
         *,
+        created_at_gte: Union[str, datetime] | Omit = omit,
+        created_at_lte: Union[str, datetime] | Omit = omit,
         email: str | Omit = omit,
+        name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -429,7 +445,13 @@ class AsyncCustomersResource(AsyncAPIResource):
     ) -> AsyncPaginator[Customer, AsyncDefaultPageNumberPagination[Customer]]:
         """
         Args:
+          created_at_gte: Filter customers created on or after this timestamp
+
+          created_at_lte: Filter customers created on or before this timestamp
+
           email: Filter by customer email
+
+          name: Filter by customer name (partial match, case-insensitive)
 
           page_number: Page number default is 0
 
@@ -453,7 +475,10 @@ class AsyncCustomersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_at_gte": created_at_gte,
+                        "created_at_lte": created_at_lte,
                         "email": email,
+                        "name": name,
                         "page_number": page_number,
                         "page_size": page_size,
                     },

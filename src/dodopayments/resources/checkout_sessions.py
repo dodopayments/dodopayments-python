@@ -56,6 +56,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         billing_address: Optional[checkout_session_create_params.BillingAddress] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
+        custom_fields: Optional[Iterable[checkout_session_create_params.CustomField]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: checkout_session_create_params.Customization | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -91,6 +92,8 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
+
+          custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
 
@@ -132,6 +135,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
                     "confirm": confirm,
+                    "custom_fields": custom_fields,
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,
@@ -193,6 +197,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         billing_address: Optional[checkout_session_preview_params.BillingAddress] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
+        custom_fields: Optional[Iterable[checkout_session_preview_params.CustomField]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: checkout_session_preview_params.Customization | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -228,6 +233,8 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
+
+          custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
 
@@ -269,6 +276,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
                     "confirm": confirm,
+                    "custom_fields": custom_fields,
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,
@@ -320,6 +328,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         billing_address: Optional[checkout_session_create_params.BillingAddress] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
+        custom_fields: Optional[Iterable[checkout_session_create_params.CustomField]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: checkout_session_create_params.Customization | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -355,6 +364,8 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
+
+          custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
 
@@ -396,6 +407,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
                     "confirm": confirm,
+                    "custom_fields": custom_fields,
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,
@@ -457,6 +469,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         billing_address: Optional[checkout_session_preview_params.BillingAddress] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
+        custom_fields: Optional[Iterable[checkout_session_preview_params.CustomField]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: checkout_session_preview_params.Customization | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -492,6 +505,8 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
+
+          custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
 
@@ -533,6 +548,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
                     "confirm": confirm,
+                    "custom_fields": custom_fields,
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,

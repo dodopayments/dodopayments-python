@@ -113,6 +113,8 @@ class TestLicenseKeys:
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         license_key = client.license_keys.list(
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
             page_number=0,
             page_size=0,
@@ -241,6 +243,8 @@ class TestAsyncLicenseKeys:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         license_key = await async_client.license_keys.list(
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
             page_number=0,
             page_size=0,

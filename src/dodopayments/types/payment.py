@@ -12,7 +12,7 @@ from .refund_status import RefundStatus
 from .billing_address import BillingAddress
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Payment", "Refund", "ProductCart"]
+__all__ = ["Payment", "Refund", "CustomFieldResponse", "ProductCart"]
 
 
 class Refund(BaseModel):
@@ -42,6 +42,16 @@ class Refund(BaseModel):
 
     reason: Optional[str] = None
     """The reason provided for the refund, if any. Optional."""
+
+
+class CustomFieldResponse(BaseModel):
+    """Customer's response to a custom field"""
+
+    key: str
+    """Key matching the custom field definition"""
+
+    value: str
+    """Value provided by customer"""
 
 
 class ProductCart(BaseModel):
@@ -124,6 +134,9 @@ class Payment(BaseModel):
     If payment is made using a checkout session, this field is set to the id of the
     session.
     """
+
+    custom_field_responses: Optional[List[CustomFieldResponse]] = None
+    """Customer's responses to custom fields collected during checkout"""
 
     discount_id: Optional[str] = None
     """The discount id if discount is applied"""

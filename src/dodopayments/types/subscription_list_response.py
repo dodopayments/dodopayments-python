@@ -94,5 +94,8 @@ class SubscriptionListResponse(BaseModel):
     payment_method_id: Optional[str] = None
     """Saved payment method id used for recurring charges"""
 
+    product_name: Optional[str] = None
+    """Name of the product associated with this subscription"""
+
     tax_id: Optional[str] = None
     """Tax identifier provided for this subscription (if applicable)"""
