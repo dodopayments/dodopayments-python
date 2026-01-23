@@ -106,10 +106,12 @@ class TestBrands:
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         brand = client.brands.update(
             id="id",
+            description="description",
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="name",
             statement_descriptor="statement_descriptor",
             support_email="support_email",
+            url="url",
         )
         assert_matches_type(Brand, brand, path=["response"])
 
@@ -298,10 +300,12 @@ class TestAsyncBrands:
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         brand = await async_client.brands.update(
             id="id",
+            description="description",
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="name",
             statement_descriptor="statement_descriptor",
             support_email="support_email",
+            url="url",
         )
         assert_matches_type(Brand, brand, path=["response"])
 
