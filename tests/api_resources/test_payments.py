@@ -61,7 +61,7 @@ class TestPayments:
                         "amount": 0,
                     }
                 ],
-                allowed_payment_method_types=["credit"],
+                allowed_payment_method_types=["ach"],
                 billing_currency="AED",
                 discount_code="discount_code",
                 force_3ds=True,
@@ -273,7 +273,7 @@ class TestAsyncPayments:
                         "amount": 0,
                     }
                 ],
-                allowed_payment_method_types=["credit"],
+                allowed_payment_method_types=["ach"],
                 billing_currency="AED",
                 discount_code="discount_code",
                 force_3ds=True,
