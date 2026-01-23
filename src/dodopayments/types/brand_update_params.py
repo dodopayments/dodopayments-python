@@ -9,6 +9,8 @@ __all__ = ["BrandUpdateParams"]
 
 
 class BrandUpdateParams(TypedDict, total=False):
+    description: Optional[str]
+
     image_id: Optional[str]
     """The UUID you got back from the presigned‐upload call"""
 
@@ -17,3 +19,5 @@ class BrandUpdateParams(TypedDict, total=False):
     statement_descriptor: Optional[str]
 
     support_email: Optional[str]
+
+    url: Optional[str]
