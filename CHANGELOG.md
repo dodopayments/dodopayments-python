@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.75.1 (2026-01-24)
+
+Full Changelog: [v1.75.0...v1.75.1](https://github.com/dodopayments/dodopayments-python/compare/v1.75.0...v1.75.1)
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([554c228](https://github.com/dodopayments/dodopayments-python/commit/554c228262e54360ec11a95f316887ce19cc7312))
+
 ## 1.75.0 (2026-01-23)
 
 Full Changelog: [v1.74.0...v1.75.0](https://github.com/dodopayments/dodopayments-python/compare/v1.74.0...v1.75.0)
