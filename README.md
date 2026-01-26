@@ -142,6 +142,10 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
+## FastAPI Integration
+
+This library includes a FastAPI integration for verifying webhook signatures. For more information, see [README_FASTAPI.md](README_FASTAPI.md).
+
 ## Pagination
 
 List methods in the Dodo Payments API are paginated.
