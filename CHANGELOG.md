@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.75.2 (2026-01-29)
+
+Full Changelog: [v1.75.1...v1.75.2](https://github.com/dodopayments/dodopayments-python/compare/v1.75.1...v1.75.2)
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([5ee4b88](https://github.com/dodopayments/dodopayments-python/commit/5ee4b883a278da77a9bef37ac60038c9342b5492))
+
 ## 1.75.1 (2026-01-24)
 
 Full Changelog: [v1.75.0...v1.75.1](https://github.com/dodopayments/dodopayments-python/compare/v1.75.0...v1.75.1)
