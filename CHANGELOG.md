@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.76.0 (2026-01-30)
+
+Full Changelog: [v1.75.2...v1.76.0](https://github.com/dodopayments/dodopayments-python/compare/v1.75.2...v1.76.0)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([3def528](https://github.com/dodopayments/dodopayments-python/commit/3def528e06a0c8168e2728e361f23fdf790d9c47))
+
 ## 1.75.2 (2026-01-29)
 
 Full Changelog: [v1.75.1...v1.75.2](https://github.com/dodopayments/dodopayments-python/compare/v1.75.1...v1.75.2)
