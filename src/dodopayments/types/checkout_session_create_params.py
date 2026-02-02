@@ -19,6 +19,9 @@ __all__ = [
     "BillingAddress",
     "CustomField",
     "Customization",
+    "CustomizationThemeConfig",
+    "CustomizationThemeConfigDark",
+    "CustomizationThemeConfigLight",
     "FeatureFlags",
     "SubscriptionData",
 ]
@@ -141,7 +144,7 @@ class BillingAddress(TypedDict, total=False):
 class CustomField(TypedDict, total=False):
     """Definition of a custom field for checkout"""
 
-    field_type: Required[Literal["text", "number", "email", "url", "phone", "date", "datetime", "dropdown", "boolean"]]
+    field_type: Required[Literal["text", "number", "email", "url", "date", "dropdown", "boolean"]]
     """Type of field determining validation rules"""
 
     key: Required[str]
@@ -158,6 +161,138 @@ class CustomField(TypedDict, total=False):
 
     required: bool
     """Whether this field is required"""
+
+
+class CustomizationThemeConfigDark(TypedDict, total=False):
+    """Dark mode color configuration"""
+
+    bg_primary: Optional[str]
+    """Background primary color
+
+    Examples: `"#ffffff"`, `"rgb(255, 255, 255)"`, `"white"`
+    """
+
+    bg_secondary: Optional[str]
+    """Background secondary color"""
+
+    border_primary: Optional[str]
+    """Border primary color"""
+
+    border_secondary: Optional[str]
+    """Border secondary color"""
+
+    button_primary: Optional[str]
+    """Primary button background color"""
+
+    button_primary_hover: Optional[str]
+    """Primary button hover color"""
+
+    button_secondary: Optional[str]
+    """Secondary button background color"""
+
+    button_secondary_hover: Optional[str]
+    """Secondary button hover color"""
+
+    button_text_primary: Optional[str]
+    """Primary button text color"""
+
+    button_text_secondary: Optional[str]
+    """Secondary button text color"""
+
+    input_focus_border: Optional[str]
+    """Input focus border color"""
+
+    text_error: Optional[str]
+    """Text error color"""
+
+    text_placeholder: Optional[str]
+    """Text placeholder color"""
+
+    text_primary: Optional[str]
+    """Text primary color"""
+
+    text_secondary: Optional[str]
+    """Text secondary color"""
+
+    text_success: Optional[str]
+    """Text success color"""
+
+
+class CustomizationThemeConfigLight(TypedDict, total=False):
+    """Light mode color configuration"""
+
+    bg_primary: Optional[str]
+    """Background primary color
+
+    Examples: `"#ffffff"`, `"rgb(255, 255, 255)"`, `"white"`
+    """
+
+    bg_secondary: Optional[str]
+    """Background secondary color"""
+
+    border_primary: Optional[str]
+    """Border primary color"""
+
+    border_secondary: Optional[str]
+    """Border secondary color"""
+
+    button_primary: Optional[str]
+    """Primary button background color"""
+
+    button_primary_hover: Optional[str]
+    """Primary button hover color"""
+
+    button_secondary: Optional[str]
+    """Secondary button background color"""
+
+    button_secondary_hover: Optional[str]
+    """Secondary button hover color"""
+
+    button_text_primary: Optional[str]
+    """Primary button text color"""
+
+    button_text_secondary: Optional[str]
+    """Secondary button text color"""
+
+    input_focus_border: Optional[str]
+    """Input focus border color"""
+
+    text_error: Optional[str]
+    """Text error color"""
+
+    text_placeholder: Optional[str]
+    """Text placeholder color"""
+
+    text_primary: Optional[str]
+    """Text primary color"""
+
+    text_secondary: Optional[str]
+    """Text secondary color"""
+
+    text_success: Optional[str]
+    """Text success color"""
+
+
+class CustomizationThemeConfig(TypedDict, total=False):
+    """Optional custom theme configuration with colors for light and dark modes"""
+
+    dark: Optional[CustomizationThemeConfigDark]
+    """Dark mode color configuration"""
+
+    font_size: Optional[Literal["xs", "sm", "md", "lg", "xl", "2xl"]]
+    """Font size for the checkout UI"""
+
+    font_weight: Optional[Literal["normal", "medium", "bold", "extraBold"]]
+    """Font weight for the checkout UI"""
+
+    light: Optional[CustomizationThemeConfigLight]
+    """Light mode color configuration"""
+
+    pay_button_text: Optional[str]
+    """Custom text for the pay button (e.g., "Complete Purchase", "Subscribe Now")"""
+
+    radius: Optional[str]
+    """Border radius for UI elements (e.g., "4px", "0.5rem", "8px")"""
 
 
 class Customization(TypedDict, total=False):
@@ -179,10 +314,13 @@ class Customization(TypedDict, total=False):
     """
 
     theme: Literal["dark", "light", "system"]
-    """Theme of the page
+    """Theme of the page (determines which mode - light/dark/system - to use)
 
     Default is `System`.
     """
+
+    theme_config: Optional[CustomizationThemeConfig]
+    """Optional custom theme configuration with colors for light and dark modes"""
 
 
 class FeatureFlags(TypedDict, total=False):
