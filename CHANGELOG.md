@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.78.0 (2026-02-02)
+
+Full Changelog: [v1.75.2...v1.78.0](https://github.com/dodopayments/dodopayments-python/compare/v1.75.2...v1.78.0)
+
+### Features
+
+* **api:** updated openapi spec for v1.78.1 ([c0626bf](https://github.com/dodopayments/dodopayments-python/commit/c0626bf19eabc4d19f3338c618857781e44b411a))
+* **client:** add custom JSON encoder for extended type support ([3def528](https://github.com/dodopayments/dodopayments-python/commit/3def528e06a0c8168e2728e361f23fdf790d9c47))
+
 ## 1.75.2 (2026-01-29)
 
 Full Changelog: [v1.75.1...v1.75.2](https://github.com/dodopayments/dodopayments-python/compare/v1.75.1...v1.75.2)
