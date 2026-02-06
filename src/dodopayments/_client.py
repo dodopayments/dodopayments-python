@@ -38,6 +38,7 @@ if TYPE_CHECKING:
         meters,
         payouts,
         refunds,
+        balances,
         disputes,
         invoices,
         licenses,
@@ -58,6 +59,7 @@ if TYPE_CHECKING:
     from .resources.meters import MetersResource, AsyncMetersResource
     from .resources.payouts import PayoutsResource, AsyncPayoutsResource
     from .resources.refunds import RefundsResource, AsyncRefundsResource
+    from .resources.balances import BalancesResource, AsyncBalancesResource
     from .resources.disputes import DisputesResource, AsyncDisputesResource
     from .resources.licenses import LicensesResource, AsyncLicensesResource
     from .resources.payments import PaymentsResource, AsyncPaymentsResource
@@ -290,6 +292,12 @@ class DodoPayments(SyncAPIClient):
         from .resources.meters import MetersResource
 
         return MetersResource(self)
+
+    @cached_property
+    def balances(self) -> BalancesResource:
+        from .resources.balances import BalancesResource
+
+        return BalancesResource(self)
 
     @cached_property
     def with_raw_response(self) -> DodoPaymentsWithRawResponse:
@@ -610,6 +618,12 @@ class AsyncDodoPayments(AsyncAPIClient):
         return AsyncMetersResource(self)
 
     @cached_property
+    def balances(self) -> AsyncBalancesResource:
+        from .resources.balances import AsyncBalancesResource
+
+        return AsyncBalancesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncDodoPaymentsWithRawResponse:
         return AsyncDodoPaymentsWithRawResponse(self)
 
@@ -846,6 +860,12 @@ class DodoPaymentsWithRawResponse:
 
         return MetersResourceWithRawResponse(self._client.meters)
 
+    @cached_property
+    def balances(self) -> balances.BalancesResourceWithRawResponse:
+        from .resources.balances import BalancesResourceWithRawResponse
+
+        return BalancesResourceWithRawResponse(self._client.balances)
+
 
 class AsyncDodoPaymentsWithRawResponse:
     _client: AsyncDodoPayments
@@ -966,6 +986,12 @@ class AsyncDodoPaymentsWithRawResponse:
         from .resources.meters import AsyncMetersResourceWithRawResponse
 
         return AsyncMetersResourceWithRawResponse(self._client.meters)
+
+    @cached_property
+    def balances(self) -> balances.AsyncBalancesResourceWithRawResponse:
+        from .resources.balances import AsyncBalancesResourceWithRawResponse
+
+        return AsyncBalancesResourceWithRawResponse(self._client.balances)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -1088,6 +1114,12 @@ class DodoPaymentsWithStreamedResponse:
 
         return MetersResourceWithStreamingResponse(self._client.meters)
 
+    @cached_property
+    def balances(self) -> balances.BalancesResourceWithStreamingResponse:
+        from .resources.balances import BalancesResourceWithStreamingResponse
+
+        return BalancesResourceWithStreamingResponse(self._client.balances)
+
 
 class AsyncDodoPaymentsWithStreamedResponse:
     _client: AsyncDodoPayments
@@ -1208,6 +1240,12 @@ class AsyncDodoPaymentsWithStreamedResponse:
         from .resources.meters import AsyncMetersResourceWithStreamingResponse
 
         return AsyncMetersResourceWithStreamingResponse(self._client.meters)
+
+    @cached_property
+    def balances(self) -> balances.AsyncBalancesResourceWithStreamingResponse:
+        from .resources.balances import AsyncBalancesResourceWithStreamingResponse
+
+        return AsyncBalancesResourceWithStreamingResponse(self._client.balances)
 
 
 Client = DodoPayments

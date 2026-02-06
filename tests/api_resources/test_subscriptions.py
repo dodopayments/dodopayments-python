@@ -285,6 +285,7 @@ class TestSubscriptions:
                 }
             ],
             metadata={"foo": "string"},
+            on_payment_failure="prevent_change",
         )
         assert subscription is None
 
@@ -410,6 +411,7 @@ class TestSubscriptions:
                 }
             ],
             metadata={"foo": "string"},
+            on_payment_failure="prevent_change",
         )
         assert_matches_type(SubscriptionPreviewChangePlanResponse, subscription, path=["response"])
 
@@ -872,6 +874,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             metadata={"foo": "string"},
+            on_payment_failure="prevent_change",
         )
         assert subscription is None
 
@@ -997,6 +1000,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             metadata={"foo": "string"},
+            on_payment_failure="prevent_change",
         )
         assert_matches_type(SubscriptionPreviewChangePlanResponse, subscription, path=["response"])
 
