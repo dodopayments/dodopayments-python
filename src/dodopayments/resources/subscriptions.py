@@ -355,6 +355,7 @@ class SubscriptionsResource(SyncAPIResource):
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -376,6 +377,14 @@ class SubscriptionsResource(SyncAPIResource):
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
 
+          on_payment_failure: Controls behavior when the plan change payment fails.
+
+              - `prevent_change`: Keep subscription on current plan until payment succeeds
+              - `apply_change` (default): Apply plan change immediately regardless of payment
+                outcome
+
+              If not specified, uses the business-level default setting.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -396,6 +405,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "metadata": metadata,
+                    "on_payment_failure": on_payment_failure,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),
@@ -481,6 +491,7 @@ class SubscriptionsResource(SyncAPIResource):
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -502,6 +513,14 @@ class SubscriptionsResource(SyncAPIResource):
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
 
+          on_payment_failure: Controls behavior when the plan change payment fails.
+
+              - `prevent_change`: Keep subscription on current plan until payment succeeds
+              - `apply_change` (default): Apply plan change immediately regardless of payment
+                outcome
+
+              If not specified, uses the business-level default setting.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -521,6 +540,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "metadata": metadata,
+                    "on_payment_failure": on_payment_failure,
                 },
                 subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
             ),
@@ -1022,6 +1042,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1043,6 +1064,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
 
+          on_payment_failure: Controls behavior when the plan change payment fails.
+
+              - `prevent_change`: Keep subscription on current plan until payment succeeds
+              - `apply_change` (default): Apply plan change immediately regardless of payment
+                outcome
+
+              If not specified, uses the business-level default setting.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1063,6 +1092,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "metadata": metadata,
+                    "on_payment_failure": on_payment_failure,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),
@@ -1148,6 +1178,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1169,6 +1200,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
 
+          on_payment_failure: Controls behavior when the plan change payment fails.
+
+              - `prevent_change`: Keep subscription on current plan until payment succeeds
+              - `apply_change` (default): Apply plan change immediately regardless of payment
+                outcome
+
+              If not specified, uses the business-level default setting.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1188,6 +1227,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "metadata": metadata,
+                    "on_payment_failure": on_payment_failure,
                 },
                 subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
             ),

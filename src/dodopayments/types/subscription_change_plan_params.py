@@ -31,3 +31,13 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
 
     If not passed, the metadata of the subscription will be taken
     """
+
+    on_payment_failure: Optional[Literal["prevent_change", "apply_change"]]
+    """Controls behavior when the plan change payment fails.
+
+    - `prevent_change`: Keep subscription on current plan until payment succeeds
+    - `apply_change` (default): Apply plan change immediately regardless of payment
+      outcome
+
+    If not specified, uses the business-level default setting.
+    """

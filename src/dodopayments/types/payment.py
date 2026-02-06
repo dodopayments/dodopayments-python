@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .dispute import Dispute
 from .._models import BaseModel
@@ -164,6 +165,12 @@ class Payment(BaseModel):
 
     product_cart: Optional[List[ProductCart]] = None
     """List of products purchased in a one-time payment"""
+
+    refund_status: Optional[Literal["partial", "full"]] = None
+    """Summary of the refund status for this payment.
+
+    None if no succeeded refunds exist.
+    """
 
     settlement_tax: Optional[int] = None
     """
