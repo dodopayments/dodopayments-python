@@ -6,7 +6,11 @@ from typing import Dict, List, Iterable, Optional
 
 import httpx
 
-from ..types import Currency, checkout_session_create_params, checkout_session_preview_params
+from ..types import (
+    Currency,
+    checkout_session_create_params,
+    checkout_session_preview_params,
+)
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -19,11 +23,17 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.currency import Currency
+from ..types.custom_field_param import CustomFieldParam
 from ..types.payment_method_types import PaymentMethodTypes
 from ..types.customer_request_param import CustomerRequestParam
+from ..types.product_item_req_param import ProductItemReqParam
 from ..types.checkout_session_status import CheckoutSessionStatus
+from ..types.subscription_data_param import SubscriptionDataParam
 from ..types.checkout_session_response import CheckoutSessionResponse
+from ..types.checkout_session_flags_param import CheckoutSessionFlagsParam
 from ..types.checkout_session_preview_response import CheckoutSessionPreviewResponse
+from ..types.checkout_session_customization_param import CheckoutSessionCustomizationParam
+from ..types.checkout_session_billing_address_param import CheckoutSessionBillingAddressParam
 
 __all__ = ["CheckoutSessionsResource", "AsyncCheckoutSessionsResource"]
 
@@ -51,16 +61,16 @@ class CheckoutSessionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        product_cart: Iterable[checkout_session_create_params.ProductCart],
+        product_cart: Iterable[ProductItemReqParam],
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
-        billing_address: Optional[checkout_session_create_params.BillingAddress] | Omit = omit,
+        billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
-        custom_fields: Optional[Iterable[checkout_session_create_params.CustomField]] | Omit = omit,
+        custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
-        customization: checkout_session_create_params.Customization | Omit = omit,
+        customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
-        feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
+        feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
@@ -69,7 +79,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
-        subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
+        subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,16 +202,16 @@ class CheckoutSessionsResource(SyncAPIResource):
     def preview(
         self,
         *,
-        product_cart: Iterable[checkout_session_preview_params.ProductCart],
+        product_cart: Iterable[ProductItemReqParam],
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
-        billing_address: Optional[checkout_session_preview_params.BillingAddress] | Omit = omit,
+        billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
-        custom_fields: Optional[Iterable[checkout_session_preview_params.CustomField]] | Omit = omit,
+        custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
-        customization: checkout_session_preview_params.Customization | Omit = omit,
+        customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
-        feature_flags: checkout_session_preview_params.FeatureFlags | Omit = omit,
+        feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
@@ -210,7 +220,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
-        subscription_data: Optional[checkout_session_preview_params.SubscriptionData] | Omit = omit,
+        subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -323,16 +333,16 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        product_cart: Iterable[checkout_session_create_params.ProductCart],
+        product_cart: Iterable[ProductItemReqParam],
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
-        billing_address: Optional[checkout_session_create_params.BillingAddress] | Omit = omit,
+        billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
-        custom_fields: Optional[Iterable[checkout_session_create_params.CustomField]] | Omit = omit,
+        custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
-        customization: checkout_session_create_params.Customization | Omit = omit,
+        customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
-        feature_flags: checkout_session_create_params.FeatureFlags | Omit = omit,
+        feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
@@ -341,7 +351,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
-        subscription_data: Optional[checkout_session_create_params.SubscriptionData] | Omit = omit,
+        subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -464,16 +474,16 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
     async def preview(
         self,
         *,
-        product_cart: Iterable[checkout_session_preview_params.ProductCart],
+        product_cart: Iterable[ProductItemReqParam],
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
-        billing_address: Optional[checkout_session_preview_params.BillingAddress] | Omit = omit,
+        billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         confirm: bool | Omit = omit,
-        custom_fields: Optional[Iterable[checkout_session_preview_params.CustomField]] | Omit = omit,
+        custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
-        customization: checkout_session_preview_params.Customization | Omit = omit,
+        customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
-        feature_flags: checkout_session_preview_params.FeatureFlags | Omit = omit,
+        feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
@@ -482,7 +492,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         return_url: Optional[str] | Omit = omit,
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
-        subscription_data: Optional[checkout_session_preview_params.SubscriptionData] | Omit = omit,
+        subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

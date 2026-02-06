@@ -48,6 +48,14 @@ from .refunds import (
     RefundsResourceWithStreamingResponse,
     AsyncRefundsResourceWithStreamingResponse,
 )
+from .balances import (
+    BalancesResource,
+    AsyncBalancesResource,
+    BalancesResourceWithRawResponse,
+    AsyncBalancesResourceWithRawResponse,
+    BalancesResourceWithStreamingResponse,
+    AsyncBalancesResourceWithStreamingResponse,
+)
 from .disputes import (
     DisputesResource,
     AsyncDisputesResource,
@@ -268,4 +276,10 @@ __all__ = [
     "AsyncMetersResourceWithRawResponse",
     "MetersResourceWithStreamingResponse",
     "AsyncMetersResourceWithStreamingResponse",
+    "BalancesResource",
+    "AsyncBalancesResource",
+    "BalancesResourceWithRawResponse",
+    "AsyncBalancesResourceWithRawResponse",
+    "BalancesResourceWithStreamingResponse",
+    "AsyncBalancesResourceWithStreamingResponse",
 ]

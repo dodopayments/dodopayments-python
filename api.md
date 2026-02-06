@@ -4,9 +4,17 @@ Types:
 
 ```python
 from dodopayments.types import (
+    CheckoutSessionBillingAddress,
+    CheckoutSessionCustomization,
+    CheckoutSessionFlags,
     CheckoutSessionRequest,
     CheckoutSessionResponse,
     CheckoutSessionStatus,
+    CustomField,
+    ProductItemReq,
+    SubscriptionData,
+    ThemeConfig,
+    ThemeModeConfig,
     CheckoutSessionPreviewResponse,
 )
 ```
@@ -452,3 +460,15 @@ Methods:
 - <code title="get /meters">client.meters.<a href="./src/dodopayments/resources/meters.py">list</a>(\*\*<a href="src/dodopayments/types/meter_list_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">SyncDefaultPageNumberPagination[Meter]</a></code>
 - <code title="delete /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters.py">archive</a>(id) -> None</code>
 - <code title="post /meters/{id}/unarchive">client.meters.<a href="./src/dodopayments/resources/meters.py">unarchive</a>(id) -> None</code>
+
+# Balances
+
+Types:
+
+```python
+from dodopayments.types import BalanceLedgerEntry
+```
+
+Methods:
+
+- <code title="get /balances/ledger">client.balances.<a href="./src/dodopayments/resources/balances.py">retrieve_ledger</a>(\*\*<a href="src/dodopayments/types/balance_retrieve_ledger_params.py">params</a>) -> <a href="./src/dodopayments/types/balance_ledger_entry.py">SyncDefaultPageNumberPagination[BalanceLedgerEntry]</a></code>
