@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.81.1 (2026-02-13)
+
+Full Changelog: [v1.81.0...v1.81.1](https://github.com/dodopayments/dodopayments-python/compare/v1.81.0...v1.81.1)
+
+### Chores
+
+* format all `api.md` files ([8d404fb](https://github.com/dodopayments/dodopayments-python/commit/8d404fb6bf16ad69d15299353611c6b1cf61cb87))
+* **internal:** bump dependencies ([ed665d2](https://github.com/dodopayments/dodopayments-python/commit/ed665d278de63530b1f6834f6b469dd522fc3a28))
+* **internal:** fix lint error on Python 3.14 ([0173c2b](https://github.com/dodopayments/dodopayments-python/commit/0173c2bec60015705a8a67228c6f5c1bd61d08d5))
+
 ## 1.81.0 (2026-02-06)
 
 Full Changelog: [v1.78.0...v1.81.0](https://github.com/dodopayments/dodopayments-python/compare/v1.78.0...v1.81.0)
