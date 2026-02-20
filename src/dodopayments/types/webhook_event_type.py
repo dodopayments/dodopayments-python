@@ -32,4 +32,12 @@ WebhookEventType: TypeAlias = Literal[
     "payout.in_progress",
     "payout.failed",
     "payout.success",
+    "credit.added",
+    "credit.deducted",
+    "credit.expired",
+    "credit.rolled_over",
+    "credit.rollover_forfeited",
+    "credit.overage_charged",
+    "credit.manual_adjustment",
+    "credit.balance_low",
 ]

@@ -201,6 +201,7 @@ class PaymentsResource(SyncAPIResource):
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        product_id: str | Omit = omit,
         status: Literal[
             "succeeded",
             "failed",
@@ -237,6 +238,8 @@ class PaymentsResource(SyncAPIResource):
 
           page_size: Page size default is 10 max is 100
 
+          product_id: Filter by product id
+
           status: Filter by status
 
           subscription_id: Filter by subscription id
@@ -265,6 +268,7 @@ class PaymentsResource(SyncAPIResource):
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "product_id": product_id,
                         "status": status,
                         "subscription_id": subscription_id,
                     },
@@ -472,6 +476,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        product_id: str | Omit = omit,
         status: Literal[
             "succeeded",
             "failed",
@@ -508,6 +513,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           page_size: Page size default is 10 max is 100
 
+          product_id: Filter by product id
+
           status: Filter by status
 
           subscription_id: Filter by subscription id
@@ -536,6 +543,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "product_id": product_id,
                         "status": status,
                         "subscription_id": subscription_id,
                     },

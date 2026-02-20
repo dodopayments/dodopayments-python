@@ -148,6 +148,7 @@ class CustomersResource(SyncAPIResource):
         self,
         customer_id: str,
         *,
+        email: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
@@ -176,6 +177,7 @@ class CustomersResource(SyncAPIResource):
             f"/customers/{customer_id}",
             body=maybe_transform(
                 {
+                    "email": email,
                     "metadata": metadata,
                     "name": name,
                     "phone_number": phone_number,
@@ -387,6 +389,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         customer_id: str,
         *,
+        email: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
@@ -415,6 +418,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             f"/customers/{customer_id}",
             body=await async_maybe_transform(
                 {
+                    "email": email,
                     "metadata": metadata,
                     "name": name,
                     "phone_number": phone_number,

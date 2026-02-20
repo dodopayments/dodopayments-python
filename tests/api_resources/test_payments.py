@@ -169,6 +169,7 @@ class TestPayments:
             customer_id="customer_id",
             page_number=0,
             page_size=0,
+            product_id="product_id",
             status="succeeded",
             subscription_id="subscription_id",
         )
@@ -381,6 +382,7 @@ class TestAsyncPayments:
             customer_id="customer_id",
             page_number=0,
             page_size=0,
+            product_id="product_id",
             status="succeeded",
             subscription_id="subscription_id",
         )
