@@ -11,7 +11,64 @@ from .subscription_status import SubscriptionStatus
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Subscription", "Meter", "CustomFieldResponse"]
+__all__ = ["Subscription", "CreditEntitlementCart", "MeterCreditEntitlementCart", "Meter", "CustomFieldResponse"]
+
+
+class CreditEntitlementCart(BaseModel):
+    """Response struct representing credit entitlement cart details for a subscription"""
+
+    credit_entitlement_id: str
+
+    credit_entitlement_name: str
+
+    credits_amount: str
+
+    overage_balance: str
+    """Customer's current overage balance for this entitlement"""
+
+    overage_charge_at_billing: bool
+
+    overage_enabled: bool
+
+    product_id: str
+
+    remaining_balance: str
+    """Customer's current remaining credit balance for this entitlement"""
+
+    rollover_enabled: bool
+
+    unit: str
+    """Unit label for the credit entitlement (e.g., "API Calls", "Tokens")"""
+
+    expires_after_days: Optional[int] = None
+
+    low_balance_threshold_percent: Optional[int] = None
+
+    max_rollover_count: Optional[int] = None
+
+    overage_limit: Optional[str] = None
+
+    rollover_percentage: Optional[int] = None
+
+    rollover_timeframe_count: Optional[int] = None
+
+    rollover_timeframe_interval: Optional[TimeInterval] = None
+
+
+class MeterCreditEntitlementCart(BaseModel):
+    """
+    Response struct representing meter-credit entitlement mapping cart details for a subscription
+    """
+
+    credit_entitlement_id: str
+
+    meter_id: str
+
+    meter_name: str
+
+    meter_units_per_credit: str
+
+    product_id: str
 
 
 class Meter(BaseModel):
@@ -57,6 +114,9 @@ class Subscription(BaseModel):
     created_at: datetime
     """Timestamp when the subscription was created"""
 
+    credit_entitlement_cart: List[CreditEntitlementCart]
+    """Credit entitlement cart settings for this subscription"""
+
     currency: Currency
     """Currency used for the subscription payments"""
 
@@ -65,6 +125,9 @@ class Subscription(BaseModel):
 
     metadata: Dict[str, str]
     """Additional custom data associated with the subscription"""
+
+    meter_credit_entitlement_cart: List[MeterCreditEntitlementCart]
+    """Meter credit entitlement cart settings for this subscription"""
 
     meters: List[Meter]
     """Meters associated with this subscription (for usage-based billing)"""

@@ -30,6 +30,9 @@ class PaymentListParams(TypedDict, total=False):
     page_size: int
     """Page size default is 10 max is 100"""
 
+    product_id: str
+    """Filter by product id"""
+
     status: Literal[
         "succeeded",
         "failed",

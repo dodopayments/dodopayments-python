@@ -11,6 +11,7 @@ __all__ = [
     "CheckoutSessionPreviewResponse",
     "CurrentBreakup",
     "ProductCart",
+    "ProductCartCreditEntitlement",
     "ProductCartMeter",
     "ProductCartAddon",
     "RecurringBreakup",
@@ -31,6 +32,24 @@ class CurrentBreakup(BaseModel):
 
     tax: Optional[int] = None
     """Total tax amount"""
+
+
+class ProductCartCreditEntitlement(BaseModel):
+    """
+    Minimal credit entitlement info shown at checkout — what credits the customer will receive
+    """
+
+    credit_entitlement_id: str
+    """ID of the credit entitlement"""
+
+    credit_entitlement_name: str
+    """Name of the credit entitlement"""
+
+    credit_entitlement_unit: str
+    """Unit label (e.g. "API Calls", "Tokens")"""
+
+    credits_amount: str
+    """Number of credits granted"""
 
 
 class ProductCartMeter(BaseModel):
@@ -78,6 +97,9 @@ class ProductCartAddon(BaseModel):
 
 
 class ProductCart(BaseModel):
+    credit_entitlements: List[ProductCartCreditEntitlement]
+    """Credit entitlements that will be granted upon purchase"""
+
     currency: Currency
     """the currency in which the calculatiosn were made"""
 
@@ -165,6 +187,9 @@ class CheckoutSessionPreviewResponse(BaseModel):
 
     recurring_breakup: Optional[RecurringBreakup] = None
     """Breakup of recurring payments (None for one-time only)"""
+
+    tax_id_err_msg: Optional[str] = None
+    """Error message if tax ID validation failed"""
 
     total_tax: Optional[int] = None
     """Total tax"""

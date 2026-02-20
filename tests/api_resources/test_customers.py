@@ -115,6 +115,7 @@ class TestCustomers:
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         customer = client.customers.update(
             customer_id="customer_id",
+            email="email",
             metadata={"foo": "string"},
             name="name",
             phone_number="phone_number",
@@ -326,6 +327,7 @@ class TestAsyncCustomers:
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         customer = await async_client.customers.update(
             customer_id="customer_id",
+            email="email",
             metadata={"foo": "string"},
             name="name",
             phone_number="phone_number",

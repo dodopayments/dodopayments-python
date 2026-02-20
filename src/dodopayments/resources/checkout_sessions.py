@@ -80,6 +80,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -128,6 +129,9 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
+          tax_id: Tax ID for the customer (e.g. VAT number). Requires billing_address with
+              country.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -159,6 +163,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,
+                    "tax_id": tax_id,
                 },
                 checkout_session_create_params.CheckoutSessionCreateParams,
             ),
@@ -221,6 +226,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -269,6 +275,9 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
+          tax_id: Tax ID for the customer (e.g. VAT number). Requires billing_address with
+              country.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -300,6 +309,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,
+                    "tax_id": tax_id,
                 },
                 checkout_session_preview_params.CheckoutSessionPreviewParams,
             ),
@@ -352,6 +362,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -400,6 +411,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
+          tax_id: Tax ID for the customer (e.g. VAT number). Requires billing_address with
+              country.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -431,6 +445,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,
+                    "tax_id": tax_id,
                 },
                 checkout_session_create_params.CheckoutSessionCreateParams,
             ),
@@ -493,6 +508,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         short_link: bool | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
         subscription_data: Optional[SubscriptionDataParam] | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -541,6 +557,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           show_saved_payment_methods: Display saved payment methods of a returning customer False by default
 
+          tax_id: Tax ID for the customer (e.g. VAT number). Requires billing_address with
+              country.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -572,6 +591,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
                     "subscription_data": subscription_data,
+                    "tax_id": tax_id,
                 },
                 checkout_session_preview_params.CheckoutSessionPreviewParams,
             ),

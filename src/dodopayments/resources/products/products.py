@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Iterable, Optional
 
 import httpx
 
@@ -87,6 +87,7 @@ class ProductsResource(SyncAPIResource):
         tax_category: TaxCategory,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
+        credit_entitlements: Optional[Iterable[product_create_params.CreditEntitlement]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
@@ -112,6 +113,8 @@ class ProductsResource(SyncAPIResource):
           addons: Addons available for subscription product
 
           brand_id: Brand id for the product, if not provided will default to primary brand
+
+          credit_entitlements: Optional credit entitlements to attach (max 3)
 
           description: Optional description of the product
 
@@ -146,6 +149,7 @@ class ProductsResource(SyncAPIResource):
                     "tax_category": tax_category,
                     "addons": addons,
                     "brand_id": brand_id,
+                    "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
                     "license_key_activation_message": license_key_activation_message,
@@ -199,6 +203,7 @@ class ProductsResource(SyncAPIResource):
         *,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
+        credit_entitlements: Optional[Iterable[product_update_params.CreditEntitlement]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
@@ -220,6 +225,9 @@ class ProductsResource(SyncAPIResource):
         """
         Args:
           addons: Available Addons for subscription products
+
+          credit_entitlements: Credit entitlements to update (replaces all existing when present) Send empty
+              array to remove all, omit field to leave unchanged
 
           description: Description of the product, optional and must be at most 1000 characters.
 
@@ -272,6 +280,7 @@ class ProductsResource(SyncAPIResource):
                 {
                     "addons": addons,
                     "brand_id": brand_id,
+                    "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
                     "image_id": image_id,
@@ -488,6 +497,7 @@ class AsyncProductsResource(AsyncAPIResource):
         tax_category: TaxCategory,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
+        credit_entitlements: Optional[Iterable[product_create_params.CreditEntitlement]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
@@ -513,6 +523,8 @@ class AsyncProductsResource(AsyncAPIResource):
           addons: Addons available for subscription product
 
           brand_id: Brand id for the product, if not provided will default to primary brand
+
+          credit_entitlements: Optional credit entitlements to attach (max 3)
 
           description: Optional description of the product
 
@@ -547,6 +559,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "tax_category": tax_category,
                     "addons": addons,
                     "brand_id": brand_id,
+                    "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
                     "license_key_activation_message": license_key_activation_message,
@@ -600,6 +613,7 @@ class AsyncProductsResource(AsyncAPIResource):
         *,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
+        credit_entitlements: Optional[Iterable[product_update_params.CreditEntitlement]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
@@ -621,6 +635,9 @@ class AsyncProductsResource(AsyncAPIResource):
         """
         Args:
           addons: Available Addons for subscription products
+
+          credit_entitlements: Credit entitlements to update (replaces all existing when present) Send empty
+              array to remove all, omit field to leave unchanged
 
           description: Description of the product, optional and must be at most 1000 characters.
 
@@ -673,6 +690,7 @@ class AsyncProductsResource(AsyncAPIResource):
                 {
                     "addons": addons,
                     "brand_id": brand_id,
+                    "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
                     "image_id": image_id,

@@ -233,6 +233,7 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
@@ -250,6 +251,8 @@ class SubscriptionsResource(SyncAPIResource):
         Args:
           cancel_at_next_billing_date: When set, the subscription will remain active until the end of billing period
 
+          credit_entitlement_cart: Update credit entitlement cart settings
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -266,6 +269,7 @@ class SubscriptionsResource(SyncAPIResource):
                 {
                     "billing": billing,
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
+                    "credit_entitlement_cart": credit_entitlement_cart,
                     "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
@@ -290,6 +294,7 @@ class SubscriptionsResource(SyncAPIResource):
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        product_id: str | Omit = omit,
         status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -311,6 +316,8 @@ class SubscriptionsResource(SyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          product_id: Filter by product id
 
           status: Filter by status
 
@@ -338,6 +345,7 @@ class SubscriptionsResource(SyncAPIResource):
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "product_id": product_id,
                         "status": status,
                     },
                     subscription_list_params.SubscriptionListParams,
@@ -920,6 +928,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
@@ -937,6 +946,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         Args:
           cancel_at_next_billing_date: When set, the subscription will remain active until the end of billing period
 
+          credit_entitlement_cart: Update credit entitlement cart settings
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -953,6 +964,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 {
                     "billing": billing,
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
+                    "credit_entitlement_cart": credit_entitlement_cart,
                     "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
@@ -977,6 +989,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        product_id: str | Omit = omit,
         status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -998,6 +1011,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
+
+          product_id: Filter by product id
 
           status: Filter by status
 
@@ -1025,6 +1040,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "product_id": product_id,
                         "status": status,
                     },
                     subscription_list_params.SubscriptionListParams,

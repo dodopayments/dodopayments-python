@@ -129,6 +129,7 @@ class TestCheckoutSessions:
                 "allow_customer_editing_name": True,
                 "allow_customer_editing_state": True,
                 "allow_customer_editing_street": True,
+                "allow_customer_editing_tax_id": True,
                 "allow_customer_editing_zipcode": True,
                 "allow_discount_code": True,
                 "allow_phone_number_collection": True,
@@ -154,6 +155,7 @@ class TestCheckoutSessions:
                 },
                 "trial_period_days": 0,
             },
+            tax_id="tax_id",
         )
         assert_matches_type(CheckoutSessionResponse, checkout_session, path=["response"])
 
@@ -337,6 +339,7 @@ class TestCheckoutSessions:
                 "allow_customer_editing_name": True,
                 "allow_customer_editing_state": True,
                 "allow_customer_editing_street": True,
+                "allow_customer_editing_tax_id": True,
                 "allow_customer_editing_zipcode": True,
                 "allow_discount_code": True,
                 "allow_phone_number_collection": True,
@@ -362,6 +365,7 @@ class TestCheckoutSessions:
                 },
                 "trial_period_days": 0,
             },
+            tax_id="tax_id",
         )
         assert_matches_type(CheckoutSessionPreviewResponse, checkout_session, path=["response"])
 
@@ -513,6 +517,7 @@ class TestAsyncCheckoutSessions:
                 "allow_customer_editing_name": True,
                 "allow_customer_editing_state": True,
                 "allow_customer_editing_street": True,
+                "allow_customer_editing_tax_id": True,
                 "allow_customer_editing_zipcode": True,
                 "allow_discount_code": True,
                 "allow_phone_number_collection": True,
@@ -538,6 +543,7 @@ class TestAsyncCheckoutSessions:
                 },
                 "trial_period_days": 0,
             },
+            tax_id="tax_id",
         )
         assert_matches_type(CheckoutSessionResponse, checkout_session, path=["response"])
 
@@ -721,6 +727,7 @@ class TestAsyncCheckoutSessions:
                 "allow_customer_editing_name": True,
                 "allow_customer_editing_state": True,
                 "allow_customer_editing_street": True,
+                "allow_customer_editing_tax_id": True,
                 "allow_customer_editing_zipcode": True,
                 "allow_discount_code": True,
                 "allow_phone_number_collection": True,
@@ -746,6 +753,7 @@ class TestAsyncCheckoutSessions:
                 },
                 "trial_period_days": 0,
             },
+            tax_id="tax_id",
         )
         assert_matches_type(CheckoutSessionPreviewResponse, checkout_session, path=["response"])
 

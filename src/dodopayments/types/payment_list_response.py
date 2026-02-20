@@ -22,6 +22,8 @@ class PaymentListResponse(BaseModel):
 
     digital_products_delivered: bool
 
+    has_license_key: bool
+
     metadata: Dict[str, str]
 
     payment_id: str

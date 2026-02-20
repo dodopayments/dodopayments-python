@@ -9,6 +9,8 @@ __all__ = ["CustomerUpdateParams"]
 
 
 class CustomerUpdateParams(TypedDict, total=False):
+    email: Optional[str]
+
     metadata: Optional[Dict[str, str]]
     """Additional metadata for the customer"""
 
