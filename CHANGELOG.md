@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.84.0 (2026-02-20)
+
+Full Changelog: [v1.81.1...v1.84.0](https://github.com/dodopayments/dodopayments-python/compare/v1.81.1...v1.84.0)
+
+### Features
+
+* **api:** updated openapi spec to v1.84.0 ([31d554d](https://github.com/dodopayments/dodopayments-python/commit/31d554df58f3c52e59cce3a6b2e01dde8b32c6ca))
+
+
+### Chores
+
+* update mock server docs ([22669bd](https://github.com/dodopayments/dodopayments-python/commit/22669bdd62a7a174c76234b2e2539b3f76df1ef5))
+
 ## 1.81.1 (2026-02-13)
 
 Full Changelog: [v1.81.0...v1.81.1](https://github.com/dodopayments/dodopayments-python/compare/v1.81.0...v1.81.1)
