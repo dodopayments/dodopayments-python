@@ -90,3 +90,9 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     """Display saved payment methods of a returning customer False by default"""
 
     subscription_data: Optional[SubscriptionDataParam]
+
+    tax_id: Optional[str]
+    """Tax ID for the customer (e.g.
+
+    VAT number). Requires billing_address with country.
+    """

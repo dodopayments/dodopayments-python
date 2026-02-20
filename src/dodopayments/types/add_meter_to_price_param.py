@@ -18,6 +18,9 @@ class AddMeterToPriceParam(TypedDict, total=False):
     decimal places.
     """
 
+    credit_entitlement_id: Optional[str]
+    """Optional credit entitlement ID to link this meter to for credit-based billing"""
+
     description: Optional[str]
     """Meter description. Will ignored on Request, but will be shown in response"""
 
@@ -25,6 +28,12 @@ class AddMeterToPriceParam(TypedDict, total=False):
 
     measurement_unit: Optional[str]
     """Meter measurement unit. Will ignored on Request, but will be shown in response"""
+
+    meter_units_per_credit: Optional[str]
+    """Number of meter units that equal one credit.
+
+    Required when credit_entitlement_id is set.
+    """
 
     name: Optional[str]
     """Meter name. Will ignored on Request, but will be shown in response"""

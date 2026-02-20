@@ -2,13 +2,86 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .price import Price
 from .._models import BaseModel
+from .currency import Currency
 from .tax_category import TaxCategory
+from .time_interval import TimeInterval
 from .license_key_duration import LicenseKeyDuration
 
-__all__ = ["Product", "DigitalProductDelivery", "DigitalProductDeliveryFile"]
+__all__ = ["Product", "CreditEntitlement", "DigitalProductDelivery", "DigitalProductDeliveryFile"]
+
+
+class CreditEntitlement(BaseModel):
+    """Response struct for credit entitlement mapping"""
+
+    id: str
+    """Unique ID of this mapping"""
+
+    credit_entitlement_id: str
+    """ID of the credit entitlement"""
+
+    credit_entitlement_name: str
+    """Name of the credit entitlement"""
+
+    credit_entitlement_unit: str
+    """Unit label for the credit entitlement"""
+
+    credits_amount: str
+    """Number of credits granted"""
+
+    credits_reduce_overage: bool
+    """Whether new credit grants reduce existing overage"""
+
+    overage_charge_at_billing: bool
+    """Whether overage is charged at billing"""
+
+    overage_enabled: bool
+    """Whether overage is enabled"""
+
+    preserve_overage_at_reset: bool
+    """Whether to preserve overage balance when credits reset"""
+
+    proration_behavior: Literal["prorate", "no_prorate"]
+    """Proration behavior for credit grants during plan changes"""
+
+    rollover_enabled: bool
+    """Whether rollover is enabled"""
+
+    trial_credits_expire_after_trial: bool
+    """Whether trial credits expire after trial"""
+
+    currency: Optional[Currency] = None
+    """Currency"""
+
+    expires_after_days: Optional[int] = None
+    """Days until credits expire"""
+
+    low_balance_threshold_percent: Optional[int] = None
+    """Low balance threshold percentage"""
+
+    max_rollover_count: Optional[int] = None
+    """Maximum rollover cycles"""
+
+    overage_limit: Optional[str] = None
+    """Overage limit"""
+
+    price_per_unit: Optional[str] = None
+    """Price per unit"""
+
+    rollover_percentage: Optional[int] = None
+    """Rollover percentage"""
+
+    rollover_timeframe_count: Optional[int] = None
+    """Rollover timeframe count"""
+
+    rollover_timeframe_interval: Optional[TimeInterval] = None
+    """Rollover timeframe interval"""
+
+    trial_credits: Optional[str] = None
+    """Trial credits"""
 
 
 class DigitalProductDeliveryFile(BaseModel):
@@ -38,6 +111,9 @@ class Product(BaseModel):
 
     created_at: datetime
     """Timestamp when the product was created."""
+
+    credit_entitlements: List[CreditEntitlement]
+    """Attached credit entitlements with settings"""
 
     is_recurring: bool
     """Indicates if the product is recurring (e.g., subscriptions)."""

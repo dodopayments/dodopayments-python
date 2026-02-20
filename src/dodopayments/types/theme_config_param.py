@@ -17,10 +17,10 @@ class ThemeConfigParam(TypedDict, total=False):
     """Dark mode color configuration"""
 
     font_primary_url: Optional[str]
-    """URL for the primary font"""
+    """URL for the primary font. Must be a valid https:// URL."""
 
     font_secondary_url: Optional[str]
-    """URL for the secondary font"""
+    """URL for the secondary font. Must be a valid https:// URL."""
 
     font_size: Optional[Literal["xs", "sm", "md", "lg", "xl", "2xl"]]
     """Font size for the checkout UI"""
@@ -32,7 +32,13 @@ class ThemeConfigParam(TypedDict, total=False):
     """Light mode color configuration"""
 
     pay_button_text: Optional[str]
-    """Custom text for the pay button (e.g., "Complete Purchase", "Subscribe Now")"""
+    """Custom text for the pay button (e.g., "Complete Purchase", "Subscribe Now").
+
+    Max 100 characters.
+    """
 
     radius: Optional[str]
-    """Border radius for UI elements (e.g., "4px", "0.5rem", "8px")"""
+    """Border radius for UI elements.
+
+    Must be a number followed by px, rem, or em (e.g., "4px", "0.5rem", "1em")
+    """

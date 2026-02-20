@@ -181,6 +181,22 @@ class TestSubscriptions:
                 "zipcode": "zipcode",
             },
             cancel_at_next_billing_date=True,
+            credit_entitlement_cart=[
+                {
+                    "credit_entitlement_id": "credit_entitlement_id",
+                    "credits_amount": "credits_amount",
+                    "expires_after_days": 0,
+                    "low_balance_threshold_percent": 0,
+                    "max_rollover_count": 0,
+                    "overage_charge_at_billing": True,
+                    "overage_enabled": True,
+                    "overage_limit": "overage_limit",
+                    "rollover_enabled": True,
+                    "rollover_percentage": 0,
+                    "rollover_timeframe_count": 0,
+                    "rollover_timeframe_interval": "Day",
+                }
+            ],
             customer_name="customer_name",
             disable_on_demand={"next_billing_date": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},
@@ -235,6 +251,7 @@ class TestSubscriptions:
             customer_id="customer_id",
             page_number=0,
             page_size=0,
+            product_id="product_id",
             status="pending",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])
@@ -770,6 +787,22 @@ class TestAsyncSubscriptions:
                 "zipcode": "zipcode",
             },
             cancel_at_next_billing_date=True,
+            credit_entitlement_cart=[
+                {
+                    "credit_entitlement_id": "credit_entitlement_id",
+                    "credits_amount": "credits_amount",
+                    "expires_after_days": 0,
+                    "low_balance_threshold_percent": 0,
+                    "max_rollover_count": 0,
+                    "overage_charge_at_billing": True,
+                    "overage_enabled": True,
+                    "overage_limit": "overage_limit",
+                    "rollover_enabled": True,
+                    "rollover_percentage": 0,
+                    "rollover_timeframe_count": 0,
+                    "rollover_timeframe_interval": "Day",
+                }
+            ],
             customer_name="customer_name",
             disable_on_demand={"next_billing_date": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},
@@ -824,6 +857,7 @@ class TestAsyncSubscriptions:
             customer_id="customer_id",
             page_number=0,
             page_size=0,
+            product_id="product_id",
             status="pending",
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[SubscriptionListResponse], subscription, path=["response"])

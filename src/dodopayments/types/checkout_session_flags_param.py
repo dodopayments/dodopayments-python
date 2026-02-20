@@ -26,6 +26,8 @@ class CheckoutSessionFlagsParam(TypedDict, total=False):
 
     allow_customer_editing_street: bool
 
+    allow_customer_editing_tax_id: bool
+
     allow_customer_editing_zipcode: bool
 
     allow_discount_code: bool
