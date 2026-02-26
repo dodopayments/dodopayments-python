@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.84.1 (2026-02-26)
+
+Full Changelog: [v1.84.0...v1.84.1](https://github.com/dodopayments/dodopayments-python/compare/v1.84.0...v1.84.1)
+
+### Chores
+
+* **dependencies:** require standardwebhooks 1.0.1 ([b423d2b](https://github.com/dodopayments/dodopayments-python/commit/b423d2b6681121286010db3659ffa57b8723712c))
+* **internal:** add request options to SSE classes ([95666d2](https://github.com/dodopayments/dodopayments-python/commit/95666d2fb76ba251019a2b3b8a0f92191d5a1405))
+* **internal:** make `test_proxy_environment_variables` more resilient ([abcdce7](https://github.com/dodopayments/dodopayments-python/commit/abcdce72713646daf43cbddf9ef2151879cd11cc))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([a4b4457](https://github.com/dodopayments/dodopayments-python/commit/a4b445782cdf71cfa1c2690b82706b175a104084))
+
 ## 1.84.0 (2026-02-20)
 
 Full Changelog: [v1.81.1...v1.84.0](https://github.com/dodopayments/dodopayments-python/compare/v1.81.1...v1.84.0)
