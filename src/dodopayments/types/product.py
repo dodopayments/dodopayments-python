@@ -5,97 +5,12 @@ from datetime import datetime
 
 from .price import Price
 from .._models import BaseModel
-from .currency import Currency
 from .tax_category import TaxCategory
-from .time_interval import TimeInterval
-from .cbb_overage_behavior import CbbOverageBehavior
 from .license_key_duration import LicenseKeyDuration
-from .cbb_proration_behavior import CbbProrationBehavior
+from .digital_product_delivery import DigitalProductDelivery
+from .credit_entitlement_mapping_response import CreditEntitlementMappingResponse
 
-__all__ = ["Product", "CreditEntitlement", "DigitalProductDelivery", "DigitalProductDeliveryFile"]
-
-
-class CreditEntitlement(BaseModel):
-    """Response struct for credit entitlement mapping"""
-
-    id: str
-    """Unique ID of this mapping"""
-
-    credit_entitlement_id: str
-    """ID of the credit entitlement"""
-
-    credit_entitlement_name: str
-    """Name of the credit entitlement"""
-
-    credit_entitlement_unit: str
-    """Unit label for the credit entitlement"""
-
-    credits_amount: str
-    """Number of credits granted"""
-
-    overage_behavior: CbbOverageBehavior
-    """Controls how overage is handled at billing cycle end."""
-
-    overage_enabled: bool
-    """Whether overage is enabled"""
-
-    proration_behavior: CbbProrationBehavior
-    """Proration behavior for credit grants during plan changes"""
-
-    rollover_enabled: bool
-    """Whether rollover is enabled"""
-
-    trial_credits_expire_after_trial: bool
-    """Whether trial credits expire after trial"""
-
-    currency: Optional[Currency] = None
-    """Currency"""
-
-    expires_after_days: Optional[int] = None
-    """Days until credits expire"""
-
-    low_balance_threshold_percent: Optional[int] = None
-    """Low balance threshold percentage"""
-
-    max_rollover_count: Optional[int] = None
-    """Maximum rollover cycles"""
-
-    overage_limit: Optional[str] = None
-    """Overage limit"""
-
-    price_per_unit: Optional[str] = None
-    """Price per unit"""
-
-    rollover_percentage: Optional[int] = None
-    """Rollover percentage"""
-
-    rollover_timeframe_count: Optional[int] = None
-    """Rollover timeframe count"""
-
-    rollover_timeframe_interval: Optional[TimeInterval] = None
-    """Rollover timeframe interval"""
-
-    trial_credits: Optional[str] = None
-    """Trial credits"""
-
-
-class DigitalProductDeliveryFile(BaseModel):
-    file_id: str
-
-    file_name: str
-
-    url: str
-
-
-class DigitalProductDelivery(BaseModel):
-    external_url: Optional[str] = None
-    """External URL to digital product"""
-
-    files: Optional[List[DigitalProductDeliveryFile]] = None
-    """Uploaded files ids of digital product"""
-
-    instructions: Optional[str] = None
-    """Instructions to download and use the digital product"""
+__all__ = ["Product"]
 
 
 class Product(BaseModel):
@@ -107,7 +22,7 @@ class Product(BaseModel):
     created_at: datetime
     """Timestamp when the product was created."""
 
-    credit_entitlements: List[CreditEntitlement]
+    credit_entitlements: List[CreditEntitlementMappingResponse]
     """Attached credit entitlements with settings"""
 
     is_recurring: bool

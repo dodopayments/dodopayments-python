@@ -8,96 +8,14 @@ from .currency import Currency
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
-from .cbb_overage_behavior import CbbOverageBehavior
 from .custom_field_response import CustomFieldResponse
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
+from .meter_cart_response_item import MeterCartResponseItem
+from .credit_entitlement_cart_response import CreditEntitlementCartResponse
+from .meter_credit_entitlement_cart_response import MeterCreditEntitlementCartResponse
 
-__all__ = ["Subscription", "CreditEntitlementCart", "MeterCreditEntitlementCart", "Meter"]
-
-
-class CreditEntitlementCart(BaseModel):
-    """Response struct representing credit entitlement cart details for a subscription"""
-
-    credit_entitlement_id: str
-
-    credit_entitlement_name: str
-
-    credits_amount: str
-
-    overage_balance: str
-    """Customer's current overage balance for this entitlement"""
-
-    overage_behavior: CbbOverageBehavior
-    """Controls how overage is handled at the end of a billing cycle.
-
-    | Preset                     | Charge at billing | Credits reduce overage | Preserve overage at reset |
-    | -------------------------- | :---------------: | :--------------------: | :-----------------------: |
-    | `forgive_at_reset`         |        No         |           No           |            No             |
-    | `invoice_at_billing`       |        Yes        |           No           |            No             |
-    | `carry_deficit`            |        No         |           No           |            Yes            |
-    | `carry_deficit_auto_repay` |        No         |          Yes           |            Yes            |
-    """
-
-    overage_enabled: bool
-
-    product_id: str
-
-    remaining_balance: str
-    """Customer's current remaining credit balance for this entitlement"""
-
-    rollover_enabled: bool
-
-    unit: str
-    """Unit label for the credit entitlement (e.g., "API Calls", "Tokens")"""
-
-    expires_after_days: Optional[int] = None
-
-    low_balance_threshold_percent: Optional[int] = None
-
-    max_rollover_count: Optional[int] = None
-
-    overage_limit: Optional[str] = None
-
-    rollover_percentage: Optional[int] = None
-
-    rollover_timeframe_count: Optional[int] = None
-
-    rollover_timeframe_interval: Optional[TimeInterval] = None
-
-
-class MeterCreditEntitlementCart(BaseModel):
-    """
-    Response struct representing meter-credit entitlement mapping cart details for a subscription
-    """
-
-    credit_entitlement_id: str
-
-    meter_id: str
-
-    meter_name: str
-
-    meter_units_per_credit: str
-
-    product_id: str
-
-
-class Meter(BaseModel):
-    """Response struct representing usage-based meter cart details for a subscription"""
-
-    currency: Currency
-
-    free_threshold: int
-
-    measurement_unit: str
-
-    meter_id: str
-
-    name: str
-
-    description: Optional[str] = None
-
-    price_per_unit: Optional[str] = None
+__all__ = ["Subscription"]
 
 
 class Subscription(BaseModel):
@@ -115,7 +33,7 @@ class Subscription(BaseModel):
     created_at: datetime
     """Timestamp when the subscription was created"""
 
-    credit_entitlement_cart: List[CreditEntitlementCart]
+    credit_entitlement_cart: List[CreditEntitlementCartResponse]
     """Credit entitlement cart settings for this subscription"""
 
     currency: Currency
@@ -127,10 +45,10 @@ class Subscription(BaseModel):
     metadata: Dict[str, str]
     """Additional custom data associated with the subscription"""
 
-    meter_credit_entitlement_cart: List[MeterCreditEntitlementCart]
+    meter_credit_entitlement_cart: List[MeterCreditEntitlementCartResponse]
     """Meter credit entitlement cart settings for this subscription"""
 
-    meters: List[Meter]
+    meters: List[MeterCartResponseItem]
     """Meters associated with this subscription (for usage-based billing)"""
 
     next_billing_date: datetime
