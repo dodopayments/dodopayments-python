@@ -6,6 +6,8 @@ from datetime import datetime
 from .._models import BaseModel
 from .currency import Currency
 from .intent_status import IntentStatus
+from .dispute_status import DisputeStatus
+from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
 
 __all__ = ["PaymentListResponse"]
@@ -30,6 +32,9 @@ class PaymentListResponse(BaseModel):
 
     total_amount: int
 
+    dispute_status: Optional[DisputeStatus] = None
+    """The most recent dispute status for this payment. None if no disputes exist."""
+
     invoice_id: Optional[str] = None
     """Invoice ID for this payment. Uses India-specific invoice ID if available."""
 
@@ -39,6 +44,12 @@ class PaymentListResponse(BaseModel):
     payment_method: Optional[str] = None
 
     payment_method_type: Optional[str] = None
+
+    refund_status: Optional[PaymentRefundStatus] = None
+    """Summary of the refund status for this payment.
+
+    None if no succeeded refunds exist.
+    """
 
     status: Optional[IntentStatus] = None
 

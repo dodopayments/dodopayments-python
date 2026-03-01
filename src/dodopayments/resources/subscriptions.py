@@ -44,8 +44,8 @@ from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
-from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
+from ..types.subscription_retrieve_credit_usage_response import SubscriptionRetrieveCreditUsageResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
 from ..types.subscription_retrieve_usage_history_response import SubscriptionRetrieveUsageHistoryResponse
 
@@ -87,7 +87,7 @@ class SubscriptionsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -558,6 +558,37 @@ class SubscriptionsResource(SyncAPIResource):
             cast_to=SubscriptionPreviewChangePlanResponse,
         )
 
+    def retrieve_credit_usage(
+        self,
+        subscription_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionRetrieveCreditUsageResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._get(
+            f"/subscriptions/{subscription_id}/credit-usage",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionRetrieveCreditUsageResponse,
+        )
+
     def retrieve_usage_history(
         self,
         subscription_id: str,
@@ -782,7 +813,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -1253,6 +1284,37 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=SubscriptionPreviewChangePlanResponse,
         )
 
+    async def retrieve_credit_usage(
+        self,
+        subscription_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionRetrieveCreditUsageResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return await self._get(
+            f"/subscriptions/{subscription_id}/credit-usage",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionRetrieveCreditUsageResponse,
+        )
+
     def retrieve_usage_history(
         self,
         subscription_id: str,
@@ -1472,6 +1534,9 @@ class SubscriptionsResourceWithRawResponse:
         self.preview_change_plan = to_raw_response_wrapper(
             subscriptions.preview_change_plan,
         )
+        self.retrieve_credit_usage = to_raw_response_wrapper(
+            subscriptions.retrieve_credit_usage,
+        )
         self.retrieve_usage_history = to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -1506,6 +1571,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         )
         self.preview_change_plan = async_to_raw_response_wrapper(
             subscriptions.preview_change_plan,
+        )
+        self.retrieve_credit_usage = async_to_raw_response_wrapper(
+            subscriptions.retrieve_credit_usage,
         )
         self.retrieve_usage_history = async_to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
@@ -1542,6 +1610,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.preview_change_plan = to_streamed_response_wrapper(
             subscriptions.preview_change_plan,
         )
+        self.retrieve_credit_usage = to_streamed_response_wrapper(
+            subscriptions.retrieve_credit_usage,
+        )
         self.retrieve_usage_history = to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -1576,6 +1647,9 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.preview_change_plan = async_to_streamed_response_wrapper(
             subscriptions.preview_change_plan,
+        )
+        self.retrieve_credit_usage = async_to_streamed_response_wrapper(
+            subscriptions.retrieve_credit_usage,
         )
         self.retrieve_usage_history = async_to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,

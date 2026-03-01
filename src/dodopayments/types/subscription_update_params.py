@@ -47,8 +47,6 @@ class CreditEntitlementCart(TypedDict, total=False):
 
     max_rollover_count: Optional[int]
 
-    overage_charge_at_billing: Optional[bool]
-
     overage_enabled: Optional[bool]
 
     overage_limit: Optional[str]

@@ -10,13 +10,6 @@ __all__ = ["AddMeterToPrice"]
 class AddMeterToPrice(BaseModel):
     meter_id: str
 
-    price_per_unit: str
-    """The price per unit in lowest denomination.
-
-    Must be greater than zero. Supports up to 5 digits before decimal point and 12
-    decimal places.
-    """
-
     credit_entitlement_id: Optional[str] = None
     """Optional credit entitlement ID to link this meter to for credit-based billing"""
 
@@ -36,3 +29,10 @@ class AddMeterToPrice(BaseModel):
 
     name: Optional[str] = None
     """Meter name. Will ignored on Request, but will be shown in response"""
+
+    price_per_unit: Optional[str] = None
+    """The price per unit in lowest denomination.
+
+    Must be greater than zero. Supports up to 5 digits before decimal point and 12
+    decimal places.
+    """

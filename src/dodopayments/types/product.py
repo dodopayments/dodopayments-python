@@ -2,14 +2,15 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .price import Price
 from .._models import BaseModel
 from .currency import Currency
 from .tax_category import TaxCategory
 from .time_interval import TimeInterval
+from .cbb_overage_behavior import CbbOverageBehavior
 from .license_key_duration import LicenseKeyDuration
+from .cbb_proration_behavior import CbbProrationBehavior
 
 __all__ = ["Product", "CreditEntitlement", "DigitalProductDelivery", "DigitalProductDeliveryFile"]
 
@@ -32,19 +33,13 @@ class CreditEntitlement(BaseModel):
     credits_amount: str
     """Number of credits granted"""
 
-    credits_reduce_overage: bool
-    """Whether new credit grants reduce existing overage"""
-
-    overage_charge_at_billing: bool
-    """Whether overage is charged at billing"""
+    overage_behavior: CbbOverageBehavior
+    """Controls how overage is handled at billing cycle end."""
 
     overage_enabled: bool
     """Whether overage is enabled"""
 
-    preserve_overage_at_reset: bool
-    """Whether to preserve overage balance when credits reset"""
-
-    proration_behavior: Literal["prorate", "no_prorate"]
+    proration_behavior: CbbProrationBehavior
     """Proration behavior for credit grants during plan changes"""
 
     rollover_enabled: bool

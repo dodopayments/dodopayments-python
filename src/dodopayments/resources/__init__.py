@@ -152,6 +152,14 @@ from .checkout_sessions import (
     CheckoutSessionsResourceWithStreamingResponse,
     AsyncCheckoutSessionsResourceWithStreamingResponse,
 )
+from .credit_entitlements import (
+    CreditEntitlementsResource,
+    AsyncCreditEntitlementsResource,
+    CreditEntitlementsResourceWithRawResponse,
+    AsyncCreditEntitlementsResourceWithRawResponse,
+    CreditEntitlementsResourceWithStreamingResponse,
+    AsyncCreditEntitlementsResourceWithStreamingResponse,
+)
 from .license_key_instances import (
     LicenseKeyInstancesResource,
     AsyncLicenseKeyInstancesResource,
@@ -282,4 +290,10 @@ __all__ = [
     "AsyncBalancesResourceWithRawResponse",
     "BalancesResourceWithStreamingResponse",
     "AsyncBalancesResourceWithStreamingResponse",
+    "CreditEntitlementsResource",
+    "AsyncCreditEntitlementsResource",
+    "CreditEntitlementsResourceWithRawResponse",
+    "AsyncCreditEntitlementsResourceWithRawResponse",
+    "CreditEntitlementsResourceWithStreamingResponse",
+    "AsyncCreditEntitlementsResourceWithStreamingResponse",
 ]

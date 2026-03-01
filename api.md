@@ -34,6 +34,7 @@ from dodopayments.types import (
     AttachExistingCustomer,
     BillingAddress,
     CreateNewCustomer,
+    CustomFieldResponse,
     CustomerLimitedDetails,
     CustomerRequest,
     IntentStatus,
@@ -41,6 +42,8 @@ from dodopayments.types import (
     OneTimeProductCartItem,
     Payment,
     PaymentMethodTypes,
+    PaymentRefundStatus,
+    RefundListItem,
     PaymentCreateResponse,
     PaymentListResponse,
     PaymentRetrieveLineItemsResponse,
@@ -66,10 +69,12 @@ from dodopayments.types import (
     Subscription,
     SubscriptionStatus,
     TimeInterval,
+    UpdateSubscriptionPlanReq,
     SubscriptionCreateResponse,
     SubscriptionListResponse,
     SubscriptionChargeResponse,
     SubscriptionPreviewChangePlanResponse,
+    SubscriptionRetrieveCreditUsageResponse,
     SubscriptionRetrieveUsageHistoryResponse,
     SubscriptionUpdatePaymentMethodResponse,
 )
@@ -84,6 +89,7 @@ Methods:
 - <code title="post /subscriptions/{subscription_id}/change-plan">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">change_plan</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_change_plan_params.py">params</a>) -> None</code>
 - <code title="post /subscriptions/{subscription_id}/charge">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">charge</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_charge_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_charge_response.py">SubscriptionChargeResponse</a></code>
 - <code title="post /subscriptions/{subscription_id}/change-plan/preview">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">preview_change_plan</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_preview_change_plan_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_preview_change_plan_response.py">SubscriptionPreviewChangePlanResponse</a></code>
+- <code title="get /subscriptions/{subscription_id}/credit-usage">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_credit_usage</a>(subscription_id) -> <a href="./src/dodopayments/types/subscription_retrieve_credit_usage_response.py">SubscriptionRetrieveCreditUsageResponse</a></code>
 - <code title="get /subscriptions/{subscription_id}/usage-history">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_usage_history</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_retrieve_usage_history_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_retrieve_usage_history_response.py">SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse]</a></code>
 - <code title="post /subscriptions/{subscription_id}/update-payment-method">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update_payment_method</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_payment_method_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_update_payment_method_response.py">SubscriptionUpdatePaymentMethodResponse</a></code>
 
@@ -146,6 +152,7 @@ Types:
 from dodopayments.types import (
     Customer,
     CustomerPortalSession,
+    CustomerListCreditEntitlementsResponse,
     CustomerRetrievePaymentMethodsResponse,
 )
 ```
@@ -156,6 +163,7 @@ Methods:
 - <code title="get /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve</a>(customer_id) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
 - <code title="patch /customers/{customer_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">update</a>(customer_id, \*\*<a href="src/dodopayments/types/customer_update_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">Customer</a></code>
 - <code title="get /customers">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list</a>(\*\*<a href="src/dodopayments/types/customer_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">SyncDefaultPageNumberPagination[Customer]</a></code>
+- <code title="get /customers/{customer_id}/credit-entitlements">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_credit_entitlements</a>(customer_id) -> <a href="./src/dodopayments/types/customer_list_credit_entitlements_response.py">CustomerListCreditEntitlementsResponse</a></code>
 - <code title="get /customers/{customer_id}/payment-methods">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve_payment_methods</a>(customer_id) -> <a href="./src/dodopayments/types/customer_retrieve_payment_methods_response.py">CustomerRetrievePaymentMethodsResponse</a></code>
 
 ## CustomerPortal
@@ -194,14 +202,14 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Refund, RefundStatus, RefundListResponse
+from dodopayments.types import Refund, RefundStatus
 ```
 
 Methods:
 
 - <code title="post /refunds">client.refunds.<a href="./src/dodopayments/resources/refunds.py">create</a>(\*\*<a href="src/dodopayments/types/refund_create_params.py">params</a>) -> <a href="./src/dodopayments/types/refund.py">Refund</a></code>
 - <code title="get /refunds/{refund_id}">client.refunds.<a href="./src/dodopayments/resources/refunds.py">retrieve</a>(refund_id) -> <a href="./src/dodopayments/types/refund.py">Refund</a></code>
-- <code title="get /refunds">client.refunds.<a href="./src/dodopayments/resources/refunds.py">list</a>(\*\*<a href="src/dodopayments/types/refund_list_params.py">params</a>) -> <a href="./src/dodopayments/types/refund_list_response.py">SyncDefaultPageNumberPagination[RefundListResponse]</a></code>
+- <code title="get /refunds">client.refunds.<a href="./src/dodopayments/resources/refunds.py">list</a>(\*\*<a href="src/dodopayments/types/refund_list_params.py">params</a>) -> <a href="./src/dodopayments/types/refund_list_item.py">SyncDefaultPageNumberPagination[RefundListItem]</a></code>
 
 # Disputes
 
@@ -235,6 +243,8 @@ Types:
 ```python
 from dodopayments.types import (
     AddMeterToPrice,
+    AttachCreditEntitlement,
+    CbbProrationBehavior,
     LicenseKeyDuration,
     Price,
     Product,
@@ -352,6 +362,14 @@ Types:
 from dodopayments.types import (
     WebhookDetails,
     WebhookRetrieveSecretResponse,
+    CreditAddedWebhookEvent,
+    CreditBalanceLowWebhookEvent,
+    CreditDeductedWebhookEvent,
+    CreditExpiredWebhookEvent,
+    CreditManualAdjustmentWebhookEvent,
+    CreditOverageChargedWebhookEvent,
+    CreditRolledOverWebhookEvent,
+    CreditRolloverForfeitedWebhookEvent,
     DisputeAcceptedWebhookEvent,
     DisputeCancelledWebhookEvent,
     DisputeChallengedWebhookEvent,
@@ -374,6 +392,14 @@ from dodopayments.types import (
     SubscriptionPlanChangedWebhookEvent,
     SubscriptionRenewedWebhookEvent,
     SubscriptionUpdatedWebhookEvent,
+    CreditAddedWebhookEvent,
+    CreditBalanceLowWebhookEvent,
+    CreditDeductedWebhookEvent,
+    CreditExpiredWebhookEvent,
+    CreditManualAdjustmentWebhookEvent,
+    CreditOverageChargedWebhookEvent,
+    CreditRolledOverWebhookEvent,
+    CreditRolloverForfeitedWebhookEvent,
     DisputeAcceptedWebhookEvent,
     DisputeCancelledWebhookEvent,
     DisputeChallengedWebhookEvent,
@@ -450,7 +476,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Meter, MeterAggregation, MeterFilter
+from dodopayments.types import Conjunction, FilterOperator, Meter, MeterAggregation, MeterFilter
 ```
 
 Methods:
@@ -472,3 +498,42 @@ from dodopayments.types import BalanceLedgerEntry
 Methods:
 
 - <code title="get /balances/ledger">client.balances.<a href="./src/dodopayments/resources/balances.py">retrieve_ledger</a>(\*\*<a href="src/dodopayments/types/balance_retrieve_ledger_params.py">params</a>) -> <a href="./src/dodopayments/types/balance_ledger_entry.py">SyncDefaultPageNumberPagination[BalanceLedgerEntry]</a></code>
+
+# CreditEntitlements
+
+Types:
+
+```python
+from dodopayments.types import CbbOverageBehavior, CreditEntitlement
+```
+
+Methods:
+
+- <code title="post /credit-entitlements">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">create</a>(\*\*<a href="src/dodopayments/types/credit_entitlement_create_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlement.py">CreditEntitlement</a></code>
+- <code title="get /credit-entitlements/{id}">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/credit_entitlement.py">CreditEntitlement</a></code>
+- <code title="patch /credit-entitlements/{id}">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">update</a>(id, \*\*<a href="src/dodopayments/types/credit_entitlement_update_params.py">params</a>) -> None</code>
+- <code title="get /credit-entitlements">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">list</a>(\*\*<a href="src/dodopayments/types/credit_entitlement_list_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlement.py">SyncDefaultPageNumberPagination[CreditEntitlement]</a></code>
+- <code title="delete /credit-entitlements/{id}">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">delete</a>(id) -> None</code>
+- <code title="post /credit-entitlements/{id}/undelete">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">undelete</a>(id) -> None</code>
+
+## Balances
+
+Types:
+
+```python
+from dodopayments.types.credit_entitlements import (
+    CreditLedgerEntry,
+    CustomerCreditBalance,
+    LedgerEntryType,
+    BalanceCreateLedgerEntryResponse,
+    BalanceListGrantsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /credit-entitlements/{credit_entitlement_id}/balances/{customer_id}">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">retrieve</a>(customer_id, \*, credit_entitlement_id) -> <a href="./src/dodopayments/types/credit_entitlements/customer_credit_balance.py">CustomerCreditBalance</a></code>
+- <code title="get /credit-entitlements/{credit_entitlement_id}/balances">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">list</a>(credit_entitlement_id, \*\*<a href="src/dodopayments/types/credit_entitlements/balance_list_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/customer_credit_balance.py">SyncDefaultPageNumberPagination[CustomerCreditBalance]</a></code>
+- <code title="post /credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger-entries">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">create_ledger_entry</a>(customer_id, \*, credit_entitlement_id, \*\*<a href="src/dodopayments/types/credit_entitlements/balance_create_ledger_entry_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/balance_create_ledger_entry_response.py">BalanceCreateLedgerEntryResponse</a></code>
+- <code title="get /credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/grants">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">list_grants</a>(customer_id, \*, credit_entitlement_id, \*\*<a href="src/dodopayments/types/credit_entitlements/balance_list_grants_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/balance_list_grants_response.py">SyncDefaultPageNumberPagination[BalanceListGrantsResponse]</a></code>
+- <code title="get /credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">list_ledger</a>(customer_id, \*, credit_entitlement_id, \*\*<a href="src/dodopayments/types/credit_entitlements/balance_list_ledger_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/credit_ledger_entry.py">SyncDefaultPageNumberPagination[CreditLedgerEntry]</a></code>
