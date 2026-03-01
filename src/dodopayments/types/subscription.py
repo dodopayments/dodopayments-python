@@ -8,10 +8,12 @@ from .currency import Currency
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
+from .cbb_overage_behavior import CbbOverageBehavior
+from .custom_field_response import CustomFieldResponse
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Subscription", "CreditEntitlementCart", "MeterCreditEntitlementCart", "Meter", "CustomFieldResponse"]
+__all__ = ["Subscription", "CreditEntitlementCart", "MeterCreditEntitlementCart", "Meter"]
 
 
 class CreditEntitlementCart(BaseModel):
@@ -26,7 +28,16 @@ class CreditEntitlementCart(BaseModel):
     overage_balance: str
     """Customer's current overage balance for this entitlement"""
 
-    overage_charge_at_billing: bool
+    overage_behavior: CbbOverageBehavior
+    """Controls how overage is handled at the end of a billing cycle.
+
+    | Preset                     | Charge at billing | Credits reduce overage | Preserve overage at reset |
+    | -------------------------- | :---------------: | :--------------------: | :-----------------------: |
+    | `forgive_at_reset`         |        No         |           No           |            No             |
+    | `invoice_at_billing`       |        Yes        |           No           |            No             |
+    | `carry_deficit`            |        No         |           No           |            Yes            |
+    | `carry_deficit_auto_repay` |        No         |          Yes           |            Yes            |
+    """
 
     overage_enabled: bool
 
@@ -84,19 +95,9 @@ class Meter(BaseModel):
 
     name: str
 
-    price_per_unit: str
-
     description: Optional[str] = None
 
-
-class CustomFieldResponse(BaseModel):
-    """Customer's response to a custom field"""
-
-    key: str
-    """Key matching the custom field definition"""
-
-    value: str
-    """Value provided by customer"""
+    price_per_unit: Optional[str] = None
 
 
 class Subscription(BaseModel):

@@ -11,9 +11,8 @@ from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
 from .on_demand_subscription_param import OnDemandSubscriptionParam
-from .one_time_product_cart_item_param import OneTimeProductCartItemParam
 
-__all__ = ["SubscriptionCreateParams"]
+__all__ = ["SubscriptionCreateParams", "OneTimeProductCart"]
 
 
 class SubscriptionCreateParams(TypedDict, total=False):
@@ -58,7 +57,7 @@ class SubscriptionCreateParams(TypedDict, total=False):
 
     on_demand: Optional[OnDemandSubscriptionParam]
 
-    one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]]
+    one_time_product_cart: Optional[Iterable[OneTimeProductCart]]
     """
     List of one time products that will be bundled with the first payment for this
     subscription
@@ -99,4 +98,17 @@ class SubscriptionCreateParams(TypedDict, total=False):
     """
     Optional trial period in days If specified, this value overrides the trial
     period set in the product's price Must be between 0 and 10000 days
+    """
+
+
+class OneTimeProductCart(TypedDict, total=False):
+    product_id: Required[str]
+
+    quantity: Required[int]
+
+    amount: Optional[int]
+    """Amount the customer pays if pay_what_you_want is enabled.
+
+    If disabled then amount will be ignored Represented in the lowest denomination
+    of the currency (e.g., cents for USD). For example, to charge $1.00, pass `100`.
     """

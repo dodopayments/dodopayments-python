@@ -37,6 +37,7 @@ from .wallets.wallets import (
     AsyncWalletsResourceWithStreamingResponse,
 )
 from ...types.customer import Customer
+from ...types.customer_list_credit_entitlements_response import CustomerListCreditEntitlementsResponse
 from ...types.customer_retrieve_payment_methods_response import CustomerRetrievePaymentMethodsResponse
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
@@ -249,6 +250,39 @@ class CustomersResource(SyncAPIResource):
                 ),
             ),
             model=Customer,
+        )
+
+    def list_credit_entitlements(
+        self,
+        customer_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerListCreditEntitlementsResponse:
+        """
+        List all credit entitlements for a customer with their current balances
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        return self._get(
+            f"/customers/{customer_id}/credit-entitlements",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerListCreditEntitlementsResponse,
         )
 
     def retrieve_payment_methods(
@@ -492,6 +526,39 @@ class AsyncCustomersResource(AsyncAPIResource):
             model=Customer,
         )
 
+    async def list_credit_entitlements(
+        self,
+        customer_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CustomerListCreditEntitlementsResponse:
+        """
+        List all credit entitlements for a customer with their current balances
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        return await self._get(
+            f"/customers/{customer_id}/credit-entitlements",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerListCreditEntitlementsResponse,
+        )
+
     async def retrieve_payment_methods(
         self,
         customer_id: str,
@@ -540,6 +607,9 @@ class CustomersResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             customers.list,
         )
+        self.list_credit_entitlements = to_raw_response_wrapper(
+            customers.list_credit_entitlements,
+        )
         self.retrieve_payment_methods = to_raw_response_wrapper(
             customers.retrieve_payment_methods,
         )
@@ -568,6 +638,9 @@ class AsyncCustomersResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             customers.list,
+        )
+        self.list_credit_entitlements = async_to_raw_response_wrapper(
+            customers.list_credit_entitlements,
         )
         self.retrieve_payment_methods = async_to_raw_response_wrapper(
             customers.retrieve_payment_methods,
@@ -598,6 +671,9 @@ class CustomersResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             customers.list,
         )
+        self.list_credit_entitlements = to_streamed_response_wrapper(
+            customers.list_credit_entitlements,
+        )
         self.retrieve_payment_methods = to_streamed_response_wrapper(
             customers.retrieve_payment_methods,
         )
@@ -626,6 +702,9 @@ class AsyncCustomersResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             customers.list,
+        )
+        self.list_credit_entitlements = async_to_streamed_response_wrapper(
+            customers.list_credit_entitlements,
         )
         self.retrieve_payment_methods = async_to_streamed_response_wrapper(
             customers.retrieve_payment_methods,

@@ -11,13 +11,6 @@ __all__ = ["AddMeterToPriceParam"]
 class AddMeterToPriceParam(TypedDict, total=False):
     meter_id: Required[str]
 
-    price_per_unit: Required[str]
-    """The price per unit in lowest denomination.
-
-    Must be greater than zero. Supports up to 5 digits before decimal point and 12
-    decimal places.
-    """
-
     credit_entitlement_id: Optional[str]
     """Optional credit entitlement ID to link this meter to for credit-based billing"""
 
@@ -37,3 +30,10 @@ class AddMeterToPriceParam(TypedDict, total=False):
 
     name: Optional[str]
     """Meter name. Will ignored on Request, but will be shown in response"""
+
+    price_per_unit: Optional[str]
+    """The price per unit in lowest denomination.
+
+    Must be greater than zero. Supports up to 5 digits before decimal point and 12
+    decimal places.
+    """

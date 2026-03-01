@@ -15,6 +15,7 @@ from dodopayments.types import (
     SubscriptionChargeResponse,
     SubscriptionCreateResponse,
     SubscriptionPreviewChangePlanResponse,
+    SubscriptionRetrieveCreditUsageResponse,
     SubscriptionUpdatePaymentMethodResponse,
     SubscriptionRetrieveUsageHistoryResponse,
 )
@@ -188,7 +189,6 @@ class TestSubscriptions:
                     "expires_after_days": 0,
                     "low_balance_threshold_percent": 0,
                     "max_rollover_count": 0,
-                    "overage_charge_at_billing": True,
                     "overage_enabled": True,
                     "overage_limit": "overage_limit",
                     "rollover_enabled": True,
@@ -470,6 +470,44 @@ class TestSubscriptions:
                 product_id="product_id",
                 proration_billing_mode="prorated_immediately",
                 quantity=0,
+            )
+
+    @parametrize
+    def test_method_retrieve_credit_usage(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.retrieve_credit_usage(
+            "subscription_id",
+        )
+        assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_credit_usage(self, client: DodoPayments) -> None:
+        response = client.subscriptions.with_raw_response.retrieve_credit_usage(
+            "subscription_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_credit_usage(self, client: DodoPayments) -> None:
+        with client.subscriptions.with_streaming_response.retrieve_credit_usage(
+            "subscription_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve_credit_usage(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            client.subscriptions.with_raw_response.retrieve_credit_usage(
+                "",
             )
 
     @parametrize
@@ -794,7 +832,6 @@ class TestAsyncSubscriptions:
                     "expires_after_days": 0,
                     "low_balance_threshold_percent": 0,
                     "max_rollover_count": 0,
-                    "overage_charge_at_billing": True,
                     "overage_enabled": True,
                     "overage_limit": "overage_limit",
                     "rollover_enabled": True,
@@ -1076,6 +1113,44 @@ class TestAsyncSubscriptions:
                 product_id="product_id",
                 proration_billing_mode="prorated_immediately",
                 quantity=0,
+            )
+
+    @parametrize
+    async def test_method_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.retrieve_credit_usage(
+            "subscription_id",
+        )
+        assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.subscriptions.with_raw_response.retrieve_credit_usage(
+            "subscription_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.subscriptions.with_streaming_response.retrieve_credit_usage(
+            "subscription_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            await async_client.subscriptions.with_raw_response.retrieve_credit_usage(
+                "",
             )
 
     @parametrize

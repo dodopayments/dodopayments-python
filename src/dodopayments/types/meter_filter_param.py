@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .conjunction import Conjunction
+from .filter_operator import FilterOperator
 
 __all__ = [
     "MeterFilterParam",
@@ -23,18 +26,7 @@ class ClausesDirectFilterCondition(TypedDict, total=False):
     key: Required[str]
     """Filter key to apply"""
 
-    operator: Required[
-        Literal[
-            "equals",
-            "not_equals",
-            "greater_than",
-            "greater_than_or_equals",
-            "less_than",
-            "less_than_or_equals",
-            "contains",
-            "does_not_contain",
-        ]
-    ]
+    operator: Required[FilterOperator]
 
     value: Required[Union[str, float, bool]]
     """Filter value - can be string, number, or boolean"""
@@ -46,18 +38,7 @@ class ClausesNestedMeterFilterClausesLevel1FilterCondition(TypedDict, total=Fals
     key: Required[str]
     """Filter key to apply"""
 
-    operator: Required[
-        Literal[
-            "equals",
-            "not_equals",
-            "greater_than",
-            "greater_than_or_equals",
-            "less_than",
-            "less_than_or_equals",
-            "contains",
-            "does_not_contain",
-        ]
-    ]
+    operator: Required[FilterOperator]
 
     value: Required[Union[str, float, bool]]
     """Filter value - can be string, number, or boolean"""
@@ -69,18 +50,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2FilterCondit
     key: Required[str]
     """Filter key to apply"""
 
-    operator: Required[
-        Literal[
-            "equals",
-            "not_equals",
-            "greater_than",
-            "greater_than_or_equals",
-            "less_than",
-            "less_than_or_equals",
-            "contains",
-            "does_not_contain",
-        ]
-    ]
+    operator: Required[FilterOperator]
 
     value: Required[Union[str, float, bool]]
     """Filter value - can be string, number, or boolean"""
@@ -92,18 +62,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2NestedFilter
     key: Required[str]
     """Filter key to apply"""
 
-    operator: Required[
-        Literal[
-            "equals",
-            "not_equals",
-            "greater_than",
-            "greater_than_or_equals",
-            "less_than",
-            "less_than_or_equals",
-            "contains",
-            "does_not_contain",
-        ]
-    ]
+    operator: Required[FilterOperator]
 
     value: Required[Union[str, float, bool]]
     """Filter value - can be string, number, or boolean"""
@@ -115,7 +74,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2NestedFilter
     clauses: Required[Iterable[ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2NestedFilterClause]]
     """Level 3: Filter conditions only (max depth reached)"""
 
-    conjunction: Required[Literal["and", "or"]]
+    conjunction: Required[Conjunction]
 
 
 class ClausesNestedMeterFilterClausesLevel1NestedFilter(TypedDict, total=False):
@@ -129,7 +88,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilter(TypedDict, total=False):
     ]
     """Level 2: Can be conditions or nested filters (1 more level allowed)"""
 
-    conjunction: Required[Literal["and", "or"]]
+    conjunction: Required[Conjunction]
 
 
 class ClausesNestedMeterFilter(TypedDict, total=False):
@@ -143,7 +102,7 @@ class ClausesNestedMeterFilter(TypedDict, total=False):
     ]
     """Level 1: Can be conditions or nested filters (2 more levels allowed)"""
 
-    conjunction: Required[Literal["and", "or"]]
+    conjunction: Required[Conjunction]
 
 
 class MeterFilterParam(TypedDict, total=False):
@@ -160,5 +119,5 @@ class MeterFilterParam(TypedDict, total=False):
     deep)
     """
 
-    conjunction: Required[Literal["and", "or"]]
+    conjunction: Required[Conjunction]
     """Logical conjunction to apply between clauses (and/or)"""

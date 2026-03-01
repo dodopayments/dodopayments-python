@@ -2,63 +2,20 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .dispute import Dispute
 from .._models import BaseModel
 from .currency import Currency
 from .country_code import CountryCode
 from .intent_status import IntentStatus
-from .refund_status import RefundStatus
 from .billing_address import BillingAddress
+from .refund_list_item import RefundListItem
+from .custom_field_response import CustomFieldResponse
+from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
+from .one_time_product_cart_item import OneTimeProductCartItem
 
-__all__ = ["Payment", "Refund", "CustomFieldResponse", "ProductCart"]
-
-
-class Refund(BaseModel):
-    business_id: str
-    """The unique identifier of the business issuing the refund."""
-
-    created_at: datetime
-    """The timestamp of when the refund was created in UTC."""
-
-    is_partial: bool
-    """If true the refund is a partial refund"""
-
-    payment_id: str
-    """The unique identifier of the payment associated with the refund."""
-
-    refund_id: str
-    """The unique identifier of the refund."""
-
-    status: RefundStatus
-    """The current status of the refund."""
-
-    amount: Optional[int] = None
-    """The refunded amount."""
-
-    currency: Optional[Currency] = None
-    """The currency of the refund, represented as an ISO 4217 currency code."""
-
-    reason: Optional[str] = None
-    """The reason provided for the refund, if any. Optional."""
-
-
-class CustomFieldResponse(BaseModel):
-    """Customer's response to a custom field"""
-
-    key: str
-    """Key matching the custom field definition"""
-
-    value: str
-    """Value provided by customer"""
-
-
-class ProductCart(BaseModel):
-    product_id: str
-
-    quantity: int
+__all__ = ["Payment"]
 
 
 class Payment(BaseModel):
@@ -92,7 +49,7 @@ class Payment(BaseModel):
     payment_id: str
     """Unique identifier for the payment"""
 
-    refunds: List[Refund]
+    refunds: List[RefundListItem]
     """List of refunds issued for this payment"""
 
     settlement_amount: int
@@ -163,10 +120,10 @@ class Payment(BaseModel):
     payment_method_type: Optional[str] = None
     """Specific type of payment method (e.g. "visa", "mastercard")"""
 
-    product_cart: Optional[List[ProductCart]] = None
+    product_cart: Optional[List[OneTimeProductCartItem]] = None
     """List of products purchased in a one-time payment"""
 
-    refund_status: Optional[Literal["partial", "full"]] = None
+    refund_status: Optional[PaymentRefundStatus] = None
     """Summary of the refund status for this payment.
 
     None if no succeeded refunds exist.

@@ -5,9 +5,21 @@ from datetime import datetime
 
 from .._models import BaseModel
 from .customer_limited_details import CustomerLimitedDetails
-from .one_time_product_cart_item import OneTimeProductCartItem
 
-__all__ = ["PaymentCreateResponse"]
+__all__ = ["PaymentCreateResponse", "ProductCart"]
+
+
+class ProductCart(BaseModel):
+    product_id: str
+
+    quantity: int
+
+    amount: Optional[int] = None
+    """Amount the customer pays if pay_what_you_want is enabled.
+
+    If disabled then amount will be ignored Represented in the lowest denomination
+    of the currency (e.g., cents for USD). For example, to charge $1.00, pass `100`.
+    """
 
 
 class PaymentCreateResponse(BaseModel):
@@ -38,5 +50,5 @@ class PaymentCreateResponse(BaseModel):
     payment_link: Optional[str] = None
     """Optional URL to a hosted payment page"""
 
-    product_cart: Optional[List[OneTimeProductCartItem]] = None
+    product_cart: Optional[List[ProductCart]] = None
     """Optional list of products included in the payment"""
