@@ -22,7 +22,7 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.refund import Refund
-from ..types.refund_list_response import RefundListResponse
+from ..types.refund_list_item import RefundListItem
 
 __all__ = ["RefundsResource", "AsyncRefundsResource"]
 
@@ -136,13 +136,14 @@ class RefundsResource(SyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         status: Literal["succeeded", "failed", "pending", "review"] | Omit = omit,
+        subscription_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPageNumberPagination[RefundListResponse]:
+    ) -> SyncDefaultPageNumberPagination[RefundListItem]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -157,6 +158,8 @@ class RefundsResource(SyncAPIResource):
 
           status: Filter by status
 
+          subscription_id: Filter by subscription id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -167,7 +170,7 @@ class RefundsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/refunds",
-            page=SyncDefaultPageNumberPagination[RefundListResponse],
+            page=SyncDefaultPageNumberPagination[RefundListItem],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -181,11 +184,12 @@ class RefundsResource(SyncAPIResource):
                         "page_number": page_number,
                         "page_size": page_size,
                         "status": status,
+                        "subscription_id": subscription_id,
                     },
                     refund_list_params.RefundListParams,
                 ),
             ),
-            model=RefundListResponse,
+            model=RefundListItem,
         )
 
 
@@ -298,13 +302,14 @@ class AsyncRefundsResource(AsyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         status: Literal["succeeded", "failed", "pending", "review"] | Omit = omit,
+        subscription_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RefundListResponse, AsyncDefaultPageNumberPagination[RefundListResponse]]:
+    ) -> AsyncPaginator[RefundListItem, AsyncDefaultPageNumberPagination[RefundListItem]]:
         """
         Args:
           created_at_gte: Get events after this created time
@@ -319,6 +324,8 @@ class AsyncRefundsResource(AsyncAPIResource):
 
           status: Filter by status
 
+          subscription_id: Filter by subscription id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -329,7 +336,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/refunds",
-            page=AsyncDefaultPageNumberPagination[RefundListResponse],
+            page=AsyncDefaultPageNumberPagination[RefundListItem],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -343,11 +350,12 @@ class AsyncRefundsResource(AsyncAPIResource):
                         "page_number": page_number,
                         "page_size": page_size,
                         "status": status,
+                        "subscription_id": subscription_id,
                     },
                     refund_list_params.RefundListParams,
                 ),
             ),
-            model=RefundListResponse,
+            model=RefundListItem,
         )
 
 

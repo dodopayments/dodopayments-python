@@ -29,7 +29,6 @@ from ..types.billing_address_param import BillingAddressParam
 from ..types.payment_list_response import PaymentListResponse
 from ..types.customer_request_param import CustomerRequestParam
 from ..types.payment_create_response import PaymentCreateResponse
-from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 from ..types.payment_retrieve_line_items_response import PaymentRetrieveLineItemsResponse
 
 __all__ = ["PaymentsResource", "AsyncPaymentsResource"]
@@ -61,7 +60,7 @@ class PaymentsResource(SyncAPIResource):
         *,
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
-        product_cart: Iterable[OneTimeProductCartItemParam],
+        product_cart: Iterable[payment_create_params.ProductCart],
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -336,7 +335,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         *,
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
-        product_cart: Iterable[OneTimeProductCartItemParam],
+        product_cart: Iterable[payment_create_params.ProductCart],
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,

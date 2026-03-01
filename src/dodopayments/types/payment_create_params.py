@@ -9,9 +9,8 @@ from .currency import Currency
 from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
-from .one_time_product_cart_item_param import OneTimeProductCartItemParam
 
-__all__ = ["PaymentCreateParams"]
+__all__ = ["PaymentCreateParams", "ProductCart"]
 
 
 class PaymentCreateParams(TypedDict, total=False):
@@ -21,7 +20,7 @@ class PaymentCreateParams(TypedDict, total=False):
     customer: Required[CustomerRequestParam]
     """Customer information for the payment"""
 
-    product_cart: Required[Iterable[OneTimeProductCartItemParam]]
+    product_cart: Required[Iterable[ProductCart]]
     """List of products in the cart. Must contain at least 1 and at most 100 items."""
 
     allowed_payment_method_types: Optional[List[PaymentMethodTypes]]
@@ -83,4 +82,17 @@ class PaymentCreateParams(TypedDict, total=False):
     """Tax ID in case the payment is B2B.
 
     If tax id validation fails the payment creation will fail
+    """
+
+
+class ProductCart(TypedDict, total=False):
+    product_id: Required[str]
+
+    quantity: Required[int]
+
+    amount: Optional[int]
+    """Amount the customer pays if pay_what_you_want is enabled.
+
+    If disabled then amount will be ignored Represented in the lowest denomination
+    of the currency (e.g., cents for USD). For example, to charge $1.00, pass `100`.
     """

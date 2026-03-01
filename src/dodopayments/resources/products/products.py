@@ -47,6 +47,7 @@ from ...types.tax_category import TaxCategory
 from ...types.product_list_response import ProductListResponse
 from ...types.license_key_duration_param import LicenseKeyDurationParam
 from ...types.product_update_files_response import ProductUpdateFilesResponse
+from ...types.attach_credit_entitlement_param import AttachCreditEntitlementParam
 
 __all__ = ["ProductsResource", "AsyncProductsResource"]
 
@@ -87,7 +88,7 @@ class ProductsResource(SyncAPIResource):
         tax_category: TaxCategory,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
-        credit_entitlements: Optional[Iterable[product_create_params.CreditEntitlement]] | Omit = omit,
+        credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
@@ -203,7 +204,7 @@ class ProductsResource(SyncAPIResource):
         *,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
-        credit_entitlements: Optional[Iterable[product_update_params.CreditEntitlement]] | Omit = omit,
+        credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
@@ -497,7 +498,7 @@ class AsyncProductsResource(AsyncAPIResource):
         tax_category: TaxCategory,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
-        credit_entitlements: Optional[Iterable[product_create_params.CreditEntitlement]] | Omit = omit,
+        credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
@@ -613,7 +614,7 @@ class AsyncProductsResource(AsyncAPIResource):
         *,
         addons: Optional[SequenceNotStr[str]] | Omit = omit,
         brand_id: Optional[str] | Omit = omit,
-        credit_entitlements: Optional[Iterable[product_update_params.CreditEntitlement]] | Omit = omit,
+        credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
         image_id: Optional[str] | Omit = omit,

@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .conjunction import Conjunction
+from .filter_operator import FilterOperator
 
 __all__ = [
     "MeterFilter",
@@ -23,16 +24,7 @@ class ClausesDirectFilterCondition(BaseModel):
     key: str
     """Filter key to apply"""
 
-    operator: Literal[
-        "equals",
-        "not_equals",
-        "greater_than",
-        "greater_than_or_equals",
-        "less_than",
-        "less_than_or_equals",
-        "contains",
-        "does_not_contain",
-    ]
+    operator: FilterOperator
 
     value: Union[str, float, bool]
     """Filter value - can be string, number, or boolean"""
@@ -44,16 +36,7 @@ class ClausesNestedMeterFilterClausesLevel1FilterCondition(BaseModel):
     key: str
     """Filter key to apply"""
 
-    operator: Literal[
-        "equals",
-        "not_equals",
-        "greater_than",
-        "greater_than_or_equals",
-        "less_than",
-        "less_than_or_equals",
-        "contains",
-        "does_not_contain",
-    ]
+    operator: FilterOperator
 
     value: Union[str, float, bool]
     """Filter value - can be string, number, or boolean"""
@@ -65,16 +48,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2FilterCondit
     key: str
     """Filter key to apply"""
 
-    operator: Literal[
-        "equals",
-        "not_equals",
-        "greater_than",
-        "greater_than_or_equals",
-        "less_than",
-        "less_than_or_equals",
-        "contains",
-        "does_not_contain",
-    ]
+    operator: FilterOperator
 
     value: Union[str, float, bool]
     """Filter value - can be string, number, or boolean"""
@@ -86,16 +60,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2NestedFilter
     key: str
     """Filter key to apply"""
 
-    operator: Literal[
-        "equals",
-        "not_equals",
-        "greater_than",
-        "greater_than_or_equals",
-        "less_than",
-        "less_than_or_equals",
-        "contains",
-        "does_not_contain",
-    ]
+    operator: FilterOperator
 
     value: Union[str, float, bool]
     """Filter value - can be string, number, or boolean"""
@@ -107,7 +72,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2NestedFilter
     clauses: List[ClausesNestedMeterFilterClausesLevel1NestedFilterClausesLevel2NestedFilterClause]
     """Level 3: Filter conditions only (max depth reached)"""
 
-    conjunction: Literal["and", "or"]
+    conjunction: Conjunction
 
 
 class ClausesNestedMeterFilterClausesLevel1NestedFilter(BaseModel):
@@ -119,7 +84,7 @@ class ClausesNestedMeterFilterClausesLevel1NestedFilter(BaseModel):
     ]
     """Level 2: Can be conditions or nested filters (1 more level allowed)"""
 
-    conjunction: Literal["and", "or"]
+    conjunction: Conjunction
 
 
 class ClausesNestedMeterFilter(BaseModel):
@@ -131,7 +96,7 @@ class ClausesNestedMeterFilter(BaseModel):
     ]
     """Level 1: Can be conditions or nested filters (2 more levels allowed)"""
 
-    conjunction: Literal["and", "or"]
+    conjunction: Conjunction
 
 
 class MeterFilter(BaseModel):
@@ -148,5 +113,5 @@ class MeterFilter(BaseModel):
     deep)
     """
 
-    conjunction: Literal["and", "or"]
+    conjunction: Conjunction
     """Logical conjunction to apply between clauses (and/or)"""

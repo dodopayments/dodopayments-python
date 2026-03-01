@@ -9,7 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
-from dodopayments.types import Refund, RefundListResponse
+from dodopayments.types import Refund, RefundListItem
 from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
@@ -107,7 +107,7 @@ class TestRefunds:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         refund = client.refunds.list()
-        assert_matches_type(SyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
@@ -118,8 +118,9 @@ class TestRefunds:
             page_number=0,
             page_size=0,
             status="succeeded",
+            subscription_id="subscription_id",
         )
-        assert_matches_type(SyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
@@ -128,7 +129,7 @@ class TestRefunds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         refund = response.parse()
-        assert_matches_type(SyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
@@ -137,7 +138,7 @@ class TestRefunds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             refund = response.parse()
-            assert_matches_type(SyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+            assert_matches_type(SyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +236,7 @@ class TestAsyncRefunds:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         refund = await async_client.refunds.list()
-        assert_matches_type(AsyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -246,8 +247,9 @@ class TestAsyncRefunds:
             page_number=0,
             page_size=0,
             status="succeeded",
+            subscription_id="subscription_id",
         )
-        assert_matches_type(AsyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -256,7 +258,7 @@ class TestAsyncRefunds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         refund = await response.parse()
-        assert_matches_type(AsyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -265,6 +267,6 @@ class TestAsyncRefunds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             refund = await response.parse()
-            assert_matches_type(AsyncDefaultPageNumberPagination[RefundListResponse], refund, path=["response"])
+            assert_matches_type(AsyncDefaultPageNumberPagination[RefundListItem], refund, path=["response"])
 
         assert cast(Any, response.is_closed) is True

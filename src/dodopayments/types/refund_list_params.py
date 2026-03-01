@@ -29,3 +29,6 @@ class RefundListParams(TypedDict, total=False):
 
     status: Literal["succeeded", "failed", "pending", "review"]
     """Filter by status"""
+
+    subscription_id: str
+    """Filter by subscription id"""

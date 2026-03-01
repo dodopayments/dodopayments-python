@@ -7,10 +7,10 @@ from .._models import BaseModel
 from .currency import Currency
 from .refund_status import RefundStatus
 
-__all__ = ["RefundListResponse"]
+__all__ = ["RefundListItem"]
 
 
-class RefundListResponse(BaseModel):
+class RefundListItem(BaseModel):
     business_id: str
     """The unique identifier of the business issuing the refund."""
 
