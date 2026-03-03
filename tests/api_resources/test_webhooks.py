@@ -266,9 +266,20 @@ class TestWebhooks:
                 "",
             )
 
-    def test_method_unwrap(self, client: DodoPayments) -> None:
-        key = b"secret"
-        hook = standardwebhooks.Webhook(key)
+    @pytest.mark.parametrize(
+        "client_opt,method_opt",
+        [
+            ("whsec_c2VjcmV0Cg==", None),
+            ("wrong", b"secret\n"),
+            ("wrong", "whsec_c2VjcmV0Cg=="),
+            (None, b"secret\n"),
+            (None, "whsec_c2VjcmV0Cg=="),
+        ],
+    )
+    def test_method_unwrap(self, client: DodoPayments, client_opt: str | None, method_opt: str | bytes | None) -> None:
+        hook = standardwebhooks.Webhook(b"secret\n")
+
+        client = client.with_options(webhook_key=client_opt)
 
         data = """{"business_id":"business_id","data":{"id":"id","amount":"amount","balance_after":"balance_after","balance_before":"balance_before","business_id":"business_id","created_at":"2019-12-27T18:11:19.117Z","credit_entitlement_id":"credit_entitlement_id","customer_id":"customer_id","is_credit":true,"overage_after":"overage_after","overage_before":"overage_before","transaction_type":"credit_added","description":"description","grant_id":"grant_id","reference_id":"reference_id","reference_type":"reference_type"},"timestamp":"2019-12-27T18:11:19.117Z","type":"credit.added"}"""
         msg_id = "1"
@@ -281,7 +292,7 @@ class TestWebhooks:
         }
 
         try:
-            _ = client.webhooks.unwrap(data, headers=headers, key=key)
+            _ = client.webhooks.unwrap(data, headers=headers, key=method_opt)
         except standardwebhooks.WebhookVerificationError as e:
             raise AssertionError("Failed to unwrap valid webhook") from e
 
@@ -292,7 +303,7 @@ class TestWebhooks:
         ]
         for bad_header in bad_headers:
             with pytest.raises(standardwebhooks.WebhookVerificationError):
-                _ = client.webhooks.unwrap(data, headers=bad_header, key=key)
+                _ = client.webhooks.unwrap(data, headers=bad_header, key=method_opt)
 
 
 class TestAsyncWebhooks:
@@ -543,9 +554,22 @@ class TestAsyncWebhooks:
                 "",
             )
 
-    def test_method_unwrap(self, client: DodoPayments) -> None:
-        key = b"secret"
-        hook = standardwebhooks.Webhook(key)
+    @pytest.mark.parametrize(
+        "client_opt,method_opt",
+        [
+            ("whsec_c2VjcmV0Cg==", None),
+            ("wrong", b"secret\n"),
+            ("wrong", "whsec_c2VjcmV0Cg=="),
+            (None, b"secret\n"),
+            (None, "whsec_c2VjcmV0Cg=="),
+        ],
+    )
+    def test_method_unwrap(
+        self, async_client: DodoPayments, client_opt: str | None, method_opt: str | bytes | None
+    ) -> None:
+        hook = standardwebhooks.Webhook(b"secret\n")
+
+        async_client = async_client.with_options(webhook_key=client_opt)
 
         data = """{"business_id":"business_id","data":{"id":"id","amount":"amount","balance_after":"balance_after","balance_before":"balance_before","business_id":"business_id","created_at":"2019-12-27T18:11:19.117Z","credit_entitlement_id":"credit_entitlement_id","customer_id":"customer_id","is_credit":true,"overage_after":"overage_after","overage_before":"overage_before","transaction_type":"credit_added","description":"description","grant_id":"grant_id","reference_id":"reference_id","reference_type":"reference_type"},"timestamp":"2019-12-27T18:11:19.117Z","type":"credit.added"}"""
         msg_id = "1"
@@ -558,7 +582,7 @@ class TestAsyncWebhooks:
         }
 
         try:
-            _ = client.webhooks.unwrap(data, headers=headers, key=key)
+            _ = async_client.webhooks.unwrap(data, headers=headers, key=method_opt)
         except standardwebhooks.WebhookVerificationError as e:
             raise AssertionError("Failed to unwrap valid webhook") from e
 
@@ -569,4 +593,4 @@ class TestAsyncWebhooks:
         ]
         for bad_header in bad_headers:
             with pytest.raises(standardwebhooks.WebhookVerificationError):
-                _ = client.webhooks.unwrap(data, headers=bad_header, key=key)
+                _ = async_client.webhooks.unwrap(data, headers=bad_header, key=method_opt)
