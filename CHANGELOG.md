@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.86.1 (2026-03-03)
+
+Full Changelog: [v1.86.0...v1.86.1](https://github.com/dodopayments/dodopayments-python/compare/v1.86.0...v1.86.1)
+
+### Chores
+
+* **tests:** update webhook tests ([0a50774](https://github.com/dodopayments/dodopayments-python/commit/0a5077414af2d9b78103703261413092d51d4827))
+
 ## 1.86.0 (2026-03-01)
 
 Full Changelog: [v1.84.1...v1.86.0](https://github.com/dodopayments/dodopayments-python/compare/v1.84.1...v1.86.0)
