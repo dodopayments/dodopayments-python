@@ -31,6 +31,12 @@ class DiscountUpdateParams(TypedDict, total=False):
 
     name: Optional[str]
 
+    preserve_on_plan_change: Optional[bool]
+    """
+    Whether this discount should be preserved when a subscription changes plans. If
+    not provided, the existing value is kept.
+    """
+
     restricted_to: Optional[SequenceNotStr[str]]
     """
     If present, replaces all restricted product IDs with this new set. To remove all

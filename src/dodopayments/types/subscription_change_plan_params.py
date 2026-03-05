@@ -26,6 +26,14 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     addons
     """
 
+    discount_code: Optional[str]
+    """
+    Optional discount code to apply to the new plan. If provided, validates and
+    applies the discount to the plan change. If not provided and the subscription
+    has an existing discount with `preserve_on_plan_change=true`, the existing
+    discount will be preserved (if applicable to the new product).
+    """
+
     metadata: Optional[Dict[str, str]]
     """Metadata for the payment.
 

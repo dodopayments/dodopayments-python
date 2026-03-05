@@ -54,6 +54,7 @@ class DiscountsResource(SyncAPIResource):
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         usage_limit: Optional[int] | Omit = omit,
@@ -87,6 +88,9 @@ class DiscountsResource(SyncAPIResource):
 
           expires_at: When the discount expires, if ever.
 
+          preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans.
+              Default: false (discount is removed on plan change)
+
           restricted_to: List of product IDs to restrict usage (if any).
 
           subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
@@ -112,6 +116,7 @@ class DiscountsResource(SyncAPIResource):
                     "code": code,
                     "expires_at": expires_at,
                     "name": name,
+                    "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
                     "subscription_cycles": subscription_cycles,
                     "usage_limit": usage_limit,
@@ -165,6 +170,7 @@ class DiscountsResource(SyncAPIResource):
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         type: Optional[DiscountType] | Omit = omit,
@@ -190,6 +196,9 @@ class DiscountsResource(SyncAPIResource):
               Must be at least 1 if provided.
 
           code: If present, update the discount code (uppercase).
+
+          preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans. If
+              not provided, the existing value is kept.
 
           restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
               restrictions, send empty array
@@ -218,6 +227,7 @@ class DiscountsResource(SyncAPIResource):
                     "code": code,
                     "expires_at": expires_at,
                     "name": name,
+                    "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
                     "subscription_cycles": subscription_cycles,
                     "type": type,
@@ -393,6 +403,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         usage_limit: Optional[int] | Omit = omit,
@@ -426,6 +437,9 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
           expires_at: When the discount expires, if ever.
 
+          preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans.
+              Default: false (discount is removed on plan change)
+
           restricted_to: List of product IDs to restrict usage (if any).
 
           subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
@@ -451,6 +465,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
                     "code": code,
                     "expires_at": expires_at,
                     "name": name,
+                    "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
                     "subscription_cycles": subscription_cycles,
                     "usage_limit": usage_limit,
@@ -504,6 +519,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         type: Optional[DiscountType] | Omit = omit,
@@ -529,6 +545,9 @@ class AsyncDiscountsResource(AsyncAPIResource):
               Must be at least 1 if provided.
 
           code: If present, update the discount code (uppercase).
+
+          preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans. If
+              not provided, the existing value is kept.
 
           restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
               restrictions, send empty array
@@ -557,6 +576,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
                     "code": code,
                     "expires_at": expires_at,
                     "name": name,
+                    "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
                     "subscription_cycles": subscription_cycles,
                     "type": type,
