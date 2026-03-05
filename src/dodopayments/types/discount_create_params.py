@@ -40,6 +40,12 @@ class DiscountCreateParams(TypedDict, total=False):
 
     name: Optional[str]
 
+    preserve_on_plan_change: bool
+    """
+    Whether this discount should be preserved when a subscription changes plans.
+    Default: false (discount is removed on plan change)
+    """
+
     restricted_to: Optional[SequenceNotStr[str]]
     """List of product IDs to restrict usage (if any)."""
 

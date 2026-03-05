@@ -30,6 +30,12 @@ class Discount(BaseModel):
     discount_id: str
     """The unique discount ID"""
 
+    preserve_on_plan_change: bool
+    """
+    Whether this discount should be preserved when a subscription changes plans.
+    Default: false (discount is removed on plan change)
+    """
+
     restricted_to: List[str]
     """List of product IDs to which this discount is restricted."""
 

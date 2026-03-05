@@ -362,6 +362,7 @@ class SubscriptionsResource(SyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -381,6 +382,11 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          discount_code: Optional discount code to apply to the new plan. If provided, validates and
+              applies the discount to the plan change. If not provided and the subscription
+              has an existing discount with `preserve_on_plan_change=true`, the existing
+              discount will be preserved (if applicable to the new product).
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -412,6 +418,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },
@@ -498,6 +505,7 @@ class SubscriptionsResource(SyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -517,6 +525,11 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          discount_code: Optional discount code to apply to the new plan. If provided, validates and
+              applies the discount to the plan change. If not provided and the subscription
+              has an existing discount with `preserve_on_plan_change=true`, the existing
+              discount will be preserved (if applicable to the new product).
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -547,6 +560,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },
@@ -1088,6 +1102,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1107,6 +1122,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          discount_code: Optional discount code to apply to the new plan. If provided, validates and
+              applies the discount to the plan change. If not provided and the subscription
+              has an existing discount with `preserve_on_plan_change=true`, the existing
+              discount will be preserved (if applicable to the new product).
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -1138,6 +1158,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },
@@ -1224,6 +1245,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        discount_code: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1243,6 +1265,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          discount_code: Optional discount code to apply to the new plan. If provided, validates and
+              applies the discount to the plan change. If not provided and the subscription
+              has an existing discount with `preserve_on_plan_change=true`, the existing
+              discount will be preserved (if applicable to the new product).
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -1273,6 +1300,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "proration_billing_mode": proration_billing_mode,
                     "quantity": quantity,
                     "addons": addons,
+                    "discount_code": discount_code,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },

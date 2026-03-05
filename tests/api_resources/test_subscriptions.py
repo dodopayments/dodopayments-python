@@ -301,6 +301,7 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            discount_code="discount_code",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
@@ -427,6 +428,7 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            discount_code="discount_code",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
@@ -944,6 +946,7 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            discount_code="discount_code",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
@@ -1070,6 +1073,7 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            discount_code="discount_code",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
