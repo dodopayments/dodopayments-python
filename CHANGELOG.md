@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.87.1 (2026-03-06)
+
+Full Changelog: [v1.87.0...v1.87.1](https://github.com/dodopayments/dodopayments-python/compare/v1.87.0...v1.87.1)
+
+### Chores
+
+* **test:** do not count install time for mock server timeout ([afe7bb7](https://github.com/dodopayments/dodopayments-python/commit/afe7bb7b582451190ded4bc93421804b5a2b8071))
+
 ## 1.87.0 (2026-03-05)
 
 Full Changelog: [v1.86.1...v1.87.0](https://github.com/dodopayments/dodopayments-python/compare/v1.86.1...v1.87.0)
