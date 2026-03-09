@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.87.2 (2026-03-09)
+
+Full Changelog: [v1.87.1...v1.87.2](https://github.com/dodopayments/dodopayments-python/compare/v1.87.1...v1.87.2)
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([0311340](https://github.com/dodopayments/dodopayments-python/commit/03113409cbaab75c8fc0dbb3991a7cacc0c53fe2))
+
 ## 1.87.1 (2026-03-06)
 
 Full Changelog: [v1.87.0...v1.87.1](https://github.com/dodopayments/dodopayments-python/compare/v1.87.0...v1.87.1)
