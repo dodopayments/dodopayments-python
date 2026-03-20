@@ -11,7 +11,7 @@ import httpx
 
 from ..types import Currency, payment_list_params, payment_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -184,7 +184,7 @@ class PaymentsResource(SyncAPIResource):
         if not payment_id:
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
         return self._get(
-            f"/payments/{payment_id}",
+            path_template("/payments/{payment_id}", payment_id=payment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -301,7 +301,7 @@ class PaymentsResource(SyncAPIResource):
         if not payment_id:
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
         return self._get(
-            f"/payments/{payment_id}/line-items",
+            path_template("/payments/{payment_id}/line-items", payment_id=payment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -459,7 +459,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         if not payment_id:
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
         return await self._get(
-            f"/payments/{payment_id}",
+            path_template("/payments/{payment_id}", payment_id=payment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -576,7 +576,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         if not payment_id:
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
         return await self._get(
-            f"/payments/{payment_id}/line-items",
+            path_template("/payments/{payment_id}/line-items", payment_id=payment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
