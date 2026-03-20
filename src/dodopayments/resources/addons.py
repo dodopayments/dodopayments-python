@@ -8,7 +8,7 @@ import httpx
 
 from ..types import Currency, TaxCategory, addon_list_params, addon_create_params, addon_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -124,7 +124,7 @@ class AddonsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/addons/{id}",
+            path_template("/addons/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -173,7 +173,7 @@ class AddonsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/addons/{id}",
+            path_template("/addons/{id}", id=id),
             body=maybe_transform(
                 {
                     "currency": currency,
@@ -260,7 +260,7 @@ class AddonsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/addons/{id}/images",
+            path_template("/addons/{id}/images", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -365,7 +365,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/addons/{id}",
+            path_template("/addons/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -414,7 +414,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/addons/{id}",
+            path_template("/addons/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "currency": currency,
@@ -501,7 +501,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/addons/{id}/images",
+            path_template("/addons/{id}/images", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

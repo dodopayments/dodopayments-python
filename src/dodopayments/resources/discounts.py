@@ -9,7 +9,7 @@ import httpx
 
 from ..types import DiscountType, discount_list_params, discount_create_params, discount_update_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -155,7 +155,7 @@ class DiscountsResource(SyncAPIResource):
         if not discount_id:
             raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
         return self._get(
-            f"/discounts/{discount_id}",
+            path_template("/discounts/{discount_id}", discount_id=discount_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -220,7 +220,7 @@ class DiscountsResource(SyncAPIResource):
         if not discount_id:
             raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
         return self._patch(
-            f"/discounts/{discount_id}",
+            path_template("/discounts/{discount_id}", discount_id=discount_id),
             body=maybe_transform(
                 {
                     "amount": amount,
@@ -331,7 +331,7 @@ class DiscountsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/discounts/{discount_id}",
+            path_template("/discounts/{discount_id}", discount_id=discount_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -367,7 +367,7 @@ class DiscountsResource(SyncAPIResource):
         if not code:
             raise ValueError(f"Expected a non-empty value for `code` but received {code!r}")
         return self._get(
-            f"/discounts/code/{code}",
+            path_template("/discounts/code/{code}", code=code),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -504,7 +504,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         if not discount_id:
             raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
         return await self._get(
-            f"/discounts/{discount_id}",
+            path_template("/discounts/{discount_id}", discount_id=discount_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -569,7 +569,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         if not discount_id:
             raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
         return await self._patch(
-            f"/discounts/{discount_id}",
+            path_template("/discounts/{discount_id}", discount_id=discount_id),
             body=await async_maybe_transform(
                 {
                     "amount": amount,
@@ -680,7 +680,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `discount_id` but received {discount_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/discounts/{discount_id}",
+            path_template("/discounts/{discount_id}", discount_id=discount_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -716,7 +716,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         if not code:
             raise ValueError(f"Expected a non-empty value for `code` but received {code!r}")
         return await self._get(
-            f"/discounts/code/{code}",
+            path_template("/discounts/code/{code}", code=code),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

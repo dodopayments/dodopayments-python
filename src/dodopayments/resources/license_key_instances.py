@@ -8,7 +8,7 @@ import httpx
 
 from ..types import license_key_instance_list_params, license_key_instance_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -68,7 +68,7 @@ class LicenseKeyInstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/license_key_instances/{id}",
+            path_template("/license_key_instances/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -100,7 +100,7 @@ class LicenseKeyInstancesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/license_key_instances/{id}",
+            path_template("/license_key_instances/{id}", id=id),
             body=maybe_transform({"name": name}, license_key_instance_update_params.LicenseKeyInstanceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -202,7 +202,7 @@ class AsyncLicenseKeyInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/license_key_instances/{id}",
+            path_template("/license_key_instances/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -234,7 +234,7 @@ class AsyncLicenseKeyInstancesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/license_key_instances/{id}",
+            path_template("/license_key_instances/{id}", id=id),
             body=await async_maybe_transform(
                 {"name": name}, license_key_instance_update_params.LicenseKeyInstanceUpdateParams
             ),

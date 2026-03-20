@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -103,7 +103,11 @@ class BalancesResource(SyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -168,7 +172,9 @@ class BalancesResource(SyncAPIResource):
                 f"Expected a non-empty value for `credit_entitlement_id` but received {credit_entitlement_id!r}"
             )
         return self._get_api_list(
-            f"/credit-entitlements/{credit_entitlement_id}/balances",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances", credit_entitlement_id=credit_entitlement_id
+            ),
             page=SyncDefaultPageNumberPagination[CustomerCreditBalance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -264,7 +270,11 @@ class BalancesResource(SyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._post(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger-entries",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger-entries",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             body=maybe_transform(
                 {
                     "amount": amount,
@@ -343,7 +353,11 @@ class BalancesResource(SyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get_api_list(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/grants",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/grants",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             page=SyncDefaultPageNumberPagination[BalanceListGrantsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -432,7 +446,11 @@ class BalancesResource(SyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get_api_list(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             page=SyncDefaultPageNumberPagination[CreditLedgerEntry],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -521,7 +539,11 @@ class AsyncBalancesResource(AsyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return await self._get(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -586,7 +608,9 @@ class AsyncBalancesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `credit_entitlement_id` but received {credit_entitlement_id!r}"
             )
         return self._get_api_list(
-            f"/credit-entitlements/{credit_entitlement_id}/balances",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances", credit_entitlement_id=credit_entitlement_id
+            ),
             page=AsyncDefaultPageNumberPagination[CustomerCreditBalance],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -682,7 +706,11 @@ class AsyncBalancesResource(AsyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return await self._post(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger-entries",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger-entries",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "amount": amount,
@@ -761,7 +789,11 @@ class AsyncBalancesResource(AsyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get_api_list(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/grants",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/grants",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             page=AsyncDefaultPageNumberPagination[BalanceListGrantsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -850,7 +882,11 @@ class AsyncBalancesResource(AsyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get_api_list(
-            f"/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger",
+            path_template(
+                "/credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger",
+                credit_entitlement_id=credit_entitlement_id,
+                customer_id=customer_id,
+            ),
             page=AsyncDefaultPageNumberPagination[CreditLedgerEntry],
             options=make_request_options(
                 extra_headers=extra_headers,
