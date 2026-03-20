@@ -9,7 +9,7 @@ import httpx
 
 from ....types import Currency
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -83,7 +83,7 @@ class LedgerEntriesResource(SyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._post(
-            f"/customers/{customer_id}/wallets/ledger-entries",
+            path_template("/customers/{customer_id}/wallets/ledger-entries", customer_id=customer_id),
             body=maybe_transform(
                 {
                     "amount": amount,
@@ -129,7 +129,7 @@ class LedgerEntriesResource(SyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get_api_list(
-            f"/customers/{customer_id}/wallets/ledger-entries",
+            path_template("/customers/{customer_id}/wallets/ledger-entries", customer_id=customer_id),
             page=SyncDefaultPageNumberPagination[CustomerWalletTransaction],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -204,7 +204,7 @@ class AsyncLedgerEntriesResource(AsyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return await self._post(
-            f"/customers/{customer_id}/wallets/ledger-entries",
+            path_template("/customers/{customer_id}/wallets/ledger-entries", customer_id=customer_id),
             body=await async_maybe_transform(
                 {
                     "amount": amount,
@@ -250,7 +250,7 @@ class AsyncLedgerEntriesResource(AsyncAPIResource):
         if not customer_id:
             raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get_api_list(
-            f"/customers/{customer_id}/wallets/ledger-entries",
+            path_template("/customers/{customer_id}/wallets/ledger-entries", customer_id=customer_id),
             page=AsyncDefaultPageNumberPagination[CustomerWalletTransaction],
             options=make_request_options(
                 extra_headers=extra_headers,

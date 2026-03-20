@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -67,7 +68,7 @@ class PaymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._get(
-            f"/invoices/payments/{payment_id}",
+            path_template("/invoices/payments/{payment_id}", payment_id=payment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -99,7 +100,7 @@ class PaymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `refund_id` but received {refund_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._get(
-            f"/invoices/refunds/{refund_id}",
+            path_template("/invoices/refunds/{refund_id}", refund_id=refund_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -152,7 +153,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._get(
-            f"/invoices/payments/{payment_id}",
+            path_template("/invoices/payments/{payment_id}", payment_id=payment_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -184,7 +185,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `refund_id` but received {refund_id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._get(
-            f"/invoices/refunds/{refund_id}",
+            path_template("/invoices/refunds/{refund_id}", refund_id=refund_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
