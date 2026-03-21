@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.87.2 (2026-03-21)
+
+Full Changelog: [v1.87.1...v1.87.2](https://github.com/dodopayments/dodopayments-python/compare/v1.87.1...v1.87.2)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([c7c160c](https://github.com/dodopayments/dodopayments-python/commit/c7c160c92278f8027ffe1790c144afffff402c92))
+* **pydantic:** do not pass `by_alias` unless set ([578cb7b](https://github.com/dodopayments/dodopayments-python/commit/578cb7b97fcef12ea71d8237fe7a713401d6056d))
+* sanitize endpoint path params ([9582486](https://github.com/dodopayments/dodopayments-python/commit/958248675eb95d690bbe7e21cea860715d31bd7c))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([0311340](https://github.com/dodopayments/dodopayments-python/commit/03113409cbaab75c8fc0dbb3991a7cacc0c53fe2))
+* **internal:** tweak CI branches ([b2de516](https://github.com/dodopayments/dodopayments-python/commit/b2de5160381b20d07bdcb59b9be1cd5856e11b1c))
+* **tests:** bump steady to v0.19.4 ([165dd6e](https://github.com/dodopayments/dodopayments-python/commit/165dd6e92ebb686cb8e3eeb5730283c2bc9d2125))
+* **tests:** bump steady to v0.19.5 ([b697b4e](https://github.com/dodopayments/dodopayments-python/commit/b697b4e9cabae48213b922723126b4737d359e57))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([677c0a6](https://github.com/dodopayments/dodopayments-python/commit/677c0a6483e19c25a24855d6fe5ab52446f5d6b2))
+
 ## 1.87.1 (2026-03-06)
 
 Full Changelog: [v1.87.0...v1.87.1](https://github.com/dodopayments/dodopayments-python/compare/v1.87.0...v1.87.1)
