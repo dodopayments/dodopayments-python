@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.92.0 (2026-03-25)
+
+Full Changelog: [v1.87.2...v1.92.0](https://github.com/dodopayments/dodopayments-python/compare/v1.87.2...v1.92.0)
+
+### Features
+
+* **api:** added cancel change plan endpoint ([3d33026](https://github.com/dodopayments/dodopayments-python/commit/3d330263f1863f8db7e78909d0a4bf08b24358ca))
+* **api:** manual updates ([d391e9e](https://github.com/dodopayments/dodopayments-python/commit/d391e9e1290a0dc29a2007b3dad83e27011610f1))
+* **api:** updated openapi spec to 1.92.1 ([c5f8fc6](https://github.com/dodopayments/dodopayments-python/commit/c5f8fc60b6361c8f48d4d4f647a47c34139a562a))
+* **api:** updated openapi spec to v1.92.3 ([373fd8c](https://github.com/dodopayments/dodopayments-python/commit/373fd8c19c1d37261d73e4748ec86c0e0835f013))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([53bbec5](https://github.com/dodopayments/dodopayments-python/commit/53bbec5c6cc08f36554428c03e86fa94a9543d50))
+* **internal:** update gitignore ([ff858fd](https://github.com/dodopayments/dodopayments-python/commit/ff858fd955b8ab92d4f48a83bc22c620efe1fa46))
+* **tests:** bump steady to v0.19.7 ([f77d898](https://github.com/dodopayments/dodopayments-python/commit/f77d8987e24162b99542755b587609989bda4b3f))
+
 ## 1.87.2 (2026-03-21)
 
 Full Changelog: [v1.87.1...v1.87.2](https://github.com/dodopayments/dodopayments-python/compare/v1.87.1...v1.87.2)
