@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -36,3 +37,6 @@ class DisputeListResponse(BaseModel):
 
     payment_id: str
     """The unique identifier of the payment associated with the dispute."""
+
+    is_resolved_by_rdr: Optional[bool] = None
+    """Whether the dispute was resolved by Rapid Dispute Resolution"""
