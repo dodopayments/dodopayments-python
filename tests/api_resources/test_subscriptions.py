@@ -302,6 +302,7 @@ class TestSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
@@ -429,6 +430,7 @@ class TestSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
@@ -947,6 +949,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
@@ -1074,6 +1077,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )

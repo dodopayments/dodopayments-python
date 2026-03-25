@@ -45,6 +45,7 @@ class CustomerPortalResource(SyncAPIResource):
         self,
         customer_id: str,
         *,
+        return_url: str | Omit = omit,
         send_email: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -53,8 +54,12 @@ class CustomerPortalResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerPortalSession:
-        """
-        Args:
+        """Args:
+          return_url: Optional return URL for this session.
+
+        Overrides the business-level default. This
+              URL will be shown as a "Return to {business}" back button in the portal.
+
           send_email: If true, will send link to user.
 
           extra_headers: Send extra headers
@@ -75,7 +80,11 @@ class CustomerPortalResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"send_email": send_email}, customer_portal_create_params.CustomerPortalCreateParams
+                    {
+                        "return_url": return_url,
+                        "send_email": send_email,
+                    },
+                    customer_portal_create_params.CustomerPortalCreateParams,
                 ),
             ),
             cast_to=CustomerPortalSession,
@@ -106,6 +115,7 @@ class AsyncCustomerPortalResource(AsyncAPIResource):
         self,
         customer_id: str,
         *,
+        return_url: str | Omit = omit,
         send_email: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -114,8 +124,12 @@ class AsyncCustomerPortalResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerPortalSession:
-        """
-        Args:
+        """Args:
+          return_url: Optional return URL for this session.
+
+        Overrides the business-level default. This
+              URL will be shown as a "Return to {business}" back button in the portal.
+
           send_email: If true, will send link to user.
 
           extra_headers: Send extra headers
@@ -136,7 +150,11 @@ class AsyncCustomerPortalResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"send_email": send_email}, customer_portal_create_params.CustomerPortalCreateParams
+                    {
+                        "return_url": return_url,
+                        "send_email": send_email,
+                    },
+                    customer_portal_create_params.CustomerPortalCreateParams,
                 ),
             ),
             cast_to=CustomerPortalSession,

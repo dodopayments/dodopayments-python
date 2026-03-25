@@ -359,10 +359,13 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        proration_billing_mode: Literal[
+            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+        ],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -387,6 +390,11 @@ class SubscriptionsResource(SyncAPIResource):
               applies the discount to the plan change. If not provided and the subscription
               has an existing discount with `preserve_on_plan_change=true`, the existing
               discount will be preserved (if applicable to the new product).
+
+          effective_at: When to apply the plan change.
+
+              - `immediately` (default): Apply the plan change right away
+              - `next_billing_date`: Schedule the change for the next billing date
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -419,6 +427,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },
@@ -502,10 +511,13 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        proration_billing_mode: Literal[
+            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+        ],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -530,6 +542,11 @@ class SubscriptionsResource(SyncAPIResource):
               applies the discount to the plan change. If not provided and the subscription
               has an existing discount with `preserve_on_plan_change=true`, the existing
               discount will be preserved (if applicable to the new product).
+
+          effective_at: When to apply the plan change.
+
+              - `immediately` (default): Apply the plan change right away
+              - `next_billing_date`: Schedule the change for the next billing date
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -561,6 +578,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },
@@ -1099,10 +1117,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        proration_billing_mode: Literal[
+            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+        ],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1127,6 +1148,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
               applies the discount to the plan change. If not provided and the subscription
               has an existing discount with `preserve_on_plan_change=true`, the existing
               discount will be preserved (if applicable to the new product).
+
+          effective_at: When to apply the plan change.
+
+              - `immediately` (default): Apply the plan change right away
+              - `next_billing_date`: Schedule the change for the next billing date
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -1159,6 +1185,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },
@@ -1242,10 +1269,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         product_id: str,
-        proration_billing_mode: Literal["prorated_immediately", "full_immediately", "difference_immediately"],
+        proration_billing_mode: Literal[
+            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+        ],
         quantity: int,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1270,6 +1300,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
               applies the discount to the plan change. If not provided and the subscription
               has an existing discount with `preserve_on_plan_change=true`, the existing
               discount will be preserved (if applicable to the new product).
+
+          effective_at: When to apply the plan change.
+
+              - `immediately` (default): Apply the plan change right away
+              - `next_billing_date`: Schedule the change for the next billing date
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -1301,6 +1336,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                 },

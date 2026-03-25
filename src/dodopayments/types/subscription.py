@@ -15,7 +15,46 @@ from .meter_cart_response_item import MeterCartResponseItem
 from .credit_entitlement_cart_response import CreditEntitlementCartResponse
 from .meter_credit_entitlement_cart_response import MeterCreditEntitlementCartResponse
 
-__all__ = ["Subscription"]
+__all__ = ["Subscription", "ScheduledChange", "ScheduledChangeAddon"]
+
+
+class ScheduledChangeAddon(BaseModel):
+    addon_id: str
+    """The addon ID"""
+
+    name: str
+    """Name of the addon"""
+
+    quantity: int
+    """Quantity of the addon"""
+
+
+class ScheduledChange(BaseModel):
+    """Scheduled plan change details, if any"""
+
+    id: str
+    """The scheduled plan change ID"""
+
+    addons: List[ScheduledChangeAddon]
+    """Addons included in the scheduled change"""
+
+    created_at: datetime
+    """When this scheduled change was created"""
+
+    effective_at: datetime
+    """When the change will be applied"""
+
+    product_id: str
+    """The product ID the subscription will change to"""
+
+    quantity: int
+    """Quantity for the new plan"""
+
+    product_description: Optional[str] = None
+    """Description of the product being changed to"""
+
+    product_name: Optional[str] = None
+    """Name of the product being changed to"""
 
 
 class Subscription(BaseModel):
@@ -116,6 +155,9 @@ class Subscription(BaseModel):
 
     payment_method_id: Optional[str] = None
     """Saved payment method id used for recurring charges"""
+
+    scheduled_change: Optional[ScheduledChange] = None
+    """Scheduled plan change details, if any"""
 
     tax_id: Optional[str] = None
     """Tax identifier provided for this subscription (if applicable)"""
