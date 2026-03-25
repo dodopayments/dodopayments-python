@@ -279,6 +279,44 @@ class TestSubscriptions:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_cancel_change_plan(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.cancel_change_plan(
+            "subscription_id",
+        )
+        assert subscription is None
+
+    @parametrize
+    def test_raw_response_cancel_change_plan(self, client: DodoPayments) -> None:
+        response = client.subscriptions.with_raw_response.cancel_change_plan(
+            "subscription_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert subscription is None
+
+    @parametrize
+    def test_streaming_response_cancel_change_plan(self, client: DodoPayments) -> None:
+        with client.subscriptions.with_streaming_response.cancel_change_plan(
+            "subscription_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert subscription is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_cancel_change_plan(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            client.subscriptions.with_raw_response.cancel_change_plan(
+                "",
+            )
+
+    @parametrize
     def test_method_change_plan(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.change_plan(
             subscription_id="subscription_id",
@@ -924,6 +962,44 @@ class TestAsyncSubscriptions:
             )
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_cancel_change_plan(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.cancel_change_plan(
+            "subscription_id",
+        )
+        assert subscription is None
+
+    @parametrize
+    async def test_raw_response_cancel_change_plan(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.subscriptions.with_raw_response.cancel_change_plan(
+            "subscription_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert subscription is None
+
+    @parametrize
+    async def test_streaming_response_cancel_change_plan(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.subscriptions.with_streaming_response.cancel_change_plan(
+            "subscription_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert subscription is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_cancel_change_plan(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            await async_client.subscriptions.with_raw_response.cancel_change_plan(
+                "",
+            )
 
     @parametrize
     async def test_method_change_plan(self, async_client: AsyncDodoPayments) -> None:
