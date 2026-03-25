@@ -37,6 +37,12 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     billing_currency: Optional[Currency]
     """This field is ingored if adaptive pricing is disabled"""
 
+    cancel_url: Optional[str]
+    """
+    The URL to redirect the customer if they cancel or go back from the checkout. If
+    not provided, the back button will not be displayed.
+    """
+
     confirm: bool
     """If confirm is true, all the details will be finalized.
 

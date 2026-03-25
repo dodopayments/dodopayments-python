@@ -14,7 +14,9 @@ class SubscriptionPreviewChangePlanParams(TypedDict, total=False):
     product_id: Required[str]
     """Unique identifier of the product to subscribe to"""
 
-    proration_billing_mode: Required[Literal["prorated_immediately", "full_immediately", "difference_immediately"]]
+    proration_billing_mode: Required[
+        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+    ]
     """Proration Billing Mode"""
 
     quantity: Required[int]
@@ -32,6 +34,13 @@ class SubscriptionPreviewChangePlanParams(TypedDict, total=False):
     applies the discount to the plan change. If not provided and the subscription
     has an existing discount with `preserve_on_plan_change=true`, the existing
     discount will be preserved (if applicable to the new product).
+    """
+
+    effective_at: Literal["immediately", "next_billing_date"]
+    """When to apply the plan change.
+
+    - `immediately` (default): Apply the plan change right away
+    - `next_billing_date`: Schedule the change for the next billing date
     """
 
     metadata: Optional[Dict[str, str]]

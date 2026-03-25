@@ -58,6 +58,7 @@ class TestCheckoutSessions:
                 "zipcode": "zipcode",
             },
             billing_currency="AED",
+            cancel_url="cancel_url",
             confirm=True,
             custom_fields=[
                 {
@@ -268,6 +269,7 @@ class TestCheckoutSessions:
                 "zipcode": "zipcode",
             },
             billing_currency="AED",
+            cancel_url="cancel_url",
             confirm=True,
             custom_fields=[
                 {
@@ -446,6 +448,7 @@ class TestAsyncCheckoutSessions:
                 "zipcode": "zipcode",
             },
             billing_currency="AED",
+            cancel_url="cancel_url",
             confirm=True,
             custom_fields=[
                 {
@@ -656,6 +659,7 @@ class TestAsyncCheckoutSessions:
                 "zipcode": "zipcode",
             },
             billing_currency="AED",
+            cancel_url="cancel_url",
             confirm=True,
             custom_fields=[
                 {

@@ -54,6 +54,10 @@ class Item(BaseModel):
     last_used_at: Optional[datetime] = None
 
     payment_method_type: Optional[PaymentMethodTypes] = None
+    """All supported payment method types (from Hyperswitch).
+
+    Used for disabled-payment-methods filtering and validation.
+    """
 
     recurring_enabled: Optional[bool] = None
 

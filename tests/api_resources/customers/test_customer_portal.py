@@ -28,6 +28,7 @@ class TestCustomerPortal:
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         customer_portal = client.customers.customer_portal.create(
             customer_id="customer_id",
+            return_url="return_url",
             send_email=True,
         )
         assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
@@ -80,6 +81,7 @@ class TestAsyncCustomerPortal:
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         customer_portal = await async_client.customers.customer_portal.create(
             customer_id="customer_id",
+            return_url="return_url",
             send_email=True,
         )
         assert_matches_type(CustomerPortalSession, customer_portal, path=["response"])
