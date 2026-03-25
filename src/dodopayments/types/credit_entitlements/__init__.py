@@ -6,6 +6,7 @@ from .ledger_entry_type import LedgerEntryType as LedgerEntryType
 from .balance_list_params import BalanceListParams as BalanceListParams
 from .credit_ledger_entry import CreditLedgerEntry as CreditLedgerEntry
 from .customer_credit_balance import CustomerCreditBalance as CustomerCreditBalance
+from .credit_ledger_entry_param import CreditLedgerEntryParam as CreditLedgerEntryParam
 from .balance_list_grants_params import BalanceListGrantsParams as BalanceListGrantsParams
 from .balance_list_ledger_params import BalanceListLedgerParams as BalanceListLedgerParams
 from .balance_list_grants_response import BalanceListGrantsResponse as BalanceListGrantsResponse
