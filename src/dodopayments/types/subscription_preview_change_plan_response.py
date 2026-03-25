@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
@@ -125,6 +126,9 @@ class ImmediateChargeSummary(BaseModel):
 
 
 class ImmediateCharge(BaseModel):
+    effective_at: datetime
+    """When the plan change will be effective"""
+
     line_items: List[ImmediateChargeLineItem]
 
     summary: ImmediateChargeSummary

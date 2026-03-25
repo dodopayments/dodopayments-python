@@ -65,6 +65,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
+        cancel_url: Optional[str] | Omit = omit,
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
@@ -100,6 +101,9 @@ class CheckoutSessionsResource(SyncAPIResource):
           billing_address: Billing address information for the session
 
           billing_currency: This field is ingored if adaptive pricing is disabled
+
+          cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
+              not provided, the back button will not be displayed.
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
@@ -148,6 +152,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
+                    "cancel_url": cancel_url,
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,
@@ -211,6 +216,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
+        cancel_url: Optional[str] | Omit = omit,
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
@@ -246,6 +252,9 @@ class CheckoutSessionsResource(SyncAPIResource):
           billing_address: Billing address information for the session
 
           billing_currency: This field is ingored if adaptive pricing is disabled
+
+          cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
+              not provided, the back button will not be displayed.
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
@@ -294,6 +303,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
+                    "cancel_url": cancel_url,
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,
@@ -347,6 +357,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
+        cancel_url: Optional[str] | Omit = omit,
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
@@ -382,6 +393,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           billing_address: Billing address information for the session
 
           billing_currency: This field is ingored if adaptive pricing is disabled
+
+          cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
+              not provided, the back button will not be displayed.
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
@@ -430,6 +444,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
+                    "cancel_url": cancel_url,
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,
@@ -493,6 +508,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
+        cancel_url: Optional[str] | Omit = omit,
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
@@ -528,6 +544,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           billing_address: Billing address information for the session
 
           billing_currency: This field is ingored if adaptive pricing is disabled
+
+          cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
+              not provided, the back button will not be displayed.
 
           confirm: If confirm is true, all the details will be finalized. If required data is
               missing, an API error is thrown.
@@ -576,6 +595,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_address": billing_address,
                     "billing_currency": billing_currency,
+                    "cancel_url": cancel_url,
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,

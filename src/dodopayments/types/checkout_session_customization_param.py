@@ -26,10 +26,10 @@ class CheckoutSessionCustomizationParam(TypedDict, total=False):
     Default is true
     """
 
-    theme: Literal["dark", "light", "system"]
+    theme: Optional[Literal["dark", "light", "system"]]
     """Theme of the page (determines which mode - light/dark/system - to use)
 
-    Default is `System`.
+    If not provided, uses the business-configured theme from business_themes table.
     """
 
     theme_config: Optional[ThemeConfigParam]
