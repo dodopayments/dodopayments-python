@@ -50,10 +50,8 @@ if TYPE_CHECKING:
         license_keys,
         usage_events,
         subscriptions,
-        your_webhook_url,
         checkout_sessions,
         credit_entitlements,
-        product_collections,
         license_key_instances,
     )
     from .resources.misc import MiscResource, AsyncMiscResource
@@ -70,7 +68,6 @@ if TYPE_CHECKING:
     from .resources.license_keys import LicenseKeysResource, AsyncLicenseKeysResource
     from .resources.usage_events import UsageEventsResource, AsyncUsageEventsResource
     from .resources.subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
-    from .resources.your_webhook_url import YourWebhookURLResource, AsyncYourWebhookURLResource
     from .resources.checkout_sessions import CheckoutSessionsResource, AsyncCheckoutSessionsResource
     from .resources.invoices.invoices import InvoicesResource, AsyncInvoicesResource
     from .resources.products.products import ProductsResource, AsyncProductsResource
@@ -80,10 +77,6 @@ if TYPE_CHECKING:
     from .resources.credit_entitlements.credit_entitlements import (
         CreditEntitlementsResource,
         AsyncCreditEntitlementsResource,
-    )
-    from .resources.product_collections.product_collections import (
-        ProductCollectionsResource,
-        AsyncProductCollectionsResource,
     )
 
 __all__ = [
@@ -316,18 +309,6 @@ class DodoPayments(SyncAPIClient):
         from .resources.credit_entitlements import CreditEntitlementsResource
 
         return CreditEntitlementsResource(self)
-
-    @cached_property
-    def product_collections(self) -> ProductCollectionsResource:
-        from .resources.product_collections import ProductCollectionsResource
-
-        return ProductCollectionsResource(self)
-
-    @cached_property
-    def your_webhook_url(self) -> YourWebhookURLResource:
-        from .resources.your_webhook_url import YourWebhookURLResource
-
-        return YourWebhookURLResource(self)
 
     @cached_property
     def with_raw_response(self) -> DodoPaymentsWithRawResponse:
@@ -660,18 +641,6 @@ class AsyncDodoPayments(AsyncAPIClient):
         return AsyncCreditEntitlementsResource(self)
 
     @cached_property
-    def product_collections(self) -> AsyncProductCollectionsResource:
-        from .resources.product_collections import AsyncProductCollectionsResource
-
-        return AsyncProductCollectionsResource(self)
-
-    @cached_property
-    def your_webhook_url(self) -> AsyncYourWebhookURLResource:
-        from .resources.your_webhook_url import AsyncYourWebhookURLResource
-
-        return AsyncYourWebhookURLResource(self)
-
-    @cached_property
     def with_raw_response(self) -> AsyncDodoPaymentsWithRawResponse:
         return AsyncDodoPaymentsWithRawResponse(self)
 
@@ -920,18 +889,6 @@ class DodoPaymentsWithRawResponse:
 
         return CreditEntitlementsResourceWithRawResponse(self._client.credit_entitlements)
 
-    @cached_property
-    def product_collections(self) -> product_collections.ProductCollectionsResourceWithRawResponse:
-        from .resources.product_collections import ProductCollectionsResourceWithRawResponse
-
-        return ProductCollectionsResourceWithRawResponse(self._client.product_collections)
-
-    @cached_property
-    def your_webhook_url(self) -> your_webhook_url.YourWebhookURLResourceWithRawResponse:
-        from .resources.your_webhook_url import YourWebhookURLResourceWithRawResponse
-
-        return YourWebhookURLResourceWithRawResponse(self._client.your_webhook_url)
-
 
 class AsyncDodoPaymentsWithRawResponse:
     _client: AsyncDodoPayments
@@ -1064,18 +1021,6 @@ class AsyncDodoPaymentsWithRawResponse:
         from .resources.credit_entitlements import AsyncCreditEntitlementsResourceWithRawResponse
 
         return AsyncCreditEntitlementsResourceWithRawResponse(self._client.credit_entitlements)
-
-    @cached_property
-    def product_collections(self) -> product_collections.AsyncProductCollectionsResourceWithRawResponse:
-        from .resources.product_collections import AsyncProductCollectionsResourceWithRawResponse
-
-        return AsyncProductCollectionsResourceWithRawResponse(self._client.product_collections)
-
-    @cached_property
-    def your_webhook_url(self) -> your_webhook_url.AsyncYourWebhookURLResourceWithRawResponse:
-        from .resources.your_webhook_url import AsyncYourWebhookURLResourceWithRawResponse
-
-        return AsyncYourWebhookURLResourceWithRawResponse(self._client.your_webhook_url)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -1210,18 +1155,6 @@ class DodoPaymentsWithStreamedResponse:
 
         return CreditEntitlementsResourceWithStreamingResponse(self._client.credit_entitlements)
 
-    @cached_property
-    def product_collections(self) -> product_collections.ProductCollectionsResourceWithStreamingResponse:
-        from .resources.product_collections import ProductCollectionsResourceWithStreamingResponse
-
-        return ProductCollectionsResourceWithStreamingResponse(self._client.product_collections)
-
-    @cached_property
-    def your_webhook_url(self) -> your_webhook_url.YourWebhookURLResourceWithStreamingResponse:
-        from .resources.your_webhook_url import YourWebhookURLResourceWithStreamingResponse
-
-        return YourWebhookURLResourceWithStreamingResponse(self._client.your_webhook_url)
-
 
 class AsyncDodoPaymentsWithStreamedResponse:
     _client: AsyncDodoPayments
@@ -1354,18 +1287,6 @@ class AsyncDodoPaymentsWithStreamedResponse:
         from .resources.credit_entitlements import AsyncCreditEntitlementsResourceWithStreamingResponse
 
         return AsyncCreditEntitlementsResourceWithStreamingResponse(self._client.credit_entitlements)
-
-    @cached_property
-    def product_collections(self) -> product_collections.AsyncProductCollectionsResourceWithStreamingResponse:
-        from .resources.product_collections import AsyncProductCollectionsResourceWithStreamingResponse
-
-        return AsyncProductCollectionsResourceWithStreamingResponse(self._client.product_collections)
-
-    @cached_property
-    def your_webhook_url(self) -> your_webhook_url.AsyncYourWebhookURLResourceWithStreamingResponse:
-        from .resources.your_webhook_url import AsyncYourWebhookURLResourceWithStreamingResponse
-
-        return AsyncYourWebhookURLResourceWithStreamingResponse(self._client.your_webhook_url)
 
 
 Client = DodoPayments
