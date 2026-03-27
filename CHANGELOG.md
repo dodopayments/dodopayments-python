@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.92.1 (2026-03-27)
+
+Full Changelog: [v1.92.0...v1.92.1](https://github.com/dodopayments/dodopayments-python/compare/v1.92.0...v1.92.1)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([3e7fc2d](https://github.com/dodopayments/dodopayments-python/commit/3e7fc2d75e226ee4b49fc392f0f00f56c46e4f1a))
+
 ## 1.92.0 (2026-03-25)
 
 Full Changelog: [v1.87.2...v1.92.0](https://github.com/dodopayments/dodopayments-python/compare/v1.87.2...v1.92.0)
