@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .time_interval import TimeInterval
@@ -19,6 +19,10 @@ class SubscriptionUpdateParams(TypedDict, total=False):
 
     cancel_at_next_billing_date: Optional[bool]
     """When set, the subscription will remain active until the end of billing period"""
+
+    cancel_reason: Optional[
+        Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning"]
+    ]
 
     credit_entitlement_cart: Optional[Iterable[CreditEntitlementCart]]
     """Update credit entitlement cart settings"""

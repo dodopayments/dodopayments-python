@@ -58,7 +58,6 @@ if TYPE_CHECKING:
     from .resources.addons import AddonsResource, AsyncAddonsResource
     from .resources.brands import BrandsResource, AsyncBrandsResource
     from .resources.meters import MetersResource, AsyncMetersResource
-    from .resources.payouts import PayoutsResource, AsyncPayoutsResource
     from .resources.refunds import RefundsResource, AsyncRefundsResource
     from .resources.balances import BalancesResource, AsyncBalancesResource
     from .resources.disputes import DisputesResource, AsyncDisputesResource
@@ -68,6 +67,7 @@ if TYPE_CHECKING:
     from .resources.license_keys import LicenseKeysResource, AsyncLicenseKeysResource
     from .resources.usage_events import UsageEventsResource, AsyncUsageEventsResource
     from .resources.subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
+    from .resources.payouts.payouts import PayoutsResource, AsyncPayoutsResource
     from .resources.checkout_sessions import CheckoutSessionsResource, AsyncCheckoutSessionsResource
     from .resources.invoices.invoices import InvoicesResource, AsyncInvoicesResource
     from .resources.products.products import ProductsResource, AsyncProductsResource

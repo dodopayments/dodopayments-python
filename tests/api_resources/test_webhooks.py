@@ -281,7 +281,7 @@ class TestWebhooks:
 
         client = client.with_options(webhook_key=client_opt)
 
-        data = """{"business_id":"business_id","data":{"id":"id","amount":"amount","balance_after":"balance_after","balance_before":"balance_before","business_id":"business_id","created_at":"2019-12-27T18:11:19.117Z","credit_entitlement_id":"credit_entitlement_id","customer_id":"customer_id","is_credit":true,"overage_after":"overage_after","overage_before":"overage_before","transaction_type":"credit_added","description":"description","grant_id":"grant_id","reference_id":"reference_id","reference_type":"reference_type"},"timestamp":"2019-12-27T18:11:19.117Z","type":"credit.added"}"""
+        data = """{"business_id":"business_id","data":{"abandoned_at":"2019-12-27T18:11:19.117Z","abandonment_reason":"payment_failed","customer_id":"customer_id","payment_id":"payment_id","status":"abandoned","recovered_payment_id":"recovered_payment_id"},"timestamp":"2019-12-27T18:11:19.117Z","type":"abandoned_checkout.detected"}"""
         msg_id = "1"
         timestamp = datetime.now(tz=timezone.utc)
         sig = hook.sign(msg_id=msg_id, timestamp=timestamp, data=data)
@@ -571,7 +571,7 @@ class TestAsyncWebhooks:
 
         async_client = async_client.with_options(webhook_key=client_opt)
 
-        data = """{"business_id":"business_id","data":{"id":"id","amount":"amount","balance_after":"balance_after","balance_before":"balance_before","business_id":"business_id","created_at":"2019-12-27T18:11:19.117Z","credit_entitlement_id":"credit_entitlement_id","customer_id":"customer_id","is_credit":true,"overage_after":"overage_after","overage_before":"overage_before","transaction_type":"credit_added","description":"description","grant_id":"grant_id","reference_id":"reference_id","reference_type":"reference_type"},"timestamp":"2019-12-27T18:11:19.117Z","type":"credit.added"}"""
+        data = """{"business_id":"business_id","data":{"abandoned_at":"2019-12-27T18:11:19.117Z","abandonment_reason":"payment_failed","customer_id":"customer_id","payment_id":"payment_id","status":"abandoned","recovered_payment_id":"recovered_payment_id"},"timestamp":"2019-12-27T18:11:19.117Z","type":"abandoned_checkout.detected"}"""
         msg_id = "1"
         timestamp = datetime.now(tz=timezone.utc)
         sig = hook.sign(msg_id=msg_id, timestamp=timestamp, data=data)

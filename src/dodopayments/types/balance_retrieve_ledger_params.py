@@ -186,6 +186,8 @@ class BalanceRetrieveLedgerParams(TypedDict, total=False):
         "dodo_credits",
         "adjustment",
         "currency_conversion",
+        "abandoned_cart_recovery_fee",
+        "dunning_fees",
     ]
     """Filter by Ledger Event Type"""
 
