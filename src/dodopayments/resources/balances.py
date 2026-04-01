@@ -218,6 +218,8 @@ class BalancesResource(SyncAPIResource):
             "dodo_credits",
             "adjustment",
             "currency_conversion",
+            "abandoned_cart_recovery_fee",
+            "dunning_fees",
         ]
         | Omit = omit,
         limit: int | Omit = omit,
@@ -475,6 +477,8 @@ class AsyncBalancesResource(AsyncAPIResource):
             "dodo_credits",
             "adjustment",
             "currency_conversion",
+            "abandoned_cart_recovery_fee",
+            "dunning_fees",
         ]
         | Omit = omit,
         limit: int | Omit = omit,

@@ -40,4 +40,10 @@ WebhookEventType: TypeAlias = Literal[
     "credit.overage_charged",
     "credit.manual_adjustment",
     "credit.balance_low",
+    "abandoned_checkout.detected",
+    "abandoned_checkout.recovered",
+    "dunning.started",
+    "dunning.recovered",
+    "acr.email",
+    "dunning.email",
 ]

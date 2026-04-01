@@ -233,6 +233,10 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        cancel_reason: Optional[
+            Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning"]
+        ]
+        | Omit = omit,
         credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
@@ -269,6 +273,7 @@ class SubscriptionsResource(SyncAPIResource):
                 {
                     "billing": billing,
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
+                    "cancel_reason": cancel_reason,
                     "credit_entitlement_cart": credit_entitlement_cart,
                     "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,
@@ -1023,6 +1028,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
+        cancel_reason: Optional[
+            Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning"]
+        ]
+        | Omit = omit,
         credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
@@ -1059,6 +1068,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 {
                     "billing": billing,
                     "cancel_at_next_billing_date": cancel_at_next_billing_date,
+                    "cancel_reason": cancel_reason,
                     "credit_entitlement_cart": credit_entitlement_cart,
                     "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,

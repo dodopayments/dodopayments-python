@@ -239,7 +239,32 @@ from dodopayments.types import PayoutListResponse
 
 Methods:
 
-- <code title="get /payouts">client.payouts.<a href="./src/dodopayments/resources/payouts.py">list</a>(\*\*<a href="src/dodopayments/types/payout_list_params.py">params</a>) -> <a href="./src/dodopayments/types/payout_list_response.py">SyncDefaultPageNumberPagination[PayoutListResponse]</a></code>
+- <code title="get /payouts">client.payouts.<a href="./src/dodopayments/resources/payouts/payouts.py">list</a>(\*\*<a href="src/dodopayments/types/payout_list_params.py">params</a>) -> <a href="./src/dodopayments/types/payout_list_response.py">SyncDefaultPageNumberPagination[PayoutListResponse]</a></code>
+
+## Breakup
+
+Types:
+
+```python
+from dodopayments.types.payouts import BreakupRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /payouts/{payout_id}/breakup">client.payouts.breakup.<a href="./src/dodopayments/resources/payouts/breakup/breakup.py">retrieve</a>(payout_id) -> <a href="./src/dodopayments/types/payouts/breakup_retrieve_response.py">BreakupRetrieveResponse</a></code>
+
+### Details
+
+Types:
+
+```python
+from dodopayments.types.payouts.breakup import DetailListResponse
+```
+
+Methods:
+
+- <code title="get /payouts/{payout_id}/breakup/details">client.payouts.breakup.details.<a href="./src/dodopayments/resources/payouts/breakup/details.py">list</a>(payout_id, \*\*<a href="src/dodopayments/types/payouts/breakup/detail_list_params.py">params</a>) -> <a href="./src/dodopayments/types/payouts/breakup/detail_list_response.py">SyncDefaultPageNumberPagination[DetailListResponse]</a></code>
+- <code title="get /payouts/{payout_id}/breakup/details/csv">client.payouts.breakup.details.<a href="./src/dodopayments/resources/payouts/breakup/details.py">download_csv</a>(payout_id) -> None</code>
 
 # Products
 
@@ -370,6 +395,8 @@ Types:
 from dodopayments.types import (
     WebhookDetails,
     WebhookRetrieveSecretResponse,
+    AbandonedCheckoutDetectedWebhookEvent,
+    AbandonedCheckoutRecoveredWebhookEvent,
     CreditAddedWebhookEvent,
     CreditBalanceLowWebhookEvent,
     CreditDeductedWebhookEvent,
@@ -385,6 +412,8 @@ from dodopayments.types import (
     DisputeLostWebhookEvent,
     DisputeOpenedWebhookEvent,
     DisputeWonWebhookEvent,
+    DunningRecoveredWebhookEvent,
+    DunningStartedWebhookEvent,
     LicenseKeyCreatedWebhookEvent,
     PaymentCancelledWebhookEvent,
     PaymentFailedWebhookEvent,
@@ -400,6 +429,8 @@ from dodopayments.types import (
     SubscriptionPlanChangedWebhookEvent,
     SubscriptionRenewedWebhookEvent,
     SubscriptionUpdatedWebhookEvent,
+    AbandonedCheckoutDetectedWebhookEvent,
+    AbandonedCheckoutRecoveredWebhookEvent,
     CreditAddedWebhookEvent,
     CreditBalanceLowWebhookEvent,
     CreditDeductedWebhookEvent,
@@ -415,6 +446,8 @@ from dodopayments.types import (
     DisputeLostWebhookEvent,
     DisputeOpenedWebhookEvent,
     DisputeWonWebhookEvent,
+    DunningRecoveredWebhookEvent,
+    DunningStartedWebhookEvent,
     LicenseKeyCreatedWebhookEvent,
     PaymentCancelledWebhookEvent,
     PaymentFailedWebhookEvent,
