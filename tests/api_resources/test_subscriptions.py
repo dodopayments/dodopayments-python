@@ -182,6 +182,7 @@ class TestSubscriptions:
                 "zipcode": "zipcode",
             },
             cancel_at_next_billing_date=True,
+            cancel_reason="cancelled_by_customer",
             credit_entitlement_cart=[
                 {
                     "credit_entitlement_id": "credit_entitlement_id",
@@ -867,6 +868,7 @@ class TestAsyncSubscriptions:
                 "zipcode": "zipcode",
             },
             cancel_at_next_billing_date=True,
+            cancel_reason="cancelled_by_customer",
             credit_entitlement_cart=[
                 {
                     "credit_entitlement_id": "credit_entitlement_id",

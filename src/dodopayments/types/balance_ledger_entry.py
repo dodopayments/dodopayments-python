@@ -40,6 +40,8 @@ class BalanceLedgerEntry(BaseModel):
         "dodo_credits",
         "adjustment",
         "currency_conversion",
+        "abandoned_cart_recovery_fee",
+        "dunning_fees",
     ]
 
     is_credit: bool

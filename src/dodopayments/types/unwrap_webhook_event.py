@@ -12,9 +12,11 @@ from .dispute_opened_webhook_event import DisputeOpenedWebhookEvent
 from .payment_failed_webhook_event import PaymentFailedWebhookEvent
 from .credit_deducted_webhook_event import CreditDeductedWebhookEvent
 from .dispute_expired_webhook_event import DisputeExpiredWebhookEvent
+from .dunning_started_webhook_event import DunningStartedWebhookEvent
 from .dispute_accepted_webhook_event import DisputeAcceptedWebhookEvent
 from .refund_succeeded_webhook_event import RefundSucceededWebhookEvent
 from .dispute_cancelled_webhook_event import DisputeCancelledWebhookEvent
+from .dunning_recovered_webhook_event import DunningRecoveredWebhookEvent
 from .payment_cancelled_webhook_event import PaymentCancelledWebhookEvent
 from .payment_succeeded_webhook_event import PaymentSucceededWebhookEvent
 from .credit_balance_low_webhook_event import CreditBalanceLowWebhookEvent
@@ -33,10 +35,14 @@ from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEv
 from .credit_manual_adjustment_webhook_event import CreditManualAdjustmentWebhookEvent
 from .credit_rollover_forfeited_webhook_event import CreditRolloverForfeitedWebhookEvent
 from .subscription_plan_changed_webhook_event import SubscriptionPlanChangedWebhookEvent
+from .abandoned_checkout_detected_webhook_event import AbandonedCheckoutDetectedWebhookEvent
+from .abandoned_checkout_recovered_webhook_event import AbandonedCheckoutRecoveredWebhookEvent
 
 __all__ = ["UnwrapWebhookEvent"]
 
 UnwrapWebhookEvent: TypeAlias = Union[
+    AbandonedCheckoutDetectedWebhookEvent,
+    AbandonedCheckoutRecoveredWebhookEvent,
     CreditAddedWebhookEvent,
     CreditBalanceLowWebhookEvent,
     CreditDeductedWebhookEvent,
@@ -52,6 +58,8 @@ UnwrapWebhookEvent: TypeAlias = Union[
     DisputeLostWebhookEvent,
     DisputeOpenedWebhookEvent,
     DisputeWonWebhookEvent,
+    DunningRecoveredWebhookEvent,
+    DunningStartedWebhookEvent,
     LicenseKeyCreatedWebhookEvent,
     PaymentCancelledWebhookEvent,
     PaymentFailedWebhookEvent,

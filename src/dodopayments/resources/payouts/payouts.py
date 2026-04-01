@@ -7,25 +7,37 @@ from datetime import datetime
 
 import httpx
 
-from ..types import payout_list_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...types import payout_list_params
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.payout_list_response import PayoutListResponse
+from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from .breakup.breakup import (
+    BreakupResource,
+    AsyncBreakupResource,
+    BreakupResourceWithRawResponse,
+    AsyncBreakupResourceWithRawResponse,
+    BreakupResourceWithStreamingResponse,
+    AsyncBreakupResourceWithStreamingResponse,
+)
+from ...types.payout_list_response import PayoutListResponse
 
 __all__ = ["PayoutsResource", "AsyncPayoutsResource"]
 
 
 class PayoutsResource(SyncAPIResource):
+    @cached_property
+    def breakup(self) -> BreakupResource:
+        return BreakupResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> PayoutsResourceWithRawResponse:
         """
@@ -100,6 +112,10 @@ class PayoutsResource(SyncAPIResource):
 
 
 class AsyncPayoutsResource(AsyncAPIResource):
+    @cached_property
+    def breakup(self) -> AsyncBreakupResource:
+        return AsyncBreakupResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncPayoutsResourceWithRawResponse:
         """
@@ -181,6 +197,10 @@ class PayoutsResourceWithRawResponse:
             payouts.list,
         )
 
+    @cached_property
+    def breakup(self) -> BreakupResourceWithRawResponse:
+        return BreakupResourceWithRawResponse(self._payouts.breakup)
+
 
 class AsyncPayoutsResourceWithRawResponse:
     def __init__(self, payouts: AsyncPayoutsResource) -> None:
@@ -189,6 +209,10 @@ class AsyncPayoutsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             payouts.list,
         )
+
+    @cached_property
+    def breakup(self) -> AsyncBreakupResourceWithRawResponse:
+        return AsyncBreakupResourceWithRawResponse(self._payouts.breakup)
 
 
 class PayoutsResourceWithStreamingResponse:
@@ -199,6 +223,10 @@ class PayoutsResourceWithStreamingResponse:
             payouts.list,
         )
 
+    @cached_property
+    def breakup(self) -> BreakupResourceWithStreamingResponse:
+        return BreakupResourceWithStreamingResponse(self._payouts.breakup)
+
 
 class AsyncPayoutsResourceWithStreamingResponse:
     def __init__(self, payouts: AsyncPayoutsResource) -> None:
@@ -207,3 +235,7 @@ class AsyncPayoutsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             payouts.list,
         )
+
+    @cached_property
+    def breakup(self) -> AsyncBreakupResourceWithStreamingResponse:
+        return AsyncBreakupResourceWithStreamingResponse(self._payouts.breakup)
