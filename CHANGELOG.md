@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.93.0 (2026-04-01)
+
+Full Changelog: [v1.92.1...v1.93.0](https://github.com/dodopayments/dodopayments-python/compare/v1.92.1...v1.93.0)
+
+### Features
+
+* **api:** updated openapi spec to v1.93.0 ([31f39e7](https://github.com/dodopayments/dodopayments-python/commit/31f39e76d77723ded672caa1420cb99f5875874b))
+
+
+### Chores
+
+* **tests:** bump steady to v0.20.1 ([111a1ca](https://github.com/dodopayments/dodopayments-python/commit/111a1ca4cde777fbe695e0ec26c6ac7a80c9ec5d))
+* **tests:** bump steady to v0.20.2 ([8df2ea0](https://github.com/dodopayments/dodopayments-python/commit/8df2ea0cce40c7f6e6d72beea820c3543c36124d))
+
 ## 1.92.1 (2026-03-27)
 
 Full Changelog: [v1.92.0...v1.92.1](https://github.com/dodopayments/dodopayments-python/compare/v1.92.0...v1.92.1)
