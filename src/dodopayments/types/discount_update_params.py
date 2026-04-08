@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
@@ -28,6 +28,9 @@ class DiscountUpdateParams(TypedDict, total=False):
     """If present, update the discount code (uppercase)."""
 
     expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+
+    metadata: Optional[Dict[str, str]]
+    """Additional metadata for the discount"""
 
     name: Optional[str]
 
