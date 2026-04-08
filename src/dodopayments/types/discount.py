@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -29,6 +29,8 @@ class Discount(BaseModel):
 
     discount_id: str
     """The unique discount ID"""
+
+    metadata: Dict[str, str]
 
     preserve_on_plan_change: bool
     """
