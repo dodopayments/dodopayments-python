@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.94.0 (2026-04-08)
+
+Full Changelog: [v1.93.0...v1.94.0](https://github.com/dodopayments/dodopayments-python/compare/v1.93.0...v1.94.0)
+
+### Features
+
+* **api:** updated openapi spec to v1.94.2 ([0440a40](https://github.com/dodopayments/dodopayments-python/commit/0440a400d149f92b047ceec4439f6fa6d73e4f58))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([bbf3291](https://github.com/dodopayments/dodopayments-python/commit/bbf32912a2a5646acce719042dc4e3f5b02fbac1))
+
 ## 1.93.0 (2026-04-01)
 
 Full Changelog: [v1.92.1...v1.93.0](https://github.com/dodopayments/dodopayments-python/compare/v1.92.1...v1.93.0)
