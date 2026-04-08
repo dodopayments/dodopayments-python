@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 
 import httpx
@@ -53,6 +53,7 @@ class DiscountsResource(SyncAPIResource):
         type: DiscountType,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -88,6 +89,8 @@ class DiscountsResource(SyncAPIResource):
 
           expires_at: When the discount expires, if ever.
 
+          metadata: Additional metadata for the discount
+
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans.
               Default: false (discount is removed on plan change)
 
@@ -115,6 +118,7 @@ class DiscountsResource(SyncAPIResource):
                     "type": type,
                     "code": code,
                     "expires_at": expires_at,
+                    "metadata": metadata,
                     "name": name,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
@@ -169,6 +173,7 @@ class DiscountsResource(SyncAPIResource):
         amount: Optional[int] | Omit = omit,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -196,6 +201,8 @@ class DiscountsResource(SyncAPIResource):
               Must be at least 1 if provided.
 
           code: If present, update the discount code (uppercase).
+
+          metadata: Additional metadata for the discount
 
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans. If
               not provided, the existing value is kept.
@@ -226,6 +233,7 @@ class DiscountsResource(SyncAPIResource):
                     "amount": amount,
                     "code": code,
                     "expires_at": expires_at,
+                    "metadata": metadata,
                     "name": name,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
@@ -402,6 +410,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         type: DiscountType,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -437,6 +446,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
           expires_at: When the discount expires, if ever.
 
+          metadata: Additional metadata for the discount
+
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans.
               Default: false (discount is removed on plan change)
 
@@ -464,6 +475,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
                     "type": type,
                     "code": code,
                     "expires_at": expires_at,
+                    "metadata": metadata,
                     "name": name,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
@@ -518,6 +530,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         amount: Optional[int] | Omit = omit,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -545,6 +558,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
               Must be at least 1 if provided.
 
           code: If present, update the discount code (uppercase).
+
+          metadata: Additional metadata for the discount
 
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans. If
               not provided, the existing value is kept.
@@ -575,6 +590,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
                     "amount": amount,
                     "code": code,
                     "expires_at": expires_at,
+                    "metadata": metadata,
                     "name": name,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
