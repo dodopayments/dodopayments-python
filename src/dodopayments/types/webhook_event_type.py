@@ -46,4 +46,8 @@ WebhookEventType: TypeAlias = Literal[
     "dunning.recovered",
     "acr.email",
     "dunning.email",
+    "entitlement_grant.created",
+    "entitlement_grant.delivered",
+    "entitlement_grant.failed",
+    "entitlement_grant.revoked",
 ]

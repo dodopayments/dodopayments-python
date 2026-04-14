@@ -91,6 +91,7 @@ class ProductsResource(SyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
+        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
@@ -120,6 +121,8 @@ class ProductsResource(SyncAPIResource):
           description: Optional description of the product
 
           digital_product_delivery: Choose how you would like you digital product delivered
+
+          entitlement_ids: Optional entitlement IDs to attach to this product (max 20)
 
           license_key_activation_message: Optional message displayed during license key activation
 
@@ -153,6 +156,7 @@ class ProductsResource(SyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
+                    "entitlement_ids": entitlement_ids,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
@@ -207,6 +211,7 @@ class ProductsResource(SyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
+        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
@@ -233,6 +238,9 @@ class ProductsResource(SyncAPIResource):
           description: Description of the product, optional and must be at most 1000 characters.
 
           digital_product_delivery: Choose how you would like you digital product delivered
+
+          entitlement_ids: Entitlement IDs to attach (replaces all existing when present) Send empty array
+              to remove all, omit field to leave unchanged
 
           image_id: Product image id after its uploaded to S3
 
@@ -284,6 +292,7 @@ class ProductsResource(SyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
+                    "entitlement_ids": entitlement_ids,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -501,6 +510,7 @@ class AsyncProductsResource(AsyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
+        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
@@ -530,6 +540,8 @@ class AsyncProductsResource(AsyncAPIResource):
           description: Optional description of the product
 
           digital_product_delivery: Choose how you would like you digital product delivered
+
+          entitlement_ids: Optional entitlement IDs to attach to this product (max 20)
 
           license_key_activation_message: Optional message displayed during license key activation
 
@@ -563,6 +575,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
+                    "entitlement_ids": entitlement_ids,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
@@ -617,6 +630,7 @@ class AsyncProductsResource(AsyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
+        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
@@ -643,6 +657,9 @@ class AsyncProductsResource(AsyncAPIResource):
           description: Description of the product, optional and must be at most 1000 characters.
 
           digital_product_delivery: Choose how you would like you digital product delivered
+
+          entitlement_ids: Entitlement IDs to attach (replaces all existing when present) Send empty array
+              to remove all, omit field to leave unchanged
 
           image_id: Product image id after its uploaded to S3
 
@@ -694,6 +711,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
+                    "entitlement_ids": entitlement_ids,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import license_key_list_params, license_key_update_params
+from ..types import license_key_list_params, license_key_create_params, license_key_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -46,6 +47,60 @@ class LicenseKeysResource(SyncAPIResource):
         """
         return LicenseKeysResourceWithStreamingResponse(self)
 
+    def create(
+        self,
+        *,
+        customer_id: str,
+        key: str,
+        product_id: str,
+        activations_limit: Optional[int] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LicenseKey:
+        """
+        Args:
+          customer_id: The customer this license key belongs to.
+
+          key: The license key string to import.
+
+          product_id: The product this license key is for.
+
+          activations_limit: Maximum number of activations allowed. Null means unlimited.
+
+          expires_at: Expiration timestamp. Null means the key never expires.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/license_keys",
+            body=maybe_transform(
+                {
+                    "customer_id": customer_id,
+                    "key": key,
+                    "product_id": product_id,
+                    "activations_limit": activations_limit,
+                    "expires_at": expires_at,
+                },
+                license_key_create_params.LicenseKeyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=LicenseKey,
+        )
+
+    @typing_extensions.deprecated("deprecated")
     def retrieve(
         self,
         id: str,
@@ -77,6 +132,7 @@ class LicenseKeysResource(SyncAPIResource):
             cast_to=LicenseKey,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         id: str,
@@ -129,6 +185,7 @@ class LicenseKeysResource(SyncAPIResource):
             cast_to=LicenseKey,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -138,6 +195,7 @@ class LicenseKeysResource(SyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
+        source: Literal["auto", "import"] | Omit = omit,
         status: Literal["active", "expired", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -159,6 +217,8 @@ class LicenseKeysResource(SyncAPIResource):
           page_size: Page size default is 10 max is 100
 
           product_id: Filter by product ID
+
+          source: Filter by license key source
 
           status: Filter by license key status
 
@@ -186,6 +246,7 @@ class LicenseKeysResource(SyncAPIResource):
                         "page_number": page_number,
                         "page_size": page_size,
                         "product_id": product_id,
+                        "source": source,
                         "status": status,
                     },
                     license_key_list_params.LicenseKeyListParams,
@@ -215,6 +276,60 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
         """
         return AsyncLicenseKeysResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        *,
+        customer_id: str,
+        key: str,
+        product_id: str,
+        activations_limit: Optional[int] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LicenseKey:
+        """
+        Args:
+          customer_id: The customer this license key belongs to.
+
+          key: The license key string to import.
+
+          product_id: The product this license key is for.
+
+          activations_limit: Maximum number of activations allowed. Null means unlimited.
+
+          expires_at: Expiration timestamp. Null means the key never expires.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/license_keys",
+            body=await async_maybe_transform(
+                {
+                    "customer_id": customer_id,
+                    "key": key,
+                    "product_id": product_id,
+                    "activations_limit": activations_limit,
+                    "expires_at": expires_at,
+                },
+                license_key_create_params.LicenseKeyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=LicenseKey,
+        )
+
+    @typing_extensions.deprecated("deprecated")
     async def retrieve(
         self,
         id: str,
@@ -246,6 +361,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
             cast_to=LicenseKey,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         id: str,
@@ -298,6 +414,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
             cast_to=LicenseKey,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -307,6 +424,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
+        source: Literal["auto", "import"] | Omit = omit,
         status: Literal["active", "expired", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -328,6 +446,8 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
           page_size: Page size default is 10 max is 100
 
           product_id: Filter by product ID
+
+          source: Filter by license key source
 
           status: Filter by license key status
 
@@ -355,6 +475,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
                         "page_number": page_number,
                         "page_size": page_size,
                         "product_id": product_id,
+                        "source": source,
                         "status": status,
                     },
                     license_key_list_params.LicenseKeyListParams,
@@ -368,14 +489,23 @@ class LicenseKeysResourceWithRawResponse:
     def __init__(self, license_keys: LicenseKeysResource) -> None:
         self._license_keys = license_keys
 
-        self.retrieve = to_raw_response_wrapper(
-            license_keys.retrieve,
+        self.create = to_raw_response_wrapper(
+            license_keys.create,
         )
-        self.update = to_raw_response_wrapper(
-            license_keys.update,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                license_keys.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            license_keys.list,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                license_keys.update,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                license_keys.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -383,14 +513,23 @@ class AsyncLicenseKeysResourceWithRawResponse:
     def __init__(self, license_keys: AsyncLicenseKeysResource) -> None:
         self._license_keys = license_keys
 
-        self.retrieve = async_to_raw_response_wrapper(
-            license_keys.retrieve,
+        self.create = async_to_raw_response_wrapper(
+            license_keys.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            license_keys.update,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                license_keys.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            license_keys.list,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                license_keys.update,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                license_keys.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -398,14 +537,23 @@ class LicenseKeysResourceWithStreamingResponse:
     def __init__(self, license_keys: LicenseKeysResource) -> None:
         self._license_keys = license_keys
 
-        self.retrieve = to_streamed_response_wrapper(
-            license_keys.retrieve,
+        self.create = to_streamed_response_wrapper(
+            license_keys.create,
         )
-        self.update = to_streamed_response_wrapper(
-            license_keys.update,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                license_keys.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            license_keys.list,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                license_keys.update,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                license_keys.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -413,12 +561,21 @@ class AsyncLicenseKeysResourceWithStreamingResponse:
     def __init__(self, license_keys: AsyncLicenseKeysResource) -> None:
         self._license_keys = license_keys
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            license_keys.retrieve,
+        self.create = async_to_streamed_response_wrapper(
+            license_keys.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            license_keys.update,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                license_keys.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            license_keys.list,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                license_keys.update,  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                license_keys.list,  # pyright: ignore[reportDeprecated],
+            )
         )

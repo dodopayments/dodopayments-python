@@ -39,6 +39,9 @@ class ProductCreateParams(TypedDict, total=False):
     digital_product_delivery: Optional[DigitalProductDelivery]
     """Choose how you would like you digital product delivered"""
 
+    entitlement_ids: Optional[SequenceNotStr[str]]
+    """Optional entitlement IDs to attach to this product (max 20)"""
+
     license_key_activation_message: Optional[str]
     """Optional message displayed during license key activation"""
 
