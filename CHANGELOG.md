@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.95.0 (2026-04-14)
+
+Full Changelog: [v1.94.0...v1.95.0](https://github.com/dodopayments/dodopayments-python/compare/v1.94.0...v1.95.0)
+
+### Features
+
+* **api:** update openapi spec to v1.95.3 ([f2c0ac2](https://github.com/dodopayments/dodopayments-python/commit/f2c0ac2a9679e0d28b056ee8db43ee7a3c72d303))
+
+
+### Bug Fixes
+
+* ensure file data are only sent as 1 parameter ([c02119f](https://github.com/dodopayments/dodopayments-python/commit/c02119f9ab4953587a2e2a9210e48bac0cf43f82))
+
 ## 1.94.0 (2026-04-08)
 
 Full Changelog: [v1.93.0...v1.94.0](https://github.com/dodopayments/dodopayments-python/compare/v1.93.0...v1.94.0)
