@@ -32,6 +32,12 @@ class ProductUpdateParams(TypedDict, total=False):
     digital_product_delivery: Optional[DigitalProductDelivery]
     """Choose how you would like you digital product delivered"""
 
+    entitlement_ids: Optional[SequenceNotStr[str]]
+    """
+    Entitlement IDs to attach (replaces all existing when present) Send empty array
+    to remove all, omit field to leave unchanged
+    """
+
     image_id: Optional[str]
     """Product image id after its uploaded to S3"""
 

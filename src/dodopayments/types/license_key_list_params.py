@@ -30,5 +30,8 @@ class LicenseKeyListParams(TypedDict, total=False):
     product_id: str
     """Filter by product ID"""
 
+    source: Literal["auto", "import"]
+    """Filter by license key source"""
+
     status: Literal["active", "expired", "disabled"]
     """Filter by license key status"""
