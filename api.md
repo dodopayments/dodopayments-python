@@ -130,6 +130,7 @@ from dodopayments.types import LicenseKey, LicenseKeyStatus
 
 Methods:
 
+- <code title="post /license_keys">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">create</a>(\*\*<a href="src/dodopayments/types/license_key_create_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key.py">LicenseKey</a></code>
 - <code title="get /license_keys/{id}">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/license_key.py">LicenseKey</a></code>
 - <code title="patch /license_keys/{id}">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">update</a>(id, \*\*<a href="src/dodopayments/types/license_key_update_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key.py">LicenseKey</a></code>
 - <code title="get /license_keys">client.license_keys.<a href="./src/dodopayments/resources/license_keys.py">list</a>(\*\*<a href="src/dodopayments/types/license_key_list_params.py">params</a>) -> <a href="./src/dodopayments/types/license_key.py">SyncDefaultPageNumberPagination[LicenseKey]</a></code>

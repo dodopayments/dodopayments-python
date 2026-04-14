@@ -106,6 +106,7 @@ from .checkout_session_response import CheckoutSessionResponse as CheckoutSessio
 from .dispute_won_webhook_event import DisputeWonWebhookEvent as DisputeWonWebhookEvent
 from .license_activate_response import LicenseActivateResponse as LicenseActivateResponse
 from .license_deactivate_params import LicenseDeactivateParams as LicenseDeactivateParams
+from .license_key_create_params import LicenseKeyCreateParams as LicenseKeyCreateParams
 from .license_key_update_params import LicenseKeyUpdateParams as LicenseKeyUpdateParams
 from .license_validate_response import LicenseValidateResponse as LicenseValidateResponse
 from .usage_event_ingest_params import UsageEventIngestParams as UsageEventIngestParams

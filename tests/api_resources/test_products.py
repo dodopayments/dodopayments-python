@@ -80,6 +80,7 @@ class TestProducts:
                 "external_url": "external_url",
                 "instructions": "instructions",
             },
+            entitlement_ids=["string"],
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
             license_key_duration={
@@ -209,6 +210,7 @@ class TestProducts:
                 "files": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                 "instructions": "instructions",
             },
+            entitlement_ids=["string"],
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
@@ -482,6 +484,7 @@ class TestAsyncProducts:
                 "external_url": "external_url",
                 "instructions": "instructions",
             },
+            entitlement_ids=["string"],
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
             license_key_duration={
@@ -611,6 +614,7 @@ class TestAsyncProducts:
                 "files": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                 "instructions": "instructions",
             },
+            entitlement_ids=["string"],
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             license_key_activation_message="license_key_activation_message",
             license_key_activations_limit=0,
