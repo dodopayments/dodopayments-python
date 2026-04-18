@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.95.1 (2026-04-18)
+
+Full Changelog: [v1.95.0...v1.95.1](https://github.com/dodopayments/dodopayments-python/compare/v1.95.0...v1.95.1)
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([d5db654](https://github.com/dodopayments/dodopayments-python/commit/d5db654e43ef3fa19ccc362ee5f462a8fbaf914d))
+
+
+### Chores
+
+* **tests:** bump steady to v0.22.1 ([a7b0550](https://github.com/dodopayments/dodopayments-python/commit/a7b0550ce6a64c44e369ddf10980c0fdfb0c70ef))
+
 ## 1.95.0 (2026-04-14)
 
 Full Changelog: [v1.94.0...v1.95.0](https://github.com/dodopayments/dodopayments-python/compare/v1.94.0...v1.95.0)
