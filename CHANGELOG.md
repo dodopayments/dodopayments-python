@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.96.0 (2026-04-28)
+
+Full Changelog: [v1.95.1...v1.96.0](https://github.com/dodopayments/dodopayments-python/compare/v1.95.1...v1.96.0)
+
+### Features
+
+* support setting headers via env ([b2a2712](https://github.com/dodopayments/dodopayments-python/commit/b2a2712d53453b495961c1e3f3496d9684f5e9ea))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([650d28d](https://github.com/dodopayments/dodopayments-python/commit/650d28d0c0ae41638a2c942c7f1f21699903e237))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([4da73dd](https://github.com/dodopayments/dodopayments-python/commit/4da73dd400d771088bc66bb2a66eda8b246f7a73))
+
 ## 1.95.1 (2026-04-18)
 
 Full Changelog: [v1.95.0...v1.95.1](https://github.com/dodopayments/dodopayments-python/compare/v1.95.0...v1.95.1)
