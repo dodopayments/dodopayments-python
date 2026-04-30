@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.98.0 (2026-04-30)
+
+Full Changelog: [v1.97.0...v1.98.0](https://github.com/dodopayments/dodopayments-python/compare/v1.97.0...v1.98.0)
+
+### Features
+
+* **api:** added more models to make the dx easy ([71a10e6](https://github.com/dodopayments/dodopayments-python/commit/71a10e678a038b9016ddd7a3dfa5dc8cc0019d64))
+
 ## 1.97.0 (2026-04-30)
 
 Full Changelog: [v1.96.0...v1.97.0](https://github.com/dodopayments/dodopayments-python/compare/v1.96.0...v1.97.0)
