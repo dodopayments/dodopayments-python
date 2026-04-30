@@ -7,6 +7,7 @@ from typing_extensions import Literal, TypeAlias
 from .price import Price
 from .._models import BaseModel
 from .tax_category import TaxCategory
+from .time_interval import TimeInterval
 from .license_key_duration import LicenseKeyDuration
 from .digital_product_delivery import DigitalProductDelivery
 from .credit_entitlement_mapping_response import CreditEntitlementMappingResponse
@@ -22,13 +23,14 @@ __all__ = [
     "EntitlementIntegrationConfigFramerConfig",
     "EntitlementIntegrationConfigNotionConfig",
     "EntitlementIntegrationConfigDigitalFilesConfig",
+    "EntitlementIntegrationConfigDigitalFilesConfigDigitalFiles",
+    "EntitlementIntegrationConfigDigitalFilesConfigDigitalFilesFile",
     "EntitlementIntegrationConfigLicenseKeyConfig",
 ]
 
 
 class EntitlementIntegrationConfigGitHubConfig(BaseModel):
     permission: str
-    """One of: pull, push, admin, maintain, triage"""
 
     target_id: str
 
@@ -55,12 +57,51 @@ class EntitlementIntegrationConfigNotionConfig(BaseModel):
     notion_template_id: str
 
 
-class EntitlementIntegrationConfigDigitalFilesConfig(BaseModel):
-    digital_file_ids: List[str]
+class EntitlementIntegrationConfigDigitalFilesConfigDigitalFilesFile(BaseModel):
+    download_url: str
+
+    expires_in: int
+    """Seconds until `download_url` expires."""
+
+    file_id: str
+
+    filename: str
+
+    source: str
+    """
+    `"legacy"` for files in `product_files`, `"ee"` for files managed by the
+    Entitlements Engine.
+    """
+
+    content_type: Optional[str] = None
+
+    file_size: Optional[int] = None
+
+
+class EntitlementIntegrationConfigDigitalFilesConfigDigitalFiles(BaseModel):
+    """Populated digital-files payload for entitlement read surfaces.
+
+    Mirrors
+    `DigitalProductDelivery` but is sourced from an entitlement's
+    `integration_config` (not a grant) and tags each file with its origin
+    (`legacy` vs `ee`).
+    """
+
+    files: List[EntitlementIntegrationConfigDigitalFilesConfigDigitalFilesFile]
 
     external_url: Optional[str] = None
 
     instructions: Optional[str] = None
+
+
+class EntitlementIntegrationConfigDigitalFilesConfig(BaseModel):
+    digital_files: EntitlementIntegrationConfigDigitalFilesConfigDigitalFiles
+    """Populated digital-files payload for entitlement read surfaces.
+
+    Mirrors `DigitalProductDelivery` but is sourced from an entitlement's
+    `integration_config` (not a grant) and tags each file with its origin (`legacy`
+    vs `ee`).
+    """
 
 
 class EntitlementIntegrationConfigLicenseKeyConfig(BaseModel):
@@ -70,7 +111,7 @@ class EntitlementIntegrationConfigLicenseKeyConfig(BaseModel):
 
     duration_count: Optional[int] = None
 
-    duration_interval: Optional[str] = None
+    duration_interval: Optional[TimeInterval] = None
 
 
 EntitlementIntegrationConfig: TypeAlias = Union[
@@ -86,14 +127,24 @@ EntitlementIntegrationConfig: TypeAlias = Union[
 
 
 class Entitlement(BaseModel):
-    """Summary of an entitlement attached to a product"""
+    """Summary of an entitlement attached to a product.
+
+    `integration_config` uses [`IntegrationConfigResponse`] (NOT the
+    persisted [`IntegrationConfig`]) so digital_files entitlements embed the
+    resolved `digital_files` object — matching what `GET /entitlements/{id}`
+    returns. All other variants pass through unchanged via
+    `#[serde(untagged)]`.
+    """
 
     id: str
 
     integration_config: EntitlementIntegrationConfig
-    """
-    Platform-specific configuration for an entitlement. Each variant uses unique
-    field names so `#[serde(untagged)]` can disambiguate correctly.
+    """Public-facing variant of [`IntegrationConfig`].
+
+    Mirrors every variant shape on the wire EXCEPT `DigitalFiles`, which is replaced
+    with a hydrated `digital_files` object (resolved download URLs etc.). The
+    persisted JSONB stays ID-only via [`IntegrationConfig`]; this enum is
+    response-only.
     """
 
     integration_type: Literal[
@@ -148,6 +199,12 @@ class Product(BaseModel):
     """Description of the product, optional."""
 
     digital_product_delivery: Optional[DigitalProductDelivery] = None
+    """Digital-product-delivery payload for a grant.
+
+    Populated for grants whose entitlement has `integration_type = 'digital_files'`.
+    `files` carries presigned download URLs; the source (EE service or legacy
+    in-process S3 presigning) is opaque to the caller.
+    """
 
     image: Optional[str] = None
     """URL of the product image, optional."""

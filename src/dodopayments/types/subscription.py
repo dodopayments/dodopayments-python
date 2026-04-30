@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 from .currency import Currency
@@ -137,6 +138,23 @@ class Subscription(BaseModel):
 
     trial_period_days: int
     """Number of days in the trial period (0 if no trial)"""
+
+    cancellation_comment: Optional[str] = None
+    """Free-text cancellation comment, if any"""
+
+    cancellation_feedback: Optional[
+        Literal[
+            "too_expensive",
+            "missing_features",
+            "switched_service",
+            "unused",
+            "customer_service",
+            "low_quality",
+            "too_complex",
+            "other",
+        ]
+    ] = None
+    """Customer-supplied churn reason, if any"""
 
     cancelled_at: Optional[datetime] = None
     """Cancelled timestamp if the subscription is cancelled"""

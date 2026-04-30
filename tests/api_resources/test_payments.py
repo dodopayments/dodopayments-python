@@ -61,6 +61,7 @@ class TestPayments:
                         "amount": 0,
                     }
                 ],
+                adaptive_currency_fees_inclusive=True,
                 allowed_payment_method_types=["ach"],
                 billing_currency="AED",
                 discount_code="discount_code",
@@ -69,6 +70,7 @@ class TestPayments:
                 payment_link=True,
                 payment_method_id="payment_method_id",
                 redirect_immediately=True,
+                require_phone_number=True,
                 return_url="return_url",
                 short_link=True,
                 show_saved_payment_methods=True,
@@ -274,6 +276,7 @@ class TestAsyncPayments:
                         "amount": 0,
                     }
                 ],
+                adaptive_currency_fees_inclusive=True,
                 allowed_payment_method_types=["ach"],
                 billing_currency="AED",
                 discount_code="discount_code",
@@ -282,6 +285,7 @@ class TestAsyncPayments:
                 payment_link=True,
                 payment_method_id="payment_method_id",
                 redirect_immediately=True,
+                require_phone_number=True,
                 return_url="return_url",
                 short_link=True,
                 show_saved_payment_methods=True,

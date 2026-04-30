@@ -111,6 +111,7 @@ class LicenseKeyInstancesResource(SyncAPIResource):
     def list(
         self,
         *,
+        grant_id: Optional[str] | Omit = omit,
         license_key_id: Optional[str] | Omit = omit,
         page_number: Optional[int] | Omit = omit,
         page_size: Optional[int] | Omit = omit,
@@ -123,6 +124,8 @@ class LicenseKeyInstancesResource(SyncAPIResource):
     ) -> SyncDefaultPageNumberPagination[LicenseKeyInstance]:
         """
         Args:
+          grant_id: Filter instances by entitlement grant ID
+
           license_key_id: Filter by license key ID
 
           page_number: Page number default is 0
@@ -147,6 +150,7 @@ class LicenseKeyInstancesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "grant_id": grant_id,
                         "license_key_id": license_key_id,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -247,6 +251,7 @@ class AsyncLicenseKeyInstancesResource(AsyncAPIResource):
     def list(
         self,
         *,
+        grant_id: Optional[str] | Omit = omit,
         license_key_id: Optional[str] | Omit = omit,
         page_number: Optional[int] | Omit = omit,
         page_size: Optional[int] | Omit = omit,
@@ -259,6 +264,8 @@ class AsyncLicenseKeyInstancesResource(AsyncAPIResource):
     ) -> AsyncPaginator[LicenseKeyInstance, AsyncDefaultPageNumberPagination[LicenseKeyInstance]]:
         """
         Args:
+          grant_id: Filter instances by entitlement grant ID
+
           license_key_id: Filter by license key ID
 
           page_number: Page number default is 0
@@ -283,6 +290,7 @@ class AsyncLicenseKeyInstancesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "grant_id": grant_id,
                         "license_key_id": license_key_id,
                         "page_number": page_number,
                         "page_size": page_size,

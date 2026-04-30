@@ -66,6 +66,7 @@ class TestSubscriptions:
                 billing_currency="AED",
                 discount_code="discount_code",
                 force_3ds=True,
+                mandate_min_amount_inr_paise=0,
                 metadata={"foo": "string"},
                 on_demand={
                     "mandate_only": True,
@@ -84,6 +85,7 @@ class TestSubscriptions:
                 payment_link=True,
                 payment_method_id="payment_method_id",
                 redirect_immediately=True,
+                require_phone_number=True,
                 return_url="return_url",
                 short_link=True,
                 show_saved_payment_methods=True,
@@ -183,6 +185,8 @@ class TestSubscriptions:
             },
             cancel_at_next_billing_date=True,
             cancel_reason="cancelled_by_customer",
+            cancellation_comment="cancellation_comment",
+            cancellation_feedback="too_expensive",
             credit_entitlement_cart=[
                 {
                     "credit_entitlement_id": "credit_entitlement_id",
@@ -334,6 +338,7 @@ class TestSubscriptions:
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
+            adaptive_currency_fees_inclusive=True,
             addons=[
                 {
                     "addon_id": "addon_id",
@@ -462,6 +467,7 @@ class TestSubscriptions:
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
+            adaptive_currency_fees_inclusive=True,
             addons=[
                 {
                     "addon_id": "addon_id",
@@ -752,6 +758,7 @@ class TestAsyncSubscriptions:
                 billing_currency="AED",
                 discount_code="discount_code",
                 force_3ds=True,
+                mandate_min_amount_inr_paise=0,
                 metadata={"foo": "string"},
                 on_demand={
                     "mandate_only": True,
@@ -770,6 +777,7 @@ class TestAsyncSubscriptions:
                 payment_link=True,
                 payment_method_id="payment_method_id",
                 redirect_immediately=True,
+                require_phone_number=True,
                 return_url="return_url",
                 short_link=True,
                 show_saved_payment_methods=True,
@@ -869,6 +877,8 @@ class TestAsyncSubscriptions:
             },
             cancel_at_next_billing_date=True,
             cancel_reason="cancelled_by_customer",
+            cancellation_comment="cancellation_comment",
+            cancellation_feedback="too_expensive",
             credit_entitlement_cart=[
                 {
                     "credit_entitlement_id": "credit_entitlement_id",
@@ -1020,6 +1030,7 @@ class TestAsyncSubscriptions:
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
+            adaptive_currency_fees_inclusive=True,
             addons=[
                 {
                     "addon_id": "addon_id",
@@ -1148,6 +1159,7 @@ class TestAsyncSubscriptions:
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
+            adaptive_currency_fees_inclusive=True,
             addons=[
                 {
                     "addon_id": "addon_id",

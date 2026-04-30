@@ -23,6 +23,12 @@ class PaymentCreateParams(TypedDict, total=False):
     product_cart: Required[Iterable[ProductCart]]
     """List of products in the cart. Must contain at least 1 and at most 100 items."""
 
+    adaptive_currency_fees_inclusive: Optional[bool]
+    """
+    Whether adaptive currency fees should be included in the price (true) or added
+    on top (false). If not specified, defaults to the business-level setting.
+    """
+
     allowed_payment_method_types: Optional[List[PaymentMethodTypes]]
     """List of payment methods allowed during checkout.
 
@@ -64,6 +70,13 @@ class PaymentCreateParams(TypedDict, total=False):
     """
     If true, redirects the customer immediately after payment completion False by
     default
+    """
+
+    require_phone_number: bool
+    """
+    If true, the customer's phone number is required to create this payment.
+    Typically set alongside `payment_link=true` so merchants can enforce phone
+    collection on the hosted payment page. Defaults to false.
     """
 
     return_url: Optional[str]

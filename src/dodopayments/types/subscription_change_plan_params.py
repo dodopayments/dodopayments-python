@@ -22,6 +22,12 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     quantity: Required[int]
     """Number of units to subscribe for. Must be at least 1."""
 
+    adaptive_currency_fees_inclusive: Optional[bool]
+    """
+    Whether adaptive currency fees should be included in the price (true) or added
+    on top (false). If not specified, uses the subscription's stored setting.
+    """
+
     addons: Optional[Iterable[AttachAddonParam]]
     """
     Addons for the new plan. Note : Leaving this empty would remove any existing
