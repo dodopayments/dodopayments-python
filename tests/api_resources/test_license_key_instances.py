@@ -108,6 +108,7 @@ class TestLicenseKeyInstances:
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         license_key_instance = client.license_key_instances.list(
+            grant_id="grant_id",
             license_key_id="license_key_id",
             page_number=0,
             page_size=0,
@@ -236,6 +237,7 @@ class TestAsyncLicenseKeyInstances:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         license_key_instance = await async_client.license_key_instances.list(
+            grant_id="grant_id",
             license_key_id="license_key_id",
             page_number=0,
             page_size=0,

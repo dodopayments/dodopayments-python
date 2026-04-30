@@ -61,6 +61,7 @@ class PaymentsResource(SyncAPIResource):
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
         product_cart: Iterable[payment_create_params.ProductCart],
+        adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -69,6 +70,7 @@ class PaymentsResource(SyncAPIResource):
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
+        require_phone_number: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -87,6 +89,9 @@ class PaymentsResource(SyncAPIResource):
           customer: Customer information for the payment
 
           product_cart: List of products in the cart. Must contain at least 1 and at most 100 items.
+
+          adaptive_currency_fees_inclusive: Whether adaptive currency fees should be included in the price (true) or added
+              on top (false). If not specified, defaults to the business-level setting.
 
           allowed_payment_method_types: List of payment methods allowed during checkout.
 
@@ -114,6 +119,10 @@ class PaymentsResource(SyncAPIResource):
           redirect_immediately: If true, redirects the customer immediately after payment completion False by
               default
 
+          require_phone_number: If true, the customer's phone number is required to create this payment.
+              Typically set alongside `payment_link=true` so merchants can enforce phone
+              collection on the hosted payment page. Defaults to false.
+
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
 
@@ -139,6 +148,7 @@ class PaymentsResource(SyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
@@ -147,6 +157,7 @@ class PaymentsResource(SyncAPIResource):
                     "payment_link": payment_link,
                     "payment_method_id": payment_method_id,
                     "redirect_immediately": redirect_immediately,
+                    "require_phone_number": require_phone_number,
                     "return_url": return_url,
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,
@@ -336,6 +347,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         billing: BillingAddressParam,
         customer: CustomerRequestParam,
         product_cart: Iterable[payment_create_params.ProductCart],
+        adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -344,6 +356,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
+        require_phone_number: bool | Omit = omit,
         return_url: Optional[str] | Omit = omit,
         short_link: Optional[bool] | Omit = omit,
         show_saved_payment_methods: bool | Omit = omit,
@@ -362,6 +375,9 @@ class AsyncPaymentsResource(AsyncAPIResource):
           customer: Customer information for the payment
 
           product_cart: List of products in the cart. Must contain at least 1 and at most 100 items.
+
+          adaptive_currency_fees_inclusive: Whether adaptive currency fees should be included in the price (true) or added
+              on top (false). If not specified, defaults to the business-level setting.
 
           allowed_payment_method_types: List of payment methods allowed during checkout.
 
@@ -389,6 +405,10 @@ class AsyncPaymentsResource(AsyncAPIResource):
           redirect_immediately: If true, redirects the customer immediately after payment completion False by
               default
 
+          require_phone_number: If true, the customer's phone number is required to create this payment.
+              Typically set alongside `payment_link=true` so merchants can enforce phone
+              collection on the hosted payment page. Defaults to false.
+
           return_url: Optional URL to redirect the customer after payment. Must be a valid URL if
               provided.
 
@@ -414,6 +434,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "billing": billing,
                     "customer": customer,
                     "product_cart": product_cart,
+                    "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
@@ -422,6 +443,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "payment_link": payment_link,
                     "payment_method_id": payment_method_id,
                     "redirect_immediately": redirect_immediately,
+                    "require_phone_number": require_phone_number,
                     "return_url": return_url,
                     "short_link": short_link,
                     "show_saved_payment_methods": show_saved_payment_methods,

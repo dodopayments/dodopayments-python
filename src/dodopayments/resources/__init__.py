@@ -120,6 +120,14 @@ from .discounts import (
     DiscountsResourceWithStreamingResponse,
     AsyncDiscountsResourceWithStreamingResponse,
 )
+from .entitlements import (
+    EntitlementsResource,
+    AsyncEntitlementsResource,
+    EntitlementsResourceWithRawResponse,
+    AsyncEntitlementsResourceWithRawResponse,
+    EntitlementsResourceWithStreamingResponse,
+    AsyncEntitlementsResourceWithStreamingResponse,
+)
 from .license_keys import (
     LicenseKeysResource,
     AsyncLicenseKeysResource,
@@ -296,4 +304,10 @@ __all__ = [
     "AsyncCreditEntitlementsResourceWithRawResponse",
     "CreditEntitlementsResourceWithStreamingResponse",
     "AsyncCreditEntitlementsResourceWithStreamingResponse",
+    "EntitlementsResource",
+    "AsyncEntitlementsResource",
+    "EntitlementsResourceWithRawResponse",
+    "AsyncEntitlementsResourceWithRawResponse",
+    "EntitlementsResourceWithStreamingResponse",
+    "AsyncEntitlementsResourceWithStreamingResponse",
 ]

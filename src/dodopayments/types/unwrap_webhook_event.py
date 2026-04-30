@@ -26,6 +26,7 @@ from .payment_processing_webhook_event import PaymentProcessingWebhookEvent
 from .license_key_created_webhook_event import LicenseKeyCreatedWebhookEvent
 from .subscription_active_webhook_event import SubscriptionActiveWebhookEvent
 from .subscription_failed_webhook_event import SubscriptionFailedWebhookEvent
+from .credit_overage_reset_webhook_event import CreditOverageResetWebhookEvent
 from .subscription_expired_webhook_event import SubscriptionExpiredWebhookEvent
 from .subscription_on_hold_webhook_event import SubscriptionOnHoldWebhookEvent
 from .subscription_renewed_webhook_event import SubscriptionRenewedWebhookEvent
@@ -33,9 +34,13 @@ from .subscription_updated_webhook_event import SubscriptionUpdatedWebhookEvent
 from .credit_overage_charged_webhook_event import CreditOverageChargedWebhookEvent
 from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEvent
 from .credit_manual_adjustment_webhook_event import CreditManualAdjustmentWebhookEvent
+from .entitlement_grant_failed_webhook_event import EntitlementGrantFailedWebhookEvent
 from .credit_rollover_forfeited_webhook_event import CreditRolloverForfeitedWebhookEvent
+from .entitlement_grant_created_webhook_event import EntitlementGrantCreatedWebhookEvent
+from .entitlement_grant_revoked_webhook_event import EntitlementGrantRevokedWebhookEvent
 from .subscription_plan_changed_webhook_event import SubscriptionPlanChangedWebhookEvent
 from .abandoned_checkout_detected_webhook_event import AbandonedCheckoutDetectedWebhookEvent
+from .entitlement_grant_delivered_webhook_event import EntitlementGrantDeliveredWebhookEvent
 from .abandoned_checkout_recovered_webhook_event import AbandonedCheckoutRecoveredWebhookEvent
 
 __all__ = ["UnwrapWebhookEvent"]
@@ -49,6 +54,7 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CreditExpiredWebhookEvent,
     CreditManualAdjustmentWebhookEvent,
     CreditOverageChargedWebhookEvent,
+    CreditOverageResetWebhookEvent,
     CreditRolledOverWebhookEvent,
     CreditRolloverForfeitedWebhookEvent,
     DisputeAcceptedWebhookEvent,
@@ -60,6 +66,10 @@ UnwrapWebhookEvent: TypeAlias = Union[
     DisputeWonWebhookEvent,
     DunningRecoveredWebhookEvent,
     DunningStartedWebhookEvent,
+    EntitlementGrantCreatedWebhookEvent,
+    EntitlementGrantDeliveredWebhookEvent,
+    EntitlementGrantFailedWebhookEvent,
+    EntitlementGrantRevokedWebhookEvent,
     LicenseKeyCreatedWebhookEvent,
     PaymentCancelledWebhookEvent,
     PaymentFailedWebhookEvent,

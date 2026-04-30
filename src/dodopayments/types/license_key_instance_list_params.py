@@ -9,6 +9,9 @@ __all__ = ["LicenseKeyInstanceListParams"]
 
 
 class LicenseKeyInstanceListParams(TypedDict, total=False):
+    grant_id: Optional[str]
+    """Filter instances by entitlement grant ID"""
+
     license_key_id: Optional[str]
     """Filter by license key ID"""
 
