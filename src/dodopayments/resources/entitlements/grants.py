@@ -19,8 +19,7 @@ from ..._response import (
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.entitlements import grant_list_params
-from ...types.entitlements.grant_list_response import GrantListResponse
-from ...types.entitlements.grant_revoke_response import GrantRevokeResponse
+from ...types.entitlements.entitlement_grant import EntitlementGrant
 
 __all__ = ["GrantsResource", "AsyncGrantsResource"]
 
@@ -59,7 +58,7 @@ class GrantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPageNumberPagination[GrantListResponse]:
+    ) -> SyncDefaultPageNumberPagination[EntitlementGrant]:
         """
         GET /entitlements/{id}/grants (public API)
 
@@ -84,7 +83,7 @@ class GrantsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/entitlements/{id}/grants", id=id),
-            page=SyncDefaultPageNumberPagination[GrantListResponse],
+            page=SyncDefaultPageNumberPagination[EntitlementGrant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,7 +99,7 @@ class GrantsResource(SyncAPIResource):
                     grant_list_params.GrantListParams,
                 ),
             ),
-            model=GrantListResponse,
+            model=EntitlementGrant,
         )
 
     def revoke(
@@ -114,7 +113,7 @@ class GrantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GrantRevokeResponse:
+    ) -> EntitlementGrant:
         """Revokes a single entitlement grant for the caller's business.
 
         For LicenseKey
@@ -140,7 +139,7 @@ class GrantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GrantRevokeResponse,
+            cast_to=EntitlementGrant,
         )
 
 
@@ -178,7 +177,7 @@ class AsyncGrantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[GrantListResponse, AsyncDefaultPageNumberPagination[GrantListResponse]]:
+    ) -> AsyncPaginator[EntitlementGrant, AsyncDefaultPageNumberPagination[EntitlementGrant]]:
         """
         GET /entitlements/{id}/grants (public API)
 
@@ -203,7 +202,7 @@ class AsyncGrantsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/entitlements/{id}/grants", id=id),
-            page=AsyncDefaultPageNumberPagination[GrantListResponse],
+            page=AsyncDefaultPageNumberPagination[EntitlementGrant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +218,7 @@ class AsyncGrantsResource(AsyncAPIResource):
                     grant_list_params.GrantListParams,
                 ),
             ),
-            model=GrantListResponse,
+            model=EntitlementGrant,
         )
 
     async def revoke(
@@ -233,7 +232,7 @@ class AsyncGrantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GrantRevokeResponse:
+    ) -> EntitlementGrant:
         """Revokes a single entitlement grant for the caller's business.
 
         For LicenseKey
@@ -259,7 +258,7 @@ class AsyncGrantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GrantRevokeResponse,
+            cast_to=EntitlementGrant,
         )
 
 

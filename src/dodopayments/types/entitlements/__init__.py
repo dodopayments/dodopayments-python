@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
+from .entitlement_grant import EntitlementGrant as EntitlementGrant
 from .grant_list_params import GrantListParams as GrantListParams
-from .grant_list_response import GrantListResponse as GrantListResponse
+from .license_key_grant import LicenseKeyGrant as LicenseKeyGrant
 from .file_upload_response import FileUploadResponse as FileUploadResponse
-from .grant_revoke_response import GrantRevokeResponse as GrantRevokeResponse

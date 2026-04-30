@@ -10,6 +10,7 @@ from .._utils import PropertyInfo
 from .time_interval import TimeInterval
 from .subscription_status import SubscriptionStatus
 from .billing_address_param import BillingAddressParam
+from .cancellation_feedback import CancellationFeedback
 
 __all__ = ["SubscriptionUpdateParams", "CreditEntitlementCart", "DisableOnDemand"]
 
@@ -30,18 +31,7 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     cancellation).
     """
 
-    cancellation_feedback: Optional[
-        Literal[
-            "too_expensive",
-            "missing_features",
-            "switched_service",
-            "unused",
-            "customer_service",
-            "low_quality",
-            "too_complex",
-            "other",
-        ]
-    ]
+    cancellation_feedback: Optional[CancellationFeedback]
     """
     Customer-supplied churn reason (only valid when cancelling or scheduling
     cancellation).

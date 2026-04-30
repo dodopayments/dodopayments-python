@@ -23,7 +23,12 @@ from .grants import (
     GrantsResourceWithStreamingResponse,
     AsyncGrantsResourceWithStreamingResponse,
 )
-from ...types import entitlement_list_params, entitlement_create_params, entitlement_update_params
+from ...types import (
+    EntitlementIntegrationType,
+    entitlement_list_params,
+    entitlement_create_params,
+    entitlement_update_params,
+)
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -36,10 +41,9 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.entitlement_list_response import EntitlementListResponse
-from ...types.entitlement_create_response import EntitlementCreateResponse
-from ...types.entitlement_update_response import EntitlementUpdateResponse
-from ...types.entitlement_retrieve_response import EntitlementRetrieveResponse
+from ...types.entitlement import Entitlement
+from ...types.integration_config_param import IntegrationConfigParam
+from ...types.entitlement_integration_type import EntitlementIntegrationType
 
 __all__ = ["EntitlementsResource", "AsyncEntitlementsResource"]
 
@@ -75,10 +79,8 @@ class EntitlementsResource(SyncAPIResource):
     def create(
         self,
         *,
-        integration_config: entitlement_create_params.IntegrationConfig,
-        integration_type: Literal[
-            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
-        ],
+        integration_config: IntegrationConfigParam,
+        integration_type: EntitlementIntegrationType,
         name: str,
         description: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
@@ -88,7 +90,7 @@ class EntitlementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntitlementCreateResponse:
+    ) -> Entitlement:
         """
         POST /entitlements
 
@@ -126,7 +128,7 @@ class EntitlementsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntitlementCreateResponse,
+            cast_to=Entitlement,
         )
 
     def retrieve(
@@ -139,7 +141,7 @@ class EntitlementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntitlementRetrieveResponse:
+    ) -> Entitlement:
         """
         GET /entitlements/{id}
 
@@ -159,7 +161,7 @@ class EntitlementsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntitlementRetrieveResponse,
+            cast_to=Entitlement,
         )
 
     def update(
@@ -167,7 +169,7 @@ class EntitlementsResource(SyncAPIResource):
         id: str,
         *,
         description: Optional[str] | Omit = omit,
-        integration_config: Optional[entitlement_update_params.IntegrationConfig] | Omit = omit,
+        integration_config: Optional[IntegrationConfigParam] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -176,7 +178,7 @@ class EntitlementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntitlementUpdateResponse:
+    ) -> Entitlement:
         """
         PATCH /entitlements/{id}
 
@@ -208,7 +210,7 @@ class EntitlementsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntitlementUpdateResponse,
+            cast_to=Entitlement,
         )
 
     def list(
@@ -226,7 +228,7 @@ class EntitlementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPageNumberPagination[EntitlementListResponse]:
+    ) -> SyncDefaultPageNumberPagination[Entitlement]:
         """
         GET /entitlements
 
@@ -247,7 +249,7 @@ class EntitlementsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/entitlements",
-            page=SyncDefaultPageNumberPagination[EntitlementListResponse],
+            page=SyncDefaultPageNumberPagination[Entitlement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,7 +264,7 @@ class EntitlementsResource(SyncAPIResource):
                     entitlement_list_params.EntitlementListParams,
                 ),
             ),
-            model=EntitlementListResponse,
+            model=Entitlement,
         )
 
     def delete(
@@ -331,10 +333,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        integration_config: entitlement_create_params.IntegrationConfig,
-        integration_type: Literal[
-            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
-        ],
+        integration_config: IntegrationConfigParam,
+        integration_type: EntitlementIntegrationType,
         name: str,
         description: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
@@ -344,7 +344,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntitlementCreateResponse:
+    ) -> Entitlement:
         """
         POST /entitlements
 
@@ -382,7 +382,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntitlementCreateResponse,
+            cast_to=Entitlement,
         )
 
     async def retrieve(
@@ -395,7 +395,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntitlementRetrieveResponse:
+    ) -> Entitlement:
         """
         GET /entitlements/{id}
 
@@ -415,7 +415,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntitlementRetrieveResponse,
+            cast_to=Entitlement,
         )
 
     async def update(
@@ -423,7 +423,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         id: str,
         *,
         description: Optional[str] | Omit = omit,
-        integration_config: Optional[entitlement_update_params.IntegrationConfig] | Omit = omit,
+        integration_config: Optional[IntegrationConfigParam] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -432,7 +432,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EntitlementUpdateResponse:
+    ) -> Entitlement:
         """
         PATCH /entitlements/{id}
 
@@ -464,7 +464,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EntitlementUpdateResponse,
+            cast_to=Entitlement,
         )
 
     def list(
@@ -482,7 +482,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[EntitlementListResponse, AsyncDefaultPageNumberPagination[EntitlementListResponse]]:
+    ) -> AsyncPaginator[Entitlement, AsyncDefaultPageNumberPagination[Entitlement]]:
         """
         GET /entitlements
 
@@ -503,7 +503,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/entitlements",
-            page=AsyncDefaultPageNumberPagination[EntitlementListResponse],
+            page=AsyncDefaultPageNumberPagination[Entitlement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -518,7 +518,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
                     entitlement_list_params.EntitlementListParams,
                 ),
             ),
-            model=EntitlementListResponse,
+            model=Entitlement,
         )
 
     async def delete(
