@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -8,48 +8,10 @@ from .currency import Currency
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
+from .scheduled_plan_change import ScheduledPlanChange
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["SubscriptionListResponse", "ScheduledChange", "ScheduledChangeAddon"]
-
-
-class ScheduledChangeAddon(BaseModel):
-    addon_id: str
-    """The addon ID"""
-
-    name: str
-    """Name of the addon"""
-
-    quantity: int
-    """Quantity of the addon"""
-
-
-class ScheduledChange(BaseModel):
-    """Scheduled plan change details, if any"""
-
-    id: str
-    """The scheduled plan change ID"""
-
-    addons: List[ScheduledChangeAddon]
-    """Addons included in the scheduled change"""
-
-    created_at: datetime
-    """When this scheduled change was created"""
-
-    effective_at: datetime
-    """When the change will be applied"""
-
-    product_id: str
-    """The product ID the subscription will change to"""
-
-    quantity: int
-    """Quantity for the new plan"""
-
-    product_description: Optional[str] = None
-    """Description of the product being changed to"""
-
-    product_name: Optional[str] = None
-    """Name of the product being changed to"""
+__all__ = ["SubscriptionListResponse"]
 
 
 class SubscriptionListResponse(BaseModel):
@@ -136,7 +98,7 @@ class SubscriptionListResponse(BaseModel):
     product_name: Optional[str] = None
     """Name of the product associated with this subscription"""
 
-    scheduled_change: Optional[ScheduledChange] = None
+    scheduled_change: Optional[ScheduledPlanChange] = None
     """Scheduled plan change details, if any"""
 
     tax_id: Optional[str] = None

@@ -13,9 +13,14 @@ from .refund_list_item import RefundListItem
 from .custom_field_response import CustomFieldResponse
 from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
-from .one_time_product_cart_item import OneTimeProductCartItem
 
-__all__ = ["Payment"]
+__all__ = ["Payment", "ProductCart"]
+
+
+class ProductCart(BaseModel):
+    product_id: str
+
+    quantity: int
 
 
 class Payment(BaseModel):
@@ -120,7 +125,7 @@ class Payment(BaseModel):
     payment_method_type: Optional[str] = None
     """Specific type of payment method (e.g. "visa", "mastercard")"""
 
-    product_cart: Optional[List[OneTimeProductCartItem]] = None
+    product_cart: Optional[List[ProductCart]] = None
     """List of products purchased in a one-time payment"""
 
     refund_status: Optional[PaymentRefundStatus] = None

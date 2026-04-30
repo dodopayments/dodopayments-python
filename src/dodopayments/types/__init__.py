@@ -14,6 +14,7 @@ from .currency import Currency as Currency
 from .customer import Customer as Customer
 from .discount import Discount as Discount
 from .conjunction import Conjunction as Conjunction
+from .entitlement import Entitlement as Entitlement
 from .get_dispute import GetDispute as GetDispute
 from .license_key import LicenseKey as LicenseKey
 from .price_param import PriceParam as PriceParam
@@ -69,6 +70,7 @@ from .payout_list_response import PayoutListResponse as PayoutListResponse
 from .refund_create_params import RefundCreateParams as RefundCreateParams
 from .unwrap_webhook_event import UnwrapWebhookEvent as UnwrapWebhookEvent
 from .billing_address_param import BillingAddressParam as BillingAddressParam
+from .cancellation_feedback import CancellationFeedback as CancellationFeedback
 from .custom_field_response import CustomFieldResponse as CustomFieldResponse
 from .dispute_list_response import DisputeListResponse as DisputeListResponse
 from .payment_create_params import PaymentCreateParams as PaymentCreateParams
@@ -77,6 +79,7 @@ from .payment_refund_status import PaymentRefundStatus as PaymentRefundStatus
 from .product_create_params import ProductCreateParams as ProductCreateParams
 from .product_list_response import ProductListResponse as ProductListResponse
 from .product_update_params import ProductUpdateParams as ProductUpdateParams
+from .scheduled_plan_change import ScheduledPlanChange as ScheduledPlanChange
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
 from .cbb_proration_behavior import CbbProrationBehavior as CbbProrationBehavior
@@ -101,12 +104,12 @@ from .add_meter_to_price_param import AddMeterToPriceParam as AddMeterToPricePar
 from .addon_cart_response_item import AddonCartResponseItem as AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails as CustomerLimitedDetails
 from .digital_product_delivery import DigitalProductDelivery as DigitalProductDelivery
+from .integration_config_param import IntegrationConfigParam as IntegrationConfigParam
 from .meter_cart_response_item import MeterCartResponseItem as MeterCartResponseItem
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
 from .checkout_session_response import CheckoutSessionResponse as CheckoutSessionResponse
 from .dispute_won_webhook_event import DisputeWonWebhookEvent as DisputeWonWebhookEvent
 from .entitlement_create_params import EntitlementCreateParams as EntitlementCreateParams
-from .entitlement_list_response import EntitlementListResponse as EntitlementListResponse
 from .entitlement_update_params import EntitlementUpdateParams as EntitlementUpdateParams
 from .license_activate_response import LicenseActivateResponse as LicenseActivateResponse
 from .license_deactivate_params import LicenseDeactivateParams as LicenseDeactivateParams
@@ -122,8 +125,8 @@ from .subscription_charge_params import SubscriptionChargeParams as Subscription
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
-from .entitlement_create_response import EntitlementCreateResponse as EntitlementCreateResponse
-from .entitlement_update_response import EntitlementUpdateResponse as EntitlementUpdateResponse
+from .integration_config_response import IntegrationConfigResponse as IntegrationConfigResponse
+from .product_entitlement_summary import ProductEntitlementSummary as ProductEntitlementSummary
 from .product_update_files_params import ProductUpdateFilesParams as ProductUpdateFilesParams
 from .refund_failed_webhook_event import RefundFailedWebhookEvent as RefundFailedWebhookEvent
 from .unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent as UnsafeUnwrapWebhookEvent
@@ -133,6 +136,7 @@ from .brand_update_images_response import BrandUpdateImagesResponse as BrandUpda
 from .checkout_session_flags_param import CheckoutSessionFlagsParam as CheckoutSessionFlagsParam
 from .credit_expired_webhook_event import CreditExpiredWebhookEvent as CreditExpiredWebhookEvent
 from .dispute_opened_webhook_event import DisputeOpenedWebhookEvent as DisputeOpenedWebhookEvent
+from .entitlement_integration_type import EntitlementIntegrationType as EntitlementIntegrationType
 from .on_demand_subscription_param import OnDemandSubscriptionParam as OnDemandSubscriptionParam
 from .payment_failed_webhook_event import PaymentFailedWebhookEvent as PaymentFailedWebhookEvent
 from .subscription_charge_response import SubscriptionChargeResponse as SubscriptionChargeResponse
@@ -141,7 +145,6 @@ from .credit_deducted_webhook_event import CreditDeductedWebhookEvent as CreditD
 from .digital_product_delivery_file import DigitalProductDeliveryFile as DigitalProductDeliveryFile
 from .dispute_expired_webhook_event import DisputeExpiredWebhookEvent as DisputeExpiredWebhookEvent
 from .dunning_started_webhook_event import DunningStartedWebhookEvent as DunningStartedWebhookEvent
-from .entitlement_retrieve_response import EntitlementRetrieveResponse as EntitlementRetrieveResponse
 from .product_update_files_response import ProductUpdateFilesResponse as ProductUpdateFilesResponse
 from .attach_existing_customer_param import AttachExistingCustomerParam as AttachExistingCustomerParam
 from .balance_retrieve_ledger_params import BalanceRetrieveLedgerParams as BalanceRetrieveLedgerParams
@@ -156,6 +159,7 @@ from .dunning_recovered_webhook_event import DunningRecoveredWebhookEvent as Dun
 from .payment_cancelled_webhook_event import PaymentCancelledWebhookEvent as PaymentCancelledWebhookEvent
 from .payment_succeeded_webhook_event import PaymentSucceededWebhookEvent as PaymentSucceededWebhookEvent
 from .subscription_change_plan_params import SubscriptionChangePlanParams as SubscriptionChangePlanParams
+from .attach_product_entitlement_param import AttachProductEntitlementParam as AttachProductEntitlementParam
 from .credit_balance_low_webhook_event import CreditBalanceLowWebhookEvent as CreditBalanceLowWebhookEvent
 from .credit_entitlement_cart_response import CreditEntitlementCartResponse as CreditEntitlementCartResponse
 from .credit_entitlement_create_params import CreditEntitlementCreateParams as CreditEntitlementCreateParams
@@ -163,6 +167,7 @@ from .credit_entitlement_update_params import CreditEntitlementUpdateParams as C
 from .credit_rolled_over_webhook_event import CreditRolledOverWebhookEvent as CreditRolledOverWebhookEvent
 from .dispute_challenged_webhook_event import DisputeChallengedWebhookEvent as DisputeChallengedWebhookEvent
 from .license_key_instance_list_params import LicenseKeyInstanceListParams as LicenseKeyInstanceListParams
+from .one_time_product_cart_item_param import OneTimeProductCartItemParam as OneTimeProductCartItemParam
 from .payment_processing_webhook_event import PaymentProcessingWebhookEvent as PaymentProcessingWebhookEvent
 from .webhook_retrieve_secret_response import WebhookRetrieveSecretResponse as WebhookRetrieveSecretResponse
 from .checkout_session_preview_response import CheckoutSessionPreviewResponse as CheckoutSessionPreviewResponse

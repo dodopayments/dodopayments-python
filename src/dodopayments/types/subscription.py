@@ -2,60 +2,22 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
 from .currency import Currency
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
+from .cancellation_feedback import CancellationFeedback
 from .custom_field_response import CustomFieldResponse
+from .scheduled_plan_change import ScheduledPlanChange
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 from .meter_cart_response_item import MeterCartResponseItem
 from .credit_entitlement_cart_response import CreditEntitlementCartResponse
 from .meter_credit_entitlement_cart_response import MeterCreditEntitlementCartResponse
 
-__all__ = ["Subscription", "ScheduledChange", "ScheduledChangeAddon"]
-
-
-class ScheduledChangeAddon(BaseModel):
-    addon_id: str
-    """The addon ID"""
-
-    name: str
-    """Name of the addon"""
-
-    quantity: int
-    """Quantity of the addon"""
-
-
-class ScheduledChange(BaseModel):
-    """Scheduled plan change details, if any"""
-
-    id: str
-    """The scheduled plan change ID"""
-
-    addons: List[ScheduledChangeAddon]
-    """Addons included in the scheduled change"""
-
-    created_at: datetime
-    """When this scheduled change was created"""
-
-    effective_at: datetime
-    """When the change will be applied"""
-
-    product_id: str
-    """The product ID the subscription will change to"""
-
-    quantity: int
-    """Quantity for the new plan"""
-
-    product_description: Optional[str] = None
-    """Description of the product being changed to"""
-
-    product_name: Optional[str] = None
-    """Name of the product being changed to"""
+__all__ = ["Subscription"]
 
 
 class Subscription(BaseModel):
@@ -142,18 +104,7 @@ class Subscription(BaseModel):
     cancellation_comment: Optional[str] = None
     """Free-text cancellation comment, if any"""
 
-    cancellation_feedback: Optional[
-        Literal[
-            "too_expensive",
-            "missing_features",
-            "switched_service",
-            "unused",
-            "customer_service",
-            "low_quality",
-            "too_complex",
-            "other",
-        ]
-    ] = None
+    cancellation_feedback: Optional[CancellationFeedback] = None
     """Customer-supplied churn reason, if any"""
 
     cancelled_at: Optional[datetime] = None
@@ -174,7 +125,7 @@ class Subscription(BaseModel):
     payment_method_id: Optional[str] = None
     """Saved payment method id used for recurring charges"""
 
-    scheduled_change: Optional[ScheduledChange] = None
+    scheduled_change: Optional[ScheduledPlanChange] = None
     """Scheduled plan change details, if any"""
 
     tax_id: Optional[str] = None

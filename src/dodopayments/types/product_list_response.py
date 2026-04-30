@@ -1,157 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
 
 from .price import Price
 from .._models import BaseModel
 from .currency import Currency
 from .tax_category import TaxCategory
-from .time_interval import TimeInterval
+from .product_entitlement_summary import ProductEntitlementSummary
 
-__all__ = [
-    "ProductListResponse",
-    "Entitlement",
-    "EntitlementIntegrationConfig",
-    "EntitlementIntegrationConfigGitHubConfig",
-    "EntitlementIntegrationConfigDiscordConfig",
-    "EntitlementIntegrationConfigTelegramConfig",
-    "EntitlementIntegrationConfigFigmaConfig",
-    "EntitlementIntegrationConfigFramerConfig",
-    "EntitlementIntegrationConfigNotionConfig",
-    "EntitlementIntegrationConfigDigitalFilesConfig",
-    "EntitlementIntegrationConfigDigitalFilesConfigDigitalFiles",
-    "EntitlementIntegrationConfigDigitalFilesConfigDigitalFilesFile",
-    "EntitlementIntegrationConfigLicenseKeyConfig",
-]
-
-
-class EntitlementIntegrationConfigGitHubConfig(BaseModel):
-    permission: str
-
-    target_id: str
-
-
-class EntitlementIntegrationConfigDiscordConfig(BaseModel):
-    guild_id: str
-
-    role_id: Optional[str] = None
-
-
-class EntitlementIntegrationConfigTelegramConfig(BaseModel):
-    chat_id: str
-
-
-class EntitlementIntegrationConfigFigmaConfig(BaseModel):
-    figma_file_id: str
-
-
-class EntitlementIntegrationConfigFramerConfig(BaseModel):
-    framer_template_id: str
-
-
-class EntitlementIntegrationConfigNotionConfig(BaseModel):
-    notion_template_id: str
-
-
-class EntitlementIntegrationConfigDigitalFilesConfigDigitalFilesFile(BaseModel):
-    download_url: str
-
-    expires_in: int
-    """Seconds until `download_url` expires."""
-
-    file_id: str
-
-    filename: str
-
-    source: str
-    """
-    `"legacy"` for files in `product_files`, `"ee"` for files managed by the
-    Entitlements Engine.
-    """
-
-    content_type: Optional[str] = None
-
-    file_size: Optional[int] = None
-
-
-class EntitlementIntegrationConfigDigitalFilesConfigDigitalFiles(BaseModel):
-    """Populated digital-files payload for entitlement read surfaces.
-
-    Mirrors
-    `DigitalProductDelivery` but is sourced from an entitlement's
-    `integration_config` (not a grant) and tags each file with its origin
-    (`legacy` vs `ee`).
-    """
-
-    files: List[EntitlementIntegrationConfigDigitalFilesConfigDigitalFilesFile]
-
-    external_url: Optional[str] = None
-
-    instructions: Optional[str] = None
-
-
-class EntitlementIntegrationConfigDigitalFilesConfig(BaseModel):
-    digital_files: EntitlementIntegrationConfigDigitalFilesConfigDigitalFiles
-    """Populated digital-files payload for entitlement read surfaces.
-
-    Mirrors `DigitalProductDelivery` but is sourced from an entitlement's
-    `integration_config` (not a grant) and tags each file with its origin (`legacy`
-    vs `ee`).
-    """
-
-
-class EntitlementIntegrationConfigLicenseKeyConfig(BaseModel):
-    activation_message: Optional[str] = None
-
-    activations_limit: Optional[int] = None
-
-    duration_count: Optional[int] = None
-
-    duration_interval: Optional[TimeInterval] = None
-
-
-EntitlementIntegrationConfig: TypeAlias = Union[
-    EntitlementIntegrationConfigGitHubConfig,
-    EntitlementIntegrationConfigDiscordConfig,
-    EntitlementIntegrationConfigTelegramConfig,
-    EntitlementIntegrationConfigFigmaConfig,
-    EntitlementIntegrationConfigFramerConfig,
-    EntitlementIntegrationConfigNotionConfig,
-    EntitlementIntegrationConfigDigitalFilesConfig,
-    EntitlementIntegrationConfigLicenseKeyConfig,
-]
-
-
-class Entitlement(BaseModel):
-    """Summary of an entitlement attached to a product.
-
-    `integration_config` uses [`IntegrationConfigResponse`] (NOT the
-    persisted [`IntegrationConfig`]) so digital_files entitlements embed the
-    resolved `digital_files` object — matching what `GET /entitlements/{id}`
-    returns. All other variants pass through unchanged via
-    `#[serde(untagged)]`.
-    """
-
-    id: str
-
-    integration_config: EntitlementIntegrationConfig
-    """Public-facing variant of [`IntegrationConfig`].
-
-    Mirrors every variant shape on the wire EXCEPT `DigitalFiles`, which is replaced
-    with a hydrated `digital_files` object (resolved download URLs etc.). The
-    persisted JSONB stays ID-only via [`IntegrationConfig`]; this enum is
-    response-only.
-    """
-
-    integration_type: Literal[
-        "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
-    ]
-
-    name: str
-
-    description: Optional[str] = None
+__all__ = ["ProductListResponse"]
 
 
 class ProductListResponse(BaseModel):
@@ -161,7 +19,7 @@ class ProductListResponse(BaseModel):
     created_at: datetime
     """Timestamp when the product was created."""
 
-    entitlements: List[Entitlement]
+    entitlements: List[ProductEntitlementSummary]
     """Entitlements linked to this product"""
 
     is_recurring: bool

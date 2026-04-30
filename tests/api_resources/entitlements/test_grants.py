@@ -10,7 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from dodopayments.types.entitlements import GrantListResponse, GrantRevokeResponse
+from dodopayments.types.entitlements import EntitlementGrant
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestGrants:
         grant = client.entitlements.grants.list(
             id="id",
         )
-        assert_matches_type(SyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
@@ -34,7 +34,7 @@ class TestGrants:
             page_size=0,
             status="Pending",
         )
-        assert_matches_type(SyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
@@ -45,7 +45,7 @@ class TestGrants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         grant = response.parse()
-        assert_matches_type(SyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
@@ -56,7 +56,7 @@ class TestGrants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             grant = response.parse()
-            assert_matches_type(SyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+            assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -73,7 +73,7 @@ class TestGrants:
             grant_id="grant_id",
             id="id",
         )
-        assert_matches_type(GrantRevokeResponse, grant, path=["response"])
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
 
     @parametrize
     def test_raw_response_revoke(self, client: DodoPayments) -> None:
@@ -85,7 +85,7 @@ class TestGrants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         grant = response.parse()
-        assert_matches_type(GrantRevokeResponse, grant, path=["response"])
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
 
     @parametrize
     def test_streaming_response_revoke(self, client: DodoPayments) -> None:
@@ -97,7 +97,7 @@ class TestGrants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             grant = response.parse()
-            assert_matches_type(GrantRevokeResponse, grant, path=["response"])
+            assert_matches_type(EntitlementGrant, grant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -126,7 +126,7 @@ class TestAsyncGrants:
         grant = await async_client.entitlements.grants.list(
             id="id",
         )
-        assert_matches_type(AsyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -137,7 +137,7 @@ class TestAsyncGrants:
             page_size=0,
             status="Pending",
         )
-        assert_matches_type(AsyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -148,7 +148,7 @@ class TestAsyncGrants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         grant = await response.parse()
-        assert_matches_type(AsyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -159,7 +159,7 @@ class TestAsyncGrants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             grant = await response.parse()
-            assert_matches_type(AsyncDefaultPageNumberPagination[GrantListResponse], grant, path=["response"])
+            assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -176,7 +176,7 @@ class TestAsyncGrants:
             grant_id="grant_id",
             id="id",
         )
-        assert_matches_type(GrantRevokeResponse, grant, path=["response"])
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
 
     @parametrize
     async def test_raw_response_revoke(self, async_client: AsyncDodoPayments) -> None:
@@ -188,7 +188,7 @@ class TestAsyncGrants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         grant = await response.parse()
-        assert_matches_type(GrantRevokeResponse, grant, path=["response"])
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
 
     @parametrize
     async def test_streaming_response_revoke(self, async_client: AsyncDodoPayments) -> None:
@@ -200,7 +200,7 @@ class TestAsyncGrants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             grant = await response.parse()
-            assert_matches_type(GrantRevokeResponse, grant, path=["response"])
+            assert_matches_type(EntitlementGrant, grant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
