@@ -38,6 +38,7 @@ WebhookEventType: TypeAlias = Literal[
     "credit.rolled_over",
     "credit.rollover_forfeited",
     "credit.overage_charged",
+    "credit.overage_reset",
     "credit.manual_adjustment",
     "credit.balance_low",
     "abandoned_checkout.detected",

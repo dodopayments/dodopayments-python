@@ -61,3 +61,11 @@ class CheckoutSessionFlagsParam(TypedDict, total=False):
 
     Default is false
     """
+
+    require_phone_number: bool
+    """
+    If true, the customer must provide a phone number to complete checkout. Requires
+    `allow_phone_number_collection` to also be true.
+
+    Default is false
+    """

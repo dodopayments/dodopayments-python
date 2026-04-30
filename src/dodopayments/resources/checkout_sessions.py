@@ -73,6 +73,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
+        mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
@@ -115,6 +116,13 @@ class CheckoutSessionsResource(SyncAPIResource):
           customization: Customization for the checkout session page
 
           force_3ds: Override merchant default 3DS behaviour for this session
+
+          mandate_min_amount_inr_paise: Override the merchant-level mandate floor (in INR paise) for INR e-mandates on
+              Indian-card recurring payments. The mandate amount sent to the processor is
+              `max(this_floor, actual_billing_amount)`, so this is effectively the
+              customer-facing authorization ceiling whenever billing is lower. When unset, the
+              merchant setting applies; when that's also unset, the system default of ₹15,000
+              applies.
 
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
@@ -160,6 +168,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "discount_code": discount_code,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
+                    "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "payment_method_id": payment_method_id,
@@ -224,6 +233,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
+        mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
@@ -266,6 +276,13 @@ class CheckoutSessionsResource(SyncAPIResource):
           customization: Customization for the checkout session page
 
           force_3ds: Override merchant default 3DS behaviour for this session
+
+          mandate_min_amount_inr_paise: Override the merchant-level mandate floor (in INR paise) for INR e-mandates on
+              Indian-card recurring payments. The mandate amount sent to the processor is
+              `max(this_floor, actual_billing_amount)`, so this is effectively the
+              customer-facing authorization ceiling whenever billing is lower. When unset, the
+              merchant setting applies; when that's also unset, the system default of ₹15,000
+              applies.
 
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
@@ -311,6 +328,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "discount_code": discount_code,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
+                    "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "payment_method_id": payment_method_id,
@@ -365,6 +383,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
+        mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
@@ -407,6 +426,13 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           customization: Customization for the checkout session page
 
           force_3ds: Override merchant default 3DS behaviour for this session
+
+          mandate_min_amount_inr_paise: Override the merchant-level mandate floor (in INR paise) for INR e-mandates on
+              Indian-card recurring payments. The mandate amount sent to the processor is
+              `max(this_floor, actual_billing_amount)`, so this is effectively the
+              customer-facing authorization ceiling whenever billing is lower. When unset, the
+              merchant setting applies; when that's also unset, the system default of ₹15,000
+              applies.
 
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
@@ -452,6 +478,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "discount_code": discount_code,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
+                    "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "payment_method_id": payment_method_id,
@@ -516,6 +543,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
+        mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
@@ -558,6 +586,13 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           customization: Customization for the checkout session page
 
           force_3ds: Override merchant default 3DS behaviour for this session
+
+          mandate_min_amount_inr_paise: Override the merchant-level mandate floor (in INR paise) for INR e-mandates on
+              Indian-card recurring payments. The mandate amount sent to the processor is
+              `max(this_floor, actual_billing_amount)`, so this is effectively the
+              customer-facing authorization ceiling whenever billing is lower. When unset, the
+              merchant setting applies; when that's also unset, the system default of ₹15,000
+              applies.
 
           metadata: Additional metadata associated with the payment. Defaults to empty if not
               provided.
@@ -603,6 +638,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "discount_code": discount_code,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
+                    "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
                     "metadata": metadata,
                     "minimal_address": minimal_address,
                     "payment_method_id": payment_method_id,

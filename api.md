@@ -158,6 +158,7 @@ from dodopayments.types import (
     Customer,
     CustomerPortalSession,
     CustomerListCreditEntitlementsResponse,
+    CustomerListEntitlementsResponse,
     CustomerRetrievePaymentMethodsResponse,
 )
 ```
@@ -170,6 +171,7 @@ Methods:
 - <code title="get /customers">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list</a>(\*\*<a href="src/dodopayments/types/customer_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">SyncDefaultPageNumberPagination[Customer]</a></code>
 - <code title="delete /customers/{customer_id}/payment-methods/{payment_method_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">delete_payment_method</a>(payment_method_id, \*, customer_id) -> None</code>
 - <code title="get /customers/{customer_id}/credit-entitlements">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_credit_entitlements</a>(customer_id) -> <a href="./src/dodopayments/types/customer_list_credit_entitlements_response.py">CustomerListCreditEntitlementsResponse</a></code>
+- <code title="get /customers/{customer_id}/entitlements">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_entitlements</a>(customer_id) -> <a href="./src/dodopayments/types/customer_list_entitlements_response.py">CustomerListEntitlementsResponse</a></code>
 - <code title="get /customers/{customer_id}/payment-methods">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve_payment_methods</a>(customer_id) -> <a href="./src/dodopayments/types/customer_retrieve_payment_methods_response.py">CustomerRetrievePaymentMethodsResponse</a></code>
 
 ## CustomerPortal
@@ -404,6 +406,7 @@ from dodopayments.types import (
     CreditExpiredWebhookEvent,
     CreditManualAdjustmentWebhookEvent,
     CreditOverageChargedWebhookEvent,
+    CreditOverageResetWebhookEvent,
     CreditRolledOverWebhookEvent,
     CreditRolloverForfeitedWebhookEvent,
     DisputeAcceptedWebhookEvent,
@@ -415,6 +418,10 @@ from dodopayments.types import (
     DisputeWonWebhookEvent,
     DunningRecoveredWebhookEvent,
     DunningStartedWebhookEvent,
+    EntitlementGrantCreatedWebhookEvent,
+    EntitlementGrantDeliveredWebhookEvent,
+    EntitlementGrantFailedWebhookEvent,
+    EntitlementGrantRevokedWebhookEvent,
     LicenseKeyCreatedWebhookEvent,
     PaymentCancelledWebhookEvent,
     PaymentFailedWebhookEvent,
@@ -438,6 +445,7 @@ from dodopayments.types import (
     CreditExpiredWebhookEvent,
     CreditManualAdjustmentWebhookEvent,
     CreditOverageChargedWebhookEvent,
+    CreditOverageResetWebhookEvent,
     CreditRolledOverWebhookEvent,
     CreditRolloverForfeitedWebhookEvent,
     DisputeAcceptedWebhookEvent,
@@ -449,6 +457,10 @@ from dodopayments.types import (
     DisputeWonWebhookEvent,
     DunningRecoveredWebhookEvent,
     DunningStartedWebhookEvent,
+    EntitlementGrantCreatedWebhookEvent,
+    EntitlementGrantDeliveredWebhookEvent,
+    EntitlementGrantFailedWebhookEvent,
+    EntitlementGrantRevokedWebhookEvent,
     LicenseKeyCreatedWebhookEvent,
     PaymentCancelledWebhookEvent,
     PaymentFailedWebhookEvent,
@@ -579,3 +591,50 @@ Methods:
 - <code title="post /credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger-entries">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">create_ledger_entry</a>(customer_id, \*, credit_entitlement_id, \*\*<a href="src/dodopayments/types/credit_entitlements/balance_create_ledger_entry_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/balance_create_ledger_entry_response.py">BalanceCreateLedgerEntryResponse</a></code>
 - <code title="get /credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/grants">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">list_grants</a>(customer_id, \*, credit_entitlement_id, \*\*<a href="src/dodopayments/types/credit_entitlements/balance_list_grants_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/balance_list_grants_response.py">SyncDefaultPageNumberPagination[BalanceListGrantsResponse]</a></code>
 - <code title="get /credit-entitlements/{credit_entitlement_id}/balances/{customer_id}/ledger">client.credit_entitlements.balances.<a href="./src/dodopayments/resources/credit_entitlements/balances.py">list_ledger</a>(customer_id, \*, credit_entitlement_id, \*\*<a href="src/dodopayments/types/credit_entitlements/balance_list_ledger_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/credit_ledger_entry.py">SyncDefaultPageNumberPagination[CreditLedgerEntry]</a></code>
+
+# Entitlements
+
+Types:
+
+```python
+from dodopayments.types import (
+    EntitlementCreateResponse,
+    EntitlementRetrieveResponse,
+    EntitlementUpdateResponse,
+    EntitlementListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /entitlements">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">create</a>(\*\*<a href="src/dodopayments/types/entitlement_create_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlement_create_response.py">EntitlementCreateResponse</a></code>
+- <code title="get /entitlements/{id}">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/entitlement_retrieve_response.py">EntitlementRetrieveResponse</a></code>
+- <code title="patch /entitlements/{id}">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">update</a>(id, \*\*<a href="src/dodopayments/types/entitlement_update_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlement_update_response.py">EntitlementUpdateResponse</a></code>
+- <code title="get /entitlements">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">list</a>(\*\*<a href="src/dodopayments/types/entitlement_list_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlement_list_response.py">SyncDefaultPageNumberPagination[EntitlementListResponse]</a></code>
+- <code title="delete /entitlements/{id}">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">delete</a>(id) -> None</code>
+
+## Files
+
+Types:
+
+```python
+from dodopayments.types.entitlements import FileUploadResponse
+```
+
+Methods:
+
+- <code title="delete /entitlements/{id}/files/{file_id}">client.entitlements.files.<a href="./src/dodopayments/resources/entitlements/files.py">delete</a>(file_id, \*, id) -> None</code>
+- <code title="post /entitlements/{id}/files">client.entitlements.files.<a href="./src/dodopayments/resources/entitlements/files.py">upload</a>(id) -> <a href="./src/dodopayments/types/entitlements/file_upload_response.py">FileUploadResponse</a></code>
+
+## Grants
+
+Types:
+
+```python
+from dodopayments.types.entitlements import GrantListResponse, GrantRevokeResponse
+```
+
+Methods:
+
+- <code title="get /entitlements/{id}/grants">client.entitlements.grants.<a href="./src/dodopayments/resources/entitlements/grants.py">list</a>(id, \*\*<a href="src/dodopayments/types/entitlements/grant_list_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/grant_list_response.py">SyncDefaultPageNumberPagination[GrantListResponse]</a></code>
+- <code title="delete /entitlements/{id}/grants/{grant_id}">client.entitlements.grants.<a href="./src/dodopayments/resources/entitlements/grants.py">revoke</a>(grant_id, \*, id) -> <a href="./src/dodopayments/types/entitlements/grant_revoke_response.py">GrantRevokeResponse</a></code>

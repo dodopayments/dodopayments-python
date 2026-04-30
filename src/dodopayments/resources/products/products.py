@@ -91,7 +91,7 @@ class ProductsResource(SyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
-        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        entitlements: Optional[Iterable[product_create_params.Entitlement]] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
@@ -122,17 +122,32 @@ class ProductsResource(SyncAPIResource):
 
           digital_product_delivery: Choose how you would like you digital product delivered
 
-          entitlement_ids: Optional entitlement IDs to attach to this product (max 20)
+              deprecated: use entitlements instead
+
+          entitlements: Optional entitlements to attach to this product (max 20)
 
           license_key_activation_message: Optional message displayed during license key activation
 
+              deprecated: use entitlements instead. Ignored when a `license_key` entitlement
+              is attached via the `entitlements` field.
+
           license_key_activations_limit: The number of times the license key can be activated. Must be 0 or greater
+
+              deprecated: use entitlements instead. Ignored when a `license_key` entitlement
+              is attached via the `entitlements` field.
 
           license_key_duration: Duration configuration for the license key. Set to null if you don't want the
               license key to expire. For subscriptions, the lifetime of the license key is
               tied to the subscription period
 
+              deprecated: use entitlements instead. Ignored when a `license_key` entitlement
+              is attached via the `entitlements` field.
+
           license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
+
+              deprecated: use entitlements instead. If a `license_key` entitlement is also
+              attached via the `entitlements` field, the `license_key_*` config fields below
+              are ignored — the attached entitlement's config is the source of truth.
 
           metadata: Additional metadata for the product
 
@@ -156,7 +171,7 @@ class ProductsResource(SyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
-                    "entitlement_ids": entitlement_ids,
+                    "entitlements": entitlements,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
@@ -211,7 +226,7 @@ class ProductsResource(SyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
-        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        entitlements: Optional[Iterable[product_update_params.Entitlement]] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
@@ -239,8 +254,10 @@ class ProductsResource(SyncAPIResource):
 
           digital_product_delivery: Choose how you would like you digital product delivered
 
-          entitlement_ids: Entitlement IDs to attach (replaces all existing when present) Send empty array
-              to remove all, omit field to leave unchanged
+              deprecated: use entitlements instead
+
+          entitlements: Entitlements to attach (replaces all existing when present) Send empty array to
+              remove all, omit field to leave unchanged
 
           image_id: Product image id after its uploaded to S3
 
@@ -249,20 +266,28 @@ class ProductsResource(SyncAPIResource):
               Only applicable if `license_key_enabled` is `true`. This message contains
               instructions for activating the license key.
 
+              deprecated: use entitlements instead
+
           license_key_activations_limit: Limit for the number of activations for the license key.
 
               Only applicable if `license_key_enabled` is `true`. Represents the maximum
               number of times the license key can be activated.
+
+              deprecated: use entitlements instead
 
           license_key_duration: Duration of the license key if enabled.
 
               Only applicable if `license_key_enabled` is `true`. Represents the duration in
               days for which the license key is valid.
 
+              deprecated: use entitlements instead
+
           license_key_enabled: Whether the product requires a license key.
 
               If `true`, additional fields related to license key (duration, activations
               limit, activation message) become applicable.
+
+              deprecated: use entitlements instead
 
           metadata: Additional metadata for the product
 
@@ -292,7 +317,7 @@ class ProductsResource(SyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
-                    "entitlement_ids": entitlement_ids,
+                    "entitlements": entitlements,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
@@ -510,7 +535,7 @@ class AsyncProductsResource(AsyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_create_params.DigitalProductDelivery] | Omit = omit,
-        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        entitlements: Optional[Iterable[product_create_params.Entitlement]] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
@@ -541,17 +566,32 @@ class AsyncProductsResource(AsyncAPIResource):
 
           digital_product_delivery: Choose how you would like you digital product delivered
 
-          entitlement_ids: Optional entitlement IDs to attach to this product (max 20)
+              deprecated: use entitlements instead
+
+          entitlements: Optional entitlements to attach to this product (max 20)
 
           license_key_activation_message: Optional message displayed during license key activation
 
+              deprecated: use entitlements instead. Ignored when a `license_key` entitlement
+              is attached via the `entitlements` field.
+
           license_key_activations_limit: The number of times the license key can be activated. Must be 0 or greater
+
+              deprecated: use entitlements instead. Ignored when a `license_key` entitlement
+              is attached via the `entitlements` field.
 
           license_key_duration: Duration configuration for the license key. Set to null if you don't want the
               license key to expire. For subscriptions, the lifetime of the license key is
               tied to the subscription period
 
+              deprecated: use entitlements instead. Ignored when a `license_key` entitlement
+              is attached via the `entitlements` field.
+
           license_key_enabled: When true, generates and sends a license key to your customer. Defaults to false
+
+              deprecated: use entitlements instead. If a `license_key` entitlement is also
+              attached via the `entitlements` field, the `license_key_*` config fields below
+              are ignored — the attached entitlement's config is the source of truth.
 
           metadata: Additional metadata for the product
 
@@ -575,7 +615,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
-                    "entitlement_ids": entitlement_ids,
+                    "entitlements": entitlements,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,
                     "license_key_duration": license_key_duration,
@@ -630,7 +670,7 @@ class AsyncProductsResource(AsyncAPIResource):
         credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]] | Omit = omit,
         description: Optional[str] | Omit = omit,
         digital_product_delivery: Optional[product_update_params.DigitalProductDelivery] | Omit = omit,
-        entitlement_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        entitlements: Optional[Iterable[product_update_params.Entitlement]] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
         license_key_activation_message: Optional[str] | Omit = omit,
         license_key_activations_limit: Optional[int] | Omit = omit,
@@ -658,8 +698,10 @@ class AsyncProductsResource(AsyncAPIResource):
 
           digital_product_delivery: Choose how you would like you digital product delivered
 
-          entitlement_ids: Entitlement IDs to attach (replaces all existing when present) Send empty array
-              to remove all, omit field to leave unchanged
+              deprecated: use entitlements instead
+
+          entitlements: Entitlements to attach (replaces all existing when present) Send empty array to
+              remove all, omit field to leave unchanged
 
           image_id: Product image id after its uploaded to S3
 
@@ -668,20 +710,28 @@ class AsyncProductsResource(AsyncAPIResource):
               Only applicable if `license_key_enabled` is `true`. This message contains
               instructions for activating the license key.
 
+              deprecated: use entitlements instead
+
           license_key_activations_limit: Limit for the number of activations for the license key.
 
               Only applicable if `license_key_enabled` is `true`. Represents the maximum
               number of times the license key can be activated.
+
+              deprecated: use entitlements instead
 
           license_key_duration: Duration of the license key if enabled.
 
               Only applicable if `license_key_enabled` is `true`. Represents the duration in
               days for which the license key is valid.
 
+              deprecated: use entitlements instead
+
           license_key_enabled: Whether the product requires a license key.
 
               If `true`, additional fields related to license key (duration, activations
               limit, activation message) become applicable.
+
+              deprecated: use entitlements instead
 
           metadata: Additional metadata for the product
 
@@ -711,7 +761,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "credit_entitlements": credit_entitlements,
                     "description": description,
                     "digital_product_delivery": digital_product_delivery,
-                    "entitlement_ids": entitlement_ids,
+                    "entitlements": entitlements,
                     "image_id": image_id,
                     "license_key_activation_message": license_key_activation_message,
                     "license_key_activations_limit": license_key_activations_limit,

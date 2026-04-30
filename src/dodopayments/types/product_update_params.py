@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
 from .price_param import PriceParam
@@ -11,7 +11,7 @@ from .tax_category import TaxCategory
 from .license_key_duration_param import LicenseKeyDurationParam
 from .attach_credit_entitlement_param import AttachCreditEntitlementParam
 
-__all__ = ["ProductUpdateParams", "DigitalProductDelivery"]
+__all__ = ["ProductUpdateParams", "DigitalProductDelivery", "Entitlement"]
 
 
 class ProductUpdateParams(TypedDict, total=False):
@@ -30,12 +30,15 @@ class ProductUpdateParams(TypedDict, total=False):
     """Description of the product, optional and must be at most 1000 characters."""
 
     digital_product_delivery: Optional[DigitalProductDelivery]
-    """Choose how you would like you digital product delivered"""
+    """Choose how you would like you digital product delivered
 
-    entitlement_ids: Optional[SequenceNotStr[str]]
+    deprecated: use entitlements instead
     """
-    Entitlement IDs to attach (replaces all existing when present) Send empty array
-    to remove all, omit field to leave unchanged
+
+    entitlements: Optional[Iterable[Entitlement]]
+    """
+    Entitlements to attach (replaces all existing when present) Send empty array to
+    remove all, omit field to leave unchanged
     """
 
     image_id: Optional[str]
@@ -46,6 +49,8 @@ class ProductUpdateParams(TypedDict, total=False):
 
     Only applicable if `license_key_enabled` is `true`. This message contains
     instructions for activating the license key.
+
+    deprecated: use entitlements instead
     """
 
     license_key_activations_limit: Optional[int]
@@ -53,6 +58,8 @@ class ProductUpdateParams(TypedDict, total=False):
 
     Only applicable if `license_key_enabled` is `true`. Represents the maximum
     number of times the license key can be activated.
+
+    deprecated: use entitlements instead
     """
 
     license_key_duration: Optional[LicenseKeyDurationParam]
@@ -60,6 +67,8 @@ class ProductUpdateParams(TypedDict, total=False):
 
     Only applicable if `license_key_enabled` is `true`. Represents the duration in
     days for which the license key is valid.
+
+    deprecated: use entitlements instead
     """
 
     license_key_enabled: Optional[bool]
@@ -67,6 +76,8 @@ class ProductUpdateParams(TypedDict, total=False):
 
     If `true`, additional fields related to license key (duration, activations
     limit, activation message) become applicable.
+
+    deprecated: use entitlements instead
     """
 
     metadata: Optional[Dict[str, str]]
@@ -83,7 +94,10 @@ class ProductUpdateParams(TypedDict, total=False):
 
 
 class DigitalProductDelivery(TypedDict, total=False):
-    """Choose how you would like you digital product delivered"""
+    """Choose how you would like you digital product delivered
+
+    deprecated: use entitlements instead
+    """
 
     external_url: Optional[str]
     """External URL to digital product"""
@@ -93,3 +107,15 @@ class DigitalProductDelivery(TypedDict, total=False):
 
     instructions: Optional[str]
     """Instructions to download and use the digital product"""
+
+
+class Entitlement(TypedDict, total=False):
+    """Request struct for attaching an entitlement to a product.
+
+    Mirrors the `credit_entitlements` attach shape — every "attach something
+    to a product" array takes objects, not bare IDs. Uniform shape leaves
+    room for per-attachment settings later without another API break.
+    """
+
+    entitlement_id: Required[str]
+    """ID of the entitlement to attach to the product"""

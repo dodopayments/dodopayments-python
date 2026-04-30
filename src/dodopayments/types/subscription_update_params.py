@@ -21,8 +21,31 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     """When set, the subscription will remain active until the end of billing period"""
 
     cancel_reason: Optional[
-        Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning"]
+        Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning", "dodo_team"]
     ]
+
+    cancellation_comment: Optional[str]
+    """
+    Free-text cancellation comment (only valid when cancelling or scheduling
+    cancellation).
+    """
+
+    cancellation_feedback: Optional[
+        Literal[
+            "too_expensive",
+            "missing_features",
+            "switched_service",
+            "unused",
+            "customer_service",
+            "low_quality",
+            "too_complex",
+            "other",
+        ]
+    ]
+    """
+    Customer-supplied churn reason (only valid when cancelling or scheduling
+    cancellation).
+    """
 
     credit_entitlement_cart: Optional[Iterable[CreditEntitlementCart]]
     """Update credit entitlement cart settings"""
