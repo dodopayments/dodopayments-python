@@ -12,6 +12,7 @@ import httpx
 from ..types import (
     Currency,
     SubscriptionStatus,
+    CancellationFeedback,
     subscription_list_params,
     subscription_charge_params,
     subscription_create_params,
@@ -39,11 +40,13 @@ from ..types.attach_addon_param import AttachAddonParam
 from ..types.subscription_status import SubscriptionStatus
 from ..types.payment_method_types import PaymentMethodTypes
 from ..types.billing_address_param import BillingAddressParam
+from ..types.cancellation_feedback import CancellationFeedback
 from ..types.customer_request_param import CustomerRequestParam
 from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
+from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_retrieve_credit_usage_response import SubscriptionRetrieveCreditUsageResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
@@ -88,7 +91,7 @@ class SubscriptionsResource(SyncAPIResource):
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -253,19 +256,7 @@ class SubscriptionsResource(SyncAPIResource):
         ]
         | Omit = omit,
         cancellation_comment: Optional[str] | Omit = omit,
-        cancellation_feedback: Optional[
-            Literal[
-                "too_expensive",
-                "missing_features",
-                "switched_service",
-                "unused",
-                "customer_service",
-                "low_quality",
-                "too_complex",
-                "other",
-            ]
-        ]
-        | Omit = omit,
+        cancellation_feedback: Optional[CancellationFeedback] | Omit = omit,
         credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
@@ -930,7 +921,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -1095,19 +1086,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         cancellation_comment: Optional[str] | Omit = omit,
-        cancellation_feedback: Optional[
-            Literal[
-                "too_expensive",
-                "missing_features",
-                "switched_service",
-                "unused",
-                "customer_service",
-                "low_quality",
-                "too_complex",
-                "other",
-            ]
-        ]
-        | Omit = omit,
+        cancellation_feedback: Optional[CancellationFeedback] | Omit = omit,
         credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,

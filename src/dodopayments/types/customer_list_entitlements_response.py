@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .entitlement_integration_type import EntitlementIntegrationType
 
 __all__ = ["CustomerListEntitlementsResponse", "Item"]
 
@@ -20,9 +21,7 @@ class Item(BaseModel):
     grant_id: str
     """Grant id (the per-customer row in `entitlement_grants`)."""
 
-    integration_type: Literal[
-        "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
-    ]
+    integration_type: EntitlementIntegrationType
 
     status: Literal["pending", "delivered", "failed", "revoked"]
 

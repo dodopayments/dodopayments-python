@@ -3,15 +3,16 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
 from .price_param import PriceParam
 from .tax_category import TaxCategory
 from .license_key_duration_param import LicenseKeyDurationParam
 from .attach_credit_entitlement_param import AttachCreditEntitlementParam
+from .attach_product_entitlement_param import AttachProductEntitlementParam
 
-__all__ = ["ProductUpdateParams", "DigitalProductDelivery", "Entitlement"]
+__all__ = ["ProductUpdateParams", "DigitalProductDelivery"]
 
 
 class ProductUpdateParams(TypedDict, total=False):
@@ -35,7 +36,7 @@ class ProductUpdateParams(TypedDict, total=False):
     deprecated: use entitlements instead
     """
 
-    entitlements: Optional[Iterable[Entitlement]]
+    entitlements: Optional[Iterable[AttachProductEntitlementParam]]
     """
     Entitlements to attach (replaces all existing when present) Send empty array to
     remove all, omit field to leave unchanged
@@ -107,15 +108,3 @@ class DigitalProductDelivery(TypedDict, total=False):
 
     instructions: Optional[str]
     """Instructions to download and use the digital product"""
-
-
-class Entitlement(TypedDict, total=False):
-    """Request struct for attaching an entitlement to a product.
-
-    Mirrors the `credit_entitlements` attach shape — every "attach something
-    to a product" array takes objects, not bare IDs. Uniform shape leaves
-    room for per-attachment settings later without another API break.
-    """
-
-    entitlement_id: Required[str]
-    """ID of the entitlement to attach to the product"""

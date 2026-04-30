@@ -5,24 +5,13 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .license_key_grant import LicenseKeyGrant
 from ..digital_product_delivery import DigitalProductDelivery
 
-__all__ = ["GrantListResponse", "LicenseKey"]
+__all__ = ["EntitlementGrant"]
 
 
-class LicenseKey(BaseModel):
-    """Present only when the entitlement integration_type is `license_key`."""
-
-    activations_used: int
-
-    key: str
-
-    activations_limit: Optional[int] = None
-
-    expires_at: Optional[datetime] = None
-
-
-class GrantListResponse(BaseModel):
+class EntitlementGrant(BaseModel):
     id: str
 
     business_id: str
@@ -51,7 +40,7 @@ class GrantListResponse(BaseModel):
 
     error_message: Optional[str] = None
 
-    license_key: Optional[LicenseKey] = None
+    license_key: Optional[LicenseKeyGrant] = None
     """Present only when the entitlement integration_type is `license_key`."""
 
     metadata: Optional[object] = None

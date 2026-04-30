@@ -10,10 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
-    EntitlementListResponse,
-    EntitlementCreateResponse,
-    EntitlementUpdateResponse,
-    EntitlementRetrieveResponse,
+    Entitlement,
 )
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
@@ -33,7 +30,7 @@ class TestEntitlements:
             integration_type="discord",
             name="name",
         )
-        assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
@@ -47,7 +44,7 @@ class TestEntitlements:
             description="description",
             metadata={"foo": "string"},
         )
-        assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
@@ -63,7 +60,7 @@ class TestEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = response.parse()
-        assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
@@ -79,7 +76,7 @@ class TestEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = response.parse()
-            assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+            assert_matches_type(Entitlement, entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,7 +85,7 @@ class TestEntitlements:
         entitlement = client.entitlements.retrieve(
             "id",
         )
-        assert_matches_type(EntitlementRetrieveResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
@@ -99,7 +96,7 @@ class TestEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = response.parse()
-        assert_matches_type(EntitlementRetrieveResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
@@ -110,7 +107,7 @@ class TestEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = response.parse()
-            assert_matches_type(EntitlementRetrieveResponse, entitlement, path=["response"])
+            assert_matches_type(Entitlement, entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -126,7 +123,7 @@ class TestEntitlements:
         entitlement = client.entitlements.update(
             id="id",
         )
-        assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
@@ -140,7 +137,7 @@ class TestEntitlements:
             metadata={"foo": "string"},
             name="name",
         )
-        assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
@@ -151,7 +148,7 @@ class TestEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = response.parse()
-        assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
@@ -162,7 +159,7 @@ class TestEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = response.parse()
-            assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+            assert_matches_type(Entitlement, entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -176,7 +173,7 @@ class TestEntitlements:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         entitlement = client.entitlements.list()
-        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
@@ -185,7 +182,7 @@ class TestEntitlements:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
@@ -194,7 +191,7 @@ class TestEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = response.parse()
-        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"])
+        assert_matches_type(SyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
@@ -203,9 +200,7 @@ class TestEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = response.parse()
-            assert_matches_type(
-                SyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"]
-            )
+            assert_matches_type(SyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -263,7 +258,7 @@ class TestAsyncEntitlements:
             integration_type="discord",
             name="name",
         )
-        assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -277,7 +272,7 @@ class TestAsyncEntitlements:
             description="description",
             metadata={"foo": "string"},
         )
-        assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -293,7 +288,7 @@ class TestAsyncEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = await response.parse()
-        assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
@@ -309,7 +304,7 @@ class TestAsyncEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = await response.parse()
-            assert_matches_type(EntitlementCreateResponse, entitlement, path=["response"])
+            assert_matches_type(Entitlement, entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -318,7 +313,7 @@ class TestAsyncEntitlements:
         entitlement = await async_client.entitlements.retrieve(
             "id",
         )
-        assert_matches_type(EntitlementRetrieveResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
@@ -329,7 +324,7 @@ class TestAsyncEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = await response.parse()
-        assert_matches_type(EntitlementRetrieveResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
@@ -340,7 +335,7 @@ class TestAsyncEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = await response.parse()
-            assert_matches_type(EntitlementRetrieveResponse, entitlement, path=["response"])
+            assert_matches_type(Entitlement, entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -356,7 +351,7 @@ class TestAsyncEntitlements:
         entitlement = await async_client.entitlements.update(
             id="id",
         )
-        assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -370,7 +365,7 @@ class TestAsyncEntitlements:
             metadata={"foo": "string"},
             name="name",
         )
-        assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
@@ -381,7 +376,7 @@ class TestAsyncEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = await response.parse()
-        assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+        assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
@@ -392,7 +387,7 @@ class TestAsyncEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = await response.parse()
-            assert_matches_type(EntitlementUpdateResponse, entitlement, path=["response"])
+            assert_matches_type(Entitlement, entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -406,7 +401,7 @@ class TestAsyncEntitlements:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         entitlement = await async_client.entitlements.list()
-        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -415,7 +410,7 @@ class TestAsyncEntitlements:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -424,7 +419,7 @@ class TestAsyncEntitlements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entitlement = await response.parse()
-        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"])
+        assert_matches_type(AsyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
@@ -433,9 +428,7 @@ class TestAsyncEntitlements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entitlement = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPageNumberPagination[EntitlementListResponse], entitlement, path=["response"]
-            )
+            assert_matches_type(AsyncDefaultPageNumberPagination[Entitlement], entitlement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
