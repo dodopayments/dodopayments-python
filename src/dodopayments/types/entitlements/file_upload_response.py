@@ -7,7 +7,7 @@ __all__ = ["FileUploadResponse"]
 
 class FileUploadResponse(BaseModel):
     file_id: str
-    """
-    EE-issued digital file id; appended to
-    `entitlements.integration_config.digital_file_ids`.
+    """Identifier of the attached file.
+
+    Pass it to `DELETE /entitlements/{id}/files/{file_id}` to detach the file later.
     """

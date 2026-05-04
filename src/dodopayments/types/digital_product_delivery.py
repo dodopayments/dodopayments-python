@@ -9,16 +9,19 @@ __all__ = ["DigitalProductDelivery"]
 
 
 class DigitalProductDelivery(BaseModel):
-    """Digital-product-delivery payload for a grant.
-
-    Populated for grants whose
-    entitlement has `integration_type = 'digital_files'`. `files` carries
-    presigned download URLs; the source (EE service or legacy in-process S3
-    presigning) is opaque to the caller.
+    """
+    Digital-product-delivery payload, present on grants for `digital_files`
+    entitlements. Each file carries a short-lived presigned download URL.
     """
 
     files: List[DigitalProductDeliveryFile]
+    """One entry per attached file."""
 
     external_url: Optional[str] = None
+    """Optional external URL, passed through from the entitlement configuration."""
 
     instructions: Optional[str] = None
+    """
+    Optional human-readable delivery instructions, passed through from the
+    entitlement configuration.
+    """

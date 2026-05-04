@@ -9,18 +9,21 @@ __all__ = ["LicenseKeyGrant"]
 
 
 class LicenseKeyGrant(BaseModel):
-    """Nested representation of license-key grant fields.
+    """License-key delivery payload, present on grants for `license_key`
+    entitlements.
 
-    Present only when the
-    grant's entitlement has `integration_type = 'license_key'` and a row exists
-    in `license_keys`. The grant's top-level `status` is the source of truth
-    for the grant's lifecycle — no per-license-key status is exposed here.
+    The grant's top-level `status` is the source of truth
+    for the grant's lifecycle.
     """
 
     activations_used: int
+    """Number of activations consumed so far."""
 
     key: str
+    """Issued license key."""
 
     activations_limit: Optional[int] = None
+    """Maximum activations allowed by the entitlement, when set."""
 
     expires_at: Optional[datetime] = None
+    """When the license key expires, when applicable."""

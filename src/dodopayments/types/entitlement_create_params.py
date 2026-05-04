@@ -24,5 +24,5 @@ class EntitlementCreateParams(TypedDict, total=False):
     description: Optional[str]
     """Optional description"""
 
-    metadata: Optional[Dict[str, str]]
-    """Optional user-facing metadata"""
+    metadata: Dict[str, str]
+    """Additional metadata for the entitlement"""

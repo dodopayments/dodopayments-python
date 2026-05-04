@@ -14,6 +14,10 @@ class EntitlementGrantRevokedWebhookEvent(BaseModel):
     """The business identifier"""
 
     data: EntitlementGrant
+    """
+    Detailed view of a single entitlement grant: who it's for, its lifecycle state,
+    and any integration-specific delivery payload.
+    """
 
     timestamp: datetime
     """The timestamp of when the event occurred"""

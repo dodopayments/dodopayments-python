@@ -57,11 +57,9 @@ class Product(BaseModel):
     """Description of the product, optional."""
 
     digital_product_delivery: Optional[DigitalProductDelivery] = None
-    """Digital-product-delivery payload for a grant.
-
-    Populated for grants whose entitlement has `integration_type = 'digital_files'`.
-    `files` carries presigned download URLs; the source (EE service or legacy
-    in-process S3 presigning) is opaque to the caller.
+    """
+    Digital-product-delivery payload, present on grants for `digital_files`
+    entitlements. Each file carries a short-lived presigned download URL.
     """
 
     image: Optional[str] = None
