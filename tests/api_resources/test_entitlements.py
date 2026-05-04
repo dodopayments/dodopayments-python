@@ -24,7 +24,7 @@ class TestEntitlements:
     def test_method_create(self, client: DodoPayments) -> None:
         entitlement = client.entitlements.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -36,7 +36,7 @@ class TestEntitlements:
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         entitlement = client.entitlements.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -50,7 +50,7 @@ class TestEntitlements:
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.entitlements.with_raw_response.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -66,7 +66,7 @@ class TestEntitlements:
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.entitlements.with_streaming_response.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -131,7 +131,7 @@ class TestEntitlements:
             id="id",
             description="description",
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             metadata={"foo": "string"},
@@ -252,7 +252,7 @@ class TestAsyncEntitlements:
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         entitlement = await async_client.entitlements.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -264,7 +264,7 @@ class TestAsyncEntitlements:
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         entitlement = await async_client.entitlements.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -278,7 +278,7 @@ class TestAsyncEntitlements:
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.entitlements.with_raw_response.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -294,7 +294,7 @@ class TestAsyncEntitlements:
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.entitlements.with_streaming_response.create(
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             integration_type="discord",
@@ -359,7 +359,7 @@ class TestAsyncEntitlements:
             id="id",
             description="description",
             integration_config={
-                "permission": "permission",
+                "permission": "pull",
                 "target_id": "target_id",
             },
             metadata={"foo": "string"},

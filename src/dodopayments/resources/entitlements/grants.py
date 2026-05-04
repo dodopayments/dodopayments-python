@@ -114,12 +114,10 @@ class GrantsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntitlementGrant:
-        """Revokes a single entitlement grant for the caller's business.
+        """Revoke a single grant.
 
-        For LicenseKey
-        integrations, also disables the backing license key. Idempotent: re-revoking an
-        already-revoked grant returns 200 with current state. The revocation reason is
-        always set to "manual" for API-initiated revocations.
+        Idempotent: re-revoking an already-revoked grant returns
+        the grant in its current state.
 
         Args:
           extra_headers: Send extra headers
@@ -233,12 +231,10 @@ class AsyncGrantsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntitlementGrant:
-        """Revokes a single entitlement grant for the caller's business.
+        """Revoke a single grant.
 
-        For LicenseKey
-        integrations, also disables the backing license key. Idempotent: re-revoking an
-        already-revoked grant returns 200 with current state. The revocation reason is
-        always set to "manual" for API-initiated revocations.
+        Idempotent: re-revoking an already-revoked grant returns
+        the grant in its current state.
 
         Args:
           extra_headers: Send extra headers

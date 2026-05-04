@@ -22,12 +22,10 @@ class ProductEntitlementSummary(BaseModel):
     id: str
 
     integration_config: IntegrationConfigResponse
-    """Public-facing variant of [`IntegrationConfig`].
+    """Integration-specific configuration on an entitlement read response.
 
-    Mirrors every variant shape on the wire EXCEPT `DigitalFiles`, which is replaced
-    with a hydrated `digital_files` object (resolved download URLs etc.). The
-    persisted JSONB stays ID-only via [`IntegrationConfig`]; this enum is
-    response-only.
+    For `digital_files` entitlements the response includes presigned download URLs
+    for each attached file; other integrations match the shape supplied at creation.
     """
 
     integration_type: EntitlementIntegrationType

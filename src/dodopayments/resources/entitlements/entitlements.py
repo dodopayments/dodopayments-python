@@ -83,7 +83,7 @@ class EntitlementsResource(SyncAPIResource):
         integration_type: EntitlementIntegrationType,
         name: str,
         description: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,7 +103,7 @@ class EntitlementsResource(SyncAPIResource):
 
           description: Optional description
 
-          metadata: Optional user-facing metadata
+          metadata: Additional metadata for the entitlement
 
           extra_headers: Send extra headers
 
@@ -183,8 +183,8 @@ class EntitlementsResource(SyncAPIResource):
         PATCH /entitlements/{id}
 
         Args:
-          integration_config: Platform-specific configuration for an entitlement. Each variant uses unique
-              field names so `#[serde(untagged)]` can disambiguate correctly.
+          integration_config: Integration-specific configuration supplied when creating or updating an
+              entitlement. The shape required matches the entitlement's `integration_type`.
 
           extra_headers: Send extra headers
 
@@ -337,7 +337,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         integration_type: EntitlementIntegrationType,
         name: str,
         description: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -357,7 +357,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
 
           description: Optional description
 
-          metadata: Optional user-facing metadata
+          metadata: Additional metadata for the entitlement
 
           extra_headers: Send extra headers
 
@@ -437,8 +437,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         PATCH /entitlements/{id}
 
         Args:
-          integration_config: Platform-specific configuration for an entitlement. Each variant uses unique
-              field names so `#[serde(untagged)]` can disambiguate correctly.
+          integration_config: Integration-specific configuration supplied when creating or updating an
+              entitlement. The shape required matches the entitlement's `integration_type`.
 
           extra_headers: Send extra headers
 
