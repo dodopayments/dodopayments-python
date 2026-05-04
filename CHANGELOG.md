@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.98.1 (2026-05-04)
+
+Full Changelog: [v1.98.0...v1.98.1](https://github.com/dodopayments/dodopayments-python/compare/v1.98.0...v1.98.1)
+
+### Features
+
+* **api:** update openapi spec ([deb0ae5](https://github.com/dodopayments/dodopayments-python/commit/deb0ae5fc0af940ff38a8eaa787f1a588995ab63))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([a22ccb0](https://github.com/dodopayments/dodopayments-python/commit/a22ccb0652909e42789e743e6c95226b2892eb61))
+
 ## 1.98.0 (2026-04-30)
 
 Full Changelog: [v1.97.0...v1.98.0](https://github.com/dodopayments/dodopayments-python/compare/v1.97.0...v1.98.0)
