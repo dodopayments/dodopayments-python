@@ -15,8 +15,8 @@ class EntitlementUpdateParams(TypedDict, total=False):
 
     integration_config: Optional[IntegrationConfigParam]
     """
-    Platform-specific configuration for an entitlement. Each variant uses unique
-    field names so `#[serde(untagged)]` can disambiguate correctly.
+    Integration-specific configuration supplied when creating or updating an
+    entitlement. The shape required matches the entitlement's `integration_type`.
     """
 
     metadata: Optional[Dict[str, str]]
