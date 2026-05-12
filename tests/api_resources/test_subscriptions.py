@@ -65,6 +65,7 @@ class TestSubscriptions:
                 allowed_payment_method_types=["ach"],
                 billing_currency="AED",
                 discount_code="discount_code",
+                discount_codes=["string"],
                 force_3ds=True,
                 mandate_min_amount_inr_paise=0,
                 metadata={"foo": "string"},
@@ -346,6 +347,7 @@ class TestSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            discount_codes=["string"],
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
@@ -475,6 +477,7 @@ class TestSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            discount_codes=["string"],
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
@@ -757,6 +760,7 @@ class TestAsyncSubscriptions:
                 allowed_payment_method_types=["ach"],
                 billing_currency="AED",
                 discount_code="discount_code",
+                discount_codes=["string"],
                 force_3ds=True,
                 mandate_min_amount_inr_paise=0,
                 metadata={"foo": "string"},
@@ -1038,6 +1042,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            discount_codes=["string"],
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
@@ -1167,6 +1172,7 @@ class TestAsyncSubscriptions:
                 }
             ],
             discount_code="discount_code",
+            discount_codes=["string"],
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",

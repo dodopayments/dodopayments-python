@@ -30,7 +30,13 @@ class PaymentCreateResponse(BaseModel):
     """Total amount of the payment in smallest currency unit (e.g. cents)"""
 
     discount_id: Optional[str] = None
-    """The discount id if discount is applied"""
+    """DEPRECATED: Use discount_ids instead.
+
+    Returns the first discount's ID if present.
+    """
+
+    discount_ids: Optional[List[str]] = None
+    """All stacked discount IDs applied, in order of application"""
 
     expires_on: Optional[datetime] = None
     """Expiry timestamp of the payment link"""

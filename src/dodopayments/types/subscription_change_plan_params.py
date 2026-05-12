@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .attach_addon_param import AttachAddonParam
 
 __all__ = ["SubscriptionChangePlanParams"]
@@ -35,11 +36,17 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     """
 
     discount_code: Optional[str]
+    """DEPRECATED: Use discount_codes instead.
+
+    Cannot be used together with discount_codes.
     """
-    Optional discount code to apply to the new plan. If provided, validates and
-    applies the discount to the plan change. If not provided and the subscription
-    has an existing discount with `preserve_on_plan_change=true`, the existing
-    discount will be preserved (if applicable to the new product).
+
+    discount_codes: Optional[SequenceNotStr[str]]
+    """Stacked discount codes to apply to the new plan.
+
+    Max 20. Cannot be used together with discount_code. If provided, replaces any
+    existing discount codes. Empty array removes all discounts. If not provided
+    (None), existing discounts with preserve_on_plan_change=true are preserved.
     """
 
     effective_at: Literal["immediately", "next_billing_date"]

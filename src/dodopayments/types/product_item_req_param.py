@@ -7,7 +7,26 @@ from typing_extensions import Required, TypedDict
 
 from .attach_addon_param import AttachAddonParam
 
-__all__ = ["ProductItemReqParam"]
+__all__ = ["ProductItemReqParam", "CreditEntitlement"]
+
+
+class CreditEntitlement(TypedDict, total=False):
+    """
+    Per-checkout-session override for a single credit entitlement attached to a product.
+    """
+
+    credit_entitlement_id: Required[str]
+    """ID of the credit entitlement to override.
+
+    Must already be attached to the product.
+    """
+
+    credits_amount: Required[str]
+    """
+    Number of credits to grant for this checkout session, overriding the
+    product-level `credits_amount` set on the credit entitlement mapping. Must be
+    greater than zero.
+    """
 
 
 class ProductItemReqParam(TypedDict, total=False):
@@ -28,4 +47,12 @@ class ProductItemReqParam(TypedDict, total=False):
 
     If amount is not set for pay_what_you_want product, customer is allowed to
     select the amount.
+    """
+
+    credit_entitlements: Optional[Iterable[CreditEntitlement]]
+    """
+    Per-checkout-session overrides for credit entitlements already attached to this
+    product. Each entry overrides the `credits_amount` granted by the referenced
+    credit entitlement when this checkout session is fulfilled. The
+    credit_entitlement_id must already be attached to the product.
     """
