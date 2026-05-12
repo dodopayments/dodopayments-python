@@ -47,6 +47,12 @@ class TestCheckoutSessions:
                         }
                     ],
                     "amount": 0,
+                    "credit_entitlements": [
+                        {
+                            "credit_entitlement_id": "credit_entitlement_id",
+                            "credits_amount": "credits_amount",
+                        }
+                    ],
                 }
             ],
             allowed_payment_method_types=["ach"],
@@ -122,6 +128,7 @@ class TestCheckoutSessions:
                 },
             },
             discount_code="discount_code",
+            discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
                 "allow_customer_editing_city": True,
@@ -260,6 +267,12 @@ class TestCheckoutSessions:
                         }
                     ],
                     "amount": 0,
+                    "credit_entitlements": [
+                        {
+                            "credit_entitlement_id": "credit_entitlement_id",
+                            "credits_amount": "credits_amount",
+                        }
+                    ],
                 }
             ],
             allowed_payment_method_types=["ach"],
@@ -335,6 +348,7 @@ class TestCheckoutSessions:
                 },
             },
             discount_code="discount_code",
+            discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
                 "allow_customer_editing_city": True,
@@ -441,6 +455,12 @@ class TestAsyncCheckoutSessions:
                         }
                     ],
                     "amount": 0,
+                    "credit_entitlements": [
+                        {
+                            "credit_entitlement_id": "credit_entitlement_id",
+                            "credits_amount": "credits_amount",
+                        }
+                    ],
                 }
             ],
             allowed_payment_method_types=["ach"],
@@ -516,6 +536,7 @@ class TestAsyncCheckoutSessions:
                 },
             },
             discount_code="discount_code",
+            discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
                 "allow_customer_editing_city": True,
@@ -654,6 +675,12 @@ class TestAsyncCheckoutSessions:
                         }
                     ],
                     "amount": 0,
+                    "credit_entitlements": [
+                        {
+                            "credit_entitlement_id": "credit_entitlement_id",
+                            "credits_amount": "credits_amount",
+                        }
+                    ],
                 }
             ],
             allowed_payment_method_types=["ach"],
@@ -729,6 +756,7 @@ class TestAsyncCheckoutSessions:
                 },
             },
             discount_code="discount_code",
+            discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
                 "allow_customer_editing_city": True,

@@ -22,7 +22,7 @@ from ..types import (
     subscription_update_payment_method_params,
     subscription_retrieve_usage_history_params,
 )
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -87,6 +87,7 @@ class SubscriptionsResource(SyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -130,7 +131,11 @@ class SubscriptionsResource(SyncAPIResource):
           billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
               support that currency for this transaction, it will not proceed
 
-          discount_code: Discount Code to apply to the subscription
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order of application. Max 20. Cannot be used
+              together with discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this subscription
 
@@ -191,6 +196,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "force_3ds": force_3ds,
                     "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
                     "metadata": metadata,
@@ -431,6 +437,7 @@ class SubscriptionsResource(SyncAPIResource):
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
@@ -455,10 +462,13 @@ class SubscriptionsResource(SyncAPIResource):
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
 
-          discount_code: Optional discount code to apply to the new plan. If provided, validates and
-              applies the discount to the plan change. If not provided and the subscription
-              has an existing discount with `preserve_on_plan_change=true`, the existing
-              discount will be preserved (if applicable to the new product).
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply to the new plan. Max 20. Cannot be used together
+              with discount_code. If provided, replaces any existing discount codes. Empty
+              array removes all discounts. If not provided (None), existing discounts with
+              preserve_on_plan_change=true are preserved.
 
           effective_at: When to apply the plan change.
 
@@ -497,6 +507,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
@@ -588,6 +599,7 @@ class SubscriptionsResource(SyncAPIResource):
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
@@ -612,10 +624,13 @@ class SubscriptionsResource(SyncAPIResource):
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
 
-          discount_code: Optional discount code to apply to the new plan. If provided, validates and
-              applies the discount to the plan change. If not provided and the subscription
-              has an existing discount with `preserve_on_plan_change=true`, the existing
-              discount will be preserved (if applicable to the new product).
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply to the new plan. Max 20. Cannot be used together
+              with discount_code. If provided, replaces any existing discount codes. Empty
+              array removes all discounts. If not provided (None), existing discounts with
+              preserve_on_plan_change=true are preserved.
 
           effective_at: When to apply the plan change.
 
@@ -653,6 +668,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
@@ -917,6 +933,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -960,7 +977,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
               support that currency for this transaction, it will not proceed
 
-          discount_code: Discount Code to apply to the subscription
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order of application. Max 20. Cannot be used
+              together with discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this subscription
 
@@ -1021,6 +1042,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "force_3ds": force_3ds,
                     "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
                     "metadata": metadata,
@@ -1261,6 +1283,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
@@ -1285,10 +1308,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
 
-          discount_code: Optional discount code to apply to the new plan. If provided, validates and
-              applies the discount to the plan change. If not provided and the subscription
-              has an existing discount with `preserve_on_plan_change=true`, the existing
-              discount will be preserved (if applicable to the new product).
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply to the new plan. Max 20. Cannot be used together
+              with discount_code. If provided, replaces any existing discount codes. Empty
+              array removes all discounts. If not provided (None), existing discounts with
+              preserve_on_plan_change=true are preserved.
 
           effective_at: When to apply the plan change.
 
@@ -1327,6 +1353,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
@@ -1418,6 +1445,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
@@ -1442,10 +1470,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
 
-          discount_code: Optional discount code to apply to the new plan. If provided, validates and
-              applies the discount to the plan change. If not provided and the subscription
-              has an existing discount with `preserve_on_plan_change=true`, the existing
-              discount will be preserved (if applicable to the new product).
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply to the new plan. Max 20. Cannot be used together
+              with discount_code. If provided, replaces any existing discount codes. Empty
+              array removes all discounts. If not provided (None), existing discounts with
+              preserve_on_plan_change=true are preserved.
 
           effective_at: When to apply the plan change.
 
@@ -1483,6 +1514,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
