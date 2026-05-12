@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from .._types import SequenceNotStr
 from .currency import Currency
 from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
@@ -46,7 +47,16 @@ class PaymentCreateParams(TypedDict, total=False):
     """
 
     discount_code: Optional[str]
-    """Discount Code to apply to the transaction"""
+    """DEPRECATED: Use discount_codes instead.
+
+    Cannot be used together with discount_codes.
+    """
+
+    discount_codes: Optional[SequenceNotStr[str]]
+    """Stacked discount codes to apply, in order of application.
+
+    Max 20. Cannot be used together with discount_code.
+    """
 
     force_3ds: Optional[bool]
     """Override merchant default 3DS behaviour for this payment"""

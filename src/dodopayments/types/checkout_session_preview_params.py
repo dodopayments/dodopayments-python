@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from .._types import SequenceNotStr
 from .currency import Currency
 from .custom_field_param import CustomFieldParam
 from .payment_method_types import PaymentMethodTypes
@@ -59,6 +60,16 @@ class CheckoutSessionPreviewParams(TypedDict, total=False):
     """Customization for the checkout session page"""
 
     discount_code: Optional[str]
+    """DEPRECATED: Use discount_codes instead.
+
+    Cannot be used together with discount_codes.
+    """
+
+    discount_codes: Optional[SequenceNotStr[str]]
+    """Stacked discount codes to apply, in order.
+
+    Max 20. Cannot be used together with discount_code.
+    """
 
     feature_flags: CheckoutSessionFlagsParam
 

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -11,7 +11,20 @@ from .subscription_status import SubscriptionStatus
 from .scheduled_plan_change import ScheduledPlanChange
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["SubscriptionListResponse"]
+__all__ = ["SubscriptionListResponse", "Discount"]
+
+
+class Discount(BaseModel):
+    """
+    Lightweight discount info for list endpoints.
+    Array order represents position (no explicit position field).
+    """
+
+    discount_id: str
+    """The unique discount ID"""
+
+    discount_cycles_remaining: Optional[int] = None
+    """Remaining billing cycles for this discount on this subscription"""
 
 
 class SubscriptionListResponse(BaseModel):
@@ -31,6 +44,9 @@ class SubscriptionListResponse(BaseModel):
 
     customer: CustomerLimitedDetails
     """Customer details associated with the subscription"""
+
+    discounts: List[Discount]
+    """All stacked discounts applied, in order of application"""
 
     metadata: Dict[str, str]
     """Additional custom data associated with the subscription"""
@@ -87,10 +103,10 @@ class SubscriptionListResponse(BaseModel):
     """Cancelled timestamp if the subscription is cancelled"""
 
     discount_cycles_remaining: Optional[int] = None
-    """Number of remaining discount cycles if discount is applied"""
+    """DEPRECATED: Use discounts[].cycles_remaining instead."""
 
     discount_id: Optional[str] = None
-    """The discount id if discount is applied"""
+    """DEPRECATED: Use discounts instead."""
 
     payment_method_id: Optional[str] = None
     """Saved payment method id used for recurring charges"""

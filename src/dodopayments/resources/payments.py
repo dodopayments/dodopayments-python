@@ -10,7 +10,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import Currency, payment_list_params, payment_create_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -66,6 +66,7 @@ class PaymentsResource(SyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
@@ -104,7 +105,11 @@ class PaymentsResource(SyncAPIResource):
           billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
               support that currency for this transaction, it will not proceed
 
-          discount_code: Discount Code to apply to the transaction
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order of application. Max 20. Cannot be used
+              together with discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this payment
 
@@ -153,6 +158,7 @@ class PaymentsResource(SyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,
@@ -352,6 +358,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
@@ -390,7 +397,11 @@ class AsyncPaymentsResource(AsyncAPIResource):
           billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
               support that currency for this transaction, it will not proceed
 
-          discount_code: Discount Code to apply to the transaction
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order of application. Max 20. Cannot be used
+              together with discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this payment
 
@@ -439,6 +450,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "force_3ds": force_3ds,
                     "metadata": metadata,
                     "payment_link": payment_link,

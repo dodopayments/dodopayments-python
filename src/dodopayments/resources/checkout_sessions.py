@@ -11,7 +11,7 @@ from ..types import (
     checkout_session_create_params,
     checkout_session_preview_params,
 )
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -71,6 +71,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
@@ -114,6 +115,12 @@ class CheckoutSessionsResource(SyncAPIResource):
           customer: Customer details for the session
 
           customization: Customization for the checkout session page
+
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order. Max 20. Cannot be used together with
+              discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this session
 
@@ -166,6 +173,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
                     "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
@@ -231,6 +239,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
@@ -274,6 +283,12 @@ class CheckoutSessionsResource(SyncAPIResource):
           customer: Customer details for the session
 
           customization: Customization for the checkout session page
+
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order. Max 20. Cannot be used together with
+              discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this session
 
@@ -326,6 +341,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
                     "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
@@ -381,6 +397,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
@@ -424,6 +441,12 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           customer: Customer details for the session
 
           customization: Customization for the checkout session page
+
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order. Max 20. Cannot be used together with
+              discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this session
 
@@ -476,6 +499,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
                     "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,
@@ -541,6 +565,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         customer: Optional[CustomerRequestParam] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
+        discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
@@ -584,6 +609,12 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           customer: Customer details for the session
 
           customization: Customization for the checkout session page
+
+          discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
+              discount_codes.
+
+          discount_codes: Stacked discount codes to apply, in order. Max 20. Cannot be used together with
+              discount_code.
 
           force_3ds: Override merchant default 3DS behaviour for this session
 
@@ -636,6 +667,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "customer": customer,
                     "customization": customization,
                     "discount_code": discount_code,
+                    "discount_codes": discount_codes,
                     "feature_flags": feature_flags,
                     "force_3ds": force_3ds,
                     "mandate_min_amount_inr_paise": mandate_min_amount_inr_paise,

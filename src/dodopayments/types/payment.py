@@ -7,6 +7,7 @@ from .dispute import Dispute
 from .._models import BaseModel
 from .currency import Currency
 from .country_code import CountryCode
+from .discount_type import DiscountType
 from .intent_status import IntentStatus
 from .billing_address import BillingAddress
 from .refund_list_item import RefundListItem
@@ -14,7 +15,65 @@ from .custom_field_response import CustomFieldResponse
 from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Payment", "ProductCart"]
+__all__ = ["Payment", "Discount", "ProductCart"]
+
+
+class Discount(BaseModel):
+    """
+    Response struct for a discount with its position in a stack and optional
+    cycle-tracking information (for subscriptions).
+    """
+
+    amount: int
+    """The discount amount (basis points for percentage, USD cents for flat)"""
+
+    business_id: str
+    """The business this discount belongs to"""
+
+    code: str
+    """The discount code"""
+
+    created_at: datetime
+    """Timestamp when the discount was created"""
+
+    discount_id: str
+    """The unique discount ID"""
+
+    metadata: Dict[str, str]
+    """Additional metadata"""
+
+    position: int
+    """Position of this discount in the stack (0-based)"""
+
+    preserve_on_plan_change: bool
+    """Whether this discount should be preserved when a subscription changes plans"""
+
+    restricted_to: List[str]
+    """List of product IDs to which this discount is restricted"""
+
+    times_used: int
+    """How many times this discount has been used"""
+
+    type: DiscountType
+    """The type of discount"""
+
+    cycles_remaining: Optional[int] = None
+    """
+    Remaining billing cycles for this discount on this subscription (None for
+    one-time payments)
+    """
+
+    expires_at: Optional[datetime] = None
+    """Optional date/time after which discount is expired"""
+
+    name: Optional[str] = None
+    """Name for the Discount"""
+
+    subscription_cycles: Optional[int] = None
+    """Number of subscription billing cycles this discount is valid for"""
+
+    usage_limit: Optional[int] = None
+    """Usage limit for this discount, if any"""
 
 
 class ProductCart(BaseModel):
@@ -102,7 +161,10 @@ class Payment(BaseModel):
     """Customer's responses to custom fields collected during checkout"""
 
     discount_id: Optional[str] = None
-    """The discount id if discount is applied"""
+    """DEPRECATED: Use discounts instead. Returns the first discount's ID if present."""
+
+    discounts: Optional[List[Discount]] = None
+    """All stacked discounts applied, ordered by position"""
 
     error_code: Optional[str] = None
     """An error code if the payment failed"""
