@@ -1,8 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
-from typing_extensions import TypeAlias
+from typing_extensions import Annotated, TypeAlias
 
+from .._utils import PropertyInfo
 from .dispute_won_webhook_event import DisputeWonWebhookEvent
 from .credit_added_webhook_event import CreditAddedWebhookEvent
 from .dispute_lost_webhook_event import DisputeLostWebhookEvent
@@ -45,44 +46,47 @@ from .abandoned_checkout_recovered_webhook_event import AbandonedCheckoutRecover
 
 __all__ = ["UnwrapWebhookEvent"]
 
-UnwrapWebhookEvent: TypeAlias = Union[
-    AbandonedCheckoutDetectedWebhookEvent,
-    AbandonedCheckoutRecoveredWebhookEvent,
-    CreditAddedWebhookEvent,
-    CreditBalanceLowWebhookEvent,
-    CreditDeductedWebhookEvent,
-    CreditExpiredWebhookEvent,
-    CreditManualAdjustmentWebhookEvent,
-    CreditOverageChargedWebhookEvent,
-    CreditOverageResetWebhookEvent,
-    CreditRolledOverWebhookEvent,
-    CreditRolloverForfeitedWebhookEvent,
-    DisputeAcceptedWebhookEvent,
-    DisputeCancelledWebhookEvent,
-    DisputeChallengedWebhookEvent,
-    DisputeExpiredWebhookEvent,
-    DisputeLostWebhookEvent,
-    DisputeOpenedWebhookEvent,
-    DisputeWonWebhookEvent,
-    DunningRecoveredWebhookEvent,
-    DunningStartedWebhookEvent,
-    EntitlementGrantCreatedWebhookEvent,
-    EntitlementGrantDeliveredWebhookEvent,
-    EntitlementGrantFailedWebhookEvent,
-    EntitlementGrantRevokedWebhookEvent,
-    LicenseKeyCreatedWebhookEvent,
-    PaymentCancelledWebhookEvent,
-    PaymentFailedWebhookEvent,
-    PaymentProcessingWebhookEvent,
-    PaymentSucceededWebhookEvent,
-    RefundFailedWebhookEvent,
-    RefundSucceededWebhookEvent,
-    SubscriptionActiveWebhookEvent,
-    SubscriptionCancelledWebhookEvent,
-    SubscriptionExpiredWebhookEvent,
-    SubscriptionFailedWebhookEvent,
-    SubscriptionOnHoldWebhookEvent,
-    SubscriptionPlanChangedWebhookEvent,
-    SubscriptionRenewedWebhookEvent,
-    SubscriptionUpdatedWebhookEvent,
+UnwrapWebhookEvent: TypeAlias = Annotated[
+    Union[
+        AbandonedCheckoutDetectedWebhookEvent,
+        AbandonedCheckoutRecoveredWebhookEvent,
+        CreditAddedWebhookEvent,
+        CreditBalanceLowWebhookEvent,
+        CreditDeductedWebhookEvent,
+        CreditExpiredWebhookEvent,
+        CreditManualAdjustmentWebhookEvent,
+        CreditOverageChargedWebhookEvent,
+        CreditOverageResetWebhookEvent,
+        CreditRolledOverWebhookEvent,
+        CreditRolloverForfeitedWebhookEvent,
+        DisputeAcceptedWebhookEvent,
+        DisputeCancelledWebhookEvent,
+        DisputeChallengedWebhookEvent,
+        DisputeExpiredWebhookEvent,
+        DisputeLostWebhookEvent,
+        DisputeOpenedWebhookEvent,
+        DisputeWonWebhookEvent,
+        DunningRecoveredWebhookEvent,
+        DunningStartedWebhookEvent,
+        EntitlementGrantCreatedWebhookEvent,
+        EntitlementGrantDeliveredWebhookEvent,
+        EntitlementGrantFailedWebhookEvent,
+        EntitlementGrantRevokedWebhookEvent,
+        LicenseKeyCreatedWebhookEvent,
+        PaymentCancelledWebhookEvent,
+        PaymentFailedWebhookEvent,
+        PaymentProcessingWebhookEvent,
+        PaymentSucceededWebhookEvent,
+        RefundFailedWebhookEvent,
+        RefundSucceededWebhookEvent,
+        SubscriptionActiveWebhookEvent,
+        SubscriptionCancelledWebhookEvent,
+        SubscriptionExpiredWebhookEvent,
+        SubscriptionFailedWebhookEvent,
+        SubscriptionOnHoldWebhookEvent,
+        SubscriptionPlanChangedWebhookEvent,
+        SubscriptionRenewedWebhookEvent,
+        SubscriptionUpdatedWebhookEvent,
+    ],
+    PropertyInfo(discriminator="type"),
 ]
