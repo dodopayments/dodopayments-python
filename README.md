@@ -46,8 +46,8 @@ client = DodoPayments(
 checkout_session_response = client.checkout_sessions.create(
     product_cart=[
         {
-            "product_id": "product_id",
-            "quantity": 0,
+            "product_id": "pdt_example",
+            "quantity": 1,
         }
     ],
 )
@@ -79,8 +79,8 @@ async def main() -> None:
     checkout_session_response = await client.checkout_sessions.create(
         product_cart=[
             {
-                "product_id": "product_id",
-                "quantity": 0,
+                "product_id": "pdt_example",
+                "quantity": 1,
             }
         ],
     )
@@ -122,8 +122,8 @@ async def main() -> None:
         checkout_session_response = await client.checkout_sessions.create(
             product_cart=[
                 {
-                    "product_id": "product_id",
-                    "quantity": 0,
+                    "product_id": "pdt_example",
+                    "quantity": 1,
                 }
             ],
         )
@@ -243,8 +243,8 @@ try:
     client.checkout_sessions.create(
         product_cart=[
             {
-                "product_id": "product_id",
-                "quantity": 0,
+                "product_id": "pdt_example",
+                "quantity": 1,
             }
         ],
     )
@@ -293,8 +293,8 @@ client = DodoPayments(
 client.with_options(max_retries=5).checkout_sessions.create(
     product_cart=[
         {
-            "product_id": "product_id",
-            "quantity": 0,
+            "product_id": "pdt_example",
+            "quantity": 1,
         }
     ],
 )
@@ -323,8 +323,8 @@ client = DodoPayments(
 client.with_options(timeout=5.0).checkout_sessions.create(
     product_cart=[
         {
-            "product_id": "product_id",
-            "quantity": 0,
+            "product_id": "pdt_example",
+            "quantity": 1,
         }
     ],
 )
@@ -370,8 +370,8 @@ from dodopayments import DodoPayments
 client = DodoPayments()
 response = client.checkout_sessions.with_raw_response.create(
     product_cart=[{
-        "product_id": "product_id",
-        "quantity": 0,
+        "product_id": "pdt_example",
+        "quantity": 1,
     }],
 )
 print(response.headers.get('X-My-Header'))
@@ -394,8 +394,8 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 with client.checkout_sessions.with_streaming_response.create(
     product_cart=[
         {
-            "product_id": "product_id",
-            "quantity": 0,
+            "product_id": "pdt_example",
+            "quantity": 1,
         }
     ],
 ) as response:
