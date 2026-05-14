@@ -1,8 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from .._utils import PropertyInfo
 from .._models import BaseModel
 from .currency import Currency
 from .time_interval import TimeInterval
@@ -151,4 +152,4 @@ class UsageBasedPrice(BaseModel):
     """Indicates if the price is tax inclusive"""
 
 
-Price: TypeAlias = Union[OneTimePrice, RecurringPrice, UsageBasedPrice]
+Price: TypeAlias = Annotated[Union[OneTimePrice, RecurringPrice, UsageBasedPrice], PropertyInfo(discriminator="type")]

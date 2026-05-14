@@ -2,8 +2,9 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from .._utils import PropertyInfo
 from .._models import BaseModel
 from .currency import Currency
 from .subscription import Subscription
@@ -104,8 +105,9 @@ class ImmediateChargeLineItemMeter(BaseModel):
     tax: Optional[int] = None
 
 
-ImmediateChargeLineItem: TypeAlias = Union[
-    ImmediateChargeLineItemSubscription, ImmediateChargeLineItemAddon, ImmediateChargeLineItemMeter
+ImmediateChargeLineItem: TypeAlias = Annotated[
+    Union[ImmediateChargeLineItemSubscription, ImmediateChargeLineItemAddon, ImmediateChargeLineItemMeter],
+    PropertyInfo(discriminator="type"),
 ]
 
 
