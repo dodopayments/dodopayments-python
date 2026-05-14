@@ -5,19 +5,23 @@ from __future__ import annotations
 from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["SubscriptionUpdatePaymentMethodParams", "New", "Existing"]
+__all__ = ["SubscriptionUpdatePaymentMethodParams", "PaymentMethod", "PaymentMethodNew", "PaymentMethodExisting"]
 
 
-class New(TypedDict, total=False):
+class SubscriptionUpdatePaymentMethodParams(TypedDict, total=False):
+    payment_method: Required[PaymentMethod]
+
+
+class PaymentMethodNew(TypedDict, total=False):
     type: Required[Literal["new"]]
 
     return_url: Optional[str]
 
 
-class Existing(TypedDict, total=False):
+class PaymentMethodExisting(TypedDict, total=False):
     payment_method_id: Required[str]
 
     type: Required[Literal["existing"]]
 
 
-SubscriptionUpdatePaymentMethodParams: TypeAlias = Union[New, Existing]
+PaymentMethod: TypeAlias = Union[PaymentMethodNew, PaymentMethodExisting]

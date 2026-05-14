@@ -30,6 +30,7 @@ from .time_interval import TimeInterval as TimeInterval
 from .addon_response import AddonResponse as AddonResponse
 from .dispute_status import DisputeStatus as DisputeStatus
 from .billing_address import BillingAddress as BillingAddress
+from .discount_detail import DiscountDetail as DiscountDetail
 from .filter_operator import FilterOperator as FilterOperator
 from .webhook_details import WebhookDetails as WebhookDetails
 from .refund_list_item import RefundListItem as RefundListItem

@@ -350,7 +350,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Discount, DiscountType
+from dodopayments.types import Discount, DiscountDetail, DiscountType
 ```
 
 Methods:
