@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.98.2 (2026-05-14)
+
+Full Changelog: [v1.98.1...v1.98.2](https://github.com/dodopayments/dodopayments-python/compare/v1.98.1...v1.98.2)
+
+### Features
+
+* **api:** manual updates ([c8e65f0](https://github.com/dodopayments/dodopayments-python/commit/c8e65f0751a50ad1210e3a877e673fdc47092061))
+* **api:** updated openapi spec to 1.98.0 ([16f1c72](https://github.com/dodopayments/dodopayments-python/commit/16f1c726d1a1806ae3400a8b8291f08b48228975))
+* **api:** updated openapi spec to v1.97.10 ([98c5baa](https://github.com/dodopayments/dodopayments-python/commit/98c5baad1d19c4f9ac3c2edb224e2e478a90c932))
+* **internal/types:** support eagerly validating pydantic iterators ([56c4a91](https://github.com/dodopayments/dodopayments-python/commit/56c4a91ba652017ab282b05d5d944eb558561232))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([e19ebde](https://github.com/dodopayments/dodopayments-python/commit/e19ebde724c282c9ada536a3bc35e05ff9cf0209))
+
 ## 1.98.1 (2026-05-04)
 
 Full Changelog: [v1.98.0...v1.98.1](https://github.com/dodopayments/dodopayments-python/compare/v1.98.0...v1.98.1)
