@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
 from typing import Optional
 from datetime import datetime
 
 from .._models import BaseModel
-from .meter_filter import MeterFilter
 from .meter_aggregation import MeterAggregation
 
 __all__ = ["Meter"]
@@ -29,7 +30,7 @@ class Meter(BaseModel):
 
     description: Optional[str] = None
 
-    filter: Optional[MeterFilter] = None
+    filter: Optional["MeterFilter"] = None
     """
     A filter structure that combines multiple conditions with logical conjunctions
     (AND/OR).
@@ -38,3 +39,6 @@ class Meter(BaseModel):
     filter has a conjunction (and/or) and clauses that can be either direct
     conditions or nested filters.
     """
+
+
+from .meter_filter import MeterFilter

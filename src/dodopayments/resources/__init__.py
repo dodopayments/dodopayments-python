@@ -168,6 +168,14 @@ from .credit_entitlements import (
     CreditEntitlementsResourceWithStreamingResponse,
     AsyncCreditEntitlementsResourceWithStreamingResponse,
 )
+from .product_collections import (
+    ProductCollectionsResource,
+    AsyncProductCollectionsResource,
+    ProductCollectionsResourceWithRawResponse,
+    AsyncProductCollectionsResourceWithRawResponse,
+    ProductCollectionsResourceWithStreamingResponse,
+    AsyncProductCollectionsResourceWithStreamingResponse,
+)
 from .license_key_instances import (
     LicenseKeyInstancesResource,
     AsyncLicenseKeyInstancesResource,
@@ -310,4 +318,10 @@ __all__ = [
     "AsyncEntitlementsResourceWithRawResponse",
     "EntitlementsResourceWithStreamingResponse",
     "AsyncEntitlementsResourceWithStreamingResponse",
+    "ProductCollectionsResource",
+    "AsyncProductCollectionsResource",
+    "ProductCollectionsResourceWithRawResponse",
+    "AsyncProductCollectionsResourceWithRawResponse",
+    "ProductCollectionsResourceWithStreamingResponse",
+    "AsyncProductCollectionsResourceWithStreamingResponse",
 ]

@@ -57,6 +57,7 @@ if TYPE_CHECKING:
         subscriptions,
         checkout_sessions,
         credit_entitlements,
+        product_collections,
         license_key_instances,
     )
     from .resources.misc import MiscResource, AsyncMiscResource
@@ -83,6 +84,10 @@ if TYPE_CHECKING:
     from .resources.credit_entitlements.credit_entitlements import (
         CreditEntitlementsResource,
         AsyncCreditEntitlementsResource,
+    )
+    from .resources.product_collections.product_collections import (
+        ProductCollectionsResource,
+        AsyncProductCollectionsResource,
     )
 
 __all__ = [
@@ -330,6 +335,12 @@ class DodoPayments(SyncAPIClient):
         from .resources.entitlements import EntitlementsResource
 
         return EntitlementsResource(self)
+
+    @cached_property
+    def product_collections(self) -> ProductCollectionsResource:
+        from .resources.product_collections import ProductCollectionsResource
+
+        return ProductCollectionsResource(self)
 
     @cached_property
     def with_raw_response(self) -> DodoPaymentsWithRawResponse:
@@ -677,6 +688,12 @@ class AsyncDodoPayments(AsyncAPIClient):
         return AsyncEntitlementsResource(self)
 
     @cached_property
+    def product_collections(self) -> AsyncProductCollectionsResource:
+        from .resources.product_collections import AsyncProductCollectionsResource
+
+        return AsyncProductCollectionsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncDodoPaymentsWithRawResponse:
         return AsyncDodoPaymentsWithRawResponse(self)
 
@@ -931,6 +948,12 @@ class DodoPaymentsWithRawResponse:
 
         return EntitlementsResourceWithRawResponse(self._client.entitlements)
 
+    @cached_property
+    def product_collections(self) -> product_collections.ProductCollectionsResourceWithRawResponse:
+        from .resources.product_collections import ProductCollectionsResourceWithRawResponse
+
+        return ProductCollectionsResourceWithRawResponse(self._client.product_collections)
+
 
 class AsyncDodoPaymentsWithRawResponse:
     _client: AsyncDodoPayments
@@ -1069,6 +1092,12 @@ class AsyncDodoPaymentsWithRawResponse:
         from .resources.entitlements import AsyncEntitlementsResourceWithRawResponse
 
         return AsyncEntitlementsResourceWithRawResponse(self._client.entitlements)
+
+    @cached_property
+    def product_collections(self) -> product_collections.AsyncProductCollectionsResourceWithRawResponse:
+        from .resources.product_collections import AsyncProductCollectionsResourceWithRawResponse
+
+        return AsyncProductCollectionsResourceWithRawResponse(self._client.product_collections)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -1209,6 +1238,12 @@ class DodoPaymentsWithStreamedResponse:
 
         return EntitlementsResourceWithStreamingResponse(self._client.entitlements)
 
+    @cached_property
+    def product_collections(self) -> product_collections.ProductCollectionsResourceWithStreamingResponse:
+        from .resources.product_collections import ProductCollectionsResourceWithStreamingResponse
+
+        return ProductCollectionsResourceWithStreamingResponse(self._client.product_collections)
+
 
 class AsyncDodoPaymentsWithStreamedResponse:
     _client: AsyncDodoPayments
@@ -1347,6 +1382,12 @@ class AsyncDodoPaymentsWithStreamedResponse:
         from .resources.entitlements import AsyncEntitlementsResourceWithStreamingResponse
 
         return AsyncEntitlementsResourceWithStreamingResponse(self._client.entitlements)
+
+    @cached_property
+    def product_collections(self) -> product_collections.AsyncProductCollectionsResourceWithStreamingResponse:
+        from .resources.product_collections import AsyncProductCollectionsResourceWithStreamingResponse
+
+        return AsyncProductCollectionsResourceWithStreamingResponse(self._client.product_collections)
 
 
 Client = DodoPayments

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from . import meter, meter_filter
+from .. import _compat
 from .brand import Brand as Brand
 from .event import Event as Event
 from .meter import Meter as Meter
@@ -15,6 +17,7 @@ from .customer import Customer as Customer
 from .discount import Discount as Discount
 from .conjunction import Conjunction as Conjunction
 from .entitlement import Entitlement as Entitlement
+from .filter_type import FilterType as FilterType
 from .get_dispute import GetDispute as GetDispute
 from .license_key import LicenseKey as LicenseKey
 from .price_param import PriceParam as PriceParam
@@ -36,6 +39,8 @@ from .webhook_details import WebhookDetails as WebhookDetails
 from .refund_list_item import RefundListItem as RefundListItem
 from .addon_list_params import AddonListParams as AddonListParams
 from .event_input_param import EventInputParam as EventInputParam
+from .filter_type_param import FilterTypeParam as FilterTypeParam
+from .github_permission import GitHubPermission as GitHubPermission
 from .meter_aggregation import MeterAggregation as MeterAggregation
 from .meter_list_params import MeterListParams as MeterListParams
 from .add_meter_to_price import AddMeterToPrice as AddMeterToPrice
@@ -46,6 +51,7 @@ from .license_key_status import LicenseKeyStatus as LicenseKeyStatus
 from .meter_filter_param import MeterFilterParam as MeterFilterParam
 from .new_customer_param import NewCustomerParam as NewCustomerParam
 from .payout_list_params import PayoutListParams as PayoutListParams
+from .product_collection import ProductCollection as ProductCollection
 from .refund_list_params import RefundListParams as RefundListParams
 from .theme_config_param import ThemeConfigParam as ThemeConfigParam
 from .webhook_event_type import WebhookEventType as WebhookEventType
@@ -152,6 +158,7 @@ from .balance_retrieve_ledger_params import BalanceRetrieveLedgerParams as Balan
 from .checkout_session_create_params import CheckoutSessionCreateParams as CheckoutSessionCreateParams
 from .credit_entitlement_list_params import CreditEntitlementListParams as CreditEntitlementListParams
 from .dispute_accepted_webhook_event import DisputeAcceptedWebhookEvent as DisputeAcceptedWebhookEvent
+from .product_collection_list_params import ProductCollectionListParams as ProductCollectionListParams
 from .refund_succeeded_webhook_event import RefundSucceededWebhookEvent as RefundSucceededWebhookEvent
 from .attach_credit_entitlement_param import AttachCreditEntitlementParam as AttachCreditEntitlementParam
 from .checkout_session_preview_params import CheckoutSessionPreviewParams as CheckoutSessionPreviewParams
@@ -168,8 +175,10 @@ from .credit_entitlement_update_params import CreditEntitlementUpdateParams as C
 from .credit_rolled_over_webhook_event import CreditRolledOverWebhookEvent as CreditRolledOverWebhookEvent
 from .dispute_challenged_webhook_event import DisputeChallengedWebhookEvent as DisputeChallengedWebhookEvent
 from .license_key_instance_list_params import LicenseKeyInstanceListParams as LicenseKeyInstanceListParams
-from .one_time_product_cart_item_param import OneTimeProductCartItemParam as OneTimeProductCartItemParam
 from .payment_processing_webhook_event import PaymentProcessingWebhookEvent as PaymentProcessingWebhookEvent
+from .product_collection_create_params import ProductCollectionCreateParams as ProductCollectionCreateParams
+from .product_collection_list_response import ProductCollectionListResponse as ProductCollectionListResponse
+from .product_collection_update_params import ProductCollectionUpdateParams as ProductCollectionUpdateParams
 from .webhook_retrieve_secret_response import WebhookRetrieveSecretResponse as WebhookRetrieveSecretResponse
 from .checkout_session_preview_response import CheckoutSessionPreviewResponse as CheckoutSessionPreviewResponse
 from .license_key_created_webhook_event import LicenseKeyCreatedWebhookEvent as LicenseKeyCreatedWebhookEvent
@@ -187,6 +196,9 @@ from .checkout_session_customization_param import CheckoutSessionCustomizationPa
 from .credit_overage_charged_webhook_event import CreditOverageChargedWebhookEvent as CreditOverageChargedWebhookEvent
 from .payment_retrieve_line_items_response import PaymentRetrieveLineItemsResponse as PaymentRetrieveLineItemsResponse
 from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEvent as SubscriptionCancelledWebhookEvent
+from .product_collection_unarchive_response import (
+    ProductCollectionUnarchiveResponse as ProductCollectionUnarchiveResponse,
+)
 from .checkout_session_billing_address_param import (
     CheckoutSessionBillingAddressParam as CheckoutSessionBillingAddressParam,
 )
@@ -211,6 +223,9 @@ from .entitlement_grant_created_webhook_event import (
 from .entitlement_grant_revoked_webhook_event import (
     EntitlementGrantRevokedWebhookEvent as EntitlementGrantRevokedWebhookEvent,
 )
+from .product_collection_update_images_params import (
+    ProductCollectionUpdateImagesParams as ProductCollectionUpdateImagesParams,
+)
 from .subscription_plan_changed_webhook_event import (
     SubscriptionPlanChangedWebhookEvent as SubscriptionPlanChangedWebhookEvent,
 )
@@ -222,6 +237,9 @@ from .abandoned_checkout_detected_webhook_event import (
 )
 from .entitlement_grant_delivered_webhook_event import (
     EntitlementGrantDeliveredWebhookEvent as EntitlementGrantDeliveredWebhookEvent,
+)
+from .product_collection_update_images_response import (
+    ProductCollectionUpdateImagesResponse as ProductCollectionUpdateImagesResponse,
 )
 from .subscription_preview_change_plan_response import (
     SubscriptionPreviewChangePlanResponse as SubscriptionPreviewChangePlanResponse,
@@ -250,3 +268,14 @@ from .subscription_update_payment_method_response import (
 from .subscription_retrieve_usage_history_response import (
     SubscriptionRetrieveUsageHistoryResponse as SubscriptionRetrieveUsageHistoryResponse,
 )
+
+# Rebuild cyclical models only after all modules are imported.
+# This ensures that, when building the deferred (due to cyclical references) model schema,
+# Pydantic can resolve the necessary references.
+# See: https://github.com/pydantic/pydantic/issues/11250 for more context.
+if _compat.PYDANTIC_V1:
+    meter.Meter.update_forward_refs()  # type: ignore
+    meter_filter.MeterFilter.update_forward_refs()  # type: ignore
+else:
+    meter.Meter.model_rebuild(_parent_namespace_depth=0)
+    meter_filter.MeterFilter.model_rebuild(_parent_namespace_depth=0)

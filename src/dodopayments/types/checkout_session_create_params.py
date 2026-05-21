@@ -56,6 +56,13 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     customer: Optional[CustomerRequestParam]
     """Customer details for the session"""
 
+    customer_business_name: Optional[str]
+    """Optional business / legal name associated with the tax id.
+
+    When provided together with a valid tax id for a B2B purchase, this name is
+    rendered on the invoice instead of the customer's personal name.
+    """
+
     customization: CheckoutSessionCustomizationParam
     """Customization for the checkout session page"""
 
