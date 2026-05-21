@@ -46,6 +46,7 @@ from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
+from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_retrieve_credit_usage_response import SubscriptionRetrieveCreditUsageResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
@@ -92,7 +93,7 @@ class SubscriptionsResource(SyncAPIResource):
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -901,7 +902,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
