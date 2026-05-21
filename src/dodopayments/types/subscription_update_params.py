@@ -40,6 +40,14 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     credit_entitlement_cart: Optional[Iterable[CreditEntitlementCart]]
     """Update credit entitlement cart settings"""
 
+    customer_business_name: Optional[str]
+    """Optional business / legal name associated with the tax id.
+
+    When provided together with a valid tax id for a B2B subscription, this name is
+    rendered on the invoice instead of the customer's personal name. Send `null` to
+    explicitly clear the business name.
+    """
+
     customer_name: Optional[str]
 
     disable_on_demand: Optional[DisableOnDemand]

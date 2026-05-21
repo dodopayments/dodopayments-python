@@ -14,6 +14,17 @@ class CheckoutSessionFlagsParam(TypedDict, total=False):
     Default is true
     """
 
+    allow_customer_editing_business_name: bool
+    """
+    If true, the customer can supply or edit the business name associated with the
+    tax id during checkout. Works independently of `allow_customer_editing_tax_id` —
+    either flag (or `allow_tax_id`) is sufficient to let the customer override the
+    session's business name. Typically set together with
+    `allow_customer_editing_tax_id`.
+
+    Default is false
+    """
+
     allow_customer_editing_city: bool
 
     allow_customer_editing_country: bool

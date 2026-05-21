@@ -114,6 +114,12 @@ class Subscription(BaseModel):
     custom_field_responses: Optional[List[CustomFieldResponse]] = None
     """Customer's responses to custom fields collected during checkout"""
 
+    customer_business_name: Optional[str] = None
+    """Business / legal name associated with the tax id (B2B).
+
+    When set this is used on the invoice in place of the customer's personal name.
+    """
+
     discount_cycles_remaining: Optional[int] = None
     """DEPRECATED: Use discounts[].cycles_remaining instead."""
 
