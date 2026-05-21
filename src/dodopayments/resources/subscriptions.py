@@ -46,7 +46,6 @@ from ..types.subscription_list_response import SubscriptionListResponse
 from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
-from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_retrieve_credit_usage_response import SubscriptionRetrieveCreditUsageResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
@@ -86,13 +85,14 @@ class SubscriptionsResource(SyncAPIResource):
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -130,6 +130,10 @@ class SubscriptionsResource(SyncAPIResource):
 
           billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
               support that currency for this transaction, it will not proceed
+
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B purchase, this name is rendered on the
+              invoice instead of the customer's personal name.
 
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
@@ -195,6 +199,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "addons": addons,
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
+                    "customer_business_name": customer_business_name,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "force_3ds": force_3ds,
@@ -264,6 +269,7 @@ class SubscriptionsResource(SyncAPIResource):
         cancellation_comment: Optional[str] | Omit = omit,
         cancellation_feedback: Optional[CancellationFeedback] | Omit = omit,
         credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
@@ -289,6 +295,11 @@ class SubscriptionsResource(SyncAPIResource):
 
           credit_entitlement_cart: Update credit entitlement cart settings
 
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B subscription, this name is rendered on
+              the invoice instead of the customer's personal name. Send `null` to explicitly
+              clear the business name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -309,6 +320,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "cancellation_comment": cancellation_comment,
                     "cancellation_feedback": cancellation_feedback,
                     "credit_entitlement_cart": credit_entitlement_cart,
+                    "customer_business_name": customer_business_name,
                     "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
@@ -882,13 +894,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
-        one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
+        one_time_product_cart: Optional[Iterable[subscription_create_params.OneTimeProductCart]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -926,6 +939,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           billing_currency: Fix the currency in which the end customer is billed. If Dodo Payments cannot
               support that currency for this transaction, it will not proceed
+
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B purchase, this name is rendered on the
+              invoice instead of the customer's personal name.
 
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
@@ -991,6 +1008,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "addons": addons,
                     "allowed_payment_method_types": allowed_payment_method_types,
                     "billing_currency": billing_currency,
+                    "customer_business_name": customer_business_name,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "force_3ds": force_3ds,
@@ -1060,6 +1078,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         cancellation_comment: Optional[str] | Omit = omit,
         cancellation_feedback: Optional[CancellationFeedback] | Omit = omit,
         credit_entitlement_cart: Optional[Iterable[subscription_update_params.CreditEntitlementCart]] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
@@ -1085,6 +1104,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           credit_entitlement_cart: Update credit entitlement cart settings
 
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B subscription, this name is rendered on
+              the invoice instead of the customer's personal name. Send `null` to explicitly
+              clear the business name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1105,6 +1129,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "cancellation_comment": cancellation_comment,
                     "cancellation_feedback": cancellation_feedback,
                     "credit_entitlement_cart": credit_entitlement_cart,
+                    "customer_business_name": customer_business_name,
                     "customer_name": customer_name,
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,

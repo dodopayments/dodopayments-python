@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import TypeAlias
 
 from .._models import BaseModel
 from .time_interval import TimeInterval
+from .github_permission import GitHubPermission
 
 __all__ = [
     "IntegrationConfigResponse",
@@ -22,7 +23,7 @@ __all__ = [
 
 
 class GitHubConfig(BaseModel):
-    permission: Literal["pull", "push", "admin", "maintain", "triage"]
+    permission: GitHubPermission
     """Permission to grant on the repository."""
 
     target_id: str

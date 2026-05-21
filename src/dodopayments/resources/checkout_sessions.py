@@ -69,6 +69,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -113,6 +114,10 @@ class CheckoutSessionsResource(SyncAPIResource):
           custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
+
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B purchase, this name is rendered on the
+              invoice instead of the customer's personal name.
 
           customization: Customization for the checkout session page
 
@@ -171,6 +176,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,
+                    "customer_business_name": customer_business_name,
                     "customization": customization,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
@@ -237,6 +243,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -281,6 +288,10 @@ class CheckoutSessionsResource(SyncAPIResource):
           custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
+
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B purchase, this name is rendered on the
+              invoice instead of the customer's personal name.
 
           customization: Customization for the checkout session page
 
@@ -339,6 +350,7 @@ class CheckoutSessionsResource(SyncAPIResource):
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,
+                    "customer_business_name": customer_business_name,
                     "customization": customization,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
@@ -395,6 +407,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -439,6 +452,10 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
+
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B purchase, this name is rendered on the
+              invoice instead of the customer's personal name.
 
           customization: Customization for the checkout session page
 
@@ -497,6 +514,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,
+                    "customer_business_name": customer_business_name,
                     "customization": customization,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
@@ -563,6 +581,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         confirm: bool | Omit = omit,
         custom_fields: Optional[Iterable[CustomFieldParam]] | Omit = omit,
         customer: Optional[CustomerRequestParam] | Omit = omit,
+        customer_business_name: Optional[str] | Omit = omit,
         customization: CheckoutSessionCustomizationParam | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -607,6 +626,10 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
           custom_fields: Custom fields to collect from customer during checkout (max 5 fields)
 
           customer: Customer details for the session
+
+          customer_business_name: Optional business / legal name associated with the tax id. When provided
+              together with a valid tax id for a B2B purchase, this name is rendered on the
+              invoice instead of the customer's personal name.
 
           customization: Customization for the checkout session page
 
@@ -665,6 +688,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                     "confirm": confirm,
                     "custom_fields": custom_fields,
                     "customer": customer,
+                    "customer_business_name": customer_business_name,
                     "customization": customization,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,

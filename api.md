@@ -106,6 +106,7 @@ Methods:
 Methods:
 
 - <code title="get /invoices/payments/{payment_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve</a>(payment_id) -> BinaryAPIResponse</code>
+- <code title="get /invoices/payouts/{payout_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve_payout</a>(payout_id) -> BinaryAPIResponse</code>
 - <code title="get /invoices/refunds/{refund_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve_refund</a>(refund_id) -> BinaryAPIResponse</code>
 
 # Licenses
@@ -534,7 +535,14 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Conjunction, FilterOperator, Meter, MeterAggregation, MeterFilter
+from dodopayments.types import (
+    Conjunction,
+    FilterOperator,
+    FilterType,
+    Meter,
+    MeterAggregation,
+    MeterFilter,
+)
 ```
 
 Methods:
@@ -604,6 +612,7 @@ Types:
 from dodopayments.types import (
     Entitlement,
     EntitlementIntegrationType,
+    GitHubPermission,
     IntegrationConfig,
     IntegrationConfigResponse,
 )
@@ -642,3 +651,61 @@ Methods:
 
 - <code title="get /entitlements/{id}/grants">client.entitlements.grants.<a href="./src/dodopayments/resources/entitlements/grants.py">list</a>(id, \*\*<a href="src/dodopayments/types/entitlements/grant_list_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/entitlement_grant.py">SyncDefaultPageNumberPagination[EntitlementGrant]</a></code>
 - <code title="delete /entitlements/{id}/grants/{grant_id}">client.entitlements.grants.<a href="./src/dodopayments/resources/entitlements/grants.py">revoke</a>(grant_id, \*, id) -> <a href="./src/dodopayments/types/entitlements/entitlement_grant.py">EntitlementGrant</a></code>
+
+# ProductCollections
+
+Types:
+
+```python
+from dodopayments.types import (
+    ProductCollection,
+    ProductCollectionListResponse,
+    ProductCollectionUnarchiveResponse,
+    ProductCollectionUpdateImagesResponse,
+)
+```
+
+Methods:
+
+- <code title="post /product-collections">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">create</a>(\*\*<a href="src/dodopayments/types/product_collection_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collection.py">ProductCollection</a></code>
+- <code title="get /product-collections/{id}">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/product_collection.py">ProductCollection</a></code>
+- <code title="patch /product-collections/{id}">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">update</a>(id, \*\*<a href="src/dodopayments/types/product_collection_update_params.py">params</a>) -> None</code>
+- <code title="get /product-collections">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">list</a>(\*\*<a href="src/dodopayments/types/product_collection_list_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collection_list_response.py">SyncDefaultPageNumberPagination[ProductCollectionListResponse]</a></code>
+- <code title="delete /product-collections/{id}">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">delete</a>(id) -> None</code>
+- <code title="post /product-collections/{id}/unarchive">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">unarchive</a>(id) -> <a href="./src/dodopayments/types/product_collection_unarchive_response.py">ProductCollectionUnarchiveResponse</a></code>
+- <code title="put /product-collections/{id}/images">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">update_images</a>(id, \*\*<a href="src/dodopayments/types/product_collection_update_images_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collection_update_images_response.py">ProductCollectionUpdateImagesResponse</a></code>
+
+## Groups
+
+Types:
+
+```python
+from dodopayments.types.product_collections import (
+    GroupProduct,
+    ProductCollectionGroupDetails,
+    ProductCollectionGroupResponse,
+)
+```
+
+Methods:
+
+- <code title="post /product-collections/{id}/groups">client.product_collections.groups.<a href="./src/dodopayments/resources/product_collections/groups/groups.py">create</a>(id, \*\*<a href="src/dodopayments/types/product_collections/group_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collections/product_collection_group_response.py">ProductCollectionGroupResponse</a></code>
+- <code title="patch /product-collections/{id}/groups/{group_id}">client.product_collections.groups.<a href="./src/dodopayments/resources/product_collections/groups/groups.py">update</a>(group_id, \*, id, \*\*<a href="src/dodopayments/types/product_collections/group_update_params.py">params</a>) -> None</code>
+- <code title="delete /product-collections/{id}/groups/{group_id}">client.product_collections.groups.<a href="./src/dodopayments/resources/product_collections/groups/groups.py">delete</a>(group_id, \*, id) -> None</code>
+
+### Items
+
+Types:
+
+```python
+from dodopayments.types.product_collections.groups import (
+    ProductCollectionProduct,
+    ItemCreateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /product-collections/{id}/groups/{group_id}/items">client.product_collections.groups.items.<a href="./src/dodopayments/resources/product_collections/groups/items.py">create</a>(group_id, \*, id, \*\*<a href="src/dodopayments/types/product_collections/groups/item_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collections/groups/item_create_response.py">ItemCreateResponse</a></code>
+- <code title="patch /product-collections/{id}/groups/{group_id}/items/{item_id}">client.product_collections.groups.items.<a href="./src/dodopayments/resources/product_collections/groups/items.py">update</a>(item_id, \*, id, group_id, \*\*<a href="src/dodopayments/types/product_collections/groups/item_update_params.py">params</a>) -> None</code>
+- <code title="delete /product-collections/{id}/groups/{group_id}/items/{item_id}">client.product_collections.groups.items.<a href="./src/dodopayments/resources/product_collections/groups/items.py">delete</a>(item_id, \*, id, group_id) -> None</code>

@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 from typing import Union, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
 from .time_interval import TimeInterval
+from .github_permission import GitHubPermission
 
 __all__ = [
     "IntegrationConfigParam",
@@ -22,7 +23,7 @@ __all__ = [
 
 
 class GitHubConfig(TypedDict, total=False):
-    permission: Required[Literal["pull", "push", "admin", "maintain", "triage"]]
+    permission: Required[GitHubPermission]
     """Permission to grant on the repository."""
 
     target_id: Required[str]

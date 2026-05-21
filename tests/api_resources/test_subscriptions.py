@@ -64,6 +64,7 @@ class TestSubscriptions:
                 ],
                 allowed_payment_method_types=["ach"],
                 billing_currency="AED",
+                customer_business_name="customer_business_name",
                 discount_code="discount_code",
                 discount_codes=["string"],
                 force_3ds=True,
@@ -203,6 +204,7 @@ class TestSubscriptions:
                     "rollover_timeframe_interval": "Day",
                 }
             ],
+            customer_business_name="customer_business_name",
             customer_name="customer_name",
             disable_on_demand={"next_billing_date": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},
@@ -715,6 +717,7 @@ class TestAsyncSubscriptions:
                 ],
                 allowed_payment_method_types=["ach"],
                 billing_currency="AED",
+                customer_business_name="customer_business_name",
                 discount_code="discount_code",
                 discount_codes=["string"],
                 force_3ds=True,
@@ -854,6 +857,7 @@ class TestAsyncSubscriptions:
                     "rollover_timeframe_interval": "Day",
                 }
             ],
+            customer_business_name="customer_business_name",
             customer_name="customer_name",
             disable_on_demand={"next_billing_date": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},

@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from .meter_filter_param import MeterFilterParam
 from .meter_aggregation_param import MeterAggregationParam
 
 __all__ = ["MeterCreateParams"]
@@ -27,5 +26,8 @@ class MeterCreateParams(TypedDict, total=False):
     description: Optional[str]
     """Optional description of the meter"""
 
-    filter: Optional[MeterFilterParam]
+    filter: Optional["MeterFilterParam"]
     """Optional filter to apply to the meter"""
+
+
+from .meter_filter_param import MeterFilterParam

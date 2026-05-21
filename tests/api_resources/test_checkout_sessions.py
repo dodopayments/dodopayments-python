@@ -77,6 +77,7 @@ class TestCheckoutSessions:
                 }
             ],
             customer={"customer_id": "customer_id"},
+            customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
                 "show_on_demand_tag": True,
@@ -131,6 +132,7 @@ class TestCheckoutSessions:
             discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
+                "allow_customer_editing_business_name": True,
                 "allow_customer_editing_city": True,
                 "allow_customer_editing_country": True,
                 "allow_customer_editing_email": True,
@@ -297,6 +299,7 @@ class TestCheckoutSessions:
                 }
             ],
             customer={"customer_id": "customer_id"},
+            customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
                 "show_on_demand_tag": True,
@@ -351,6 +354,7 @@ class TestCheckoutSessions:
             discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
+                "allow_customer_editing_business_name": True,
                 "allow_customer_editing_city": True,
                 "allow_customer_editing_country": True,
                 "allow_customer_editing_email": True,
@@ -485,6 +489,7 @@ class TestAsyncCheckoutSessions:
                 }
             ],
             customer={"customer_id": "customer_id"},
+            customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
                 "show_on_demand_tag": True,
@@ -539,6 +544,7 @@ class TestAsyncCheckoutSessions:
             discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
+                "allow_customer_editing_business_name": True,
                 "allow_customer_editing_city": True,
                 "allow_customer_editing_country": True,
                 "allow_customer_editing_email": True,
@@ -705,6 +711,7 @@ class TestAsyncCheckoutSessions:
                 }
             ],
             customer={"customer_id": "customer_id"},
+            customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
                 "show_on_demand_tag": True,
@@ -759,6 +766,7 @@ class TestAsyncCheckoutSessions:
             discount_codes=["string"],
             feature_flags={
                 "allow_currency_selection": True,
+                "allow_customer_editing_business_name": True,
                 "allow_customer_editing_city": True,
                 "allow_customer_editing_country": True,
                 "allow_customer_editing_email": True,
