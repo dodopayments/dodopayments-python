@@ -58,6 +58,13 @@ class Payment(BaseModel):
     refunds: List[RefundListItem]
     """List of refunds issued for this payment"""
 
+    retry_attempt: int
+    """
+    Retry attempt number for subscription renewal payments. `0` for the original
+    payment, `1`+ for each scheduled off-session retry after a failed renewal.
+    Always `0` for non-subscription payments.
+    """
+
     settlement_amount: int
     """
     The amount that will be credited to your Dodo balance after currency conversion
