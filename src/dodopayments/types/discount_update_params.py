@@ -15,11 +15,9 @@ __all__ = ["DiscountUpdateParams"]
 
 class DiscountUpdateParams(TypedDict, total=False):
     amount: Optional[int]
-    """If present, update the discount amount:
-
-    - If `discount_type` is `percentage`, this represents **basis points** (e.g.,
-      `540` = `5.4%`).
-    - Otherwise, this represents **USD cents** (e.g., `100` = `$1.00`).
+    """
+    If present, update the discount amount in **basis points** (e.g., `540` =
+    `5.4%`, `10000` = `100%`).
 
     Must be at least 1 if provided.
     """
@@ -54,6 +52,6 @@ class DiscountUpdateParams(TypedDict, total=False):
     """
 
     type: Optional[DiscountType]
-    """If present, update the discount type."""
+    """If present, update the discount type. Currently only `percentage` is supported."""
 
     usage_limit: Optional[int]
