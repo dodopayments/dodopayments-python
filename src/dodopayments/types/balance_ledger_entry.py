@@ -42,7 +42,6 @@ class BalanceLedgerEntry(BaseModel):
         "currency_conversion",
         "abandoned_cart_recovery_fee",
         "dunning_fees",
-        "payment_retry_fee",
     ]
 
     is_credit: bool

@@ -49,11 +49,6 @@ class TestProductCollections:
             name="name",
             brand_id="brand_id",
             description="description",
-            effective_at_on_downgrade="immediately",
-            effective_at_on_upgrade="immediately",
-            on_payment_failure="prevent_change",
-            proration_billing_mode_on_downgrade="prorated_immediately",
-            proration_billing_mode_on_upgrade="prorated_immediately",
         )
         assert_matches_type(ProductCollection, product_collection, path=["response"])
 
@@ -134,14 +129,9 @@ class TestProductCollections:
             id="id",
             brand_id="brand_id",
             description="description",
-            effective_at_on_downgrade="immediately",
-            effective_at_on_upgrade="immediately",
             group_order=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="name",
-            on_payment_failure="prevent_change",
-            proration_billing_mode_on_downgrade="prorated_immediately",
-            proration_billing_mode_on_upgrade="prorated_immediately",
         )
         assert product_collection is None
 
@@ -373,11 +363,6 @@ class TestAsyncProductCollections:
             name="name",
             brand_id="brand_id",
             description="description",
-            effective_at_on_downgrade="immediately",
-            effective_at_on_upgrade="immediately",
-            on_payment_failure="prevent_change",
-            proration_billing_mode_on_downgrade="prorated_immediately",
-            proration_billing_mode_on_upgrade="prorated_immediately",
         )
         assert_matches_type(ProductCollection, product_collection, path=["response"])
 
@@ -458,14 +443,9 @@ class TestAsyncProductCollections:
             id="id",
             brand_id="brand_id",
             description="description",
-            effective_at_on_downgrade="immediately",
-            effective_at_on_upgrade="immediately",
             group_order=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             image_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="name",
-            on_payment_failure="prevent_change",
-            proration_billing_mode_on_downgrade="prorated_immediately",
-            proration_billing_mode_on_upgrade="prorated_immediately",
         )
         assert product_collection is None
 
