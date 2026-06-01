@@ -1,18 +1,5 @@
 # Changelog
 
-## [1.102.0](https://github.com/dodopayments/dodopayments-python/compare/v1.101.0...v1.102.0) (2026-06-01)
-
-
-### Features
-
-* **readme:** drop 'generated with Stainless' attribution from SDK READMEs ([2549dc7](https://github.com/dodopayments/dodopayments-python/commit/2549dc7974e28ca0cfaab8fc3dfafc5877da0241))
-* **readme:** drop 'generated with Stainless' attribution from SDK READMEs ([f1553d6](https://github.com/dodopayments/dodopayments-python/commit/f1553d6e263603f3f00a7406fb1c84d3388efeb6))
-
-
-### Chores
-
-* **seal:** re-establish ancestry to released main [skip ci] ([475f452](https://github.com/dodopayments/dodopayments-python/commit/475f45248decba6db85e87877b662ef639f8c37b))
-
 ## [1.99.1](https://github.com/dodopayments/dodopayments-python/compare/v1.99.0...v1.99.1) (2026-06-01)
 
 
