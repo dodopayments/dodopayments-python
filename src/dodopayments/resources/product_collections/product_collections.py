@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -72,6 +73,17 @@ class ProductCollectionsResource(SyncAPIResource):
         name: str,
         brand_id: Optional[str] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        effective_at_on_downgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
+        effective_at_on_upgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        proration_billing_mode_on_downgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
+        proration_billing_mode_on_upgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -89,6 +101,21 @@ class ProductCollectionsResource(SyncAPIResource):
 
           description: Optional description of the product collection
 
+          effective_at_on_downgrade: Default effective_at setting for subscription plan downgrades (NULL = inherit
+              from business)
+
+          effective_at_on_upgrade: Default effective_at setting for subscription plan upgrades (NULL = inherit from
+              business)
+
+          on_payment_failure: Default behavior for subscription plan changes on payment failure (NULL =
+              inherit from business)
+
+          proration_billing_mode_on_downgrade: Default proration billing mode for subscription plan downgrades (NULL = inherit
+              from business)
+
+          proration_billing_mode_on_upgrade: Default proration billing mode for subscription plan upgrades (NULL = inherit
+              from business)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -105,6 +132,11 @@ class ProductCollectionsResource(SyncAPIResource):
                     "name": name,
                     "brand_id": brand_id,
                     "description": description,
+                    "effective_at_on_downgrade": effective_at_on_downgrade,
+                    "effective_at_on_upgrade": effective_at_on_upgrade,
+                    "on_payment_failure": on_payment_failure,
+                    "proration_billing_mode_on_downgrade": proration_billing_mode_on_downgrade,
+                    "proration_billing_mode_on_upgrade": proration_billing_mode_on_upgrade,
                 },
                 product_collection_create_params.ProductCollectionCreateParams,
             ),
@@ -151,9 +183,20 @@ class ProductCollectionsResource(SyncAPIResource):
         *,
         brand_id: Optional[str] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        effective_at_on_downgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
+        effective_at_on_upgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
         group_order: Optional[SequenceNotStr[str]] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        proration_billing_mode_on_downgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
+        proration_billing_mode_on_upgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,11 +210,26 @@ class ProductCollectionsResource(SyncAPIResource):
 
           description: Optional description update - pass null to remove, omit to keep unchanged
 
+          effective_at_on_downgrade: Effective_at setting for downgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
+          effective_at_on_upgrade: Effective_at setting for upgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
           group_order: Optional new order for groups (array of group UUIDs in desired order)
 
           image_id: Optional image update - pass null to remove, omit to keep unchanged
 
           name: Optional new name for the collection
+
+          on_payment_failure: On payment failure behavior: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
+          proration_billing_mode_on_downgrade: Proration billing mode for downgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
+          proration_billing_mode_on_upgrade: Proration billing mode for upgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
 
           extra_headers: Send extra headers
 
@@ -190,9 +248,14 @@ class ProductCollectionsResource(SyncAPIResource):
                 {
                     "brand_id": brand_id,
                     "description": description,
+                    "effective_at_on_downgrade": effective_at_on_downgrade,
+                    "effective_at_on_upgrade": effective_at_on_upgrade,
                     "group_order": group_order,
                     "image_id": image_id,
                     "name": name,
+                    "on_payment_failure": on_payment_failure,
+                    "proration_billing_mode_on_downgrade": proration_billing_mode_on_downgrade,
+                    "proration_billing_mode_on_upgrade": proration_billing_mode_on_upgrade,
                 },
                 product_collection_update_params.ProductCollectionUpdateParams,
             ),
@@ -391,6 +454,17 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
         name: str,
         brand_id: Optional[str] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        effective_at_on_downgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
+        effective_at_on_upgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        proration_billing_mode_on_downgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
+        proration_billing_mode_on_upgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -408,6 +482,21 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
 
           description: Optional description of the product collection
 
+          effective_at_on_downgrade: Default effective_at setting for subscription plan downgrades (NULL = inherit
+              from business)
+
+          effective_at_on_upgrade: Default effective_at setting for subscription plan upgrades (NULL = inherit from
+              business)
+
+          on_payment_failure: Default behavior for subscription plan changes on payment failure (NULL =
+              inherit from business)
+
+          proration_billing_mode_on_downgrade: Default proration billing mode for subscription plan downgrades (NULL = inherit
+              from business)
+
+          proration_billing_mode_on_upgrade: Default proration billing mode for subscription plan upgrades (NULL = inherit
+              from business)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -424,6 +513,11 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
                     "name": name,
                     "brand_id": brand_id,
                     "description": description,
+                    "effective_at_on_downgrade": effective_at_on_downgrade,
+                    "effective_at_on_upgrade": effective_at_on_upgrade,
+                    "on_payment_failure": on_payment_failure,
+                    "proration_billing_mode_on_downgrade": proration_billing_mode_on_downgrade,
+                    "proration_billing_mode_on_upgrade": proration_billing_mode_on_upgrade,
                 },
                 product_collection_create_params.ProductCollectionCreateParams,
             ),
@@ -470,9 +564,20 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
         *,
         brand_id: Optional[str] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        effective_at_on_downgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
+        effective_at_on_upgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
         group_order: Optional[SequenceNotStr[str]] | Omit = omit,
         image_id: Optional[str] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        proration_billing_mode_on_downgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
+        proration_billing_mode_on_upgrade: Optional[
+            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -486,11 +591,26 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
 
           description: Optional description update - pass null to remove, omit to keep unchanged
 
+          effective_at_on_downgrade: Effective_at setting for downgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
+          effective_at_on_upgrade: Effective_at setting for upgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
           group_order: Optional new order for groups (array of group UUIDs in desired order)
 
           image_id: Optional image update - pass null to remove, omit to keep unchanged
 
           name: Optional new name for the collection
+
+          on_payment_failure: On payment failure behavior: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
+          proration_billing_mode_on_downgrade: Proration billing mode for downgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
+
+          proration_billing_mode_on_upgrade: Proration billing mode for upgrades: Some(Some(val)) = set, Some(None) = clear
+              (inherit), None = no change
 
           extra_headers: Send extra headers
 
@@ -509,9 +629,14 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
                 {
                     "brand_id": brand_id,
                     "description": description,
+                    "effective_at_on_downgrade": effective_at_on_downgrade,
+                    "effective_at_on_upgrade": effective_at_on_upgrade,
                     "group_order": group_order,
                     "image_id": image_id,
                     "name": name,
+                    "on_payment_failure": on_payment_failure,
+                    "proration_billing_mode_on_downgrade": proration_billing_mode_on_downgrade,
+                    "proration_billing_mode_on_upgrade": proration_billing_mode_on_upgrade,
                 },
                 product_collection_update_params.ProductCollectionUpdateParams,
             ),

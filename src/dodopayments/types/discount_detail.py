@@ -16,7 +16,7 @@ class DiscountDetail(BaseModel):
     """
 
     amount: int
-    """The discount amount (basis points for percentage, USD cents for flat)"""
+    """The discount amount in **basis points** (e.g., 540 => 5.4%)."""
 
     business_id: str
     """The business this discount belongs to"""

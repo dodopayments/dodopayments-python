@@ -71,16 +71,12 @@ class DiscountsResource(SyncAPIResource):
         is generated.
 
         Args:
-          amount: The discount amount.
-
-              - If `discount_type` is **not** `percentage`, `amount` is in **USD cents**. For
-                example, `100` means `$1.00`. Only USD is allowed.
-              - If `discount_type` **is** `percentage`, `amount` is in **basis points**. For
-                example, `540` means `5.4%`.
+          amount: The discount amount in **basis points** (e.g. `540` means `5.4%`, `10000` means
+              `100%`).
 
               Must be at least 1.
 
-          type: The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`).
+          type: The discount type. Currently only `percentage` is supported.
 
           code: Optionally supply a code (will be uppercased).
 
@@ -191,12 +187,8 @@ class DiscountsResource(SyncAPIResource):
         PATCH /discounts/{discount_id}
 
         Args:
-          amount:
-              If present, update the discount amount:
-
-              - If `discount_type` is `percentage`, this represents **basis points** (e.g.,
-                `540` = `5.4%`).
-              - Otherwise, this represents **USD cents** (e.g., `100` = `$1.00`).
+          amount: If present, update the discount amount in **basis points** (e.g., `540` =
+              `5.4%`, `10000` = `100%`).
 
               Must be at least 1 if provided.
 
@@ -214,7 +206,7 @@ class DiscountsResource(SyncAPIResource):
               provided, the discount will be applied indefinitely to all recurring payments
               related to the subscription.
 
-          type: If present, update the discount type.
+          type: If present, update the discount type. Currently only `percentage` is supported.
 
           extra_headers: Send extra headers
 
@@ -273,7 +265,7 @@ class DiscountsResource(SyncAPIResource):
 
           code: Filter by discount code (partial match, case-insensitive)
 
-          discount_type: Filter by discount type (percentage)
+          discount_type: Filter by discount type
 
           page_number: Page number (default = 0).
 
@@ -428,16 +420,12 @@ class AsyncDiscountsResource(AsyncAPIResource):
         is generated.
 
         Args:
-          amount: The discount amount.
-
-              - If `discount_type` is **not** `percentage`, `amount` is in **USD cents**. For
-                example, `100` means `$1.00`. Only USD is allowed.
-              - If `discount_type` **is** `percentage`, `amount` is in **basis points**. For
-                example, `540` means `5.4%`.
+          amount: The discount amount in **basis points** (e.g. `540` means `5.4%`, `10000` means
+              `100%`).
 
               Must be at least 1.
 
-          type: The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`).
+          type: The discount type. Currently only `percentage` is supported.
 
           code: Optionally supply a code (will be uppercased).
 
@@ -548,12 +536,8 @@ class AsyncDiscountsResource(AsyncAPIResource):
         PATCH /discounts/{discount_id}
 
         Args:
-          amount:
-              If present, update the discount amount:
-
-              - If `discount_type` is `percentage`, this represents **basis points** (e.g.,
-                `540` = `5.4%`).
-              - Otherwise, this represents **USD cents** (e.g., `100` = `$1.00`).
+          amount: If present, update the discount amount in **basis points** (e.g., `540` =
+              `5.4%`, `10000` = `100%`).
 
               Must be at least 1 if provided.
 
@@ -571,7 +555,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
               provided, the discount will be applied indefinitely to all recurring payments
               related to the subscription.
 
-          type: If present, update the discount type.
+          type: If present, update the discount type. Currently only `percentage` is supported.
 
           extra_headers: Send extra headers
 
@@ -630,7 +614,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
           code: Filter by discount code (partial match, case-insensitive)
 
-          discount_type: Filter by discount type (percentage)
+          discount_type: Filter by discount type
 
           page_number: Page number (default = 0).
 
