@@ -15,15 +15,18 @@ __all__ = ["DiscountCreateParams"]
 
 class DiscountCreateParams(TypedDict, total=False):
     amount: Required[int]
-    """The discount amount in **basis points** (e.g.
+    """The discount amount.
 
-    `540` means `5.4%`, `10000` means `100%`).
+    - If `discount_type` is **not** `percentage`, `amount` is in **USD cents**. For
+      example, `100` means `$1.00`. Only USD is allowed.
+    - If `discount_type` **is** `percentage`, `amount` is in **basis points**. For
+      example, `540` means `5.4%`.
 
     Must be at least 1.
     """
 
     type: Required[DiscountType]
-    """The discount type. Currently only `percentage` is supported."""
+    """The discount type (e.g. `percentage`, `flat`, or `flat_per_unit`)."""
 
     code: Optional[str]
     """Optionally supply a code (will be uppercased).
