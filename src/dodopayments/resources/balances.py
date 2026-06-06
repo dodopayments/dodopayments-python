@@ -221,6 +221,7 @@ class BalancesResource(SyncAPIResource):
             "abandoned_cart_recovery_fee",
             "dunning_fees",
             "payment_retry_fee",
+            "byop_fee",
         ]
         | Omit = omit,
         limit: int | Omit = omit,
@@ -481,6 +482,7 @@ class AsyncBalancesResource(AsyncAPIResource):
             "abandoned_cart_recovery_fee",
             "dunning_fees",
             "payment_retry_fee",
+            "byop_fee",
         ]
         | Omit = omit,
         limit: int | Omit = omit,

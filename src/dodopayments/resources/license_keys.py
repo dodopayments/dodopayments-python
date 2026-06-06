@@ -195,7 +195,7 @@ class LicenseKeysResource(SyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
-        source: Literal["auto", "import"] | Omit = omit,
+        source: Literal["auto", "import", "manual"] | Omit = omit,
         status: Literal["active", "expired", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -424,7 +424,7 @@ class AsyncLicenseKeysResource(AsyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
-        source: Literal["auto", "import"] | Omit = omit,
+        source: Literal["auto", "import", "manual"] | Omit = omit,
         status: Literal["active", "expired", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

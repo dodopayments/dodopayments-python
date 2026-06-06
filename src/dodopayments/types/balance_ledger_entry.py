@@ -43,6 +43,7 @@ class BalanceLedgerEntry(BaseModel):
         "abandoned_cart_recovery_fee",
         "dunning_fees",
         "payment_retry_fee",
+        "byop_fee",
     ]
 
     is_credit: bool

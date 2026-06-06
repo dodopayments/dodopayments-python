@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .dispute import Dispute
 from .._models import BaseModel
@@ -54,6 +55,13 @@ class Payment(BaseModel):
 
     payment_id: str
     """Unique identifier for the payment"""
+
+    payment_provider: Literal["stripe", "adyen", "dodo"]
+    """Which processor handled this payment.
+
+    `stripe` / `adyen` for BYOP routes (the merchant's own Hyperswitch connector);
+    `dodo` for everything Dodo processed itself.
+    """
 
     refunds: List[RefundListItem]
     """List of refunds issued for this payment"""

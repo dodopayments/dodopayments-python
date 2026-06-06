@@ -11,6 +11,11 @@ class GrantListParams(TypedDict, total=False):
     customer_id: str
     """Filter by customer ID"""
 
+    integration_type: Literal[
+        "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
+    ]
+    """Filter by integration type"""
+
     page_number: int
     """Page number (default 0)"""
 
