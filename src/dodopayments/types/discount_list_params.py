@@ -17,7 +17,7 @@ class DiscountListParams(TypedDict, total=False):
     """Filter by discount code (partial match, case-insensitive)"""
 
     discount_type: DiscountType
-    """Filter by discount type (percentage)"""
+    """Filter by discount type"""
 
     page_number: int
     """Page number (default = 0)."""

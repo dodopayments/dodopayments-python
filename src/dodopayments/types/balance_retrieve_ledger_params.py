@@ -188,6 +188,8 @@ class BalanceRetrieveLedgerParams(TypedDict, total=False):
         "currency_conversion",
         "abandoned_cart_recovery_fee",
         "dunning_fees",
+        "payment_retry_fee",
+        "byop_fee",
     ]
     """Filter by Ledger Event Type"""
 

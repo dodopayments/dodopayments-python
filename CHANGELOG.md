@@ -1,17 +1,17 @@
 # Changelog
 
-## [1.102.0](https://github.com/dodopayments/dodopayments-python/compare/v1.101.0...v1.102.0) (2026-06-01)
+## [1.101.0](https://github.com/dodopayments/dodopayments-python/compare/v1.99.1...v1.101.0) (2026-06-01)
 
 
 ### Features
 
-* **readme:** drop 'generated with Stainless' attribution from SDK READMEs ([2549dc7](https://github.com/dodopayments/dodopayments-python/commit/2549dc7974e28ca0cfaab8fc3dfafc5877da0241))
-* **readme:** drop 'generated with Stainless' attribution from SDK READMEs ([f1553d6](https://github.com/dodopayments/dodopayments-python/commit/f1553d6e263603f3f00a7406fb1c84d3388efeb6))
+* **api:** regenerate SDK from latest OpenAPI spec (1.101.0) ([3e3803b](https://github.com/dodopayments/dodopayments-python/commit/3e3803ba74f7b6c5bb68db9c5adda15bca9141fc))
 
 
 ### Chores
 
-* **seal:** re-establish ancestry to released main [skip ci] ([475f452](https://github.com/dodopayments/dodopayments-python/commit/475f45248decba6db85e87877b662ef639f8c37b))
+* re-seal custom code for 1.101.0 spec (python/go/typescript/kotlin/ruby/php) ([ffa5dc2](https://github.com/dodopayments/dodopayments-python/commit/ffa5dc252f4e00302da9fdf694da64773feec882))
+* release 1.101.0 ([3fc1958](https://github.com/dodopayments/dodopayments-python/commit/3fc1958fa041f46fdadb167a812361b7844b0196))
 
 ## [1.99.1](https://github.com/dodopayments/dodopayments-python/compare/v1.99.0...v1.99.1) (2026-06-01)
 
