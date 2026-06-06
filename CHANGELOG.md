@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.102.1](https://github.com/dodopayments/dodopayments-python/compare/v1.102.0...v1.102.1) (2026-06-06)
+
+
+### Features
+
+* **api:** regenerate SDK from latest OpenAPI spec ([ae2932c](https://github.com/dodopayments/dodopayments-python/commit/ae2932c4ab0a4783ea281fc1e8b03c703077b744))
+* **api:** regenerate SDK from latest OpenAPI spec ([ce9e7bf](https://github.com/dodopayments/dodopayments-python/commit/ce9e7bf16452b7c1509e4e581a080e02336bcb5f))
+
+
+### Chores
+
+* pin release to spec version ([7add6aa](https://github.com/dodopayments/dodopayments-python/commit/7add6aa935aa9a2250be8215b146159fa2ec9bae))
+* **reseal:** ancestry repair for python custom-code seal ([a56e557](https://github.com/dodopayments/dodopayments-python/commit/a56e5570203e81e65bbec8a276507cef0dd3ac47))
+* **reseal:** ancestry repair for python custom-code seal ([d930e80](https://github.com/dodopayments/dodopayments-python/commit/d930e806c0110f70b65f0f7b0ffd788e8372e904))
+
 ## [1.101.0](https://github.com/dodopayments/dodopayments-python/compare/v1.99.1...v1.101.0) (2026-06-01)
 
 
