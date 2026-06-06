@@ -2,6 +2,7 @@
 
 from typing import Dict, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 from .currency import Currency
@@ -30,7 +31,20 @@ class PaymentListResponse(BaseModel):
 
     payment_id: str
 
+    payment_provider: Literal["stripe", "adyen", "dodo"]
+    """Which processor handled this payment.
+
+    `stripe` / `adyen` for BYOP routes (the merchant's own Hyperswitch connector);
+    `dodo` for everything Dodo processed itself.
+    """
+
     total_amount: int
+
+    card_last_four: Optional[str] = None
+    """The last four digits of the card"""
+
+    card_network: Optional[str] = None
+    """Card network like VISA, MASTERCARD etc."""
 
     dispute_status: Optional[DisputeStatus] = None
     """The most recent dispute status for this payment. None if no disputes exist."""
