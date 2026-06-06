@@ -638,6 +638,7 @@ class TestSubscriptions:
             subscription_id="subscription_id",
             payment_method={
                 "type": "new",
+                "allowed_payment_method_types": ["ach"],
                 "return_url": "return_url",
             },
         )
@@ -1291,6 +1292,7 @@ class TestAsyncSubscriptions:
             subscription_id="subscription_id",
             payment_method={
                 "type": "new",
+                "allowed_payment_method_types": ["ach"],
                 "return_url": "return_url",
             },
         )

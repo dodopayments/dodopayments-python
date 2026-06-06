@@ -7,6 +7,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .license_key_grant import LicenseKeyGrant
 from ..digital_product_delivery import DigitalProductDelivery
+from ..entitlement_integration_type import EntitlementIntegrationType
 
 __all__ = ["EntitlementGrant"]
 
@@ -31,6 +32,9 @@ class EntitlementGrant(BaseModel):
 
     entitlement_id: str
     """Identifier of the entitlement this grant was issued from."""
+
+    integration_type: EntitlementIntegrationType
+    """The integration type of the grant's entitlement (e.g. `license_key`)."""
 
     metadata: Dict[str, str]
     """Arbitrary key-value metadata recorded on the grant."""

@@ -11,12 +11,7 @@ __all__ = ["Discount"]
 
 class Discount(BaseModel):
     amount: int
-    """The discount amount.
-
-    - If `discount_type` is `percentage`, this is in **basis points** (e.g., 540 =>
-      5.4%).
-    - Otherwise, this is **USD cents** (e.g., 100 => `$1.00`).
-    """
+    """The discount amount in **basis points** (e.g., 540 => 5.4%)."""
 
     business_id: str
     """The business this discount belongs to."""
@@ -45,7 +40,7 @@ class Discount(BaseModel):
     """How many times this discount has been used."""
 
     type: DiscountType
-    """The type of discount, e.g. `percentage`, `flat`, or `flat_per_unit`."""
+    """The type of discount. Currently only `percentage` is supported."""
 
     expires_at: Optional[datetime] = None
     """Optional date/time after which discount is expired."""

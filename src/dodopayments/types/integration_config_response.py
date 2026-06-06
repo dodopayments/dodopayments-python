@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import TypeAlias
+from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
 from .time_interval import TimeInterval
@@ -126,6 +126,14 @@ class LicenseKeyConfig(BaseModel):
 
     duration_interval: Optional[TimeInterval] = None
     """Unit of `duration_count`."""
+
+    fulfillment_mode: Optional[Literal["auto", "manual"]] = None
+    """Fulfillment mode:
+
+    `auto` (default) generate and delivery license keys to customers automatically.
+    `manual` creates pending grants, actual key is provided via the fulfillment API
+    and delivered to the customer when fulfilled.
+    """
 
 
 IntegrationConfigResponse: TypeAlias = Union[

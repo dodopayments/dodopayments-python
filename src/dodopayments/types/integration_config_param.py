@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
 from .time_interval import TimeInterval
@@ -106,6 +106,13 @@ class LicenseKeyConfig(TypedDict, total=False):
 
     duration_interval: Optional[TimeInterval]
     """Unit of `duration_count`."""
+
+    fulfillment_mode: Optional[Literal["auto", "manual"]]
+    """
+    Fulfillment mode: `auto` (default) generates keys automatically; `manual`
+    creates pending grants the merchant fulfills via the
+    `POST /grants/{id}/license-key` endpoint.
+    """
 
 
 IntegrationConfigParam: TypeAlias = Union[
