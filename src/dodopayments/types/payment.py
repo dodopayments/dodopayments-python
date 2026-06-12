@@ -89,8 +89,9 @@ class Payment(BaseModel):
 
     total_amount: int
     """
-    Total amount charged to the customer including tax, in smallest currency unit
-    (e.g. cents)
+    Total amount charged to the customer including tax, in the currency's smallest
+    unit (e.g. cents for USD, yen for JPY, fils for KWD — see the currency's decimal
+    places)
     """
 
     card_holder_name: Optional[str] = None
@@ -167,7 +168,10 @@ class Payment(BaseModel):
     """Identifier of the subscription if payment is part of a subscription"""
 
     tax: Optional[int] = None
-    """Amount of tax collected in smallest currency unit (e.g. cents)"""
+    """Amount of tax collected in the currency's smallest unit (e.g.
+
+    cents for USD, yen for JPY, fils for KWD)
+    """
 
     updated_at: Optional[datetime] = None
     """Timestamp when the payment was last updated"""

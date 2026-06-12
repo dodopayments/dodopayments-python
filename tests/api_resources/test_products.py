@@ -89,6 +89,7 @@ class TestProducts:
             },
             license_key_enabled=True,
             metadata={"foo": "string"},
+            pricing_mode="by_currency",
         )
         assert_matches_type(Product, product, path=["response"])
 
@@ -231,6 +232,7 @@ class TestProducts:
                 "suggested_price": 0,
                 "tax_inclusive": True,
             },
+            pricing_mode="by_currency",
             tax_category="digital_products",
         )
         assert product is None
@@ -493,6 +495,7 @@ class TestAsyncProducts:
             },
             license_key_enabled=True,
             metadata={"foo": "string"},
+            pricing_mode="by_currency",
         )
         assert_matches_type(Product, product, path=["response"])
 
@@ -635,6 +638,7 @@ class TestAsyncProducts:
                 "suggested_price": 0,
                 "tax_inclusive": True,
             },
+            pricing_mode="by_currency",
             tax_category="digital_products",
         )
         assert product is None
