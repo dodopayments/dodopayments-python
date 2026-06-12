@@ -27,17 +27,18 @@ class DetailListResponse(BaseModel):
 
     original_amount: int
     """
-    Original amount in the original currency (in smallest currency unit, e.g.,
-    cents).
+    Original amount in the original currency, in that currency's smallest unit
+    (cents for USD, yen for JPY, fils for KWD).
     """
 
     original_currency: str
     """Original currency as ISO 4217 code (e.g., "USD", "EUR")."""
 
     payout_currency_amount: int
-    """Amount in the payout's currency (in smallest currency unit).
-
-    Uses cumulative rounding to ensure sum matches payout total exactly.
+    """
+    Amount in the payout's currency, in that currency's smallest unit (cents for
+    USD, yen for JPY, fils for KWD). Uses cumulative rounding to ensure sum matches
+    payout total exactly.
     """
 
     usd_equivalent_amount: int

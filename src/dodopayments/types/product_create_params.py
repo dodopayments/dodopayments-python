@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
 from .price_param import PriceParam
@@ -32,7 +32,7 @@ class ProductCreateParams(TypedDict, total=False):
     """Brand id for the product, if not provided will default to primary brand"""
 
     credit_entitlements: Optional[Iterable[AttachCreditEntitlementParam]]
-    """Optional credit entitlements to attach (max 3)"""
+    """Optional credit entitlements to attach (max 5)"""
 
     description: Optional[str]
     """Optional description of the product"""
@@ -44,7 +44,7 @@ class ProductCreateParams(TypedDict, total=False):
     """
 
     entitlements: Optional[Iterable[AttachProductEntitlementParam]]
-    """Optional entitlements to attach to this product (max 20)"""
+    """Optional entitlements to attach to this product (max 50)"""
 
     license_key_activation_message: Optional[str]
     """Optional message displayed during license key activation
@@ -80,6 +80,13 @@ class ProductCreateParams(TypedDict, total=False):
 
     metadata: Dict[str, str]
     """Additional metadata for the product"""
+
+    pricing_mode: Optional[Literal["by_currency", "by_country"]]
+    """Pricing mode for localized pricing.
+
+    When set, rules from /products/{id}/localized-prices apply at checkout. NULL
+    means base-only (existing behavior).
+    """
 
 
 class DigitalProductDelivery(TypedDict, total=False):

@@ -21,6 +21,9 @@ class EntitlementGrant(BaseModel):
     id: str
     """Unique identifier of the grant."""
 
+    brand_id: str
+    """Brand id this grant belongs to."""
+
     business_id: str
     """Identifier of the business that owns the grant."""
 
