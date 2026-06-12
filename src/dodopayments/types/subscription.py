@@ -30,6 +30,9 @@ class Subscription(BaseModel):
     billing: BillingAddress
     """Billing address details for payments"""
 
+    brand_id: str
+    """Brand id this subscription belongs to"""
+
     cancel_at_next_billing_date: bool
     """Indicates if the subscription will cancel at the next billing date"""
 
@@ -80,8 +83,8 @@ class Subscription(BaseModel):
 
     recurring_pre_tax_amount: int
     """
-    Amount charged before tax for each recurring payment in smallest currency unit
-    (e.g. cents)
+    Amount charged before tax for each recurring payment in the currency's smallest
+    unit (cents for USD, yen for JPY, fils for KWD)
     """
 
     status: SubscriptionStatus

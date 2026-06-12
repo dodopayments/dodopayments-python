@@ -30,7 +30,6 @@ class TestGrants:
         grant = client.entitlements.grants.list(
             id="id",
             customer_id="customer_id",
-            integration_type="discord",
             page_number=0,
             page_size=0,
             status="Pending",
@@ -134,7 +133,6 @@ class TestAsyncGrants:
         grant = await async_client.entitlements.grants.list(
             id="id",
             customer_id="customer_id",
-            integration_type="discord",
             page_number=0,
             page_size=0,
             status="Pending",
