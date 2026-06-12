@@ -12,6 +12,9 @@ __all__ = ["DunningStartedWebhookEvent", "Data"]
 class Data(BaseModel):
     """Webhook payload for dunning.started and dunning.recovered events"""
 
+    brand_id: str
+    """Brand id this dunning attempt belongs to"""
+
     created_at: datetime
 
     customer_id: str

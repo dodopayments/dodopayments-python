@@ -108,10 +108,11 @@ class LicenseKeyConfig(TypedDict, total=False):
     """Unit of `duration_count`."""
 
     fulfillment_mode: Optional[Literal["auto", "manual"]]
-    """
-    Fulfillment mode: `auto` (default) generates keys automatically; `manual`
-    creates pending grants the merchant fulfills via the
-    `POST /grants/{id}/license-key` endpoint.
+    """How license keys are fulfilled.
+
+    `auto` (default) generates and delivers keys to customers automatically;
+    `manual` creates pending grants that you fulfill with the supplied key via
+    `POST /grants/{grant_id}/license-key`.
     """
 
 

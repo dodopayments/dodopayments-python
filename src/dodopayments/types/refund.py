@@ -12,6 +12,9 @@ __all__ = ["Refund"]
 
 
 class Refund(BaseModel):
+    brand_id: str
+    """Brand id this refund belongs to"""
+
     business_id: str
     """The unique identifier of the business issuing the refund."""
 

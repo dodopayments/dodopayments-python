@@ -77,8 +77,8 @@ class SubscriptionListResponse(BaseModel):
 
     recurring_pre_tax_amount: int
     """
-    Amount charged before tax for each recurring payment in smallest currency unit
-    (e.g. cents)
+    Amount charged before tax for each recurring payment in the currency's smallest
+    unit (cents for USD, yen for JPY, fils for KWD)
     """
 
     status: SubscriptionStatus

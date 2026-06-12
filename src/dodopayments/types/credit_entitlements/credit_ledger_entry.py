@@ -20,6 +20,9 @@ class CreditLedgerEntry(BaseModel):
 
     balance_before: str
 
+    brand_id: str
+    """Brand id this credit ledger entry belongs to"""
+
     business_id: str
 
     created_at: datetime

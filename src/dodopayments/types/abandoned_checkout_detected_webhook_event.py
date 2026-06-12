@@ -18,6 +18,9 @@ class Data(BaseModel):
 
     abandonment_reason: Literal["payment_failed", "checkout_incomplete"]
 
+    brand_id: str
+    """Brand id this abandoned checkout belongs to"""
+
     customer_id: str
 
     payment_id: str

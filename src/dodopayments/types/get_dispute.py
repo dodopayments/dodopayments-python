@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 from .dispute_stage import DisputeStage
@@ -17,6 +18,9 @@ class GetDispute(BaseModel):
     The amount involved in the dispute, represented as a string to accommodate
     precision.
     """
+
+    brand_id: str
+    """Brand id this dispute belongs to"""
 
     business_id: str
     """The unique identifier of the business involved in the dispute."""
@@ -41,6 +45,13 @@ class GetDispute(BaseModel):
 
     payment_id: str
     """The unique identifier of the payment associated with the dispute."""
+
+    payment_provider: Literal["stripe", "adyen", "dodo"]
+    """Which processor handled the underlying payment.
+
+    `stripe` / `adyen` for BYOP routes (the merchant's own Hyperswitch connector);
+    `dodo` for everything Dodo processed itself.
+    """
 
     is_resolved_by_rdr: Optional[bool] = None
     """Whether the dispute was resolved by Rapid Dispute Resolution"""
