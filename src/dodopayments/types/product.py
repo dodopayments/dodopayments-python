@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .price import Price
 from .._models import BaseModel
@@ -76,6 +77,12 @@ class Product(BaseModel):
 
     name: Optional[str] = None
     """Name of the product, optional."""
+
+    pricing_mode: Optional[Literal["by_currency", "by_country"]] = None
+    """Pricing mode for localized pricing.
+
+    NULL means base-only (no localized rules apply).
+    """
 
     product_collection_id: Optional[str] = None
     """The product collection ID this product belongs to, if any"""
