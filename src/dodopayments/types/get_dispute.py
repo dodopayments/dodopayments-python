@@ -49,7 +49,7 @@ class GetDispute(BaseModel):
     payment_provider: Literal["stripe", "adyen", "dodo"]
     """Which processor handled the underlying payment.
 
-    `stripe` / `adyen` for BYOP routes (the merchant's own Hyperswitch connector);
+    `stripe` / `adyen` for BYOP routes (the merchant's own payment connector);
     `dodo` for everything Dodo processed itself.
     """
 
