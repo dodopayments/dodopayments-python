@@ -49,10 +49,6 @@ class GrantsResource(SyncAPIResource):
         id: str,
         *,
         customer_id: str | Omit = omit,
-        integration_type: Literal[
-            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
-        ]
-        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         status: Literal["Pending", "Delivered", "Failed", "Revoked"] | Omit = omit,
@@ -68,8 +64,6 @@ class GrantsResource(SyncAPIResource):
 
         Args:
           customer_id: Filter by customer ID
-
-          integration_type: Filter by integration type
 
           page_number: Page number (default 0)
 
@@ -98,7 +92,6 @@ class GrantsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "customer_id": customer_id,
-                        "integration_type": integration_type,
                         "page_number": page_number,
                         "page_size": page_size,
                         "status": status,
@@ -173,10 +166,6 @@ class AsyncGrantsResource(AsyncAPIResource):
         id: str,
         *,
         customer_id: str | Omit = omit,
-        integration_type: Literal[
-            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
-        ]
-        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         status: Literal["Pending", "Delivered", "Failed", "Revoked"] | Omit = omit,
@@ -192,8 +181,6 @@ class AsyncGrantsResource(AsyncAPIResource):
 
         Args:
           customer_id: Filter by customer ID
-
-          integration_type: Filter by integration type
 
           page_number: Page number (default 0)
 
@@ -222,7 +209,6 @@ class AsyncGrantsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "customer_id": customer_id,
-                        "integration_type": integration_type,
                         "page_number": page_number,
                         "page_size": page_size,
                         "status": status,

@@ -179,6 +179,14 @@ class CheckoutSessionPreviewResponse(BaseModel):
     current_breakup: CurrentBreakup
     """Breakup of the current payment"""
 
+    is_byop: bool
+    """Whether the payment will be routed through the merchant's own processor (BYOP).
+
+    True when the session's business has a BYOP route configured for the billing
+    country; in that case the quoted amounts exclude Dodo-computed tax because the
+    merchant is MoR and owns tax.
+    """
+
     product_cart: List[ProductCart]
     """The total product cart"""
 
