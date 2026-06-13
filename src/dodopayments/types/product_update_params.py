@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
 from .price_param import PriceParam
@@ -89,6 +89,14 @@ class ProductUpdateParams(TypedDict, total=False):
 
     price: Optional[PriceParam]
     """Price details of the product."""
+
+    pricing_mode: Optional[Literal["by_currency", "by_country"]]
+    """Update the pricing mode.
+
+    Omit to leave unchanged; set to null to clear (which archives all active
+    localized rules for this product). Changing to a different non-null mode also
+    archives any rules whose mode doesn't match the new mode.
+    """
 
     tax_category: Optional[TaxCategory]
     """Tax category of the product."""

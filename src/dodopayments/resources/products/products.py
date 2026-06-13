@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -98,6 +99,7 @@ class ProductsResource(SyncAPIResource):
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,7 +119,7 @@ class ProductsResource(SyncAPIResource):
 
           brand_id: Brand id for the product, if not provided will default to primary brand
 
-          credit_entitlements: Optional credit entitlements to attach (max 3)
+          credit_entitlements: Optional credit entitlements to attach (max 5)
 
           description: Optional description of the product
 
@@ -125,7 +127,7 @@ class ProductsResource(SyncAPIResource):
 
               deprecated: use entitlements instead
 
-          entitlements: Optional entitlements to attach to this product (max 20)
+          entitlements: Optional entitlements to attach to this product (max 50)
 
           license_key_activation_message: Optional message displayed during license key activation
 
@@ -151,6 +153,10 @@ class ProductsResource(SyncAPIResource):
               are ignored — the attached entitlement's config is the source of truth.
 
           metadata: Additional metadata for the product
+
+          pricing_mode: Pricing mode for localized pricing. When set, rules from
+              /products/{id}/localized-prices apply at checkout. NULL means base-only
+              (existing behavior).
 
           extra_headers: Send extra headers
 
@@ -178,6 +184,7 @@ class ProductsResource(SyncAPIResource):
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
                     "metadata": metadata,
+                    "pricing_mode": pricing_mode,
                 },
                 product_create_params.ProductCreateParams,
             ),
@@ -236,6 +243,7 @@ class ProductsResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         price: Optional[PriceParam] | Omit = omit,
+        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
         tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -296,6 +304,10 @@ class ProductsResource(SyncAPIResource):
 
           price: Price details of the product.
 
+          pricing_mode: Update the pricing mode. Omit to leave unchanged; set to null to clear (which
+              archives all active localized rules for this product). Changing to a different
+              non-null mode also archives any rules whose mode doesn't match the new mode.
+
           tax_category: Tax category of the product.
 
           extra_headers: Send extra headers
@@ -327,6 +339,7 @@ class ProductsResource(SyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "price": price,
+                    "pricing_mode": pricing_mode,
                     "tax_category": tax_category,
                 },
                 product_update_params.ProductUpdateParams,
@@ -542,6 +555,7 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -561,7 +575,7 @@ class AsyncProductsResource(AsyncAPIResource):
 
           brand_id: Brand id for the product, if not provided will default to primary brand
 
-          credit_entitlements: Optional credit entitlements to attach (max 3)
+          credit_entitlements: Optional credit entitlements to attach (max 5)
 
           description: Optional description of the product
 
@@ -569,7 +583,7 @@ class AsyncProductsResource(AsyncAPIResource):
 
               deprecated: use entitlements instead
 
-          entitlements: Optional entitlements to attach to this product (max 20)
+          entitlements: Optional entitlements to attach to this product (max 50)
 
           license_key_activation_message: Optional message displayed during license key activation
 
@@ -595,6 +609,10 @@ class AsyncProductsResource(AsyncAPIResource):
               are ignored — the attached entitlement's config is the source of truth.
 
           metadata: Additional metadata for the product
+
+          pricing_mode: Pricing mode for localized pricing. When set, rules from
+              /products/{id}/localized-prices apply at checkout. NULL means base-only
+              (existing behavior).
 
           extra_headers: Send extra headers
 
@@ -622,6 +640,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "license_key_duration": license_key_duration,
                     "license_key_enabled": license_key_enabled,
                     "metadata": metadata,
+                    "pricing_mode": pricing_mode,
                 },
                 product_create_params.ProductCreateParams,
             ),
@@ -680,6 +699,7 @@ class AsyncProductsResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         price: Optional[PriceParam] | Omit = omit,
+        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
         tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -740,6 +760,10 @@ class AsyncProductsResource(AsyncAPIResource):
 
           price: Price details of the product.
 
+          pricing_mode: Update the pricing mode. Omit to leave unchanged; set to null to clear (which
+              archives all active localized rules for this product). Changing to a different
+              non-null mode also archives any rules whose mode doesn't match the new mode.
+
           tax_category: Tax category of the product.
 
           extra_headers: Send extra headers
@@ -771,6 +795,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "price": price,
+                    "pricing_mode": pricing_mode,
                     "tax_category": tax_category,
                 },
                 product_update_params.ProductUpdateParams,

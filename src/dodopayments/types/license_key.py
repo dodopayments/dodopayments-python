@@ -14,6 +14,9 @@ class LicenseKey(BaseModel):
     id: str
     """The unique identifier of the license key."""
 
+    brand_id: str
+    """Brand id this license key belongs to"""
+
     business_id: str
     """The unique identifier of the business associated with the license key."""
 

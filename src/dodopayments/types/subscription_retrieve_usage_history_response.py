@@ -32,7 +32,10 @@ class Meter(BaseModel):
     """Price per unit in string format for precision"""
 
     total_price: int
-    """Total price charged for this meter in smallest currency unit (cents)"""
+    """
+    Total price charged for this meter in the currency's smallest unit (cents for
+    USD, yen for JPY, fils for KWD)
+    """
 
 
 class SubscriptionRetrieveUsageHistoryResponse(BaseModel):

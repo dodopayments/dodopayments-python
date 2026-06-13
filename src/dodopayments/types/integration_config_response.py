@@ -128,11 +128,11 @@ class LicenseKeyConfig(BaseModel):
     """Unit of `duration_count`."""
 
     fulfillment_mode: Optional[Literal["auto", "manual"]] = None
-    """Fulfillment mode:
+    """How license keys are fulfilled.
 
-    `auto` (default) generate and delivery license keys to customers automatically.
-    `manual` creates pending grants, actual key is provided via the fulfillment API
-    and delivered to the customer when fulfilled.
+    `auto` (default) generates and delivers keys to customers automatically;
+    `manual` creates pending grants that you fulfill with the supplied key via
+    `POST /grants/{grant_id}/license-key`.
     """
 
 
