@@ -27,7 +27,10 @@ class PaymentCreateResponse(BaseModel):
     """Unique identifier for the payment"""
 
     total_amount: int
-    """Total amount of the payment in smallest currency unit (e.g. cents)"""
+    """
+    Total amount of the payment in the currency's smallest unit (cents for USD, yen
+    for JPY, fils for KWD)
+    """
 
     discount_id: Optional[str] = None
     """DEPRECATED: Use discount_ids instead.
