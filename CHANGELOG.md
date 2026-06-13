@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.103.0](https://github.com/dodopayments/dodopayments-python/compare/v1.102.1...v1.103.0) (2026-06-13)
-
-
-### Features
-
-* **spec:** update OpenAPI to 1.104.0 — product localized prices ([e33a333](https://github.com/dodopayments/dodopayments-python/commit/e33a3337e2493349afa19898c9fe875dab116d1e))
-* **spec:** update OpenAPI to 1.104.0 — product localized prices ([7b146a8](https://github.com/dodopayments/dodopayments-python/commit/7b146a81fb203ea314b073b866e6a6d1af8164c3))
-
 ## [1.101.0](https://github.com/dodopayments/dodopayments-python/compare/v1.99.1...v1.101.0) (2026-06-01)
 
 
