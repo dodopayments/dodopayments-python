@@ -13,6 +13,9 @@ class Data(BaseModel):
 
     available_balance: str
 
+    brand_id: str
+    """Brand id this credit entitlement belongs to"""
+
     credit_entitlement_id: str
 
     credit_entitlement_name: str
