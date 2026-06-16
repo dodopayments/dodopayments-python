@@ -196,8 +196,14 @@ class CheckoutSessionPreviewResponse(BaseModel):
     recurring_breakup: Optional[RecurringBreakup] = None
     """Breakup of recurring payments (None for one-time only)"""
 
+    tax_id_business_name: Optional[str] = None
+    """Registered business name from the official registry (EU/GB/AU) when found"""
+
     tax_id_err_msg: Optional[str] = None
     """Error message if tax ID validation failed"""
+
+    tax_id_format_name: Optional[str] = None
+    """The matched tax ID notation (e.g. "VAT Number", "GSTIN") when valid"""
 
     total_tax: Optional[int] = None
     """Total tax"""
