@@ -74,14 +74,14 @@ class TestDiscounts:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         discount = client.discounts.retrieve(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
         assert_matches_type(Discount, discount, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.discounts.with_raw_response.retrieve(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
 
         assert response.is_closed is True
@@ -92,7 +92,7 @@ class TestDiscounts:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.discounts.with_streaming_response.retrieve(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -112,14 +112,14 @@ class TestDiscounts:
     @parametrize
     def test_method_update(self, client: DodoPayments) -> None:
         discount = client.discounts.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
         assert_matches_type(Discount, discount, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         discount = client.discounts.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
             amount=0,
             code="code",
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -136,7 +136,7 @@ class TestDiscounts:
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.discounts.with_raw_response.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
 
         assert response.is_closed is True
@@ -147,7 +147,7 @@ class TestDiscounts:
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.discounts.with_streaming_response.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -204,14 +204,14 @@ class TestDiscounts:
     @parametrize
     def test_method_delete(self, client: DodoPayments) -> None:
         discount = client.discounts.delete(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
         assert discount is None
 
     @parametrize
     def test_raw_response_delete(self, client: DodoPayments) -> None:
         response = client.discounts.with_raw_response.delete(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
 
         assert response.is_closed is True
@@ -222,7 +222,7 @@ class TestDiscounts:
     @parametrize
     def test_streaming_response_delete(self, client: DodoPayments) -> None:
         with client.discounts.with_streaming_response.delete(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -336,14 +336,14 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         discount = await async_client.discounts.retrieve(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
         assert_matches_type(Discount, discount, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.discounts.with_raw_response.retrieve(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
 
         assert response.is_closed is True
@@ -354,7 +354,7 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.discounts.with_streaming_response.retrieve(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -374,14 +374,14 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         discount = await async_client.discounts.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
         assert_matches_type(Discount, discount, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         discount = await async_client.discounts.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
             amount=0,
             code="code",
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -398,7 +398,7 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.discounts.with_raw_response.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
 
         assert response.is_closed is True
@@ -409,7 +409,7 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.discounts.with_streaming_response.update(
-            discount_id="discount_id",
+            discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -466,14 +466,14 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
         discount = await async_client.discounts.delete(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
         assert discount is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.discounts.with_raw_response.delete(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         )
 
         assert response.is_closed is True
@@ -484,7 +484,7 @@ class TestAsyncDiscounts:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.discounts.with_streaming_response.delete(
-            "discount_id",
+            "dsc_qxxEmg5PuM1uNTE0LgkP9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

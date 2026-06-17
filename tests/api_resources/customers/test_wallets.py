@@ -20,14 +20,14 @@ class TestWallets:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         wallet = client.customers.wallets.list(
-            "customer_id",
+            "cus_TV52uJWWXt2yIoBBxpjaa",
         )
         assert_matches_type(WalletListResponse, wallet, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
         response = client.customers.wallets.with_raw_response.list(
-            "customer_id",
+            "cus_TV52uJWWXt2yIoBBxpjaa",
         )
 
         assert response.is_closed is True
@@ -38,7 +38,7 @@ class TestWallets:
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
         with client.customers.wallets.with_streaming_response.list(
-            "customer_id",
+            "cus_TV52uJWWXt2yIoBBxpjaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,14 +64,14 @@ class TestAsyncWallets:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         wallet = await async_client.customers.wallets.list(
-            "customer_id",
+            "cus_TV52uJWWXt2yIoBBxpjaa",
         )
         assert_matches_type(WalletListResponse, wallet, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.customers.wallets.with_raw_response.list(
-            "customer_id",
+            "cus_TV52uJWWXt2yIoBBxpjaa",
         )
 
         assert response.is_closed is True
@@ -82,7 +82,7 @@ class TestAsyncWallets:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.customers.wallets.with_streaming_response.list(
-            "customer_id",
+            "cus_TV52uJWWXt2yIoBBxpjaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
