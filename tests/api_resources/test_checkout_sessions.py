@@ -208,14 +208,14 @@ class TestCheckoutSessions:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         checkout_session = client.checkout_sessions.retrieve(
-            "id",
+            "cks_n010SZaY4NXc7F1ck3Tq1",
         )
         assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.checkout_sessions.with_raw_response.retrieve(
-            "id",
+            "cks_n010SZaY4NXc7F1ck3Tq1",
         )
 
         assert response.is_closed is True
@@ -226,7 +226,7 @@ class TestCheckoutSessions:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.checkout_sessions.with_streaming_response.retrieve(
-            "id",
+            "cks_n010SZaY4NXc7F1ck3Tq1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -620,14 +620,14 @@ class TestAsyncCheckoutSessions:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         checkout_session = await async_client.checkout_sessions.retrieve(
-            "id",
+            "cks_n010SZaY4NXc7F1ck3Tq1",
         )
         assert_matches_type(CheckoutSessionStatus, checkout_session, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.checkout_sessions.with_raw_response.retrieve(
-            "id",
+            "cks_n010SZaY4NXc7F1ck3Tq1",
         )
 
         assert response.is_closed is True
@@ -638,7 +638,7 @@ class TestAsyncCheckoutSessions:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.checkout_sessions.with_streaming_response.retrieve(
-            "id",
+            "cks_n010SZaY4NXc7F1ck3Tq1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
