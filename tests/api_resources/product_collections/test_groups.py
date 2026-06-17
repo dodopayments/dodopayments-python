@@ -22,7 +22,7 @@ class TestGroups:
     @parametrize
     def test_method_create(self, client: DodoPayments) -> None:
         group = client.product_collections.groups.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
         assert_matches_type(ProductCollectionGroupResponse, group, path=["response"])
@@ -30,7 +30,7 @@ class TestGroups:
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         group = client.product_collections.groups.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[
                 {
                     "product_id": "product_id",
@@ -45,7 +45,7 @@ class TestGroups:
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.product_collections.groups.with_raw_response.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
 
@@ -57,7 +57,7 @@ class TestGroups:
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.product_collections.groups.with_streaming_response.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         ) as response:
             assert not response.is_closed
@@ -80,7 +80,7 @@ class TestGroups:
     def test_method_update(self, client: DodoPayments) -> None:
         group = client.product_collections.groups.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert group is None
 
@@ -88,7 +88,7 @@ class TestGroups:
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         group = client.product_collections.groups.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_name="group_name",
             product_order=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             status=True,
@@ -99,7 +99,7 @@ class TestGroups:
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.product_collections.groups.with_raw_response.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -111,7 +111,7 @@ class TestGroups:
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.product_collections.groups.with_streaming_response.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,14 +132,14 @@ class TestGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.product_collections.groups.with_raw_response.update(
                 group_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
             )
 
     @parametrize
     def test_method_delete(self, client: DodoPayments) -> None:
         group = client.product_collections.groups.delete(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert group is None
 
@@ -147,7 +147,7 @@ class TestGroups:
     def test_raw_response_delete(self, client: DodoPayments) -> None:
         response = client.product_collections.groups.with_raw_response.delete(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -159,7 +159,7 @@ class TestGroups:
     def test_streaming_response_delete(self, client: DodoPayments) -> None:
         with client.product_collections.groups.with_streaming_response.delete(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -180,7 +180,7 @@ class TestGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.product_collections.groups.with_raw_response.delete(
                 group_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
             )
 
 
@@ -192,7 +192,7 @@ class TestAsyncGroups:
     @parametrize
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         group = await async_client.product_collections.groups.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
         assert_matches_type(ProductCollectionGroupResponse, group, path=["response"])
@@ -200,7 +200,7 @@ class TestAsyncGroups:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         group = await async_client.product_collections.groups.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[
                 {
                     "product_id": "product_id",
@@ -215,7 +215,7 @@ class TestAsyncGroups:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.groups.with_raw_response.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
 
@@ -227,7 +227,7 @@ class TestAsyncGroups:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.groups.with_streaming_response.create(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         ) as response:
             assert not response.is_closed
@@ -250,7 +250,7 @@ class TestAsyncGroups:
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         group = await async_client.product_collections.groups.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert group is None
 
@@ -258,7 +258,7 @@ class TestAsyncGroups:
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         group = await async_client.product_collections.groups.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_name="group_name",
             product_order=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             status=True,
@@ -269,7 +269,7 @@ class TestAsyncGroups:
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.groups.with_raw_response.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -281,7 +281,7 @@ class TestAsyncGroups:
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.groups.with_streaming_response.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -302,14 +302,14 @@ class TestAsyncGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.product_collections.groups.with_raw_response.update(
                 group_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
         group = await async_client.product_collections.groups.delete(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert group is None
 
@@ -317,7 +317,7 @@ class TestAsyncGroups:
     async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.groups.with_raw_response.delete(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -329,7 +329,7 @@ class TestAsyncGroups:
     async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.groups.with_streaming_response.delete(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -350,5 +350,5 @@ class TestAsyncGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.product_collections.groups.with_raw_response.delete(
                 group_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
             )

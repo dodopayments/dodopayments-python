@@ -24,7 +24,7 @@ class TestLedgerEntries:
     @parametrize
     def test_method_create(self, client: DodoPayments) -> None:
         ledger_entry = client.customers.wallets.ledger_entries.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -34,7 +34,7 @@ class TestLedgerEntries:
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         ledger_entry = client.customers.wallets.ledger_entries.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -46,7 +46,7 @@ class TestLedgerEntries:
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.customers.wallets.ledger_entries.with_raw_response.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -60,7 +60,7 @@ class TestLedgerEntries:
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.customers.wallets.ledger_entries.with_streaming_response.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -86,14 +86,14 @@ class TestLedgerEntries:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         ledger_entry = client.customers.wallets.ledger_entries.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[CustomerWalletTransaction], ledger_entry, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         ledger_entry = client.customers.wallets.ledger_entries.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             currency="AED",
             page_number=0,
             page_size=0,
@@ -103,7 +103,7 @@ class TestLedgerEntries:
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
         response = client.customers.wallets.ledger_entries.with_raw_response.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
         )
 
         assert response.is_closed is True
@@ -114,7 +114,7 @@ class TestLedgerEntries:
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
         with client.customers.wallets.ledger_entries.with_streaming_response.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -142,7 +142,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         ledger_entry = await async_client.customers.wallets.ledger_entries.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -152,7 +152,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         ledger_entry = await async_client.customers.wallets.ledger_entries.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -164,7 +164,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.customers.wallets.ledger_entries.with_raw_response.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -178,7 +178,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.customers.wallets.ledger_entries.with_streaming_response.create(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             amount=0,
             currency="AED",
             entry_type="credit",
@@ -204,7 +204,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         ledger_entry = await async_client.customers.wallets.ledger_entries.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
         )
         assert_matches_type(
             AsyncDefaultPageNumberPagination[CustomerWalletTransaction], ledger_entry, path=["response"]
@@ -213,7 +213,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         ledger_entry = await async_client.customers.wallets.ledger_entries.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
             currency="AED",
             page_number=0,
             page_size=0,
@@ -225,7 +225,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.customers.wallets.ledger_entries.with_raw_response.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
         )
 
         assert response.is_closed is True
@@ -238,7 +238,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.customers.wallets.ledger_entries.with_streaming_response.list(
-            customer_id="customer_id",
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
