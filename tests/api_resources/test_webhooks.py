@@ -71,14 +71,14 @@ class TestWebhooks:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         webhook = client.webhooks.retrieve(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.webhooks.with_raw_response.retrieve(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -89,7 +89,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.webhooks.with_streaming_response.retrieve(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,14 +109,14 @@ class TestWebhooks:
     @parametrize
     def test_method_update(self, client: DodoPayments) -> None:
         webhook = client.webhooks.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         webhook = client.webhooks.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
             description="description",
             disabled=True,
             filter_types=["payment.succeeded"],
@@ -129,7 +129,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.webhooks.with_raw_response.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -140,7 +140,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.webhooks.with_streaming_response.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -193,14 +193,14 @@ class TestWebhooks:
     @parametrize
     def test_method_delete(self, client: DodoPayments) -> None:
         webhook = client.webhooks.delete(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert webhook is None
 
     @parametrize
     def test_raw_response_delete(self, client: DodoPayments) -> None:
         response = client.webhooks.with_raw_response.delete(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -211,7 +211,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_delete(self, client: DodoPayments) -> None:
         with client.webhooks.with_streaming_response.delete(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -231,14 +231,14 @@ class TestWebhooks:
     @parametrize
     def test_method_retrieve_secret(self, client: DodoPayments) -> None:
         webhook = client.webhooks.retrieve_secret(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve_secret(self, client: DodoPayments) -> None:
         response = client.webhooks.with_raw_response.retrieve_secret(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -249,7 +249,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_retrieve_secret(self, client: DodoPayments) -> None:
         with client.webhooks.with_streaming_response.retrieve_secret(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,14 +359,14 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         webhook = await async_client.webhooks.retrieve(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.webhooks.with_raw_response.retrieve(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -377,7 +377,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.webhooks.with_streaming_response.retrieve(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -397,14 +397,14 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         webhook = await async_client.webhooks.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert_matches_type(WebhookDetails, webhook, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         webhook = await async_client.webhooks.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
             description="description",
             disabled=True,
             filter_types=["payment.succeeded"],
@@ -417,7 +417,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.webhooks.with_raw_response.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -428,7 +428,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.webhooks.with_streaming_response.update(
-            webhook_id="webhook_id",
+            webhook_id="whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -481,14 +481,14 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
         webhook = await async_client.webhooks.delete(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert webhook is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.webhooks.with_raw_response.delete(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -499,7 +499,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.webhooks.with_streaming_response.delete(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -519,14 +519,14 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_retrieve_secret(self, async_client: AsyncDodoPayments) -> None:
         webhook = await async_client.webhooks.retrieve_secret(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
         assert_matches_type(WebhookRetrieveSecretResponse, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve_secret(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.webhooks.with_raw_response.retrieve_secret(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         )
 
         assert response.is_closed is True
@@ -537,7 +537,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_retrieve_secret(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.webhooks.with_streaming_response.retrieve_secret(
-            "webhook_id",
+            "whk_YdWqVEGKmSYKbsIyDxEab",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

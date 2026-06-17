@@ -21,14 +21,14 @@ class TestGrants:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         grant = client.entitlements.grants.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         grant = client.entitlements.grants.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
             customer_id="customer_id",
             page_number=0,
             page_size=0,
@@ -39,7 +39,7 @@ class TestGrants:
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
         response = client.entitlements.grants.with_raw_response.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestGrants:
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
         with client.entitlements.grants.with_streaming_response.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,16 +70,16 @@ class TestGrants:
     @parametrize
     def test_method_revoke(self, client: DodoPayments) -> None:
         grant = client.entitlements.grants.revoke(
-            grant_id="grant_id",
-            id="id",
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(EntitlementGrant, grant, path=["response"])
 
     @parametrize
     def test_raw_response_revoke(self, client: DodoPayments) -> None:
         response = client.entitlements.grants.with_raw_response.revoke(
-            grant_id="grant_id",
-            id="id",
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -90,8 +90,8 @@ class TestGrants:
     @parametrize
     def test_streaming_response_revoke(self, client: DodoPayments) -> None:
         with client.entitlements.grants.with_streaming_response.revoke(
-            grant_id="grant_id",
-            id="id",
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,14 +105,14 @@ class TestGrants:
     def test_path_params_revoke(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.entitlements.grants.with_raw_response.revoke(
-                grant_id="grant_id",
+                grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `grant_id` but received ''"):
             client.entitlements.grants.with_raw_response.revoke(
                 grant_id="",
-                id="id",
+                id="ent_jt7jcvI79Xh8eehqgWdcm",
             )
 
 
@@ -124,14 +124,14 @@ class TestAsyncGrants:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         grant = await async_client.entitlements.grants.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], grant, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         grant = await async_client.entitlements.grants.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
             customer_id="customer_id",
             page_number=0,
             page_size=0,
@@ -142,7 +142,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.entitlements.grants.with_raw_response.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -153,7 +153,7 @@ class TestAsyncGrants:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.entitlements.grants.with_streaming_response.list(
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -173,16 +173,16 @@ class TestAsyncGrants:
     @parametrize
     async def test_method_revoke(self, async_client: AsyncDodoPayments) -> None:
         grant = await async_client.entitlements.grants.revoke(
-            grant_id="grant_id",
-            id="id",
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(EntitlementGrant, grant, path=["response"])
 
     @parametrize
     async def test_raw_response_revoke(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.entitlements.grants.with_raw_response.revoke(
-            grant_id="grant_id",
-            id="id",
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -193,8 +193,8 @@ class TestAsyncGrants:
     @parametrize
     async def test_streaming_response_revoke(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.entitlements.grants.with_streaming_response.revoke(
-            grant_id="grant_id",
-            id="id",
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -208,12 +208,12 @@ class TestAsyncGrants:
     async def test_path_params_revoke(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.entitlements.grants.with_raw_response.revoke(
-                grant_id="grant_id",
+                grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `grant_id` but received ''"):
             await async_client.entitlements.grants.with_raw_response.revoke(
                 grant_id="",
-                id="id",
+                id="ent_jt7jcvI79Xh8eehqgWdcm",
             )

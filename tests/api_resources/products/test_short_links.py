@@ -24,7 +24,7 @@ class TestShortLinks:
     @parametrize
     def test_method_create(self, client: DodoPayments) -> None:
         short_link = client.products.short_links.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
         )
         assert_matches_type(ShortLinkCreateResponse, short_link, path=["response"])
@@ -32,7 +32,7 @@ class TestShortLinks:
     @parametrize
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         short_link = client.products.short_links.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
             static_checkout_params={"foo": "string"},
         )
@@ -41,7 +41,7 @@ class TestShortLinks:
     @parametrize
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.products.short_links.with_raw_response.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
         )
 
@@ -53,7 +53,7 @@ class TestShortLinks:
     @parametrize
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.products.short_links.with_streaming_response.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
         ) as response:
             assert not response.is_closed
@@ -115,7 +115,7 @@ class TestAsyncShortLinks:
     @parametrize
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         short_link = await async_client.products.short_links.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
         )
         assert_matches_type(ShortLinkCreateResponse, short_link, path=["response"])
@@ -123,7 +123,7 @@ class TestAsyncShortLinks:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         short_link = await async_client.products.short_links.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
             static_checkout_params={"foo": "string"},
         )
@@ -132,7 +132,7 @@ class TestAsyncShortLinks:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.products.short_links.with_raw_response.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
         )
 
@@ -144,7 +144,7 @@ class TestAsyncShortLinks:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.products.short_links.with_streaming_response.create(
-            id="id",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
             slug="slug",
         ) as response:
             assert not response.is_closed

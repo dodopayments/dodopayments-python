@@ -90,14 +90,14 @@ class TestMeters:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         meter = client.meters.retrieve(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert_matches_type(Meter, meter, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.meters.with_raw_response.retrieve(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestMeters:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.meters.with_streaming_response.retrieve(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -162,14 +162,14 @@ class TestMeters:
     @parametrize
     def test_method_archive(self, client: DodoPayments) -> None:
         meter = client.meters.archive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert meter is None
 
     @parametrize
     def test_raw_response_archive(self, client: DodoPayments) -> None:
         response = client.meters.with_raw_response.archive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -180,7 +180,7 @@ class TestMeters:
     @parametrize
     def test_streaming_response_archive(self, client: DodoPayments) -> None:
         with client.meters.with_streaming_response.archive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -200,14 +200,14 @@ class TestMeters:
     @parametrize
     def test_method_unarchive(self, client: DodoPayments) -> None:
         meter = client.meters.unarchive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert meter is None
 
     @parametrize
     def test_raw_response_unarchive(self, client: DodoPayments) -> None:
         response = client.meters.with_raw_response.unarchive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -218,7 +218,7 @@ class TestMeters:
     @parametrize
     def test_streaming_response_unarchive(self, client: DodoPayments) -> None:
         with client.meters.with_streaming_response.unarchive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -313,14 +313,14 @@ class TestAsyncMeters:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         meter = await async_client.meters.retrieve(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert_matches_type(Meter, meter, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.meters.with_raw_response.retrieve(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -331,7 +331,7 @@ class TestAsyncMeters:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.meters.with_streaming_response.retrieve(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -385,14 +385,14 @@ class TestAsyncMeters:
     @parametrize
     async def test_method_archive(self, async_client: AsyncDodoPayments) -> None:
         meter = await async_client.meters.archive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert meter is None
 
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.meters.with_raw_response.archive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -403,7 +403,7 @@ class TestAsyncMeters:
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.meters.with_streaming_response.archive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -423,14 +423,14 @@ class TestAsyncMeters:
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncDodoPayments) -> None:
         meter = await async_client.meters.unarchive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert meter is None
 
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.meters.with_raw_response.unarchive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -441,7 +441,7 @@ class TestAsyncMeters:
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.meters.with_streaming_response.unarchive(
-            "id",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
