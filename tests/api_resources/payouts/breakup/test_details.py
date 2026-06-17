@@ -21,14 +21,14 @@ class TestDetails:
     @parametrize
     def test_method_list(self, client: DodoPayments) -> None:
         detail = client.payouts.breakup.details.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
         assert_matches_type(SyncDefaultPageNumberPagination[DetailListResponse], detail, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         detail = client.payouts.breakup.details.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
             page_number=0,
             page_size=0,
         )
@@ -37,7 +37,7 @@ class TestDetails:
     @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
         response = client.payouts.breakup.details.with_raw_response.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert response.is_closed is True
@@ -48,7 +48,7 @@ class TestDetails:
     @parametrize
     def test_streaming_response_list(self, client: DodoPayments) -> None:
         with client.payouts.breakup.details.with_streaming_response.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,14 +68,14 @@ class TestDetails:
     @parametrize
     def test_method_download_csv(self, client: DodoPayments) -> None:
         detail = client.payouts.breakup.details.download_csv(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
         assert detail is None
 
     @parametrize
     def test_raw_response_download_csv(self, client: DodoPayments) -> None:
         response = client.payouts.breakup.details.with_raw_response.download_csv(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert response.is_closed is True
@@ -86,7 +86,7 @@ class TestDetails:
     @parametrize
     def test_streaming_response_download_csv(self, client: DodoPayments) -> None:
         with client.payouts.breakup.details.with_streaming_response.download_csv(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -112,14 +112,14 @@ class TestAsyncDetails:
     @parametrize
     async def test_method_list(self, async_client: AsyncDodoPayments) -> None:
         detail = await async_client.payouts.breakup.details.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
         assert_matches_type(AsyncDefaultPageNumberPagination[DetailListResponse], detail, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         detail = await async_client.payouts.breakup.details.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
             page_number=0,
             page_size=0,
         )
@@ -128,7 +128,7 @@ class TestAsyncDetails:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payouts.breakup.details.with_raw_response.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert response.is_closed is True
@@ -139,7 +139,7 @@ class TestAsyncDetails:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payouts.breakup.details.with_streaming_response.list(
-            payout_id="payout_id",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -159,14 +159,14 @@ class TestAsyncDetails:
     @parametrize
     async def test_method_download_csv(self, async_client: AsyncDodoPayments) -> None:
         detail = await async_client.payouts.breakup.details.download_csv(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
         assert detail is None
 
     @parametrize
     async def test_raw_response_download_csv(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payouts.breakup.details.with_raw_response.download_csv(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert response.is_closed is True
@@ -177,7 +177,7 @@ class TestAsyncDetails:
     @parametrize
     async def test_streaming_response_download_csv(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payouts.breakup.details.with_streaming_response.download_csv(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

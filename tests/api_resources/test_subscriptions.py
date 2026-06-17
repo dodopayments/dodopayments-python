@@ -132,14 +132,14 @@ class TestSubscriptions:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.retrieve(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.retrieve(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -150,7 +150,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.retrieve(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -170,14 +170,14 @@ class TestSubscriptions:
     @parametrize
     def test_method_update(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             billing={
                 "country": "AF",
                 "city": "city",
@@ -217,7 +217,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -228,7 +228,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,14 +289,14 @@ class TestSubscriptions:
     @parametrize
     def test_method_cancel_change_plan(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.cancel_change_plan(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert subscription is None
 
     @parametrize
     def test_raw_response_cancel_change_plan(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.cancel_change_plan(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -307,7 +307,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_cancel_change_plan(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.cancel_change_plan(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -327,7 +327,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_change_plan(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -337,7 +337,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_change_plan_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -359,7 +359,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_change_plan(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -373,7 +373,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_change_plan(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -399,7 +399,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_charge(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
         )
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
@@ -407,7 +407,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_charge_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
             adaptive_currency_fees_inclusive=True,
             customer_balance_config={
@@ -423,7 +423,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_charge(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
         )
 
@@ -435,7 +435,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_charge(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
         ) as response:
             assert not response.is_closed
@@ -457,7 +457,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_preview_change_plan(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -467,7 +467,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_preview_change_plan_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -489,7 +489,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_preview_change_plan(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -503,7 +503,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_preview_change_plan(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -529,14 +529,14 @@ class TestSubscriptions:
     @parametrize
     def test_method_retrieve_credit_usage(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.retrieve_credit_usage(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve_credit_usage(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.retrieve_credit_usage(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -547,7 +547,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_retrieve_credit_usage(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.retrieve_credit_usage(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -567,7 +567,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_retrieve_usage_history(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(
             SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse], subscription, path=["response"]
@@ -576,7 +576,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_retrieve_usage_history_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             meter_id="meter_id",
             page_number=0,
@@ -590,7 +590,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_retrieve_usage_history(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -603,7 +603,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_retrieve_usage_history(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -627,7 +627,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_update_payment_method(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={"type": "new"},
         )
         assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
@@ -635,7 +635,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_update_payment_method_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={
                 "type": "new",
                 "allowed_payment_method_types": ["ach"],
@@ -647,7 +647,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_update_payment_method(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={"type": "new"},
         )
 
@@ -659,7 +659,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_update_payment_method(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={"type": "new"},
         ) as response:
             assert not response.is_closed
@@ -786,14 +786,14 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.retrieve(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.retrieve(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -804,7 +804,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.retrieve(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -824,14 +824,14 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             billing={
                 "country": "AF",
                 "city": "city",
@@ -871,7 +871,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -882,7 +882,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.update(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -943,14 +943,14 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_cancel_change_plan(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.cancel_change_plan(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert subscription is None
 
     @parametrize
     async def test_raw_response_cancel_change_plan(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.cancel_change_plan(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -961,7 +961,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_cancel_change_plan(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.cancel_change_plan(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -981,7 +981,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_change_plan(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -991,7 +991,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_change_plan_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -1013,7 +1013,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_change_plan(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -1027,7 +1027,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_change_plan(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -1053,7 +1053,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_charge(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
         )
         assert_matches_type(SubscriptionChargeResponse, subscription, path=["response"])
@@ -1061,7 +1061,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_charge_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
             adaptive_currency_fees_inclusive=True,
             customer_balance_config={
@@ -1077,7 +1077,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_charge(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
         )
 
@@ -1089,7 +1089,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_charge(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.charge(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_price=0,
         ) as response:
             assert not response.is_closed
@@ -1111,7 +1111,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_preview_change_plan(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -1121,7 +1121,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_preview_change_plan_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -1143,7 +1143,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_preview_change_plan(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -1157,7 +1157,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_preview_change_plan(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.preview_change_plan(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             product_id="product_id",
             proration_billing_mode="prorated_immediately",
             quantity=0,
@@ -1183,14 +1183,14 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.retrieve_credit_usage(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(SubscriptionRetrieveCreditUsageResponse, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.retrieve_credit_usage(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -1201,7 +1201,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.retrieve_credit_usage(
-            "subscription_id",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1221,7 +1221,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_retrieve_usage_history(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(
             AsyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse], subscription, path=["response"]
@@ -1230,7 +1230,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_retrieve_usage_history_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             meter_id="meter_id",
             page_number=0,
@@ -1244,7 +1244,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_retrieve_usage_history(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -1257,7 +1257,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_retrieve_usage_history(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.retrieve_usage_history(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1281,7 +1281,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_update_payment_method(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={"type": "new"},
         )
         assert_matches_type(SubscriptionUpdatePaymentMethodResponse, subscription, path=["response"])
@@ -1289,7 +1289,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_update_payment_method_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={
                 "type": "new",
                 "allowed_payment_method_types": ["ach"],
@@ -1301,7 +1301,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_update_payment_method(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={"type": "new"},
         )
 
@@ -1313,7 +1313,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_update_payment_method(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.update_payment_method(
-            subscription_id="subscription_id",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
             payment_method={"type": "new"},
         ) as response:
             assert not response.is_closed
