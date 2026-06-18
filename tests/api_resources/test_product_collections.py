@@ -86,14 +86,14 @@ class TestProductCollections:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.retrieve(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert_matches_type(ProductCollection, product_collection, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.product_collections.with_raw_response.retrieve(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -104,7 +104,7 @@ class TestProductCollections:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.product_collections.with_streaming_response.retrieve(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -124,14 +124,14 @@ class TestProductCollections:
     @parametrize
     def test_method_update(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert product_collection is None
 
     @parametrize
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             brand_id="brand_id",
             description="description",
             effective_at_on_downgrade="immediately",
@@ -148,7 +148,7 @@ class TestProductCollections:
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.product_collections.with_raw_response.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -159,7 +159,7 @@ class TestProductCollections:
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.product_collections.with_streaming_response.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -222,14 +222,14 @@ class TestProductCollections:
     @parametrize
     def test_method_delete(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.delete(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert product_collection is None
 
     @parametrize
     def test_raw_response_delete(self, client: DodoPayments) -> None:
         response = client.product_collections.with_raw_response.delete(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -240,7 +240,7 @@ class TestProductCollections:
     @parametrize
     def test_streaming_response_delete(self, client: DodoPayments) -> None:
         with client.product_collections.with_streaming_response.delete(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,14 +260,14 @@ class TestProductCollections:
     @parametrize
     def test_method_unarchive(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.unarchive(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert_matches_type(ProductCollectionUnarchiveResponse, product_collection, path=["response"])
 
     @parametrize
     def test_raw_response_unarchive(self, client: DodoPayments) -> None:
         response = client.product_collections.with_raw_response.unarchive(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -278,7 +278,7 @@ class TestProductCollections:
     @parametrize
     def test_streaming_response_unarchive(self, client: DodoPayments) -> None:
         with client.product_collections.with_streaming_response.unarchive(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -298,14 +298,14 @@ class TestProductCollections:
     @parametrize
     def test_method_update_images(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert_matches_type(ProductCollectionUpdateImagesResponse, product_collection, path=["response"])
 
     @parametrize
     def test_method_update_images_with_all_params(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             force_update=True,
         )
         assert_matches_type(ProductCollectionUpdateImagesResponse, product_collection, path=["response"])
@@ -313,7 +313,7 @@ class TestProductCollections:
     @parametrize
     def test_raw_response_update_images(self, client: DodoPayments) -> None:
         response = client.product_collections.with_raw_response.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -324,7 +324,7 @@ class TestProductCollections:
     @parametrize
     def test_streaming_response_update_images(self, client: DodoPayments) -> None:
         with client.product_collections.with_streaming_response.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -410,14 +410,14 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.retrieve(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert_matches_type(ProductCollection, product_collection, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.with_raw_response.retrieve(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -428,7 +428,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.with_streaming_response.retrieve(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -448,14 +448,14 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert product_collection is None
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             brand_id="brand_id",
             description="description",
             effective_at_on_downgrade="immediately",
@@ -472,7 +472,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.with_raw_response.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -483,7 +483,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.with_streaming_response.update(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -546,14 +546,14 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.delete(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert product_collection is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.with_raw_response.delete(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -564,7 +564,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.with_streaming_response.delete(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -584,14 +584,14 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_method_unarchive(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.unarchive(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert_matches_type(ProductCollectionUnarchiveResponse, product_collection, path=["response"])
 
     @parametrize
     async def test_raw_response_unarchive(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.with_raw_response.unarchive(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -602,7 +602,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_streaming_response_unarchive(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.with_streaming_response.unarchive(
-            "id",
+            "pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -622,14 +622,14 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_method_update_images(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
         assert_matches_type(ProductCollectionUpdateImagesResponse, product_collection, path=["response"])
 
     @parametrize
     async def test_method_update_images_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             force_update=True,
         )
         assert_matches_type(ProductCollectionUpdateImagesResponse, product_collection, path=["response"])
@@ -637,7 +637,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_raw_response_update_images(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.with_raw_response.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -648,7 +648,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_streaming_response_update_images(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.with_streaming_response.update_images(
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

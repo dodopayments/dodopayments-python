@@ -73,7 +73,7 @@ class TestLicenseKeys:
     def test_method_retrieve(self, client: DodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             license_key = client.license_keys.retrieve(
-                "lic_123",
+                "lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert_matches_type(LicenseKey, license_key, path=["response"])
@@ -82,7 +82,7 @@ class TestLicenseKeys:
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.license_keys.with_raw_response.retrieve(
-                "lic_123",
+                "lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert response.is_closed is True
@@ -94,7 +94,7 @@ class TestLicenseKeys:
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             with client.license_keys.with_streaming_response.retrieve(
-                "lic_123",
+                "lic_7namTC0VcgrnzrF3GTSwB",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -116,7 +116,7 @@ class TestLicenseKeys:
     def test_method_update(self, client: DodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             license_key = client.license_keys.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert_matches_type(LicenseKey, license_key, path=["response"])
@@ -125,7 +125,7 @@ class TestLicenseKeys:
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             license_key = client.license_keys.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
                 activations_limit=0,
                 disabled=True,
                 expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -137,7 +137,7 @@ class TestLicenseKeys:
     def test_raw_response_update(self, client: DodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.license_keys.with_raw_response.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert response.is_closed is True
@@ -149,7 +149,7 @@ class TestLicenseKeys:
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             with client.license_keys.with_streaming_response.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -270,7 +270,7 @@ class TestAsyncLicenseKeys:
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             license_key = await async_client.license_keys.retrieve(
-                "lic_123",
+                "lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert_matches_type(LicenseKey, license_key, path=["response"])
@@ -279,7 +279,7 @@ class TestAsyncLicenseKeys:
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.license_keys.with_raw_response.retrieve(
-                "lic_123",
+                "lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert response.is_closed is True
@@ -291,7 +291,7 @@ class TestAsyncLicenseKeys:
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.license_keys.with_streaming_response.retrieve(
-                "lic_123",
+                "lic_7namTC0VcgrnzrF3GTSwB",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -313,7 +313,7 @@ class TestAsyncLicenseKeys:
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             license_key = await async_client.license_keys.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert_matches_type(LicenseKey, license_key, path=["response"])
@@ -322,7 +322,7 @@ class TestAsyncLicenseKeys:
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             license_key = await async_client.license_keys.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
                 activations_limit=0,
                 disabled=True,
                 expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -334,7 +334,7 @@ class TestAsyncLicenseKeys:
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.license_keys.with_raw_response.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
             )
 
         assert response.is_closed is True
@@ -346,7 +346,7 @@ class TestAsyncLicenseKeys:
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.license_keys.with_streaming_response.update(
-                id="lic_123",
+                id="lic_7namTC0VcgrnzrF3GTSwB",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
