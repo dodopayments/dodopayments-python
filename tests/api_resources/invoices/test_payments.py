@@ -26,9 +26,11 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_retrieve(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payments/payment_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         payment = client.invoices.payments.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
         assert payment.is_closed
         assert payment.json() == {"foo": "bar"}
@@ -38,10 +40,12 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_retrieve(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payments/payment_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
 
         payment = client.invoices.payments.with_raw_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert payment.is_closed is True
@@ -52,9 +56,11 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_retrieve(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payments/payment_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         with client.invoices.payments.with_streaming_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,9 +82,11 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_retrieve_payout(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payouts/payout_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         payment = client.invoices.payments.retrieve_payout(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
         assert payment.is_closed
         assert payment.json() == {"foo": "bar"}
@@ -88,10 +96,12 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_retrieve_payout(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payouts/payout_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
 
         payment = client.invoices.payments.with_raw_response.retrieve_payout(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert payment.is_closed is True
@@ -102,9 +112,11 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_retrieve_payout(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payouts/payout_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         with client.invoices.payments.with_streaming_response.retrieve_payout(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,9 +138,11 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_retrieve_refund(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/refunds/refund_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         payment = client.invoices.payments.retrieve_refund(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
         assert payment.is_closed
         assert payment.json() == {"foo": "bar"}
@@ -138,10 +152,12 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_retrieve_refund(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/refunds/refund_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
 
         payment = client.invoices.payments.with_raw_response.retrieve_refund(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
 
         assert payment.is_closed is True
@@ -152,9 +168,11 @@ class TestPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_retrieve_refund(self, client: DodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/refunds/refund_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         with client.invoices.payments.with_streaming_response.retrieve_refund(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -182,9 +200,11 @@ class TestAsyncPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_retrieve(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payments/payment_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         payment = await async_client.invoices.payments.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
         assert payment.is_closed
         assert await payment.json() == {"foo": "bar"}
@@ -194,10 +214,12 @@ class TestAsyncPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payments/payment_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
 
         payment = await async_client.invoices.payments.with_raw_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert payment.is_closed is True
@@ -208,9 +230,11 @@ class TestAsyncPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payments/payment_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         async with async_client.invoices.payments.with_streaming_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -232,9 +256,11 @@ class TestAsyncPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_retrieve_payout(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payouts/payout_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         payment = await async_client.invoices.payments.retrieve_payout(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
         assert payment.is_closed
         assert await payment.json() == {"foo": "bar"}
@@ -244,10 +270,12 @@ class TestAsyncPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_retrieve_payout(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/payouts/payout_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
 
         payment = await async_client.invoices.payments.with_raw_response.retrieve_payout(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert payment.is_closed is True
@@ -260,9 +288,11 @@ class TestAsyncPayments:
     async def test_streaming_response_retrieve_payout(
         self, async_client: AsyncDodoPayments, respx_mock: MockRouter
     ) -> None:
-        respx_mock.get("/invoices/payouts/payout_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         async with async_client.invoices.payments.with_streaming_response.retrieve_payout(
-            "payout_id",
+            "pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -284,9 +314,11 @@ class TestAsyncPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_retrieve_refund(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/refunds/refund_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         payment = await async_client.invoices.payments.retrieve_refund(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
         assert payment.is_closed
         assert await payment.json() == {"foo": "bar"}
@@ -296,10 +328,12 @@ class TestAsyncPayments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_retrieve_refund(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
-        respx_mock.get("/invoices/refunds/refund_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
 
         payment = await async_client.invoices.payments.with_raw_response.retrieve_refund(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
 
         assert payment.is_closed is True
@@ -312,9 +346,11 @@ class TestAsyncPayments:
     async def test_streaming_response_retrieve_refund(
         self, async_client: AsyncDodoPayments, respx_mock: MockRouter
     ) -> None:
-        respx_mock.get("/invoices/refunds/refund_id").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         async with async_client.invoices.payments.with_streaming_response.retrieve_refund(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"

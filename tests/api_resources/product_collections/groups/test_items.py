@@ -21,7 +21,7 @@ class TestItems:
     def test_method_create(self, client: DodoPayments) -> None:
         item = client.product_collections.groups.items.create(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
         assert_matches_type(ItemCreateResponse, item, path=["response"])
@@ -30,7 +30,7 @@ class TestItems:
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.product_collections.groups.items.with_raw_response.create(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
 
@@ -43,7 +43,7 @@ class TestItems:
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.product_collections.groups.items.with_streaming_response.create(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         ) as response:
             assert not response.is_closed
@@ -66,7 +66,7 @@ class TestItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.product_collections.groups.items.with_raw_response.create(
                 group_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 products=[{"product_id": "product_id"}],
             )
 
@@ -74,7 +74,7 @@ class TestItems:
     def test_method_update(self, client: DodoPayments) -> None:
         item = client.product_collections.groups.items.update(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status=True,
         )
@@ -84,7 +84,7 @@ class TestItems:
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.product_collections.groups.items.with_raw_response.update(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status=True,
         )
@@ -98,7 +98,7 @@ class TestItems:
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.product_collections.groups.items.with_streaming_response.update(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status=True,
         ) as response:
@@ -123,7 +123,7 @@ class TestItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.product_collections.groups.items.with_raw_response.update(
                 item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="",
                 status=True,
             )
@@ -131,7 +131,7 @@ class TestItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_id` but received ''"):
             client.product_collections.groups.items.with_raw_response.update(
                 item_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 status=True,
             )
@@ -140,7 +140,7 @@ class TestItems:
     def test_method_delete(self, client: DodoPayments) -> None:
         item = client.product_collections.groups.items.delete(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert item is None
@@ -149,7 +149,7 @@ class TestItems:
     def test_raw_response_delete(self, client: DodoPayments) -> None:
         response = client.product_collections.groups.items.with_raw_response.delete(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -162,7 +162,7 @@ class TestItems:
     def test_streaming_response_delete(self, client: DodoPayments) -> None:
         with client.product_collections.groups.items.with_streaming_response.delete(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
@@ -185,14 +185,14 @@ class TestItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.product_collections.groups.items.with_raw_response.delete(
                 item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_id` but received ''"):
             client.product_collections.groups.items.with_raw_response.delete(
                 item_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
@@ -206,7 +206,7 @@ class TestAsyncItems:
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         item = await async_client.product_collections.groups.items.create(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
         assert_matches_type(ItemCreateResponse, item, path=["response"])
@@ -215,7 +215,7 @@ class TestAsyncItems:
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.groups.items.with_raw_response.create(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         )
 
@@ -228,7 +228,7 @@ class TestAsyncItems:
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.groups.items.with_streaming_response.create(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             products=[{"product_id": "product_id"}],
         ) as response:
             assert not response.is_closed
@@ -251,7 +251,7 @@ class TestAsyncItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.product_collections.groups.items.with_raw_response.create(
                 group_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 products=[{"product_id": "product_id"}],
             )
 
@@ -259,7 +259,7 @@ class TestAsyncItems:
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         item = await async_client.product_collections.groups.items.update(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status=True,
         )
@@ -269,7 +269,7 @@ class TestAsyncItems:
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.groups.items.with_raw_response.update(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status=True,
         )
@@ -283,7 +283,7 @@ class TestAsyncItems:
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.groups.items.with_streaming_response.update(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status=True,
         ) as response:
@@ -308,7 +308,7 @@ class TestAsyncItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.product_collections.groups.items.with_raw_response.update(
                 item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="",
                 status=True,
             )
@@ -316,7 +316,7 @@ class TestAsyncItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_id` but received ''"):
             await async_client.product_collections.groups.items.with_raw_response.update(
                 item_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 status=True,
             )
@@ -325,7 +325,7 @@ class TestAsyncItems:
     async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
         item = await async_client.product_collections.groups.items.delete(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert item is None
@@ -334,7 +334,7 @@ class TestAsyncItems:
     async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.groups.items.with_raw_response.delete(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -347,7 +347,7 @@ class TestAsyncItems:
     async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.groups.items.with_streaming_response.delete(
             item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
@@ -370,13 +370,13 @@ class TestAsyncItems:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.product_collections.groups.items.with_raw_response.delete(
                 item_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_id` but received ''"):
             await async_client.product_collections.groups.items.with_raw_response.delete(
                 item_id="",
-                id="id",
+                id="pdc_8BWv0hojwUH7iCDabr0NI",
                 group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )

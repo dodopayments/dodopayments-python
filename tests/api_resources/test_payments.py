@@ -124,14 +124,14 @@ class TestPayments:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         payment = client.payments.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
         assert_matches_type(Payment, payment, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.payments.with_raw_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert response.is_closed is True
@@ -142,7 +142,7 @@ class TestPayments:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.payments.with_streaming_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -202,14 +202,14 @@ class TestPayments:
     @parametrize
     def test_method_retrieve_line_items(self, client: DodoPayments) -> None:
         payment = client.payments.retrieve_line_items(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
         assert_matches_type(PaymentRetrieveLineItemsResponse, payment, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve_line_items(self, client: DodoPayments) -> None:
         response = client.payments.with_raw_response.retrieve_line_items(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert response.is_closed is True
@@ -220,7 +220,7 @@ class TestPayments:
     @parametrize
     def test_streaming_response_retrieve_line_items(self, client: DodoPayments) -> None:
         with client.payments.with_streaming_response.retrieve_line_items(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -341,14 +341,14 @@ class TestAsyncPayments:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
         assert_matches_type(Payment, payment, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payments.with_raw_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert response.is_closed is True
@@ -359,7 +359,7 @@ class TestAsyncPayments:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payments.with_streaming_response.retrieve(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -419,14 +419,14 @@ class TestAsyncPayments:
     @parametrize
     async def test_method_retrieve_line_items(self, async_client: AsyncDodoPayments) -> None:
         payment = await async_client.payments.retrieve_line_items(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
         assert_matches_type(PaymentRetrieveLineItemsResponse, payment, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve_line_items(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.payments.with_raw_response.retrieve_line_items(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert response.is_closed is True
@@ -437,7 +437,7 @@ class TestAsyncPayments:
     @parametrize
     async def test_streaming_response_retrieve_line_items(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.payments.with_streaming_response.retrieve_line_items(
-            "payment_id",
+            "pay_gr4RizvMOXFJ6xca3y2tU",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
