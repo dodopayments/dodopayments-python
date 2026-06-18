@@ -62,14 +62,6 @@ class SyncCursorPagePagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         return data
 
     @override
-    def has_next_page(self) -> bool:
-        done = self.done
-        if done is not None and done is False:
-            return False
-
-        return super().has_next_page()
-
-    @override
     def next_page_info(self) -> Optional[PageInfo]:
         iterator = self.iterator
         if not iterator:
@@ -89,14 +81,6 @@ class AsyncCursorPagePagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         if not data:
             return []
         return data
-
-    @override
-    def has_next_page(self) -> bool:
-        done = self.done
-        if done is not None and done is False:
-            return False
-
-        return super().has_next_page()
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
