@@ -69,14 +69,14 @@ class TestRefunds:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         refund = client.refunds.retrieve(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
         assert_matches_type(Refund, refund, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.refunds.with_raw_response.retrieve(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
 
         assert response.is_closed is True
@@ -87,7 +87,7 @@ class TestRefunds:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.refunds.with_streaming_response.retrieve(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -198,14 +198,14 @@ class TestAsyncRefunds:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         refund = await async_client.refunds.retrieve(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
         assert_matches_type(Refund, refund, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.refunds.with_raw_response.retrieve(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         )
 
         assert response.is_closed is True
@@ -216,7 +216,7 @@ class TestAsyncRefunds:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.refunds.with_streaming_response.retrieve(
-            "refund_id",
+            "ref_F0gZetLvTxxBrMU2CZcmy",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

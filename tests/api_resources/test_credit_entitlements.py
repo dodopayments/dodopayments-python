@@ -87,14 +87,14 @@ class TestCreditEntitlements:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         credit_entitlement = client.credit_entitlements.retrieve(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert_matches_type(CreditEntitlement, credit_entitlement, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.credit_entitlements.with_raw_response.retrieve(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -105,7 +105,7 @@ class TestCreditEntitlements:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.credit_entitlements.with_streaming_response.retrieve(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,14 +125,14 @@ class TestCreditEntitlements:
     @parametrize
     def test_method_update(self, client: DodoPayments) -> None:
         credit_entitlement = client.credit_entitlements.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert credit_entitlement is None
 
     @parametrize
     def test_method_update_with_all_params(self, client: DodoPayments) -> None:
         credit_entitlement = client.credit_entitlements.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
             currency="AED",
             description="description",
             expires_after_days=0,
@@ -153,7 +153,7 @@ class TestCreditEntitlements:
     @parametrize
     def test_raw_response_update(self, client: DodoPayments) -> None:
         response = client.credit_entitlements.with_raw_response.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -164,7 +164,7 @@ class TestCreditEntitlements:
     @parametrize
     def test_streaming_response_update(self, client: DodoPayments) -> None:
         with client.credit_entitlements.with_streaming_response.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,14 +220,14 @@ class TestCreditEntitlements:
     @parametrize
     def test_method_delete(self, client: DodoPayments) -> None:
         credit_entitlement = client.credit_entitlements.delete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert credit_entitlement is None
 
     @parametrize
     def test_raw_response_delete(self, client: DodoPayments) -> None:
         response = client.credit_entitlements.with_raw_response.delete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -238,7 +238,7 @@ class TestCreditEntitlements:
     @parametrize
     def test_streaming_response_delete(self, client: DodoPayments) -> None:
         with client.credit_entitlements.with_streaming_response.delete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,14 +258,14 @@ class TestCreditEntitlements:
     @parametrize
     def test_method_undelete(self, client: DodoPayments) -> None:
         credit_entitlement = client.credit_entitlements.undelete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert credit_entitlement is None
 
     @parametrize
     def test_raw_response_undelete(self, client: DodoPayments) -> None:
         response = client.credit_entitlements.with_raw_response.undelete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -276,7 +276,7 @@ class TestCreditEntitlements:
     @parametrize
     def test_streaming_response_undelete(self, client: DodoPayments) -> None:
         with client.credit_entitlements.with_streaming_response.undelete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -366,14 +366,14 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         credit_entitlement = await async_client.credit_entitlements.retrieve(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert_matches_type(CreditEntitlement, credit_entitlement, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.credit_entitlements.with_raw_response.retrieve(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -384,7 +384,7 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.credit_entitlements.with_streaming_response.retrieve(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -404,14 +404,14 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
         credit_entitlement = await async_client.credit_entitlements.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert credit_entitlement is None
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         credit_entitlement = await async_client.credit_entitlements.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
             currency="AED",
             description="description",
             expires_after_days=0,
@@ -432,7 +432,7 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.credit_entitlements.with_raw_response.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -443,7 +443,7 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.credit_entitlements.with_streaming_response.update(
-            id="id",
+            id="cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -499,14 +499,14 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
         credit_entitlement = await async_client.credit_entitlements.delete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert credit_entitlement is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.credit_entitlements.with_raw_response.delete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -517,7 +517,7 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.credit_entitlements.with_streaming_response.delete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -537,14 +537,14 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_method_undelete(self, async_client: AsyncDodoPayments) -> None:
         credit_entitlement = await async_client.credit_entitlements.undelete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
         assert credit_entitlement is None
 
     @parametrize
     async def test_raw_response_undelete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.credit_entitlements.with_raw_response.undelete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         )
 
         assert response.is_closed is True
@@ -555,7 +555,7 @@ class TestAsyncCreditEntitlements:
     @parametrize
     async def test_streaming_response_undelete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.credit_entitlements.with_streaming_response.undelete(
-            "id",
+            "cde_ztxm5XJsKxWucRWA3rjdM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
