@@ -21,7 +21,7 @@ class TestFiles:
     def test_method_delete(self, client: DodoPayments) -> None:
         file = client.entitlements.files.delete(
             file_id="file_id",
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert file is None
 
@@ -29,7 +29,7 @@ class TestFiles:
     def test_raw_response_delete(self, client: DodoPayments) -> None:
         response = client.entitlements.files.with_raw_response.delete(
             file_id="file_id",
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestFiles:
     def test_streaming_response_delete(self, client: DodoPayments) -> None:
         with client.entitlements.files.with_streaming_response.delete(
             file_id="file_id",
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -62,20 +62,20 @@ class TestFiles:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_id` but received ''"):
             client.entitlements.files.with_raw_response.delete(
                 file_id="",
-                id="id",
+                id="ent_jt7jcvI79Xh8eehqgWdcm",
             )
 
     @parametrize
     def test_method_upload(self, client: DodoPayments) -> None:
         file = client.entitlements.files.upload(
-            "id",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(FileUploadResponse, file, path=["response"])
 
     @parametrize
     def test_raw_response_upload(self, client: DodoPayments) -> None:
         response = client.entitlements.files.with_raw_response.upload(
-            "id",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -86,7 +86,7 @@ class TestFiles:
     @parametrize
     def test_streaming_response_upload(self, client: DodoPayments) -> None:
         with client.entitlements.files.with_streaming_response.upload(
-            "id",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -113,7 +113,7 @@ class TestAsyncFiles:
     async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
         file = await async_client.entitlements.files.delete(
             file_id="file_id",
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert file is None
 
@@ -121,7 +121,7 @@ class TestAsyncFiles:
     async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.entitlements.files.with_raw_response.delete(
             file_id="file_id",
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -133,7 +133,7 @@ class TestAsyncFiles:
     async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.entitlements.files.with_streaming_response.delete(
             file_id="file_id",
-            id="id",
+            id="ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -154,20 +154,20 @@ class TestAsyncFiles:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `file_id` but received ''"):
             await async_client.entitlements.files.with_raw_response.delete(
                 file_id="",
-                id="id",
+                id="ent_jt7jcvI79Xh8eehqgWdcm",
             )
 
     @parametrize
     async def test_method_upload(self, async_client: AsyncDodoPayments) -> None:
         file = await async_client.entitlements.files.upload(
-            "id",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(FileUploadResponse, file, path=["response"])
 
     @parametrize
     async def test_raw_response_upload(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.entitlements.files.with_raw_response.upload(
-            "id",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -178,7 +178,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_streaming_response_upload(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.entitlements.files.with_streaming_response.upload(
-            "id",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
