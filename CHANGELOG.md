@@ -1,18 +1,5 @@
 # Changelog
 
-## [1.105.1](https://github.com/dodopayments/dodopayments-python/compare/v1.105.0...v1.105.1) (2026-06-18)
-
-
-### Bug Fixes
-
-* **pagination:** stop cursor auto-pagination dropping pages ([a69955f](https://github.com/dodopayments/dodopayments-python/commit/a69955ff7f8e9e29f465e2616b219eddc85d6ef2))
-* **pagination:** stop cursor auto-pagination dropping pages ([b399f36](https://github.com/dodopayments/dodopayments-python/commit/b399f36a4ef5072499c69832ea4bcae486a2bf3f))
-
-
-### Chores
-
-* restore release-please-owned files from main ([0fe99ef](https://github.com/dodopayments/dodopayments-python/commit/0fe99ef9282dcfec9905b50554b35fd1f3db0a60))
-
 ## [1.105.0](https://github.com/dodopayments/dodopayments-python/compare/v1.104.0...v1.105.0) (2026-06-16)
 
 
