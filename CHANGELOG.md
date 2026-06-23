@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.106.0](https://github.com/dodopayments/dodopayments-python/compare/v1.105.1...v1.106.0) (2026-06-23)
+
+
+### Features
+
+* **api:** regenerate SDK from latest OpenAPI spec ([5d23914](https://github.com/dodopayments/dodopayments-python/commit/5d2391475ff41adf02f0f2c7189d0d537124442e))
+* **api:** regenerate SDK from latest OpenAPI spec ([5d8f833](https://github.com/dodopayments/dodopayments-python/commit/5d8f833c61b3937b2b813e875fa6d64f4fe4a8e2))
+
 ## [1.105.1](https://github.com/dodopayments/dodopayments-python/compare/v1.105.0...v1.105.1) (2026-06-18)
 
 
