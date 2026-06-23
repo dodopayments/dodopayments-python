@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .time_interval import TimeInterval
+from .metadata_param import MetadataParam
 from .subscription_status import SubscriptionStatus
 from .billing_address_param import BillingAddressParam
 from .cancellation_feedback import CancellationFeedback
@@ -52,7 +53,7 @@ class SubscriptionUpdateParams(TypedDict, total=False):
 
     disable_on_demand: Optional[DisableOnDemand]
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[MetadataParam]
 
     next_billing_date: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
 

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
+from .metadata_param import MetadataParam
 from .integration_config_param import IntegrationConfigParam
 from .entitlement_integration_type import EntitlementIntegrationType
 
@@ -24,5 +25,5 @@ class EntitlementCreateParams(TypedDict, total=False):
     description: Optional[str]
     """Optional description"""
 
-    metadata: Dict[str, str]
+    metadata: MetadataParam
     """Additional metadata for the entitlement"""

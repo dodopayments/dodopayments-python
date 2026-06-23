@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Dict, List, Union, Iterable, Optional
+from typing import List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -24,6 +24,7 @@ from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumber
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.payment import Payment
 from ..types.currency import Currency
+from ..types.metadata_param import MetadataParam
 from ..types.payment_method_types import PaymentMethodTypes
 from ..types.billing_address_param import BillingAddressParam
 from ..types.payment_list_response import PaymentListResponse
@@ -69,7 +70,7 @@ class PaymentsResource(SyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,
@@ -367,7 +368,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         redirect_immediately: bool | Omit = omit,

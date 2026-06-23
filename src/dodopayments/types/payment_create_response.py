@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .metadata import Metadata
 from .customer_limited_details import CustomerLimitedDetails
 from .one_time_product_cart_item import OneTimeProductCartItem
 
@@ -20,7 +21,7 @@ class PaymentCreateResponse(BaseModel):
     customer: CustomerLimitedDetails
     """Limited details about the customer making the payment"""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Additional metadata associated with the payment"""
 
     payment_id: str

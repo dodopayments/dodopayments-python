@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..metadata import Metadata
 from .license_key_grant import LicenseKeyGrant
 from ..digital_product_delivery import DigitalProductDelivery
 from ..entitlement_integration_type import EntitlementIntegrationType
@@ -39,7 +40,7 @@ class EntitlementGrant(BaseModel):
     integration_type: EntitlementIntegrationType
     """The integration type of the grant's entitlement (e.g. `license_key`)."""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Arbitrary key-value metadata recorded on the grant."""
 
     status: Literal["Pending", "Delivered", "Failed", "Revoked"]

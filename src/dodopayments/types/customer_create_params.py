@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
+
+from .metadata_param import MetadataParam
 
 __all__ = ["CustomerCreateParams"]
 
@@ -13,7 +15,7 @@ class CustomerCreateParams(TypedDict, total=False):
 
     name: Required[str]
 
-    metadata: Dict[str, str]
+    metadata: MetadataParam
     """Additional metadata for the customer"""
 
     phone_number: Optional[str]
