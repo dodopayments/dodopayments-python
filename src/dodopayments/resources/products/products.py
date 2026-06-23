@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
-from typing_extensions import Literal
+from typing import Iterable, Optional
 
 import httpx
 
@@ -43,9 +42,20 @@ from .short_links import (
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.product import Product
+from ...types.products import PricingMode
+from .localized_prices import (
+    LocalizedPricesResource,
+    AsyncLocalizedPricesResource,
+    LocalizedPricesResourceWithRawResponse,
+    AsyncLocalizedPricesResourceWithRawResponse,
+    LocalizedPricesResourceWithStreamingResponse,
+    AsyncLocalizedPricesResourceWithStreamingResponse,
+)
 from ...types.price_param import PriceParam
 from ...types.tax_category import TaxCategory
+from ...types.metadata_param import MetadataParam
 from ...types.product_list_response import ProductListResponse
+from ...types.products.pricing_mode import PricingMode
 from ...types.license_key_duration_param import LicenseKeyDurationParam
 from ...types.product_update_files_response import ProductUpdateFilesResponse
 from ...types.attach_credit_entitlement_param import AttachCreditEntitlementParam
@@ -62,6 +72,10 @@ class ProductsResource(SyncAPIResource):
     @cached_property
     def short_links(self) -> ShortLinksResource:
         return ShortLinksResource(self._client)
+
+    @cached_property
+    def localized_prices(self) -> LocalizedPricesResource:
+        return LocalizedPricesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ProductsResourceWithRawResponse:
@@ -98,8 +112,8 @@ class ProductsResource(SyncAPIResource):
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
+        pricing_mode: Optional[PricingMode] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,10 +254,10 @@ class ProductsResource(SyncAPIResource):
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         price: Optional[PriceParam] | Omit = omit,
-        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
+        pricing_mode: Optional[PricingMode] | Omit = omit,
         tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -520,6 +534,10 @@ class AsyncProductsResource(AsyncAPIResource):
         return AsyncShortLinksResource(self._client)
 
     @cached_property
+    def localized_prices(self) -> AsyncLocalizedPricesResource:
+        return AsyncLocalizedPricesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncProductsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -554,8 +572,8 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
+        pricing_mode: Optional[PricingMode] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -696,10 +714,10 @@ class AsyncProductsResource(AsyncAPIResource):
         license_key_activations_limit: Optional[int] | Omit = omit,
         license_key_duration: Optional[LicenseKeyDurationParam] | Omit = omit,
         license_key_enabled: Optional[bool] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         price: Optional[PriceParam] | Omit = omit,
-        pricing_mode: Optional[Literal["by_currency", "by_country"]] | Omit = omit,
+        pricing_mode: Optional[PricingMode] | Omit = omit,
         tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1002,6 +1020,10 @@ class ProductsResourceWithRawResponse:
     def short_links(self) -> ShortLinksResourceWithRawResponse:
         return ShortLinksResourceWithRawResponse(self._products.short_links)
 
+    @cached_property
+    def localized_prices(self) -> LocalizedPricesResourceWithRawResponse:
+        return LocalizedPricesResourceWithRawResponse(self._products.localized_prices)
+
 
 class AsyncProductsResourceWithRawResponse:
     def __init__(self, products: AsyncProductsResource) -> None:
@@ -1036,6 +1058,10 @@ class AsyncProductsResourceWithRawResponse:
     @cached_property
     def short_links(self) -> AsyncShortLinksResourceWithRawResponse:
         return AsyncShortLinksResourceWithRawResponse(self._products.short_links)
+
+    @cached_property
+    def localized_prices(self) -> AsyncLocalizedPricesResourceWithRawResponse:
+        return AsyncLocalizedPricesResourceWithRawResponse(self._products.localized_prices)
 
 
 class ProductsResourceWithStreamingResponse:
@@ -1072,6 +1098,10 @@ class ProductsResourceWithStreamingResponse:
     def short_links(self) -> ShortLinksResourceWithStreamingResponse:
         return ShortLinksResourceWithStreamingResponse(self._products.short_links)
 
+    @cached_property
+    def localized_prices(self) -> LocalizedPricesResourceWithStreamingResponse:
+        return LocalizedPricesResourceWithStreamingResponse(self._products.localized_prices)
+
 
 class AsyncProductsResourceWithStreamingResponse:
     def __init__(self, products: AsyncProductsResource) -> None:
@@ -1106,3 +1136,7 @@ class AsyncProductsResourceWithStreamingResponse:
     @cached_property
     def short_links(self) -> AsyncShortLinksResourceWithStreamingResponse:
         return AsyncShortLinksResourceWithStreamingResponse(self._products.short_links)
+
+    @cached_property
+    def localized_prices(self) -> AsyncLocalizedPricesResourceWithStreamingResponse:
+        return AsyncLocalizedPricesResourceWithStreamingResponse(self._products.localized_prices)

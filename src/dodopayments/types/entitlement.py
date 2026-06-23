@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .metadata import Metadata
 from .integration_config_response import IntegrationConfigResponse
 from .entitlement_integration_type import EntitlementIntegrationType
 
@@ -41,7 +42,7 @@ class Entitlement(BaseModel):
     entitlements are not returned.
     """
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Arbitrary key-value metadata supplied at creation or via PATCH."""
 
     name: str

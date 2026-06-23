@@ -110,4 +110,5 @@ PaymentMethodTypes: TypeAlias = Literal[
     "revolut_pay",
     "naver_pay",
     "payco",
+    "satispay",
 ]

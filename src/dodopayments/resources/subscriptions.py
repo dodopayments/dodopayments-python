@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Dict, List, Union, Iterable, Optional
+from typing import List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -36,6 +36,7 @@ from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumber
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.currency import Currency
 from ..types.subscription import Subscription
+from ..types.metadata_param import MetadataParam
 from ..types.attach_addon_param import AttachAddonParam
 from ..types.subscription_status import SubscriptionStatus
 from ..types.payment_method_types import PaymentMethodTypes
@@ -91,7 +92,7 @@ class SubscriptionsResource(SyncAPIResource):
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
@@ -273,7 +274,7 @@ class SubscriptionsResource(SyncAPIResource):
         customer_business_name: Optional[str] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
         status: Optional[SubscriptionStatus] | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -452,7 +453,7 @@ class SubscriptionsResource(SyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -540,7 +541,7 @@ class SubscriptionsResource(SyncAPIResource):
         product_price: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         product_currency: Optional[Currency] | Omit = omit,
         product_description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -614,7 +615,7 @@ class SubscriptionsResource(SyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -900,7 +901,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         on_demand: Optional[OnDemandSubscriptionParam] | Omit = omit,
         one_time_product_cart: Optional[Iterable[OneTimeProductCartItemParam]] | Omit = omit,
         payment_link: Optional[bool] | Omit = omit,
@@ -1082,7 +1083,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         customer_business_name: Optional[str] | Omit = omit,
         customer_name: Optional[str] | Omit = omit,
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
         status: Optional[SubscriptionStatus] | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -1261,7 +1262,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1349,7 +1350,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         product_price: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         customer_balance_config: Optional[subscription_charge_params.CustomerBalanceConfig] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         product_currency: Optional[Currency] | Omit = omit,
         product_description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1423,7 +1424,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
