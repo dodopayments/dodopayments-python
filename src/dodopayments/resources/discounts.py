@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 
 import httpx
@@ -22,6 +22,7 @@ from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumber
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.discount import Discount
 from ..types.discount_type import DiscountType
+from ..types.metadata_param import MetadataParam
 
 __all__ = ["DiscountsResource", "AsyncDiscountsResource"]
 
@@ -53,7 +54,7 @@ class DiscountsResource(SyncAPIResource):
         type: DiscountType,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -169,7 +170,7 @@ class DiscountsResource(SyncAPIResource):
         amount: Optional[int] | Omit = omit,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -402,7 +403,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         type: DiscountType,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -518,7 +519,7 @@ class AsyncDiscountsResource(AsyncAPIResource):
         amount: Optional[int] | Omit = omit,
         code: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,

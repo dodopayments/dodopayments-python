@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
 from .currency import Currency
+from .metadata import Metadata
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .discount_detail import DiscountDetail
@@ -48,7 +49,7 @@ class Subscription(BaseModel):
     customer: CustomerLimitedDetails
     """Customer details associated with the subscription"""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Additional custom data associated with the subscription"""
 
     meter_credit_entitlement_cart: List[MeterCreditEntitlementCartResponse]

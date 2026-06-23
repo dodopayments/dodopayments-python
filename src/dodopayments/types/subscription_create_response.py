@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .metadata import Metadata
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 
@@ -23,7 +24,7 @@ class SubscriptionCreateResponse(BaseModel):
     customer: CustomerLimitedDetails
     """Customer details associated with this subscription"""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Additional metadata associated with the subscription"""
 
     payment_id: str
