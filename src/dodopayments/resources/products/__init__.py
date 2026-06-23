@@ -24,6 +24,14 @@ from .short_links import (
     ShortLinksResourceWithStreamingResponse,
     AsyncShortLinksResourceWithStreamingResponse,
 )
+from .localized_prices import (
+    LocalizedPricesResource,
+    AsyncLocalizedPricesResource,
+    LocalizedPricesResourceWithRawResponse,
+    AsyncLocalizedPricesResourceWithRawResponse,
+    LocalizedPricesResourceWithStreamingResponse,
+    AsyncLocalizedPricesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ImagesResource",
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncShortLinksResourceWithRawResponse",
     "ShortLinksResourceWithStreamingResponse",
     "AsyncShortLinksResourceWithStreamingResponse",
+    "LocalizedPricesResource",
+    "AsyncLocalizedPricesResource",
+    "LocalizedPricesResourceWithRawResponse",
+    "AsyncLocalizedPricesResourceWithRawResponse",
+    "LocalizedPricesResourceWithStreamingResponse",
+    "AsyncLocalizedPricesResourceWithStreamingResponse",
     "ProductsResource",
     "AsyncProductsResource",
     "ProductsResourceWithRawResponse",

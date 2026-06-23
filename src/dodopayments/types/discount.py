@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .metadata import Metadata
 from .discount_type import DiscountType
 
 __all__ = ["Discount"]
@@ -25,7 +26,7 @@ class Discount(BaseModel):
     discount_id: str
     """The unique discount ID"""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
 
     preserve_on_plan_change: bool
     """

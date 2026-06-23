@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
 from .currency import Currency
+from .metadata_param import MetadataParam
 from .custom_field_param import CustomFieldParam
 from .payment_method_types import PaymentMethodTypes
 from .customer_request_param import CustomerRequestParam
@@ -93,7 +94,7 @@ class CheckoutSessionCreateParams(TypedDict, total=False):
     applies.
     """
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[MetadataParam]
     """Additional metadata associated with the payment.
 
     Defaults to empty if not provided.

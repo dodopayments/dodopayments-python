@@ -1,12 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .dispute import Dispute
 from .._models import BaseModel
 from .currency import Currency
+from .metadata import Metadata
 from .country_code import CountryCode
 from .intent_status import IntentStatus
 from .billing_address import BillingAddress
@@ -50,7 +51,7 @@ class Payment(BaseModel):
     disputes: List[Dispute]
     """List of disputes associated with this payment"""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Additional custom data associated with the payment"""
 
     payment_id: str
