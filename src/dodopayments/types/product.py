@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .price import Price
 from .._models import BaseModel
+from .metadata import Metadata
 from .tax_category import TaxCategory
 from .license_key_duration import LicenseKeyDuration
+from .products.pricing_mode import PricingMode
 from .digital_product_delivery import DigitalProductDelivery
 from .product_entitlement_summary import ProductEntitlementSummary
 from .credit_entitlement_mapping_response import CreditEntitlementMappingResponse
@@ -36,7 +37,7 @@ class Product(BaseModel):
     license_key_enabled: bool
     """Indicates whether the product requires a license key."""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Additional custom data associated with the product"""
 
     price: Price
@@ -78,7 +79,7 @@ class Product(BaseModel):
     name: Optional[str] = None
     """Name of the product, optional."""
 
-    pricing_mode: Optional[Literal["by_currency", "by_country"]] = None
+    pricing_mode: Optional[PricingMode] = None
     """Pricing mode for localized pricing.
 
     NULL means base-only (no localized rules apply).

@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
 from .currency import Currency
+from .metadata import Metadata
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
@@ -48,7 +49,7 @@ class SubscriptionListResponse(BaseModel):
     discounts: List[Discount]
     """All stacked discounts applied, in order of application"""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Additional custom data associated with the subscription"""
 
     next_billing_date: datetime

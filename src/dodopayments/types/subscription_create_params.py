@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
 from .currency import Currency
+from .metadata_param import MetadataParam
 from .attach_addon_param import AttachAddonParam
 from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
@@ -80,7 +81,7 @@ class SubscriptionCreateParams(TypedDict, total=False):
     applies.
     """
 
-    metadata: Dict[str, str]
+    metadata: MetadataParam
     """Additional metadata for the subscription Defaults to empty if not specified"""
 
     on_demand: Optional[OnDemandSubscriptionParam]

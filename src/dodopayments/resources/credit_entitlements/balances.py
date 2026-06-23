@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -20,6 +20,7 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.metadata_param import MetadataParam
 from ...types.credit_entitlements import (
     LedgerEntryType,
     balance_list_params,
@@ -202,7 +203,7 @@ class BalancesResource(SyncAPIResource):
         entry_type: LedgerEntryType,
         expires_at: Union[str, datetime, None] | Omit = omit,
         idempotency_key: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         reason: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -638,7 +639,7 @@ class AsyncBalancesResource(AsyncAPIResource):
         entry_type: LedgerEntryType,
         expires_at: Union[str, datetime, None] | Omit = omit,
         idempotency_key: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         reason: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

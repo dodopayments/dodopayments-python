@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 from .currency import Currency
+from .metadata_param import MetadataParam
 
 __all__ = ["SubscriptionChargeParams", "CustomerBalanceConfig"]
 
@@ -28,7 +29,7 @@ class SubscriptionChargeParams(TypedDict, total=False):
     customer_balance_config: Optional[CustomerBalanceConfig]
     """Specify how customer balance is used for the payment"""
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[MetadataParam]
     """Metadata for the payment.
 
     If not passed, the metadata of the subscription will be taken

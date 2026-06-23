@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
 from .currency import Currency
+from .metadata_param import MetadataParam
 from .payment_method_types import PaymentMethodTypes
 from .billing_address_param import BillingAddressParam
 from .customer_request_param import CustomerRequestParam
@@ -68,7 +69,7 @@ class PaymentCreateParams(TypedDict, total=False):
     force_3ds: Optional[bool]
     """Override merchant default 3DS behaviour for this payment"""
 
-    metadata: Dict[str, str]
+    metadata: MetadataParam
     """
     Additional metadata associated with the payment. Defaults to empty if not
     provided.

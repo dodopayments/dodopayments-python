@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 
 import httpx
@@ -37,6 +37,7 @@ from .wallets.wallets import (
     AsyncWalletsResourceWithStreamingResponse,
 )
 from ...types.customer import Customer
+from ...types.metadata_param import MetadataParam
 from ...types.customer_list_entitlements_response import CustomerListEntitlementsResponse
 from ...types.customer_list_credit_entitlements_response import CustomerListCreditEntitlementsResponse
 from ...types.customer_retrieve_payment_methods_response import CustomerRetrievePaymentMethodsResponse
@@ -77,7 +78,7 @@ class CustomersResource(SyncAPIResource):
         *,
         email: str,
         name: str,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -151,7 +152,7 @@ class CustomersResource(SyncAPIResource):
         customer_id: str,
         *,
         email: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -423,7 +424,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         *,
         email: str,
         name: str,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -497,7 +498,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         customer_id: str,
         *,
         email: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

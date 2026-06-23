@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
+from .metadata_param import MetadataParam
 from .attach_addon_param import AttachAddonParam
 
 __all__ = ["SubscriptionChangePlanParams"]
@@ -56,7 +57,7 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     - `next_billing_date`: Schedule the change for the next billing date
     """
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[MetadataParam]
     """Metadata for the payment.
 
     If not passed, the metadata of the subscription will be taken

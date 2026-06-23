@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
+
+from .metadata_param import MetadataParam
 
 __all__ = ["RefundCreateParams", "Item"]
 
@@ -15,7 +17,7 @@ class RefundCreateParams(TypedDict, total=False):
     items: Optional[Iterable[Item]]
     """Partially Refund an Individual Item"""
 
-    metadata: Dict[str, str]
+    metadata: MetadataParam
     """Additional metadata associated with the refund."""
 
     reason: Optional[str]
