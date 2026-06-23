@@ -329,6 +329,22 @@ Methods:
 - <code title="post /products/{id}/short_links">client.products.short_links.<a href="./src/dodopayments/resources/products/short_links.py">create</a>(id, \*\*<a href="src/dodopayments/types/products/short_link_create_params.py">params</a>) -> <a href="./src/dodopayments/types/products/short_link_create_response.py">ShortLinkCreateResponse</a></code>
 - <code title="get /products/short_links">client.products.short_links.<a href="./src/dodopayments/resources/products/short_links.py">list</a>(\*\*<a href="src/dodopayments/types/products/short_link_list_params.py">params</a>) -> <a href="./src/dodopayments/types/products/short_link_list_response.py">SyncDefaultPageNumberPagination[ShortLinkListResponse]</a></code>
 
+## LocalizedPrices
+
+Types:
+
+```python
+from dodopayments.types.products import ListLocalizedPricesResponse, LocalizedPrice, PricingMode
+```
+
+Methods:
+
+- <code title="post /products/{product_id}/localized-prices">client.products.localized_prices.<a href="./src/dodopayments/resources/products/localized_prices.py">create</a>(product_id, \*\*<a href="src/dodopayments/types/products/localized_price_create_params.py">params</a>) -> <a href="./src/dodopayments/types/products/localized_price.py">LocalizedPrice</a></code>
+- <code title="get /products/{product_id}/localized-prices/{id}">client.products.localized_prices.<a href="./src/dodopayments/resources/products/localized_prices.py">retrieve</a>(id, \*, product_id) -> <a href="./src/dodopayments/types/products/localized_price.py">LocalizedPrice</a></code>
+- <code title="patch /products/{product_id}/localized-prices/{id}">client.products.localized_prices.<a href="./src/dodopayments/resources/products/localized_prices.py">update</a>(id, \*, product_id, \*\*<a href="src/dodopayments/types/products/localized_price_update_params.py">params</a>) -> <a href="./src/dodopayments/types/products/localized_price.py">LocalizedPrice</a></code>
+- <code title="get /products/{product_id}/localized-prices">client.products.localized_prices.<a href="./src/dodopayments/resources/products/localized_prices.py">list</a>(product_id) -> <a href="./src/dodopayments/types/products/list_localized_prices_response.py">ListLocalizedPricesResponse</a></code>
+- <code title="delete /products/{product_id}/localized-prices/{id}">client.products.localized_prices.<a href="./src/dodopayments/resources/products/localized_prices.py">archive</a>(id, \*, product_id) -> None</code>
+
 # Misc
 
 Types:
@@ -650,6 +666,7 @@ from dodopayments.types.entitlements import EntitlementGrant, LicenseKeyGrant
 Methods:
 
 - <code title="get /entitlements/{id}/grants">client.entitlements.grants.<a href="./src/dodopayments/resources/entitlements/grants.py">list</a>(id, \*\*<a href="src/dodopayments/types/entitlements/grant_list_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/entitlement_grant.py">SyncDefaultPageNumberPagination[EntitlementGrant]</a></code>
+- <code title="post /grants/{grant_id}/license-key">client.entitlements.grants.<a href="./src/dodopayments/resources/entitlements/grants.py">fulfill_license_key</a>(grant_id, \*\*<a href="src/dodopayments/types/entitlements/grant_fulfill_license_key_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/entitlement_grant.py">EntitlementGrant</a></code>
 - <code title="delete /entitlements/{id}/grants/{grant_id}">client.entitlements.grants.<a href="./src/dodopayments/resources/entitlements/grants.py">revoke</a>(grant_id, \*, id) -> <a href="./src/dodopayments/types/entitlements/entitlement_grant.py">EntitlementGrant</a></code>
 
 # ProductCollections
