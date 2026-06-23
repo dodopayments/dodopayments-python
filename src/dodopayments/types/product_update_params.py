@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
 from .price_param import PriceParam
 from .tax_category import TaxCategory
+from .products.pricing_mode import PricingMode
 from .license_key_duration_param import LicenseKeyDurationParam
 from .attach_credit_entitlement_param import AttachCreditEntitlementParam
 from .attach_product_entitlement_param import AttachProductEntitlementParam
@@ -90,7 +91,7 @@ class ProductUpdateParams(TypedDict, total=False):
     price: Optional[PriceParam]
     """Price details of the product."""
 
-    pricing_mode: Optional[Literal["by_currency", "by_country"]]
+    pricing_mode: Optional[PricingMode]
     """Update the pricing mode.
 
     Omit to leave unchanged; set to null to clear (which archives all active

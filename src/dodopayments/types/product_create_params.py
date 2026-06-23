@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
 from .price_param import PriceParam
 from .tax_category import TaxCategory
+from .products.pricing_mode import PricingMode
 from .license_key_duration_param import LicenseKeyDurationParam
 from .attach_credit_entitlement_param import AttachCreditEntitlementParam
 from .attach_product_entitlement_param import AttachProductEntitlementParam
@@ -81,7 +82,7 @@ class ProductCreateParams(TypedDict, total=False):
     metadata: Dict[str, str]
     """Additional metadata for the product"""
 
-    pricing_mode: Optional[Literal["by_currency", "by_country"]]
+    pricing_mode: Optional[PricingMode]
     """Pricing mode for localized pricing.
 
     When set, rules from /products/{id}/localized-prices apply at checkout. NULL

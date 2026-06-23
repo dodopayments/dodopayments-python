@@ -6,3 +6,4 @@ from .entitlement_grant import EntitlementGrant as EntitlementGrant
 from .grant_list_params import GrantListParams as GrantListParams
 from .license_key_grant import LicenseKeyGrant as LicenseKeyGrant
 from .file_upload_response import FileUploadResponse as FileUploadResponse
+from .grant_fulfill_license_key_params import GrantFulfillLicenseKeyParams as GrantFulfillLicenseKeyParams

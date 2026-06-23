@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -32,6 +32,13 @@ class CreditLedgerEntry(BaseModel):
     customer_id: str
 
     is_credit: bool
+
+    metadata: Dict[str, str]
+    """
+    Metadata associated with the credit grant's source (the subscription or payment
+    created at checkout). Empty when the grant has no resolvable source (e.g.
+    credits granted directly via the API).
+    """
 
     overage_after: str
 

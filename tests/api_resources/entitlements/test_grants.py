@@ -9,6 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
+from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from dodopayments.types.entitlements import EntitlementGrant
 
@@ -65,6 +66,58 @@ class TestGrants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.entitlements.grants.with_raw_response.list(
                 id="",
+            )
+
+    @parametrize
+    def test_method_fulfill_license_key(self, client: DodoPayments) -> None:
+        grant = client.entitlements.grants.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+        )
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+    @parametrize
+    def test_method_fulfill_license_key_with_all_params(self, client: DodoPayments) -> None:
+        grant = client.entitlements.grants.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+            activations_limit=0,
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+    @parametrize
+    def test_raw_response_fulfill_license_key(self, client: DodoPayments) -> None:
+        response = client.entitlements.grants.with_raw_response.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        grant = response.parse()
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+    @parametrize
+    def test_streaming_response_fulfill_license_key(self, client: DodoPayments) -> None:
+        with client.entitlements.grants.with_streaming_response.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            grant = response.parse()
+            assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_fulfill_license_key(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `grant_id` but received ''"):
+            client.entitlements.grants.with_raw_response.fulfill_license_key(
+                grant_id="",
+                key="key",
             )
 
     @parametrize
@@ -168,6 +221,58 @@ class TestAsyncGrants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.entitlements.grants.with_raw_response.list(
                 id="",
+            )
+
+    @parametrize
+    async def test_method_fulfill_license_key(self, async_client: AsyncDodoPayments) -> None:
+        grant = await async_client.entitlements.grants.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+        )
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+    @parametrize
+    async def test_method_fulfill_license_key_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        grant = await async_client.entitlements.grants.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+            activations_limit=0,
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+    @parametrize
+    async def test_raw_response_fulfill_license_key(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.entitlements.grants.with_raw_response.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        grant = await response.parse()
+        assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_fulfill_license_key(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.entitlements.grants.with_streaming_response.fulfill_license_key(
+            grant_id="entg_w0ZCJZgNXuNDdMVzvja6p",
+            key="key",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            grant = await response.parse()
+            assert_matches_type(EntitlementGrant, grant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_fulfill_license_key(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `grant_id` but received ''"):
+            await async_client.entitlements.grants.with_raw_response.fulfill_license_key(
+                grant_id="",
+                key="key",
             )
 
     @parametrize
