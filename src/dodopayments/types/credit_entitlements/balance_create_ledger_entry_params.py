@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from ..metadata_param import MetadataParam
 from .ledger_entry_type import LedgerEntryType
 
 __all__ = ["BalanceCreateLedgerEntryParams"]
@@ -27,7 +28,7 @@ class BalanceCreateLedgerEntryParams(TypedDict, total=False):
     idempotency_key: Optional[str]
     """Idempotency key to prevent duplicate entries"""
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[MetadataParam]
     """
     Optional metadata (max 50 key-value pairs, key max 40 chars, value max 500
     chars)

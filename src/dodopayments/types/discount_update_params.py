@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .discount_type import DiscountType
+from .metadata_param import MetadataParam
 
 __all__ = ["DiscountUpdateParams"]
 
@@ -27,7 +28,7 @@ class DiscountUpdateParams(TypedDict, total=False):
 
     expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[MetadataParam]
     """Additional metadata for the discount"""
 
     name: Optional[str]

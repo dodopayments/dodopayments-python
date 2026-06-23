@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import TypedDict
 
+from .metadata_param import MetadataParam
 from .integration_config_param import IntegrationConfigParam
 
 __all__ = ["EntitlementUpdateParams"]
@@ -19,6 +20,6 @@ class EntitlementUpdateParams(TypedDict, total=False):
     entitlement. The shape required matches the entitlement's `integration_type`.
     """
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[MetadataParam]
 
     name: Optional[str]

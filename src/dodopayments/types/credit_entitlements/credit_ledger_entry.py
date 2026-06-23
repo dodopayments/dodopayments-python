@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..metadata import Metadata
 
 __all__ = ["CreditLedgerEntry"]
 
@@ -32,6 +33,13 @@ class CreditLedgerEntry(BaseModel):
     customer_id: str
 
     is_credit: bool
+
+    metadata: Metadata
+    """
+    Metadata associated with the credit grant's source (the subscription or payment
+    created at checkout). Empty when the grant has no resolvable source (e.g.
+    credits granted directly via the API).
+    """
 
     overage_after: str
 

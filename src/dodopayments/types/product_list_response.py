@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .price import Price
 from .._models import BaseModel
 from .currency import Currency
+from .metadata import Metadata
 from .tax_category import TaxCategory
+from .products.pricing_mode import PricingMode
 from .product_entitlement_summary import ProductEntitlementSummary
 
 __all__ = ["ProductListResponse"]
@@ -26,7 +27,7 @@ class ProductListResponse(BaseModel):
     is_recurring: bool
     """Indicates if the product is recurring (e.g., subscriptions)."""
 
-    metadata: Dict[str, str]
+    metadata: Metadata
     """Additional custom data associated with the product"""
 
     product_id: str
@@ -66,7 +67,7 @@ class ProductListResponse(BaseModel):
     price_detail: Optional[Price] = None
     """Details of the price"""
 
-    pricing_mode: Optional[Literal["by_currency", "by_country"]] = None
+    pricing_mode: Optional[PricingMode] = None
     """Pricing mode for localized pricing.
 
     NULL means base-only (no localized rules apply).

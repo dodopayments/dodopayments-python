@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -22,6 +22,7 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.refund import Refund
+from ..types.metadata_param import MetadataParam
 from ..types.refund_list_item import RefundListItem
 
 __all__ = ["RefundsResource", "AsyncRefundsResource"]
@@ -52,7 +53,7 @@ class RefundsResource(SyncAPIResource):
         *,
         payment_id: str,
         items: Optional[Iterable[refund_create_params.Item]] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         reason: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -218,7 +219,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         *,
         payment_id: str,
         items: Optional[Iterable[refund_create_params.Item]] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
+        metadata: MetadataParam | Omit = omit,
         reason: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

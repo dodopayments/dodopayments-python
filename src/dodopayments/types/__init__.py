@@ -15,6 +15,7 @@ from .product import Product as Product
 from .currency import Currency as Currency
 from .customer import Customer as Customer
 from .discount import Discount as Discount
+from .metadata import Metadata as Metadata
 from .conjunction import Conjunction as Conjunction
 from .entitlement import Entitlement as Entitlement
 from .filter_type import FilterType as FilterType
@@ -32,6 +33,7 @@ from .refund_status import RefundStatus as RefundStatus
 from .time_interval import TimeInterval as TimeInterval
 from .addon_response import AddonResponse as AddonResponse
 from .dispute_status import DisputeStatus as DisputeStatus
+from .metadata_param import MetadataParam as MetadataParam
 from .billing_address import BillingAddress as BillingAddress
 from .discount_detail import DiscountDetail as DiscountDetail
 from .filter_operator import FilterOperator as FilterOperator

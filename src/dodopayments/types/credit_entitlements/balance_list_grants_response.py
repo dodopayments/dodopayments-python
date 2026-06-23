@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..metadata import Metadata
 
 __all__ = ["BalanceListGrantsResponse"]
 
@@ -36,7 +37,7 @@ class BalanceListGrantsResponse(BaseModel):
 
     expires_at: Optional[datetime] = None
 
-    metadata: Optional[Dict[str, str]] = None
+    metadata: Optional[Metadata] = None
 
     parent_grant_id: Optional[str] = None
 

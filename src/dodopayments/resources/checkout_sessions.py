@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import List, Iterable, Optional
 
 import httpx
 
@@ -23,6 +23,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.currency import Currency
+from ..types.metadata_param import MetadataParam
 from ..types.custom_field_param import CustomFieldParam
 from ..types.payment_method_types import PaymentMethodTypes
 from ..types.customer_request_param import CustomerRequestParam
@@ -76,7 +77,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,
@@ -250,7 +251,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,
@@ -414,7 +415,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,
@@ -588,7 +589,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         feature_flags: CheckoutSessionFlagsParam | Omit = omit,
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
+        metadata: Optional[MetadataParam] | Omit = omit,
         minimal_address: bool | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,

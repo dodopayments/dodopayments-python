@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -18,7 +20,7 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.entitlements import grant_list_params
+from ...types.entitlements import grant_list_params, grant_fulfill_license_key_params
 from ...types.entitlements.entitlement_grant import EntitlementGrant
 
 __all__ = ["GrantsResource", "AsyncGrantsResource"]
@@ -100,6 +102,61 @@ class GrantsResource(SyncAPIResource):
                 ),
             ),
             model=EntitlementGrant,
+        )
+
+    def fulfill_license_key(
+        self,
+        grant_id: str,
+        *,
+        key: str,
+        activations_limit: Optional[int] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EntitlementGrant:
+        """
+        For entitlements whose license-key config uses `manual` fulfillment, grants are
+        created in the `pending` state without a key. Call this endpoint to deliver the
+        key: the grant moves to `delivered`, the customer is emailed the key, and the
+        `license_key.created` and `entitlement_grant.delivered` webhook events are sent.
+
+        Args:
+          key: The license key value to deliver to the customer.
+
+          activations_limit: Per-key activation limit. Defaults to the entitlement's license-key
+              configuration.
+
+          expires_at: When the key expires. Defaults to the duration in the entitlement's license-key
+              configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not grant_id:
+            raise ValueError(f"Expected a non-empty value for `grant_id` but received {grant_id!r}")
+        return self._post(
+            path_template("/grants/{grant_id}/license-key", grant_id=grant_id),
+            body=maybe_transform(
+                {
+                    "key": key,
+                    "activations_limit": activations_limit,
+                    "expires_at": expires_at,
+                },
+                grant_fulfill_license_key_params.GrantFulfillLicenseKeyParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EntitlementGrant,
         )
 
     def revoke(
@@ -219,6 +276,61 @@ class AsyncGrantsResource(AsyncAPIResource):
             model=EntitlementGrant,
         )
 
+    async def fulfill_license_key(
+        self,
+        grant_id: str,
+        *,
+        key: str,
+        activations_limit: Optional[int] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EntitlementGrant:
+        """
+        For entitlements whose license-key config uses `manual` fulfillment, grants are
+        created in the `pending` state without a key. Call this endpoint to deliver the
+        key: the grant moves to `delivered`, the customer is emailed the key, and the
+        `license_key.created` and `entitlement_grant.delivered` webhook events are sent.
+
+        Args:
+          key: The license key value to deliver to the customer.
+
+          activations_limit: Per-key activation limit. Defaults to the entitlement's license-key
+              configuration.
+
+          expires_at: When the key expires. Defaults to the duration in the entitlement's license-key
+              configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not grant_id:
+            raise ValueError(f"Expected a non-empty value for `grant_id` but received {grant_id!r}")
+        return await self._post(
+            path_template("/grants/{grant_id}/license-key", grant_id=grant_id),
+            body=await async_maybe_transform(
+                {
+                    "key": key,
+                    "activations_limit": activations_limit,
+                    "expires_at": expires_at,
+                },
+                grant_fulfill_license_key_params.GrantFulfillLicenseKeyParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EntitlementGrant,
+        )
+
     async def revoke(
         self,
         grant_id: str,
@@ -265,6 +377,9 @@ class GrantsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             grants.list,
         )
+        self.fulfill_license_key = to_raw_response_wrapper(
+            grants.fulfill_license_key,
+        )
         self.revoke = to_raw_response_wrapper(
             grants.revoke,
         )
@@ -276,6 +391,9 @@ class AsyncGrantsResourceWithRawResponse:
 
         self.list = async_to_raw_response_wrapper(
             grants.list,
+        )
+        self.fulfill_license_key = async_to_raw_response_wrapper(
+            grants.fulfill_license_key,
         )
         self.revoke = async_to_raw_response_wrapper(
             grants.revoke,
@@ -289,6 +407,9 @@ class GrantsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             grants.list,
         )
+        self.fulfill_license_key = to_streamed_response_wrapper(
+            grants.fulfill_license_key,
+        )
         self.revoke = to_streamed_response_wrapper(
             grants.revoke,
         )
@@ -300,6 +421,9 @@ class AsyncGrantsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             grants.list,
+        )
+        self.fulfill_license_key = async_to_streamed_response_wrapper(
+            grants.fulfill_license_key,
         )
         self.revoke = async_to_streamed_response_wrapper(
             grants.revoke,
