@@ -46,7 +46,7 @@ class Payment(BaseModel):
     """Details about the customer who made the payment"""
 
     digital_products_delivered: bool
-    """brand id this payment belongs to"""
+    """Whether the digital products purchased in this payment have been delivered."""
 
     disputes: List[Dispute]
     """List of disputes associated with this payment"""

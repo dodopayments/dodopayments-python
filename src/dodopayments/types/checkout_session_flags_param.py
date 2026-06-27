@@ -47,6 +47,14 @@ class CheckoutSessionFlagsParam(TypedDict, total=False):
     Default is true
     """
 
+    allow_editing_addons: bool
+    """
+    If true, the customer can add or remove addons on a subscription product during
+    checkout.
+
+    Default is false
+    """
+
     allow_phone_number_collection: bool
     """If phone number is collected from customer, set it to rue
 
