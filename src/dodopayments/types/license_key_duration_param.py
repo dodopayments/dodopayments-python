@@ -13,3 +13,4 @@ class LicenseKeyDurationParam(TypedDict, total=False):
     count: Required[int]
 
     interval: Required[TimeInterval]
+    """Unit of a duration count (e.g. license-key validity period)."""
