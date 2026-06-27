@@ -11,3 +11,4 @@ class AttachAddonParam(TypedDict, total=False):
     addon_id: Required[str]
 
     quantity: Required[int]
+    """Number of units of this addon."""

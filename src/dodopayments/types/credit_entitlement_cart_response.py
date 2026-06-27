@@ -57,3 +57,4 @@ class CreditEntitlementCartResponse(BaseModel):
     rollover_timeframe_count: Optional[int] = None
 
     rollover_timeframe_interval: Optional[TimeInterval] = None
+    """Unit of a duration count (e.g. license-key validity period)."""

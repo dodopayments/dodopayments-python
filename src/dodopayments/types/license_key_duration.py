@@ -10,3 +10,4 @@ class LicenseKeyDuration(BaseModel):
     count: int
 
     interval: TimeInterval
+    """Unit of a duration count (e.g. license-key validity period)."""
