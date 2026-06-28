@@ -84,6 +84,7 @@ class CreditEntitlementCart(TypedDict, total=False):
     rollover_timeframe_count: Optional[int]
 
     rollover_timeframe_interval: Optional[TimeInterval]
+    """Unit of a duration count (e.g. license-key validity period)."""
 
 
 class DisableOnDemand(TypedDict, total=False):
