@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.106.1](https://github.com/dodopayments/dodopayments-python/compare/v1.106.0...v1.106.1) (2026-06-27)
-
-
-### Bug Fixes
-
-* **api:** add allow_editing_addons checkout flag and refine schema descriptions ([8f9a015](https://github.com/dodopayments/dodopayments-python/commit/8f9a015b340a816d1f643069ff51909e76912f89))
-* **api:** add allow_editing_addons checkout flag and refine schema descriptions ([d578037](https://github.com/dodopayments/dodopayments-python/commit/d578037d7c376ef86571a5b3eec465085ce1105f))
-
 ## [1.106.0](https://github.com/dodopayments/dodopayments-python/compare/v1.105.1...v1.106.0) (2026-06-23)
 
 
