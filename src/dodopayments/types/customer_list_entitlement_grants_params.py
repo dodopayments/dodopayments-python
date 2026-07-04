@@ -4,17 +4,20 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["EntitlementListParams"]
+__all__ = ["CustomerListEntitlementGrantsParams"]
 
 
-class EntitlementListParams(TypedDict, total=False):
+class CustomerListEntitlementGrantsParams(TypedDict, total=False):
     integration_type: Literal[
         "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
     ]
-    """Filter by integration type"""
+    """Filter by integration type (e.g. `feature_flag`)"""
 
     page_number: int
     """Page number (default 0)"""
 
     page_size: int
     """Page size (default 10, max 100)"""
+
+    status: Literal["Pending", "Delivered", "Failed", "Revoked"]
+    """Filter by grant status"""

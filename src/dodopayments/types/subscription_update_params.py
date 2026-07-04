@@ -54,6 +54,10 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     disable_on_demand: Optional[DisableOnDemand]
 
     metadata: Optional[MetadataParam]
+    """Arbitrary key-value metadata.
+
+    Values can be string, integer, number, or boolean.
+    """
 
     next_billing_date: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
 

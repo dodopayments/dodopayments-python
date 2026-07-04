@@ -4,10 +4,16 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
-from ...types import customer_list_params, customer_create_params, customer_update_params
+from ...types import (
+    customer_list_params,
+    customer_create_params,
+    customer_update_params,
+    customer_list_entitlement_grants_params,
+)
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -38,6 +44,7 @@ from .wallets.wallets import (
 )
 from ...types.customer import Customer
 from ...types.metadata_param import MetadataParam
+from ...types.entitlements.entitlement_grant import EntitlementGrant
 from ...types.customer_list_entitlements_response import CustomerListEntitlementsResponse
 from ...types.customer_list_credit_entitlements_response import CustomerListCreditEntitlementsResponse
 from ...types.customer_retrieve_payment_methods_response import CustomerRetrievePaymentMethodsResponse
@@ -324,6 +331,69 @@ class CustomersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CustomerListCreditEntitlementsResponse,
+        )
+
+    def list_entitlement_grants(
+        self,
+        customer_id: str,
+        *,
+        integration_type: Literal[
+            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
+        ]
+        | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        status: Literal["Pending", "Delivered", "Failed", "Revoked"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncDefaultPageNumberPagination[EntitlementGrant]:
+        """List all of a customer's entitlement grants across every entitlement.
+
+        One row
+        per grant.
+
+        Args:
+          integration_type: Filter by integration type (e.g. `feature_flag`)
+
+          page_number: Page number (default 0)
+
+          page_size: Page size (default 10, max 100)
+
+          status: Filter by grant status
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        return self._get_api_list(
+            path_template("/customers/{customer_id}/entitlement-grants", customer_id=customer_id),
+            page=SyncDefaultPageNumberPagination[EntitlementGrant],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "integration_type": integration_type,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                        "status": status,
+                    },
+                    customer_list_entitlement_grants_params.CustomerListEntitlementGrantsParams,
+                ),
+            ),
+            model=EntitlementGrant,
         )
 
     def list_entitlements(
@@ -672,6 +742,69 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerListCreditEntitlementsResponse,
         )
 
+    def list_entitlement_grants(
+        self,
+        customer_id: str,
+        *,
+        integration_type: Literal[
+            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
+        ]
+        | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        status: Literal["Pending", "Delivered", "Failed", "Revoked"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[EntitlementGrant, AsyncDefaultPageNumberPagination[EntitlementGrant]]:
+        """List all of a customer's entitlement grants across every entitlement.
+
+        One row
+        per grant.
+
+        Args:
+          integration_type: Filter by integration type (e.g. `feature_flag`)
+
+          page_number: Page number (default 0)
+
+          page_size: Page size (default 10, max 100)
+
+          status: Filter by grant status
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        return self._get_api_list(
+            path_template("/customers/{customer_id}/entitlement-grants", customer_id=customer_id),
+            page=AsyncDefaultPageNumberPagination[EntitlementGrant],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "integration_type": integration_type,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                        "status": status,
+                    },
+                    customer_list_entitlement_grants_params.CustomerListEntitlementGrantsParams,
+                ),
+            ),
+            model=EntitlementGrant,
+        )
+
     async def list_entitlements(
         self,
         customer_id: str,
@@ -759,6 +892,9 @@ class CustomersResourceWithRawResponse:
         self.list_credit_entitlements = to_raw_response_wrapper(
             customers.list_credit_entitlements,
         )
+        self.list_entitlement_grants = to_raw_response_wrapper(
+            customers.list_entitlement_grants,
+        )
         self.list_entitlements = to_raw_response_wrapper(
             customers.list_entitlements,
         )
@@ -796,6 +932,9 @@ class AsyncCustomersResourceWithRawResponse:
         )
         self.list_credit_entitlements = async_to_raw_response_wrapper(
             customers.list_credit_entitlements,
+        )
+        self.list_entitlement_grants = async_to_raw_response_wrapper(
+            customers.list_entitlement_grants,
         )
         self.list_entitlements = async_to_raw_response_wrapper(
             customers.list_entitlements,
@@ -835,6 +974,9 @@ class CustomersResourceWithStreamingResponse:
         self.list_credit_entitlements = to_streamed_response_wrapper(
             customers.list_credit_entitlements,
         )
+        self.list_entitlement_grants = to_streamed_response_wrapper(
+            customers.list_entitlement_grants,
+        )
         self.list_entitlements = to_streamed_response_wrapper(
             customers.list_entitlements,
         )
@@ -872,6 +1014,9 @@ class AsyncCustomersResourceWithStreamingResponse:
         )
         self.list_credit_entitlements = async_to_streamed_response_wrapper(
             customers.list_credit_entitlements,
+        )
+        self.list_entitlement_grants = async_to_streamed_response_wrapper(
+            customers.list_entitlement_grants,
         )
         self.list_entitlements = async_to_streamed_response_wrapper(
             customers.list_entitlements,

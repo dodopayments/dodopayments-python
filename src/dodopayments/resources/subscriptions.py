@@ -302,6 +302,8 @@ class SubscriptionsResource(SyncAPIResource):
               the invoice instead of the customer's personal name. Send `null` to explicitly
               clear the business name.
 
+          metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1110,6 +1112,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
               together with a valid tax id for a B2B subscription, this name is rendered on
               the invoice instead of the customer's personal name. Send `null` to explicitly
               clear the business name.
+
+          metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
           extra_headers: Send extra headers
 
