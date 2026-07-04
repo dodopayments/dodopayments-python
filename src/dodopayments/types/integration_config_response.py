@@ -4,11 +4,13 @@ from typing import List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
+from .feature_type import FeatureType
 from .time_interval import TimeInterval
 from .github_permission import GitHubPermission
 
 __all__ = [
     "IntegrationConfigResponse",
+    "FeatureFlagConfig",
     "GitHubConfig",
     "DiscordConfig",
     "TelegramConfig",
@@ -20,6 +22,14 @@ __all__ = [
     "DigitalFilesConfigDigitalFilesFile",
     "LicenseKeyConfig",
 ]
+
+
+class FeatureFlagConfig(BaseModel):
+    feature_id: str
+    """Merchant-chosen identifier for the capability this entitlement unlocks."""
+
+    feature_type: FeatureType
+    """Type of capability conferred. Only `boolean` is supported today."""
 
 
 class GitHubConfig(BaseModel):
@@ -137,6 +147,7 @@ class LicenseKeyConfig(BaseModel):
 
 
 IntegrationConfigResponse: TypeAlias = Union[
+    FeatureFlagConfig,
     GitHubConfig,
     DiscordConfig,
     TelegramConfig,

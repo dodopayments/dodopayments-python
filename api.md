@@ -174,6 +174,7 @@ Methods:
 - <code title="get /customers">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list</a>(\*\*<a href="src/dodopayments/types/customer_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customer.py">SyncDefaultPageNumberPagination[Customer]</a></code>
 - <code title="delete /customers/{customer_id}/payment-methods/{payment_method_id}">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">delete_payment_method</a>(payment_method_id, \*, customer_id) -> None</code>
 - <code title="get /customers/{customer_id}/credit-entitlements">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_credit_entitlements</a>(customer_id) -> <a href="./src/dodopayments/types/customer_list_credit_entitlements_response.py">CustomerListCreditEntitlementsResponse</a></code>
+- <code title="get /customers/{customer_id}/entitlement-grants">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_entitlement_grants</a>(customer_id, \*\*<a href="src/dodopayments/types/customer_list_entitlement_grants_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/entitlement_grant.py">SyncDefaultPageNumberPagination[EntitlementGrant]</a></code>
 - <code title="get /customers/{customer_id}/entitlements">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_entitlements</a>(customer_id) -> <a href="./src/dodopayments/types/customer_list_entitlements_response.py">CustomerListEntitlementsResponse</a></code>
 - <code title="get /customers/{customer_id}/payment-methods">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve_payment_methods</a>(customer_id) -> <a href="./src/dodopayments/types/customer_retrieve_payment_methods_response.py">CustomerRetrievePaymentMethodsResponse</a></code>
 
@@ -629,6 +630,8 @@ Types:
 from dodopayments.types import (
     Entitlement,
     EntitlementIntegrationType,
+    Feature,
+    FeatureType,
     GitHubPermission,
     IntegrationConfig,
     IntegrationConfigResponse,
