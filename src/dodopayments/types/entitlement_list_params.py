@@ -9,7 +9,7 @@ __all__ = ["EntitlementListParams"]
 
 class EntitlementListParams(TypedDict, total=False):
     integration_type: Literal[
-        "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
+        "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
     ]
     """Filter by integration type"""
 

@@ -29,6 +29,10 @@ class PaymentListResponse(BaseModel):
     has_license_key: bool
 
     metadata: Metadata
+    """Arbitrary key-value metadata.
+
+    Values can be string, integer, number, or boolean.
+    """
 
     payment_id: str
 

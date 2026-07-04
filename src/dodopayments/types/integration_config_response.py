@@ -9,6 +9,7 @@ from .github_permission import GitHubPermission
 
 __all__ = [
     "IntegrationConfigResponse",
+    "FeatureFlagConfig",
     "GitHubConfig",
     "DiscordConfig",
     "TelegramConfig",
@@ -20,6 +21,14 @@ __all__ = [
     "DigitalFilesConfigDigitalFilesFile",
     "LicenseKeyConfig",
 ]
+
+
+class FeatureFlagConfig(BaseModel):
+    feature_id: str
+    """Merchant-chosen identifier for the capability this entitlement unlocks."""
+
+    feature_type: Literal["boolean"]
+    """Type of capability conferred. Only `boolean` is supported today."""
 
 
 class GitHubConfig(BaseModel):
@@ -137,6 +146,7 @@ class LicenseKeyConfig(BaseModel):
 
 
 IntegrationConfigResponse: TypeAlias = Union[
+    FeatureFlagConfig,
     GitHubConfig,
     DiscordConfig,
     TelegramConfig,

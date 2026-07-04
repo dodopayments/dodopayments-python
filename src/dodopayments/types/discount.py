@@ -27,6 +27,10 @@ class Discount(BaseModel):
     """The unique discount ID"""
 
     metadata: Metadata
+    """Arbitrary key-value metadata.
+
+    Values can be string, integer, number, or boolean.
+    """
 
     preserve_on_plan_change: bool
     """

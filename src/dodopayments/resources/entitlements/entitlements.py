@@ -187,6 +187,12 @@ class EntitlementsResource(SyncAPIResource):
           integration_config: Integration-specific configuration supplied when creating or updating an
               entitlement. The shape required matches the entitlement's `integration_type`.
 
+              Untagged enum: variants are matched in order. `FeatureFlag` must precede
+              `LicenseKey`, whose fields are all optional and would otherwise match a
+              `feature_flag` config.
+
+          metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -218,7 +224,7 @@ class EntitlementsResource(SyncAPIResource):
         self,
         *,
         integration_type: Literal[
-            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
+            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
         ]
         | Omit = omit,
         page_number: int | Omit = omit,
@@ -441,6 +447,12 @@ class AsyncEntitlementsResource(AsyncAPIResource):
           integration_config: Integration-specific configuration supplied when creating or updating an
               entitlement. The shape required matches the entitlement's `integration_type`.
 
+              Untagged enum: variants are matched in order. `FeatureFlag` must precede
+              `LicenseKey`, whose fields are all optional and would otherwise match a
+              `feature_flag` config.
+
+          metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -472,7 +484,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         self,
         *,
         integration_type: Literal[
-            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
+            "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
         ]
         | Omit = omit,
         page_number: int | Omit = omit,

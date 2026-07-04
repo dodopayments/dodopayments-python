@@ -10,7 +10,20 @@ from .license_key_grant import LicenseKeyGrant
 from ..digital_product_delivery import DigitalProductDelivery
 from ..entitlement_integration_type import EntitlementIntegrationType
 
-__all__ = ["EntitlementGrant"]
+__all__ = ["EntitlementGrant", "Feature"]
+
+
+class Feature(BaseModel):
+    """
+    Typed feature payload, present only when the entitlement integration is
+    `feature_flag`; `null` for every other integration type.
+    """
+
+    feature_id: str
+    """Identifier of the capability this grant confers."""
+
+    feature_type: Literal["boolean"]
+    """Type of capability conferred."""
 
 
 class EntitlementGrant(BaseModel):
@@ -63,6 +76,12 @@ class EntitlementGrant(BaseModel):
 
     error_message: Optional[str] = None
     """Human-readable message reported when delivery failed, when applicable."""
+
+    feature: Optional[Feature] = None
+    """
+    Typed feature payload, present only when the entitlement integration is
+    `feature_flag`; `null` for every other integration type.
+    """
 
     license_key: Optional[LicenseKeyGrant] = None
     """

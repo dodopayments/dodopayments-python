@@ -11,6 +11,7 @@ from .github_permission import GitHubPermission
 
 __all__ = [
     "IntegrationConfigParam",
+    "FeatureFlagConfig",
     "GitHubConfig",
     "DiscordConfig",
     "TelegramConfig",
@@ -20,6 +21,17 @@ __all__ = [
     "DigitalFilesConfig",
     "LicenseKeyConfig",
 ]
+
+
+class FeatureFlagConfig(TypedDict, total=False):
+    feature_id: Required[str]
+    """Merchant-chosen identifier for the capability this entitlement unlocks.
+
+    Not unique across entitlements.
+    """
+
+    feature_type: Required[Literal["boolean"]]
+    """Type of capability conferred."""
 
 
 class GitHubConfig(TypedDict, total=False):
@@ -117,6 +129,7 @@ class LicenseKeyConfig(TypedDict, total=False):
 
 
 IntegrationConfigParam: TypeAlias = Union[
+    FeatureFlagConfig,
     GitHubConfig,
     DiscordConfig,
     TelegramConfig,
