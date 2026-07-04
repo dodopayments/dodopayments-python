@@ -6,11 +6,13 @@ from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
+from .feature_type import FeatureType
 from .time_interval import TimeInterval
 from .github_permission import GitHubPermission
 
 __all__ = [
     "IntegrationConfigParam",
+    "FeatureFlagConfig",
     "GitHubConfig",
     "DiscordConfig",
     "TelegramConfig",
@@ -20,6 +22,17 @@ __all__ = [
     "DigitalFilesConfig",
     "LicenseKeyConfig",
 ]
+
+
+class FeatureFlagConfig(TypedDict, total=False):
+    feature_id: Required[str]
+    """Merchant-chosen identifier for the capability this entitlement unlocks.
+
+    Not unique across entitlements.
+    """
+
+    feature_type: Required[FeatureType]
+    """Type of capability conferred."""
 
 
 class GitHubConfig(TypedDict, total=False):
@@ -117,6 +130,7 @@ class LicenseKeyConfig(TypedDict, total=False):
 
 
 IntegrationConfigParam: TypeAlias = Union[
+    FeatureFlagConfig,
     GitHubConfig,
     DiscordConfig,
     TelegramConfig,

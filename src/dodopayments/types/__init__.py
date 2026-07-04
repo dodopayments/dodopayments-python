@@ -10,6 +10,7 @@ from .meter import Meter as Meter
 from .price import Price as Price
 from .refund import Refund as Refund
 from .dispute import Dispute as Dispute
+from .feature import Feature as Feature
 from .payment import Payment as Payment
 from .product import Product as Product
 from .currency import Currency as Currency
@@ -23,6 +24,7 @@ from .get_dispute import GetDispute as GetDispute
 from .license_key import LicenseKey as LicenseKey
 from .price_param import PriceParam as PriceParam
 from .country_code import CountryCode as CountryCode
+from .feature_type import FeatureType as FeatureType
 from .meter_filter import MeterFilter as MeterFilter
 from .subscription import Subscription as Subscription
 from .tax_category import TaxCategory as TaxCategory
@@ -219,6 +221,9 @@ from .misc_list_supported_countries_response import (
 )
 from .credit_rollover_forfeited_webhook_event import (
     CreditRolloverForfeitedWebhookEvent as CreditRolloverForfeitedWebhookEvent,
+)
+from .customer_list_entitlement_grants_params import (
+    CustomerListEntitlementGrantsParams as CustomerListEntitlementGrantsParams,
 )
 from .entitlement_grant_created_webhook_event import (
     EntitlementGrantCreatedWebhookEvent as EntitlementGrantCreatedWebhookEvent,

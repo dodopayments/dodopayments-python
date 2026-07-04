@@ -5,5 +5,5 @@ from typing_extensions import Literal, TypeAlias
 __all__ = ["EntitlementIntegrationType"]
 
 EntitlementIntegrationType: TypeAlias = Literal[
-    "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key"
+    "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
 ]

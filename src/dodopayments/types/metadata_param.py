@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Union
 from typing_extensions import TypeAlias
 
 __all__ = ["MetadataParam"]
 
-MetadataParam: TypeAlias = Dict[str, str]
+MetadataParam: TypeAlias = Dict[str, Union[str, float, bool]]

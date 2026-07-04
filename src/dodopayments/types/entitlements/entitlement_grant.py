@@ -4,6 +4,7 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from ..feature import Feature
 from ..._models import BaseModel
 from ..metadata import Metadata
 from .license_key_grant import LicenseKeyGrant
@@ -63,6 +64,12 @@ class EntitlementGrant(BaseModel):
 
     error_message: Optional[str] = None
     """Human-readable message reported when delivery failed, when applicable."""
+
+    feature: Optional[Feature] = None
+    """
+    Typed feature payload, present only when the entitlement integration is
+    `feature_flag`; `null` for every other integration type.
+    """
 
     license_key: Optional[LicenseKeyGrant] = None
     """

@@ -17,6 +17,7 @@ from dodopayments.types import (
 )
 from dodopayments._utils import parse_datetime
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
+from dodopayments.types.entitlements import EntitlementGrant
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -276,6 +277,55 @@ class TestCustomers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
             client.customers.with_raw_response.list_credit_entitlements(
                 "",
+            )
+
+    @parametrize
+    def test_method_list_entitlement_grants(self, client: DodoPayments) -> None:
+        customer = client.customers.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+        )
+        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+    @parametrize
+    def test_method_list_entitlement_grants_with_all_params(self, client: DodoPayments) -> None:
+        customer = client.customers.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+            integration_type="discord",
+            page_number=0,
+            page_size=0,
+            status="Pending",
+        )
+        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+    @parametrize
+    def test_raw_response_list_entitlement_grants(self, client: DodoPayments) -> None:
+        response = client.customers.with_raw_response.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list_entitlement_grants(self, client: DodoPayments) -> None:
+        with client.customers.with_streaming_response.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(SyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list_entitlement_grants(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
+            client.customers.with_raw_response.list_entitlement_grants(
+                customer_id="",
             )
 
     @parametrize
@@ -612,6 +662,55 @@ class TestAsyncCustomers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
             await async_client.customers.with_raw_response.list_credit_entitlements(
                 "",
+            )
+
+    @parametrize
+    async def test_method_list_entitlement_grants(self, async_client: AsyncDodoPayments) -> None:
+        customer = await async_client.customers.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+        )
+        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+    @parametrize
+    async def test_method_list_entitlement_grants_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        customer = await async_client.customers.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+            integration_type="discord",
+            page_number=0,
+            page_size=0,
+            status="Pending",
+        )
+        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list_entitlement_grants(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.customers.with_raw_response.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list_entitlement_grants(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.customers.with_streaming_response.list_entitlement_grants(
+            customer_id="cus_TV52uJWWXt2yIoBBxpjaa",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(AsyncDefaultPageNumberPagination[EntitlementGrant], customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list_entitlement_grants(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `customer_id` but received ''"):
+            await async_client.customers.with_raw_response.list_entitlement_grants(
+                customer_id="",
             )
 
     @parametrize
