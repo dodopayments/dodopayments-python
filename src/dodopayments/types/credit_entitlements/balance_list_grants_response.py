@@ -38,6 +38,10 @@ class BalanceListGrantsResponse(BaseModel):
     expires_at: Optional[datetime] = None
 
     metadata: Optional[Metadata] = None
+    """Arbitrary key-value metadata.
+
+    Values can be string, integer, number, or boolean.
+    """
 
     parent_grant_id: Optional[str] = None
 
