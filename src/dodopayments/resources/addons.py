@@ -154,7 +154,8 @@ class AddonsResource(SyncAPIResource):
 
           description: Description of the Addon, optional and must be at most 1000 characters.
 
-          image_id: Addon image id after its uploaded to S3
+          image_id: Addon image id after its uploaded to S3. Pass `null` to remove the existing
+              image, omit to keep it unchanged.
 
           name: Name of the Addon, optional and must be at most 100 characters.
 
@@ -395,7 +396,8 @@ class AsyncAddonsResource(AsyncAPIResource):
 
           description: Description of the Addon, optional and must be at most 1000 characters.
 
-          image_id: Addon image id after its uploaded to S3
+          image_id: Addon image id after its uploaded to S3. Pass `null` to remove the existing
+              image, omit to keep it unchanged.
 
           name: Name of the Addon, optional and must be at most 100 characters.
 
