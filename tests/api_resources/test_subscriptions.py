@@ -210,6 +210,8 @@ class TestSubscriptions:
             metadata={"foo": "string"},
             next_billing_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             status="pending",
+            subscription_period_count=0,
+            subscription_period_interval="Day",
             tax_id="tax_id",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
@@ -864,6 +866,8 @@ class TestAsyncSubscriptions:
             metadata={"foo": "string"},
             next_billing_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             status="pending",
+            subscription_period_count=0,
+            subscription_period_interval="Day",
             tax_id="tax_id",
         )
         assert_matches_type(Subscription, subscription, path=["response"])

@@ -11,6 +11,7 @@ import httpx
 
 from ..types import (
     Currency,
+    TimeInterval,
     SubscriptionStatus,
     CancellationFeedback,
     subscription_list_params,
@@ -36,6 +37,7 @@ from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumber
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.currency import Currency
 from ..types.subscription import Subscription
+from ..types.time_interval import TimeInterval
 from ..types.metadata_param import MetadataParam
 from ..types.attach_addon_param import AttachAddonParam
 from ..types.subscription_status import SubscriptionStatus
@@ -277,6 +279,8 @@ class SubscriptionsResource(SyncAPIResource):
         metadata: Optional[MetadataParam] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
         status: Optional[SubscriptionStatus] | Omit = omit,
+        subscription_period_count: Optional[int] | Omit = omit,
+        subscription_period_interval: Optional[TimeInterval] | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -304,6 +308,15 @@ class SubscriptionsResource(SyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          subscription_period_count: New number of `subscription_period_interval` units the subscription entitlement
+              should span. Used together with `subscription_period_interval` to extend the
+              subscription period. The resulting period must not be shorter than the current
+              one (this endpoint only extends).
+
+          subscription_period_interval: New interval unit for the subscription period. When changing the period, this
+              may be supplied alongside `subscription_period_count`; if omitted the existing
+              interval is retained.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -330,6 +343,8 @@ class SubscriptionsResource(SyncAPIResource):
                     "metadata": metadata,
                     "next_billing_date": next_billing_date,
                     "status": status,
+                    "subscription_period_count": subscription_period_count,
+                    "subscription_period_interval": subscription_period_interval,
                     "tax_id": tax_id,
                 },
                 subscription_update_params.SubscriptionUpdateParams,
@@ -1088,6 +1103,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         metadata: Optional[MetadataParam] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
         status: Optional[SubscriptionStatus] | Omit = omit,
+        subscription_period_count: Optional[int] | Omit = omit,
+        subscription_period_interval: Optional[TimeInterval] | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1115,6 +1132,15 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          subscription_period_count: New number of `subscription_period_interval` units the subscription entitlement
+              should span. Used together with `subscription_period_interval` to extend the
+              subscription period. The resulting period must not be shorter than the current
+              one (this endpoint only extends).
+
+          subscription_period_interval: New interval unit for the subscription period. When changing the period, this
+              may be supplied alongside `subscription_period_count`; if omitted the existing
+              interval is retained.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1141,6 +1167,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "next_billing_date": next_billing_date,
                     "status": status,
+                    "subscription_period_count": subscription_period_count,
+                    "subscription_period_interval": subscription_period_interval,
                     "tax_id": tax_id,
                 },
                 subscription_update_params.SubscriptionUpdateParams,
