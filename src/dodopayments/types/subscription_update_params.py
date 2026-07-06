@@ -63,6 +63,21 @@ class SubscriptionUpdateParams(TypedDict, total=False):
 
     status: Optional[SubscriptionStatus]
 
+    subscription_period_count: Optional[int]
+    """
+    New number of `subscription_period_interval` units the subscription entitlement
+    should span. Used together with `subscription_period_interval` to extend the
+    subscription period. The resulting period must not be shorter than the current
+    one (this endpoint only extends).
+    """
+
+    subscription_period_interval: Optional[TimeInterval]
+    """New interval unit for the subscription period.
+
+    When changing the period, this may be supplied alongside
+    `subscription_period_count`; if omitted the existing interval is retained.
+    """
+
     tax_id: Optional[str]
 
 

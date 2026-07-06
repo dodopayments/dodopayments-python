@@ -19,7 +19,10 @@ class AddonUpdateParams(TypedDict, total=False):
     """Description of the Addon, optional and must be at most 1000 characters."""
 
     image_id: Optional[str]
-    """Addon image id after its uploaded to S3"""
+    """
+    Addon image id after its uploaded to S3. Pass `null` to remove the existing
+    image, omit to keep it unchanged.
+    """
 
     name: Optional[str]
     """Name of the Addon, optional and must be at most 100 characters."""
