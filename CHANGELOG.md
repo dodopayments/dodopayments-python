@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.108.1](https://github.com/dodopayments/dodopayments-python/compare/v1.108.0...v1.108.1) (2026-07-09)
+
+
+### Bug Fixes
+
+* **api:** add subscription.update_payment_method webhook and payment-method fields ([84f9a60](https://github.com/dodopayments/dodopayments-python/commit/84f9a604519f6c7a9d4c1531f98028e1e88e7e4b))
+* **api:** add subscription.update_payment_method webhook and payment-method fields ([4a61ce2](https://github.com/dodopayments/dodopayments-python/commit/4a61ce240fa562ebd58d3f03bd0a73e255b0cec2))
+
 ## [1.107.0](https://github.com/dodopayments/dodopayments-python/compare/v1.106.1...v1.107.0) (2026-07-04)
 
 
