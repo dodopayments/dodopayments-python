@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 
 from .._models import BaseModel
 from .currency import Currency
@@ -192,6 +193,14 @@ class CheckoutSessionPreviewResponse(BaseModel):
 
     total_price: int
     """Total calculate price of the product cart"""
+
+    next_billing_date: Optional[datetime] = None
+    """
+    The upcoming billing date for subscriptions, computed relative to now: with a
+    trial it is `now + trial_period_days`, otherwise `now + payment frequency`.
+    `None` for one-time-only carts. This is a preview estimate; the authoritative
+    value is set when the subscription activates.
+    """
 
     recurring_breakup: Optional[RecurringBreakup] = None
     """Breakup of recurring payments (None for one-time only)"""
