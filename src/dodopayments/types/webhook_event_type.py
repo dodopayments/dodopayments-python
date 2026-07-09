@@ -27,6 +27,7 @@ WebhookEventType: TypeAlias = Literal[
     "subscription.expired",
     "subscription.plan_changed",
     "subscription.updated",
+    "subscription.update_payment_method",
     "license_key.created",
     "payout.not_initiated",
     "payout.on_hold",

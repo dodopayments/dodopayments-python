@@ -43,6 +43,7 @@ from .subscription_plan_changed_webhook_event import SubscriptionPlanChangedWebh
 from .abandoned_checkout_detected_webhook_event import AbandonedCheckoutDetectedWebhookEvent
 from .entitlement_grant_delivered_webhook_event import EntitlementGrantDeliveredWebhookEvent
 from .abandoned_checkout_recovered_webhook_event import AbandonedCheckoutRecoveredWebhookEvent
+from .subscription_update_payment_method_webhook_event import SubscriptionUpdatePaymentMethodWebhookEvent
 
 __all__ = ["UnsafeUnwrapWebhookEvent"]
 
@@ -86,6 +87,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Annotated[
         SubscriptionOnHoldWebhookEvent,
         SubscriptionPlanChangedWebhookEvent,
         SubscriptionRenewedWebhookEvent,
+        SubscriptionUpdatePaymentMethodWebhookEvent,
         SubscriptionUpdatedWebhookEvent,
     ],
     PropertyInfo(discriminator="type"),
