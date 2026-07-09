@@ -359,6 +359,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         *,
         brand_id: str | Omit = omit,
+        cancel_at_next_billing_date: bool | Omit = omit,
         created_at_gte: Union[str, datetime] | Omit = omit,
         created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
@@ -376,6 +377,8 @@ class SubscriptionsResource(SyncAPIResource):
         """
         Args:
           brand_id: filter by Brand id
+
+          cancel_at_next_billing_date: Filter by cancel_at_next_billing_date (subscriptions scheduled for cancellation)
 
           created_at_gte: Get events after this created time
 
@@ -410,6 +413,7 @@ class SubscriptionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "brand_id": brand_id,
+                        "cancel_at_next_billing_date": cancel_at_next_billing_date,
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
@@ -1183,6 +1187,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         *,
         brand_id: str | Omit = omit,
+        cancel_at_next_billing_date: bool | Omit = omit,
         created_at_gte: Union[str, datetime] | Omit = omit,
         created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
@@ -1200,6 +1205,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         Args:
           brand_id: filter by Brand id
+
+          cancel_at_next_billing_date: Filter by cancel_at_next_billing_date (subscriptions scheduled for cancellation)
 
           created_at_gte: Get events after this created time
 
@@ -1234,6 +1241,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "brand_id": brand_id,
+                        "cancel_at_next_billing_date": cancel_at_next_billing_date,
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
