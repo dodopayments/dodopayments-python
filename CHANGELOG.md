@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.108.0](https://github.com/dodopayments/dodopayments-python/compare/v1.107.0...v1.108.0) (2026-07-06)
-
-
-### Features
-
-* **api:** add subscription period override fields to subscription update ([197aab1](https://github.com/dodopayments/dodopayments-python/commit/197aab1e20a17286ad44146c185631948326e9d1))
-* **api:** add subscription period override fields to subscription update ([c8571dc](https://github.com/dodopayments/dodopayments-python/commit/c8571dcb5690696c7b0700881bb7bcc82bc2873e))
-
 ## [1.107.0](https://github.com/dodopayments/dodopayments-python/compare/v1.106.1...v1.107.0) (2026-07-04)
 
 

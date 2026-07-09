@@ -51,6 +51,12 @@ class Payment(BaseModel):
     disputes: List[Dispute]
     """List of disputes associated with this payment"""
 
+    is_update_payment_method: bool
+    """
+    Whether this payment was created solely to update a subscription's payment
+    method (a zero-/setup-amount charge). `false` for normal charges.
+    """
+
     metadata: Metadata
     """Additional custom data associated with the payment"""
 
@@ -142,6 +148,9 @@ class Payment(BaseModel):
 
     payment_method: Optional[str] = None
     """Payment method used by customer (e.g. "card", "bank_transfer")"""
+
+    payment_method_id: Optional[str] = None
+    """Identifier of the saved payment method used for this payment, if any."""
 
     payment_method_type: Optional[str] = None
     """Specific type of payment method (e.g. "visa", "mastercard")"""
