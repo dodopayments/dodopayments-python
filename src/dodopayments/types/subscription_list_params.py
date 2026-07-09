@@ -15,6 +15,11 @@ class SubscriptionListParams(TypedDict, total=False):
     brand_id: str
     """filter by Brand id"""
 
+    cancel_at_next_billing_date: bool
+    """
+    Filter by cancel_at_next_billing_date (subscriptions scheduled for cancellation)
+    """
+
     created_at_gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Get events after this created time"""
 
