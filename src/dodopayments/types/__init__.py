@@ -276,6 +276,9 @@ from .subscription_update_payment_method_response import (
 from .subscription_retrieve_usage_history_response import (
     SubscriptionRetrieveUsageHistoryResponse as SubscriptionRetrieveUsageHistoryResponse,
 )
+from .subscription_update_payment_method_webhook_event import (
+    SubscriptionUpdatePaymentMethodWebhookEvent as SubscriptionUpdatePaymentMethodWebhookEvent,
+)
 
 # Rebuild cyclical models only after all modules are imported.
 # This ensures that, when building the deferred (due to cyclical references) model schema,

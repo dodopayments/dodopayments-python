@@ -256,6 +256,7 @@ class TestSubscriptions:
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.list(
             brand_id="brand_id",
+            cancel_at_next_billing_date=True,
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
@@ -912,6 +913,7 @@ class TestAsyncSubscriptions:
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.list(
             brand_id="brand_id",
+            cancel_at_next_billing_date=True,
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
