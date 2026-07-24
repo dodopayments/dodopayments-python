@@ -11,7 +11,12 @@ __all__ = ["DiscountListParams"]
 
 class DiscountListParams(TypedDict, total=False):
     active: bool
-    """Filter by active status (true = not expired, false = expired)"""
+    """Filter by active status.
+
+    `true` = currently redeemable (started, not expired, not usage-exhausted).
+    `false` = not currently redeemable (expired, usage-exhausted, or pending a
+    future `starts_at`).
+    """
 
     code: str
     """Filter by discount code (partial match, case-insensitive)"""

@@ -93,6 +93,10 @@ class ProductCartAddon(BaseModel):
     description: Optional[str] = None
 
     discount_amount: Optional[int] = None
+    """
+    Percentage rate (basis points) of the applicable percentage code; null for flat
+    codes (their deduction is `og_price - discounted_price`).
+    """
 
     tax: Optional[int] = None
 
@@ -140,7 +144,10 @@ class ProductCart(BaseModel):
     description: Optional[str] = None
 
     discount_amount: Optional[int] = None
-    """discount percentage"""
+    """
+    Percentage rate (basis points) of the applicable percentage code; null for flat
+    codes (their deduction is `og_price - discounted_price`).
+    """
 
     discount_cycle: Optional[int] = None
     """number of cycles the discount will apply"""
@@ -216,3 +223,16 @@ class CheckoutSessionPreviewResponse(BaseModel):
 
     total_tax: Optional[int] = None
     """Total tax"""
+
+    trial_amount: Optional[int] = None
+    """
+    Per-unit trial amount after discounts, in the price currency's minor units
+    (pre-quantity, pre-tax; see `current_breakup` for the taxed total due today).
+    Only present for a paid trial; `None` for a free trial or no trial.
+    """
+
+    trial_period_days: Optional[int] = None
+    """
+    Effective trial duration in days for the subscription line, when there's a trial
+    (free or paid). `None` if no subscription or no trial.
+    """
