@@ -25,7 +25,7 @@ class TestDiscounts:
     def test_method_create(self, client: DodoPayments) -> None:
         discount = client.discounts.create(
             amount=0,
-            type="percentage",
+            type="flat",
         )
         assert_matches_type(Discount, discount, path=["response"])
 
@@ -33,13 +33,24 @@ class TestDiscounts:
     def test_method_create_with_all_params(self, client: DodoPayments) -> None:
         discount = client.discounts.create(
             amount=0,
-            type="percentage",
+            type="flat",
             code="code",
+            currency_options=[
+                {
+                    "currency": "AED",
+                    "is_default": True,
+                    "max_amount_possible": 0,
+                    "minimum_subtotal": 0,
+                }
+            ],
+            customer_eligibility="any",
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={"foo": "string"},
             name="name",
+            per_customer_usage_limit=0,
             preserve_on_plan_change=True,
             restricted_to=["string"],
+            starts_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             subscription_cycles=0,
             usage_limit=0,
         )
@@ -49,7 +60,7 @@ class TestDiscounts:
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.discounts.with_raw_response.create(
             amount=0,
-            type="percentage",
+            type="flat",
         )
 
         assert response.is_closed is True
@@ -61,7 +72,7 @@ class TestDiscounts:
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.discounts.with_streaming_response.create(
             amount=0,
-            type="percentage",
+            type="flat",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,13 +133,24 @@ class TestDiscounts:
             discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
             amount=0,
             code="code",
+            currency_options=[
+                {
+                    "currency": "AED",
+                    "is_default": True,
+                    "max_amount_possible": 0,
+                    "minimum_subtotal": 0,
+                }
+            ],
+            customer_eligibility="any",
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={"foo": "string"},
             name="name",
+            per_customer_usage_limit=0,
             preserve_on_plan_change=True,
             restricted_to=["string"],
+            starts_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             subscription_cycles=0,
-            type="percentage",
+            type="flat",
             usage_limit=0,
         )
         assert_matches_type(Discount, discount, path=["response"])
@@ -174,7 +196,7 @@ class TestDiscounts:
         discount = client.discounts.list(
             active=True,
             code="code",
-            discount_type="percentage",
+            discount_type="flat",
             page_number=0,
             page_size=0,
             product_id="product_id",
@@ -287,7 +309,7 @@ class TestAsyncDiscounts:
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         discount = await async_client.discounts.create(
             amount=0,
-            type="percentage",
+            type="flat",
         )
         assert_matches_type(Discount, discount, path=["response"])
 
@@ -295,13 +317,24 @@ class TestAsyncDiscounts:
     async def test_method_create_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         discount = await async_client.discounts.create(
             amount=0,
-            type="percentage",
+            type="flat",
             code="code",
+            currency_options=[
+                {
+                    "currency": "AED",
+                    "is_default": True,
+                    "max_amount_possible": 0,
+                    "minimum_subtotal": 0,
+                }
+            ],
+            customer_eligibility="any",
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={"foo": "string"},
             name="name",
+            per_customer_usage_limit=0,
             preserve_on_plan_change=True,
             restricted_to=["string"],
+            starts_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             subscription_cycles=0,
             usage_limit=0,
         )
@@ -311,7 +344,7 @@ class TestAsyncDiscounts:
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.discounts.with_raw_response.create(
             amount=0,
-            type="percentage",
+            type="flat",
         )
 
         assert response.is_closed is True
@@ -323,7 +356,7 @@ class TestAsyncDiscounts:
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.discounts.with_streaming_response.create(
             amount=0,
-            type="percentage",
+            type="flat",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -384,13 +417,24 @@ class TestAsyncDiscounts:
             discount_id="dsc_qxxEmg5PuM1uNTE0LgkP9",
             amount=0,
             code="code",
+            currency_options=[
+                {
+                    "currency": "AED",
+                    "is_default": True,
+                    "max_amount_possible": 0,
+                    "minimum_subtotal": 0,
+                }
+            ],
+            customer_eligibility="any",
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={"foo": "string"},
             name="name",
+            per_customer_usage_limit=0,
             preserve_on_plan_change=True,
             restricted_to=["string"],
+            starts_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             subscription_cycles=0,
-            type="percentage",
+            type="flat",
             usage_limit=0,
         )
         assert_matches_type(Discount, discount, path=["response"])
@@ -436,7 +480,7 @@ class TestAsyncDiscounts:
         discount = await async_client.discounts.list(
             active=True,
             code="code",
-            discount_type="percentage",
+            discount_type="flat",
             page_number=0,
             page_size=0,
             product_id="product_id",

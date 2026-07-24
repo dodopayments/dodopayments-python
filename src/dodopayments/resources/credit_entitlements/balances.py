@@ -243,7 +243,9 @@ class BalancesResource(SyncAPIResource):
         - `500 Internal Server Error` - Database or server error
 
         Args:
-          amount: Amount to credit or debit
+          amount: Amount to credit or debit. Bounded to a `NUMERIC(38,28)` column, so the integer
+              part must have fewer than 10 digits (< 10^10); larger values previously reached
+              the DB and failed with a 22003 overflow surfaced as a 500.
 
           entry_type: Entry type: credit or debit
 
@@ -679,7 +681,9 @@ class AsyncBalancesResource(AsyncAPIResource):
         - `500 Internal Server Error` - Database or server error
 
         Args:
-          amount: Amount to credit or debit
+          amount: Amount to credit or debit. Bounded to a `NUMERIC(38,28)` column, so the integer
+              part must have fewer than 10 digits (< 10^10); larger values previously reached
+              the DB and failed with a 22003 overflow surfaced as a 500.
 
           entry_type: Entry type: credit or debit
 

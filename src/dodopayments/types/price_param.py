@@ -100,6 +100,18 @@ class RecurringPrice(TypedDict, total=False):
     tax_inclusive: Optional[bool]
     """Indicates if the price is tax inclusive"""
 
+    trial_amount: Optional[int]
+    """
+    Amount charged today for a paid trial, in the price currency's minor units.
+    Requires `trial_period_days > 0`. Omit or null for a free trial (the default).
+    """
+
+    trial_apply_discounts: Optional[bool]
+    """Whether discount codes reduce the trial charge.
+
+    Defaults to false. Only meaningful when a paid trial is configured.
+    """
+
     trial_period_days: int
     """Number of days for the trial period. A value of `0` indicates no trial period."""
 
