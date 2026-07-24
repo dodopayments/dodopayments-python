@@ -17,7 +17,64 @@ from .custom_field_response import CustomFieldResponse
 from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
 
-__all__ = ["Payment", "ProductCart"]
+__all__ = ["Payment", "FailureDetails", "ProductCart"]
+
+
+class FailureDetails(BaseModel):
+    """
+    Purpose-built failure messaging for the merchant and the customer, derived
+    from `error_code`. Present whenever `error_code` is set, regardless of payment
+    status; unrecognised codes still resolve via a generic fallback rather than
+    being omitted. The customer copy is always generic for fraud-sensitive
+    declines (lost/stolen/pickup/fraudulent) so the true reason is never leaked.
+    """
+
+    code: str
+    """The unified error code (echoes `error_code`)."""
+
+    customer_cta: Literal[
+        "edit_and_retry", "use_another_method", "try_again", "try_later", "retry_and_verify", "restart", "update_method"
+    ]
+    """The primary CTA to show the customer."""
+
+    customer_fixable: bool
+    """Whether the customer can resolve this themselves (e.g. fix CVC)."""
+
+    customer_message: str
+    """The customer-facing string. Always generic (`C11`) for the fraud-4."""
+
+    customer_template: Literal[
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+    ]
+    """The customer message template identifier (C1..C20)."""
+
+    decline_type: Literal["soft", "hard"]
+    """Soft or hard decline."""
+
+    merchant_message: str
+    """Merchant-facing headline + recommended action (Payment Details).
+
+    For the fraud-4 this includes the operator "do not reveal" warning.
+    """
 
 
 class ProductCart(BaseModel):
@@ -136,6 +193,15 @@ class Payment(BaseModel):
 
     error_message: Optional[str] = None
     """An error message if the payment failed"""
+
+    failure_details: Optional[FailureDetails] = None
+    """
+    Purpose-built failure messaging for the merchant and the customer, derived from
+    `error_code`. Present whenever `error_code` is set, regardless of payment
+    status; unrecognised codes still resolve via a generic fallback rather than
+    being omitted. The customer copy is always generic for fraud-sensitive declines
+    (lost/stolen/pickup/fraudulent) so the true reason is never leaked.
+    """
 
     invoice_id: Optional[str] = None
     """Invoice ID for this payment. Uses India-specific invoice ID if available."""

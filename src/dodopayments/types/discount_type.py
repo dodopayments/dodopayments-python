@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["DiscountType"]
 
-DiscountType: TypeAlias = Literal["percentage"]
+DiscountType: TypeAlias = Literal["flat", "percentage"]
