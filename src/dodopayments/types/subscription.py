@@ -144,3 +144,10 @@ class Subscription(BaseModel):
 
     tax_id: Optional[str] = None
     """Tax identifier provided for this subscription (if applicable)"""
+
+    trial_amount: Optional[int] = None
+    """
+    Per-unit trial amount after discounts, snapshotted at subscription creation
+    (price currency minor units, pre-quantity, pre-tax). Null for a free trial or no
+    trial.
+    """
