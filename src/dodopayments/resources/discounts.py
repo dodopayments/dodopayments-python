@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -53,11 +54,15 @@ class DiscountsResource(SyncAPIResource):
         amount: int,
         type: DiscountType,
         code: Optional[str] | Omit = omit,
+        currency_options: Optional[Iterable[discount_create_params.CurrencyOption]] | Omit = omit,
+        customer_eligibility: Optional[Literal["any", "first_time", "existing", "specific"]] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
         name: Optional[str] | Omit = omit,
+        per_customer_usage_limit: Optional[int] | Omit = omit,
         preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        starts_at: Union[str, datetime, None] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         usage_limit: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -77,21 +82,36 @@ class DiscountsResource(SyncAPIResource):
 
               Must be at least 1.
 
-          type: The discount type. Currently only `percentage` is supported.
+          type: The discount type: `percentage` or `flat` (`flat_per_unit` stays blocked).
 
           code: Optionally supply a code (will be uppercased).
 
               - Must be at least 3 characters if provided.
               - If omitted, a random 16-character code is generated.
 
+          currency_options: Per-currency options (flat deduction / percentage cap + minimum subtotal).
+              Required for `flat` codes (must include a resolvable default); optional
+              per-currency caps for `percentage` codes. Per-row invariants are checked in
+              `normalize_currency_options`, not via `#[validate(nested)]`.
+
+          customer_eligibility: Who may redeem this discount code. Defaults to `any` (unrestricted). `specific`
+              starts with zero attached customers (fails closed) until customers are attached
+              via `POST /discounts/{id}/customers`.
+
           expires_at: When the discount expires, if ever.
 
           metadata: Additional metadata for the discount
+
+          per_customer_usage_limit: Maximum number of times a single customer may redeem this discount. Must be
+              `<= usage_limit` when both are set.
 
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans.
               Default: false (discount is removed on plan change)
 
           restricted_to: List of product IDs to restrict usage (if any).
+
+          starts_at: When the discount becomes active, if scheduled for the future. NULL = active
+              immediately. Must be strictly before `expires_at` when both are set.
 
           subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
               provided, the discount will be applied indefinitely to all recurring payments
@@ -114,11 +134,15 @@ class DiscountsResource(SyncAPIResource):
                     "amount": amount,
                     "type": type,
                     "code": code,
+                    "currency_options": currency_options,
+                    "customer_eligibility": customer_eligibility,
                     "expires_at": expires_at,
                     "metadata": metadata,
                     "name": name,
+                    "per_customer_usage_limit": per_customer_usage_limit,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
+                    "starts_at": starts_at,
                     "subscription_cycles": subscription_cycles,
                     "usage_limit": usage_limit,
                 },
@@ -169,11 +193,15 @@ class DiscountsResource(SyncAPIResource):
         *,
         amount: Optional[int] | Omit = omit,
         code: Optional[str] | Omit = omit,
+        currency_options: Optional[Iterable[discount_update_params.CurrencyOption]] | Omit = omit,
+        customer_eligibility: Optional[Literal["any", "first_time", "existing", "specific"]] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        per_customer_usage_limit: Optional[int] | Omit = omit,
         preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        starts_at: Union[str, datetime, None] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         type: Optional[DiscountType] | Omit = omit,
         usage_limit: Optional[int] | Omit = omit,
@@ -195,7 +223,18 @@ class DiscountsResource(SyncAPIResource):
 
           code: If present, update the discount code (uppercase).
 
+          currency_options: If present, fully replaces the discount's currency options (replace-set
+              semantics, like `restricted_to`). Send an empty array to clear them.
+
+          customer_eligibility: If present, update who may redeem this discount. Plain field (not
+              double-option): the DB column is `NOT NULL`, so it can never be cleared back to
+              unset, only changed to another `CustomerEligibility` value.
+
           metadata: Additional metadata for the discount
+
+          per_customer_usage_limit: If present, update the per-customer usage limit (double-option: send `null` to
+              clear it back to unlimited). Must be `<= usage_limit` (the value in effect after
+              this patch) when both are set.
 
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans. If
               not provided, the existing value is kept.
@@ -203,11 +242,13 @@ class DiscountsResource(SyncAPIResource):
           restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
               restrictions, send empty array
 
+          starts_at: If present, update `starts_at` (double-option: send `null` to clear it).
+
           subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
               provided, the discount will be applied indefinitely to all recurring payments
               related to the subscription.
 
-          type: If present, update the discount type. Currently only `percentage` is supported.
+          type: If present, update the discount type (`percentage` or `flat`).
 
           extra_headers: Send extra headers
 
@@ -225,11 +266,15 @@ class DiscountsResource(SyncAPIResource):
                 {
                     "amount": amount,
                     "code": code,
+                    "currency_options": currency_options,
+                    "customer_eligibility": customer_eligibility,
                     "expires_at": expires_at,
                     "metadata": metadata,
                     "name": name,
+                    "per_customer_usage_limit": per_customer_usage_limit,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
+                    "starts_at": starts_at,
                     "subscription_cycles": subscription_cycles,
                     "type": type,
                     "usage_limit": usage_limit,
@@ -258,11 +303,14 @@ class DiscountsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPageNumberPagination[Discount]:
-        """
-        GET /discounts
+        """GET /discounts
 
         Args:
-          active: Filter by active status (true = not expired, false = expired)
+          active: Filter by active status.
+
+        `true` = currently redeemable (started, not expired,
+              not usage-exhausted). `false` = not currently redeemable (expired,
+              usage-exhausted, or pending a future `starts_at`).
 
           code: Filter by discount code (partial match, case-insensitive)
 
@@ -402,11 +450,15 @@ class AsyncDiscountsResource(AsyncAPIResource):
         amount: int,
         type: DiscountType,
         code: Optional[str] | Omit = omit,
+        currency_options: Optional[Iterable[discount_create_params.CurrencyOption]] | Omit = omit,
+        customer_eligibility: Optional[Literal["any", "first_time", "existing", "specific"]] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
         name: Optional[str] | Omit = omit,
+        per_customer_usage_limit: Optional[int] | Omit = omit,
         preserve_on_plan_change: bool | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        starts_at: Union[str, datetime, None] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         usage_limit: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -426,21 +478,36 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
               Must be at least 1.
 
-          type: The discount type. Currently only `percentage` is supported.
+          type: The discount type: `percentage` or `flat` (`flat_per_unit` stays blocked).
 
           code: Optionally supply a code (will be uppercased).
 
               - Must be at least 3 characters if provided.
               - If omitted, a random 16-character code is generated.
 
+          currency_options: Per-currency options (flat deduction / percentage cap + minimum subtotal).
+              Required for `flat` codes (must include a resolvable default); optional
+              per-currency caps for `percentage` codes. Per-row invariants are checked in
+              `normalize_currency_options`, not via `#[validate(nested)]`.
+
+          customer_eligibility: Who may redeem this discount code. Defaults to `any` (unrestricted). `specific`
+              starts with zero attached customers (fails closed) until customers are attached
+              via `POST /discounts/{id}/customers`.
+
           expires_at: When the discount expires, if ever.
 
           metadata: Additional metadata for the discount
+
+          per_customer_usage_limit: Maximum number of times a single customer may redeem this discount. Must be
+              `<= usage_limit` when both are set.
 
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans.
               Default: false (discount is removed on plan change)
 
           restricted_to: List of product IDs to restrict usage (if any).
+
+          starts_at: When the discount becomes active, if scheduled for the future. NULL = active
+              immediately. Must be strictly before `expires_at` when both are set.
 
           subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
               provided, the discount will be applied indefinitely to all recurring payments
@@ -463,11 +530,15 @@ class AsyncDiscountsResource(AsyncAPIResource):
                     "amount": amount,
                     "type": type,
                     "code": code,
+                    "currency_options": currency_options,
+                    "customer_eligibility": customer_eligibility,
                     "expires_at": expires_at,
                     "metadata": metadata,
                     "name": name,
+                    "per_customer_usage_limit": per_customer_usage_limit,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
+                    "starts_at": starts_at,
                     "subscription_cycles": subscription_cycles,
                     "usage_limit": usage_limit,
                 },
@@ -518,11 +589,15 @@ class AsyncDiscountsResource(AsyncAPIResource):
         *,
         amount: Optional[int] | Omit = omit,
         code: Optional[str] | Omit = omit,
+        currency_options: Optional[Iterable[discount_update_params.CurrencyOption]] | Omit = omit,
+        customer_eligibility: Optional[Literal["any", "first_time", "existing", "specific"]] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        per_customer_usage_limit: Optional[int] | Omit = omit,
         preserve_on_plan_change: Optional[bool] | Omit = omit,
         restricted_to: Optional[SequenceNotStr[str]] | Omit = omit,
+        starts_at: Union[str, datetime, None] | Omit = omit,
         subscription_cycles: Optional[int] | Omit = omit,
         type: Optional[DiscountType] | Omit = omit,
         usage_limit: Optional[int] | Omit = omit,
@@ -544,7 +619,18 @@ class AsyncDiscountsResource(AsyncAPIResource):
 
           code: If present, update the discount code (uppercase).
 
+          currency_options: If present, fully replaces the discount's currency options (replace-set
+              semantics, like `restricted_to`). Send an empty array to clear them.
+
+          customer_eligibility: If present, update who may redeem this discount. Plain field (not
+              double-option): the DB column is `NOT NULL`, so it can never be cleared back to
+              unset, only changed to another `CustomerEligibility` value.
+
           metadata: Additional metadata for the discount
+
+          per_customer_usage_limit: If present, update the per-customer usage limit (double-option: send `null` to
+              clear it back to unlimited). Must be `<= usage_limit` (the value in effect after
+              this patch) when both are set.
 
           preserve_on_plan_change: Whether this discount should be preserved when a subscription changes plans. If
               not provided, the existing value is kept.
@@ -552,11 +638,13 @@ class AsyncDiscountsResource(AsyncAPIResource):
           restricted_to: If present, replaces all restricted product IDs with this new set. To remove all
               restrictions, send empty array
 
+          starts_at: If present, update `starts_at` (double-option: send `null` to clear it).
+
           subscription_cycles: Number of subscription billing cycles this discount is valid for. If not
               provided, the discount will be applied indefinitely to all recurring payments
               related to the subscription.
 
-          type: If present, update the discount type. Currently only `percentage` is supported.
+          type: If present, update the discount type (`percentage` or `flat`).
 
           extra_headers: Send extra headers
 
@@ -574,11 +662,15 @@ class AsyncDiscountsResource(AsyncAPIResource):
                 {
                     "amount": amount,
                     "code": code,
+                    "currency_options": currency_options,
+                    "customer_eligibility": customer_eligibility,
                     "expires_at": expires_at,
                     "metadata": metadata,
                     "name": name,
+                    "per_customer_usage_limit": per_customer_usage_limit,
                     "preserve_on_plan_change": preserve_on_plan_change,
                     "restricted_to": restricted_to,
+                    "starts_at": starts_at,
                     "subscription_cycles": subscription_cycles,
                     "type": type,
                     "usage_limit": usage_limit,
@@ -607,11 +699,14 @@ class AsyncDiscountsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Discount, AsyncDefaultPageNumberPagination[Discount]]:
-        """
-        GET /discounts
+        """GET /discounts
 
         Args:
-          active: Filter by active status (true = not expired, false = expired)
+          active: Filter by active status.
+
+        `true` = currently redeemable (started, not expired,
+              not usage-exhausted). `false` = not currently redeemable (expired,
+              usage-exhausted, or pending a future `starts_at`).
 
           code: Filter by discount code (partial match, case-insensitive)
 

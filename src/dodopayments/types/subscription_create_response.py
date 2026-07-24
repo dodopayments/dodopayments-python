@@ -62,3 +62,9 @@ class SubscriptionCreateResponse(BaseModel):
 
     payment_link: Optional[str] = None
     """URL to checkout page"""
+
+    trial_amount: Optional[int] = None
+    """
+    Per-unit trial amount after discounts, in the price currency's minor units
+    (pre-quantity, pre-tax). Null for a free trial or no trial.
+    """

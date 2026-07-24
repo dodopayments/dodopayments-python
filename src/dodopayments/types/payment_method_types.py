@@ -82,7 +82,6 @@ PaymentMethodTypes: TypeAlias = Literal[
     "sepa",
     "sepa_bank_transfer",
     "sofort",
-    "sunbit",
     "swish",
     "touch_n_go",
     "trustly",
