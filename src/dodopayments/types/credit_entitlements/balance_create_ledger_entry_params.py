@@ -17,7 +17,12 @@ class BalanceCreateLedgerEntryParams(TypedDict, total=False):
     credit_entitlement_id: Required[str]
 
     amount: Required[str]
-    """Amount to credit or debit"""
+    """Amount to credit or debit.
+
+    Bounded to a `NUMERIC(38,28)` column, so the integer part must have fewer than
+    10 digits (< 10^10); larger values previously reached the DB and failed with a
+    22003 overflow surfaced as a 500.
+    """
 
     entry_type: Required[LedgerEntryType]
     """Entry type: credit or debit"""
