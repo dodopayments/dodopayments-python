@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.109.0](https://github.com/dodopayments/dodopayments-python/compare/v1.108.1...v1.109.0) (2026-07-24)
-
-
-### Features
-
-* **api:** add discount customers endpoints, trial support, currency options, and failure details ([4ffa98b](https://github.com/dodopayments/dodopayments-python/commit/4ffa98b8dbd71feb64bc2839a228952ebdd9bc2f))
-* **api:** add discount customers endpoints, trial support, currency options, and failure details ([0911a24](https://github.com/dodopayments/dodopayments-python/commit/0911a2495e7cdd2003dcdb696685ea1933f63528))
-
 ## [1.108.1](https://github.com/dodopayments/dodopayments-python/compare/v1.108.0...v1.108.1) (2026-07-09)
 
 
