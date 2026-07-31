@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.110.0](https://github.com/dodopayments/dodopayments-python/compare/v1.109.0...v1.110.0) (2026-07-31)
+
+
+### Features
+
+* **api:** add payout webhook events and remove payment failure_details ([4b28a44](https://github.com/dodopayments/dodopayments-python/commit/4b28a44ef3e72a744a11a5d6a9434d1e9151ead8))
+* **api:** add payout webhook events and remove payment failure_details ([085b6d8](https://github.com/dodopayments/dodopayments-python/commit/085b6d8f0f23cc06cc6a50889e96ed74119c0f82))
+
 ## [1.108.1](https://github.com/dodopayments/dodopayments-python/compare/v1.108.0...v1.108.1) (2026-07-09)
 
 
