@@ -408,7 +408,8 @@ class PaymentsResource(SyncAPIResource):
 
           customer_id: Filter by customer id
 
-          page_number: Page number default is 0
+          page_number: Page number default is 0. Capped to bound OFFSET-based deep pagination, which
+              forces Postgres to scan and discard every preceding row.
 
           page_size: Page size default is 10 max is 100
 
@@ -857,7 +858,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           customer_id: Filter by customer id
 
-          page_number: Page number default is 0
+          page_number: Page number default is 0. Capped to bound OFFSET-based deep pagination, which
+              forces Postgres to scan and discard every preceding row.
 
           page_size: Page size default is 10 max is 100
 
