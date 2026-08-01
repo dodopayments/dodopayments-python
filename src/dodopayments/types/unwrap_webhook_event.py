@@ -7,10 +7,14 @@ from .._utils import PropertyInfo
 from .dispute_won_webhook_event import DisputeWonWebhookEvent
 from .credit_added_webhook_event import CreditAddedWebhookEvent
 from .dispute_lost_webhook_event import DisputeLostWebhookEvent
+from .payout_failed_webhook_event import PayoutFailedWebhookEvent
 from .refund_failed_webhook_event import RefundFailedWebhookEvent
 from .credit_expired_webhook_event import CreditExpiredWebhookEvent
 from .dispute_opened_webhook_event import DisputeOpenedWebhookEvent
 from .payment_failed_webhook_event import PaymentFailedWebhookEvent
+from .payout_created_webhook_event import PayoutCreatedWebhookEvent
+from .payout_on_hold_webhook_event import PayoutOnHoldWebhookEvent
+from .payout_success_webhook_event import PayoutSuccessWebhookEvent
 from .credit_deducted_webhook_event import CreditDeductedWebhookEvent
 from .dispute_expired_webhook_event import DisputeExpiredWebhookEvent
 from .dunning_started_webhook_event import DunningStartedWebhookEvent
@@ -24,6 +28,7 @@ from .credit_balance_low_webhook_event import CreditBalanceLowWebhookEvent
 from .credit_rolled_over_webhook_event import CreditRolledOverWebhookEvent
 from .dispute_challenged_webhook_event import DisputeChallengedWebhookEvent
 from .payment_processing_webhook_event import PaymentProcessingWebhookEvent
+from .payout_in_progress_webhook_event import PayoutInProgressWebhookEvent
 from .license_key_created_webhook_event import LicenseKeyCreatedWebhookEvent
 from .subscription_active_webhook_event import SubscriptionActiveWebhookEvent
 from .subscription_failed_webhook_event import SubscriptionFailedWebhookEvent
@@ -78,6 +83,11 @@ UnwrapWebhookEvent: TypeAlias = Annotated[
         PaymentFailedWebhookEvent,
         PaymentProcessingWebhookEvent,
         PaymentSucceededWebhookEvent,
+        PayoutCreatedWebhookEvent,
+        PayoutFailedWebhookEvent,
+        PayoutInProgressWebhookEvent,
+        PayoutOnHoldWebhookEvent,
+        PayoutSuccessWebhookEvent,
         RefundFailedWebhookEvent,
         RefundSucceededWebhookEvent,
         SubscriptionActiveWebhookEvent,
