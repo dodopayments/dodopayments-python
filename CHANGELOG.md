@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.111.0](https://github.com/dodopayments/dodopayments-python/compare/v1.110.0...v1.111.0) (2026-08-05)
+
+
+### Features
+
+* **api:** add addon single_quantity_price and live_tutoring tax category ([ba24e2d](https://github.com/dodopayments/dodopayments-python/commit/ba24e2d9d632eb0406ca8f23ef42866e79a509e7))
+* **api:** add addon single_quantity_price and live_tutoring tax category ([7d3c1f3](https://github.com/dodopayments/dodopayments-python/commit/7d3c1f394b8b707ca4b9dc878abbe5a67c8f7a48))
+
 ## [1.110.0](https://github.com/dodopayments/dodopayments-python/compare/v1.109.0...v1.110.0) (2026-07-31)
 
 
