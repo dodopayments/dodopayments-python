@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["TaxCategory"]
 
-TaxCategory: TypeAlias = Literal["digital_products", "saas", "e_book", "edtech"]
+TaxCategory: TypeAlias = Literal["digital_products", "saas", "e_book", "edtech", "live_tutoring"]
