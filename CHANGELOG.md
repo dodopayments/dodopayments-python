@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.112.0](https://github.com/dodopayments/dodopayments-python/compare/v1.111.0...v1.112.0) (2026-08-13)
+
+
+### Features
+
+* **api:** add subscription pause/unpause ([b350dfa](https://github.com/dodopayments/dodopayments-python/commit/b350dfa4571a3dcdd5fcc2183c609f464a7b507c))
+* **api:** add subscription pause/unpause ([95b0784](https://github.com/dodopayments/dodopayments-python/commit/95b0784f30f65f538e91ac2435c89e43561ab9cf))
+
 ## [1.110.0](https://github.com/dodopayments/dodopayments-python/compare/v1.109.0...v1.110.0) (2026-07-31)
 
 
