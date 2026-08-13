@@ -278,6 +278,7 @@ class SubscriptionsResource(SyncAPIResource):
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
+        pause: Optional[bool] | Omit = omit,
         status: Optional[SubscriptionStatus] | Omit = omit,
         subscription_period_count: Optional[int] | Omit = omit,
         subscription_period_interval: Optional[TimeInterval] | Omit = omit,
@@ -307,6 +308,9 @@ class SubscriptionsResource(SyncAPIResource):
               clear the business name.
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
+
+          pause: `Some(true)` pauses an active subscription; `Some(false)` unpauses a `Paused`
+              (or abandoned `OnHold`) subscription. Exclusive of every other field.
 
           subscription_period_count: New number of `subscription_period_interval` units the subscription entitlement
               should span. Used together with `subscription_period_interval` to extend the
@@ -342,6 +346,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
                     "next_billing_date": next_billing_date,
+                    "pause": pause,
                     "status": status,
                     "subscription_period_count": subscription_period_count,
                     "subscription_period_interval": subscription_period_interval,
@@ -366,7 +371,7 @@ class SubscriptionsResource(SyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
-        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | Omit = omit,
+        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1106,6 +1111,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         disable_on_demand: Optional[subscription_update_params.DisableOnDemand] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         next_billing_date: Union[str, datetime, None] | Omit = omit,
+        pause: Optional[bool] | Omit = omit,
         status: Optional[SubscriptionStatus] | Omit = omit,
         subscription_period_count: Optional[int] | Omit = omit,
         subscription_period_interval: Optional[TimeInterval] | Omit = omit,
@@ -1135,6 +1141,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
               clear the business name.
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
+
+          pause: `Some(true)` pauses an active subscription; `Some(false)` unpauses a `Paused`
+              (or abandoned `OnHold`) subscription. Exclusive of every other field.
 
           subscription_period_count: New number of `subscription_period_interval` units the subscription entitlement
               should span. Used together with `subscription_period_interval` to extend the
@@ -1170,6 +1179,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "disable_on_demand": disable_on_demand,
                     "metadata": metadata,
                     "next_billing_date": next_billing_date,
+                    "pause": pause,
                     "status": status,
                     "subscription_period_count": subscription_period_count,
                     "subscription_period_interval": subscription_period_interval,
@@ -1194,7 +1204,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
-        status: Literal["pending", "active", "on_hold", "cancelled", "failed", "expired"] | Omit = omit,
+        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
