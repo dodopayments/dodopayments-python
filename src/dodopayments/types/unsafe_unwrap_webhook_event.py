@@ -32,11 +32,13 @@ from .payout_in_progress_webhook_event import PayoutInProgressWebhookEvent
 from .license_key_created_webhook_event import LicenseKeyCreatedWebhookEvent
 from .subscription_active_webhook_event import SubscriptionActiveWebhookEvent
 from .subscription_failed_webhook_event import SubscriptionFailedWebhookEvent
+from .subscription_paused_webhook_event import SubscriptionPausedWebhookEvent
 from .credit_overage_reset_webhook_event import CreditOverageResetWebhookEvent
 from .subscription_expired_webhook_event import SubscriptionExpiredWebhookEvent
 from .subscription_on_hold_webhook_event import SubscriptionOnHoldWebhookEvent
 from .subscription_renewed_webhook_event import SubscriptionRenewedWebhookEvent
 from .subscription_updated_webhook_event import SubscriptionUpdatedWebhookEvent
+from .subscription_unpaused_webhook_event import SubscriptionUnpausedWebhookEvent
 from .credit_overage_charged_webhook_event import CreditOverageChargedWebhookEvent
 from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEvent
 from .credit_manual_adjustment_webhook_event import CreditManualAdjustmentWebhookEvent
@@ -95,8 +97,10 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Annotated[
         SubscriptionExpiredWebhookEvent,
         SubscriptionFailedWebhookEvent,
         SubscriptionOnHoldWebhookEvent,
+        SubscriptionPausedWebhookEvent,
         SubscriptionPlanChangedWebhookEvent,
         SubscriptionRenewedWebhookEvent,
+        SubscriptionUnpausedWebhookEvent,
         SubscriptionUpdatePaymentMethodWebhookEvent,
         SubscriptionUpdatedWebhookEvent,
     ],

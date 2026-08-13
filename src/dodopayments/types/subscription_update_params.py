@@ -61,6 +61,12 @@ class SubscriptionUpdateParams(TypedDict, total=False):
 
     next_billing_date: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
 
+    pause: Optional[bool]
+    """
+    `Some(true)` pauses an active subscription; `Some(false)` unpauses a `Paused`
+    (or abandoned `OnHold`) subscription. Exclusive of every other field.
+    """
+
     status: Optional[SubscriptionStatus]
 
     subscription_period_count: Optional[int]

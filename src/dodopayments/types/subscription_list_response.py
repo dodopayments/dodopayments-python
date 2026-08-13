@@ -115,6 +115,12 @@ class SubscriptionListResponse(BaseModel):
     discount_id: Optional[str] = None
     """DEPRECATED: Use discounts instead."""
 
+    paused_at: Optional[datetime] = None
+    """
+    Timestamp when the subscription was paused, if it currently is (or is `OnHold`
+    due to an unresolved pause settlement). `null` otherwise.
+    """
+
     payment_method_id: Optional[str] = None
     """Saved payment method id used for recurring charges"""
 
