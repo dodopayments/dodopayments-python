@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ..types import brand_create_params, brand_update_params
+from ..types import brand_list_params, brand_create_params, brand_update_params, brand_archive_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -20,6 +20,7 @@ from .._response import (
 from ..types.brand import Brand
 from .._base_client import make_request_options
 from ..types.brand_list_response import BrandListResponse
+from ..types.brand_archive_response import BrandArchiveResponse
 from ..types.brand_update_images_response import BrandUpdateImagesResponse
 
 __all__ = ["BrandsResource", "AsyncBrandsResource"]
@@ -174,6 +175,7 @@ class BrandsResource(SyncAPIResource):
     def list(
         self,
         *,
+        include_archived: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,12 +183,71 @@ class BrandsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandListResponse:
+        """Args:
+          include_archived: Set to true to also list archived brands.
+
+        Default false.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             "/brands",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"include_archived": include_archived}, brand_list_params.BrandListParams),
             ),
             cast_to=BrandListResponse,
+        )
+
+    def archive(
+        self,
+        id: str,
+        *,
+        move_products_to: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BrandArchiveResponse:
+        """Archive a brand.
+
+        Its products, live subscriptions, and product collections move
+        to the `move_products_to` brand. Archive is permanent.
+
+        Args:
+          move_products_to: Brand that takes over the products and the live subscriptions of the brand you
+              archive. It must be a brand of the same business, and it must not be archived.
+              The primary brand (its brand id is the business id) is a valid target. Omit this
+              field only when the brand holds no products and no live subscriptions.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            path_template("/brands/{id}/archive", id=id),
+            body=maybe_transform({"move_products_to": move_products_to}, brand_archive_params.BrandArchiveParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BrandArchiveResponse,
         )
 
     def update_images(
@@ -370,6 +431,7 @@ class AsyncBrandsResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        include_archived: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -377,12 +439,75 @@ class AsyncBrandsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandListResponse:
+        """Args:
+          include_archived: Set to true to also list archived brands.
+
+        Default false.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             "/brands",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"include_archived": include_archived}, brand_list_params.BrandListParams
+                ),
             ),
             cast_to=BrandListResponse,
+        )
+
+    async def archive(
+        self,
+        id: str,
+        *,
+        move_products_to: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BrandArchiveResponse:
+        """Archive a brand.
+
+        Its products, live subscriptions, and product collections move
+        to the `move_products_to` brand. Archive is permanent.
+
+        Args:
+          move_products_to: Brand that takes over the products and the live subscriptions of the brand you
+              archive. It must be a brand of the same business, and it must not be archived.
+              The primary brand (its brand id is the business id) is a valid target. Omit this
+              field only when the brand holds no products and no live subscriptions.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            path_template("/brands/{id}/archive", id=id),
+            body=await async_maybe_transform(
+                {"move_products_to": move_products_to}, brand_archive_params.BrandArchiveParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BrandArchiveResponse,
         )
 
     async def update_images(
@@ -433,6 +558,9 @@ class BrandsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             brands.list,
         )
+        self.archive = to_raw_response_wrapper(
+            brands.archive,
+        )
         self.update_images = to_raw_response_wrapper(
             brands.update_images,
         )
@@ -453,6 +581,9 @@ class AsyncBrandsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             brands.list,
+        )
+        self.archive = async_to_raw_response_wrapper(
+            brands.archive,
         )
         self.update_images = async_to_raw_response_wrapper(
             brands.update_images,
@@ -475,6 +606,9 @@ class BrandsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             brands.list,
         )
+        self.archive = to_streamed_response_wrapper(
+            brands.archive,
+        )
         self.update_images = to_streamed_response_wrapper(
             brands.update_images,
         )
@@ -495,6 +629,9 @@ class AsyncBrandsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             brands.list,
+        )
+        self.archive = async_to_streamed_response_wrapper(
+            brands.archive,
         )
         self.update_images = async_to_streamed_response_wrapper(
             brands.update_images,

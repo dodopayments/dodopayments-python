@@ -402,7 +402,12 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Brand, BrandListResponse, BrandUpdateImagesResponse
+from dodopayments.types import (
+    Brand,
+    BrandListResponse,
+    BrandArchiveResponse,
+    BrandUpdateImagesResponse,
+)
 ```
 
 Methods:
@@ -410,7 +415,8 @@ Methods:
 - <code title="post /brands">client.brands.<a href="./src/dodopayments/resources/brands.py">create</a>(\*\*<a href="src/dodopayments/types/brand_create_params.py">params</a>) -> <a href="./src/dodopayments/types/brand.py">Brand</a></code>
 - <code title="get /brands/{id}">client.brands.<a href="./src/dodopayments/resources/brands.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/brand.py">Brand</a></code>
 - <code title="patch /brands/{id}">client.brands.<a href="./src/dodopayments/resources/brands.py">update</a>(id, \*\*<a href="src/dodopayments/types/brand_update_params.py">params</a>) -> <a href="./src/dodopayments/types/brand.py">Brand</a></code>
-- <code title="get /brands">client.brands.<a href="./src/dodopayments/resources/brands.py">list</a>() -> <a href="./src/dodopayments/types/brand_list_response.py">BrandListResponse</a></code>
+- <code title="get /brands">client.brands.<a href="./src/dodopayments/resources/brands.py">list</a>(\*\*<a href="src/dodopayments/types/brand_list_params.py">params</a>) -> <a href="./src/dodopayments/types/brand_list_response.py">BrandListResponse</a></code>
+- <code title="post /brands/{id}/archive">client.brands.<a href="./src/dodopayments/resources/brands.py">archive</a>(id, \*\*<a href="src/dodopayments/types/brand_archive_params.py">params</a>) -> <a href="./src/dodopayments/types/brand_archive_response.py">BrandArchiveResponse</a></code>
 - <code title="put /brands/{id}/images">client.brands.<a href="./src/dodopayments/resources/brands.py">update_images</a>(id) -> <a href="./src/dodopayments/types/brand_update_images_response.py">BrandUpdateImagesResponse</a></code>
 
 # Webhooks

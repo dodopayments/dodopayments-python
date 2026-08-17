@@ -42,6 +42,7 @@ from .filter_operator import FilterOperator as FilterOperator
 from .webhook_details import WebhookDetails as WebhookDetails
 from .refund_list_item import RefundListItem as RefundListItem
 from .addon_list_params import AddonListParams as AddonListParams
+from .brand_list_params import BrandListParams as BrandListParams
 from .event_input_param import EventInputParam as EventInputParam
 from .filter_type_param import FilterTypeParam as FilterTypeParam
 from .github_permission import GitHubPermission as GitHubPermission
@@ -71,6 +72,7 @@ from .product_list_params import ProductListParams as ProductListParams
 from .subscription_status import SubscriptionStatus as SubscriptionStatus
 from .webhook_list_params import WebhookListParams as WebhookListParams
 from .balance_ledger_entry import BalanceLedgerEntry as BalanceLedgerEntry
+from .brand_archive_params import BrandArchiveParams as BrandArchiveParams
 from .cbb_overage_behavior import CbbOverageBehavior as CbbOverageBehavior
 from .customer_list_params import CustomerListParams as CustomerListParams
 from .discount_list_params import DiscountListParams as DiscountListParams
@@ -93,6 +95,7 @@ from .product_update_params import ProductUpdateParams as ProductUpdateParams
 from .scheduled_plan_change import ScheduledPlanChange as ScheduledPlanChange
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
+from .brand_archive_response import BrandArchiveResponse as BrandArchiveResponse
 from .cbb_proration_behavior import CbbProrationBehavior as CbbProrationBehavior
 from .customer_create_params import CustomerCreateParams as CustomerCreateParams
 from .customer_request_param import CustomerRequestParam as CustomerRequestParam

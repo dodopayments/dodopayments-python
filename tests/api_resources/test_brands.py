@@ -12,6 +12,7 @@ from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
     Brand,
     BrandListResponse,
+    BrandArchiveResponse,
     BrandUpdateImagesResponse,
 )
 
@@ -152,6 +153,13 @@ class TestBrands:
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: DodoPayments) -> None:
+        brand = client.brands.list(
+            include_archived=True,
+        )
+        assert_matches_type(BrandListResponse, brand, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: DodoPayments) -> None:
         response = client.brands.with_raw_response.list()
 
@@ -170,6 +178,52 @@ class TestBrands:
             assert_matches_type(BrandListResponse, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_archive(self, client: DodoPayments) -> None:
+        brand = client.brands.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+        )
+        assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+    @parametrize
+    def test_method_archive_with_all_params(self, client: DodoPayments) -> None:
+        brand = client.brands.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+            move_products_to="move_products_to",
+        )
+        assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+    @parametrize
+    def test_raw_response_archive(self, client: DodoPayments) -> None:
+        response = client.brands.with_raw_response.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        brand = response.parse()
+        assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+    @parametrize
+    def test_streaming_response_archive(self, client: DodoPayments) -> None:
+        with client.brands.with_streaming_response.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            brand = response.parse()
+            assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_archive(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.brands.with_raw_response.archive(
+                id="",
+            )
 
     @parametrize
     def test_method_update_images(self, client: DodoPayments) -> None:
@@ -346,6 +400,13 @@ class TestAsyncBrands:
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        brand = await async_client.brands.list(
+            include_archived=True,
+        )
+        assert_matches_type(BrandListResponse, brand, path=["response"])
+
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.brands.with_raw_response.list()
 
@@ -364,6 +425,52 @@ class TestAsyncBrands:
             assert_matches_type(BrandListResponse, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_archive(self, async_client: AsyncDodoPayments) -> None:
+        brand = await async_client.brands.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+        )
+        assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        brand = await async_client.brands.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+            move_products_to="move_products_to",
+        )
+        assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+    @parametrize
+    async def test_raw_response_archive(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.brands.with_raw_response.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        brand = await response.parse()
+        assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_archive(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.brands.with_streaming_response.archive(
+            id="brnd_8dFiAW42v28JzhlVSocjq",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            brand = await response.parse()
+            assert_matches_type(BrandArchiveResponse, brand, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_archive(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.brands.with_raw_response.archive(
+                id="",
+            )
 
     @parametrize
     async def test_method_update_images(self, async_client: AsyncDodoPayments) -> None:
