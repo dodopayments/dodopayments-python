@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -20,6 +21,9 @@ class Brand(BaseModel):
     verification_enabled: bool
 
     verification_status: Literal["Success", "Fail", "Review", "Hold"]
+
+    archived_at: Optional[datetime] = None
+    """Time the brand was archived. Null for an active brand."""
 
     description: Optional[str] = None
 

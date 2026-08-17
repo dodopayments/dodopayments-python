@@ -88,3 +88,12 @@ class CheckoutSessionFlagsParam(TypedDict, total=False):
 
     Default is false
     """
+
+    single_page: bool
+    """
+    If true, the session uses the single-page checkout flow: the page initializes
+    the payment at load time and confirms it in place, with no separate payment
+    page.
+
+    Default is false
+    """
