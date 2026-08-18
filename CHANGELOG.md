@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.113.0](https://github.com/dodopayments/dodopayments-python/compare/v1.112.0...v1.113.0) (2026-08-17)
-
-
-### Features
-
-* **api:** add brand archive endpoint ([2fac458](https://github.com/dodopayments/dodopayments-python/commit/2fac458f51a0ba6577c0579e8266bb56aa9dc0ed))
-* **api:** add brand archive endpoint ([66844d4](https://github.com/dodopayments/dodopayments-python/commit/66844d41103d5989d34671c0821f877655d8b037))
-
 ## [1.112.0](https://github.com/dodopayments/dodopayments-python/compare/v1.111.0...v1.112.0) (2026-08-13)
 
 
