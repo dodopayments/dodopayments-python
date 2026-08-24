@@ -50,6 +50,7 @@ from ..types.on_demand_subscription_param import OnDemandSubscriptionParam
 from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
 from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
+from ..types.subscription_change_plan_response import SubscriptionChangePlanResponse
 from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_retrieve_credit_usage_response import SubscriptionRetrieveCreditUsageResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
@@ -309,8 +310,21 @@ class SubscriptionsResource(SyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
-          pause: `Some(true)` pauses an active subscription; `Some(false)` unpauses a `Paused`
-              (or abandoned `OnHold`) subscription. Exclusive of every other field.
+          pause: Removed. Use `status: paused` to pause and `status: active` to resume. This
+              field always fails with 422, so a caller still on it gets a loud error instead
+              of a silent no-op.
+
+          status: Set to `cancelled` to cancel the subscription. See `cancel_reason`,
+              `cancellation_feedback`, `cancellation_comment`, and
+              `cancel_at_next_billing_date` for cancellation options.
+
+              Set to `paused` to pause an active subscription. Set to `active` to resume a
+              `paused` subscription. `active` also resumes an `on_hold` subscription that has
+              an unpaid pause invoice. This voids that invoice.
+
+              Send `paused` or `active` alone. A request that combines either with any other
+              field fails with 422. `cancelled` is not exclusive this way — see
+              `cancel_reason` and friends below.
 
           subscription_period_count: New number of `subscription_period_interval` units the subscription entitlement
               should span. Used together with `subscription_period_interval` to extend the
@@ -476,6 +490,8 @@ class SubscriptionsResource(SyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_scheduled_change_plan: bool | Omit = omit,
+        collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
@@ -487,7 +503,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SubscriptionChangePlanResponse:
         """
         Args:
           product_id: Unique identifier of the product to subscribe to
@@ -501,6 +517,28 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
+
+              The scheduled change is cancelled by the transaction that applies this change. A
+              change that never applies leaves the schedule in place.
+
+              `effective_at: next_billing_date` is allowed. The new schedule then replaces the
+              old one in the request transaction.
+
+              A pending plan change still gets a `409`. This field does not affect it.
+
+              The preview route shares this request body, so a preview that sets this field
+              also passes the scheduled-change `409`.
+
+          collect_via_payment_link: Collect the plan-change amount with a payment link. The customer then pays on a
+              checkout page.
+
+              The business needs the `allow_plan_change_via_payment_link` capability. The
+              request needs `effective_at: immediately`. The request also needs
+              `on_payment_failure: prevent_change`.
+
+              The preview route shares this request body and ignores this field.
 
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
@@ -536,7 +574,6 @@ class SubscriptionsResource(SyncAPIResource):
         """
         if not subscription_id:
             raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             path_template("/subscriptions/{subscription_id}/change-plan", subscription_id=subscription_id),
             body=maybe_transform(
@@ -546,6 +583,8 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
+                    "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
@@ -557,7 +596,7 @@ class SubscriptionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SubscriptionChangePlanResponse,
         )
 
     def charge(
@@ -638,6 +677,8 @@ class SubscriptionsResource(SyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_scheduled_change_plan: bool | Omit = omit,
+        collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
@@ -663,6 +704,28 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
+
+              The scheduled change is cancelled by the transaction that applies this change. A
+              change that never applies leaves the schedule in place.
+
+              `effective_at: next_billing_date` is allowed. The new schedule then replaces the
+              old one in the request transaction.
+
+              A pending plan change still gets a `409`. This field does not affect it.
+
+              The preview route shares this request body, so a preview that sets this field
+              also passes the scheduled-change `409`.
+
+          collect_via_payment_link: Collect the plan-change amount with a payment link. The customer then pays on a
+              checkout page.
+
+              The business needs the `allow_plan_change_via_payment_link` capability. The
+              request needs `effective_at: immediately`. The request also needs
+              `on_payment_failure: prevent_change`.
+
+              The preview route shares this request body and ignores this field.
 
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
@@ -707,6 +770,8 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
+                    "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
@@ -1142,8 +1207,21 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
-          pause: `Some(true)` pauses an active subscription; `Some(false)` unpauses a `Paused`
-              (or abandoned `OnHold`) subscription. Exclusive of every other field.
+          pause: Removed. Use `status: paused` to pause and `status: active` to resume. This
+              field always fails with 422, so a caller still on it gets a loud error instead
+              of a silent no-op.
+
+          status: Set to `cancelled` to cancel the subscription. See `cancel_reason`,
+              `cancellation_feedback`, `cancellation_comment`, and
+              `cancel_at_next_billing_date` for cancellation options.
+
+              Set to `paused` to pause an active subscription. Set to `active` to resume a
+              `paused` subscription. `active` also resumes an `on_hold` subscription that has
+              an unpaid pause invoice. This voids that invoice.
+
+              Send `paused` or `active` alone. A request that combines either with any other
+              field fails with 422. `cancelled` is not exclusive this way — see
+              `cancel_reason` and friends below.
 
           subscription_period_count: New number of `subscription_period_interval` units the subscription entitlement
               should span. Used together with `subscription_period_interval` to extend the
@@ -1309,6 +1387,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_scheduled_change_plan: bool | Omit = omit,
+        collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
@@ -1320,7 +1400,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> SubscriptionChangePlanResponse:
         """
         Args:
           product_id: Unique identifier of the product to subscribe to
@@ -1334,6 +1414,28 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
+
+              The scheduled change is cancelled by the transaction that applies this change. A
+              change that never applies leaves the schedule in place.
+
+              `effective_at: next_billing_date` is allowed. The new schedule then replaces the
+              old one in the request transaction.
+
+              A pending plan change still gets a `409`. This field does not affect it.
+
+              The preview route shares this request body, so a preview that sets this field
+              also passes the scheduled-change `409`.
+
+          collect_via_payment_link: Collect the plan-change amount with a payment link. The customer then pays on a
+              checkout page.
+
+              The business needs the `allow_plan_change_via_payment_link` capability. The
+              request needs `effective_at: immediately`. The request also needs
+              `on_payment_failure: prevent_change`.
+
+              The preview route shares this request body and ignores this field.
 
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
@@ -1369,7 +1471,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         if not subscription_id:
             raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             path_template("/subscriptions/{subscription_id}/change-plan", subscription_id=subscription_id),
             body=await async_maybe_transform(
@@ -1379,6 +1480,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
+                    "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
@@ -1390,7 +1493,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=SubscriptionChangePlanResponse,
         )
 
     async def charge(
@@ -1471,6 +1574,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_scheduled_change_plan: bool | Omit = omit,
+        collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
@@ -1496,6 +1601,28 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
+
+              The scheduled change is cancelled by the transaction that applies this change. A
+              change that never applies leaves the schedule in place.
+
+              `effective_at: next_billing_date` is allowed. The new schedule then replaces the
+              old one in the request transaction.
+
+              A pending plan change still gets a `409`. This field does not affect it.
+
+              The preview route shares this request body, so a preview that sets this field
+              also passes the scheduled-change `409`.
+
+          collect_via_payment_link: Collect the plan-change amount with a payment link. The customer then pays on a
+              checkout page.
+
+              The business needs the `allow_plan_change_via_payment_link` capability. The
+              request needs `effective_at: immediately`. The request also needs
+              `on_payment_failure: prevent_change`.
+
+              The preview route shares this request body and ignores this field.
 
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
@@ -1540,6 +1667,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
+                    "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
