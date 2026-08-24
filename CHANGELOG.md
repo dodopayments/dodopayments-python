@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.114.0](https://github.com/dodopayments/dodopayments-python/compare/v1.113.0...v1.114.0) (2026-08-24)
+
+
+### Features
+
+* **api:** return checkout handles from subscription change-plan ([156ef0e](https://github.com/dodopayments/dodopayments-python/commit/156ef0eb88ecc56355fbb894406d0ee8beab3ea9))
+* **api:** return checkout handles from subscription change-plan ([55a791f](https://github.com/dodopayments/dodopayments-python/commit/55a791fea722b417ab6e7a69d47c2b5eb6b74b2f))
+
 ## [1.112.0](https://github.com/dodopayments/dodopayments-python/compare/v1.111.0...v1.112.0) (2026-08-13)
 
 
