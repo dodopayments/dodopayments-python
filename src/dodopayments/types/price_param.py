@@ -30,18 +30,19 @@ class OneTimePrice(TypedDict, total=False):
     represents the **minimum** amount the customer must pay.
     """
 
-    purchasing_power_parity: Required[bool]
-    """
-    Indicates if purchasing power parity adjustments are applied to the price.
-    Purchasing power parity feature is not available as of now.
-    """
-
     type: Required[Literal["one_time_price"]]
 
     pay_what_you_want: bool
     """
     Indicates whether the customer can pay any amount they choose. If set to `true`,
     the [`price`](Self::price) field is the minimum amount.
+    """
+
+    purchasing_power_parity: bool
+    """Opts this price in to purchasing power parity.
+
+    The business must also enable purchasing power parity. The discount percentage
+    per country is always business-wide. Defaults to `false`.
     """
 
     suggested_price: Optional[int]
@@ -80,12 +81,6 @@ class RecurringPrice(TypedDict, total=False):
     For example, to charge $1.00, pass `100`.
     """
 
-    purchasing_power_parity: Required[bool]
-    """
-    Indicates if purchasing power parity adjustments are applied to the price.
-    Purchasing power parity feature is not available as of now
-    """
-
     subscription_period_count: Required[int]
     """
     Number of units for the subscription period. For example, a value of `12` with a
@@ -96,6 +91,13 @@ class RecurringPrice(TypedDict, total=False):
     """The time interval for the subscription period (e.g., day, month, year)."""
 
     type: Required[Literal["recurring_price"]]
+
+    purchasing_power_parity: bool
+    """Opts this price in to purchasing power parity.
+
+    The business must also enable purchasing power parity. The discount percentage
+    per country is always business-wide. Defaults to `false`.
+    """
 
     tax_inclusive: Optional[bool]
     """Indicates if the price is tax inclusive"""
@@ -141,12 +143,6 @@ class UsageBasedPrice(TypedDict, total=False):
     payment_frequency_interval: Required[TimeInterval]
     """The time interval for the payment frequency (e.g., day, month, year)."""
 
-    purchasing_power_parity: Required[bool]
-    """
-    Indicates if purchasing power parity adjustments are applied to the price.
-    Purchasing power parity feature is not available as of now
-    """
-
     subscription_period_count: Required[int]
     """
     Number of units for the subscription period. For example, a value of `12` with a
@@ -159,6 +155,14 @@ class UsageBasedPrice(TypedDict, total=False):
     type: Required[Literal["usage_based_price"]]
 
     meters: Optional[Iterable[AddMeterToPriceParam]]
+
+    purchasing_power_parity: bool
+    """Opts this price in to purchasing power parity.
+
+    The business must also enable purchasing power parity. The discount percentage
+    per country is always business-wide. Applies to the fixed fee only, never to
+    metered usage. Defaults to `false`.
+    """
 
     tax_inclusive: Optional[bool]
     """Indicates if the price is tax inclusive"""
