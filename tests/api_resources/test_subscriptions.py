@@ -14,6 +14,7 @@ from dodopayments.types import (
     SubscriptionListResponse,
     SubscriptionChargeResponse,
     SubscriptionCreateResponse,
+    SubscriptionChangePlanResponse,
     SubscriptionPreviewChangePlanResponse,
     SubscriptionRetrieveCreditUsageResponse,
     SubscriptionUpdatePaymentMethodResponse,
@@ -336,7 +337,7 @@ class TestSubscriptions:
             proration_billing_mode="prorated_immediately",
             quantity=0,
         )
-        assert subscription is None
+        assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
     @parametrize
     def test_method_change_plan_with_all_params(self, client: DodoPayments) -> None:
@@ -352,13 +353,15 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_scheduled_change_plan=True,
+            collect_via_payment_link=True,
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
-        assert subscription is None
+        assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_change_plan(self, client: DodoPayments) -> None:
@@ -372,7 +375,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert subscription is None
+        assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
     @parametrize
     def test_streaming_response_change_plan(self, client: DodoPayments) -> None:
@@ -386,7 +389,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert subscription is None
+            assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -482,6 +485,8 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_scheduled_change_plan=True,
+            collect_via_payment_link=True,
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
@@ -994,7 +999,7 @@ class TestAsyncSubscriptions:
             proration_billing_mode="prorated_immediately",
             quantity=0,
         )
-        assert subscription is None
+        assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
     @parametrize
     async def test_method_change_plan_with_all_params(self, async_client: AsyncDodoPayments) -> None:
@@ -1010,13 +1015,15 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_scheduled_change_plan=True,
+            collect_via_payment_link=True,
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
         )
-        assert subscription is None
+        assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_change_plan(self, async_client: AsyncDodoPayments) -> None:
@@ -1030,7 +1037,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert subscription is None
+        assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
     @parametrize
     async def test_streaming_response_change_plan(self, async_client: AsyncDodoPayments) -> None:
@@ -1044,7 +1051,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert subscription is None
+            assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1140,6 +1147,8 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_scheduled_change_plan=True,
+            collect_via_payment_link=True,
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
