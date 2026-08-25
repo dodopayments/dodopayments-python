@@ -36,6 +36,33 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     addons
     """
 
+    cancel_scheduled_change_plan: bool
+    """Replace a scheduled plan change with this one.
+
+    The scheduled change is cancelled by the transaction that applies this change. A
+    change that never applies leaves the schedule in place.
+
+    `effective_at: next_billing_date` is allowed. The new schedule then replaces the
+    old one in the request transaction.
+
+    A pending plan change still gets a `409`. This field does not affect it.
+
+    The preview route shares this request body, so a preview that sets this field
+    also passes the scheduled-change `409`.
+    """
+
+    collect_via_payment_link: bool
+    """Collect the plan-change amount with a payment link.
+
+    The customer then pays on a checkout page.
+
+    The business needs the `allow_plan_change_via_payment_link` capability. The
+    request needs `effective_at: immediately`. The request also needs
+    `on_payment_failure: prevent_change`.
+
+    The preview route shares this request body and ignores this field.
+    """
+
     discount_code: Optional[str]
     """DEPRECATED: Use discount_codes instead.
 
