@@ -38,6 +38,7 @@ from .subscription_expired_webhook_event import SubscriptionExpiredWebhookEvent
 from .subscription_on_hold_webhook_event import SubscriptionOnHoldWebhookEvent
 from .subscription_renewed_webhook_event import SubscriptionRenewedWebhookEvent
 from .subscription_updated_webhook_event import SubscriptionUpdatedWebhookEvent
+from .subscription_past_due_webhook_event import SubscriptionPastDueWebhookEvent
 from .subscription_unpaused_webhook_event import SubscriptionUnpausedWebhookEvent
 from .credit_overage_charged_webhook_event import CreditOverageChargedWebhookEvent
 from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEvent
@@ -97,6 +98,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Annotated[
         SubscriptionExpiredWebhookEvent,
         SubscriptionFailedWebhookEvent,
         SubscriptionOnHoldWebhookEvent,
+        SubscriptionPastDueWebhookEvent,
         SubscriptionPausedWebhookEvent,
         SubscriptionPlanChangedWebhookEvent,
         SubscriptionRenewedWebhookEvent,
