@@ -38,5 +38,5 @@ class SubscriptionListParams(TypedDict, total=False):
     product_id: str
     """Filter by product id"""
 
-    status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"]
+    status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired", "past_due"]
     """Filter by status"""

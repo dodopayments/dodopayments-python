@@ -23,7 +23,7 @@ class Data(BaseModel):
 
     subscription_id: str
 
-    trigger_state: Literal["on_hold", "cancelled"]
+    trigger_state: Literal["on_hold", "cancelled", "past_due"]
 
     payment_id: Optional[str] = None
 

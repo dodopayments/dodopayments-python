@@ -23,7 +23,13 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     """When set, the subscription will remain active until the end of billing period"""
 
     cancel_reason: Optional[
-        Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning", "dodo_team"]
+        Literal[
+            "cancelled_by_customer",
+            "cancelled_by_merchant",
+            "cancelled_by_merchant_send_dunning",
+            "cancelled_by_merchant_grace_period_expired",
+            "dodo_team",
+        ]
     ]
 
     cancellation_comment: Optional[str]
