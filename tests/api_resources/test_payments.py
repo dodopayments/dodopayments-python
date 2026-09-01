@@ -11,6 +11,8 @@ from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
     Payment,
+    ManualRetry,
+    ManualRetryState,
     PaymentListResponse,
     PaymentCreateResponse,
     PaymentRetrieveLineItemsResponse,
@@ -238,6 +240,82 @@ class TestPayments:
                 "",
             )
 
+    @parametrize
+    def test_method_retrieve_retry_state(self, client: DodoPayments) -> None:
+        payment = client.payments.retrieve_retry_state(
+            "payment_id",
+        )
+        assert_matches_type(ManualRetryState, payment, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_retry_state(self, client: DodoPayments) -> None:
+        response = client.payments.with_raw_response.retrieve_retry_state(
+            "payment_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment = response.parse()
+        assert_matches_type(ManualRetryState, payment, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_retry_state(self, client: DodoPayments) -> None:
+        with client.payments.with_streaming_response.retrieve_retry_state(
+            "payment_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            payment = response.parse()
+            assert_matches_type(ManualRetryState, payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve_retry_state(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
+            client.payments.with_raw_response.retrieve_retry_state(
+                "",
+            )
+
+    @parametrize
+    def test_method_retry(self, client: DodoPayments) -> None:
+        payment = client.payments.retry(
+            "payment_id",
+        )
+        assert_matches_type(ManualRetry, payment, path=["response"])
+
+    @parametrize
+    def test_raw_response_retry(self, client: DodoPayments) -> None:
+        response = client.payments.with_raw_response.retry(
+            "payment_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment = response.parse()
+        assert_matches_type(ManualRetry, payment, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retry(self, client: DodoPayments) -> None:
+        with client.payments.with_streaming_response.retry(
+            "payment_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            payment = response.parse()
+            assert_matches_type(ManualRetry, payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retry(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
+            client.payments.with_raw_response.retry(
+                "",
+            )
+
 
 class TestAsyncPayments:
     parametrize = pytest.mark.parametrize(
@@ -453,5 +531,81 @@ class TestAsyncPayments:
     async def test_path_params_retrieve_line_items(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
             await async_client.payments.with_raw_response.retrieve_line_items(
+                "",
+            )
+
+    @parametrize
+    async def test_method_retrieve_retry_state(self, async_client: AsyncDodoPayments) -> None:
+        payment = await async_client.payments.retrieve_retry_state(
+            "payment_id",
+        )
+        assert_matches_type(ManualRetryState, payment, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_retry_state(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.payments.with_raw_response.retrieve_retry_state(
+            "payment_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment = await response.parse()
+        assert_matches_type(ManualRetryState, payment, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_retry_state(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.payments.with_streaming_response.retrieve_retry_state(
+            "payment_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            payment = await response.parse()
+            assert_matches_type(ManualRetryState, payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve_retry_state(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
+            await async_client.payments.with_raw_response.retrieve_retry_state(
+                "",
+            )
+
+    @parametrize
+    async def test_method_retry(self, async_client: AsyncDodoPayments) -> None:
+        payment = await async_client.payments.retry(
+            "payment_id",
+        )
+        assert_matches_type(ManualRetry, payment, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retry(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.payments.with_raw_response.retry(
+            "payment_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment = await response.parse()
+        assert_matches_type(ManualRetry, payment, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retry(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.payments.with_streaming_response.retry(
+            "payment_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            payment = await response.parse()
+            assert_matches_type(ManualRetry, payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retry(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
+            await async_client.payments.with_raw_response.retry(
                 "",
             )

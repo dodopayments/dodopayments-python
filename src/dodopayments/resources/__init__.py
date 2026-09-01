@@ -104,6 +104,14 @@ from .webhooks import (
     WebhooksResourceWithStreamingResponse,
     AsyncWebhooksResourceWithStreamingResponse,
 )
+from .blocklist import (
+    BlocklistResource,
+    AsyncBlocklistResource,
+    BlocklistResourceWithRawResponse,
+    AsyncBlocklistResourceWithRawResponse,
+    BlocklistResourceWithStreamingResponse,
+    AsyncBlocklistResourceWithStreamingResponse,
+)
 from .customers import (
     CustomersResource,
     AsyncCustomersResource,
@@ -234,6 +242,12 @@ __all__ = [
     "AsyncCustomersResourceWithRawResponse",
     "CustomersResourceWithStreamingResponse",
     "AsyncCustomersResourceWithStreamingResponse",
+    "BlocklistResource",
+    "AsyncBlocklistResource",
+    "BlocklistResourceWithRawResponse",
+    "AsyncBlocklistResourceWithRawResponse",
+    "BlocklistResourceWithStreamingResponse",
+    "AsyncBlocklistResourceWithStreamingResponse",
     "RefundsResource",
     "AsyncRefundsResource",
     "RefundsResourceWithRawResponse",

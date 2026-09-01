@@ -24,7 +24,9 @@ from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumber
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.payment import Payment
 from ..types.currency import Currency
+from ..types.manual_retry import ManualRetry
 from ..types.metadata_param import MetadataParam
+from ..types.manual_retry_state import ManualRetryState
 from ..types.payment_method_types import PaymentMethodTypes
 from ..types.billing_address_param import BillingAddressParam
 from ..types.payment_list_response import PaymentListResponse
@@ -485,6 +487,68 @@ class PaymentsResource(SyncAPIResource):
             cast_to=PaymentRetrieveLineItemsResponse,
         )
 
+    def retrieve_retry_state(
+        self,
+        payment_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ManualRetryState:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not payment_id:
+            raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
+        return self._get(
+            path_template("/payments/{payment_id}/retry", payment_id=payment_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ManualRetryState,
+        )
+
+    def retry(
+        self,
+        payment_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ManualRetry:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not payment_id:
+            raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
+        return self._post(
+            path_template("/payments/{payment_id}/retry", payment_id=payment_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ManualRetry,
+        )
+
 
 class AsyncPaymentsResource(AsyncAPIResource):
     @cached_property
@@ -935,6 +999,68 @@ class AsyncPaymentsResource(AsyncAPIResource):
             cast_to=PaymentRetrieveLineItemsResponse,
         )
 
+    async def retrieve_retry_state(
+        self,
+        payment_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ManualRetryState:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not payment_id:
+            raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
+        return await self._get(
+            path_template("/payments/{payment_id}/retry", payment_id=payment_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ManualRetryState,
+        )
+
+    async def retry(
+        self,
+        payment_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ManualRetry:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not payment_id:
+            raise ValueError(f"Expected a non-empty value for `payment_id` but received {payment_id!r}")
+        return await self._post(
+            path_template("/payments/{payment_id}/retry", payment_id=payment_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ManualRetry,
+        )
+
 
 class PaymentsResourceWithRawResponse:
     def __init__(self, payments: PaymentsResource) -> None:
@@ -953,6 +1079,12 @@ class PaymentsResourceWithRawResponse:
         )
         self.retrieve_line_items = to_raw_response_wrapper(
             payments.retrieve_line_items,
+        )
+        self.retrieve_retry_state = to_raw_response_wrapper(
+            payments.retrieve_retry_state,
+        )
+        self.retry = to_raw_response_wrapper(
+            payments.retry,
         )
 
 
@@ -974,6 +1106,12 @@ class AsyncPaymentsResourceWithRawResponse:
         self.retrieve_line_items = async_to_raw_response_wrapper(
             payments.retrieve_line_items,
         )
+        self.retrieve_retry_state = async_to_raw_response_wrapper(
+            payments.retrieve_retry_state,
+        )
+        self.retry = async_to_raw_response_wrapper(
+            payments.retry,
+        )
 
 
 class PaymentsResourceWithStreamingResponse:
@@ -994,6 +1132,12 @@ class PaymentsResourceWithStreamingResponse:
         self.retrieve_line_items = to_streamed_response_wrapper(
             payments.retrieve_line_items,
         )
+        self.retrieve_retry_state = to_streamed_response_wrapper(
+            payments.retrieve_retry_state,
+        )
+        self.retry = to_streamed_response_wrapper(
+            payments.retry,
+        )
 
 
 class AsyncPaymentsResourceWithStreamingResponse:
@@ -1013,4 +1157,10 @@ class AsyncPaymentsResourceWithStreamingResponse:
         )
         self.retrieve_line_items = async_to_streamed_response_wrapper(
             payments.retrieve_line_items,
+        )
+        self.retrieve_retry_state = async_to_streamed_response_wrapper(
+            payments.retrieve_retry_state,
+        )
+        self.retry = async_to_streamed_response_wrapper(
+            payments.retry,
         )

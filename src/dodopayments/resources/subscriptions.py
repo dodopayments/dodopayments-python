@@ -268,7 +268,13 @@ class SubscriptionsResource(SyncAPIResource):
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
         cancel_reason: Optional[
-            Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning", "dodo_team"]
+            Literal[
+                "cancelled_by_customer",
+                "cancelled_by_merchant",
+                "cancelled_by_merchant_send_dunning",
+                "cancelled_by_merchant_grace_period_expired",
+                "dodo_team",
+            ]
         ]
         | Omit = omit,
         cancellation_comment: Optional[str] | Omit = omit,
@@ -385,7 +391,8 @@ class SubscriptionsResource(SyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
-        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"] | Omit = omit,
+        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired", "past_due"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1165,7 +1172,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         billing: Optional[BillingAddressParam] | Omit = omit,
         cancel_at_next_billing_date: Optional[bool] | Omit = omit,
         cancel_reason: Optional[
-            Literal["cancelled_by_customer", "cancelled_by_merchant", "cancelled_by_merchant_send_dunning", "dodo_team"]
+            Literal[
+                "cancelled_by_customer",
+                "cancelled_by_merchant",
+                "cancelled_by_merchant_send_dunning",
+                "cancelled_by_merchant_grace_period_expired",
+                "dodo_team",
+            ]
         ]
         | Omit = omit,
         cancellation_comment: Optional[str] | Omit = omit,
@@ -1282,7 +1295,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
-        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired"] | Omit = omit,
+        status: Literal["pending", "active", "on_hold", "paused", "cancelled", "failed", "expired", "past_due"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
