@@ -49,6 +49,7 @@ if TYPE_CHECKING:
         payments,
         products,
         webhooks,
+        blocklist,
         customers,
         discounts,
         entitlements,
@@ -78,6 +79,7 @@ if TYPE_CHECKING:
     from .resources.invoices.invoices import InvoicesResource, AsyncInvoicesResource
     from .resources.products.products import ProductsResource, AsyncProductsResource
     from .resources.webhooks.webhooks import WebhooksResource, AsyncWebhooksResource
+    from .resources.blocklist.blocklist import BlocklistResource, AsyncBlocklistResource
     from .resources.customers.customers import CustomersResource, AsyncCustomersResource
     from .resources.license_key_instances import LicenseKeyInstancesResource, AsyncLicenseKeyInstancesResource
     from .resources.entitlements.entitlements import EntitlementsResource, AsyncEntitlementsResource
@@ -251,6 +253,12 @@ class DodoPayments(SyncAPIClient):
         from .resources.customers import CustomersResource
 
         return CustomersResource(self)
+
+    @cached_property
+    def blocklist(self) -> BlocklistResource:
+        from .resources.blocklist import BlocklistResource
+
+        return BlocklistResource(self)
 
     @cached_property
     def refunds(self) -> RefundsResource:
@@ -604,6 +612,12 @@ class AsyncDodoPayments(AsyncAPIClient):
         return AsyncCustomersResource(self)
 
     @cached_property
+    def blocklist(self) -> AsyncBlocklistResource:
+        from .resources.blocklist import AsyncBlocklistResource
+
+        return AsyncBlocklistResource(self)
+
+    @cached_property
     def refunds(self) -> AsyncRefundsResource:
         from .resources.refunds import AsyncRefundsResource
 
@@ -865,6 +879,12 @@ class DodoPaymentsWithRawResponse:
         return CustomersResourceWithRawResponse(self._client.customers)
 
     @cached_property
+    def blocklist(self) -> blocklist.BlocklistResourceWithRawResponse:
+        from .resources.blocklist import BlocklistResourceWithRawResponse
+
+        return BlocklistResourceWithRawResponse(self._client.blocklist)
+
+    @cached_property
     def refunds(self) -> refunds.RefundsResourceWithRawResponse:
         from .resources.refunds import RefundsResourceWithRawResponse
 
@@ -1008,6 +1028,12 @@ class AsyncDodoPaymentsWithRawResponse:
         from .resources.customers import AsyncCustomersResourceWithRawResponse
 
         return AsyncCustomersResourceWithRawResponse(self._client.customers)
+
+    @cached_property
+    def blocklist(self) -> blocklist.AsyncBlocklistResourceWithRawResponse:
+        from .resources.blocklist import AsyncBlocklistResourceWithRawResponse
+
+        return AsyncBlocklistResourceWithRawResponse(self._client.blocklist)
 
     @cached_property
     def refunds(self) -> refunds.AsyncRefundsResourceWithRawResponse:
@@ -1155,6 +1181,12 @@ class DodoPaymentsWithStreamedResponse:
         return CustomersResourceWithStreamingResponse(self._client.customers)
 
     @cached_property
+    def blocklist(self) -> blocklist.BlocklistResourceWithStreamingResponse:
+        from .resources.blocklist import BlocklistResourceWithStreamingResponse
+
+        return BlocklistResourceWithStreamingResponse(self._client.blocklist)
+
+    @cached_property
     def refunds(self) -> refunds.RefundsResourceWithStreamingResponse:
         from .resources.refunds import RefundsResourceWithStreamingResponse
 
@@ -1298,6 +1330,12 @@ class AsyncDodoPaymentsWithStreamedResponse:
         from .resources.customers import AsyncCustomersResourceWithStreamingResponse
 
         return AsyncCustomersResourceWithStreamingResponse(self._client.customers)
+
+    @cached_property
+    def blocklist(self) -> blocklist.AsyncBlocklistResourceWithStreamingResponse:
+        from .resources.blocklist import AsyncBlocklistResourceWithStreamingResponse
+
+        return AsyncBlocklistResourceWithStreamingResponse(self._client.blocklist)
 
     @cached_property
     def refunds(self) -> refunds.AsyncRefundsResourceWithStreamingResponse:
