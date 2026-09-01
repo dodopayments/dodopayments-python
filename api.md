@@ -38,6 +38,8 @@ from dodopayments.types import (
     CustomerLimitedDetails,
     CustomerRequest,
     IntentStatus,
+    ManualRetry,
+    ManualRetryState,
     NewCustomer,
     OneTimeProductCartItem,
     Payment,
@@ -56,6 +58,8 @@ Methods:
 - <code title="get /payments/{payment_id}">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve</a>(payment_id) -> <a href="./src/dodopayments/types/payment.py">Payment</a></code>
 - <code title="get /payments">client.payments.<a href="./src/dodopayments/resources/payments.py">list</a>(\*\*<a href="src/dodopayments/types/payment_list_params.py">params</a>) -> <a href="./src/dodopayments/types/payment_list_response.py">SyncDefaultPageNumberPagination[PaymentListResponse]</a></code>
 - <code title="get /payments/{payment_id}/line-items">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve_line_items</a>(payment_id) -> <a href="./src/dodopayments/types/payment_retrieve_line_items_response.py">PaymentRetrieveLineItemsResponse</a></code>
+- <code title="get /payments/{payment_id}/retry">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve_retry_state</a>(payment_id) -> <a href="./src/dodopayments/types/manual_retry_state.py">ManualRetryState</a></code>
+- <code title="post /payments/{payment_id}/retry">client.payments.<a href="./src/dodopayments/resources/payments.py">retry</a>(payment_id) -> <a href="./src/dodopayments/types/manual_retry.py">ManualRetry</a></code>
 
 # Subscriptions
 
@@ -209,6 +213,43 @@ Methods:
 
 - <code title="post /customers/{customer_id}/wallets/ledger-entries">client.customers.wallets.ledger_entries.<a href="./src/dodopayments/resources/customers/wallets/ledger_entries.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/wallets/ledger_entry_create_params.py">params</a>) -> <a href="./src/dodopayments/types/customers/customer_wallet.py">CustomerWallet</a></code>
 - <code title="get /customers/{customer_id}/wallets/ledger-entries">client.customers.wallets.ledger_entries.<a href="./src/dodopayments/resources/customers/wallets/ledger_entries.py">list</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/wallets/ledger_entry_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customers/wallets/customer_wallet_transaction.py">SyncDefaultPageNumberPagination[CustomerWalletTransaction]</a></code>
+
+# Blocklist
+
+## Customers
+
+Types:
+
+```python
+from dodopayments.types.blocklist import (
+    BlockByCustomerID,
+    BlockByEmail,
+    BlockIdentifier,
+    BlockedCustomer,
+    BlockedCustomerSource,
+    CreateBlockedCustomerRequest,
+)
+```
+
+Methods:
+
+- <code title="post /blocklist/customers">client.blocklist.customers.<a href="./src/dodopayments/resources/blocklist/customers/customers.py">create</a>(\*\*<a href="src/dodopayments/types/blocklist/customer_create_params.py">params</a>) -> <a href="./src/dodopayments/types/blocklist/blocked_customer.py">BlockedCustomer</a></code>
+- <code title="get /blocklist/customers/{entry_id}">client.blocklist.customers.<a href="./src/dodopayments/resources/blocklist/customers/customers.py">retrieve</a>(entry_id) -> <a href="./src/dodopayments/types/blocklist/blocked_customer.py">BlockedCustomer</a></code>
+- <code title="get /blocklist/customers">client.blocklist.customers.<a href="./src/dodopayments/resources/blocklist/customers/customers.py">list</a>(\*\*<a href="src/dodopayments/types/blocklist/customer_list_params.py">params</a>) -> <a href="./src/dodopayments/types/blocklist/blocked_customer.py">SyncDefaultPageNumberPagination[BlockedCustomer]</a></code>
+- <code title="delete /blocklist/customers/{entry_id}">client.blocklist.customers.<a href="./src/dodopayments/resources/blocklist/customers/customers.py">delete</a>(entry_id) -> None</code>
+
+### Notes
+
+Types:
+
+```python
+from dodopayments.types.blocklist.customers import BlockedCustomerNote, NoteRequest
+```
+
+Methods:
+
+- <code title="post /blocklist/customers/{entry_id}/notes">client.blocklist.customers.notes.<a href="./src/dodopayments/resources/blocklist/customers/notes.py">create</a>(entry_id, \*\*<a href="src/dodopayments/types/blocklist/customers/note_create_params.py">params</a>) -> <a href="./src/dodopayments/types/blocklist/customers/blocked_customer_note.py">BlockedCustomerNote</a></code>
+- <code title="patch /blocklist/customers/{entry_id}/notes/{note_id}">client.blocklist.customers.notes.<a href="./src/dodopayments/resources/blocklist/customers/notes.py">update</a>(note_id, \*, entry_id, \*\*<a href="src/dodopayments/types/blocklist/customers/note_update_params.py">params</a>) -> <a href="./src/dodopayments/types/blocklist/customers/blocked_customer_note.py">BlockedCustomerNote</a></code>
 
 # Refunds
 
@@ -469,6 +510,7 @@ from dodopayments.types import (
     SubscriptionExpiredWebhookEvent,
     SubscriptionFailedWebhookEvent,
     SubscriptionOnHoldWebhookEvent,
+    SubscriptionPastDueWebhookEvent,
     SubscriptionPausedWebhookEvent,
     SubscriptionPlanChangedWebhookEvent,
     SubscriptionRenewedWebhookEvent,
@@ -516,6 +558,7 @@ from dodopayments.types import (
     SubscriptionExpiredWebhookEvent,
     SubscriptionFailedWebhookEvent,
     SubscriptionOnHoldWebhookEvent,
+    SubscriptionPastDueWebhookEvent,
     SubscriptionPausedWebhookEvent,
     SubscriptionPlanChangedWebhookEvent,
     SubscriptionRenewedWebhookEvent,
