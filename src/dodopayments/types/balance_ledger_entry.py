@@ -56,4 +56,6 @@ class BalanceLedgerEntry(BaseModel):
 
     description: Optional[str] = None
 
+    payout_id: Optional[str] = None
+
     reference_object_id: Optional[str] = None
