@@ -8,6 +8,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .emails import (
+    EmailsResource,
+    AsyncEmailsResource,
+    EmailsResourceWithRawResponse,
+    AsyncEmailsResourceWithRawResponse,
+    EmailsResourceWithStreamingResponse,
+    AsyncEmailsResourceWithStreamingResponse,
+)
 from ...types import (
     customer_list_params,
     customer_create_params,
@@ -60,6 +68,10 @@ class CustomersResource(SyncAPIResource):
     @cached_property
     def wallets(self) -> WalletsResource:
         return WalletsResource(self._client)
+
+    @cached_property
+    def emails(self) -> EmailsResource:
+        return EmailsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomersResourceWithRawResponse:
@@ -469,6 +481,10 @@ class AsyncCustomersResource(AsyncAPIResource):
     @cached_property
     def wallets(self) -> AsyncWalletsResource:
         return AsyncWalletsResource(self._client)
+
+    @cached_property
+    def emails(self) -> AsyncEmailsResource:
+        return AsyncEmailsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomersResourceWithRawResponse:
@@ -910,6 +926,10 @@ class CustomersResourceWithRawResponse:
     def wallets(self) -> WalletsResourceWithRawResponse:
         return WalletsResourceWithRawResponse(self._customers.wallets)
 
+    @cached_property
+    def emails(self) -> EmailsResourceWithRawResponse:
+        return EmailsResourceWithRawResponse(self._customers.emails)
+
 
 class AsyncCustomersResourceWithRawResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -950,6 +970,10 @@ class AsyncCustomersResourceWithRawResponse:
     @cached_property
     def wallets(self) -> AsyncWalletsResourceWithRawResponse:
         return AsyncWalletsResourceWithRawResponse(self._customers.wallets)
+
+    @cached_property
+    def emails(self) -> AsyncEmailsResourceWithRawResponse:
+        return AsyncEmailsResourceWithRawResponse(self._customers.emails)
 
 
 class CustomersResourceWithStreamingResponse:
@@ -992,6 +1016,10 @@ class CustomersResourceWithStreamingResponse:
     def wallets(self) -> WalletsResourceWithStreamingResponse:
         return WalletsResourceWithStreamingResponse(self._customers.wallets)
 
+    @cached_property
+    def emails(self) -> EmailsResourceWithStreamingResponse:
+        return EmailsResourceWithStreamingResponse(self._customers.emails)
+
 
 class AsyncCustomersResourceWithStreamingResponse:
     def __init__(self, customers: AsyncCustomersResource) -> None:
@@ -1032,3 +1060,7 @@ class AsyncCustomersResourceWithStreamingResponse:
     @cached_property
     def wallets(self) -> AsyncWalletsResourceWithStreamingResponse:
         return AsyncWalletsResourceWithStreamingResponse(self._customers.wallets)
+
+    @cached_property
+    def emails(self) -> AsyncEmailsResourceWithStreamingResponse:
+        return AsyncEmailsResourceWithStreamingResponse(self._customers.emails)

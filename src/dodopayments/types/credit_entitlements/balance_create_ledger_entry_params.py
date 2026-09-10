@@ -36,7 +36,7 @@ class BalanceCreateLedgerEntryParams(TypedDict, total=False):
     metadata: Optional[MetadataParam]
     """
     Optional metadata (max 50 key-value pairs, key max 40 chars, value max 500
-    chars)
+    chars).
     """
 
     reason: Optional[str]
