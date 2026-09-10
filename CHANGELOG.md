@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.116.0](https://github.com/dodopayments/dodopayments-python/compare/v1.115.0...v1.116.0) (2026-09-10)
+
+
+### Features
+
+* **api:** add customer email logs ([3e7ec57](https://github.com/dodopayments/dodopayments-python/commit/3e7ec5746a3fa445bd7259afa10fc5d4eab3d998))
+* **api:** add customer email logs ([df9e1cb](https://github.com/dodopayments/dodopayments-python/commit/df9e1cb70316772921a977e408d0041b807f8c73))
+
 ## [1.114.0](https://github.com/dodopayments/dodopayments-python/compare/v1.113.0...v1.114.0) (2026-08-24)
 
 
