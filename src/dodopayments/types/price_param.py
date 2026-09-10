@@ -18,9 +18,6 @@ class OneTimePrice(TypedDict, total=False):
     currency: Required[Currency]
     """The currency in which the payment is made."""
 
-    discount: Required[int]
-    """Discount applied to the price, represented as a percentage (0 to 100)."""
-
     price: Required[int]
     """
     The payment amount, in the smallest denomination of the currency (e.g., cents
@@ -31,6 +28,22 @@ class OneTimePrice(TypedDict, total=False):
     """
 
     type: Required[Literal["one_time_price"]]
+
+    discount: int
+    """Deprecated: use `discount_bps` instead.
+
+    Discount applied to the price, represented as a percentage (0 to 100). A
+    response rounds this value to the nearest whole percent. Defaults to `0`.
+    """
+
+    discount_bps: Optional[int]
+    """Discount applied to the price, in basis points.
+
+    100 basis points make one percent, so `1250` is a discount of 12.5%.
+
+    Use this field for a discount with a fraction of a percent. A request that sends
+    this field ignores `discount`. A value of `0` gives no discount.
+    """
 
     pay_what_you_want: bool
     """
@@ -62,9 +75,6 @@ class RecurringPrice(TypedDict, total=False):
     currency: Required[Currency]
     """The currency in which the payment is made."""
 
-    discount: Required[int]
-    """Discount applied to the price, represented as a percentage (0 to 100)."""
-
     payment_frequency_count: Required[int]
     """
     Number of units for the payment frequency. For example, a value of `1` with a
@@ -92,6 +102,22 @@ class RecurringPrice(TypedDict, total=False):
 
     type: Required[Literal["recurring_price"]]
 
+    discount: int
+    """Deprecated: use `discount_bps` instead.
+
+    Discount applied to the price, represented as a percentage (0 to 100). A
+    response rounds this value to the nearest whole percent. Defaults to `0`.
+    """
+
+    discount_bps: Optional[int]
+    """Discount applied to the price, in basis points.
+
+    100 basis points make one percent, so `1250` is a discount of 12.5%.
+
+    Use this field for a discount with a fraction of a percent. A request that sends
+    this field ignores `discount`. A value of `0` gives no discount.
+    """
+
     purchasing_power_parity: bool
     """Opts this price in to purchasing power parity.
 
@@ -114,8 +140,17 @@ class RecurringPrice(TypedDict, total=False):
     Defaults to false. Only meaningful when a paid trial is configured.
     """
 
+    trial_payment_method_optional: bool
+    """Let a customer start a free trial with no card. Defaults to false."""
+
     trial_period_days: int
     """Number of days for the trial period. A value of `0` indicates no trial period."""
+
+    zero_amount_payment_method_optional: bool
+    """
+    Let a customer start a subscription with no card, when the amount due today is
+    `0` (a native `0` price, or a 100% discount). Defaults to false.
+    """
 
 
 class UsageBasedPrice(TypedDict, total=False):
@@ -123,9 +158,6 @@ class UsageBasedPrice(TypedDict, total=False):
 
     currency: Required[Currency]
     """The currency in which the payment is made."""
-
-    discount: Required[int]
-    """Discount applied to the price, represented as a percentage (0 to 100)."""
 
     fixed_price: Required[int]
     """The fixed payment amount.
@@ -153,6 +185,22 @@ class UsageBasedPrice(TypedDict, total=False):
     """The time interval for the subscription period (e.g., day, month, year)."""
 
     type: Required[Literal["usage_based_price"]]
+
+    discount: int
+    """Deprecated: use `discount_bps` instead.
+
+    Discount applied to the price, represented as a percentage (0 to 100). A
+    response rounds this value to the nearest whole percent. Defaults to `0`.
+    """
+
+    discount_bps: Optional[int]
+    """Discount applied to the price, in basis points.
+
+    100 basis points make one percent, so `1250` is a discount of 12.5%.
+
+    Use this field for a discount with a fraction of a percent. A request that sends
+    this field ignores `discount`. A value of `0` gives no discount.
+    """
 
     meters: Optional[Iterable[AddMeterToPriceParam]]
 

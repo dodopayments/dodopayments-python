@@ -203,6 +203,12 @@ class CheckoutSessionPreviewResponse(BaseModel):
     merchant is MoR and owns tax.
     """
 
+    payment_method_required: bool
+    """False when the customer can confirm this session with no card.
+
+    True for every other cart, including a one-time cart.
+    """
+
     product_cart: List[ProductCart]
     """The total product cart"""
 

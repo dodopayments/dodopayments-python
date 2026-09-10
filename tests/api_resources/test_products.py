@@ -28,7 +28,6 @@ class TestProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
             },
@@ -42,9 +41,10 @@ class TestProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
+                "discount": 0,
+                "discount_bps": 0,
                 "pay_what_you_want": True,
                 "purchasing_power_parity": True,
                 "suggested_price": 0,
@@ -98,7 +98,6 @@ class TestProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
             },
@@ -116,7 +115,6 @@ class TestProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
             },
@@ -221,9 +219,10 @@ class TestProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
+                "discount": 0,
+                "discount_bps": 0,
                 "pay_what_you_want": True,
                 "purchasing_power_parity": True,
                 "suggested_price": 0,
@@ -431,7 +430,6 @@ class TestAsyncProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
             },
@@ -445,9 +443,10 @@ class TestAsyncProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
+                "discount": 0,
+                "discount_bps": 0,
                 "pay_what_you_want": True,
                 "purchasing_power_parity": True,
                 "suggested_price": 0,
@@ -501,7 +500,6 @@ class TestAsyncProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
             },
@@ -519,7 +517,6 @@ class TestAsyncProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
             },
@@ -624,9 +621,10 @@ class TestAsyncProducts:
             name="name",
             price={
                 "currency": "AED",
-                "discount": 0,
                 "price": 0,
                 "type": "one_time_price",
+                "discount": 0,
+                "discount_bps": 0,
                 "pay_what_you_want": True,
                 "purchasing_power_parity": True,
                 "suggested_price": 0,

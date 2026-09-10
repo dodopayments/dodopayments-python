@@ -35,11 +35,7 @@ class CreditLedgerEntry(BaseModel):
     is_credit: bool
 
     metadata: Metadata
-    """
-    Metadata associated with the credit grant's source (the subscription or payment
-    created at checkout). Empty when the grant has no resolvable source (e.g.
-    credits granted directly via the API).
-    """
+    """Metadata associated with this entry."""
 
     overage_after: str
 
