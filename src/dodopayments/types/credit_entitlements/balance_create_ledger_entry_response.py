@@ -4,6 +4,7 @@ from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
+from ..metadata import Metadata
 from .ledger_entry_type import LedgerEntryType
 
 __all__ = ["BalanceCreateLedgerEntryResponse"]
@@ -29,6 +30,9 @@ class BalanceCreateLedgerEntryResponse(BaseModel):
     entry_type: LedgerEntryType
 
     is_credit: bool
+
+    metadata: Metadata
+    """Metadata stored on this entry."""
 
     overage_after: str
 

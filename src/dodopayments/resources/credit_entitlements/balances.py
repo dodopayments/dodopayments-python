@@ -233,6 +233,7 @@ class BalancesResource(SyncAPIResource):
         - `reason` - Optional human-readable reason
         - `expires_at` - Optional expiration for credited amount (only for credit type)
         - `idempotency_key` - Optional key to prevent duplicate entries
+        - `metadata` - Optional key-value pairs
 
         # Responses
 
@@ -254,7 +255,7 @@ class BalancesResource(SyncAPIResource):
           idempotency_key: Idempotency key to prevent duplicate entries
 
           metadata: Optional metadata (max 50 key-value pairs, key max 40 chars, value max 500
-              chars)
+              chars).
 
           reason: Human-readable reason for the entry
 
@@ -671,6 +672,7 @@ class AsyncBalancesResource(AsyncAPIResource):
         - `reason` - Optional human-readable reason
         - `expires_at` - Optional expiration for credited amount (only for credit type)
         - `idempotency_key` - Optional key to prevent duplicate entries
+        - `metadata` - Optional key-value pairs
 
         # Responses
 
@@ -692,7 +694,7 @@ class AsyncBalancesResource(AsyncAPIResource):
           idempotency_key: Idempotency key to prevent duplicate entries
 
           metadata: Optional metadata (max 50 key-value pairs, key max 40 chars, value max 500
-              chars)
+              chars).
 
           reason: Human-readable reason for the entry
 

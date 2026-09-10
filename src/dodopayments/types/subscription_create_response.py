@@ -30,6 +30,12 @@ class SubscriptionCreateResponse(BaseModel):
     payment_id: str
     """First payment id for the subscription"""
 
+    payment_method_required: bool
+    """
+    False when the customer can start this subscription with no card. True for every
+    other subscription.
+    """
+
     recurring_pre_tax_amount: int
     """
     Tax will be added to the amount and charged to the customer on each billing

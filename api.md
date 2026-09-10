@@ -214,6 +214,25 @@ Methods:
 - <code title="post /customers/{customer_id}/wallets/ledger-entries">client.customers.wallets.ledger_entries.<a href="./src/dodopayments/resources/customers/wallets/ledger_entries.py">create</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/wallets/ledger_entry_create_params.py">params</a>) -> <a href="./src/dodopayments/types/customers/customer_wallet.py">CustomerWallet</a></code>
 - <code title="get /customers/{customer_id}/wallets/ledger-entries">client.customers.wallets.ledger_entries.<a href="./src/dodopayments/resources/customers/wallets/ledger_entries.py">list</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/wallets/ledger_entry_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customers/wallets/customer_wallet_transaction.py">SyncDefaultPageNumberPagination[CustomerWalletTransaction]</a></code>
 
+## Emails
+
+Types:
+
+```python
+from dodopayments.types.customers import (
+    EmailBody,
+    EmailFailureCode,
+    EmailLogItem,
+    EmailLogStatus,
+    EmailPolicies,
+)
+```
+
+Methods:
+
+- <code title="get /customers/{customer_id}/emails">client.customers.emails.<a href="./src/dodopayments/resources/customers/emails.py">list</a>(customer_id, \*\*<a href="src/dodopayments/types/customers/email_list_params.py">params</a>) -> <a href="./src/dodopayments/types/customers/email_log_item.py">SyncDefaultPageNumberPagination[EmailLogItem]</a></code>
+- <code title="get /customers/{customer_id}/emails/{email_log_id}/body">client.customers.emails.<a href="./src/dodopayments/resources/customers/emails.py">retrieve_body</a>(email_log_id, \*, customer_id) -> <a href="./src/dodopayments/types/customers/email_body.py">EmailBody</a></code>
+
 # Blocklist
 
 ## Customers
