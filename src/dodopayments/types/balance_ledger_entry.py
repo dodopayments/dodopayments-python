@@ -44,6 +44,8 @@ class BalanceLedgerEntry(BaseModel):
         "dunning_fees",
         "payment_retry_fee",
         "byop_fee",
+        "ethoca_fees",
+        "ethoca_fees_reversal",
     ]
 
     is_credit: bool

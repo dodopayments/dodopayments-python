@@ -49,6 +49,12 @@ class Subscription(BaseModel):
     customer: CustomerLimitedDetails
     """Customer details associated with the subscription"""
 
+    has_payment_method: bool
+    """Whether a payment method is on file.
+
+    False while a card-optional subscription waits for the customer to add one.
+    """
+
     metadata: Metadata
     """Additional custom data associated with the subscription"""
 

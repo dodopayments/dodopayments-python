@@ -190,6 +190,8 @@ class BalanceRetrieveLedgerParams(TypedDict, total=False):
         "dunning_fees",
         "payment_retry_fee",
         "byop_fee",
+        "ethoca_fees",
+        "ethoca_fees_reversal",
     ]
     """Filter by Ledger Event Type"""
 
