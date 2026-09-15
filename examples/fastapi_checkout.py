@@ -21,15 +21,15 @@ client = DodoPayments(
     environment="test_mode",
 )
 
+
 class CheckoutRequest(BaseModel):
     product_id: str
     quantity: int = 1
 
+
 @app.get("/")
 def home_root() -> dict[str, str]:
-    return {
-        "fastAPI checkout status" : "Working!"
-    }
+    return {"fastAPI checkout status": "Working!"}
 
 
 @app.post("/checkout")

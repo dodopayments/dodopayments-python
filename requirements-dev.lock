@@ -17,11 +17,14 @@ aiohttp==3.13.3
     # via httpx-aiohttp
 aiosignal==1.4.0
     # via aiohttp
+annotated-doc==0.0.5
+    # via fastapi
 annotated-types==0.7.0
     # via pydantic
 anyio==4.12.1
     # via dodopayments
     # via httpx
+    # via starlette
 argcomplete==3.6.3
     # via nox
 async-timeout==5.0.1
@@ -35,6 +38,8 @@ backports-asyncio-runner==1.2.0
 certifi==2026.1.4
     # via httpcore
     # via httpx
+click==8.1.8
+    # via uvicorn
 colorlog==6.10.1
     # via nox
 dependency-groups==1.3.1
@@ -51,6 +56,8 @@ exceptiongroup==1.3.1
     # via pytest
 execnet==2.1.2
     # via pytest-xdist
+fastapi==0.128.8
+    # via dodopayments
 filelock==3.19.1
     # via virtualenv
 frozenlist==1.8.0
@@ -58,6 +65,7 @@ frozenlist==1.8.0
     # via aiosignal
 h11==0.16.0
     # via httpcore
+    # via uvicorn
 httpcore==1.0.9
     # via httpx
 httpx==0.28.1
@@ -104,6 +112,7 @@ propcache==0.4.1
     # via yarl
 pydantic==2.12.5
     # via dodopayments
+    # via fastapi
 pydantic-core==2.41.5
     # via pydantic
 pygments==2.19.2
@@ -118,6 +127,8 @@ pytest-xdist==3.8.0
 python-dateutil==2.9.0.post0
     # via standardwebhooks
     # via time-machine
+python-dotenv==1.2.1
+    # via dodopayments
 respx==0.22.0
 rich==14.2.0
 ruff==0.14.13
@@ -127,6 +138,8 @@ sniffio==1.3.1
     # via dodopayments
 standardwebhooks==1.0.1
     # via dodopayments
+starlette==0.49.3
+    # via fastapi
 time-machine==2.19.0
 tomli==2.4.0
     # via dependency-groups
@@ -142,16 +155,22 @@ typing-extensions==4.15.0
     # via anyio
     # via dodopayments
     # via exceptiongroup
+    # via fastapi
     # via multidict
     # via mypy
     # via pydantic
     # via pydantic-core
     # via pyright
     # via pytest-asyncio
+    # via starlette
     # via typing-inspection
+    # via uvicorn
     # via virtualenv
 typing-inspection==0.4.2
+    # via fastapi
     # via pydantic
+uvicorn==0.39.0
+    # via dodopayments
 virtualenv==20.36.1
     # via nox
 wrapt==2.0.1

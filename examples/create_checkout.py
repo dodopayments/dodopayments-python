@@ -8,11 +8,9 @@ from dodopayments import DodoPayments
 
 load_dotenv()
 
+
 def main() -> None:
-    client  = DodoPayments(
-        bearer_token=os.environ["DODO_PAYMENTS_API_KEY"],
-        environment="test_mode"
-    )
+    client = DodoPayments(bearer_token=os.environ["DODO_PAYMENTS_API_KEY"], environment="test_mode")
 
     checkout = client.checkout_sessions.create(
         product_cart=[
@@ -26,6 +24,7 @@ def main() -> None:
     print("Checkout session created")
     print(f"Session ID: {checkout.session_id}")
     print(f"Checkout URL: {checkout.checkout_url}")
+
 
 if __name__ == "__main__":
     main()

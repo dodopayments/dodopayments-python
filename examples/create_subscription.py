@@ -8,6 +8,7 @@ from dodopayments import DodoPayments
 
 load_dotenv()
 
+
 def main() -> None:
     client = DodoPayments(
         bearer_token=os.environ["DODO_PAYMENTS_API_KEY"],
