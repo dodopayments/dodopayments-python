@@ -89,6 +89,21 @@ class CheckoutSessionFlagsParam(TypedDict, total=False):
     Default is false
     """
 
+    require_tax_id: bool
+    """
+    If true, the customer must give a tax id to check out as a business. A tax id is
+    the GST number in India, or the VAT number in the EU. You must also set
+    `allow_tax_id` to true.
+
+    On the checkout page, this field does not change checkout for a customer who
+    buys as an individual.
+
+    A `confirm: true` request skips the checkout page. The request must contain
+    `tax_id`.
+
+    Default is false
+    """
+
     single_page: bool
     """
     If true, the session uses the single-page checkout flow: the page initializes

@@ -23,3 +23,9 @@ class EmailPolicies(BaseModel):
 
     retry_allowed: bool
     """The row failed and may be sent again."""
+
+    superseded: bool
+    """
+    A later send of this email reached the provider, so this row is history. To send
+    it again would deliver a second copy.
+    """
