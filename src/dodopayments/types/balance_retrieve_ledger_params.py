@@ -192,6 +192,10 @@ class BalanceRetrieveLedgerParams(TypedDict, total=False):
         "byop_fee",
         "ethoca_fees",
         "ethoca_fees_reversal",
+        "visa_rdr_fee",
+        "dispute_fees_reversal",
+        "deflection_fees",
+        "deflection_fees_reversal",
     ]
     """Filter by Ledger Event Type"""
 
