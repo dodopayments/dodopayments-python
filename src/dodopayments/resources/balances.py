@@ -224,6 +224,10 @@ class BalancesResource(SyncAPIResource):
             "byop_fee",
             "ethoca_fees",
             "ethoca_fees_reversal",
+            "visa_rdr_fee",
+            "dispute_fees_reversal",
+            "deflection_fees",
+            "deflection_fees_reversal",
         ]
         | Omit = omit,
         limit: int | Omit = omit,
@@ -487,6 +491,10 @@ class AsyncBalancesResource(AsyncAPIResource):
             "byop_fee",
             "ethoca_fees",
             "ethoca_fees_reversal",
+            "visa_rdr_fee",
+            "dispute_fees_reversal",
+            "deflection_fees",
+            "deflection_fees_reversal",
         ]
         | Omit = omit,
         limit: int | Omit = omit,

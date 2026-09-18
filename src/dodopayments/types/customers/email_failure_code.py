@@ -13,4 +13,5 @@ EmailFailureCode: TypeAlias = Literal[
     "message_too_large",
     "marked_as_spam",
     "send_failed",
+    "test_mode_quota_spent",
 ]
