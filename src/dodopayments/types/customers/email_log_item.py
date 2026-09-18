@@ -51,12 +51,6 @@ class EmailLogItem(BaseModel):
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """The address the email was sent from."""
 
-    intended_recipient: Optional[str] = None
-    """
-    What the merchant typed, when test mode redirected the send to the business
-    owner.
-    """
-
     recipient: Optional[str] = None
     """The address the email reached."""
 

@@ -46,6 +46,10 @@ class BalanceLedgerEntry(BaseModel):
         "byop_fee",
         "ethoca_fees",
         "ethoca_fees_reversal",
+        "visa_rdr_fee",
+        "dispute_fees_reversal",
+        "deflection_fees",
+        "deflection_fees_reversal",
     ]
 
     is_credit: bool
