@@ -1,18 +1,5 @@
 # Changelog
 
-## [1.117.0](https://github.com/dodopayments/dodopayments-python/compare/v1.116.0...v1.117.0) (2026-09-18)
-
-
-### Features
-
-* **api:** tax id checkout flag, ledger event types, email policy fields ([10a00ea](https://github.com/dodopayments/dodopayments-python/commit/10a00eac9fe031a76613a6e3ba6a7b3af128e682))
-* **api:** tax id checkout flag, ledger event types, email policy fields ([2d0ecfb](https://github.com/dodopayments/dodopayments-python/commit/2d0ecfbe8819e35c086f3723b23a470c8e341e74))
-
-
-### Chores
-
-* add Dependabot config for GitHub Actions ([a5dfed7](https://github.com/dodopayments/dodopayments-python/commit/a5dfed704853b07493a706eeea541955724dd592))
-
 ## [1.116.0](https://github.com/dodopayments/dodopayments-python/compare/v1.115.0...v1.116.0) (2026-09-10)
 
 
