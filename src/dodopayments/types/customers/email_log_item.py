@@ -52,7 +52,10 @@ class EmailLogItem(BaseModel):
     """The address the email was sent from."""
 
     recipient: Optional[str] = None
-    """The address the email reached."""
+    """The address the email went to.
+
+    On a failed email this is the address the provider reports as bounced.
+    """
 
     subject: Optional[str] = None
     """The subject line as it was sent. Empty until the provider replicates."""

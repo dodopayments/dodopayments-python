@@ -81,6 +81,14 @@ class CheckoutSessionFlagsParam(TypedDict, total=False):
     Default is false
     """
 
+    require_cardholder_name: bool
+    """
+    If true, the customer must give the name on the card to pay by card. The
+    checkout page enforces this. Other payment methods ignore it.
+
+    Default is false
+    """
+
     require_phone_number: bool
     """
     If true, the customer must provide a phone number to complete checkout. Requires

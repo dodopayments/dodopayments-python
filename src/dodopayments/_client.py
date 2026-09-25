@@ -52,6 +52,7 @@ if TYPE_CHECKING:
         blocklist,
         customers,
         discounts,
+        moderation,
         entitlements,
         license_keys,
         usage_events,
@@ -71,6 +72,7 @@ if TYPE_CHECKING:
     from .resources.licenses import LicensesResource, AsyncLicensesResource
     from .resources.payments import PaymentsResource, AsyncPaymentsResource
     from .resources.discounts import DiscountsResource, AsyncDiscountsResource
+    from .resources.moderation import ModerationResource, AsyncModerationResource
     from .resources.license_keys import LicenseKeysResource, AsyncLicenseKeysResource
     from .resources.usage_events import UsageEventsResource, AsyncUsageEventsResource
     from .resources.subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
@@ -349,6 +351,12 @@ class DodoPayments(SyncAPIClient):
         from .resources.product_collections import ProductCollectionsResource
 
         return ProductCollectionsResource(self)
+
+    @cached_property
+    def moderation(self) -> ModerationResource:
+        from .resources.moderation import ModerationResource
+
+        return ModerationResource(self)
 
     @cached_property
     def with_raw_response(self) -> DodoPaymentsWithRawResponse:
@@ -708,6 +716,12 @@ class AsyncDodoPayments(AsyncAPIClient):
         return AsyncProductCollectionsResource(self)
 
     @cached_property
+    def moderation(self) -> AsyncModerationResource:
+        from .resources.moderation import AsyncModerationResource
+
+        return AsyncModerationResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncDodoPaymentsWithRawResponse:
         return AsyncDodoPaymentsWithRawResponse(self)
 
@@ -974,6 +988,12 @@ class DodoPaymentsWithRawResponse:
 
         return ProductCollectionsResourceWithRawResponse(self._client.product_collections)
 
+    @cached_property
+    def moderation(self) -> moderation.ModerationResourceWithRawResponse:
+        from .resources.moderation import ModerationResourceWithRawResponse
+
+        return ModerationResourceWithRawResponse(self._client.moderation)
+
 
 class AsyncDodoPaymentsWithRawResponse:
     _client: AsyncDodoPayments
@@ -1124,6 +1144,12 @@ class AsyncDodoPaymentsWithRawResponse:
         from .resources.product_collections import AsyncProductCollectionsResourceWithRawResponse
 
         return AsyncProductCollectionsResourceWithRawResponse(self._client.product_collections)
+
+    @cached_property
+    def moderation(self) -> moderation.AsyncModerationResourceWithRawResponse:
+        from .resources.moderation import AsyncModerationResourceWithRawResponse
+
+        return AsyncModerationResourceWithRawResponse(self._client.moderation)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -1276,6 +1302,12 @@ class DodoPaymentsWithStreamedResponse:
 
         return ProductCollectionsResourceWithStreamingResponse(self._client.product_collections)
 
+    @cached_property
+    def moderation(self) -> moderation.ModerationResourceWithStreamingResponse:
+        from .resources.moderation import ModerationResourceWithStreamingResponse
+
+        return ModerationResourceWithStreamingResponse(self._client.moderation)
+
 
 class AsyncDodoPaymentsWithStreamedResponse:
     _client: AsyncDodoPayments
@@ -1426,6 +1458,12 @@ class AsyncDodoPaymentsWithStreamedResponse:
         from .resources.product_collections import AsyncProductCollectionsResourceWithStreamingResponse
 
         return AsyncProductCollectionsResourceWithStreamingResponse(self._client.product_collections)
+
+    @cached_property
+    def moderation(self) -> moderation.AsyncModerationResourceWithStreamingResponse:
+        from .resources.moderation import AsyncModerationResourceWithStreamingResponse
+
+        return AsyncModerationResourceWithStreamingResponse(self._client.moderation)
 
 
 Client = DodoPayments

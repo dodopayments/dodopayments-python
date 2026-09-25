@@ -228,6 +228,9 @@ class BalancesResource(SyncAPIResource):
             "dispute_fees_reversal",
             "deflection_fees",
             "deflection_fees_reversal",
+            "reserve_hold",
+            "reserve_release",
+            "moderation_fees",
         ]
         | Omit = omit,
         limit: int | Omit = omit,
@@ -495,6 +498,9 @@ class AsyncBalancesResource(AsyncAPIResource):
             "dispute_fees_reversal",
             "deflection_fees",
             "deflection_fees_reversal",
+            "reserve_hold",
+            "reserve_release",
+            "moderation_fees",
         ]
         | Omit = omit,
         limit: int | Omit = omit,
