@@ -50,6 +50,9 @@ class BalanceLedgerEntry(BaseModel):
         "dispute_fees_reversal",
         "deflection_fees",
         "deflection_fees_reversal",
+        "reserve_hold",
+        "reserve_release",
+        "moderation_fees",
     ]
 
     is_credit: bool

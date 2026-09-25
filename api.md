@@ -815,3 +815,24 @@ Methods:
 - <code title="post /product-collections/{id}/groups/{group_id}/items">client.product_collections.groups.items.<a href="./src/dodopayments/resources/product_collections/groups/items.py">create</a>(group_id, \*, id, \*\*<a href="src/dodopayments/types/product_collections/groups/item_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collections/groups/item_create_response.py">ItemCreateResponse</a></code>
 - <code title="patch /product-collections/{id}/groups/{group_id}/items/{item_id}">client.product_collections.groups.items.<a href="./src/dodopayments/resources/product_collections/groups/items.py">update</a>(item_id, \*, id, group_id, \*\*<a href="src/dodopayments/types/product_collections/groups/item_update_params.py">params</a>) -> None</code>
 - <code title="delete /product-collections/{id}/groups/{group_id}/items/{item_id}">client.product_collections.groups.items.<a href="./src/dodopayments/resources/product_collections/groups/items.py">delete</a>(item_id, \*, id, group_id) -> None</code>
+
+# Moderation
+
+Types:
+
+```python
+from dodopayments.types import (
+    ModerationCategory,
+    ModerationCategoryProvenance,
+    ModerationCategoryScores,
+    ModerationDecision,
+    ModerationProvenance,
+    ModerationRetrieveUsageResponse,
+    ModerationScreenResponse,
+)
+```
+
+Methods:
+
+- <code title="get /moderation/usage">client.moderation.<a href="./src/dodopayments/resources/moderation.py">retrieve_usage</a>() -> <a href="./src/dodopayments/types/moderation_retrieve_usage_response.py">ModerationRetrieveUsageResponse</a></code>
+- <code title="post /moderation/screen">client.moderation.<a href="./src/dodopayments/resources/moderation.py">screen</a>(\*\*<a href="src/dodopayments/types/moderation_screen_params.py">params</a>) -> <a href="./src/dodopayments/types/moderation_screen_response.py">ModerationScreenResponse</a></code>
