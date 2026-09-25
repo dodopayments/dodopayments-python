@@ -9,12 +9,15 @@ authors = [
 ]
 
 dependencies = [
-  "httpx>=0.23.0, <1",
-  "pydantic>=1.9.0, <3",
-  "typing-extensions>=4.14, <5",
-  "anyio>=3.5.0, <5",
-  "distro>=1.7.0, <2",
-  "sniffio",
+    "httpx>=0.23.0, <1",
+    "pydantic>=1.9.0, <3",
+    "typing-extensions>=4.14, <5",
+    "anyio>=3.5.0, <5",
+    "distro>=1.7.0, <2",
+    "sniffio",
+    "python-dotenv>=1.2.1",
+    "fastapi>=0.128.8",
+    "uvicorn>=0.39.0",
 ]
 
 requires-python = ">= 3.9"
