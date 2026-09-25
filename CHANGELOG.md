@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.118.0](https://github.com/dodopayments/dodopayments-python/compare/v1.117.0...v1.118.0) (2026-09-25)
+
+
+### Features
+
+* **api:** add moderation API and multi-subscription payments ([d105644](https://github.com/dodopayments/dodopayments-python/commit/d105644c404a172c6e9aad92db31f2fc7cbc3025))
+* **api:** add moderation API and multi-subscription payments ([25c3c28](https://github.com/dodopayments/dodopayments-python/commit/25c3c28ef49375f2cf840910ef1ef0b196191ba4))
+
 ## [1.116.0](https://github.com/dodopayments/dodopayments-python/compare/v1.115.0...v1.116.0) (2026-09-10)
 
 
