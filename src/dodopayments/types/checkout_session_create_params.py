@@ -22,6 +22,12 @@ __all__ = ["CheckoutSessionCreateParams"]
 
 class CheckoutSessionCreateParams(TypedDict, total=False):
     product_cart: Required[Iterable[ProductItemReqParam]]
+    """The products of the checkout.
+
+    A cart holds at most 20 of them, one-time and subscription products together. An
+    empty cart is valid for the product-collection flow, where the customer chooses
+    the product later.
+    """
 
     allowed_payment_method_types: Optional[List[PaymentMethodTypes]]
     """

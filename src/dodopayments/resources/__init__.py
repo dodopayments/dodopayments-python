@@ -128,6 +128,14 @@ from .discounts import (
     DiscountsResourceWithStreamingResponse,
     AsyncDiscountsResourceWithStreamingResponse,
 )
+from .moderation import (
+    ModerationResource,
+    AsyncModerationResource,
+    ModerationResourceWithRawResponse,
+    AsyncModerationResourceWithRawResponse,
+    ModerationResourceWithStreamingResponse,
+    AsyncModerationResourceWithStreamingResponse,
+)
 from .entitlements import (
     EntitlementsResource,
     AsyncEntitlementsResource,
@@ -338,4 +346,10 @@ __all__ = [
     "AsyncProductCollectionsResourceWithRawResponse",
     "ProductCollectionsResourceWithStreamingResponse",
     "AsyncProductCollectionsResourceWithStreamingResponse",
+    "ModerationResource",
+    "AsyncModerationResource",
+    "ModerationResourceWithRawResponse",
+    "AsyncModerationResourceWithRawResponse",
+    "ModerationResourceWithStreamingResponse",
+    "AsyncModerationResourceWithStreamingResponse",
 ]
