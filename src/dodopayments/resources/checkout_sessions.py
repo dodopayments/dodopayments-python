@@ -93,8 +93,13 @@ class CheckoutSessionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CheckoutSessionResponse:
-        """
-        Args:
+        """Args:
+          product_cart: The products of the checkout.
+
+        A cart holds at most 20 of them, one-time and
+              subscription products together. An empty cart is valid for the
+              product-collection flow, where the customer chooses the product later.
+
           allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
               adding a method here does not guarantee customers will see it. Availability
               still depends on other factors (e.g., customer location, merchant settings).
@@ -267,8 +272,13 @@ class CheckoutSessionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CheckoutSessionPreviewResponse:
-        """
-        Args:
+        """Args:
+          product_cart: The products of the checkout.
+
+        A cart holds at most 20 of them, one-time and
+              subscription products together. An empty cart is valid for the
+              product-collection flow, where the customer chooses the product later.
+
           allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
               adding a method here does not guarantee customers will see it. Availability
               still depends on other factors (e.g., customer location, merchant settings).
@@ -431,8 +441,13 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CheckoutSessionResponse:
-        """
-        Args:
+        """Args:
+          product_cart: The products of the checkout.
+
+        A cart holds at most 20 of them, one-time and
+              subscription products together. An empty cart is valid for the
+              product-collection flow, where the customer chooses the product later.
+
           allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
               adding a method here does not guarantee customers will see it. Availability
               still depends on other factors (e.g., customer location, merchant settings).
@@ -605,8 +620,13 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CheckoutSessionPreviewResponse:
-        """
-        Args:
+        """Args:
+          product_cart: The products of the checkout.
+
+        A cart holds at most 20 of them, one-time and
+              subscription products together. An empty cart is valid for the
+              product-collection flow, where the customer chooses the product later.
+
           allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
               adding a method here does not guarantee customers will see it. Availability
               still depends on other factors (e.g., customer location, merchant settings).

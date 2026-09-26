@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -28,6 +28,13 @@ class PaymentListResponse(BaseModel):
 
     has_license_key: bool
 
+    is_multi_subscription: bool
+    """True when one payment starts more than one subscription.
+
+    Read this field to find the payment type. Do not read the length of
+    `subscription_ids`. Do not read `subscription_id` for null.
+    """
+
     metadata: Metadata
     """Arbitrary key-value metadata.
 
@@ -41,6 +48,13 @@ class PaymentListResponse(BaseModel):
 
     `stripe` / `adyen` for BYOP routes (the merchant's own payment connector);
     `dodo` for everything Dodo processed itself.
+    """
+
+    subscription_ids: List[str]
+    """
+    Every subscription that this payment starts or charges, in a stable order. It is
+    empty for a one-time payment. It holds the value of `subscription_id` when the
+    payment names one subscription.
     """
 
     total_amount: int

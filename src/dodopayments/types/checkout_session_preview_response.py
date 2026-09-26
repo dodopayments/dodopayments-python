@@ -16,6 +16,7 @@ __all__ = [
     "ProductCartMeter",
     "ProductCartAddon",
     "RecurringBreakup",
+    "Subscription",
 ]
 
 
@@ -183,6 +184,34 @@ class RecurringBreakup(BaseModel):
     """Total tax on recurring payments"""
 
 
+class Subscription(BaseModel):
+    """The quote of one subscription in a cart of several."""
+
+    amount_due_now: int
+    """The amount this subscription charges today, including tax."""
+
+    product_id: str
+    """The subscription product."""
+
+    recurring_amount: int
+    """The amount of each renewal, including tax."""
+
+    next_billing_date: Optional[datetime] = None
+    """A preview of the first renewal date.
+
+    The date is set when the subscription activates.
+    """
+
+    recurring_tax: Optional[int] = None
+    """The tax in `recurring_amount`."""
+
+    tax_due_now: Optional[int] = None
+    """The tax in `amount_due_now`."""
+
+    trial_period_days: Optional[int] = None
+    """The trial duration in days. `None` when the subscription has no trial."""
+
+
 class CheckoutSessionPreviewResponse(BaseModel):
     """Data returned by the calculate checkout session API"""
 
@@ -220,11 +249,20 @@ class CheckoutSessionPreviewResponse(BaseModel):
     The upcoming billing date for subscriptions, computed relative to now: with a
     trial it is `now + trial_period_days`, otherwise `now + payment frequency`.
     `None` for one-time-only carts. This is a preview estimate; the authoritative
-    value is set when the subscription activates.
+    value is set when the subscription activates. For a cart of more than one
+    subscription, this is the earliest date of the cart. `subscriptions` gives the
+    date of each subscription.
     """
 
     recurring_breakup: Optional[RecurringBreakup] = None
     """Breakup of recurring payments (None for one-time only)"""
+
+    subscriptions: Optional[List[Subscription]] = None
+    """One entry for each subscription of a cart that holds more than one.
+
+    Each subscription renews on its own schedule, so the checkout shows each one
+    here.
+    """
 
     tax_id_business_name: Optional[str] = None
     """Registered business name from the official registry (EU/GB/AU) when found"""
@@ -242,11 +280,14 @@ class CheckoutSessionPreviewResponse(BaseModel):
     """
     Per-unit trial amount after discounts, in the price currency's minor units
     (pre-quantity, pre-tax; see `current_breakup` for the taxed total due today).
-    Only present for a paid trial; `None` for a free trial or no trial.
+    Only present for a paid trial; `None` for a free trial or no trial. Always
+    `None` for a cart of more than one subscription.
     """
 
     trial_period_days: Optional[int] = None
     """
     Effective trial duration in days for the subscription line, when there's a trial
-    (free or paid). `None` if no subscription or no trial.
+    (free or paid). `None` if no subscription or no trial. Always `None` for a cart
+    of more than one subscription. Read the trial of each subscription from
+    `subscriptions`.
     """

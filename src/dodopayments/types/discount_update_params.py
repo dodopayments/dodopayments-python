@@ -91,12 +91,15 @@ class CurrencyOption(TypedDict, total=False):
     """
 
     currency: Required[Currency]
-    """The currency this option applies to."""
+    """The currency this option applies to.
+
+    The row applies when the buyer pays in this currency.
+    """
 
     is_default: bool
-    """Whether this row is the default to convert from for unconfigured currencies.
-
-    At most one row per discount may be default.
+    """
+    Whether this row is the default to convert from when the buyer pays in a
+    currency that has no row. At most one row per discount may be default.
     """
 
     max_amount_possible: Optional[int]

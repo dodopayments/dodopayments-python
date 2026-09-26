@@ -51,6 +51,13 @@ class Payment(BaseModel):
     disputes: List[Dispute]
     """List of disputes associated with this payment"""
 
+    is_multi_subscription: bool
+    """True when one payment starts more than one subscription.
+
+    Read this field to find the payment type. Do not read the length of
+    `subscription_ids`. Do not read `subscription_id` for null.
+    """
+
     is_update_payment_method: bool
     """
     Whether this payment was created solely to update a subscription's payment
@@ -92,6 +99,13 @@ class Payment(BaseModel):
     The currency in which the settlement_amount will be credited to your Dodo
     balance. This may differ from the customer's payment currency in adaptive
     pricing scenarios.
+    """
+
+    subscription_ids: List[str]
+    """
+    Every subscription that this payment starts or charges, in a stable order. It is
+    empty for a one-time payment. It holds the value of `subscription_id` when the
+    payment names one subscription.
     """
 
     total_amount: int
@@ -180,7 +194,11 @@ class Payment(BaseModel):
     """Current status of the payment intent"""
 
     subscription_id: Optional[str] = None
-    """Identifier of the subscription if payment is part of a subscription"""
+    """
+    Identifier of the subscription if payment is part of a subscription. A
+    multi-subscription payment leaves this null, because no single subscription owns
+    the payment. Read `subscription_ids` for those.
+    """
 
     tax: Optional[int] = None
     """Amount of tax collected in the currency's smallest unit (e.g.
