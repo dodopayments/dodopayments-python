@@ -78,7 +78,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
-        minimal_address: bool | Omit = omit,
+        minimal_address: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -109,7 +109,14 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           billing_address: Billing address information for the session
 
-          billing_currency: This field is ingored if adaptive pricing is disabled
+          billing_currency: The currency to charge the customer in.
+
+              Adaptive pricing must be enabled for the business. The customer then pays in
+              this currency. If you do not set it, the currency comes from the billing
+              country.
+
+              If adaptive pricing is disabled, the API discards this field. The currency then
+              comes from the product price, or from the billing country.
 
           cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
               not provided, the back button will not be displayed.
@@ -147,6 +154,9 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           minimal_address: If true, only zipcode is required when confirm is true; other address fields
               remain optional
+
+              Default is true when `feature_flags.single_page` is true. Otherwise, default is
+              false.
 
           payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
               `confirm` is true. If provided, existing customer id must also be provided.
@@ -257,7 +267,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
-        minimal_address: bool | Omit = omit,
+        minimal_address: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -288,7 +298,14 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           billing_address: Billing address information for the session
 
-          billing_currency: This field is ingored if adaptive pricing is disabled
+          billing_currency: The currency to charge the customer in.
+
+              Adaptive pricing must be enabled for the business. The customer then pays in
+              this currency. If you do not set it, the currency comes from the billing
+              country.
+
+              If adaptive pricing is disabled, the API discards this field. The currency then
+              comes from the product price, or from the billing country.
 
           cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
               not provided, the back button will not be displayed.
@@ -326,6 +343,9 @@ class CheckoutSessionsResource(SyncAPIResource):
 
           minimal_address: If true, only zipcode is required when confirm is true; other address fields
               remain optional
+
+              Default is true when `feature_flags.single_page` is true. Otherwise, default is
+              false.
 
           payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
               `confirm` is true. If provided, existing customer id must also be provided.
@@ -426,7 +446,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
-        minimal_address: bool | Omit = omit,
+        minimal_address: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -457,7 +477,14 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           billing_address: Billing address information for the session
 
-          billing_currency: This field is ingored if adaptive pricing is disabled
+          billing_currency: The currency to charge the customer in.
+
+              Adaptive pricing must be enabled for the business. The customer then pays in
+              this currency. If you do not set it, the currency comes from the billing
+              country.
+
+              If adaptive pricing is disabled, the API discards this field. The currency then
+              comes from the product price, or from the billing country.
 
           cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
               not provided, the back button will not be displayed.
@@ -495,6 +522,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           minimal_address: If true, only zipcode is required when confirm is true; other address fields
               remain optional
+
+              Default is true when `feature_flags.single_page` is true. Otherwise, default is
+              false.
 
           payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
               `confirm` is true. If provided, existing customer id must also be provided.
@@ -605,7 +635,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         force_3ds: Optional[bool] | Omit = omit,
         mandate_min_amount_inr_paise: Optional[int] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
-        minimal_address: bool | Omit = omit,
+        minimal_address: Optional[bool] | Omit = omit,
         payment_method_id: Optional[str] | Omit = omit,
         product_collection_id: Optional[str] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -636,7 +666,14 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           billing_address: Billing address information for the session
 
-          billing_currency: This field is ingored if adaptive pricing is disabled
+          billing_currency: The currency to charge the customer in.
+
+              Adaptive pricing must be enabled for the business. The customer then pays in
+              this currency. If you do not set it, the currency comes from the billing
+              country.
+
+              If adaptive pricing is disabled, the API discards this field. The currency then
+              comes from the product price, or from the billing country.
 
           cancel_url: The URL to redirect the customer if they cancel or go back from the checkout. If
               not provided, the back button will not be displayed.
@@ -674,6 +711,9 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
 
           minimal_address: If true, only zipcode is required when confirm is true; other address fields
               remain optional
+
+              Default is true when `feature_flags.single_page` is true. Otherwise, default is
+              false.
 
           payment_method_id: Optional payment method ID to use for this checkout session. Only allowed when
               `confirm` is true. If provided, existing customer id must also be provided.
