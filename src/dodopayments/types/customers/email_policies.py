@@ -13,7 +13,11 @@ class EmailPolicies(BaseModel):
     """
 
     requires_different_address: bool
-    """A permanent failure was recorded, so the same address would be a no-op."""
+    """A permanent failure was recorded, so a send to the same address delivers
+    nothing.
+
+    It is false for a suppressed address that a resend can clear.
+    """
 
     resend_allowed: bool
     """The row was delivered and may be sent again."""

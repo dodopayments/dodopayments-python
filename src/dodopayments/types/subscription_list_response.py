@@ -11,6 +11,7 @@ from .billing_address import BillingAddress
 from .subscription_status import SubscriptionStatus
 from .scheduled_plan_change import ScheduledPlanChange
 from .customer_limited_details import CustomerLimitedDetails
+from .subscription_cancelled_by import SubscriptionCancelledBy
 
 __all__ = ["SubscriptionListResponse", "Discount"]
 
@@ -108,6 +109,12 @@ class SubscriptionListResponse(BaseModel):
 
     cancelled_at: Optional[datetime] = None
     """Cancelled timestamp if the subscription is cancelled"""
+
+    cancelled_by: Optional[SubscriptionCancelledBy] = None
+    """
+    The caller that cancelled the subscription or scheduled its cancel. `null` when
+    no caller is known, for example when the system cancelled the subscription.
+    """
 
     customer_business_name: Optional[str] = None
     """Business / legal name associated with the tax id (B2B).

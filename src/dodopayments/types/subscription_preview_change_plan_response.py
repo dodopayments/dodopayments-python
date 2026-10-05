@@ -115,13 +115,20 @@ class ImmediateChargeSummary(BaseModel):
     currency: Currency
 
     customer_credits: int
-    """Net credit movement in the smallest currency unit (e.g.
+    """Net credit movement in the smallest unit of `customer_credits_currency` (e.g.
 
-    cents). **Negative** – credits were deducted from the customer's balance to
+    cents). Read `customer_credits_currency` for the currency. It can differ from
+    `currency`. **Negative** – credits were deducted from the customer's balance to
     offset the charge (typical on upgrades). **Positive** – credits were added to
     the customer's balance, either from a downgrade proration refund or from
     topping-up the wallet to meet a gateway minimum-charge threshold. **Zero** – no
     credit movement occurred.
+    """
+
+    customer_credits_currency: Currency
+    """
+    This field gives the currency of `customer_credits`. The credit wallet uses the
+    subscription currency.
     """
 
     settlement_amount: int
