@@ -76,6 +76,7 @@ from dodopayments.types import (
     OnDemandSubscription,
     ScheduledPlanChange,
     Subscription,
+    SubscriptionCancelledBy,
     SubscriptionStatus,
     TimeInterval,
     UpdateSubscriptionPlanReq,
@@ -275,7 +276,7 @@ Methods:
 Types:
 
 ```python
-from dodopayments.types import Refund, RefundStatus
+from dodopayments.types import Refund, RefundNetworkReferenceType, RefundStatus
 ```
 
 Methods:
