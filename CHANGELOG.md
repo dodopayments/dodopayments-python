@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.119.0](https://github.com/dodopayments/dodopayments-python/compare/v1.118.0...v1.119.0) (2026-10-05)
-
-
-### Features
-
-* **api:** refund network references and subscription cancelled_by ([94d22fc](https://github.com/dodopayments/dodopayments-python/commit/94d22fcbe29fa3462b22b00b37e95167ae6727cd))
-* **api:** refund network references and subscription cancelled_by ([d3d297c](https://github.com/dodopayments/dodopayments-python/commit/d3d297cb246f1a73afe22590f7b4b5fd1741e70d))
-
 ## [1.118.0](https://github.com/dodopayments/dodopayments-python/compare/v1.117.0...v1.118.0) (2026-09-25)
 
 
