@@ -16,6 +16,7 @@ from .scheduled_plan_change import ScheduledPlanChange
 from .addon_cart_response_item import AddonCartResponseItem
 from .customer_limited_details import CustomerLimitedDetails
 from .meter_cart_response_item import MeterCartResponseItem
+from .subscription_cancelled_by import SubscriptionCancelledBy
 from .credit_entitlement_cart_response import CreditEntitlementCartResponse
 from .meter_credit_entitlement_cart_response import MeterCreditEntitlementCartResponse
 
@@ -120,6 +121,12 @@ class Subscription(BaseModel):
 
     cancelled_at: Optional[datetime] = None
     """Cancelled timestamp if the subscription is cancelled"""
+
+    cancelled_by: Optional[SubscriptionCancelledBy] = None
+    """
+    The caller that cancelled the subscription or scheduled its cancel. `null` when
+    no caller is known, for example when the system cancelled the subscription.
+    """
 
     custom_field_responses: Optional[List[CustomFieldResponse]] = None
     """Customer's responses to custom fields collected during checkout"""

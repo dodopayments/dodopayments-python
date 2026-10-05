@@ -43,7 +43,15 @@ class CheckoutSessionPreviewParams(TypedDict, total=False):
     """Billing address information for the session"""
 
     billing_currency: Optional[Currency]
-    """This field is ingored if adaptive pricing is disabled"""
+    """The currency to charge the customer in.
+
+    Adaptive pricing must be enabled for the business. The customer then pays in
+    this currency. If you do not set it, the currency comes from the billing
+    country.
+
+    If adaptive pricing is disabled, the API discards this field. The currency then
+    comes from the product price, or from the billing country.
+    """
 
     cancel_url: Optional[str]
     """
@@ -106,10 +114,13 @@ class CheckoutSessionPreviewParams(TypedDict, total=False):
     Defaults to empty if not provided.
     """
 
-    minimal_address: bool
+    minimal_address: Optional[bool]
     """
     If true, only zipcode is required when confirm is true; other address fields
     remain optional
+
+    Default is true when `feature_flags.single_page` is true. Otherwise, default is
+    false.
     """
 
     payment_method_id: Optional[str]

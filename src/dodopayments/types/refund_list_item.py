@@ -6,6 +6,7 @@ from datetime import datetime
 from .._models import BaseModel
 from .currency import Currency
 from .refund_status import RefundStatus
+from .refund_network_reference_type import RefundNetworkReferenceType
 
 __all__ = ["RefundListItem"]
 
@@ -34,6 +35,16 @@ class RefundListItem(BaseModel):
 
     currency: Optional[Currency] = None
     """The currency of the refund, represented as an ISO 4217 currency code."""
+
+    network_reference: Optional[str] = None
+    """The reference number that the card network or the bank gives to the refund.
+
+    The customer can give this number to their bank to trace the refund. It is null
+    until the payment processor sends it.
+    """
+
+    network_reference_type: Optional[RefundNetworkReferenceType] = None
+    """The kind of `network_reference`: ARN, STAN or RRN."""
 
     reason: Optional[str] = None
     """The reason provided for the refund, if any. Optional."""
