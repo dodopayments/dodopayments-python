@@ -497,6 +497,7 @@ class SubscriptionsResource(SyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -504,6 +505,7 @@ class SubscriptionsResource(SyncAPIResource):
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -524,6 +526,19 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_older_payment_link: Cancel the payment link of a pending plan change, so that this change can
+              replace it.
+
+              The link is cancelled only if the customer has not started to pay. A paid or
+              in-progress payment gives a `409`. A failed cancel gives a `503`, and a retry is
+              safe.
+
+              The request is validated before the cancel. A later failure, for example an
+              amount below the minimum, leaves the subscription on its current plan with no
+              open link. A retry is safe.
+
+              The preview route shares this request body and ignores this field.
 
           cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
 
@@ -571,6 +586,17 @@ class SubscriptionsResource(SyncAPIResource):
 
               If not specified, uses the business-level default setting.
 
+          return_url: The URL that receives the customer after they pay the payment link. Needs
+              `collect_via_payment_link: true`. Without it, the request gets a `422`. A change
+              that collects no money issues no link and does not use the URL. The preview
+              route validates this field but does not use it.
+
+              The redirect adds `subscription_id`, `payment_id` and `status`. The `status`
+              value is the status of the plan-change payment. It is not the status of the
+              subscription. When that payment fails, the subscription stays active on its
+              current plan. To try again, call this endpoint again to get a new link. The new
+              plan can apply after the redirect, when the payment webhook arrives.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -590,6 +616,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
@@ -597,6 +624,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
+                    "return_url": return_url,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),
@@ -684,6 +712,7 @@ class SubscriptionsResource(SyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -691,6 +720,7 @@ class SubscriptionsResource(SyncAPIResource):
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -711,6 +741,19 @@ class SubscriptionsResource(SyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_older_payment_link: Cancel the payment link of a pending plan change, so that this change can
+              replace it.
+
+              The link is cancelled only if the customer has not started to pay. A paid or
+              in-progress payment gives a `409`. A failed cancel gives a `503`, and a retry is
+              safe.
+
+              The request is validated before the cancel. A later failure, for example an
+              amount below the minimum, leaves the subscription on its current plan with no
+              open link. A retry is safe.
+
+              The preview route shares this request body and ignores this field.
 
           cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
 
@@ -758,6 +801,17 @@ class SubscriptionsResource(SyncAPIResource):
 
               If not specified, uses the business-level default setting.
 
+          return_url: The URL that receives the customer after they pay the payment link. Needs
+              `collect_via_payment_link: true`. Without it, the request gets a `422`. A change
+              that collects no money issues no link and does not use the URL. The preview
+              route validates this field but does not use it.
+
+              The redirect adds `subscription_id`, `payment_id` and `status`. The `status`
+              value is the status of the plan-change payment. It is not the status of the
+              subscription. When that payment fails, the subscription stays active on its
+              current plan. To try again, call this endpoint again to get a new link. The new
+              plan can apply after the redirect, when the payment webhook arrives.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -777,6 +831,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
@@ -784,6 +839,7 @@ class SubscriptionsResource(SyncAPIResource):
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
+                    "return_url": return_url,
                 },
                 subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
             ),
@@ -1401,6 +1457,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -1408,6 +1465,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1428,6 +1486,19 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_older_payment_link: Cancel the payment link of a pending plan change, so that this change can
+              replace it.
+
+              The link is cancelled only if the customer has not started to pay. A paid or
+              in-progress payment gives a `409`. A failed cancel gives a `503`, and a retry is
+              safe.
+
+              The request is validated before the cancel. A later failure, for example an
+              amount below the minimum, leaves the subscription on its current plan with no
+              open link. A retry is safe.
+
+              The preview route shares this request body and ignores this field.
 
           cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
 
@@ -1475,6 +1546,17 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
               If not specified, uses the business-level default setting.
 
+          return_url: The URL that receives the customer after they pay the payment link. Needs
+              `collect_via_payment_link: true`. Without it, the request gets a `422`. A change
+              that collects no money issues no link and does not use the URL. The preview
+              route validates this field but does not use it.
+
+              The redirect adds `subscription_id`, `payment_id` and `status`. The `status`
+              value is the status of the plan-change payment. It is not the status of the
+              subscription. When that payment fails, the subscription stays active on its
+              current plan. To try again, call this endpoint again to get a new link. The new
+              plan can apply after the redirect, when the payment webhook arrives.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1494,6 +1576,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
@@ -1501,6 +1584,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
+                    "return_url": return_url,
                 },
                 subscription_change_plan_params.SubscriptionChangePlanParams,
             ),
@@ -1588,6 +1672,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
         addons: Optional[Iterable[AttachAddonParam]] | Omit = omit,
+        cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
@@ -1595,6 +1680,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
+        return_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1615,6 +1701,19 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           addons: Addons for the new plan. Note : Leaving this empty would remove any existing
               addons
+
+          cancel_older_payment_link: Cancel the payment link of a pending plan change, so that this change can
+              replace it.
+
+              The link is cancelled only if the customer has not started to pay. A paid or
+              in-progress payment gives a `409`. A failed cancel gives a `503`, and a retry is
+              safe.
+
+              The request is validated before the cancel. A later failure, for example an
+              amount below the minimum, leaves the subscription on its current plan with no
+              open link. A retry is safe.
+
+              The preview route shares this request body and ignores this field.
 
           cancel_scheduled_change_plan: Replace a scheduled plan change with this one.
 
@@ -1662,6 +1761,17 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
               If not specified, uses the business-level default setting.
 
+          return_url: The URL that receives the customer after they pay the payment link. Needs
+              `collect_via_payment_link: true`. Without it, the request gets a `422`. A change
+              that collects no money issues no link and does not use the URL. The preview
+              route validates this field but does not use it.
+
+              The redirect adds `subscription_id`, `payment_id` and `status`. The `status`
+              value is the status of the plan-change payment. It is not the status of the
+              subscription. When that payment fails, the subscription stays active on its
+              current plan. To try again, call this endpoint again to get a new link. The new
+              plan can apply after the redirect, when the payment webhook arrives.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1681,6 +1791,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "quantity": quantity,
                     "adaptive_currency_fees_inclusive": adaptive_currency_fees_inclusive,
                     "addons": addons,
+                    "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
                     "discount_code": discount_code,
@@ -1688,6 +1799,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "effective_at": effective_at,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
+                    "return_url": return_url,
                 },
                 subscription_preview_change_plan_params.SubscriptionPreviewChangePlanParams,
             ),

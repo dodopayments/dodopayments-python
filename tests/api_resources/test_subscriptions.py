@@ -353,6 +353,7 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
             discount_code="discount_code",
@@ -360,6 +361,7 @@ class TestSubscriptions:
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
+            return_url="return_url",
         )
         assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
@@ -485,6 +487,7 @@ class TestSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
             discount_code="discount_code",
@@ -492,6 +495,7 @@ class TestSubscriptions:
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
+            return_url="return_url",
         )
         assert_matches_type(SubscriptionPreviewChangePlanResponse, subscription, path=["response"])
 
@@ -1015,6 +1019,7 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
             discount_code="discount_code",
@@ -1022,6 +1027,7 @@ class TestAsyncSubscriptions:
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
+            return_url="return_url",
         )
         assert_matches_type(SubscriptionChangePlanResponse, subscription, path=["response"])
 
@@ -1147,6 +1153,7 @@ class TestAsyncSubscriptions:
                     "quantity": 0,
                 }
             ],
+            cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
             discount_code="discount_code",
@@ -1154,6 +1161,7 @@ class TestAsyncSubscriptions:
             effective_at="immediately",
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
+            return_url="return_url",
         )
         assert_matches_type(SubscriptionPreviewChangePlanResponse, subscription, path=["response"])
 
