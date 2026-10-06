@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.120.0](https://github.com/dodopayments/dodopayments-python/compare/v1.119.0...v1.120.0) (2026-10-06)
+
+
+### Features
+
+* **api:** change-plan cancel_older_payment_link and return_url ([21c02b7](https://github.com/dodopayments/dodopayments-python/commit/21c02b774eee4c71b71b0da2f09d57905ef78e63))
+* **api:** change-plan cancel_older_payment_link and return_url ([e5f7c8d](https://github.com/dodopayments/dodopayments-python/commit/e5f7c8dbb4b5c50d9b3ae6ca46d845eb25aac7c9))
+
 ## [1.119.0](https://github.com/dodopayments/dodopayments-python/compare/v1.118.0...v1.119.0) (2026-10-05)
 
 
