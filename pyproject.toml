@@ -48,18 +48,18 @@ webhooks = ["standardwebhooks >= 1.0.1, < 2"]
 managed = true
 # version pins are in requirements-dev.lock
 dev-dependencies = [
-    "pyright==1.1.399",
-    "mypy==1.17",
+    "pyright==1.1.414",
+    "mypy==1.19.1",
     "respx",
     "pytest",
     "pytest-asyncio",
     "ruff",
     "time-machine",
     "nox",
-    "dirty-equals>=0.6.0",
-    "importlib-metadata>=6.7.0",
-    "rich>=13.7.1",
-    "pytest-xdist>=3.6.1",
+    "dirty-equals>=0.11",
+    "importlib-metadata>=8.7.1",
+    "rich>=15.0.0",
+    "pytest-xdist>=3.8.0",
 ]
 
 [tool.rye.scripts]
