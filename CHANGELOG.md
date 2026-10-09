@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.120.1](https://github.com/dodopayments/dodopayments-python/compare/v1.120.0...v1.120.1) (2026-10-09)
-
-
-### Bug Fixes
-
-* **deps:** refresh generated SDK dependencies and CI action pins ([b6d5a45](https://github.com/dodopayments/dodopayments-python/commit/b6d5a454a7c2fa00d6cba8a26012885b5e4085ab))
-* **deps:** refresh generated SDK dependencies and CI action pins ([6abc1ab](https://github.com/dodopayments/dodopayments-python/commit/6abc1ab7dc72bf13c52c7eb23650e2802a506f42))
-
 ## [1.120.0](https://github.com/dodopayments/dodopayments-python/compare/v1.119.0...v1.120.0) (2026-10-06)
 
 
