@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.120.2](https://github.com/dodopayments/dodopayments-python/compare/v1.120.1...v1.120.2) (2026-10-09)
+
+
+### Bug Fixes
+
+* **deps:** upgrade SDK toolchains (pnpm, uv, TypeScript 7, Gradle 9, okhttp 5, zod 4) and stop cursor pagination on done ([3f78b4f](https://github.com/dodopayments/dodopayments-python/commit/3f78b4f7c7cc270e96922a063cc006777c03756e))
+* **deps:** upgrade SDK toolchains (pnpm, uv, TypeScript 7, Gradle 9, okhttp 5, zod 4) and stop cursor pagination on done ([67366c1](https://github.com/dodopayments/dodopayments-python/commit/67366c1966ae1bd49f194b7ce2d1def825800ed6))
+
 ## [1.120.1](https://github.com/dodopayments/dodopayments-python/compare/v1.120.0...v1.120.1) (2026-10-09)
 
 
