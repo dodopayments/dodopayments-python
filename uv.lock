@@ -274,7 +274,7 @@ wheels = [
 
 [[package]]
 name = "dodopayments"
-version = "1.120.1"
+version = "1.120.2"
 source = { editable = "." }
 dependencies = [
     { name = "anyio" },
