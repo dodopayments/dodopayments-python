@@ -3,7 +3,7 @@ from __future__ import annotations
 import io
 import os
 import pathlib
-from typing import Sequence, cast, overload
+from typing import Mapping, Sequence, cast, overload
 from typing_extensions import TypeVar, TypeGuard
 
 import anyio
@@ -53,13 +53,13 @@ def to_httpx_files(files: RequestFiles | None) -> HttpxRequestFiles | None:
         return None
 
     if is_mapping_t(files):
-        files = {key: _transform_file(file) for key, file in files.items()}
+        mapping_files: Mapping[str, FileTypes] = files
+        return {key: _transform_file(file) for key, file in mapping_files.items()}
     elif is_sequence_t(files):
-        files = [(key, _transform_file(file)) for key, file in files]
+        sequence_files: Sequence[tuple[str, FileTypes]] = files
+        return [(key, _transform_file(file)) for key, file in sequence_files]
     else:
         raise TypeError(f"Unexpected file type input {type(files)}, expected mapping or sequence")
-
-    return files
 
 
 def _transform_file(file: FileTypes) -> HttpxFileTypes:
@@ -95,13 +95,13 @@ async def async_to_httpx_files(files: RequestFiles | None) -> HttpxRequestFiles 
         return None
 
     if is_mapping_t(files):
-        files = {key: await _async_transform_file(file) for key, file in files.items()}
+        mapping_files: Mapping[str, FileTypes] = files
+        return {key: await _async_transform_file(file) for key, file in mapping_files.items()}
     elif is_sequence_t(files):
-        files = [(key, await _async_transform_file(file)) for key, file in files]
+        sequence_files: Sequence[tuple[str, FileTypes]] = files
+        return [(key, await _async_transform_file(file)) for key, file in sequence_files]
     else:
         raise TypeError(f"Unexpected file type input {type(files)}, expected mapping or sequence")
-
-    return files
 
 
 async def _async_transform_file(file: FileTypes) -> HttpxFileTypes:
@@ -156,7 +156,7 @@ def _deepcopy_with_paths(item: _T, paths: Sequence[Sequence[str]], index: int) -
 
         # if no path continues through this mapping, it won't be mutated and copying it is redundant
         if not key_to_paths:
-            return item
+            return cast(_T, item)
 
         result = dict(item)
         for key, subpaths in key_to_paths.items():
