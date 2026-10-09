@@ -34,7 +34,7 @@ def is_typeddict(tp: Type[Any]) -> bool:
 
 
 def is_literal_type(tp: Type[Any]) -> bool:
-    return get_origin(tp) in _LITERAL_TYPES
+    return _get_origin(tp) in _LITERAL_TYPES
 
 
 def parse_date(value: Union[date, StrBytesIntFloat]) -> date:
