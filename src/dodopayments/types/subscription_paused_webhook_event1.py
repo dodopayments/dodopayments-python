@@ -28,6 +28,12 @@ class Data(Subscription):
     deadline too, next to a `past_due` status.
     """
 
+    payment_id: Optional[str] = None
+    """
+    Identifier of the payment that caused this event. It is set only for
+    `subscription.renewed`. It is null for all other subscription events.
+    """
+
 
 class SubscriptionPausedWebhookEvent(BaseModel):
     business_id: str

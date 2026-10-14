@@ -45,7 +45,13 @@ class ProductCollectionUpdateParams(TypedDict, total=False):
     """
 
     proration_billing_mode_on_downgrade: Optional[
-        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        Literal[
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
+        ]
     ]
     """
     Proration billing mode for downgrades: Some(Some(val)) = set, Some(None) = clear
@@ -53,7 +59,13 @@ class ProductCollectionUpdateParams(TypedDict, total=False):
     """
 
     proration_billing_mode_on_upgrade: Optional[
-        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        Literal[
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
+        ]
     ]
     """
     Proration billing mode for upgrades: Some(Some(val)) = set, Some(None) = clear
