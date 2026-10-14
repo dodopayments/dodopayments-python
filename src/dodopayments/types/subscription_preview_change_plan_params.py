@@ -17,7 +17,13 @@ class SubscriptionPreviewChangePlanParams(TypedDict, total=False):
     """Unique identifier of the product to subscribe to"""
 
     proration_billing_mode: Required[
-        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        Literal[
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
+        ]
     ]
     """Proration Billing Mode"""
 

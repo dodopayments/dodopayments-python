@@ -54,7 +54,13 @@ class ProductCollection(BaseModel):
     """
 
     proration_billing_mode_on_downgrade: Optional[
-        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        Literal[
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
+        ]
     ] = None
     """
     Default proration billing mode for subscription plan downgrades (null = inherit
@@ -62,7 +68,13 @@ class ProductCollection(BaseModel):
     """
 
     proration_billing_mode_on_upgrade: Optional[
-        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        Literal[
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
+        ]
     ] = None
     """
     Default proration billing mode for subscription plan upgrades (null = inherit
