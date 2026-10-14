@@ -42,7 +42,13 @@ class ProductCollectionCreateParams(TypedDict, total=False):
     """
 
     proration_billing_mode_on_downgrade: Optional[
-        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        Literal[
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
+        ]
     ]
     """
     Default proration billing mode for subscription plan downgrades (NULL = inherit
@@ -50,7 +56,13 @@ class ProductCollectionCreateParams(TypedDict, total=False):
     """
 
     proration_billing_mode_on_upgrade: Optional[
-        Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+        Literal[
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
+        ]
     ]
     """
     Default proration billing mode for subscription plan upgrades (NULL = inherit

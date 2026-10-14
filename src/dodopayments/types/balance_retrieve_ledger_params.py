@@ -199,6 +199,9 @@ class BalanceRetrieveLedgerParams(TypedDict, total=False):
         "reserve_hold",
         "reserve_release",
         "moderation_fees",
+        "dodo_fixed_fee",
+        "interchange_fee",
+        "scheme_fee",
     ]
     """Filter by Ledger Event Type"""
 
