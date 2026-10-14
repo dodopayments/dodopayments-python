@@ -16,6 +16,7 @@ from .refund_list_item import RefundListItem
 from .custom_field_response import CustomFieldResponse
 from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
+from .subscription_service_period import SubscriptionServicePeriod
 
 __all__ = ["Payment", "ProductCart"]
 
@@ -85,6 +86,15 @@ class Payment(BaseModel):
     Retry attempt number for subscription renewal payments. `0` for the original
     payment, `1`+ for each scheduled off-session retry after a failed renewal.
     Always `0` for non-subscription payments.
+    """
+
+    service_periods: List[SubscriptionServicePeriod]
+    """
+    The service period of each subscription that this payment pays for. The order is
+    the same as `subscription_ids`. For a plan change charge, the period starts at
+    the plan change and ends at the next billing date. The list is empty unless the
+    payment status is `succeeded`. The list is also empty for a one-time payment, an
+    on-demand charge, or a payment method update.
     """
 
     settlement_amount: int

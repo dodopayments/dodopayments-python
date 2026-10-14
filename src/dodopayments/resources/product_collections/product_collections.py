@@ -77,11 +77,23 @@ class ProductCollectionsResource(SyncAPIResource):
         effective_at_on_upgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         proration_billing_mode_on_downgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         proration_billing_mode_on_upgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -190,11 +202,23 @@ class ProductCollectionsResource(SyncAPIResource):
         name: Optional[str] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         proration_billing_mode_on_downgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         proration_billing_mode_on_upgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -458,11 +482,23 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
         effective_at_on_upgrade: Optional[Literal["immediately", "next_billing_date"]] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         proration_billing_mode_on_downgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         proration_billing_mode_on_upgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -571,11 +607,23 @@ class AsyncProductCollectionsResource(AsyncAPIResource):
         name: Optional[str] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         proration_billing_mode_on_downgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         proration_billing_mode_on_upgrade: Optional[
-            Literal["prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"]
+            Literal[
+                "prorated_immediately",
+                "full_immediately",
+                "difference_immediately",
+                "do_not_bill",
+                "prorated_immediately_keep_cycle",
+            ]
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

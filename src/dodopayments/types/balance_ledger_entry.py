@@ -53,6 +53,9 @@ class BalanceLedgerEntry(BaseModel):
         "reserve_hold",
         "reserve_release",
         "moderation_fees",
+        "dodo_fixed_fee",
+        "interchange_fee",
+        "scheme_fee",
     ]
 
     is_credit: bool

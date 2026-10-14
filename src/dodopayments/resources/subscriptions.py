@@ -492,7 +492,11 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         product_id: str,
         proration_billing_mode: Literal[
-            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
         ],
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
@@ -707,7 +711,11 @@ class SubscriptionsResource(SyncAPIResource):
         *,
         product_id: str,
         proration_billing_mode: Literal[
-            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
         ],
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
@@ -1452,7 +1460,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         product_id: str,
         proration_billing_mode: Literal[
-            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
         ],
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,
@@ -1667,7 +1679,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         *,
         product_id: str,
         proration_billing_mode: Literal[
-            "prorated_immediately", "full_immediately", "difference_immediately", "do_not_bill"
+            "prorated_immediately",
+            "full_immediately",
+            "difference_immediately",
+            "do_not_bill",
+            "prorated_immediately_keep_cycle",
         ],
         quantity: int,
         adaptive_currency_fees_inclusive: Optional[bool] | Omit = omit,

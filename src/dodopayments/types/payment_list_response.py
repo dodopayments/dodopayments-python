@@ -11,6 +11,7 @@ from .intent_status import IntentStatus
 from .dispute_status import DisputeStatus
 from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
+from .subscription_service_period import SubscriptionServicePeriod
 
 __all__ = ["PaymentListResponse"]
 
@@ -50,6 +51,23 @@ class PaymentListResponse(BaseModel):
     `dodo` for everything Dodo processed itself.
     """
 
+    retry_attempt: int
+    """The retry attempt number of this payment.
+
+    The value is `0` for the original payment. Each retry after a failed
+    subscription renewal adds `1`. The value is always `0` for a payment that is not
+    for a subscription.
+    """
+
+    service_periods: List[SubscriptionServicePeriod]
+    """
+    The service period of each subscription that this payment pays for. The order is
+    the same as `subscription_ids`. For a plan change charge, the period starts at
+    the plan change and ends at the next billing date. The list is empty unless the
+    payment status is `succeeded`. The list is also empty for a one-time payment, an
+    on-demand charge, or a payment method update.
+    """
+
     subscription_ids: List[str]
     """
     Every subscription that this payment starts or charges, in a stable order. It is
@@ -64,6 +82,12 @@ class PaymentListResponse(BaseModel):
 
     card_network: Optional[str] = None
     """Card network like VISA, MASTERCARD etc."""
+
+    checkout_session_id: Optional[str] = None
+    """The ID of the checkout session for this payment.
+
+    The value is null when the payment does not use a checkout session.
+    """
 
     dispute_status: Optional[DisputeStatus] = None
     """The most recent dispute status for this payment. None if no disputes exist."""

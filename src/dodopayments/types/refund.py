@@ -57,5 +57,12 @@ class Refund(BaseModel):
     network_reference_type: Optional[RefundNetworkReferenceType] = None
     """The kind of `network_reference`: ARN, STAN or RRN."""
 
+    network_reference_updated_at: Optional[datetime] = None
+    """The time in UTC when `network_reference` became available.
+
+    It is null when the reference is not available, or when it became available
+    before this field existed.
+    """
+
     reason: Optional[str] = None
     """The reason provided for the refund, if any. Optional."""
