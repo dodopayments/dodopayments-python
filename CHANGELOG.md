@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.121.0](https://github.com/dodopayments/dodopayments-python/compare/v1.120.2...v1.121.0) (2026-10-14)
+
+
+### Features
+
+* **api:** payment service periods, retry attempts and subscription renewal payment_id ([5e0d659](https://github.com/dodopayments/dodopayments-python/commit/5e0d65927a2e4dd2dd0ae055add88bccc31db423))
+* **api:** payment service periods, retry attempts and subscription renewal payment_id ([0e34749](https://github.com/dodopayments/dodopayments-python/commit/0e34749d9c3bb8c74e907e145586349e893c4c5c))
+
 ## [1.120.2](https://github.com/dodopayments/dodopayments-python/compare/v1.120.1...v1.120.2) (2026-10-09)
 
 
