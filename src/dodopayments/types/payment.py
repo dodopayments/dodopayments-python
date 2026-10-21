@@ -8,6 +8,7 @@ from .dispute import Dispute
 from .._models import BaseModel
 from .currency import Currency
 from .metadata import Metadata
+from .charge_type import ChargeType
 from .country_code import CountryCode
 from .intent_status import IntentStatus
 from .billing_address import BillingAddress
@@ -52,6 +53,14 @@ class Payment(BaseModel):
     disputes: List[Dispute]
     """List of disputes associated with this payment"""
 
+    includes_usage: bool
+    """True when this payment also bills metered usage or credit overage.
+
+    The usage is for the billing cycle before the service period, not for the
+    service period. The value is set for each payment status. It is false when
+    `charge_type` is null.
+    """
+
     is_multi_subscription: bool
     """True when one payment starts more than one subscription.
 
@@ -94,7 +103,10 @@ class Payment(BaseModel):
     the same as `subscription_ids`. For a plan change charge, the period starts at
     the plan change and ends at the next billing date. The list is empty unless the
     payment status is `succeeded`. The list is also empty for a one-time payment, an
-    on-demand charge, or a payment method update.
+    on-demand charge, or a payment method update. The list is set for `new`,
+    `renewal` and `plan_change` charges that succeeded. It can be empty for some
+    zero-amount payments. A `renewal` with no entry for its subscription bills usage
+    only. That payment does not extend the service period.
     """
 
     settlement_amount: int
@@ -125,6 +137,20 @@ class Payment(BaseModel):
     places)
     """
 
+    card_exp_month: Optional[str] = None
+    """Expiry month of the card, as two digits from `01` to `12`.
+
+    For Apple Pay and Google Pay, this is the expiry of the wallet token, which can
+    differ from the expiry of the physical card.
+    """
+
+    card_exp_year: Optional[str] = None
+    """Expiry year of the card, as four digits, for example `2029`.
+
+    For Apple Pay and Google Pay, this is the expiry of the wallet token, which can
+    differ from the expiry of the physical card.
+    """
+
     card_holder_name: Optional[str] = None
     """Cardholder name"""
 
@@ -135,10 +161,23 @@ class Payment(BaseModel):
     """The last four digits of the card"""
 
     card_network: Optional[str] = None
-    """Card network like VISA, MASTERCARD etc."""
+    """Card network, in lowercase, for example `visa`, `mastercard` or `amex`.
+
+    Older payments can carry other casing.
+    """
 
     card_type: Optional[str] = None
-    """The type of card DEBIT or CREDIT"""
+    """The type of card, in lowercase: `credit`, `debit` or `prepaid`.
+
+    Older payments can carry other casing.
+    """
+
+    charge_type: Optional[ChargeType] = None
+    """The type of subscription charge that this payment is for.
+
+    Refer to `ChargeType`. The value is set for each payment status, not only for
+    `succeeded`. The value is null when this payment charges no subscription.
+    """
 
     checkout_session_id: Optional[str] = None
     """
@@ -170,7 +209,11 @@ class Payment(BaseModel):
     """Invoice ID for this payment. Uses India-specific invoice ID if available."""
 
     invoice_url: Optional[str] = None
-    """URL to download the invoice PDF for this payment."""
+    """
+    DEPRECATED: Use `GET /invoices/payments/{payment_id}` with an API key. URL to
+    download the invoice PDF for this payment. The URL has no signed token. If the
+    business asks for a credential on its invoice links, the URL needs an API key.
+    """
 
     payment_link: Optional[str] = None
     """Checkout URL"""

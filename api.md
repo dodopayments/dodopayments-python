@@ -33,6 +33,7 @@ Types:
 from dodopayments.types import (
     AttachExistingCustomer,
     BillingAddress,
+    ChargeType,
     CreateNewCustomer,
     CustomFieldResponse,
     CustomerLimitedDetails,
@@ -112,9 +113,9 @@ Methods:
 
 Methods:
 
-- <code title="get /invoices/payments/{payment_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve</a>(payment_id) -> BinaryAPIResponse</code>
-- <code title="get /invoices/payouts/{payout_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve_payout</a>(payout_id) -> BinaryAPIResponse</code>
-- <code title="get /invoices/refunds/{refund_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve_refund</a>(refund_id) -> BinaryAPIResponse</code>
+- <code title="get /invoices/payments/{payment_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve</a>(payment_id, \*\*<a href="src/dodopayments/types/invoices/payment_retrieve_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="get /invoices/payouts/{payout_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve_payout</a>(payout_id, \*\*<a href="src/dodopayments/types/invoices/payment_retrieve_payout_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="get /invoices/refunds/{refund_id}">client.invoices.payments.<a href="./src/dodopayments/resources/invoices/payments.py">retrieve_refund</a>(refund_id, \*\*<a href="src/dodopayments/types/invoices/payment_retrieve_refund_params.py">params</a>) -> BinaryAPIResponse</code>
 
 # Licenses
 

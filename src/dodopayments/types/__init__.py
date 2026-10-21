@@ -17,6 +17,7 @@ from .currency import Currency as Currency
 from .customer import Customer as Customer
 from .discount import Discount as Discount
 from .metadata import Metadata as Metadata
+from .charge_type import ChargeType as ChargeType
 from .conjunction import Conjunction as Conjunction
 from .entitlement import Entitlement as Entitlement
 from .filter_type import FilterType as FilterType
