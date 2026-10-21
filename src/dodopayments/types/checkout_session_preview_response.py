@@ -161,6 +161,14 @@ class ProductCart(BaseModel):
     discount_cycle: Optional[int] = None
     """number of cycles the discount will apply"""
 
+    monthly_equivalent: Optional[int] = None
+    """
+    The monthly equivalent of the yearly unit price after discounts, in minor units
+    of `currency`. Only the hosted checkout sets it, when the business shows yearly
+    plans as monthly. The value is only for display. The order summary shows the
+    amounts that we charge.
+    """
+
     name: Optional[str] = None
     """name of the product"""
 

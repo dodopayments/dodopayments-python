@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import path_template
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,6 +19,7 @@ from ..._response import (
     async_to_custom_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.invoices import payment_retrieve_params, payment_retrieve_payout_params, payment_retrieve_refund_params
 
 __all__ = ["PaymentsResource", "AsyncPaymentsResource"]
 
@@ -47,6 +48,7 @@ class PaymentsResource(SyncAPIResource):
         self,
         payment_id: str,
         *,
+        token: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -54,8 +56,12 @@ class PaymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
-        """
-        Args:
+        """Args:
+          token: The signed link token.
+
+        If the business asks for a credential on its invoice
+              links, a valid token for this record replaces the credential.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -70,7 +76,11 @@ class PaymentsResource(SyncAPIResource):
         return self._get(
             path_template("/invoices/payments/{payment_id}", payment_id=payment_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"token": token}, payment_retrieve_params.PaymentRetrieveParams),
             ),
             cast_to=BinaryAPIResponse,
         )
@@ -79,6 +89,7 @@ class PaymentsResource(SyncAPIResource):
         self,
         payout_id: str,
         *,
+        token: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,8 +97,12 @@ class PaymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
-        """
-        Args:
+        """Args:
+          token: The signed link token.
+
+        If the business asks for a credential on its invoice
+              links, a valid token for this record replaces the credential.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -102,7 +117,11 @@ class PaymentsResource(SyncAPIResource):
         return self._get(
             path_template("/invoices/payouts/{payout_id}", payout_id=payout_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"token": token}, payment_retrieve_payout_params.PaymentRetrievePayoutParams),
             ),
             cast_to=BinaryAPIResponse,
         )
@@ -111,6 +130,7 @@ class PaymentsResource(SyncAPIResource):
         self,
         refund_id: str,
         *,
+        token: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,8 +138,12 @@ class PaymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
-        """
-        Args:
+        """Args:
+          token: The signed link token.
+
+        If the business asks for a credential on its invoice
+              links, a valid token for this record replaces the credential.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -134,7 +158,11 @@ class PaymentsResource(SyncAPIResource):
         return self._get(
             path_template("/invoices/refunds/{refund_id}", refund_id=refund_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"token": token}, payment_retrieve_refund_params.PaymentRetrieveRefundParams),
             ),
             cast_to=BinaryAPIResponse,
         )
@@ -164,6 +192,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         self,
         payment_id: str,
         *,
+        token: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,8 +200,12 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
-        """
-        Args:
+        """Args:
+          token: The signed link token.
+
+        If the business asks for a credential on its invoice
+              links, a valid token for this record replaces the credential.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -187,7 +220,11 @@ class AsyncPaymentsResource(AsyncAPIResource):
         return await self._get(
             path_template("/invoices/payments/{payment_id}", payment_id=payment_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"token": token}, payment_retrieve_params.PaymentRetrieveParams),
             ),
             cast_to=AsyncBinaryAPIResponse,
         )
@@ -196,6 +233,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         self,
         payout_id: str,
         *,
+        token: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,8 +241,12 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
-        """
-        Args:
+        """Args:
+          token: The signed link token.
+
+        If the business asks for a credential on its invoice
+              links, a valid token for this record replaces the credential.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -219,7 +261,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
         return await self._get(
             path_template("/invoices/payouts/{payout_id}", payout_id=payout_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"token": token}, payment_retrieve_payout_params.PaymentRetrievePayoutParams
+                ),
             ),
             cast_to=AsyncBinaryAPIResponse,
         )
@@ -228,6 +276,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         self,
         refund_id: str,
         *,
+        token: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -235,8 +284,12 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
-        """
-        Args:
+        """Args:
+          token: The signed link token.
+
+        If the business asks for a credential on its invoice
+              links, a valid token for this record replaces the credential.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -251,7 +304,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
         return await self._get(
             path_template("/invoices/refunds/{refund_id}", refund_id=refund_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"token": token}, payment_retrieve_refund_params.PaymentRetrieveRefundParams
+                ),
             ),
             cast_to=AsyncBinaryAPIResponse,
         )

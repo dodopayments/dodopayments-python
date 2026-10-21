@@ -30,7 +30,22 @@ class TestPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         payment = client.invoices.payments.retrieve(
-            "pay_gr4RizvMOXFJ6xca3y2tU",
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
+        )
+        assert payment.is_closed
+        assert payment.json() == {"foo": "bar"}
+        assert cast(Any, payment.is_closed) is True
+        assert isinstance(payment, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_retrieve_with_all_params(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        payment = client.invoices.payments.retrieve(
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
+            token="token",
         )
         assert payment.is_closed
         assert payment.json() == {"foo": "bar"}
@@ -45,7 +60,7 @@ class TestPayments:
         )
 
         payment = client.invoices.payments.with_raw_response.retrieve(
-            "pay_gr4RizvMOXFJ6xca3y2tU",
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert payment.is_closed is True
@@ -60,7 +75,7 @@ class TestPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         with client.invoices.payments.with_streaming_response.retrieve(
-            "pay_gr4RizvMOXFJ6xca3y2tU",
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,7 +91,7 @@ class TestPayments:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
             client.invoices.payments.with_raw_response.retrieve(
-                "",
+                payment_id="",
             )
 
     @parametrize
@@ -86,7 +101,22 @@ class TestPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         payment = client.invoices.payments.retrieve_payout(
-            "pyt_zFTrrn4sk3x3y2vjDBW3T",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
+        )
+        assert payment.is_closed
+        assert payment.json() == {"foo": "bar"}
+        assert cast(Any, payment.is_closed) is True
+        assert isinstance(payment, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_retrieve_payout_with_all_params(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        payment = client.invoices.payments.retrieve_payout(
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
+            token="token",
         )
         assert payment.is_closed
         assert payment.json() == {"foo": "bar"}
@@ -101,7 +131,7 @@ class TestPayments:
         )
 
         payment = client.invoices.payments.with_raw_response.retrieve_payout(
-            "pyt_zFTrrn4sk3x3y2vjDBW3T",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert payment.is_closed is True
@@ -116,7 +146,7 @@ class TestPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         with client.invoices.payments.with_streaming_response.retrieve_payout(
-            "pyt_zFTrrn4sk3x3y2vjDBW3T",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,7 +162,7 @@ class TestPayments:
     def test_path_params_retrieve_payout(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `payout_id` but received ''"):
             client.invoices.payments.with_raw_response.retrieve_payout(
-                "",
+                payout_id="",
             )
 
     @parametrize
@@ -142,7 +172,22 @@ class TestPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         payment = client.invoices.payments.retrieve_refund(
-            "ref_F0gZetLvTxxBrMU2CZcmy",
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
+        )
+        assert payment.is_closed
+        assert payment.json() == {"foo": "bar"}
+        assert cast(Any, payment.is_closed) is True
+        assert isinstance(payment, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_retrieve_refund_with_all_params(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        payment = client.invoices.payments.retrieve_refund(
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
+            token="token",
         )
         assert payment.is_closed
         assert payment.json() == {"foo": "bar"}
@@ -157,7 +202,7 @@ class TestPayments:
         )
 
         payment = client.invoices.payments.with_raw_response.retrieve_refund(
-            "ref_F0gZetLvTxxBrMU2CZcmy",
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
         )
 
         assert payment.is_closed is True
@@ -172,7 +217,7 @@ class TestPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         with client.invoices.payments.with_streaming_response.retrieve_refund(
-            "ref_F0gZetLvTxxBrMU2CZcmy",
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -188,7 +233,7 @@ class TestPayments:
     def test_path_params_retrieve_refund(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `refund_id` but received ''"):
             client.invoices.payments.with_raw_response.retrieve_refund(
-                "",
+                refund_id="",
             )
 
 
@@ -204,7 +249,24 @@ class TestAsyncPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         payment = await async_client.invoices.payments.retrieve(
-            "pay_gr4RizvMOXFJ6xca3y2tU",
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
+        )
+        assert payment.is_closed
+        assert await payment.json() == {"foo": "bar"}
+        assert cast(Any, payment.is_closed) is True
+        assert isinstance(payment, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_retrieve_with_all_params(
+        self, async_client: AsyncDodoPayments, respx_mock: MockRouter
+    ) -> None:
+        respx_mock.get("/invoices/payments/pay_gr4RizvMOXFJ6xca3y2tU").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        payment = await async_client.invoices.payments.retrieve(
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
+            token="token",
         )
         assert payment.is_closed
         assert await payment.json() == {"foo": "bar"}
@@ -219,7 +281,7 @@ class TestAsyncPayments:
         )
 
         payment = await async_client.invoices.payments.with_raw_response.retrieve(
-            "pay_gr4RizvMOXFJ6xca3y2tU",
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
         )
 
         assert payment.is_closed is True
@@ -234,7 +296,7 @@ class TestAsyncPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         async with async_client.invoices.payments.with_streaming_response.retrieve(
-            "pay_gr4RizvMOXFJ6xca3y2tU",
+            payment_id="pay_gr4RizvMOXFJ6xca3y2tU",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,7 +312,7 @@ class TestAsyncPayments:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_id` but received ''"):
             await async_client.invoices.payments.with_raw_response.retrieve(
-                "",
+                payment_id="",
             )
 
     @parametrize
@@ -260,7 +322,24 @@ class TestAsyncPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         payment = await async_client.invoices.payments.retrieve_payout(
-            "pyt_zFTrrn4sk3x3y2vjDBW3T",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
+        )
+        assert payment.is_closed
+        assert await payment.json() == {"foo": "bar"}
+        assert cast(Any, payment.is_closed) is True
+        assert isinstance(payment, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_retrieve_payout_with_all_params(
+        self, async_client: AsyncDodoPayments, respx_mock: MockRouter
+    ) -> None:
+        respx_mock.get("/invoices/payouts/pyt_zFTrrn4sk3x3y2vjDBW3T").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        payment = await async_client.invoices.payments.retrieve_payout(
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
+            token="token",
         )
         assert payment.is_closed
         assert await payment.json() == {"foo": "bar"}
@@ -275,7 +354,7 @@ class TestAsyncPayments:
         )
 
         payment = await async_client.invoices.payments.with_raw_response.retrieve_payout(
-            "pyt_zFTrrn4sk3x3y2vjDBW3T",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         )
 
         assert payment.is_closed is True
@@ -292,7 +371,7 @@ class TestAsyncPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         async with async_client.invoices.payments.with_streaming_response.retrieve_payout(
-            "pyt_zFTrrn4sk3x3y2vjDBW3T",
+            payout_id="pyt_zFTrrn4sk3x3y2vjDBW3T",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -308,7 +387,7 @@ class TestAsyncPayments:
     async def test_path_params_retrieve_payout(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `payout_id` but received ''"):
             await async_client.invoices.payments.with_raw_response.retrieve_payout(
-                "",
+                payout_id="",
             )
 
     @parametrize
@@ -318,7 +397,24 @@ class TestAsyncPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         payment = await async_client.invoices.payments.retrieve_refund(
-            "ref_F0gZetLvTxxBrMU2CZcmy",
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
+        )
+        assert payment.is_closed
+        assert await payment.json() == {"foo": "bar"}
+        assert cast(Any, payment.is_closed) is True
+        assert isinstance(payment, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_retrieve_refund_with_all_params(
+        self, async_client: AsyncDodoPayments, respx_mock: MockRouter
+    ) -> None:
+        respx_mock.get("/invoices/refunds/ref_F0gZetLvTxxBrMU2CZcmy").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        payment = await async_client.invoices.payments.retrieve_refund(
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
+            token="token",
         )
         assert payment.is_closed
         assert await payment.json() == {"foo": "bar"}
@@ -333,7 +429,7 @@ class TestAsyncPayments:
         )
 
         payment = await async_client.invoices.payments.with_raw_response.retrieve_refund(
-            "ref_F0gZetLvTxxBrMU2CZcmy",
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
         )
 
         assert payment.is_closed is True
@@ -350,7 +446,7 @@ class TestAsyncPayments:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         async with async_client.invoices.payments.with_streaming_response.retrieve_refund(
-            "ref_F0gZetLvTxxBrMU2CZcmy",
+            refund_id="ref_F0gZetLvTxxBrMU2CZcmy",
         ) as payment:
             assert not payment.is_closed
             assert payment.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -366,5 +462,5 @@ class TestAsyncPayments:
     async def test_path_params_retrieve_refund(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `refund_id` but received ''"):
             await async_client.invoices.payments.with_raw_response.retrieve_refund(
-                "",
+                refund_id="",
             )
