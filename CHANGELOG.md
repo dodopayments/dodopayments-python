@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.122.0](https://github.com/dodopayments/dodopayments-python/compare/v1.121.0...v1.122.0) (2026-10-21)
+
+
+### Features
+
+* **api:** payment charge type, usage flag and card details, signed invoice link tokens ([a4e7076](https://github.com/dodopayments/dodopayments-python/commit/a4e7076586049485116f5cf66fd493333c6f49c9))
+* **api:** payment charge type, usage flag and card details, signed invoice link tokens ([a5e59f7](https://github.com/dodopayments/dodopayments-python/commit/a5e59f7a3fc55d4940363ddb18d752bc1c1fe662))
+
 ## [1.121.0](https://github.com/dodopayments/dodopayments-python/compare/v1.120.2...v1.121.0) (2026-10-14)
 
 
