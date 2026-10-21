@@ -3,13 +3,17 @@
 -e .
 annotated-types==0.7.0
     # via pydantic
-anyio==4.12.1
+anyio==4.12.1 ; python_full_version < '3.10'
+    # via
+    #   dodopayments
+    #   httpx
+anyio==4.15.1 ; python_full_version >= '3.10'
     # via
     #   dodopayments
     #   httpx
 backports-asyncio-runner==1.2.0 ; python_full_version < '3.11'
     # via pytest-asyncio
-certifi==2026.1.4
+certifi==2026.10.19
     # via
     #   httpcore
     #   httpx
@@ -95,7 +99,18 @@ tomli==2.4.0 ; python_full_version < '3.11'
     # via
     #   mypy
     #   pytest
-typing-extensions==4.15.0
+typing-extensions==4.15.0 ; python_full_version < '3.10'
+    # via
+    #   anyio
+    #   dodopayments
+    #   exceptiongroup
+    #   mypy
+    #   pydantic
+    #   pydantic-core
+    #   pyright
+    #   pytest-asyncio
+    #   typing-inspection
+typing-extensions==4.16.0 ; python_full_version >= '3.10'
     # via
     #   anyio
     #   dodopayments
