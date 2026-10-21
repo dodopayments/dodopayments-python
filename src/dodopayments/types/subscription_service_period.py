@@ -13,6 +13,15 @@ class SubscriptionServicePeriod(BaseModel):
     ends_at: datetime
     """End of the service period."""
 
+    proration_factor: str
+    """The part of one full billing period that the plan charge pays for.
+
+    The value `"1"` is a full period. A value less than 1 is a partial period, for
+    example after a plan change that keeps the billing cycle. For a plan change,
+    this is the value of the new plan. The credit for the old plan is not in this
+    value.
+    """
+
     starts_at: datetime
     """Start of the service period.
 
