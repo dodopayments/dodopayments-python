@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.122.1](https://github.com/dodopayments/dodopayments-python/compare/v1.122.0...v1.122.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* **deps:** bump pygments, idna, multidict and pytest in lockfiles ([915894f](https://github.com/dodopayments/dodopayments-python/commit/915894f1ee24a7823edce97d4257cb70278be4dd))
+* **deps:** bump pygments, idna, multidict and pytest in lockfiles ([8accac6](https://github.com/dodopayments/dodopayments-python/commit/8accac6961ce502bfd0e6b3a98a500bb9ff9f7f0))
+
+
+### Chores
+
+* **deps:** bump certifi, aiohttp and anyio in lockfiles ([5d07a9e](https://github.com/dodopayments/dodopayments-python/commit/5d07a9ef1c853b382d6f99ae789e391f6c008cf5))
+* **deps:** bump certifi, aiohttp and anyio in lockfiles ([7437dc7](https://github.com/dodopayments/dodopayments-python/commit/7437dc7ce63f779903d7cefe9b8772f18dfb6c68))
+
 ## [1.122.0](https://github.com/dodopayments/dodopayments-python/compare/v1.121.0...v1.122.0) (2026-10-21)
 
 
