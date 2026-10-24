@@ -202,6 +202,7 @@ class BalanceRetrieveLedgerParams(TypedDict, total=False):
         "dodo_fixed_fee",
         "interchange_fee",
         "scheme_fee",
+        "opening_balance",
     ]
     """Filter by Ledger Event Type"""
 

@@ -131,14 +131,22 @@ class TestProducts:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         product = client.products.retrieve(
-            "pdt_R8AWMPiV8RyJElcCKvAID",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
+        )
+        assert_matches_type(Product, product, path=["response"])
+
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
+        product = client.products.retrieve(
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
+            locale="locale",
         )
         assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.products.with_raw_response.retrieve(
-            "pdt_R8AWMPiV8RyJElcCKvAID",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
         )
 
         assert response.is_closed is True
@@ -149,7 +157,7 @@ class TestProducts:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.products.with_streaming_response.retrieve(
-            "pdt_R8AWMPiV8RyJElcCKvAID",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -163,7 +171,7 @@ class TestProducts:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.products.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @parametrize
@@ -274,6 +282,7 @@ class TestProducts:
         product = client.products.list(
             archived=True,
             brand_id="brand_id",
+            locale="locale",
             page_number=0,
             page_size=0,
             recurring=True,
@@ -533,14 +542,22 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         product = await async_client.products.retrieve(
-            "pdt_R8AWMPiV8RyJElcCKvAID",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
+        )
+        assert_matches_type(Product, product, path=["response"])
+
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        product = await async_client.products.retrieve(
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
+            locale="locale",
         )
         assert_matches_type(Product, product, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.products.with_raw_response.retrieve(
-            "pdt_R8AWMPiV8RyJElcCKvAID",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
         )
 
         assert response.is_closed is True
@@ -551,7 +568,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.products.with_streaming_response.retrieve(
-            "pdt_R8AWMPiV8RyJElcCKvAID",
+            id="pdt_R8AWMPiV8RyJElcCKvAID",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -565,7 +582,7 @@ class TestAsyncProducts:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.products.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @parametrize
@@ -676,6 +693,7 @@ class TestAsyncProducts:
         product = await async_client.products.list(
             archived=True,
             brand_id="brand_id",
+            locale="locale",
             page_number=0,
             page_size=0,
             recurring=True,

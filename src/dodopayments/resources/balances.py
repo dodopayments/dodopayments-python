@@ -234,6 +234,7 @@ class BalancesResource(SyncAPIResource):
             "dodo_fixed_fee",
             "interchange_fee",
             "scheme_fee",
+            "opening_balance",
         ]
         | Omit = omit,
         limit: int | Omit = omit,
@@ -507,6 +508,7 @@ class AsyncBalancesResource(AsyncAPIResource):
             "dodo_fixed_fee",
             "interchange_fee",
             "scheme_fee",
+            "opening_balance",
         ]
         | Omit = omit,
         limit: int | Omit = omit,
