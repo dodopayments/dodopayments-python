@@ -67,7 +67,10 @@ class BreakupResource(SyncAPIResource):
         Returns the breakdown of a payout by event type (payments, refunds, disputes,
         fees, etc.) in the payout's currency. Each amount is proportionally allocated
         based on USD equivalent values, ensuring the total sums exactly to the payout
-        amount.
+        amount. A settlement batch payout shows its rows in native amounts. The
+        `carried_over` line holds the opening balance from the switch to settlement
+        batches and the rows dated before that opening balance. The `unattributed` line
+        shows the payout amount that the rows do not account for.
 
         Args:
           extra_headers: Send extra headers
@@ -128,7 +131,10 @@ class AsyncBreakupResource(AsyncAPIResource):
         Returns the breakdown of a payout by event type (payments, refunds, disputes,
         fees, etc.) in the payout's currency. Each amount is proportionally allocated
         based on USD equivalent values, ensuring the total sums exactly to the payout
-        amount.
+        amount. A settlement batch payout shows its rows in native amounts. The
+        `carried_over` line holds the opening balance from the switch to settlement
+        batches and the rows dated before that opening balance. The `unattributed` line
+        shows the payout amount that the rows do not account for.
 
         Args:
           extra_headers: Send extra headers

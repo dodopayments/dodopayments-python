@@ -75,14 +75,22 @@ class TestAddons:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         addon = client.addons.retrieve(
-            "adn_NX1zdqW4Hbivsqz8vI9dc",
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+        assert_matches_type(AddonResponse, addon, path=["response"])
+
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
+        addon = client.addons.retrieve(
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+            locale="locale",
         )
         assert_matches_type(AddonResponse, addon, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.addons.with_raw_response.retrieve(
-            "adn_NX1zdqW4Hbivsqz8vI9dc",
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
         )
 
         assert response.is_closed is True
@@ -93,7 +101,7 @@ class TestAddons:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.addons.with_streaming_response.retrieve(
-            "adn_NX1zdqW4Hbivsqz8vI9dc",
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,7 +115,7 @@ class TestAddons:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.addons.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @parametrize
@@ -169,6 +177,8 @@ class TestAddons:
     @parametrize
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         addon = client.addons.list(
+            archived=True,
+            locale="locale",
             page_number=0,
             page_size=0,
         )
@@ -193,6 +203,82 @@ class TestAddons:
             assert_matches_type(SyncDefaultPageNumberPagination[AddonResponse], addon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_delete(self, client: DodoPayments) -> None:
+        addon = client.addons.delete(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+        assert addon is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: DodoPayments) -> None:
+        response = client.addons.with_raw_response.delete(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        addon = response.parse()
+        assert addon is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: DodoPayments) -> None:
+        with client.addons.with_streaming_response.delete(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            addon = response.parse()
+            assert addon is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.addons.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
+    def test_method_unarchive(self, client: DodoPayments) -> None:
+        addon = client.addons.unarchive(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+        assert addon is None
+
+    @parametrize
+    def test_raw_response_unarchive(self, client: DodoPayments) -> None:
+        response = client.addons.with_raw_response.unarchive(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        addon = response.parse()
+        assert addon is None
+
+    @parametrize
+    def test_streaming_response_unarchive(self, client: DodoPayments) -> None:
+        with client.addons.with_streaming_response.unarchive(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            addon = response.parse()
+            assert addon is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_unarchive(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.addons.with_raw_response.unarchive(
+                "",
+            )
 
     @parametrize
     def test_method_update_images(self, client: DodoPayments) -> None:
@@ -292,14 +378,22 @@ class TestAsyncAddons:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         addon = await async_client.addons.retrieve(
-            "adn_NX1zdqW4Hbivsqz8vI9dc",
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+        assert_matches_type(AddonResponse, addon, path=["response"])
+
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        addon = await async_client.addons.retrieve(
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+            locale="locale",
         )
         assert_matches_type(AddonResponse, addon, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.addons.with_raw_response.retrieve(
-            "adn_NX1zdqW4Hbivsqz8vI9dc",
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
         )
 
         assert response.is_closed is True
@@ -310,7 +404,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.addons.with_streaming_response.retrieve(
-            "adn_NX1zdqW4Hbivsqz8vI9dc",
+            id="adn_NX1zdqW4Hbivsqz8vI9dc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -324,7 +418,7 @@ class TestAsyncAddons:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.addons.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @parametrize
@@ -386,6 +480,8 @@ class TestAsyncAddons:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         addon = await async_client.addons.list(
+            archived=True,
+            locale="locale",
             page_number=0,
             page_size=0,
         )
@@ -410,6 +506,82 @@ class TestAsyncAddons:
             assert_matches_type(AsyncDefaultPageNumberPagination[AddonResponse], addon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncDodoPayments) -> None:
+        addon = await async_client.addons.delete(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+        assert addon is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.addons.with_raw_response.delete(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        addon = await response.parse()
+        assert addon is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.addons.with_streaming_response.delete(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            addon = await response.parse()
+            assert addon is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.addons.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
+    async def test_method_unarchive(self, async_client: AsyncDodoPayments) -> None:
+        addon = await async_client.addons.unarchive(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+        assert addon is None
+
+    @parametrize
+    async def test_raw_response_unarchive(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.addons.with_raw_response.unarchive(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        addon = await response.parse()
+        assert addon is None
+
+    @parametrize
+    async def test_streaming_response_unarchive(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.addons.with_streaming_response.unarchive(
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            addon = await response.parse()
+            assert addon is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_unarchive(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.addons.with_raw_response.unarchive(
+                "",
+            )
 
     @parametrize
     async def test_method_update_images(self, async_client: AsyncDodoPayments) -> None:

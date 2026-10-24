@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import refund_list_params, refund_create_params
+from ..types import Currency, refund_list_params, refund_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -22,6 +22,7 @@ from .._response import (
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.refund import Refund
+from ..types.currency import Currency
 from ..types.metadata_param import MetadataParam
 from ..types.refund_list_item import RefundListItem
 
@@ -52,6 +53,7 @@ class RefundsResource(SyncAPIResource):
         self,
         *,
         payment_id: str,
+        currency: Optional[Currency] | Omit = omit,
         items: Optional[Iterable[refund_create_params.Item]] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
         reason: Optional[str] | Omit = omit,
@@ -65,6 +67,9 @@ class RefundsResource(SyncAPIResource):
         """
         Args:
           payment_id: The unique identifier of the payment to be refunded.
+
+          currency: The currency of every `items[].amount`. It must be the currency the customer
+              paid in. Without it, the amounts are in the settlement currency.
 
           items: Partially Refund an Individual Item
 
@@ -85,6 +90,7 @@ class RefundsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "payment_id": payment_id,
+                    "currency": currency,
                     "items": items,
                     "metadata": metadata,
                     "reason": reason,
@@ -218,6 +224,7 @@ class AsyncRefundsResource(AsyncAPIResource):
         self,
         *,
         payment_id: str,
+        currency: Optional[Currency] | Omit = omit,
         items: Optional[Iterable[refund_create_params.Item]] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
         reason: Optional[str] | Omit = omit,
@@ -231,6 +238,9 @@ class AsyncRefundsResource(AsyncAPIResource):
         """
         Args:
           payment_id: The unique identifier of the payment to be refunded.
+
+          currency: The currency of every `items[].amount`. It must be the currency the customer
+              paid in. Without it, the amounts are in the settlement currency.
 
           items: Partially Refund an Individual Item
 
@@ -251,6 +261,7 @@ class AsyncRefundsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "payment_id": payment_id,
+                    "currency": currency,
                     "items": items,
                     "metadata": metadata,
                     "reason": reason,

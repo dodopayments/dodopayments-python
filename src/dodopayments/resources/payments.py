@@ -9,7 +9,12 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import Currency, payment_list_params, payment_create_params
+from ..types import (
+    Currency,
+    payment_list_params,
+    payment_create_params,
+    payment_retrieve_line_items_params,
+)
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -460,6 +465,7 @@ class PaymentsResource(SyncAPIResource):
         self,
         payment_id: str,
         *,
+        currency: Currency | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -467,8 +473,12 @@ class PaymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaymentRetrieveLineItemsResponse:
-        """
-        Args:
+        """Args:
+          currency: The currency of the amounts.
+
+        It must be the currency that the customer paid in.
+              Without it, the amounts are in the settlement currency.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -482,7 +492,13 @@ class PaymentsResource(SyncAPIResource):
         return self._get(
             path_template("/payments/{payment_id}/line-items", payment_id=payment_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"currency": currency}, payment_retrieve_line_items_params.PaymentRetrieveLineItemsParams
+                ),
             ),
             cast_to=PaymentRetrieveLineItemsResponse,
         )
@@ -972,6 +988,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         self,
         payment_id: str,
         *,
+        currency: Currency | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -979,8 +996,12 @@ class AsyncPaymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaymentRetrieveLineItemsResponse:
-        """
-        Args:
+        """Args:
+          currency: The currency of the amounts.
+
+        It must be the currency that the customer paid in.
+              Without it, the amounts are in the settlement currency.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -994,7 +1015,13 @@ class AsyncPaymentsResource(AsyncAPIResource):
         return await self._get(
             path_template("/payments/{payment_id}/line-items", payment_id=payment_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"currency": currency}, payment_retrieve_line_items_params.PaymentRetrieveLineItemsParams
+                ),
             ),
             cast_to=PaymentRetrieveLineItemsResponse,
         )

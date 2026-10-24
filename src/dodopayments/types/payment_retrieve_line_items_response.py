@@ -26,3 +26,6 @@ class PaymentRetrieveLineItemsResponse(BaseModel):
     currency: Currency
 
     items: List[Item]
+
+    partial_refund_allowed: bool
+    """False when the payment method does not allow a partial refund of this payment."""

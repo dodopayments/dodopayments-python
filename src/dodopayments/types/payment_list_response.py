@@ -9,7 +9,9 @@ from .currency import Currency
 from .metadata import Metadata
 from .charge_type import ChargeType
 from .intent_status import IntentStatus
+from .three_ds_flow import ThreeDSFlow
 from .dispute_status import DisputeStatus
+from .three_ds_status import ThreeDSStatus
 from .payment_refund_status import PaymentRefundStatus
 from .customer_limited_details import CustomerLimitedDetails
 from .subscription_service_period import SubscriptionServicePeriod
@@ -157,3 +159,22 @@ class PaymentListResponse(BaseModel):
     status: Optional[IntentStatus] = None
 
     subscription_id: Optional[str] = None
+
+    three_ds_flow: Optional[ThreeDSFlow] = None
+    """How the cardholder completed the 3DS authentication.
+
+    The value is null when the processor does not report it.
+    """
+
+    three_ds_status: Optional[ThreeDSStatus] = None
+    """The result of the 3DS authentication, as the processor reports it.
+
+    The value is null when the processor reports no 3DS data, for example when the
+    payment did not use 3DS.
+    """
+
+    three_ds_version: Optional[str] = None
+    """The 3DS protocol version, for example `2.2.0`.
+
+    The value is null when the processor does not report it.
+    """

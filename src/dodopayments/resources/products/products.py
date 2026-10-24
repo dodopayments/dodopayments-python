@@ -19,6 +19,7 @@ from ...types import (
     product_list_params,
     product_create_params,
     product_update_params,
+    product_retrieve_params,
     product_update_files_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
@@ -40,6 +41,14 @@ from .short_links import (
     AsyncShortLinksResourceWithStreamingResponse,
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
+from .translations import (
+    TranslationsResource,
+    AsyncTranslationsResource,
+    TranslationsResourceWithRawResponse,
+    AsyncTranslationsResourceWithRawResponse,
+    TranslationsResourceWithStreamingResponse,
+    AsyncTranslationsResourceWithStreamingResponse,
+)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.product import Product
 from ...types.products import PricingMode
@@ -65,6 +74,10 @@ __all__ = ["ProductsResource", "AsyncProductsResource"]
 
 
 class ProductsResource(SyncAPIResource):
+    @cached_property
+    def translations(self) -> TranslationsResource:
+        return TranslationsResource(self._client)
+
     @cached_property
     def images(self) -> ImagesResource:
         return ImagesResource(self._client)
@@ -212,6 +225,7 @@ class ProductsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,6 +235,13 @@ class ProductsResource(SyncAPIResource):
     ) -> Product:
         """
         Args:
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -234,7 +255,11 @@ class ProductsResource(SyncAPIResource):
         return self._get(
             path_template("/products/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"locale": locale}, product_retrieve_params.ProductRetrieveParams),
             ),
             cast_to=Product,
         )
@@ -369,6 +394,7 @@ class ProductsResource(SyncAPIResource):
         *,
         archived: bool | Omit = omit,
         brand_id: str | Omit = omit,
+        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         recurring: bool | Omit = omit,
@@ -384,6 +410,13 @@ class ProductsResource(SyncAPIResource):
           archived: List archived products
 
           brand_id: filter by Brand id
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
 
           page_number: Page number default is 0
 
@@ -416,6 +449,7 @@ class ProductsResource(SyncAPIResource):
                     {
                         "archived": archived,
                         "brand_id": brand_id,
+                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                         "recurring": recurring,
@@ -525,6 +559,10 @@ class ProductsResource(SyncAPIResource):
 
 
 class AsyncProductsResource(AsyncAPIResource):
+    @cached_property
+    def translations(self) -> AsyncTranslationsResource:
+        return AsyncTranslationsResource(self._client)
+
     @cached_property
     def images(self) -> AsyncImagesResource:
         return AsyncImagesResource(self._client)
@@ -672,6 +710,7 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -681,6 +720,13 @@ class AsyncProductsResource(AsyncAPIResource):
     ) -> Product:
         """
         Args:
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -694,7 +740,11 @@ class AsyncProductsResource(AsyncAPIResource):
         return await self._get(
             path_template("/products/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"locale": locale}, product_retrieve_params.ProductRetrieveParams),
             ),
             cast_to=Product,
         )
@@ -829,6 +879,7 @@ class AsyncProductsResource(AsyncAPIResource):
         *,
         archived: bool | Omit = omit,
         brand_id: str | Omit = omit,
+        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         recurring: bool | Omit = omit,
@@ -844,6 +895,13 @@ class AsyncProductsResource(AsyncAPIResource):
           archived: List archived products
 
           brand_id: filter by Brand id
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
 
           page_number: Page number default is 0
 
@@ -876,6 +934,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     {
                         "archived": archived,
                         "brand_id": brand_id,
+                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                         "recurring": recurring,
@@ -1013,6 +1072,10 @@ class ProductsResourceWithRawResponse:
         )
 
     @cached_property
+    def translations(self) -> TranslationsResourceWithRawResponse:
+        return TranslationsResourceWithRawResponse(self._products.translations)
+
+    @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
         return ImagesResourceWithRawResponse(self._products.images)
 
@@ -1050,6 +1113,10 @@ class AsyncProductsResourceWithRawResponse:
         self.update_files = async_to_raw_response_wrapper(
             products.update_files,
         )
+
+    @cached_property
+    def translations(self) -> AsyncTranslationsResourceWithRawResponse:
+        return AsyncTranslationsResourceWithRawResponse(self._products.translations)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
@@ -1091,6 +1158,10 @@ class ProductsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def translations(self) -> TranslationsResourceWithStreamingResponse:
+        return TranslationsResourceWithStreamingResponse(self._products.translations)
+
+    @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
         return ImagesResourceWithStreamingResponse(self._products.images)
 
@@ -1128,6 +1199,10 @@ class AsyncProductsResourceWithStreamingResponse:
         self.update_files = async_to_streamed_response_wrapper(
             products.update_files,
         )
+
+    @cached_property
+    def translations(self) -> AsyncTranslationsResourceWithStreamingResponse:
+        return AsyncTranslationsResourceWithStreamingResponse(self._products.translations)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:

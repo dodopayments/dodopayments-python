@@ -86,14 +86,22 @@ class TestProductCollections:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         product_collection = client.product_collections.retrieve(
-            "pdc_8BWv0hojwUH7iCDabr0NI",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
+        )
+        assert_matches_type(ProductCollection, product_collection, path=["response"])
+
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
+        product_collection = client.product_collections.retrieve(
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
+            locale="locale",
         )
         assert_matches_type(ProductCollection, product_collection, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.product_collections.with_raw_response.retrieve(
-            "pdc_8BWv0hojwUH7iCDabr0NI",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -104,7 +112,7 @@ class TestProductCollections:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.product_collections.with_streaming_response.retrieve(
-            "pdc_8BWv0hojwUH7iCDabr0NI",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -118,7 +126,7 @@ class TestProductCollections:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.product_collections.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @parametrize
@@ -188,6 +196,7 @@ class TestProductCollections:
         product_collection = client.product_collections.list(
             archived=True,
             brand_id="brand_id",
+            locale="locale",
             page_number=0,
             page_size=0,
         )
@@ -410,14 +419,22 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         product_collection = await async_client.product_collections.retrieve(
-            "pdc_8BWv0hojwUH7iCDabr0NI",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
+        )
+        assert_matches_type(ProductCollection, product_collection, path=["response"])
+
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        product_collection = await async_client.product_collections.retrieve(
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
+            locale="locale",
         )
         assert_matches_type(ProductCollection, product_collection, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.product_collections.with_raw_response.retrieve(
-            "pdc_8BWv0hojwUH7iCDabr0NI",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         )
 
         assert response.is_closed is True
@@ -428,7 +445,7 @@ class TestAsyncProductCollections:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.product_collections.with_streaming_response.retrieve(
-            "pdc_8BWv0hojwUH7iCDabr0NI",
+            id="pdc_8BWv0hojwUH7iCDabr0NI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -442,7 +459,7 @@ class TestAsyncProductCollections:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.product_collections.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @parametrize
@@ -512,6 +529,7 @@ class TestAsyncProductCollections:
         product_collection = await async_client.product_collections.list(
             archived=True,
             brand_id="brand_id",
+            locale="locale",
             page_number=0,
             page_size=0,
         )

@@ -39,7 +39,9 @@ class DetailListResponse(BaseModel):
     Amount in the payout's currency, in that currency's smallest unit (cents for
     USD, yen for JPY, fils for KWD). The entry is converted at the rate the payout
     settled at. These amounts sum to the value of the entries, which can be less
-    than the payout: the grouped breakup reports the difference as `unattributed`.
+    than the payout: the grouped breakup reports the difference as `unattributed`. A
+    settlement batch payout shows the native amount of a row in the payout's
+    currency, and 0 for a row in a different currency.
     """
 
     usd_equivalent_amount: int
