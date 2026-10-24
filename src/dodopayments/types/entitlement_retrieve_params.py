@@ -1,0 +1,19 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import TypedDict
+
+__all__ = ["EntitlementRetrieveParams"]
+
+
+class EntitlementRetrieveParams(TypedDict, total=False):
+    locale: str
+    """
+    Shows the translated name, description and unit of the catalog entities in this
+    locale. The value must be a code from `GET /locales`, for example `fr`. A field
+    with no translation, an unknown code, or no code shows the base text.
+
+    Do not send a text from a localized response back in a create or update request.
+    The base text then changes to the translated text.
+    """

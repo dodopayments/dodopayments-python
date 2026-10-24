@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from .currency import Currency
 from .metadata_param import MetadataParam
 
 __all__ = ["RefundCreateParams", "Item"]
@@ -13,6 +14,13 @@ __all__ = ["RefundCreateParams", "Item"]
 class RefundCreateParams(TypedDict, total=False):
     payment_id: Required[str]
     """The unique identifier of the payment to be refunded."""
+
+    currency: Optional[Currency]
+    """The currency of every `items[].amount`.
+
+    It must be the currency the customer paid in. Without it, the amounts are in the
+    settlement currency.
+    """
 
     items: Optional[Iterable[Item]]
     """Partially Refund an Individual Item"""

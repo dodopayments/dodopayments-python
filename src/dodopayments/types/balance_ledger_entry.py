@@ -56,6 +56,7 @@ class BalanceLedgerEntry(BaseModel):
         "dodo_fixed_fee",
         "interchange_fee",
         "scheme_fee",
+        "opening_balance",
     ]
 
     is_credit: bool

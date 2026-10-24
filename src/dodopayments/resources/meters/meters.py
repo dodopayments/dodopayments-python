@@ -6,73 +6,92 @@ from typing import Optional
 
 import httpx
 
-from ..types import Currency, TaxCategory, addon_list_params, addon_create_params, addon_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...types import (
+    meter_list_params,
+    meter_create_params,
+    meter_update_params,
+    meter_retrieve_params,
+)
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.currency import Currency
-from ..types.tax_category import TaxCategory
-from ..types.addon_response import AddonResponse
-from ..types.addon_update_images_response import AddonUpdateImagesResponse
+from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
+from .translations import (
+    TranslationsResource,
+    AsyncTranslationsResource,
+    TranslationsResourceWithRawResponse,
+    AsyncTranslationsResourceWithRawResponse,
+    TranslationsResourceWithStreamingResponse,
+    AsyncTranslationsResourceWithStreamingResponse,
+)
+from ...types.meter import Meter
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.meter_filter_param import MeterFilterParam
+from ...types.meter_aggregation_param import MeterAggregationParam
 
-__all__ = ["AddonsResource", "AsyncAddonsResource"]
+__all__ = ["MetersResource", "AsyncMetersResource"]
 
 
-class AddonsResource(SyncAPIResource):
+class MetersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AddonsResourceWithRawResponse:
+    def translations(self) -> TranslationsResource:
+        return TranslationsResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> MetersResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
         """
-        return AddonsResourceWithRawResponse(self)
+        return MetersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AddonsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> MetersResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
         """
-        return AddonsResourceWithStreamingResponse(self)
+        return MetersResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
-        currency: Currency,
+        aggregation: MeterAggregationParam,
+        event_name: str,
+        measurement_unit: str,
         name: str,
-        price: int,
-        tax_category: TaxCategory,
         description: Optional[str] | Omit = omit,
+        filter: Optional[MeterFilterParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonResponse:
+    ) -> Meter:
         """
         Args:
-          currency: The currency of the Addon
+          aggregation: Aggregation configuration for the meter
 
-          name: Name of the Addon
+          event_name: Event name to track
 
-          price: Amount of the addon
+          measurement_unit: measurement unit
 
-          tax_category: Tax category applied to this Addon
+          name: Name of the meter
 
-          description: Optional description of the Addon
+          description: Optional description of the meter
+
+          filter: Optional filter to apply to the meter
 
           extra_headers: Send extra headers
 
@@ -83,36 +102,45 @@ class AddonsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/addons",
+            "/meters",
             body=maybe_transform(
                 {
-                    "currency": currency,
+                    "aggregation": aggregation,
+                    "event_name": event_name,
+                    "measurement_unit": measurement_unit,
                     "name": name,
-                    "price": price,
-                    "tax_category": tax_category,
                     "description": description,
+                    "filter": filter,
                 },
-                addon_create_params.AddonCreateParams,
+                meter_create_params.MeterCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonResponse,
+            cast_to=Meter,
         )
 
     def retrieve(
         self,
         id: str,
         *,
+        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonResponse:
+    ) -> Meter:
         """
         Args:
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -124,44 +152,40 @@ class AddonsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            path_template("/addons/{id}", id=id),
+            path_template("/meters/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"locale": locale}, meter_retrieve_params.MeterRetrieveParams),
             ),
-            cast_to=AddonResponse,
+            cast_to=Meter,
         )
 
     def update(
         self,
         id: str,
         *,
-        currency: Optional[Currency] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        image_id: Optional[str] | Omit = omit,
+        measurement_unit: Optional[str] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        price: Optional[int] | Omit = omit,
-        tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonResponse:
-        """
-        Args:
-          currency: The currency of the Addon
+    ) -> Meter:
+        """Args:
+          description: Description of the meter.
 
-          description: Description of the Addon, optional and must be at most 1000 characters.
+        Send `null` to remove the description. Omit it to keep
+              it.
 
-          image_id: Addon image id after its uploaded to S3. Pass `null` to remove the existing
-              image, omit to keep it unchanged.
+          measurement_unit: Measurement unit
 
-          name: Name of the Addon, optional and must be at most 100 characters.
-
-          price: Amount of the addon
-
-          tax_category: Tax category of the Addon.
+          name: Name of the meter
 
           extra_headers: Send extra headers
 
@@ -174,27 +198,26 @@ class AddonsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            path_template("/addons/{id}", id=id),
+            path_template("/meters/{id}", id=id),
             body=maybe_transform(
                 {
-                    "currency": currency,
                     "description": description,
-                    "image_id": image_id,
+                    "measurement_unit": measurement_unit,
                     "name": name,
-                    "price": price,
-                    "tax_category": tax_category,
                 },
-                addon_update_params.AddonUpdateParams,
+                meter_update_params.MeterUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonResponse,
+            cast_to=Meter,
         )
 
     def list(
         self,
         *,
+        archived: bool | Omit = omit,
+        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -203,9 +226,18 @@ class AddonsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPageNumberPagination[AddonResponse]:
+    ) -> SyncDefaultPageNumberPagination[Meter]:
         """
         Args:
+          archived: List archived meters
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -219,8 +251,8 @@ class AddonsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/addons",
-            page=SyncDefaultPageNumberPagination[AddonResponse],
+            "/meters",
+            page=SyncDefaultPageNumberPagination[Meter],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,16 +260,18 @@ class AddonsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "archived": archived,
+                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
-                    addon_list_params.AddonListParams,
+                    meter_list_params.MeterListParams,
                 ),
             ),
-            model=AddonResponse,
+            model=Meter,
         )
 
-    def update_images(
+    def archive(
         self,
         id: str,
         *,
@@ -247,7 +281,7 @@ class AddonsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonUpdateImagesResponse:
+    ) -> None:
         """
         Args:
           extra_headers: Send extra headers
@@ -260,61 +294,101 @@ class AddonsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._put(
-            path_template("/addons/{id}/images", id=id),
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template("/meters/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonUpdateImagesResponse,
+            cast_to=NoneType,
         )
 
-
-class AsyncAddonsResource(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncAddonsResourceWithRawResponse:
-        """
-        This property can be used as a prefix for any HTTP method call to return
-        the raw response object instead of the parsed content.
-
-        For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
-        """
-        return AsyncAddonsResourceWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncAddonsResourceWithStreamingResponse:
-        """
-        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
-
-        For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
-        """
-        return AsyncAddonsResourceWithStreamingResponse(self)
-
-    async def create(
+    def unarchive(
         self,
+        id: str,
         *,
-        currency: Currency,
-        name: str,
-        price: int,
-        tax_category: TaxCategory,
-        description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonResponse:
+    ) -> None:
         """
         Args:
-          currency: The currency of the Addon
+          extra_headers: Send extra headers
 
-          name: Name of the Addon
+          extra_query: Add additional query parameters to the request
 
-          price: Amount of the addon
+          extra_body: Add additional JSON properties to the request
 
-          tax_category: Tax category applied to this Addon
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._post(
+            path_template("/meters/{id}/unarchive", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
 
-          description: Optional description of the Addon
+
+class AsyncMetersResource(AsyncAPIResource):
+    @cached_property
+    def translations(self) -> AsyncTranslationsResource:
+        return AsyncTranslationsResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncMetersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/dodopayments/dodopayments-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncMetersResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncMetersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
+        """
+        return AsyncMetersResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        aggregation: MeterAggregationParam,
+        event_name: str,
+        measurement_unit: str,
+        name: str,
+        description: Optional[str] | Omit = omit,
+        filter: Optional[MeterFilterParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Meter:
+        """
+        Args:
+          aggregation: Aggregation configuration for the meter
+
+          event_name: Event name to track
+
+          measurement_unit: measurement unit
+
+          name: Name of the meter
+
+          description: Optional description of the meter
+
+          filter: Optional filter to apply to the meter
 
           extra_headers: Send extra headers
 
@@ -325,36 +399,45 @@ class AsyncAddonsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/addons",
+            "/meters",
             body=await async_maybe_transform(
                 {
-                    "currency": currency,
+                    "aggregation": aggregation,
+                    "event_name": event_name,
+                    "measurement_unit": measurement_unit,
                     "name": name,
-                    "price": price,
-                    "tax_category": tax_category,
                     "description": description,
+                    "filter": filter,
                 },
-                addon_create_params.AddonCreateParams,
+                meter_create_params.MeterCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonResponse,
+            cast_to=Meter,
         )
 
     async def retrieve(
         self,
         id: str,
         *,
+        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonResponse:
+    ) -> Meter:
         """
         Args:
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -366,44 +449,40 @@ class AsyncAddonsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            path_template("/addons/{id}", id=id),
+            path_template("/meters/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"locale": locale}, meter_retrieve_params.MeterRetrieveParams),
             ),
-            cast_to=AddonResponse,
+            cast_to=Meter,
         )
 
     async def update(
         self,
         id: str,
         *,
-        currency: Optional[Currency] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        image_id: Optional[str] | Omit = omit,
+        measurement_unit: Optional[str] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        price: Optional[int] | Omit = omit,
-        tax_category: Optional[TaxCategory] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonResponse:
-        """
-        Args:
-          currency: The currency of the Addon
+    ) -> Meter:
+        """Args:
+          description: Description of the meter.
 
-          description: Description of the Addon, optional and must be at most 1000 characters.
+        Send `null` to remove the description. Omit it to keep
+              it.
 
-          image_id: Addon image id after its uploaded to S3. Pass `null` to remove the existing
-              image, omit to keep it unchanged.
+          measurement_unit: Measurement unit
 
-          name: Name of the Addon, optional and must be at most 100 characters.
-
-          price: Amount of the addon
-
-          tax_category: Tax category of the Addon.
+          name: Name of the meter
 
           extra_headers: Send extra headers
 
@@ -416,27 +495,26 @@ class AsyncAddonsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            path_template("/addons/{id}", id=id),
+            path_template("/meters/{id}", id=id),
             body=await async_maybe_transform(
                 {
-                    "currency": currency,
                     "description": description,
-                    "image_id": image_id,
+                    "measurement_unit": measurement_unit,
                     "name": name,
-                    "price": price,
-                    "tax_category": tax_category,
                 },
-                addon_update_params.AddonUpdateParams,
+                meter_update_params.MeterUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonResponse,
+            cast_to=Meter,
         )
 
     def list(
         self,
         *,
+        archived: bool | Omit = omit,
+        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -445,9 +523,18 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AddonResponse, AsyncDefaultPageNumberPagination[AddonResponse]]:
+    ) -> AsyncPaginator[Meter, AsyncDefaultPageNumberPagination[Meter]]:
         """
         Args:
+          archived: List archived meters
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -461,8 +548,8 @@ class AsyncAddonsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/addons",
-            page=AsyncDefaultPageNumberPagination[AddonResponse],
+            "/meters",
+            page=AsyncDefaultPageNumberPagination[Meter],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -470,16 +557,18 @@ class AsyncAddonsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "archived": archived,
+                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
-                    addon_list_params.AddonListParams,
+                    meter_list_params.MeterListParams,
                 ),
             ),
-            model=AddonResponse,
+            model=Meter,
         )
 
-    async def update_images(
+    async def archive(
         self,
         id: str,
         *,
@@ -489,7 +578,7 @@ class AsyncAddonsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddonUpdateImagesResponse:
+    ) -> None:
         """
         Args:
           extra_headers: Send extra headers
@@ -502,94 +591,155 @@ class AsyncAddonsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._put(
-            path_template("/addons/{id}/images", id=id),
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template("/meters/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AddonUpdateImagesResponse,
+            cast_to=NoneType,
+        )
+
+    async def unarchive(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._post(
+            path_template("/meters/{id}/unarchive", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
         )
 
 
-class AddonsResourceWithRawResponse:
-    def __init__(self, addons: AddonsResource) -> None:
-        self._addons = addons
+class MetersResourceWithRawResponse:
+    def __init__(self, meters: MetersResource) -> None:
+        self._meters = meters
 
         self.create = to_raw_response_wrapper(
-            addons.create,
+            meters.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            addons.retrieve,
+            meters.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            addons.update,
+            meters.update,
         )
         self.list = to_raw_response_wrapper(
-            addons.list,
+            meters.list,
         )
-        self.update_images = to_raw_response_wrapper(
-            addons.update_images,
+        self.archive = to_raw_response_wrapper(
+            meters.archive,
+        )
+        self.unarchive = to_raw_response_wrapper(
+            meters.unarchive,
         )
 
+    @cached_property
+    def translations(self) -> TranslationsResourceWithRawResponse:
+        return TranslationsResourceWithRawResponse(self._meters.translations)
 
-class AsyncAddonsResourceWithRawResponse:
-    def __init__(self, addons: AsyncAddonsResource) -> None:
-        self._addons = addons
+
+class AsyncMetersResourceWithRawResponse:
+    def __init__(self, meters: AsyncMetersResource) -> None:
+        self._meters = meters
 
         self.create = async_to_raw_response_wrapper(
-            addons.create,
+            meters.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            addons.retrieve,
+            meters.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            addons.update,
+            meters.update,
         )
         self.list = async_to_raw_response_wrapper(
-            addons.list,
+            meters.list,
         )
-        self.update_images = async_to_raw_response_wrapper(
-            addons.update_images,
+        self.archive = async_to_raw_response_wrapper(
+            meters.archive,
+        )
+        self.unarchive = async_to_raw_response_wrapper(
+            meters.unarchive,
         )
 
+    @cached_property
+    def translations(self) -> AsyncTranslationsResourceWithRawResponse:
+        return AsyncTranslationsResourceWithRawResponse(self._meters.translations)
 
-class AddonsResourceWithStreamingResponse:
-    def __init__(self, addons: AddonsResource) -> None:
-        self._addons = addons
+
+class MetersResourceWithStreamingResponse:
+    def __init__(self, meters: MetersResource) -> None:
+        self._meters = meters
 
         self.create = to_streamed_response_wrapper(
-            addons.create,
+            meters.create,
         )
         self.retrieve = to_streamed_response_wrapper(
-            addons.retrieve,
+            meters.retrieve,
         )
         self.update = to_streamed_response_wrapper(
-            addons.update,
+            meters.update,
         )
         self.list = to_streamed_response_wrapper(
-            addons.list,
+            meters.list,
         )
-        self.update_images = to_streamed_response_wrapper(
-            addons.update_images,
+        self.archive = to_streamed_response_wrapper(
+            meters.archive,
+        )
+        self.unarchive = to_streamed_response_wrapper(
+            meters.unarchive,
         )
 
+    @cached_property
+    def translations(self) -> TranslationsResourceWithStreamingResponse:
+        return TranslationsResourceWithStreamingResponse(self._meters.translations)
 
-class AsyncAddonsResourceWithStreamingResponse:
-    def __init__(self, addons: AsyncAddonsResource) -> None:
-        self._addons = addons
+
+class AsyncMetersResourceWithStreamingResponse:
+    def __init__(self, meters: AsyncMetersResource) -> None:
+        self._meters = meters
 
         self.create = async_to_streamed_response_wrapper(
-            addons.create,
+            meters.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
-            addons.retrieve,
+            meters.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
-            addons.update,
+            meters.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            addons.list,
+            meters.list,
         )
-        self.update_images = async_to_streamed_response_wrapper(
-            addons.update_images,
+        self.archive = async_to_streamed_response_wrapper(
+            meters.archive,
         )
+        self.unarchive = async_to_streamed_response_wrapper(
+            meters.unarchive,
+        )
+
+    @cached_property
+    def translations(self) -> AsyncTranslationsResourceWithStreamingResponse:
+        return AsyncTranslationsResourceWithStreamingResponse(self._meters.translations)

@@ -252,6 +252,7 @@ class CheckoutSessionsResource(SyncAPIResource):
         self,
         *,
         product_cart: Iterable[ProductItemReqParam],
+        locale: str | Omit = omit,
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
@@ -288,6 +289,13 @@ class CheckoutSessionsResource(SyncAPIResource):
         A cart holds at most 20 of them, one-time and
               subscription products together. An empty cart is valid for the
               product-collection flow, where the customer chooses the product later.
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
 
           allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
               adding a method here does not guarantee customers will see it. Availability
@@ -401,7 +409,11 @@ class CheckoutSessionsResource(SyncAPIResource):
                 checkout_session_preview_params.CheckoutSessionPreviewParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"locale": locale}, checkout_session_preview_params.CheckoutSessionPreviewParams),
             ),
             cast_to=CheckoutSessionPreviewResponse,
         )
@@ -620,6 +632,7 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         self,
         *,
         product_cart: Iterable[ProductItemReqParam],
+        locale: str | Omit = omit,
         allowed_payment_method_types: Optional[List[PaymentMethodTypes]] | Omit = omit,
         billing_address: Optional[CheckoutSessionBillingAddressParam] | Omit = omit,
         billing_currency: Optional[Currency] | Omit = omit,
@@ -656,6 +669,13 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
         A cart holds at most 20 of them, one-time and
               subscription products together. An empty cart is valid for the
               product-collection flow, where the customer chooses the product later.
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
 
           allowed_payment_method_types: Customers will never see payment methods that are not in this list. However,
               adding a method here does not guarantee customers will see it. Availability
@@ -769,7 +789,13 @@ class AsyncCheckoutSessionsResource(AsyncAPIResource):
                 checkout_session_preview_params.CheckoutSessionPreviewParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"locale": locale}, checkout_session_preview_params.CheckoutSessionPreviewParams
+                ),
             ),
             cast_to=CheckoutSessionPreviewResponse,
         )

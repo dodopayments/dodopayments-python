@@ -18,6 +18,7 @@ from ..types import (
     subscription_charge_params,
     subscription_create_params,
     subscription_update_params,
+    subscription_retrieve_params,
     subscription_change_plan_params,
     subscription_preview_change_plan_params,
     subscription_update_payment_method_params,
@@ -234,6 +235,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
+        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,6 +245,13 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> Subscription:
         """
         Args:
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -256,7 +265,11 @@ class SubscriptionsResource(SyncAPIResource):
         return self._get(
             path_template("/subscriptions/{subscription_id}", subscription_id=subscription_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"locale": locale}, subscription_retrieve_params.SubscriptionRetrieveParams),
             ),
             cast_to=Subscription,
         )
@@ -388,6 +401,7 @@ class SubscriptionsResource(SyncAPIResource):
         created_at_gte: Union[str, datetime] | Omit = omit,
         created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
+        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
@@ -411,6 +425,13 @@ class SubscriptionsResource(SyncAPIResource):
           created_at_lte: Get events created before this time
 
           customer_id: Filter by customer id
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
 
           page_number: Page number default is 0
 
@@ -443,6 +464,7 @@ class SubscriptionsResource(SyncAPIResource):
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
+                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                         "product_id": product_id,
@@ -587,6 +609,11 @@ class SubscriptionsResource(SyncAPIResource):
               - `prevent_change`: Keep subscription on current plan until payment succeeds
               - `apply_change` (default): Apply plan change immediately regardless of payment
                 outcome
+
+              With `effective_at: next_billing_date`, the plan change payment replaces the
+              renewal payment. If that payment fails with `prevent_change`, the plan change is
+              cancelled. The subscription then renews on the current plan, with the usual
+              payment retries.
 
               If not specified, uses the business-level default setting.
 
@@ -806,6 +833,11 @@ class SubscriptionsResource(SyncAPIResource):
               - `prevent_change`: Keep subscription on current plan until payment succeeds
               - `apply_change` (default): Apply plan change immediately regardless of payment
                 outcome
+
+              With `effective_at: next_billing_date`, the plan change payment replaces the
+              renewal payment. If that payment fails with `prevent_change`, the plan change is
+              cancelled. The subscription then renews on the current plan, with the usual
+              payment retries.
 
               If not specified, uses the business-level default setting.
 
@@ -1202,6 +1234,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
+        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1211,6 +1244,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> Subscription:
         """
         Args:
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1224,7 +1264,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         return await self._get(
             path_template("/subscriptions/{subscription_id}", subscription_id=subscription_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"locale": locale}, subscription_retrieve_params.SubscriptionRetrieveParams
+                ),
             ),
             cast_to=Subscription,
         )
@@ -1356,6 +1402,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         created_at_gte: Union[str, datetime] | Omit = omit,
         created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
+        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
@@ -1379,6 +1426,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           created_at_lte: Get events created before this time
 
           customer_id: Filter by customer id
+
+          locale: Shows the translated name, description and unit of the catalog entities in this
+              locale. The value must be a code from `GET /locales`, for example `fr`. A field
+              with no translation, an unknown code, or no code shows the base text.
+
+              Do not send a text from a localized response back in a create or update request.
+              The base text then changes to the translated text.
 
           page_number: Page number default is 0
 
@@ -1411,6 +1465,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
+                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                         "product_id": product_id,
@@ -1555,6 +1610,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
               - `prevent_change`: Keep subscription on current plan until payment succeeds
               - `apply_change` (default): Apply plan change immediately regardless of payment
                 outcome
+
+              With `effective_at: next_billing_date`, the plan change payment replaces the
+              renewal payment. If that payment fails with `prevent_change`, the plan change is
+              cancelled. The subscription then renews on the current plan, with the usual
+              payment retries.
 
               If not specified, uses the business-level default setting.
 
@@ -1774,6 +1834,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
               - `prevent_change`: Keep subscription on current plan until payment succeeds
               - `apply_change` (default): Apply plan change immediately regardless of payment
                 outcome
+
+              With `effective_at: next_billing_date`, the plan change payment replaces the
+              renewal payment. If that payment fails with `prevent_change`, the plan change is
+              cancelled. The subscription then renews on the current plan, with the usual
+              payment retries.
 
               If not specified, uses the business-level default setting.
 

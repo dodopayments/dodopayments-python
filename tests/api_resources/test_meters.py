@@ -9,7 +9,9 @@ import pytest
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
-from dodopayments.types import Meter
+from dodopayments.types import (
+    Meter,
+)
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -90,14 +92,22 @@ class TestMeters:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         meter = client.meters.retrieve(
-            "mtr_h5tgTWL55OyMO0L2Q9w9v",
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        )
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
+        meter = client.meters.retrieve(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            locale="locale",
         )
         assert_matches_type(Meter, meter, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.meters.with_raw_response.retrieve(
-            "mtr_h5tgTWL55OyMO0L2Q9w9v",
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -108,7 +118,7 @@ class TestMeters:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.meters.with_streaming_response.retrieve(
-            "mtr_h5tgTWL55OyMO0L2Q9w9v",
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,7 +132,55 @@ class TestMeters:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.meters.with_raw_response.retrieve(
-                "",
+                id="",
+            )
+
+    @parametrize
+    def test_method_update(self, client: DodoPayments) -> None:
+        meter = client.meters.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        )
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: DodoPayments) -> None:
+        meter = client.meters.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            description="description",
+            measurement_unit="measurement_unit",
+            name="name",
+        )
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: DodoPayments) -> None:
+        response = client.meters.with_raw_response.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        meter = response.parse()
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: DodoPayments) -> None:
+        with client.meters.with_streaming_response.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            meter = response.parse()
+            assert_matches_type(Meter, meter, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.meters.with_raw_response.update(
+                id="",
             )
 
     @parametrize
@@ -134,6 +192,7 @@ class TestMeters:
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         meter = client.meters.list(
             archived=True,
+            locale="locale",
             page_number=0,
             page_size=0,
         )
@@ -313,14 +372,22 @@ class TestAsyncMeters:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         meter = await async_client.meters.retrieve(
-            "mtr_h5tgTWL55OyMO0L2Q9w9v",
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        )
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        meter = await async_client.meters.retrieve(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            locale="locale",
         )
         assert_matches_type(Meter, meter, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.meters.with_raw_response.retrieve(
-            "mtr_h5tgTWL55OyMO0L2Q9w9v",
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -331,7 +398,7 @@ class TestAsyncMeters:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.meters.with_streaming_response.retrieve(
-            "mtr_h5tgTWL55OyMO0L2Q9w9v",
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -345,7 +412,55 @@ class TestAsyncMeters:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.meters.with_raw_response.retrieve(
-                "",
+                id="",
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncDodoPayments) -> None:
+        meter = await async_client.meters.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        )
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        meter = await async_client.meters.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            description="description",
+            measurement_unit="measurement_unit",
+            name="name",
+        )
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.meters.with_raw_response.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        meter = await response.parse()
+        assert_matches_type(Meter, meter, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.meters.with_streaming_response.update(
+            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            meter = await response.parse()
+            assert_matches_type(Meter, meter, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.meters.with_raw_response.update(
+                id="",
             )
 
     @parametrize
@@ -357,6 +472,7 @@ class TestAsyncMeters:
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         meter = await async_client.meters.list(
             archived=True,
+            locale="locale",
             page_number=0,
             page_size=0,
         )
