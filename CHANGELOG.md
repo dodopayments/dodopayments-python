@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.123.0](https://github.com/dodopayments/dodopayments-python/compare/v1.122.1...v1.123.0) (2026-10-24)
+
+
+### Features
+
+* **api:** translations and locales, addon delete/unarchive, meter update, 3DS payment details ([b53c129](https://github.com/dodopayments/dodopayments-python/commit/b53c129dfe21dfd36c8ded3e30af4a02c00022ef))
+* **api:** translations and locales, addon delete/unarchive, meter update, 3DS payment details ([0da0744](https://github.com/dodopayments/dodopayments-python/commit/0da07442785b5939160ef414b08d635da40c64d7))
+
 ## [1.122.1](https://github.com/dodopayments/dodopayments-python/compare/v1.122.0...v1.122.1) (2026-10-22)
 
 
