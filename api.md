@@ -48,6 +48,8 @@ from dodopayments.types import (
     PaymentRefundStatus,
     RefundListItem,
     SubscriptionServicePeriod,
+    ThreeDSFlow,
+    ThreeDSStatus,
     PaymentCreateResponse,
     PaymentListResponse,
     PaymentRetrieveLineItemsResponse,
@@ -59,7 +61,7 @@ Methods:
 - <code title="post /payments">client.payments.<a href="./src/dodopayments/resources/payments.py">create</a>(\*\*<a href="src/dodopayments/types/payment_create_params.py">params</a>) -> <a href="./src/dodopayments/types/payment_create_response.py">PaymentCreateResponse</a></code>
 - <code title="get /payments/{payment_id}">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve</a>(payment_id) -> <a href="./src/dodopayments/types/payment.py">Payment</a></code>
 - <code title="get /payments">client.payments.<a href="./src/dodopayments/resources/payments.py">list</a>(\*\*<a href="src/dodopayments/types/payment_list_params.py">params</a>) -> <a href="./src/dodopayments/types/payment_list_response.py">SyncDefaultPageNumberPagination[PaymentListResponse]</a></code>
-- <code title="get /payments/{payment_id}/line-items">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve_line_items</a>(payment_id) -> <a href="./src/dodopayments/types/payment_retrieve_line_items_response.py">PaymentRetrieveLineItemsResponse</a></code>
+- <code title="get /payments/{payment_id}/line-items">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve_line_items</a>(payment_id, \*\*<a href="src/dodopayments/types/payment_retrieve_line_items_params.py">params</a>) -> <a href="./src/dodopayments/types/payment_retrieve_line_items_response.py">PaymentRetrieveLineItemsResponse</a></code>
 - <code title="get /payments/{payment_id}/retry">client.payments.<a href="./src/dodopayments/resources/payments.py">retrieve_retry_state</a>(payment_id) -> <a href="./src/dodopayments/types/manual_retry_state.py">ManualRetryState</a></code>
 - <code title="post /payments/{payment_id}/retry">client.payments.<a href="./src/dodopayments/resources/payments.py">retry</a>(payment_id) -> <a href="./src/dodopayments/types/manual_retry.py">ManualRetry</a></code>
 
@@ -96,7 +98,7 @@ from dodopayments.types import (
 Methods:
 
 - <code title="post /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">create</a>(\*\*<a href="src/dodopayments/types/subscription_create_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_create_response.py">SubscriptionCreateResponse</a></code>
-- <code title="get /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve</a>(subscription_id) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
+- <code title="get /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_retrieve_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
 - <code title="patch /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription.py">Subscription</a></code>
 - <code title="get /subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">list</a>(\*\*<a href="src/dodopayments/types/subscription_list_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_list_response.py">SyncDefaultPageNumberPagination[SubscriptionListResponse]</a></code>
 - <code title="delete /subscriptions/{subscription_id}/change-plan/scheduled">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">cancel_change_plan</a>(subscription_id) -> None</code>
@@ -362,12 +364,26 @@ from dodopayments.types import (
 Methods:
 
 - <code title="post /products">client.products.<a href="./src/dodopayments/resources/products/products.py">create</a>(\*\*<a href="src/dodopayments/types/product_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product.py">Product</a></code>
-- <code title="get /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/product.py">Product</a></code>
+- <code title="get /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">retrieve</a>(id, \*\*<a href="src/dodopayments/types/product_retrieve_params.py">params</a>) -> <a href="./src/dodopayments/types/product.py">Product</a></code>
 - <code title="patch /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">update</a>(id, \*\*<a href="src/dodopayments/types/product_update_params.py">params</a>) -> None</code>
 - <code title="get /products">client.products.<a href="./src/dodopayments/resources/products/products.py">list</a>(\*\*<a href="src/dodopayments/types/product_list_params.py">params</a>) -> <a href="./src/dodopayments/types/product_list_response.py">SyncDefaultPageNumberPagination[ProductListResponse]</a></code>
 - <code title="delete /products/{id}">client.products.<a href="./src/dodopayments/resources/products/products.py">archive</a>(id) -> None</code>
 - <code title="post /products/{id}/unarchive">client.products.<a href="./src/dodopayments/resources/products/products.py">unarchive</a>(id) -> None</code>
 - <code title="put /products/{id}/files">client.products.<a href="./src/dodopayments/resources/products/products.py">update_files</a>(id, \*\*<a href="src/dodopayments/types/product_update_files_params.py">params</a>) -> <a href="./src/dodopayments/types/product_update_files_response.py">ProductUpdateFilesResponse</a></code>
+
+## Translations
+
+Types:
+
+```python
+from dodopayments.types.products import Translation, TranslationsListResponse
+```
+
+Methods:
+
+- <code title="put /products/{id}/translations/{locale}">client.products.translations.<a href="./src/dodopayments/resources/products/translations.py">update</a>(locale, \*, id, \*\*<a href="src/dodopayments/types/products/translation_update_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translation.py">Translation</a></code>
+- <code title="get /products/{id}/translations">client.products.translations.<a href="./src/dodopayments/resources/products/translations.py">list</a>(id, \*\*<a href="src/dodopayments/types/products/translation_list_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translations_list_response.py">TranslationsListResponse</a></code>
+- <code title="delete /products/{id}/translations/{locale}">client.products.translations.<a href="./src/dodopayments/resources/products/translations.py">delete</a>(locale, \*, id) -> None</code>
 
 ## Images
 
@@ -418,14 +434,18 @@ Types:
 from dodopayments.types import (
     CountryCode,
     Currency,
+    Locale,
+    LocaleInfo,
     Metadata,
     TaxCategory,
+    MiscListLocalesResponse,
     MiscListSupportedCountriesResponse,
 )
 ```
 
 Methods:
 
+- <code title="get /locales">client.misc.<a href="./src/dodopayments/resources/misc.py">list_locales</a>() -> <a href="./src/dodopayments/types/misc_list_locales_response.py">MiscListLocalesResponse</a></code>
 - <code title="get /checkout/supported_countries">client.misc.<a href="./src/dodopayments/resources/misc.py">list_supported_countries</a>() -> <a href="./src/dodopayments/types/misc_list_supported_countries_response.py">MiscListSupportedCountriesResponse</a></code>
 
 # Discounts
@@ -455,11 +475,21 @@ from dodopayments.types import AddonResponse, AddonUpdateImagesResponse
 
 Methods:
 
-- <code title="post /addons">client.addons.<a href="./src/dodopayments/resources/addons.py">create</a>(\*\*<a href="src/dodopayments/types/addon_create_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
-- <code title="get /addons/{id}">client.addons.<a href="./src/dodopayments/resources/addons.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
-- <code title="patch /addons/{id}">client.addons.<a href="./src/dodopayments/resources/addons.py">update</a>(id, \*\*<a href="src/dodopayments/types/addon_update_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
-- <code title="get /addons">client.addons.<a href="./src/dodopayments/resources/addons.py">list</a>(\*\*<a href="src/dodopayments/types/addon_list_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">SyncDefaultPageNumberPagination[AddonResponse]</a></code>
-- <code title="put /addons/{id}/images">client.addons.<a href="./src/dodopayments/resources/addons.py">update_images</a>(id) -> <a href="./src/dodopayments/types/addon_update_images_response.py">AddonUpdateImagesResponse</a></code>
+- <code title="post /addons">client.addons.<a href="./src/dodopayments/resources/addons/addons.py">create</a>(\*\*<a href="src/dodopayments/types/addon_create_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
+- <code title="get /addons/{id}">client.addons.<a href="./src/dodopayments/resources/addons/addons.py">retrieve</a>(id, \*\*<a href="src/dodopayments/types/addon_retrieve_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
+- <code title="patch /addons/{id}">client.addons.<a href="./src/dodopayments/resources/addons/addons.py">update</a>(id, \*\*<a href="src/dodopayments/types/addon_update_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">AddonResponse</a></code>
+- <code title="get /addons">client.addons.<a href="./src/dodopayments/resources/addons/addons.py">list</a>(\*\*<a href="src/dodopayments/types/addon_list_params.py">params</a>) -> <a href="./src/dodopayments/types/addon_response.py">SyncDefaultPageNumberPagination[AddonResponse]</a></code>
+- <code title="delete /addons/{id}">client.addons.<a href="./src/dodopayments/resources/addons/addons.py">delete</a>(id) -> None</code>
+- <code title="post /addons/{id}/unarchive">client.addons.<a href="./src/dodopayments/resources/addons/addons.py">unarchive</a>(id) -> None</code>
+- <code title="put /addons/{id}/images">client.addons.<a href="./src/dodopayments/resources/addons/addons.py">update_images</a>(id) -> <a href="./src/dodopayments/types/addon_update_images_response.py">AddonUpdateImagesResponse</a></code>
+
+## Translations
+
+Methods:
+
+- <code title="put /addons/{id}/translations/{locale}">client.addons.translations.<a href="./src/dodopayments/resources/addons/translations.py">update</a>(locale, \*, id, \*\*<a href="src/dodopayments/types/addons/translation_update_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translation.py">Translation</a></code>
+- <code title="get /addons/{id}/translations">client.addons.translations.<a href="./src/dodopayments/resources/addons/translations.py">list</a>(id, \*\*<a href="src/dodopayments/types/addons/translation_list_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translations_list_response.py">TranslationsListResponse</a></code>
+- <code title="delete /addons/{id}/translations/{locale}">client.addons.translations.<a href="./src/dodopayments/resources/addons/translations.py">delete</a>(locale, \*, id) -> None</code>
 
 # Brands
 
@@ -653,11 +683,20 @@ from dodopayments.types import (
 
 Methods:
 
-- <code title="post /meters">client.meters.<a href="./src/dodopayments/resources/meters.py">create</a>(\*\*<a href="src/dodopayments/types/meter_create_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">Meter</a></code>
-- <code title="get /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/meter.py">Meter</a></code>
-- <code title="get /meters">client.meters.<a href="./src/dodopayments/resources/meters.py">list</a>(\*\*<a href="src/dodopayments/types/meter_list_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">SyncDefaultPageNumberPagination[Meter]</a></code>
-- <code title="delete /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters.py">archive</a>(id) -> None</code>
-- <code title="post /meters/{id}/unarchive">client.meters.<a href="./src/dodopayments/resources/meters.py">unarchive</a>(id) -> None</code>
+- <code title="post /meters">client.meters.<a href="./src/dodopayments/resources/meters/meters.py">create</a>(\*\*<a href="src/dodopayments/types/meter_create_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">Meter</a></code>
+- <code title="get /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters/meters.py">retrieve</a>(id, \*\*<a href="src/dodopayments/types/meter_retrieve_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">Meter</a></code>
+- <code title="patch /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters/meters.py">update</a>(id, \*\*<a href="src/dodopayments/types/meter_update_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">Meter</a></code>
+- <code title="get /meters">client.meters.<a href="./src/dodopayments/resources/meters/meters.py">list</a>(\*\*<a href="src/dodopayments/types/meter_list_params.py">params</a>) -> <a href="./src/dodopayments/types/meter.py">SyncDefaultPageNumberPagination[Meter]</a></code>
+- <code title="delete /meters/{id}">client.meters.<a href="./src/dodopayments/resources/meters/meters.py">archive</a>(id) -> None</code>
+- <code title="post /meters/{id}/unarchive">client.meters.<a href="./src/dodopayments/resources/meters/meters.py">unarchive</a>(id) -> None</code>
+
+## Translations
+
+Methods:
+
+- <code title="put /meters/{id}/translations/{locale}">client.meters.translations.<a href="./src/dodopayments/resources/meters/translations.py">update</a>(locale, \*, id, \*\*<a href="src/dodopayments/types/meters/translation_update_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translation.py">Translation</a></code>
+- <code title="get /meters/{id}/translations">client.meters.translations.<a href="./src/dodopayments/resources/meters/translations.py">list</a>(id, \*\*<a href="src/dodopayments/types/meters/translation_list_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translations_list_response.py">TranslationsListResponse</a></code>
+- <code title="delete /meters/{id}/translations/{locale}">client.meters.translations.<a href="./src/dodopayments/resources/meters/translations.py">delete</a>(locale, \*, id) -> None</code>
 
 # Balances
 
@@ -682,11 +721,28 @@ from dodopayments.types import CbbOverageBehavior, CreditEntitlement
 Methods:
 
 - <code title="post /credit-entitlements">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">create</a>(\*\*<a href="src/dodopayments/types/credit_entitlement_create_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlement.py">CreditEntitlement</a></code>
-- <code title="get /credit-entitlements/{id}">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/credit_entitlement.py">CreditEntitlement</a></code>
+- <code title="get /credit-entitlements/{id}">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">retrieve</a>(id, \*\*<a href="src/dodopayments/types/credit_entitlement_retrieve_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlement.py">CreditEntitlement</a></code>
 - <code title="patch /credit-entitlements/{id}">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">update</a>(id, \*\*<a href="src/dodopayments/types/credit_entitlement_update_params.py">params</a>) -> None</code>
 - <code title="get /credit-entitlements">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">list</a>(\*\*<a href="src/dodopayments/types/credit_entitlement_list_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlement.py">SyncDefaultPageNumberPagination[CreditEntitlement]</a></code>
 - <code title="delete /credit-entitlements/{id}">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">delete</a>(id) -> None</code>
 - <code title="post /credit-entitlements/{id}/undelete">client.credit_entitlements.<a href="./src/dodopayments/resources/credit_entitlements/credit_entitlements.py">undelete</a>(id) -> None</code>
+
+## Translations
+
+Types:
+
+```python
+from dodopayments.types.credit_entitlements import (
+    CreditEntitlementTranslation,
+    CreditEntitlementTranslationsListResponse,
+)
+```
+
+Methods:
+
+- <code title="put /credit-entitlements/{id}/translations/{locale}">client.credit_entitlements.translations.<a href="./src/dodopayments/resources/credit_entitlements/translations.py">update</a>(locale, \*, id, \*\*<a href="src/dodopayments/types/credit_entitlements/translation_update_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/credit_entitlement_translation.py">CreditEntitlementTranslation</a></code>
+- <code title="get /credit-entitlements/{id}/translations">client.credit_entitlements.translations.<a href="./src/dodopayments/resources/credit_entitlements/translations.py">list</a>(id, \*\*<a href="src/dodopayments/types/credit_entitlements/translation_list_params.py">params</a>) -> <a href="./src/dodopayments/types/credit_entitlements/credit_entitlement_translations_list_response.py">CreditEntitlementTranslationsListResponse</a></code>
+- <code title="delete /credit-entitlements/{id}/translations/{locale}">client.credit_entitlements.translations.<a href="./src/dodopayments/resources/credit_entitlements/translations.py">delete</a>(locale, \*, id) -> None</code>
 
 ## Balances
 
@@ -729,10 +785,27 @@ from dodopayments.types import (
 Methods:
 
 - <code title="post /entitlements">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">create</a>(\*\*<a href="src/dodopayments/types/entitlement_create_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlement.py">Entitlement</a></code>
-- <code title="get /entitlements/{id}">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/entitlement.py">Entitlement</a></code>
+- <code title="get /entitlements/{id}">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">retrieve</a>(id, \*\*<a href="src/dodopayments/types/entitlement_retrieve_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlement.py">Entitlement</a></code>
 - <code title="patch /entitlements/{id}">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">update</a>(id, \*\*<a href="src/dodopayments/types/entitlement_update_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlement.py">Entitlement</a></code>
 - <code title="get /entitlements">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">list</a>(\*\*<a href="src/dodopayments/types/entitlement_list_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlement.py">SyncDefaultPageNumberPagination[Entitlement]</a></code>
 - <code title="delete /entitlements/{id}">client.entitlements.<a href="./src/dodopayments/resources/entitlements/entitlements.py">delete</a>(id) -> None</code>
+
+## Translations
+
+Types:
+
+```python
+from dodopayments.types.entitlements import (
+    EntitlementTranslation,
+    EntitlementTranslationsListResponse,
+)
+```
+
+Methods:
+
+- <code title="put /entitlements/{id}/translations/{locale}">client.entitlements.translations.<a href="./src/dodopayments/resources/entitlements/translations.py">update</a>(locale, \*, id, \*\*<a href="src/dodopayments/types/entitlements/translation_update_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/entitlement_translation.py">EntitlementTranslation</a></code>
+- <code title="get /entitlements/{id}/translations">client.entitlements.translations.<a href="./src/dodopayments/resources/entitlements/translations.py">list</a>(id, \*\*<a href="src/dodopayments/types/entitlements/translation_list_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/entitlement_translations_list_response.py">EntitlementTranslationsListResponse</a></code>
+- <code title="delete /entitlements/{id}/translations/{locale}">client.entitlements.translations.<a href="./src/dodopayments/resources/entitlements/translations.py">delete</a>(locale, \*, id) -> None</code>
 
 ## Files
 
@@ -777,12 +850,20 @@ from dodopayments.types import (
 Methods:
 
 - <code title="post /product-collections">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">create</a>(\*\*<a href="src/dodopayments/types/product_collection_create_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collection.py">ProductCollection</a></code>
-- <code title="get /product-collections/{id}">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">retrieve</a>(id) -> <a href="./src/dodopayments/types/product_collection.py">ProductCollection</a></code>
+- <code title="get /product-collections/{id}">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">retrieve</a>(id, \*\*<a href="src/dodopayments/types/product_collection_retrieve_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collection.py">ProductCollection</a></code>
 - <code title="patch /product-collections/{id}">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">update</a>(id, \*\*<a href="src/dodopayments/types/product_collection_update_params.py">params</a>) -> None</code>
 - <code title="get /product-collections">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">list</a>(\*\*<a href="src/dodopayments/types/product_collection_list_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collection_list_response.py">SyncDefaultPageNumberPagination[ProductCollectionListResponse]</a></code>
 - <code title="delete /product-collections/{id}">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">delete</a>(id) -> None</code>
 - <code title="post /product-collections/{id}/unarchive">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">unarchive</a>(id) -> <a href="./src/dodopayments/types/product_collection_unarchive_response.py">ProductCollectionUnarchiveResponse</a></code>
 - <code title="put /product-collections/{id}/images">client.product_collections.<a href="./src/dodopayments/resources/product_collections/product_collections.py">update_images</a>(id, \*\*<a href="src/dodopayments/types/product_collection_update_images_params.py">params</a>) -> <a href="./src/dodopayments/types/product_collection_update_images_response.py">ProductCollectionUpdateImagesResponse</a></code>
+
+## Translations
+
+Methods:
+
+- <code title="put /product-collections/{id}/translations/{locale}">client.product_collections.translations.<a href="./src/dodopayments/resources/product_collections/translations.py">update</a>(locale, \*, id, \*\*<a href="src/dodopayments/types/product_collections/translation_update_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translation.py">Translation</a></code>
+- <code title="get /product-collections/{id}/translations">client.product_collections.translations.<a href="./src/dodopayments/resources/product_collections/translations.py">list</a>(id, \*\*<a href="src/dodopayments/types/product_collections/translation_list_params.py">params</a>) -> <a href="./src/dodopayments/types/products/translations_list_response.py">TranslationsListResponse</a></code>
+- <code title="delete /product-collections/{id}/translations/{locale}">client.product_collections.translations.<a href="./src/dodopayments/resources/product_collections/translations.py">delete</a>(locale, \*, id) -> None</code>
 
 ## Groups
 

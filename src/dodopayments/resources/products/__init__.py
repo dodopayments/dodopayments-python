@@ -24,6 +24,14 @@ from .short_links import (
     ShortLinksResourceWithStreamingResponse,
     AsyncShortLinksResourceWithStreamingResponse,
 )
+from .translations import (
+    TranslationsResource,
+    AsyncTranslationsResource,
+    TranslationsResourceWithRawResponse,
+    AsyncTranslationsResourceWithRawResponse,
+    TranslationsResourceWithStreamingResponse,
+    AsyncTranslationsResourceWithStreamingResponse,
+)
 from .localized_prices import (
     LocalizedPricesResource,
     AsyncLocalizedPricesResource,
@@ -34,6 +42,12 @@ from .localized_prices import (
 )
 
 __all__ = [
+    "TranslationsResource",
+    "AsyncTranslationsResource",
+    "TranslationsResourceWithRawResponse",
+    "AsyncTranslationsResourceWithRawResponse",
+    "TranslationsResourceWithStreamingResponse",
+    "AsyncTranslationsResourceWithStreamingResponse",
     "ImagesResource",
     "AsyncImagesResource",
     "ImagesResourceWithRawResponse",

@@ -11,8 +11,10 @@ from .metadata import Metadata
 from .charge_type import ChargeType
 from .country_code import CountryCode
 from .intent_status import IntentStatus
+from .three_ds_flow import ThreeDSFlow
 from .billing_address import BillingAddress
 from .discount_detail import DiscountDetail
+from .three_ds_status import ThreeDSStatus
 from .refund_list_item import RefundListItem
 from .custom_field_response import CustomFieldResponse
 from .payment_refund_status import PaymentRefundStatus
@@ -257,6 +259,25 @@ class Payment(BaseModel):
     """Amount of tax collected in the currency's smallest unit (e.g.
 
     cents for USD, yen for JPY, fils for KWD)
+    """
+
+    three_ds_flow: Optional[ThreeDSFlow] = None
+    """How the cardholder completed the 3DS authentication.
+
+    The value is null when the processor does not report it.
+    """
+
+    three_ds_status: Optional[ThreeDSStatus] = None
+    """The result of the 3DS authentication, as the processor reports it.
+
+    The value is null when the processor reports no 3DS data, for example when the
+    payment did not use 3DS.
+    """
+
+    three_ds_version: Optional[str] = None
+    """The 3DS protocol version, for example `2.2.0`.
+
+    The value is null when the processor does not report it.
     """
 
     updated_at: Optional[datetime] = None

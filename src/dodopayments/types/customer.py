@@ -3,6 +3,7 @@
 from typing import Optional
 from datetime import datetime
 
+from .locale import Locale
 from .._models import BaseModel
 from .metadata import Metadata
 
@@ -34,3 +35,6 @@ class Customer(BaseModel):
     """Additional metadata for the customer"""
 
     phone_number: Optional[str] = None
+
+    preferred_locale: Optional[Locale] = None
+    """The language of the customer emails. `null` gives English."""

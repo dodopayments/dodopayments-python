@@ -133,14 +133,22 @@ class TestSubscriptions:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.retrieve(
-            "sub_Iuaq622bbmmfOGrVTqdXv",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.retrieve(
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+            locale="locale",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.retrieve(
-            "sub_Iuaq622bbmmfOGrVTqdXv",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -151,7 +159,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.retrieve(
-            "sub_Iuaq622bbmmfOGrVTqdXv",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -165,7 +173,7 @@ class TestSubscriptions:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             client.subscriptions.with_raw_response.retrieve(
-                "",
+                subscription_id="",
             )
 
     @parametrize
@@ -262,6 +270,7 @@ class TestSubscriptions:
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
+            locale="locale",
             page_number=0,
             page_size=0,
             product_id="product_id",
@@ -799,14 +808,22 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.retrieve(
-            "sub_Iuaq622bbmmfOGrVTqdXv",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+        )
+        assert_matches_type(Subscription, subscription, path=["response"])
+
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.retrieve(
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+            locale="locale",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.retrieve(
-            "sub_Iuaq622bbmmfOGrVTqdXv",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -817,7 +834,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.retrieve(
-            "sub_Iuaq622bbmmfOGrVTqdXv",
+            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -831,7 +848,7 @@ class TestAsyncSubscriptions:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             await async_client.subscriptions.with_raw_response.retrieve(
-                "",
+                subscription_id="",
             )
 
     @parametrize
@@ -928,6 +945,7 @@ class TestAsyncSubscriptions:
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
+            locale="locale",
             page_number=0,
             page_size=0,
             product_id="product_id",
