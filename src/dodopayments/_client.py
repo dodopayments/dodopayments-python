@@ -30,9 +30,9 @@ from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, DodoPaymentsError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
-    SyncAPIClient,
-    AsyncAPIClient,
 )
+from .workload_identity import WorkloadIdentity
+from ._workload_identity import SyncWorkloadIdentityAPIClient, AsyncWorkloadIdentityAPIClient
 
 if TYPE_CHECKING:
     from .resources import (
@@ -112,9 +112,9 @@ ENVIRONMENTS: Dict[str, str] = {
 }
 
 
-class DodoPayments(SyncAPIClient):
+class DodoPayments(SyncWorkloadIdentityAPIClient):
     # client options
-    bearer_token: str
+    bearer_token: str | None
     webhook_key: str | None
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
@@ -124,6 +124,7 @@ class DodoPayments(SyncAPIClient):
         *,
         bearer_token: str | None = None,
         webhook_key: str | None = None,
+        workload_identity: WorkloadIdentity | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = not_given,
         base_url: str | httpx.URL | None | NotGiven = not_given,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -150,13 +151,20 @@ class DodoPayments(SyncAPIClient):
         - `bearer_token` from `DODO_PAYMENTS_API_KEY`
         - `webhook_key` from `DODO_PAYMENTS_WEBHOOK_KEY`
         """
-        if bearer_token is None:
+        if bearer_token is not None and workload_identity is not None:
+            raise DodoPaymentsError(
+                "The bearer_token and workload_identity client options are mutually exclusive. Set only one of them."
+            )
+        if bearer_token is None and workload_identity is None:
             bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
-        if bearer_token is None:
+            if bearer_token is None:
+                workload_identity = WorkloadIdentity.from_env()
+        if bearer_token is None and workload_identity is None:
             raise DodoPaymentsError(
                 "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
         self.bearer_token = bearer_token
+        self._workload_identity = workload_identity
 
         if webhook_key is None:
             webhook_key = os.environ.get("DODO_PAYMENTS_WEBHOOK_KEY")
@@ -375,6 +383,8 @@ class DodoPayments(SyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         bearer_token = self.bearer_token
+        if bearer_token is None:
+            return {}
         return {"Authorization": f"Bearer {bearer_token}"}
 
     @property
@@ -391,6 +401,7 @@ class DodoPayments(SyncAPIClient):
         *,
         bearer_token: str | None = None,
         webhook_key: str | None = None,
+        workload_identity: WorkloadIdentity | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -425,8 +436,11 @@ class DodoPayments(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            bearer_token=bearer_token or (self.bearer_token if workload_identity is None else None),
             webhook_key=webhook_key or self.webhook_key,
+            workload_identity=workload_identity
+            if workload_identity is not None or bearer_token is not None
+            else self._workload_identity,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -475,9 +489,9 @@ class DodoPayments(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncDodoPayments(AsyncAPIClient):
+class AsyncDodoPayments(AsyncWorkloadIdentityAPIClient):
     # client options
-    bearer_token: str
+    bearer_token: str | None
     webhook_key: str | None
 
     _environment: Literal["live_mode", "test_mode"] | NotGiven
@@ -487,6 +501,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         *,
         bearer_token: str | None = None,
         webhook_key: str | None = None,
+        workload_identity: WorkloadIdentity | None = None,
         environment: Literal["live_mode", "test_mode"] | NotGiven = not_given,
         base_url: str | httpx.URL | None | NotGiven = not_given,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -513,13 +528,20 @@ class AsyncDodoPayments(AsyncAPIClient):
         - `bearer_token` from `DODO_PAYMENTS_API_KEY`
         - `webhook_key` from `DODO_PAYMENTS_WEBHOOK_KEY`
         """
-        if bearer_token is None:
+        if bearer_token is not None and workload_identity is not None:
+            raise DodoPaymentsError(
+                "The bearer_token and workload_identity client options are mutually exclusive. Set only one of them."
+            )
+        if bearer_token is None and workload_identity is None:
             bearer_token = os.environ.get("DODO_PAYMENTS_API_KEY")
-        if bearer_token is None:
+            if bearer_token is None:
+                workload_identity = WorkloadIdentity.from_env()
+        if bearer_token is None and workload_identity is None:
             raise DodoPaymentsError(
                 "The bearer_token client option must be set either by passing bearer_token to the client or by setting the DODO_PAYMENTS_API_KEY environment variable"
             )
         self.bearer_token = bearer_token
+        self._workload_identity = workload_identity
 
         if webhook_key is None:
             webhook_key = os.environ.get("DODO_PAYMENTS_WEBHOOK_KEY")
@@ -738,6 +760,8 @@ class AsyncDodoPayments(AsyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         bearer_token = self.bearer_token
+        if bearer_token is None:
+            return {}
         return {"Authorization": f"Bearer {bearer_token}"}
 
     @property
@@ -754,6 +778,7 @@ class AsyncDodoPayments(AsyncAPIClient):
         *,
         bearer_token: str | None = None,
         webhook_key: str | None = None,
+        workload_identity: WorkloadIdentity | None = None,
         environment: Literal["live_mode", "test_mode"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -788,8 +813,11 @@ class AsyncDodoPayments(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            bearer_token=bearer_token or (self.bearer_token if workload_identity is None else None),
             webhook_key=webhook_key or self.webhook_key,
+            workload_identity=workload_identity
+            if workload_identity is not None or bearer_token is not None
+            else self._workload_identity,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
