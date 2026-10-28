@@ -130,6 +130,28 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
+## Workload identity
+
+With workload identity, a workload uses a short-lived OIDC token from its platform (GitHub Actions, GitLab, HCP Terraform, GCP, Vercel, Kubernetes or AWS) instead of a long-lived API key. The client exchanges the token for an access token and caches the access token.
+
+```python
+from dodopayments import DodoPayments
+from dodopayments.workload_identity import WorkloadIdentity, github_actions
+
+client = DodoPayments(
+    workload_identity=WorkloadIdentity(
+        identity_provider_id="wip_...",  # The default is the value of DODO_PAYMENTS_IDENTITY_PROVIDER_ID.
+        provider=github_actions(),
+    ),
+)
+```
+
+The `dodopayments.workload_identity` module has these subject token sources: `github_actions()`, `gitlab()`, `terraform_cloud()`, `gcp()`, `vercel()`, `kubernetes()`, `file()`, `aws(fn)`, `static(token)` and `auto()`. A function that returns the JWT is also a source. `AsyncDodoPayments` also accepts an async function.
+
+If you do not give `bearer_token` and `DODO_PAYMENTS_API_KEY` is not set, but `DODO_PAYMENTS_IDENTITY_PROVIDER_ID` is set, the client uses workload identity with `auto()`. You cannot give `bearer_token` and `workload_identity` together.
+
+The client gets a new access token when 5 minutes or less remain. After a `401` response, the client gets a new access token and sends the request again one time. To revoke the cached access token, call `client.workload_identity.revoke()`.
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
