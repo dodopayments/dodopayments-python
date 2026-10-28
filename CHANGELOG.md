@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.125.0](https://github.com/dodopayments/dodopayments-python/compare/v1.124.0...v1.125.0) (2026-10-28)
+
+
+### Features
+
+* **api:** regenerate SDK from latest OpenAPI spec ([8c8bb89](https://github.com/dodopayments/dodopayments-python/commit/8c8bb89755d02c009636dc42d3efb24a694144cd))
+* **api:** regenerate SDK from latest OpenAPI spec ([8b68a2e](https://github.com/dodopayments/dodopayments-python/commit/8b68a2e2d61613334adc643932047c46bb43def7))
+
+
+### Bug Fixes
+
+* restore uv.lock from main ([7db94e8](https://github.com/dodopayments/dodopayments-python/commit/7db94e83c6d3896a22d4935efbf2357c7b78c9c6))
+
 ## [1.124.0](https://github.com/dodopayments/dodopayments-python/compare/v1.123.0...v1.124.0) (2026-10-28)
 
 
