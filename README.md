@@ -146,7 +146,7 @@ client = DodoPayments(
 )
 ```
 
-The `dodopayments.workload_identity` module has these subject token sources: `github_actions()`, `gitlab()`, `terraform_cloud()`, `gcp()`, `vercel()`, `kubernetes()`, `file()`, `aws(fn)`, `static(token)` and `auto()`. A function that returns the JWT is also a source. `AsyncDodoPayments` also accepts an async function.
+The `dodopayments.workload_identity` module has these subject token sources: `github_actions()`, `gitlab()`, `terraform_cloud()`, `gcp()`, `vercel()`, `kubernetes()`, `file()`, `aws(fn)`, `static(token)` and `auto()`. A function that returns the JWT is also a source. `vercel()` gets a Vercel OIDC token with the Dodo Payments audience from the Vercel token endpoint. `AsyncDodoPayments` also accepts an async function.
 
 If you do not give `bearer_token` and `DODO_PAYMENTS_API_KEY` is not set, but `DODO_PAYMENTS_IDENTITY_PROVIDER_ID` is set, the client uses workload identity with `auto()`. You cannot give `bearer_token` and `workload_identity` together.
 

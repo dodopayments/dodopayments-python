@@ -36,6 +36,7 @@ IDENTITY_PROVIDER_ID_ENV = "DODO_PAYMENTS_IDENTITY_PROVIDER_ID"
 IDENTITY_TOKEN_FILE_ENV = "DODO_PAYMENTS_IDENTITY_TOKEN_FILE"
 KUBERNETES_TOKEN_PATH = "/var/run/secrets/tokens/dodo-token"
 GCP_IDENTITY_URL = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity"
+VERCEL_TOKEN_URL = "https://oidc.vercel.com/~token"
 
 # The client gets a new access token when 300 seconds or less remain.
 REFRESH_WINDOW_SECONDS = 300.0
@@ -220,6 +221,59 @@ class _GCPProvider(SubjectTokenProvider):
             return self._parse(await client.send(self._request(context)))
 
 
+class _VercelProvider(SubjectTokenProvider):
+    def __init__(self, audience: Optional[str]) -> None:
+        self._audience = audience
+
+    @staticmethod
+    def _base_token() -> str:
+        token_file = os.environ.get("VERCEL_OIDC_TOKEN_FILE")
+        if token_file:
+            with open(token_file, encoding="utf-8") as f:
+                return _checked(f.read(), "vercel")
+        token = os.environ.get("VERCEL_OIDC_TOKEN")
+        if not token or not token.strip():
+            raise DodoPaymentsError(
+                "Cannot find a Vercel OIDC token. Set the VERCEL_OIDC_TOKEN_FILE or VERCEL_OIDC_TOKEN environment variable"
+            )
+        return token.strip()
+
+    def _request(self, context: SubjectTokenContext) -> httpx.Request:
+        return httpx.Request(
+            "POST",
+            VERCEL_TOKEN_URL,
+            json={"token": self._base_token(), "aud": self._audience or context.audience},
+            headers={"Accept": "application/json"},
+        )
+
+    @staticmethod
+    def _parse(response: httpx.Response) -> str:
+        if not response.is_success:
+            raise DodoPaymentsError(
+                f"The Vercel OIDC token request failed with status {response.status_code}: {response.text[:200]}"
+            )
+        try:
+            data: object = response.json()
+        except ValueError:
+            data = None
+        token = data.get("token") if is_dict(data) else None
+        if not isinstance(token, str):
+            raise DodoPaymentsError(
+                f"The Vercel OIDC token response has no `token` field (status {response.status_code})"
+            )
+        return _checked(token, "vercel")
+
+    @override
+    def get_token(self, context: SubjectTokenContext) -> str:
+        with httpx.Client(timeout=_HELPER_TIMEOUT) as client:
+            return self._parse(client.send(self._request(context)))
+
+    @override
+    async def aget_token(self, context: SubjectTokenContext) -> str:
+        async with httpx.AsyncClient(timeout=_HELPER_TIMEOUT) as client:
+            return self._parse(await client.send(self._request(context)))
+
+
 def github_actions(audience: Optional[str] = None) -> SubjectTokenProvider:
     """Get a new GitHub Actions OIDC token for each exchange.
 
@@ -243,9 +297,13 @@ def gcp(audience: Optional[str] = None) -> SubjectTokenProvider:
     return _GCPProvider(audience)
 
 
-def vercel() -> SubjectTokenProvider:
-    """Read the Vercel OIDC token from `VERCEL_OIDC_TOKEN`."""
-    return _EnvProvider("VERCEL_OIDC_TOKEN")
+def vercel(audience: Optional[str] = None) -> SubjectTokenProvider:
+    """Get a Vercel OIDC token for the Dodo Payments audience for each exchange.
+
+    The base token comes from `VERCEL_OIDC_TOKEN_FILE` or `VERCEL_OIDC_TOKEN`. Vercel exchanges the base token
+    for a token with the audience. The default audience is the origin of the client base URL.
+    """
+    return _VercelProvider(audience)
 
 
 def kubernetes(path: Union[str, os.PathLike[str]] = KUBERNETES_TOKEN_PATH) -> SubjectTokenProvider:

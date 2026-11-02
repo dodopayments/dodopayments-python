@@ -14,7 +14,7 @@ import httpx
 import pytest
 from respx import MockRouter
 
-from dodopayments import DodoPayments, AsyncDodoPayments
+from dodopayments import DodoPayments, AsyncDodoPayments, workload_identity as workload_identity_module
 from dodopayments._types import Omit
 from dodopayments._exceptions import DodoPaymentsError, AuthenticationError, PermissionDeniedError
 from dodopayments.workload_identity import (
@@ -22,6 +22,7 @@ from dodopayments.workload_identity import (
     SubjectTokenContext,
     SubjectTokenProvider,
     static,
+    vercel,
 )
 
 from .utils import update_env
@@ -252,6 +253,32 @@ class TestWorkloadIdentity:
 
         assert json.loads(exchange.requests[0].content) == EXCHANGE_BODY
         assert api.authorizations == ["Bearer access-1"]
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_vercel_exchanges_for_default_audience(
+        self, respx_mock: MockRouter, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(workload_identity_module, "VERCEL_TOKEN_URL", f"{base_url}/vercel/~token")
+        vercel_stub = Recorder(httpx.Response(200, json={"token": "vercel-dodo-token", "expiry": 1}))
+        exchange, api = tokens("access-1"), ok()
+        respx_mock.post("/vercel/~token").mock(side_effect=vercel_stub)
+        respx_mock.post(TOKEN_PATH).mock(side_effect=exchange)
+        respx_mock.get("/foo").mock(side_effect=api)
+
+        with update_env(VERCEL_OIDC_TOKEN="vercel-base-token", VERCEL_OIDC_TOKEN_FILE=Omit()):
+            self.client(workload_identity(vercel())).get("/foo", cast_to=httpx.Response)
+
+        assert json.loads(vercel_stub.requests[0].content) == {
+            "token": "vercel-base-token",
+            "aud": f"{httpx.URL(base_url).scheme}://{httpx.URL(base_url).netloc.decode('ascii')}",
+        }
+        assert json.loads(exchange.requests[0].content)["subject_token"] == "vercel-dodo-token"
+
+        respx_mock.post("/vercel/~token").mock(return_value=httpx.Response(403, json={"error": "denied"}))
+        with update_env(VERCEL_OIDC_TOKEN="vercel-base-token", VERCEL_OIDC_TOKEN_FILE=Omit()):
+            with pytest.raises(DodoPaymentsError, match="status 403") as err:
+                vercel().get_token(SubjectTokenContext(base_url=base_url, audience="https://live.dodopayments.com"))
+        assert "vercel-base-token" not in str(err.value)
 
 
 class TestAsyncWorkloadIdentity:
