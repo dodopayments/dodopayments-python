@@ -7,10 +7,13 @@ from .._utils import PropertyInfo
 from .dispute_won_webhook_event import DisputeWonWebhookEvent
 from .credit_added_webhook_event import CreditAddedWebhookEvent
 from .dispute_lost_webhook_event import DisputeLostWebhookEvent
+from .invoice_paid_webhook_event import InvoicePaidWebhookEvent
+from .invoice_sent_webhook_event import InvoiceSentWebhookEvent
 from .payout_failed_webhook_event import PayoutFailedWebhookEvent
 from .refund_failed_webhook_event import RefundFailedWebhookEvent
 from .credit_expired_webhook_event import CreditExpiredWebhookEvent
 from .dispute_opened_webhook_event import DisputeOpenedWebhookEvent
+from .invoice_voided_webhook_event import InvoiceVoidedWebhookEvent
 from .payment_failed_webhook_event import PaymentFailedWebhookEvent
 from .payout_created_webhook_event import PayoutCreatedWebhookEvent
 from .payout_on_hold_webhook_event import PayoutOnHoldWebhookEvent
@@ -19,9 +22,12 @@ from .credit_deducted_webhook_event import CreditDeductedWebhookEvent
 from .dispute_expired_webhook_event import DisputeExpiredWebhookEvent
 from .dunning_started_webhook_event import DunningStartedWebhookEvent
 from .dispute_accepted_webhook_event import DisputeAcceptedWebhookEvent
+from .invoice_past_due_webhook_event import InvoicePastDueWebhookEvent
+from .invoice_reopened_webhook_event import InvoiceReopenedWebhookEvent
 from .refund_succeeded_webhook_event import RefundSucceededWebhookEvent
 from .dispute_cancelled_webhook_event import DisputeCancelledWebhookEvent
 from .dunning_recovered_webhook_event import DunningRecoveredWebhookEvent
+from .invoice_finalized_webhook_event import InvoiceFinalizedWebhookEvent
 from .payment_cancelled_webhook_event import PaymentCancelledWebhookEvent
 from .payment_succeeded_webhook_event import PaymentSucceededWebhookEvent
 from .credit_balance_low_webhook_event import CreditBalanceLowWebhookEvent
@@ -41,6 +47,7 @@ from .subscription_updated_webhook_event import SubscriptionUpdatedWebhookEvent
 from .subscription_past_due_webhook_event import SubscriptionPastDueWebhookEvent
 from .subscription_unpaused_webhook_event import SubscriptionUnpausedWebhookEvent
 from .credit_overage_charged_webhook_event import CreditOverageChargedWebhookEvent
+from .invoice_payment_failed_webhook_event import InvoicePaymentFailedWebhookEvent
 from .subscription_cancelled_webhook_event import SubscriptionCancelledWebhookEvent
 from .credit_manual_adjustment_webhook_event import CreditManualAdjustmentWebhookEvent
 from .entitlement_grant_failed_webhook_event import EntitlementGrantFailedWebhookEvent
@@ -51,6 +58,7 @@ from .subscription_plan_changed_webhook_event import SubscriptionPlanChangedWebh
 from .abandoned_checkout_detected_webhook_event import AbandonedCheckoutDetectedWebhookEvent
 from .entitlement_grant_delivered_webhook_event import EntitlementGrantDeliveredWebhookEvent
 from .abandoned_checkout_recovered_webhook_event import AbandonedCheckoutRecoveredWebhookEvent
+from .invoice_marked_uncollectable_webhook_event import InvoiceMarkedUncollectableWebhookEvent
 from .subscription_update_payment_method_webhook_event import SubscriptionUpdatePaymentMethodWebhookEvent
 
 __all__ = ["UnsafeUnwrapWebhookEvent"]
@@ -81,6 +89,14 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Annotated[
         EntitlementGrantDeliveredWebhookEvent,
         EntitlementGrantFailedWebhookEvent,
         EntitlementGrantRevokedWebhookEvent,
+        InvoiceFinalizedWebhookEvent,
+        InvoiceMarkedUncollectableWebhookEvent,
+        InvoicePaidWebhookEvent,
+        InvoicePastDueWebhookEvent,
+        InvoicePaymentFailedWebhookEvent,
+        InvoiceReopenedWebhookEvent,
+        InvoiceSentWebhookEvent,
+        InvoiceVoidedWebhookEvent,
         LicenseKeyCreatedWebhookEvent,
         PaymentCancelledWebhookEvent,
         PaymentFailedWebhookEvent,

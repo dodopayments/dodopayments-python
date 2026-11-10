@@ -75,22 +75,14 @@ class TestAddons:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         addon = client.addons.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
-        )
-        assert_matches_type(AddonResponse, addon, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
-        addon = client.addons.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
-            locale="locale",
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
         )
         assert_matches_type(AddonResponse, addon, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.addons.with_raw_response.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
         )
 
         assert response.is_closed is True
@@ -101,7 +93,7 @@ class TestAddons:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.addons.with_streaming_response.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,7 +107,7 @@ class TestAddons:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.addons.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -178,7 +170,6 @@ class TestAddons:
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         addon = client.addons.list(
             archived=True,
-            locale="locale",
             page_number=0,
             page_size=0,
         )
@@ -378,22 +369,14 @@ class TestAsyncAddons:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         addon = await async_client.addons.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
-        )
-        assert_matches_type(AddonResponse, addon, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
-        addon = await async_client.addons.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
-            locale="locale",
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
         )
         assert_matches_type(AddonResponse, addon, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.addons.with_raw_response.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
         )
 
         assert response.is_closed is True
@@ -404,7 +387,7 @@ class TestAsyncAddons:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.addons.with_streaming_response.retrieve(
-            id="adn_NX1zdqW4Hbivsqz8vI9dc",
+            "adn_NX1zdqW4Hbivsqz8vI9dc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -418,7 +401,7 @@ class TestAsyncAddons:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.addons.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -481,7 +464,6 @@ class TestAsyncAddons:
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         addon = await async_client.addons.list(
             archived=True,
-            locale="locale",
             page_number=0,
             page_size=0,
         )

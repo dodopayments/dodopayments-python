@@ -10,4 +10,4 @@ __all__ = ["NoteUpdateParams"]
 class NoteUpdateParams(TypedDict, total=False):
     entry_id: Required[str]
 
-    note: Required[str]
+    text: Required[str]
