@@ -2,14 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
 from .metadata_param import MetadataParam
+from .collection_method import CollectionMethod
 from .attach_addon_param import AttachAddonParam
 
-__all__ = ["SubscriptionChangePlanParams"]
+__all__ = [
+    "SubscriptionChangePlanParams",
+    "Invoice",
+    "InvoicePaymentTerms",
+    "InvoicePaymentTermsDueOnReceipt",
+    "InvoicePaymentTermsNet",
+]
 
 
 class SubscriptionChangePlanParams(TypedDict, total=False):
@@ -85,6 +92,12 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     The preview route shares this request body and ignores this field.
     """
 
+    credit: Optional[Literal["customer_balance", "refund"]]
+    """Where a downgrade credit goes.
+
+    Only invoice-led subscriptions read it. The default is `customer_balance`.
+    """
+
     discount_code: Optional[str]
     """DEPRECATED: Use discount_codes instead.
 
@@ -104,6 +117,12 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
 
     - `immediately` (default): Apply the plan change right away
     - `next_billing_date`: Schedule the change for the next billing date
+    """
+
+    invoice: Optional[Invoice]
+    """The invoice of a plan change billed now.
+
+    Only invoice-led subscriptions read it.
     """
 
     metadata: Optional[MetadataParam]
@@ -140,3 +159,35 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     current plan. To try again, call this endpoint again to get a new link. The new
     plan can apply after the redirect, when the payment webhook arrives.
     """
+
+
+class InvoicePaymentTermsDueOnReceipt(TypedDict, total=False):
+    type: Required[Literal["due_on_receipt"]]
+
+
+class InvoicePaymentTermsNet(TypedDict, total=False):
+    days: Required[int]
+
+    type: Required[Literal["net"]]
+
+
+InvoicePaymentTerms: TypeAlias = Union[InvoicePaymentTermsDueOnReceipt, InvoicePaymentTermsNet]
+
+
+class Invoice(TypedDict, total=False):
+    """The invoice of a plan change billed now.
+
+    Only invoice-led subscriptions read it.
+    """
+
+    collection_method: Optional[CollectionMethod]
+    """The collection method of the invoice.
+
+    The subscription value applies when absent.
+    """
+
+    finalize: bool
+    """`false` keeps the invoice as a draft for review. Default `true`."""
+
+    payment_terms: Optional[InvoicePaymentTerms]
+    """The terms of the plan-change invoice. The subscription terms apply when absent."""

@@ -13,7 +13,6 @@ from ...types import (
     credit_entitlement_list_params,
     credit_entitlement_create_params,
     credit_entitlement_update_params,
-    credit_entitlement_retrieve_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
@@ -34,14 +33,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from .translations import (
-    TranslationsResource,
-    AsyncTranslationsResource,
-    TranslationsResourceWithRawResponse,
-    AsyncTranslationsResourceWithRawResponse,
-    TranslationsResourceWithStreamingResponse,
-    AsyncTranslationsResourceWithStreamingResponse,
-)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.currency import Currency
 from ...types.time_interval import TimeInterval
@@ -52,10 +43,6 @@ __all__ = ["CreditEntitlementsResource", "AsyncCreditEntitlementsResource"]
 
 
 class CreditEntitlementsResource(SyncAPIResource):
-    @cached_property
-    def translations(self) -> TranslationsResource:
-        return TranslationsResource(self._client)
-
     @cached_property
     def balances(self) -> BalancesResource:
         return BalancesResource(self._client)
@@ -221,7 +208,6 @@ class CreditEntitlementsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,13 +242,6 @@ class CreditEntitlementsResource(SyncAPIResource):
           endpoint with `deleted=true`
 
         Args:
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -276,13 +255,7 @@ class CreditEntitlementsResource(SyncAPIResource):
         return self._get(
             path_template("/credit-entitlements/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"locale": locale}, credit_entitlement_retrieve_params.CreditEntitlementRetrieveParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CreditEntitlement,
         )
@@ -442,7 +415,6 @@ class CreditEntitlementsResource(SyncAPIResource):
         self,
         *,
         deleted: bool | Omit = omit,
-        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -483,13 +455,6 @@ class CreditEntitlementsResource(SyncAPIResource):
         Args:
           deleted: List deleted credit entitlements
 
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -513,7 +478,6 @@ class CreditEntitlementsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "deleted": deleted,
-                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -630,10 +594,6 @@ class CreditEntitlementsResource(SyncAPIResource):
 
 
 class AsyncCreditEntitlementsResource(AsyncAPIResource):
-    @cached_property
-    def translations(self) -> AsyncTranslationsResource:
-        return AsyncTranslationsResource(self._client)
-
     @cached_property
     def balances(self) -> AsyncBalancesResource:
         return AsyncBalancesResource(self._client)
@@ -799,7 +759,6 @@ class AsyncCreditEntitlementsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -834,13 +793,6 @@ class AsyncCreditEntitlementsResource(AsyncAPIResource):
           endpoint with `deleted=true`
 
         Args:
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -854,13 +806,7 @@ class AsyncCreditEntitlementsResource(AsyncAPIResource):
         return await self._get(
             path_template("/credit-entitlements/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"locale": locale}, credit_entitlement_retrieve_params.CreditEntitlementRetrieveParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CreditEntitlement,
         )
@@ -1020,7 +966,6 @@ class AsyncCreditEntitlementsResource(AsyncAPIResource):
         self,
         *,
         deleted: bool | Omit = omit,
-        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1061,13 +1006,6 @@ class AsyncCreditEntitlementsResource(AsyncAPIResource):
         Args:
           deleted: List deleted credit entitlements
 
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           page_number: Page number default is 0
 
           page_size: Page size default is 10 max is 100
@@ -1091,7 +1029,6 @@ class AsyncCreditEntitlementsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "deleted": deleted,
-                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -1231,10 +1168,6 @@ class CreditEntitlementsResourceWithRawResponse:
         )
 
     @cached_property
-    def translations(self) -> TranslationsResourceWithRawResponse:
-        return TranslationsResourceWithRawResponse(self._credit_entitlements.translations)
-
-    @cached_property
     def balances(self) -> BalancesResourceWithRawResponse:
         return BalancesResourceWithRawResponse(self._credit_entitlements.balances)
 
@@ -1261,10 +1194,6 @@ class AsyncCreditEntitlementsResourceWithRawResponse:
         self.undelete = async_to_raw_response_wrapper(
             credit_entitlements.undelete,
         )
-
-    @cached_property
-    def translations(self) -> AsyncTranslationsResourceWithRawResponse:
-        return AsyncTranslationsResourceWithRawResponse(self._credit_entitlements.translations)
 
     @cached_property
     def balances(self) -> AsyncBalancesResourceWithRawResponse:
@@ -1295,10 +1224,6 @@ class CreditEntitlementsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def translations(self) -> TranslationsResourceWithStreamingResponse:
-        return TranslationsResourceWithStreamingResponse(self._credit_entitlements.translations)
-
-    @cached_property
     def balances(self) -> BalancesResourceWithStreamingResponse:
         return BalancesResourceWithStreamingResponse(self._credit_entitlements.balances)
 
@@ -1325,10 +1250,6 @@ class AsyncCreditEntitlementsResourceWithStreamingResponse:
         self.undelete = async_to_streamed_response_wrapper(
             credit_entitlements.undelete,
         )
-
-    @cached_property
-    def translations(self) -> AsyncTranslationsResourceWithStreamingResponse:
-        return AsyncTranslationsResourceWithStreamingResponse(self._credit_entitlements.translations)
 
     @cached_property
     def balances(self) -> AsyncBalancesResourceWithStreamingResponse:

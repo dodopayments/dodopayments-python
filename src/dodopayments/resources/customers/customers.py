@@ -17,7 +17,6 @@ from .emails import (
     AsyncEmailsResourceWithStreamingResponse,
 )
 from ...types import (
-    Locale,
     customer_list_params,
     customer_create_params,
     customer_update_params,
@@ -35,7 +34,6 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.locale import Locale
 from .customer_portal import (
     CustomerPortalResource,
     AsyncCustomerPortalResource,
@@ -101,7 +99,6 @@ class CustomersResource(SyncAPIResource):
         name: str,
         metadata: MetadataParam | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
-        preferred_locale: Optional[Locale] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -112,10 +109,6 @@ class CustomersResource(SyncAPIResource):
         """
         Args:
           metadata: Additional metadata for the customer
-
-          preferred_locale: The language of the customer emails, a code from `GET /locales`. With no value,
-              the emails are in English until a checkout or the customer portal sets a
-              language.
 
           extra_headers: Send extra headers
 
@@ -133,7 +126,6 @@ class CustomersResource(SyncAPIResource):
                     "name": name,
                     "metadata": metadata,
                     "phone_number": phone_number,
-                    "preferred_locale": preferred_locale,
                 },
                 customer_create_params.CustomerCreateParams,
             ),
@@ -182,7 +174,6 @@ class CustomersResource(SyncAPIResource):
         metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
-        preferred_locale: Optional[Locale] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,10 +184,6 @@ class CustomersResource(SyncAPIResource):
         """
         Args:
           metadata: Additional metadata for the customer
-
-          preferred_locale: The language of the customer emails, a code from `GET /locales`. A value
-              replaces the current language, and `null` removes it. Send this field only to
-              change the language on purpose. With no language, the emails are in English.
 
           extra_headers: Send extra headers
 
@@ -216,7 +203,6 @@ class CustomersResource(SyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "phone_number": phone_number,
-                    "preferred_locale": preferred_locale,
                 },
                 customer_update_params.CustomerUpdateParams,
             ),
@@ -526,7 +512,6 @@ class AsyncCustomersResource(AsyncAPIResource):
         name: str,
         metadata: MetadataParam | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
-        preferred_locale: Optional[Locale] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -537,10 +522,6 @@ class AsyncCustomersResource(AsyncAPIResource):
         """
         Args:
           metadata: Additional metadata for the customer
-
-          preferred_locale: The language of the customer emails, a code from `GET /locales`. With no value,
-              the emails are in English until a checkout or the customer portal sets a
-              language.
 
           extra_headers: Send extra headers
 
@@ -558,7 +539,6 @@ class AsyncCustomersResource(AsyncAPIResource):
                     "name": name,
                     "metadata": metadata,
                     "phone_number": phone_number,
-                    "preferred_locale": preferred_locale,
                 },
                 customer_create_params.CustomerCreateParams,
             ),
@@ -607,7 +587,6 @@ class AsyncCustomersResource(AsyncAPIResource):
         metadata: Optional[MetadataParam] | Omit = omit,
         name: Optional[str] | Omit = omit,
         phone_number: Optional[str] | Omit = omit,
-        preferred_locale: Optional[Locale] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -618,10 +597,6 @@ class AsyncCustomersResource(AsyncAPIResource):
         """
         Args:
           metadata: Additional metadata for the customer
-
-          preferred_locale: The language of the customer emails, a code from `GET /locales`. A value
-              replaces the current language, and `null` removes it. Send this field only to
-              change the language on purpose. With no language, the emails are in English.
 
           extra_headers: Send extra headers
 
@@ -641,7 +616,6 @@ class AsyncCustomersResource(AsyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "phone_number": phone_number,
-                    "preferred_locale": preferred_locale,
                 },
                 customer_update_params.CustomerUpdateParams,
             ),

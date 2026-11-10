@@ -10,6 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
 from dodopayments.types import (
+    Invoice,
     Subscription,
     SubscriptionListResponse,
     SubscriptionChargeResponse,
@@ -133,22 +134,14 @@ class TestSubscriptions:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         subscription = client.subscriptions.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
-        )
-        assert_matches_type(Subscription, subscription, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
-        subscription = client.subscriptions.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
-            locale="locale",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.subscriptions.with_raw_response.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -159,7 +152,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.subscriptions.with_streaming_response.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -173,7 +166,7 @@ class TestSubscriptions:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             client.subscriptions.with_raw_response.retrieve(
-                subscription_id="",
+                "",
             )
 
     @parametrize
@@ -270,7 +263,6 @@ class TestSubscriptions:
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
-            locale="locale",
             page_number=0,
             page_size=0,
             product_id="product_id",
@@ -365,9 +357,15 @@ class TestSubscriptions:
             cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
+            credit="customer_balance",
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
+            invoice={
+                "collection_method": "auto_charge",
+                "finalize": True,
+                "payment_terms": {"type": "due_on_receipt"},
+            },
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
             return_url="return_url",
@@ -499,9 +497,15 @@ class TestSubscriptions:
             cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
+            credit="customer_balance",
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
+            invoice={
+                "collection_method": "auto_charge",
+                "finalize": True,
+                "payment_terms": {"type": "due_on_receipt"},
+            },
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
             return_url="return_url",
@@ -583,6 +587,44 @@ class TestSubscriptions:
     def test_path_params_retrieve_credit_usage(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             client.subscriptions.with_raw_response.retrieve_credit_usage(
+                "",
+            )
+
+    @parametrize
+    def test_method_retrieve_upcoming_invoice(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.retrieve_upcoming_invoice(
+            "subscription_id",
+        )
+        assert_matches_type(Invoice, subscription, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_upcoming_invoice(self, client: DodoPayments) -> None:
+        response = client.subscriptions.with_raw_response.retrieve_upcoming_invoice(
+            "subscription_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert_matches_type(Invoice, subscription, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_upcoming_invoice(self, client: DodoPayments) -> None:
+        with client.subscriptions.with_streaming_response.retrieve_upcoming_invoice(
+            "subscription_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert_matches_type(Invoice, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve_upcoming_invoice(self, client: DodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            client.subscriptions.with_raw_response.retrieve_upcoming_invoice(
                 "",
             )
 
@@ -808,22 +850,14 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         subscription = await async_client.subscriptions.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
-        )
-        assert_matches_type(Subscription, subscription, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
-        subscription = await async_client.subscriptions.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
-            locale="locale",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.subscriptions.with_raw_response.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         )
 
         assert response.is_closed is True
@@ -834,7 +868,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.subscriptions.with_streaming_response.retrieve(
-            subscription_id="sub_Iuaq622bbmmfOGrVTqdXv",
+            "sub_Iuaq622bbmmfOGrVTqdXv",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -848,7 +882,7 @@ class TestAsyncSubscriptions:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             await async_client.subscriptions.with_raw_response.retrieve(
-                subscription_id="",
+                "",
             )
 
     @parametrize
@@ -945,7 +979,6 @@ class TestAsyncSubscriptions:
             created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="customer_id",
-            locale="locale",
             page_number=0,
             page_size=0,
             product_id="product_id",
@@ -1040,9 +1073,15 @@ class TestAsyncSubscriptions:
             cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
+            credit="customer_balance",
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
+            invoice={
+                "collection_method": "auto_charge",
+                "finalize": True,
+                "payment_terms": {"type": "due_on_receipt"},
+            },
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
             return_url="return_url",
@@ -1174,9 +1213,15 @@ class TestAsyncSubscriptions:
             cancel_older_payment_link=True,
             cancel_scheduled_change_plan=True,
             collect_via_payment_link=True,
+            credit="customer_balance",
             discount_code="discount_code",
             discount_codes=["string"],
             effective_at="immediately",
+            invoice={
+                "collection_method": "auto_charge",
+                "finalize": True,
+                "payment_terms": {"type": "due_on_receipt"},
+            },
             metadata={"foo": "string"},
             on_payment_failure="prevent_change",
             return_url="return_url",
@@ -1258,6 +1303,44 @@ class TestAsyncSubscriptions:
     async def test_path_params_retrieve_credit_usage(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
             await async_client.subscriptions.with_raw_response.retrieve_credit_usage(
+                "",
+            )
+
+    @parametrize
+    async def test_method_retrieve_upcoming_invoice(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.retrieve_upcoming_invoice(
+            "subscription_id",
+        )
+        assert_matches_type(Invoice, subscription, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_upcoming_invoice(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.subscriptions.with_raw_response.retrieve_upcoming_invoice(
+            "subscription_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert_matches_type(Invoice, subscription, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_upcoming_invoice(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.subscriptions.with_streaming_response.retrieve_upcoming_invoice(
+            "subscription_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert_matches_type(Invoice, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve_upcoming_invoice(self, async_client: AsyncDodoPayments) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `subscription_id` but received ''"):
+            await async_client.subscriptions.with_raw_response.retrieve_upcoming_invoice(
                 "",
             )
 

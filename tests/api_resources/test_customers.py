@@ -40,7 +40,6 @@ class TestCustomers:
             name="name",
             metadata={"foo": "string"},
             phone_number="phone_number",
-            preferred_locale="ar",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
@@ -123,7 +122,6 @@ class TestCustomers:
             metadata={"foo": "string"},
             name="name",
             phone_number="phone_number",
-            preferred_locale="ar",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
@@ -427,7 +425,6 @@ class TestAsyncCustomers:
             name="name",
             metadata={"foo": "string"},
             phone_number="phone_number",
-            preferred_locale="ar",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
@@ -510,7 +507,6 @@ class TestAsyncCustomers:
             metadata={"foo": "string"},
             name="name",
             phone_number="phone_number",
-            preferred_locale="ar",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
