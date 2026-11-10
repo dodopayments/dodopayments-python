@@ -18,7 +18,6 @@ from ..types import (
     subscription_charge_params,
     subscription_create_params,
     subscription_update_params,
-    subscription_retrieve_params,
     subscription_change_plan_params,
     subscription_preview_change_plan_params,
     subscription_update_payment_method_params,
@@ -36,6 +35,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.invoice import Invoice
 from ..types.currency import Currency
 from ..types.subscription import Subscription
 from ..types.time_interval import TimeInterval
@@ -235,7 +235,6 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_id: str,
         *,
-        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -245,13 +244,6 @@ class SubscriptionsResource(SyncAPIResource):
     ) -> Subscription:
         """
         Args:
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -265,11 +257,7 @@ class SubscriptionsResource(SyncAPIResource):
         return self._get(
             path_template("/subscriptions/{subscription_id}", subscription_id=subscription_id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"locale": locale}, subscription_retrieve_params.SubscriptionRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Subscription,
         )
@@ -401,7 +389,6 @@ class SubscriptionsResource(SyncAPIResource):
         created_at_gte: Union[str, datetime] | Omit = omit,
         created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
-        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
@@ -425,13 +412,6 @@ class SubscriptionsResource(SyncAPIResource):
           created_at_lte: Get events created before this time
 
           customer_id: Filter by customer id
-
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
 
           page_number: Page number default is 0
 
@@ -464,7 +444,6 @@ class SubscriptionsResource(SyncAPIResource):
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
-                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                         "product_id": product_id,
@@ -526,9 +505,11 @@ class SubscriptionsResource(SyncAPIResource):
         cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
+        credit: Optional[Literal["customer_balance", "refund"]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
+        invoice: Optional[subscription_change_plan_params.Invoice] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -588,6 +569,9 @@ class SubscriptionsResource(SyncAPIResource):
 
               The preview route shares this request body and ignores this field.
 
+          credit: Where a downgrade credit goes. Only invoice-led subscriptions read it. The
+              default is `customer_balance`.
+
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
 
@@ -600,6 +584,8 @@ class SubscriptionsResource(SyncAPIResource):
 
               - `immediately` (default): Apply the plan change right away
               - `next_billing_date`: Schedule the change for the next billing date
+
+          invoice: The invoice of a plan change billed now. Only invoice-led subscriptions read it.
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -650,9 +636,11 @@ class SubscriptionsResource(SyncAPIResource):
                     "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
+                    "credit": credit,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
+                    "invoice": invoice,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                     "return_url": return_url,
@@ -750,9 +738,11 @@ class SubscriptionsResource(SyncAPIResource):
         cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
+        credit: Optional[Literal["customer_balance", "refund"]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
+        invoice: Optional[subscription_preview_change_plan_params.Invoice] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -812,6 +802,9 @@ class SubscriptionsResource(SyncAPIResource):
 
               The preview route shares this request body and ignores this field.
 
+          credit: Where a downgrade credit goes. Only invoice-led subscriptions read it. The
+              default is `customer_balance`.
+
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
 
@@ -824,6 +817,8 @@ class SubscriptionsResource(SyncAPIResource):
 
               - `immediately` (default): Apply the plan change right away
               - `next_billing_date`: Schedule the change for the next billing date
+
+          invoice: The invoice of a plan change billed now. Only invoice-led subscriptions read it.
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -874,9 +869,11 @@ class SubscriptionsResource(SyncAPIResource):
                     "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
+                    "credit": credit,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
+                    "invoice": invoice,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                     "return_url": return_url,
@@ -918,6 +915,42 @@ class SubscriptionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=SubscriptionRetrieveCreditUsageResponse,
+        )
+
+    def retrieve_upcoming_invoice(
+        self,
+        subscription_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Invoice:
+        """Prices the next cycle invoice of an invoice-led subscription.
+
+        The invoice ID in
+        the response is not stored, so the response has no allowed actions and no
+        editable fields.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._get(
+            path_template("/subscriptions/{subscription_id}/upcoming-invoice", subscription_id=subscription_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Invoice,
         )
 
     def retrieve_usage_history(
@@ -1036,6 +1069,9 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionUpdatePaymentMethodResponse:
         """
+        For an invoice-led subscription, billing charges the open invoices after the
+        change, so the response has no payment.
+
         Args:
           extra_headers: Send extra headers
 
@@ -1234,7 +1270,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_id: str,
         *,
-        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1244,13 +1279,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     ) -> Subscription:
         """
         Args:
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1264,13 +1292,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         return await self._get(
             path_template("/subscriptions/{subscription_id}", subscription_id=subscription_id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"locale": locale}, subscription_retrieve_params.SubscriptionRetrieveParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Subscription,
         )
@@ -1402,7 +1424,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         created_at_gte: Union[str, datetime] | Omit = omit,
         created_at_lte: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
-        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         product_id: str | Omit = omit,
@@ -1426,13 +1447,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
           created_at_lte: Get events created before this time
 
           customer_id: Filter by customer id
-
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
 
           page_number: Page number default is 0
 
@@ -1465,7 +1479,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                         "created_at_gte": created_at_gte,
                         "created_at_lte": created_at_lte,
                         "customer_id": customer_id,
-                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                         "product_id": product_id,
@@ -1527,9 +1540,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
+        credit: Optional[Literal["customer_balance", "refund"]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
+        invoice: Optional[subscription_change_plan_params.Invoice] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -1589,6 +1604,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
               The preview route shares this request body and ignores this field.
 
+          credit: Where a downgrade credit goes. Only invoice-led subscriptions read it. The
+              default is `customer_balance`.
+
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
 
@@ -1601,6 +1619,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
               - `immediately` (default): Apply the plan change right away
               - `next_billing_date`: Schedule the change for the next billing date
+
+          invoice: The invoice of a plan change billed now. Only invoice-led subscriptions read it.
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -1651,9 +1671,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
+                    "credit": credit,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
+                    "invoice": invoice,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                     "return_url": return_url,
@@ -1751,9 +1773,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         cancel_older_payment_link: bool | Omit = omit,
         cancel_scheduled_change_plan: bool | Omit = omit,
         collect_via_payment_link: bool | Omit = omit,
+        credit: Optional[Literal["customer_balance", "refund"]] | Omit = omit,
         discount_code: Optional[str] | Omit = omit,
         discount_codes: Optional[SequenceNotStr[str]] | Omit = omit,
         effective_at: Literal["immediately", "next_billing_date"] | Omit = omit,
+        invoice: Optional[subscription_preview_change_plan_params.Invoice] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
         on_payment_failure: Optional[Literal["prevent_change", "apply_change"]] | Omit = omit,
         return_url: Optional[str] | Omit = omit,
@@ -1813,6 +1837,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
               The preview route shares this request body and ignores this field.
 
+          credit: Where a downgrade credit goes. Only invoice-led subscriptions read it. The
+              default is `customer_balance`.
+
           discount_code: DEPRECATED: Use discount_codes instead. Cannot be used together with
               discount_codes.
 
@@ -1825,6 +1852,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
               - `immediately` (default): Apply the plan change right away
               - `next_billing_date`: Schedule the change for the next billing date
+
+          invoice: The invoice of a plan change billed now. Only invoice-led subscriptions read it.
 
           metadata: Metadata for the payment. If not passed, the metadata of the subscription will
               be taken
@@ -1875,9 +1904,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     "cancel_older_payment_link": cancel_older_payment_link,
                     "cancel_scheduled_change_plan": cancel_scheduled_change_plan,
                     "collect_via_payment_link": collect_via_payment_link,
+                    "credit": credit,
                     "discount_code": discount_code,
                     "discount_codes": discount_codes,
                     "effective_at": effective_at,
+                    "invoice": invoice,
                     "metadata": metadata,
                     "on_payment_failure": on_payment_failure,
                     "return_url": return_url,
@@ -1919,6 +1950,42 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=SubscriptionRetrieveCreditUsageResponse,
+        )
+
+    async def retrieve_upcoming_invoice(
+        self,
+        subscription_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Invoice:
+        """Prices the next cycle invoice of an invoice-led subscription.
+
+        The invoice ID in
+        the response is not stored, so the response has no allowed actions and no
+        editable fields.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return await self._get(
+            path_template("/subscriptions/{subscription_id}/upcoming-invoice", subscription_id=subscription_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Invoice,
         )
 
     def retrieve_usage_history(
@@ -2040,6 +2107,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionUpdatePaymentMethodResponse:
         """
+        For an invoice-led subscription, billing charges the open invoices after the
+        change, so the response has no payment.
+
         Args:
           extra_headers: Send extra headers
 
@@ -2096,6 +2166,9 @@ class SubscriptionsResourceWithRawResponse:
         self.retrieve_credit_usage = to_raw_response_wrapper(
             subscriptions.retrieve_credit_usage,
         )
+        self.retrieve_upcoming_invoice = to_raw_response_wrapper(
+            subscriptions.retrieve_upcoming_invoice,
+        )
         self.retrieve_usage_history = to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -2136,6 +2209,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         )
         self.retrieve_credit_usage = async_to_raw_response_wrapper(
             subscriptions.retrieve_credit_usage,
+        )
+        self.retrieve_upcoming_invoice = async_to_raw_response_wrapper(
+            subscriptions.retrieve_upcoming_invoice,
         )
         self.retrieve_usage_history = async_to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
@@ -2178,6 +2254,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.retrieve_credit_usage = to_streamed_response_wrapper(
             subscriptions.retrieve_credit_usage,
         )
+        self.retrieve_upcoming_invoice = to_streamed_response_wrapper(
+            subscriptions.retrieve_upcoming_invoice,
+        )
         self.retrieve_usage_history = to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
@@ -2218,6 +2297,9 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.retrieve_credit_usage = async_to_streamed_response_wrapper(
             subscriptions.retrieve_credit_usage,
+        )
+        self.retrieve_upcoming_invoice = async_to_streamed_response_wrapper(
+            subscriptions.retrieve_upcoming_invoice,
         )
         self.retrieve_usage_history = async_to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,

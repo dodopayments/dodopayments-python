@@ -28,7 +28,6 @@ from ...types import (
     entitlement_list_params,
     entitlement_create_params,
     entitlement_update_params,
-    entitlement_retrieve_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
@@ -41,14 +40,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
-from .translations import (
-    TranslationsResource,
-    AsyncTranslationsResource,
-    TranslationsResourceWithRawResponse,
-    AsyncTranslationsResourceWithRawResponse,
-    TranslationsResourceWithStreamingResponse,
-    AsyncTranslationsResourceWithStreamingResponse,
-)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.entitlement import Entitlement
 from ...types.metadata_param import MetadataParam
@@ -59,10 +50,6 @@ __all__ = ["EntitlementsResource", "AsyncEntitlementsResource"]
 
 
 class EntitlementsResource(SyncAPIResource):
-    @cached_property
-    def translations(self) -> TranslationsResource:
-        return TranslationsResource(self._client)
-
     @cached_property
     def files(self) -> FilesResource:
         return FilesResource(self._client)
@@ -149,7 +136,6 @@ class EntitlementsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -161,13 +147,6 @@ class EntitlementsResource(SyncAPIResource):
         GET /entitlements/{id}
 
         Args:
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -181,11 +160,7 @@ class EntitlementsResource(SyncAPIResource):
         return self._get(
             path_template("/entitlements/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"locale": locale}, entitlement_retrieve_params.EntitlementRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Entitlement,
         )
@@ -252,7 +227,6 @@ class EntitlementsResource(SyncAPIResource):
             "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
         ]
         | Omit = omit,
-        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -267,13 +241,6 @@ class EntitlementsResource(SyncAPIResource):
 
         Args:
           integration_type: Filter by integration type
-
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
 
           page_number: Page number (default 0)
 
@@ -298,7 +265,6 @@ class EntitlementsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "integration_type": integration_type,
-                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -344,10 +310,6 @@ class EntitlementsResource(SyncAPIResource):
 
 
 class AsyncEntitlementsResource(AsyncAPIResource):
-    @cached_property
-    def translations(self) -> AsyncTranslationsResource:
-        return AsyncTranslationsResource(self._client)
-
     @cached_property
     def files(self) -> AsyncFilesResource:
         return AsyncFilesResource(self._client)
@@ -434,7 +396,6 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        locale: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -446,13 +407,6 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         GET /entitlements/{id}
 
         Args:
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -466,13 +420,7 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         return await self._get(
             path_template("/entitlements/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"locale": locale}, entitlement_retrieve_params.EntitlementRetrieveParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Entitlement,
         )
@@ -539,7 +487,6 @@ class AsyncEntitlementsResource(AsyncAPIResource):
             "discord", "telegram", "github", "figma", "framer", "notion", "digital_files", "license_key", "feature_flag"
         ]
         | Omit = omit,
-        locale: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -554,13 +501,6 @@ class AsyncEntitlementsResource(AsyncAPIResource):
 
         Args:
           integration_type: Filter by integration type
-
-          locale: Shows the translated name, description and unit of the catalog entities in this
-              locale. The value must be a code from `GET /locales`, for example `fr`. A field
-              with no translation, an unknown code, or no code shows the base text.
-
-              Do not send a text from a localized response back in a create or update request.
-              The base text then changes to the translated text.
 
           page_number: Page number (default 0)
 
@@ -585,7 +525,6 @@ class AsyncEntitlementsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "integration_type": integration_type,
-                        "locale": locale,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -651,10 +590,6 @@ class EntitlementsResourceWithRawResponse:
         )
 
     @cached_property
-    def translations(self) -> TranslationsResourceWithRawResponse:
-        return TranslationsResourceWithRawResponse(self._entitlements.translations)
-
-    @cached_property
     def files(self) -> FilesResourceWithRawResponse:
         return FilesResourceWithRawResponse(self._entitlements.files)
 
@@ -682,10 +617,6 @@ class AsyncEntitlementsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             entitlements.delete,
         )
-
-    @cached_property
-    def translations(self) -> AsyncTranslationsResourceWithRawResponse:
-        return AsyncTranslationsResourceWithRawResponse(self._entitlements.translations)
 
     @cached_property
     def files(self) -> AsyncFilesResourceWithRawResponse:
@@ -717,10 +648,6 @@ class EntitlementsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def translations(self) -> TranslationsResourceWithStreamingResponse:
-        return TranslationsResourceWithStreamingResponse(self._entitlements.translations)
-
-    @cached_property
     def files(self) -> FilesResourceWithStreamingResponse:
         return FilesResourceWithStreamingResponse(self._entitlements.files)
 
@@ -748,10 +675,6 @@ class AsyncEntitlementsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             entitlements.delete,
         )
-
-    @cached_property
-    def translations(self) -> AsyncTranslationsResourceWithStreamingResponse:
-        return AsyncTranslationsResourceWithStreamingResponse(self._entitlements.translations)
 
     @cached_property
     def files(self) -> AsyncFilesResourceWithStreamingResponse:

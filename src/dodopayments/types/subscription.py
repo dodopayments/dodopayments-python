@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 from .currency import Currency
@@ -9,6 +10,7 @@ from .metadata import Metadata
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
 from .discount_detail import DiscountDetail
+from .collection_method import CollectionMethod
 from .subscription_status import SubscriptionStatus
 from .cancellation_feedback import CancellationFeedback
 from .custom_field_response import CustomFieldResponse
@@ -31,6 +33,9 @@ class Subscription(BaseModel):
 
     billing: BillingAddress
     """Billing address details for payments"""
+
+    billing_mode: Literal["normal", "invoice_led"]
+    """`invoice_led` when invoices bill the subscription. `normal` otherwise."""
 
     brand_id: str
     """Brand id this subscription belongs to"""
@@ -128,6 +133,9 @@ class Subscription(BaseModel):
     no caller is known, for example when the system cancelled the subscription.
     """
 
+    collection_method: Optional[CollectionMethod] = None
+    """How an invoice-led subscription collects each invoice. `null` for `normal`."""
+
     custom_field_responses: Optional[List[CustomFieldResponse]] = None
     """Customer's responses to custom fields collected during checkout"""
 
@@ -157,6 +165,9 @@ class Subscription(BaseModel):
 
     payment_method_id: Optional[str] = None
     """Saved payment method id used for recurring charges"""
+
+    payment_terms_days: Optional[int] = None
+    """Days from the invoice date to the due date. `null` for `normal`."""
 
     scheduled_change: Optional[ScheduledPlanChange] = None
     """Scheduled plan change details, if any"""

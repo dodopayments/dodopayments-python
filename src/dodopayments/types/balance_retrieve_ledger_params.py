@@ -196,13 +196,12 @@ class BalanceRetrieveLedgerParams(TypedDict, total=False):
         "dispute_fees_reversal",
         "deflection_fees",
         "deflection_fees_reversal",
+        "moderation_fees",
         "reserve_hold",
         "reserve_release",
-        "moderation_fees",
         "dodo_fixed_fee",
         "interchange_fee",
         "scheme_fee",
-        "opening_balance",
     ]
     """Filter by Ledger Event Type"""
 

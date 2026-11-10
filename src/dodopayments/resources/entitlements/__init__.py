@@ -24,22 +24,8 @@ from .entitlements import (
     EntitlementsResourceWithStreamingResponse,
     AsyncEntitlementsResourceWithStreamingResponse,
 )
-from .translations import (
-    TranslationsResource,
-    AsyncTranslationsResource,
-    TranslationsResourceWithRawResponse,
-    AsyncTranslationsResourceWithRawResponse,
-    TranslationsResourceWithStreamingResponse,
-    AsyncTranslationsResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "TranslationsResource",
-    "AsyncTranslationsResource",
-    "TranslationsResourceWithRawResponse",
-    "AsyncTranslationsResourceWithRawResponse",
-    "TranslationsResourceWithStreamingResponse",
-    "AsyncTranslationsResourceWithStreamingResponse",
     "FilesResource",
     "AsyncFilesResource",
     "FilesResourceWithRawResponse",

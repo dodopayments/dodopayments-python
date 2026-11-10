@@ -60,9 +60,7 @@ class DetailsResource(SyncAPIResource):
         Each entry is
         converted into the payout's currency at the rate the payout settled at. Supports
         pagination via `page_size` (default 10, max 100) and `page_number` (default 0)
-        query parameters. A settlement batch payout shows its rows in native amounts.
-        `unattributed` is the payout amount less the sum of its rows in the payout
-        currency.
+        query parameters.
 
         Args:
           page_number: Page number (0-indexed). Default: 0.
@@ -114,8 +112,7 @@ class DetailsResource(SyncAPIResource):
         Each row represents a
         balance ledger entry with columns: Ledger ID, Event Type, Original Amount,
         Original Currency, Reference Object ID, Description, Created At, USD Equivalent
-        Amount, and Payout Currency Amount. A settlement batch payout shows its rows in
-        native amounts.
+        Amount, and Payout Currency Amount.
 
         Args:
           extra_headers: Send extra headers
@@ -176,9 +173,7 @@ class AsyncDetailsResource(AsyncAPIResource):
         Each entry is
         converted into the payout's currency at the rate the payout settled at. Supports
         pagination via `page_size` (default 10, max 100) and `page_number` (default 0)
-        query parameters. A settlement batch payout shows its rows in native amounts.
-        `unattributed` is the payout amount less the sum of its rows in the payout
-        currency.
+        query parameters.
 
         Args:
           page_number: Page number (0-indexed). Default: 0.
@@ -230,8 +225,7 @@ class AsyncDetailsResource(AsyncAPIResource):
         Each row represents a
         balance ledger entry with columns: Ledger ID, Event Type, Original Amount,
         Original Currency, Reference Object ID, Description, Created At, USD Equivalent
-        Amount, and Payout Currency Amount. A settlement batch payout shows its rows in
-        native amounts.
+        Amount, and Payout Currency Amount.
 
         Args:
           extra_headers: Send extra headers
