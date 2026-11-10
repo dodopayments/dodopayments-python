@@ -1,13 +1,5 @@
 # Changelog
 
-## [1.126.0](https://github.com/dodopayments/dodopayments-python/compare/v1.125.0...v1.126.0) (2026-11-10)
-
-
-### Features
-
-* **api:** billing invoices and upcoming invoice; sync spec to prod 1.122.7 ([85d37db](https://github.com/dodopayments/dodopayments-python/commit/85d37db4fd161b37883e0e89e6a684c3548d8456))
-* **api:** billing invoices and upcoming invoice; sync spec to prod 1.122.7 ([5b249df](https://github.com/dodopayments/dodopayments-python/commit/5b249dfee1774aa05facc6a6fe34f1ecc208961a))
-
 ## [1.125.0](https://github.com/dodopayments/dodopayments-python/compare/v1.124.0...v1.125.0) (2026-10-28)
 
 
