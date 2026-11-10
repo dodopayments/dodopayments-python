@@ -23,8 +23,8 @@ __all__ = [
     "BillingAddress",
     "Dunning",
     "PaymentTerms",
-    "PaymentTermsType",
-    "PaymentTermsUnionMember1",
+    "PaymentTermsDueOnReceipt",
+    "PaymentTermsNet",
 ]
 
 
@@ -139,14 +139,14 @@ class Dunning(TypedDict, total=False):
     """
 
 
-class PaymentTermsType(TypedDict, total=False):
+class PaymentTermsDueOnReceipt(TypedDict, total=False):
     type: Required[Literal["due_on_receipt"]]
 
 
-class PaymentTermsUnionMember1(TypedDict, total=False):
+class PaymentTermsNet(TypedDict, total=False):
     days: Required[int]
 
     type: Required[Literal["net"]]
 
 
-PaymentTerms: TypeAlias = Union[PaymentTermsType, PaymentTermsUnionMember1]
+PaymentTerms: TypeAlias = Union[PaymentTermsDueOnReceipt, PaymentTermsNet]

@@ -2,8 +2,9 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from .._utils import PropertyInfo
 from .._models import BaseModel
 from .currency import Currency
 from .country_code import CountryCode
@@ -19,12 +20,13 @@ __all__ = [
     "Customer",
     "CustomerBillingAddress",
     "Frequency",
-    "FrequencyType",
-    "FrequencyUnionMember1",
+    "FrequencyOneTime",
+    "FrequencyRecurring",
+    "FrequencyMixed",
     "Payment",
     "ReminderSettings",
-    "ReminderSettingsUnionMember0",
-    "ReminderSettingsUnionMember1",
+    "ReminderSettingsSnapshot",
+    "ReminderSettingsOverride",
 ]
 
 
@@ -56,11 +58,11 @@ class Customer(BaseModel):
     tax_id: Optional[str] = None
 
 
-class FrequencyType(BaseModel):
+class FrequencyOneTime(BaseModel):
     type: Literal["one_time"]
 
 
-class FrequencyUnionMember1(BaseModel):
+class FrequencyRecurring(BaseModel):
     count: int
 
     interval: TimeInterval
@@ -69,7 +71,13 @@ class FrequencyUnionMember1(BaseModel):
     type: Literal["recurring"]
 
 
-Frequency: TypeAlias = Union[FrequencyType, FrequencyUnionMember1, FrequencyType]
+class FrequencyMixed(BaseModel):
+    type: Literal["mixed"]
+
+
+Frequency: TypeAlias = Annotated[
+    Union[FrequencyOneTime, FrequencyRecurring, FrequencyMixed], PropertyInfo(discriminator="type")
+]
 
 
 class Payment(BaseModel):
@@ -86,7 +94,7 @@ class Payment(BaseModel):
     """`null` while the processor has not answered."""
 
 
-class ReminderSettingsUnionMember0(BaseModel):
+class ReminderSettingsSnapshot(BaseModel):
     """The settings that finalise froze. The reminders run on them."""
 
     kind: Literal["snapshot"]
@@ -98,7 +106,7 @@ class ReminderSettingsUnionMember0(BaseModel):
     reminders_enabled: bool
 
 
-class ReminderSettingsUnionMember1(BaseModel):
+class ReminderSettingsOverride(BaseModel):
     """The changes of a draft. A `null` field keeps the business value at finalise."""
 
     kind: Literal["override"]
@@ -110,7 +118,9 @@ class ReminderSettingsUnionMember1(BaseModel):
     reminders_enabled: Optional[bool] = None
 
 
-ReminderSettings: TypeAlias = Union[ReminderSettingsUnionMember0, ReminderSettingsUnionMember1, None]
+ReminderSettings: TypeAlias = Annotated[
+    Union[ReminderSettingsSnapshot, ReminderSettingsOverride, None], PropertyInfo(discriminator="kind")
+]
 
 
 class Invoice(BaseModel):

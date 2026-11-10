@@ -14,8 +14,8 @@ __all__ = [
     "SubscriptionChangePlanParams",
     "Invoice",
     "InvoicePaymentTerms",
-    "InvoicePaymentTermsType",
-    "InvoicePaymentTermsUnionMember1",
+    "InvoicePaymentTermsDueOnReceipt",
+    "InvoicePaymentTermsNet",
 ]
 
 
@@ -161,17 +161,17 @@ class SubscriptionChangePlanParams(TypedDict, total=False):
     """
 
 
-class InvoicePaymentTermsType(TypedDict, total=False):
+class InvoicePaymentTermsDueOnReceipt(TypedDict, total=False):
     type: Required[Literal["due_on_receipt"]]
 
 
-class InvoicePaymentTermsUnionMember1(TypedDict, total=False):
+class InvoicePaymentTermsNet(TypedDict, total=False):
     days: Required[int]
 
     type: Required[Literal["net"]]
 
 
-InvoicePaymentTerms: TypeAlias = Union[InvoicePaymentTermsType, InvoicePaymentTermsUnionMember1]
+InvoicePaymentTerms: TypeAlias = Union[InvoicePaymentTermsDueOnReceipt, InvoicePaymentTermsNet]
 
 
 class Invoice(TypedDict, total=False):
