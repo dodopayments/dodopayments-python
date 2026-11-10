@@ -8,4 +8,4 @@ __all__ = ["NoteCreateParams"]
 
 
 class NoteCreateParams(TypedDict, total=False):
-    note: Required[str]
+    text: Required[str]
