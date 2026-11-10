@@ -14,7 +14,6 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.misc_list_locales_response import MiscListLocalesResponse
 from ..types.misc_list_supported_countries_response import MiscListSupportedCountriesResponse
 
 __all__ = ["MiscResource", "AsyncMiscResource"]
@@ -39,25 +38,6 @@ class MiscResource(SyncAPIResource):
         For more information, see https://www.github.com/dodopayments/dodopayments-python#with_streaming_response
         """
         return MiscResourceWithStreamingResponse(self)
-
-    def list_locales(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MiscListLocalesResponse:
-        """Lists the locales that a translation can have."""
-        return self._get(
-            "/locales",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MiscListLocalesResponse,
-        )
 
     def list_supported_countries(
         self,
@@ -98,25 +78,6 @@ class AsyncMiscResource(AsyncAPIResource):
         """
         return AsyncMiscResourceWithStreamingResponse(self)
 
-    async def list_locales(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MiscListLocalesResponse:
-        """Lists the locales that a translation can have."""
-        return await self._get(
-            "/locales",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MiscListLocalesResponse,
-        )
-
     async def list_supported_countries(
         self,
         *,
@@ -140,9 +101,6 @@ class MiscResourceWithRawResponse:
     def __init__(self, misc: MiscResource) -> None:
         self._misc = misc
 
-        self.list_locales = to_raw_response_wrapper(
-            misc.list_locales,
-        )
         self.list_supported_countries = to_raw_response_wrapper(
             misc.list_supported_countries,
         )
@@ -152,9 +110,6 @@ class AsyncMiscResourceWithRawResponse:
     def __init__(self, misc: AsyncMiscResource) -> None:
         self._misc = misc
 
-        self.list_locales = async_to_raw_response_wrapper(
-            misc.list_locales,
-        )
         self.list_supported_countries = async_to_raw_response_wrapper(
             misc.list_supported_countries,
         )
@@ -164,9 +119,6 @@ class MiscResourceWithStreamingResponse:
     def __init__(self, misc: MiscResource) -> None:
         self._misc = misc
 
-        self.list_locales = to_streamed_response_wrapper(
-            misc.list_locales,
-        )
         self.list_supported_countries = to_streamed_response_wrapper(
             misc.list_supported_countries,
         )
@@ -176,9 +128,6 @@ class AsyncMiscResourceWithStreamingResponse:
     def __init__(self, misc: AsyncMiscResource) -> None:
         self._misc = misc
 
-        self.list_locales = async_to_streamed_response_wrapper(
-            misc.list_locales,
-        )
         self.list_supported_countries = async_to_streamed_response_wrapper(
             misc.list_supported_countries,
         )

@@ -8,14 +8,6 @@ from .groups import (
     GroupsResourceWithStreamingResponse,
     AsyncGroupsResourceWithStreamingResponse,
 )
-from .translations import (
-    TranslationsResource,
-    AsyncTranslationsResource,
-    TranslationsResourceWithRawResponse,
-    AsyncTranslationsResourceWithRawResponse,
-    TranslationsResourceWithStreamingResponse,
-    AsyncTranslationsResourceWithStreamingResponse,
-)
 from .product_collections import (
     ProductCollectionsResource,
     AsyncProductCollectionsResource,
@@ -26,12 +18,6 @@ from .product_collections import (
 )
 
 __all__ = [
-    "TranslationsResource",
-    "AsyncTranslationsResource",
-    "TranslationsResourceWithRawResponse",
-    "AsyncTranslationsResourceWithRawResponse",
-    "TranslationsResourceWithStreamingResponse",
-    "AsyncTranslationsResourceWithStreamingResponse",
     "GroupsResource",
     "AsyncGroupsResource",
     "GroupsResourceWithRawResponse",

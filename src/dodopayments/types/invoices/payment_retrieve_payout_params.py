@@ -9,8 +9,4 @@ __all__ = ["PaymentRetrievePayoutParams"]
 
 class PaymentRetrievePayoutParams(TypedDict, total=False):
     token: str
-    """The signed link token.
-
-    If the business asks for a credential on its invoice links, a valid token for
-    this record replaces the credential.
-    """
+    """The signed link token. A valid token for this record replaces the credential."""
