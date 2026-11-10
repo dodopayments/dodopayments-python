@@ -45,7 +45,7 @@ class NotesResource(SyncAPIResource):
         self,
         entry_id: str,
         *,
-        note: str,
+        text: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,7 +67,7 @@ class NotesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return self._post(
             path_template("/blocklist/customers/{entry_id}/notes", entry_id=entry_id),
-            body=maybe_transform({"note": note}, note_create_params.NoteCreateParams),
+            body=maybe_transform({"text": text}, note_create_params.NoteCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -79,7 +79,7 @@ class NotesResource(SyncAPIResource):
         note_id: str,
         *,
         entry_id: str,
-        note: str,
+        text: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,7 +103,7 @@ class NotesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `note_id` but received {note_id!r}")
         return self._patch(
             path_template("/blocklist/customers/{entry_id}/notes/{note_id}", entry_id=entry_id, note_id=note_id),
-            body=maybe_transform({"note": note}, note_update_params.NoteUpdateParams),
+            body=maybe_transform({"text": text}, note_update_params.NoteUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -135,7 +135,7 @@ class AsyncNotesResource(AsyncAPIResource):
         self,
         entry_id: str,
         *,
-        note: str,
+        text: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -157,7 +157,7 @@ class AsyncNotesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return await self._post(
             path_template("/blocklist/customers/{entry_id}/notes", entry_id=entry_id),
-            body=await async_maybe_transform({"note": note}, note_create_params.NoteCreateParams),
+            body=await async_maybe_transform({"text": text}, note_create_params.NoteCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -169,7 +169,7 @@ class AsyncNotesResource(AsyncAPIResource):
         note_id: str,
         *,
         entry_id: str,
-        note: str,
+        text: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,7 +193,7 @@ class AsyncNotesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `note_id` but received {note_id!r}")
         return await self._patch(
             path_template("/blocklist/customers/{entry_id}/notes/{note_id}", entry_id=entry_id, note_id=note_id),
-            body=await async_maybe_transform({"note": note}, note_update_params.NoteUpdateParams),
+            body=await async_maybe_transform({"text": text}, note_update_params.NoteUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

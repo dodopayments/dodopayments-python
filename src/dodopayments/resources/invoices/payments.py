@@ -100,8 +100,7 @@ class PaymentsResource(SyncAPIResource):
         """Args:
           token: The signed link token.
 
-        If the business asks for a credential on its invoice
-              links, a valid token for this record replaces the credential.
+        A valid token for this record replaces the credential.
 
           extra_headers: Send extra headers
 
@@ -244,8 +243,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         """Args:
           token: The signed link token.
 
-        If the business asks for a credential on its invoice
-              links, a valid token for this record replaces the credential.
+        A valid token for this record replaces the credential.
 
           extra_headers: Send extra headers
 

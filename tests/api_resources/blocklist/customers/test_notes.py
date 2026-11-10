@@ -21,7 +21,7 @@ class TestNotes:
     def test_method_create(self, client: DodoPayments) -> None:
         note = client.blocklist.customers.notes.create(
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
         assert_matches_type(BlockedCustomerNote, note, path=["response"])
 
@@ -29,7 +29,7 @@ class TestNotes:
     def test_raw_response_create(self, client: DodoPayments) -> None:
         response = client.blocklist.customers.notes.with_raw_response.create(
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestNotes:
     def test_streaming_response_create(self, client: DodoPayments) -> None:
         with client.blocklist.customers.notes.with_streaming_response.create(
             entry_id="entry_id",
-            note="note",
+            text="text",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,7 +56,7 @@ class TestNotes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
             client.blocklist.customers.notes.with_raw_response.create(
                 entry_id="",
-                note="note",
+                text="text",
             )
 
     @parametrize
@@ -64,7 +64,7 @@ class TestNotes:
         note = client.blocklist.customers.notes.update(
             note_id="note_id",
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
         assert_matches_type(BlockedCustomerNote, note, path=["response"])
 
@@ -73,7 +73,7 @@ class TestNotes:
         response = client.blocklist.customers.notes.with_raw_response.update(
             note_id="note_id",
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
 
         assert response.is_closed is True
@@ -86,7 +86,7 @@ class TestNotes:
         with client.blocklist.customers.notes.with_streaming_response.update(
             note_id="note_id",
             entry_id="entry_id",
-            note="note",
+            text="text",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,14 +102,14 @@ class TestNotes:
             client.blocklist.customers.notes.with_raw_response.update(
                 note_id="note_id",
                 entry_id="",
-                note="note",
+                text="text",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `note_id` but received ''"):
             client.blocklist.customers.notes.with_raw_response.update(
                 note_id="",
                 entry_id="entry_id",
-                note="note",
+                text="text",
             )
 
 
@@ -122,7 +122,7 @@ class TestAsyncNotes:
     async def test_method_create(self, async_client: AsyncDodoPayments) -> None:
         note = await async_client.blocklist.customers.notes.create(
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
         assert_matches_type(BlockedCustomerNote, note, path=["response"])
 
@@ -130,7 +130,7 @@ class TestAsyncNotes:
     async def test_raw_response_create(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.blocklist.customers.notes.with_raw_response.create(
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
 
         assert response.is_closed is True
@@ -142,7 +142,7 @@ class TestAsyncNotes:
     async def test_streaming_response_create(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.blocklist.customers.notes.with_streaming_response.create(
             entry_id="entry_id",
-            note="note",
+            text="text",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -157,7 +157,7 @@ class TestAsyncNotes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
             await async_client.blocklist.customers.notes.with_raw_response.create(
                 entry_id="",
-                note="note",
+                text="text",
             )
 
     @parametrize
@@ -165,7 +165,7 @@ class TestAsyncNotes:
         note = await async_client.blocklist.customers.notes.update(
             note_id="note_id",
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
         assert_matches_type(BlockedCustomerNote, note, path=["response"])
 
@@ -174,7 +174,7 @@ class TestAsyncNotes:
         response = await async_client.blocklist.customers.notes.with_raw_response.update(
             note_id="note_id",
             entry_id="entry_id",
-            note="note",
+            text="text",
         )
 
         assert response.is_closed is True
@@ -187,7 +187,7 @@ class TestAsyncNotes:
         async with async_client.blocklist.customers.notes.with_streaming_response.update(
             note_id="note_id",
             entry_id="entry_id",
-            note="note",
+            text="text",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -203,12 +203,12 @@ class TestAsyncNotes:
             await async_client.blocklist.customers.notes.with_raw_response.update(
                 note_id="note_id",
                 entry_id="",
-                note="note",
+                text="text",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `note_id` but received ''"):
             await async_client.blocklist.customers.notes.with_raw_response.update(
                 note_id="",
                 entry_id="entry_id",
-                note="note",
+                text="text",
             )

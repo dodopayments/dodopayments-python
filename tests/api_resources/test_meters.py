@@ -92,22 +92,14 @@ class TestMeters:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         meter = client.meters.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
-        )
-        assert_matches_type(Meter, meter, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
-        meter = client.meters.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
-            locale="locale",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert_matches_type(Meter, meter, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.meters.with_raw_response.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -118,7 +110,7 @@ class TestMeters:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.meters.with_streaming_response.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,7 +124,7 @@ class TestMeters:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.meters.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -192,7 +184,6 @@ class TestMeters:
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         meter = client.meters.list(
             archived=True,
-            locale="locale",
             page_number=0,
             page_size=0,
         )
@@ -372,22 +363,14 @@ class TestAsyncMeters:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         meter = await async_client.meters.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
-        )
-        assert_matches_type(Meter, meter, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
-        meter = await async_client.meters.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
-            locale="locale",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
         assert_matches_type(Meter, meter, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.meters.with_raw_response.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         )
 
         assert response.is_closed is True
@@ -398,7 +381,7 @@ class TestAsyncMeters:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.meters.with_streaming_response.retrieve(
-            id="mtr_h5tgTWL55OyMO0L2Q9w9v",
+            "mtr_h5tgTWL55OyMO0L2Q9w9v",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -412,7 +395,7 @@ class TestAsyncMeters:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.meters.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -472,7 +455,6 @@ class TestAsyncMeters:
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         meter = await async_client.meters.list(
             archived=True,
-            locale="locale",
             page_number=0,
             page_size=0,
         )
