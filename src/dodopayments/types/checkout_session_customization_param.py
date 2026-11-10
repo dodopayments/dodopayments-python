@@ -14,6 +14,14 @@ class CheckoutSessionCustomizationParam(TypedDict, total=False):
     force_language: Optional[str]
     """Force the checkout interface to render in a specific language (e.g. `en`, `es`)"""
 
+    payment_method_layout: Optional[Literal["accordion", "tabs"]]
+    """How a single-page checkout shows the payment methods.
+
+    You can set it only when `feature_flags.single_page` is true.
+
+    Default is `accordion`.
+    """
+
     show_on_demand_tag: bool
     """Show on demand tag
 
