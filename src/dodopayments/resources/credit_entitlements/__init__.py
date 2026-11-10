@@ -8,14 +8,6 @@ from .balances import (
     BalancesResourceWithStreamingResponse,
     AsyncBalancesResourceWithStreamingResponse,
 )
-from .translations import (
-    TranslationsResource,
-    AsyncTranslationsResource,
-    TranslationsResourceWithRawResponse,
-    AsyncTranslationsResourceWithRawResponse,
-    TranslationsResourceWithStreamingResponse,
-    AsyncTranslationsResourceWithStreamingResponse,
-)
 from .credit_entitlements import (
     CreditEntitlementsResource,
     AsyncCreditEntitlementsResource,
@@ -26,12 +18,6 @@ from .credit_entitlements import (
 )
 
 __all__ = [
-    "TranslationsResource",
-    "AsyncTranslationsResource",
-    "TranslationsResourceWithRawResponse",
-    "AsyncTranslationsResourceWithRawResponse",
-    "TranslationsResourceWithStreamingResponse",
-    "AsyncTranslationsResourceWithStreamingResponse",
     "BalancesResource",
     "AsyncBalancesResource",
     "BalancesResourceWithRawResponse",

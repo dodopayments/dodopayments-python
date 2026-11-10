@@ -80,6 +80,7 @@ class TestCheckoutSessions:
             customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
+                "payment_method_layout": "accordion",
                 "show_on_demand_tag": True,
                 "show_order_details": True,
                 "theme": "dark",
@@ -281,7 +282,6 @@ class TestCheckoutSessions:
                     ],
                 }
             ],
-            locale="locale",
             allowed_payment_method_types=["ach"],
             billing_address={
                 "country": "AF",
@@ -307,6 +307,7 @@ class TestCheckoutSessions:
             customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
+                "payment_method_layout": "accordion",
                 "show_on_demand_tag": True,
                 "show_order_details": True,
                 "theme": "dark",
@@ -501,6 +502,7 @@ class TestAsyncCheckoutSessions:
             customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
+                "payment_method_layout": "accordion",
                 "show_on_demand_tag": True,
                 "show_order_details": True,
                 "theme": "dark",
@@ -702,7 +704,6 @@ class TestAsyncCheckoutSessions:
                     ],
                 }
             ],
-            locale="locale",
             allowed_payment_method_types=["ach"],
             billing_address={
                 "country": "AF",
@@ -728,6 +729,7 @@ class TestAsyncCheckoutSessions:
             customer_business_name="customer_business_name",
             customization={
                 "force_language": "force_language",
+                "payment_method_layout": "accordion",
                 "show_on_demand_tag": True,
                 "show_order_details": True,
                 "theme": "dark",

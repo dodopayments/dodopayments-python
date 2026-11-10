@@ -2,12 +2,14 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 from .currency import Currency
 from .metadata import Metadata
 from .time_interval import TimeInterval
 from .billing_address import BillingAddress
+from .collection_method import CollectionMethod
 from .subscription_status import SubscriptionStatus
 from .scheduled_plan_change import ScheduledPlanChange
 from .customer_limited_details import CustomerLimitedDetails
@@ -34,6 +36,9 @@ class SubscriptionListResponse(BaseModel):
 
     billing: BillingAddress
     """Billing address details for payments"""
+
+    billing_mode: Literal["normal", "invoice_led"]
+    """`invoice_led` when invoices bill the subscription. `normal` otherwise."""
 
     cancel_at_next_billing_date: bool
     """Indicates if the subscription will cancel at the next billing date"""
@@ -116,6 +121,9 @@ class SubscriptionListResponse(BaseModel):
     no caller is known, for example when the system cancelled the subscription.
     """
 
+    collection_method: Optional[CollectionMethod] = None
+    """How an invoice-led subscription collects each invoice. `null` for `normal`."""
+
     customer_business_name: Optional[str] = None
     """Business / legal name associated with the tax id (B2B).
 
@@ -136,6 +144,9 @@ class SubscriptionListResponse(BaseModel):
 
     payment_method_id: Optional[str] = None
     """Saved payment method id used for recurring charges"""
+
+    payment_terms_days: Optional[int] = None
+    """Days from the invoice date to the due date. `null` for `normal`."""
 
     product_name: Optional[str] = None
     """Name of the product associated with this subscription"""

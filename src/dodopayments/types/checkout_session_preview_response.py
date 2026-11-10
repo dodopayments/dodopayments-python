@@ -73,6 +73,12 @@ class ProductCartAddon(BaseModel):
 
     discounted_price: int
 
+    max_quantity_reached: bool
+    """
+    True when one more unit of this addon puts the cart above the cart value limit
+    of the business. False when the limit does not apply to the business.
+    """
+
     name: str
 
     og_currency: Currency

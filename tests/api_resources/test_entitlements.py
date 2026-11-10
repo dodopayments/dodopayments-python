@@ -83,22 +83,14 @@ class TestEntitlements:
     @parametrize
     def test_method_retrieve(self, client: DodoPayments) -> None:
         entitlement = client.entitlements.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
-        )
-        assert_matches_type(Entitlement, entitlement, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: DodoPayments) -> None:
-        entitlement = client.entitlements.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
-            locale="locale",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: DodoPayments) -> None:
         response = client.entitlements.with_raw_response.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -109,7 +101,7 @@ class TestEntitlements:
     @parametrize
     def test_streaming_response_retrieve(self, client: DodoPayments) -> None:
         with client.entitlements.with_streaming_response.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -123,7 +115,7 @@ class TestEntitlements:
     def test_path_params_retrieve(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.entitlements.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -187,7 +179,6 @@ class TestEntitlements:
     def test_method_list_with_all_params(self, client: DodoPayments) -> None:
         entitlement = client.entitlements.list(
             integration_type="discord",
-            locale="locale",
             page_number=0,
             page_size=0,
         )
@@ -320,22 +311,14 @@ class TestAsyncEntitlements:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncDodoPayments) -> None:
         entitlement = await async_client.entitlements.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
-        )
-        assert_matches_type(Entitlement, entitlement, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncDodoPayments) -> None:
-        entitlement = await async_client.entitlements.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
-            locale="locale",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
         assert_matches_type(Entitlement, entitlement, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         response = await async_client.entitlements.with_raw_response.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         )
 
         assert response.is_closed is True
@@ -346,7 +329,7 @@ class TestAsyncEntitlements:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncDodoPayments) -> None:
         async with async_client.entitlements.with_streaming_response.retrieve(
-            id="ent_jt7jcvI79Xh8eehqgWdcm",
+            "ent_jt7jcvI79Xh8eehqgWdcm",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -360,7 +343,7 @@ class TestAsyncEntitlements:
     async def test_path_params_retrieve(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.entitlements.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -424,7 +407,6 @@ class TestAsyncEntitlements:
     async def test_method_list_with_all_params(self, async_client: AsyncDodoPayments) -> None:
         entitlement = await async_client.entitlements.list(
             integration_type="discord",
-            locale="locale",
             page_number=0,
             page_size=0,
         )

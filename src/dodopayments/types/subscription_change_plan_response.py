@@ -22,8 +22,17 @@ class SubscriptionChangePlanResponse(BaseModel):
     expires_on: Optional[datetime] = None
     """When the link stops working."""
 
+    invoice_id: Optional[str] = None
+    """The invoice that bills the plan change.
+
+    Set only for an invoice-led subscription.
+    """
+
     payment_id: Optional[str] = None
     """Id of the payment that settles the plan change."""
 
     payment_link: Optional[str] = None
     """Checkout page URL. Give this to the customer."""
+
+    refund_id: Optional[str] = None
+    """The refund of a downgrade with `credit: refund`."""
