@@ -33,10 +33,18 @@ from .payments import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 from ..._base_client import AsyncPaginator, make_request_options
@@ -643,7 +651,7 @@ class InvoicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> BinaryAPIResponse:
         """Prices the body as a draft and returns it.
 
         No row is saved.
@@ -682,7 +690,7 @@ class InvoicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._post(
             "/billing/invoices/preview",
             body=maybe_transform(
@@ -712,7 +720,7 @@ class InvoicesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"format": format}, invoice_preview_params.InvoicePreviewParams),
             ),
-            cast_to=NoneType,
+            cast_to=BinaryAPIResponse,
         )
 
     def preview_existing(
@@ -726,7 +734,7 @@ class InvoicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> BinaryAPIResponse:
         """Preview a draft invoice
 
         Args:
@@ -746,7 +754,7 @@ class InvoicesResource(SyncAPIResource):
         """
         if not invoice_id:
             raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._get(
             path_template("/billing/invoices/{invoice_id}/preview", invoice_id=invoice_id),
             options=make_request_options(
@@ -756,7 +764,7 @@ class InvoicesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"format": format}, invoice_preview_existing_params.InvoicePreviewExistingParams),
             ),
-            cast_to=NoneType,
+            cast_to=BinaryAPIResponse,
         )
 
     def retry(
@@ -1506,7 +1514,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> AsyncBinaryAPIResponse:
         """Prices the body as a draft and returns it.
 
         No row is saved.
@@ -1545,7 +1553,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._post(
             "/billing/invoices/preview",
             body=await async_maybe_transform(
@@ -1575,7 +1583,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"format": format}, invoice_preview_params.InvoicePreviewParams),
             ),
-            cast_to=NoneType,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
     async def preview_existing(
@@ -1589,7 +1597,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> AsyncBinaryAPIResponse:
         """Preview a draft invoice
 
         Args:
@@ -1609,7 +1617,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         """
         if not invoice_id:
             raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._get(
             path_template("/billing/invoices/{invoice_id}/preview", invoice_id=invoice_id),
             options=make_request_options(
@@ -1621,7 +1629,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
                     {"format": format}, invoice_preview_existing_params.InvoicePreviewExistingParams
                 ),
             ),
-            cast_to=NoneType,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
     async def retry(
@@ -1815,11 +1823,13 @@ class InvoicesResourceWithRawResponse:
         self.mark_uncollectable = to_raw_response_wrapper(
             invoices.mark_uncollectable,
         )
-        self.preview = to_raw_response_wrapper(
+        self.preview = to_custom_raw_response_wrapper(
             invoices.preview,
+            BinaryAPIResponse,
         )
-        self.preview_existing = to_raw_response_wrapper(
+        self.preview_existing = to_custom_raw_response_wrapper(
             invoices.preview_existing,
+            BinaryAPIResponse,
         )
         self.retry = to_raw_response_wrapper(
             invoices.retry,
@@ -1876,11 +1886,13 @@ class AsyncInvoicesResourceWithRawResponse:
         self.mark_uncollectable = async_to_raw_response_wrapper(
             invoices.mark_uncollectable,
         )
-        self.preview = async_to_raw_response_wrapper(
+        self.preview = async_to_custom_raw_response_wrapper(
             invoices.preview,
+            AsyncBinaryAPIResponse,
         )
-        self.preview_existing = async_to_raw_response_wrapper(
+        self.preview_existing = async_to_custom_raw_response_wrapper(
             invoices.preview_existing,
+            AsyncBinaryAPIResponse,
         )
         self.retry = async_to_raw_response_wrapper(
             invoices.retry,
@@ -1937,11 +1949,13 @@ class InvoicesResourceWithStreamingResponse:
         self.mark_uncollectable = to_streamed_response_wrapper(
             invoices.mark_uncollectable,
         )
-        self.preview = to_streamed_response_wrapper(
+        self.preview = to_custom_streamed_response_wrapper(
             invoices.preview,
+            StreamedBinaryAPIResponse,
         )
-        self.preview_existing = to_streamed_response_wrapper(
+        self.preview_existing = to_custom_streamed_response_wrapper(
             invoices.preview_existing,
+            StreamedBinaryAPIResponse,
         )
         self.retry = to_streamed_response_wrapper(
             invoices.retry,
@@ -1998,11 +2012,13 @@ class AsyncInvoicesResourceWithStreamingResponse:
         self.mark_uncollectable = async_to_streamed_response_wrapper(
             invoices.mark_uncollectable,
         )
-        self.preview = async_to_streamed_response_wrapper(
+        self.preview = async_to_custom_streamed_response_wrapper(
             invoices.preview,
+            AsyncStreamedBinaryAPIResponse,
         )
-        self.preview_existing = async_to_streamed_response_wrapper(
+        self.preview_existing = async_to_custom_streamed_response_wrapper(
             invoices.preview_existing,
+            AsyncStreamedBinaryAPIResponse,
         )
         self.retry = async_to_streamed_response_wrapper(
             invoices.retry,

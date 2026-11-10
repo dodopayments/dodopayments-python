@@ -5,7 +5,9 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
+from respx import MockRouter
 
 from tests.utils import assert_matches_type
 from dodopayments import DodoPayments, AsyncDodoPayments
@@ -15,6 +17,12 @@ from dodopayments.types import (
     InvoiceCreateHostedLinkResponse,
 )
 from dodopayments._utils import parse_datetime
+from dodopayments._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+)
 from dodopayments.pagination import SyncDefaultPageNumberPagination, AsyncDefaultPageNumberPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -581,7 +589,9 @@ class TestInvoices:
             )
 
     @parametrize
-    def test_method_preview(self, client: DodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_preview(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         invoice = client.invoices.preview(
             collection_method="auto_charge",
             currency="AED",
@@ -595,10 +605,15 @@ class TestInvoices:
                 }
             ],
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, BinaryAPIResponse)
 
     @parametrize
-    def test_method_preview_with_all_params(self, client: DodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_preview_with_all_params(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         invoice = client.invoices.preview(
             collection_method="auto_charge",
             currency="AED",
@@ -634,11 +649,17 @@ class TestInvoices:
             review_required=True,
             tax_id="tax_id",
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, BinaryAPIResponse)
 
     @parametrize
-    def test_raw_response_preview(self, client: DodoPayments) -> None:
-        response = client.invoices.with_raw_response.preview(
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_preview(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        invoice = client.invoices.with_raw_response.preview(
             collection_method="auto_charge",
             currency="AED",
             customer_id="customer_id",
@@ -652,13 +673,15 @@ class TestInvoices:
             ],
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        invoice = response.parse()
-        assert invoice is None
+        assert invoice.is_closed is True
+        assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert invoice.json() == {"foo": "bar"}
+        assert isinstance(invoice, BinaryAPIResponse)
 
     @parametrize
-    def test_streaming_response_preview(self, client: DodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_preview(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.invoices.with_streaming_response.preview(
             collection_method="auto_charge",
             currency="AED",
@@ -671,55 +694,81 @@ class TestInvoices:
                     "unit_amount": 0,
                 }
             ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as invoice:
+            assert not invoice.is_closed
+            assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            invoice = response.parse()
-            assert invoice is None
+            assert invoice.json() == {"foo": "bar"}
+            assert cast(Any, invoice.is_closed) is True
+            assert isinstance(invoice, StreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, invoice.is_closed) is True
 
     @parametrize
-    def test_method_preview_existing(self, client: DodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_preview_existing(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         invoice = client.invoices.preview_existing(
             invoice_id="invoice_id",
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, BinaryAPIResponse)
 
     @parametrize
-    def test_method_preview_existing_with_all_params(self, client: DodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_preview_existing_with_all_params(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         invoice = client.invoices.preview_existing(
             invoice_id="invoice_id",
             format="json",
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, BinaryAPIResponse)
 
     @parametrize
-    def test_raw_response_preview_existing(self, client: DodoPayments) -> None:
-        response = client.invoices.with_raw_response.preview_existing(
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_preview_existing(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        invoice = client.invoices.with_raw_response.preview_existing(
             invoice_id="invoice_id",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        invoice = response.parse()
-        assert invoice is None
+        assert invoice.is_closed is True
+        assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert invoice.json() == {"foo": "bar"}
+        assert isinstance(invoice, BinaryAPIResponse)
 
     @parametrize
-    def test_streaming_response_preview_existing(self, client: DodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_preview_existing(self, client: DodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         with client.invoices.with_streaming_response.preview_existing(
             invoice_id="invoice_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as invoice:
+            assert not invoice.is_closed
+            assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            invoice = response.parse()
-            assert invoice is None
+            assert invoice.json() == {"foo": "bar"}
+            assert cast(Any, invoice.is_closed) is True
+            assert isinstance(invoice, StreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, invoice.is_closed) is True
 
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     def test_path_params_preview_existing(self, client: DodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
             client.invoices.with_raw_response.preview_existing(
@@ -1472,7 +1521,9 @@ class TestAsyncInvoices:
             )
 
     @parametrize
-    async def test_method_preview(self, async_client: AsyncDodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_preview(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         invoice = await async_client.invoices.preview(
             collection_method="auto_charge",
             currency="AED",
@@ -1486,10 +1537,17 @@ class TestAsyncInvoices:
                 }
             ],
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert await invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_method_preview_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_preview_with_all_params(
+        self, async_client: AsyncDodoPayments, respx_mock: MockRouter
+    ) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         invoice = await async_client.invoices.preview(
             collection_method="auto_charge",
             currency="AED",
@@ -1525,11 +1583,17 @@ class TestAsyncInvoices:
             review_required=True,
             tax_id="tax_id",
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert await invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_raw_response_preview(self, async_client: AsyncDodoPayments) -> None:
-        response = await async_client.invoices.with_raw_response.preview(
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_preview(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        invoice = await async_client.invoices.with_raw_response.preview(
             collection_method="auto_charge",
             currency="AED",
             customer_id="customer_id",
@@ -1543,13 +1607,15 @@ class TestAsyncInvoices:
             ],
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        invoice = await response.parse()
-        assert invoice is None
+        assert invoice.is_closed is True
+        assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await invoice.json() == {"foo": "bar"}
+        assert isinstance(invoice, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_streaming_response_preview(self, async_client: AsyncDodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_preview(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.post("/billing/invoices/preview").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.invoices.with_streaming_response.preview(
             collection_method="auto_charge",
             currency="AED",
@@ -1562,55 +1628,85 @@ class TestAsyncInvoices:
                     "unit_amount": 0,
                 }
             ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as invoice:
+            assert not invoice.is_closed
+            assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            invoice = await response.parse()
-            assert invoice is None
+            assert await invoice.json() == {"foo": "bar"}
+            assert cast(Any, invoice.is_closed) is True
+            assert isinstance(invoice, AsyncStreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, invoice.is_closed) is True
 
     @parametrize
-    async def test_method_preview_existing(self, async_client: AsyncDodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_preview_existing(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         invoice = await async_client.invoices.preview_existing(
             invoice_id="invoice_id",
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert await invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_method_preview_existing_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_preview_existing_with_all_params(
+        self, async_client: AsyncDodoPayments, respx_mock: MockRouter
+    ) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         invoice = await async_client.invoices.preview_existing(
             invoice_id="invoice_id",
             format="json",
         )
-        assert invoice is None
+        assert invoice.is_closed
+        assert await invoice.json() == {"foo": "bar"}
+        assert cast(Any, invoice.is_closed) is True
+        assert isinstance(invoice, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_raw_response_preview_existing(self, async_client: AsyncDodoPayments) -> None:
-        response = await async_client.invoices.with_raw_response.preview_existing(
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_preview_existing(self, async_client: AsyncDodoPayments, respx_mock: MockRouter) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        invoice = await async_client.invoices.with_raw_response.preview_existing(
             invoice_id="invoice_id",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        invoice = await response.parse()
-        assert invoice is None
+        assert invoice.is_closed is True
+        assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await invoice.json() == {"foo": "bar"}
+        assert isinstance(invoice, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_streaming_response_preview_existing(self, async_client: AsyncDodoPayments) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_preview_existing(
+        self, async_client: AsyncDodoPayments, respx_mock: MockRouter
+    ) -> None:
+        respx_mock.get("/billing/invoices/invoice_id/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         async with async_client.invoices.with_streaming_response.preview_existing(
             invoice_id="invoice_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as invoice:
+            assert not invoice.is_closed
+            assert invoice.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            invoice = await response.parse()
-            assert invoice is None
+            assert await invoice.json() == {"foo": "bar"}
+            assert cast(Any, invoice.is_closed) is True
+            assert isinstance(invoice, AsyncStreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, invoice.is_closed) is True
 
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     async def test_path_params_preview_existing(self, async_client: AsyncDodoPayments) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
             await async_client.invoices.with_raw_response.preview_existing(
