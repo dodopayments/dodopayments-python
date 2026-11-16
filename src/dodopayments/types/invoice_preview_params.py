@@ -74,6 +74,9 @@ class InvoicePreviewParams(TypedDict, total=False):
     Values can be string, integer, number, or boolean.
     """
 
+    payment_method_id: Optional[str]
+    """A saved card of the customer. The new subscriptions of the invoice charge it."""
+
     payment_terms: Optional[PaymentTerms]
     """Do not send it with `due_at`."""
 

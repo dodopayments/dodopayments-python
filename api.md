@@ -91,6 +91,7 @@ from dodopayments.types import (
     SubscriptionPreviewChangePlanResponse,
     SubscriptionRetrieveCreditUsageResponse,
     SubscriptionRetrieveUsageHistoryResponse,
+    SubscriptionStartTrialResponse,
     SubscriptionUpdatePaymentMethodResponse,
 )
 ```
@@ -108,6 +109,7 @@ Methods:
 - <code title="get /subscriptions/{subscription_id}/credit-usage">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_credit_usage</a>(subscription_id) -> <a href="./src/dodopayments/types/subscription_retrieve_credit_usage_response.py">SubscriptionRetrieveCreditUsageResponse</a></code>
 - <code title="get /subscriptions/{subscription_id}/upcoming-invoice">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_upcoming_invoice</a>(subscription_id) -> <a href="./src/dodopayments/types/invoice.py">Invoice</a></code>
 - <code title="get /subscriptions/{subscription_id}/usage-history">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">retrieve_usage_history</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_retrieve_usage_history_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_retrieve_usage_history_response.py">SyncDefaultPageNumberPagination[SubscriptionRetrieveUsageHistoryResponse]</a></code>
+- <code title="post /billing/subscriptions">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">start_trial</a>(\*\*<a href="src/dodopayments/types/subscription_start_trial_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_start_trial_response.py">SubscriptionStartTrialResponse</a></code>
 - <code title="post /subscriptions/{subscription_id}/update-payment-method">client.subscriptions.<a href="./src/dodopayments/resources/subscriptions.py">update_payment_method</a>(subscription_id, \*\*<a href="src/dodopayments/types/subscription_update_payment_method_params.py">params</a>) -> <a href="./src/dodopayments/types/subscription_update_payment_method_response.py">SubscriptionUpdatePaymentMethodResponse</a></code>
 
 # Invoices
@@ -222,7 +224,7 @@ Methods:
 - <code title="get /customers/{customer_id}/credit-entitlements">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_credit_entitlements</a>(customer_id) -> <a href="./src/dodopayments/types/customer_list_credit_entitlements_response.py">CustomerListCreditEntitlementsResponse</a></code>
 - <code title="get /customers/{customer_id}/entitlement-grants">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_entitlement_grants</a>(customer_id, \*\*<a href="src/dodopayments/types/customer_list_entitlement_grants_params.py">params</a>) -> <a href="./src/dodopayments/types/entitlements/entitlement_grant.py">SyncDefaultPageNumberPagination[EntitlementGrant]</a></code>
 - <code title="get /customers/{customer_id}/entitlements">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">list_entitlements</a>(customer_id) -> <a href="./src/dodopayments/types/customer_list_entitlements_response.py">CustomerListEntitlementsResponse</a></code>
-- <code title="get /customers/{customer_id}/payment-methods">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve_payment_methods</a>(customer_id) -> <a href="./src/dodopayments/types/customer_retrieve_payment_methods_response.py">CustomerRetrievePaymentMethodsResponse</a></code>
+- <code title="get /customers/{customer_id}/payment-methods">client.customers.<a href="./src/dodopayments/resources/customers/customers.py">retrieve_payment_methods</a>(customer_id, \*\*<a href="src/dodopayments/types/customer_retrieve_payment_methods_params.py">params</a>) -> <a href="./src/dodopayments/types/customer_retrieve_payment_methods_response.py">CustomerRetrievePaymentMethodsResponse</a></code>
 
 ## CustomerPortal
 
@@ -896,3 +898,15 @@ Methods:
 
 - <code title="get /moderation/usage">client.moderation.<a href="./src/dodopayments/resources/moderation.py">retrieve_usage</a>() -> <a href="./src/dodopayments/types/moderation_retrieve_usage_response.py">ModerationRetrieveUsageResponse</a></code>
 - <code title="post /moderation/screen">client.moderation.<a href="./src/dodopayments/resources/moderation.py">screen</a>(\*\*<a href="src/dodopayments/types/moderation_screen_params.py">params</a>) -> <a href="./src/dodopayments/types/moderation_screen_response.py">ModerationScreenResponse</a></code>
+
+# AppInstallation
+
+Types:
+
+```python
+from dodopayments.types import AppInstallationRetrieveSettingsResponse
+```
+
+Methods:
+
+- <code title="get /app-installation/settings">client.app_installation.<a href="./src/dodopayments/resources/app_installation.py">retrieve_settings</a>() -> <a href="./src/dodopayments/types/app_installation_retrieve_settings_response.py">AppInstallationRetrieveSettingsResponse</a></code>

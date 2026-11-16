@@ -16,6 +16,7 @@ from dodopayments.types import (
     SubscriptionChargeResponse,
     SubscriptionCreateResponse,
     SubscriptionChangePlanResponse,
+    SubscriptionStartTrialResponse,
     SubscriptionPreviewChangePlanResponse,
     SubscriptionRetrieveCreditUsageResponse,
     SubscriptionUpdatePaymentMethodResponse,
@@ -687,6 +688,70 @@ class TestSubscriptions:
             client.subscriptions.with_raw_response.retrieve_usage_history(
                 subscription_id="",
             )
+
+    @parametrize
+    def test_method_start_trial(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+        )
+        assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_method_start_trial_with_all_params(self, client: DodoPayments) -> None:
+        subscription = client.subscriptions.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+            billing_address={
+                "country": "AF",
+                "city": "city",
+                "state": "state",
+                "street": "street",
+                "zipcode": "zipcode",
+            },
+            payment_method_id="payment_method_id",
+            payment_terms={"type": "due_on_receipt"},
+            quantity=0,
+            review_required=True,
+            tax_id="tax_id",
+            trial_period_days=0,
+            idempotency_key="Idempotency-Key",
+        )
+        assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_raw_response_start_trial(self, client: DodoPayments) -> None:
+        response = client.subscriptions.with_raw_response.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_streaming_response_start_trial(self, client: DodoPayments) -> None:
+        with client.subscriptions.with_streaming_response.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update_payment_method(self, client: DodoPayments) -> None:
@@ -1403,6 +1468,70 @@ class TestAsyncSubscriptions:
             await async_client.subscriptions.with_raw_response.retrieve_usage_history(
                 subscription_id="",
             )
+
+    @parametrize
+    async def test_method_start_trial(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+        )
+        assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_method_start_trial_with_all_params(self, async_client: AsyncDodoPayments) -> None:
+        subscription = await async_client.subscriptions.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+            billing_address={
+                "country": "AF",
+                "city": "city",
+                "state": "state",
+                "street": "street",
+                "zipcode": "zipcode",
+            },
+            payment_method_id="payment_method_id",
+            payment_terms={"type": "due_on_receipt"},
+            quantity=0,
+            review_required=True,
+            tax_id="tax_id",
+            trial_period_days=0,
+            idempotency_key="Idempotency-Key",
+        )
+        assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_raw_response_start_trial(self, async_client: AsyncDodoPayments) -> None:
+        response = await async_client.subscriptions.with_raw_response.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_start_trial(self, async_client: AsyncDodoPayments) -> None:
+        async with async_client.subscriptions.with_streaming_response.start_trial(
+            collection_method="auto_charge",
+            currency="AED",
+            customer_id="customer_id",
+            product_id="product_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert_matches_type(SubscriptionStartTrialResponse, subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update_payment_method(self, async_client: AsyncDodoPayments) -> None:
