@@ -168,6 +168,14 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
+from .app_installation import (
+    AppInstallationResource,
+    AsyncAppInstallationResource,
+    AppInstallationResourceWithRawResponse,
+    AsyncAppInstallationResourceWithRawResponse,
+    AppInstallationResourceWithStreamingResponse,
+    AsyncAppInstallationResourceWithStreamingResponse,
+)
 from .checkout_sessions import (
     CheckoutSessionsResource,
     AsyncCheckoutSessionsResource,
@@ -352,4 +360,10 @@ __all__ = [
     "AsyncModerationResourceWithRawResponse",
     "ModerationResourceWithStreamingResponse",
     "AsyncModerationResourceWithStreamingResponse",
+    "AppInstallationResource",
+    "AsyncAppInstallationResource",
+    "AppInstallationResourceWithRawResponse",
+    "AsyncAppInstallationResourceWithRawResponse",
+    "AppInstallationResourceWithStreamingResponse",
+    "AsyncAppInstallationResourceWithStreamingResponse",
 ]
