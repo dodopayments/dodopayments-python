@@ -191,6 +191,7 @@ class Invoice(BaseModel):
             "billing_address",
             "tax_id",
             "review_required",
+            "payment_method",
             "due_at",
             "collection_method",
             "memo",
@@ -216,6 +217,13 @@ class Invoice(BaseModel):
 
     retry_count: int
     """The number of failed automatic charges."""
+
+    review_required: bool
+    """`true` when a subscription of the invoice has renewal review on now.
+
+    The value follows the subscription, so it can change after finalise.
+    `review_deadline` shows that this draft waits.
+    """
 
     row_version: int
     """Goes up by one on each change. Use it to ignore an older webhook delivery."""
@@ -260,6 +268,9 @@ class Invoice(BaseModel):
     """
 
     next_retry_at: Optional[datetime] = None
+
+    payment_method_id: Optional[str] = None
+    """The saved card that an automatic charge of the invoice uses."""
 
     payment_terms_days: Optional[int] = None
     """Days from finalise to the due date.

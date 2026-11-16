@@ -12,6 +12,7 @@ import httpx
 from ..types import (
     Currency,
     TimeInterval,
+    CollectionMethod,
     SubscriptionStatus,
     CancellationFeedback,
     subscription_list_params,
@@ -19,12 +20,13 @@ from ..types import (
     subscription_create_params,
     subscription_update_params,
     subscription_change_plan_params,
+    subscription_start_trial_params,
     subscription_preview_change_plan_params,
     subscription_update_payment_method_params,
     subscription_retrieve_usage_history_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -40,6 +42,7 @@ from ..types.currency import Currency
 from ..types.subscription import Subscription
 from ..types.time_interval import TimeInterval
 from ..types.metadata_param import MetadataParam
+from ..types.collection_method import CollectionMethod
 from ..types.attach_addon_param import AttachAddonParam
 from ..types.subscription_status import SubscriptionStatus
 from ..types.payment_method_types import PaymentMethodTypes
@@ -52,6 +55,7 @@ from ..types.subscription_charge_response import SubscriptionChargeResponse
 from ..types.subscription_create_response import SubscriptionCreateResponse
 from ..types.one_time_product_cart_item_param import OneTimeProductCartItemParam
 from ..types.subscription_change_plan_response import SubscriptionChangePlanResponse
+from ..types.subscription_start_trial_response import SubscriptionStartTrialResponse
 from ..types.subscription_preview_change_plan_response import SubscriptionPreviewChangePlanResponse
 from ..types.subscription_retrieve_credit_usage_response import SubscriptionRetrieveCreditUsageResponse
 from ..types.subscription_update_payment_method_response import SubscriptionUpdatePaymentMethodResponse
@@ -1054,6 +1058,80 @@ class SubscriptionsResource(SyncAPIResource):
                 ),
             ),
             model=SubscriptionRetrieveUsageHistoryResponse,
+        )
+
+    def start_trial(
+        self,
+        *,
+        collection_method: CollectionMethod,
+        currency: Currency,
+        customer_id: str,
+        product_id: str,
+        billing_address: Optional[subscription_start_trial_params.BillingAddress] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        payment_terms: Optional[subscription_start_trial_params.PaymentTerms] | Omit = omit,
+        quantity: int | Omit = omit,
+        review_required: bool | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
+        trial_period_days: Optional[int] | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionStartTrialResponse:
+        """Creates an invoice-led subscription and a paid $0 invoice for the trial.
+
+        The
+        first invoice after the trial bills at `trial_ends_at`.
+
+        Args:
+          product_id: A recurring product.
+
+          billing_address: The billing address of an invoice request.
+
+          payment_method_id: A saved card of the customer. Automatic charge needs it.
+
+          payment_terms: The terms of the invoices after the trial.
+
+          review_required: `true` keeps each renewal draft for review before it finalises.
+
+          trial_period_days: 1 to 730 days. When this is not set, the product trial applies and the trial
+              misuse check runs.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
+        return self._post(
+            "/billing/subscriptions",
+            body=maybe_transform(
+                {
+                    "collection_method": collection_method,
+                    "currency": currency,
+                    "customer_id": customer_id,
+                    "product_id": product_id,
+                    "billing_address": billing_address,
+                    "payment_method_id": payment_method_id,
+                    "payment_terms": payment_terms,
+                    "quantity": quantity,
+                    "review_required": review_required,
+                    "tax_id": tax_id,
+                    "trial_period_days": trial_period_days,
+                },
+                subscription_start_trial_params.SubscriptionStartTrialParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionStartTrialResponse,
         )
 
     def update_payment_method(
@@ -2094,6 +2172,80 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             model=SubscriptionRetrieveUsageHistoryResponse,
         )
 
+    async def start_trial(
+        self,
+        *,
+        collection_method: CollectionMethod,
+        currency: Currency,
+        customer_id: str,
+        product_id: str,
+        billing_address: Optional[subscription_start_trial_params.BillingAddress] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
+        payment_terms: Optional[subscription_start_trial_params.PaymentTerms] | Omit = omit,
+        quantity: int | Omit = omit,
+        review_required: bool | Omit = omit,
+        tax_id: Optional[str] | Omit = omit,
+        trial_period_days: Optional[int] | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SubscriptionStartTrialResponse:
+        """Creates an invoice-led subscription and a paid $0 invoice for the trial.
+
+        The
+        first invoice after the trial bills at `trial_ends_at`.
+
+        Args:
+          product_id: A recurring product.
+
+          billing_address: The billing address of an invoice request.
+
+          payment_method_id: A saved card of the customer. Automatic charge needs it.
+
+          payment_terms: The terms of the invoices after the trial.
+
+          review_required: `true` keeps each renewal draft for review before it finalises.
+
+          trial_period_days: 1 to 730 days. When this is not set, the product trial applies and the trial
+              misuse check runs.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
+        return await self._post(
+            "/billing/subscriptions",
+            body=await async_maybe_transform(
+                {
+                    "collection_method": collection_method,
+                    "currency": currency,
+                    "customer_id": customer_id,
+                    "product_id": product_id,
+                    "billing_address": billing_address,
+                    "payment_method_id": payment_method_id,
+                    "payment_terms": payment_terms,
+                    "quantity": quantity,
+                    "review_required": review_required,
+                    "tax_id": tax_id,
+                    "trial_period_days": trial_period_days,
+                },
+                subscription_start_trial_params.SubscriptionStartTrialParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SubscriptionStartTrialResponse,
+        )
+
     async def update_payment_method(
         self,
         subscription_id: str,
@@ -2172,6 +2324,9 @@ class SubscriptionsResourceWithRawResponse:
         self.retrieve_usage_history = to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
+        self.start_trial = to_raw_response_wrapper(
+            subscriptions.start_trial,
+        )
         self.update_payment_method = to_raw_response_wrapper(
             subscriptions.update_payment_method,
         )
@@ -2215,6 +2370,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         )
         self.retrieve_usage_history = async_to_raw_response_wrapper(
             subscriptions.retrieve_usage_history,
+        )
+        self.start_trial = async_to_raw_response_wrapper(
+            subscriptions.start_trial,
         )
         self.update_payment_method = async_to_raw_response_wrapper(
             subscriptions.update_payment_method,
@@ -2260,6 +2418,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.retrieve_usage_history = to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,
         )
+        self.start_trial = to_streamed_response_wrapper(
+            subscriptions.start_trial,
+        )
         self.update_payment_method = to_streamed_response_wrapper(
             subscriptions.update_payment_method,
         )
@@ -2303,6 +2464,9 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.retrieve_usage_history = async_to_streamed_response_wrapper(
             subscriptions.retrieve_usage_history,
+        )
+        self.start_trial = async_to_streamed_response_wrapper(
+            subscriptions.start_trial,
         )
         self.update_payment_method = async_to_streamed_response_wrapper(
             subscriptions.update_payment_method,

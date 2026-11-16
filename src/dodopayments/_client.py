@@ -57,6 +57,7 @@ if TYPE_CHECKING:
         license_keys,
         usage_events,
         subscriptions,
+        app_installation,
         checkout_sessions,
         credit_entitlements,
         product_collections,
@@ -77,6 +78,7 @@ if TYPE_CHECKING:
     from .resources.usage_events import UsageEventsResource, AsyncUsageEventsResource
     from .resources.subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
     from .resources.payouts.payouts import PayoutsResource, AsyncPayoutsResource
+    from .resources.app_installation import AppInstallationResource, AsyncAppInstallationResource
     from .resources.checkout_sessions import CheckoutSessionsResource, AsyncCheckoutSessionsResource
     from .resources.invoices.invoices import InvoicesResource, AsyncInvoicesResource
     from .resources.products.products import ProductsResource, AsyncProductsResource
@@ -365,6 +367,12 @@ class DodoPayments(SyncWorkloadIdentityAPIClient):
         from .resources.moderation import ModerationResource
 
         return ModerationResource(self)
+
+    @cached_property
+    def app_installation(self) -> AppInstallationResource:
+        from .resources.app_installation import AppInstallationResource
+
+        return AppInstallationResource(self)
 
     @cached_property
     def with_raw_response(self) -> DodoPaymentsWithRawResponse:
@@ -744,6 +752,12 @@ class AsyncDodoPayments(AsyncWorkloadIdentityAPIClient):
         return AsyncModerationResource(self)
 
     @cached_property
+    def app_installation(self) -> AsyncAppInstallationResource:
+        from .resources.app_installation import AsyncAppInstallationResource
+
+        return AsyncAppInstallationResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncDodoPaymentsWithRawResponse:
         return AsyncDodoPaymentsWithRawResponse(self)
 
@@ -1022,6 +1036,12 @@ class DodoPaymentsWithRawResponse:
 
         return ModerationResourceWithRawResponse(self._client.moderation)
 
+    @cached_property
+    def app_installation(self) -> app_installation.AppInstallationResourceWithRawResponse:
+        from .resources.app_installation import AppInstallationResourceWithRawResponse
+
+        return AppInstallationResourceWithRawResponse(self._client.app_installation)
+
 
 class AsyncDodoPaymentsWithRawResponse:
     _client: AsyncDodoPayments
@@ -1178,6 +1198,12 @@ class AsyncDodoPaymentsWithRawResponse:
         from .resources.moderation import AsyncModerationResourceWithRawResponse
 
         return AsyncModerationResourceWithRawResponse(self._client.moderation)
+
+    @cached_property
+    def app_installation(self) -> app_installation.AsyncAppInstallationResourceWithRawResponse:
+        from .resources.app_installation import AsyncAppInstallationResourceWithRawResponse
+
+        return AsyncAppInstallationResourceWithRawResponse(self._client.app_installation)
 
 
 class DodoPaymentsWithStreamedResponse:
@@ -1336,6 +1362,12 @@ class DodoPaymentsWithStreamedResponse:
 
         return ModerationResourceWithStreamingResponse(self._client.moderation)
 
+    @cached_property
+    def app_installation(self) -> app_installation.AppInstallationResourceWithStreamingResponse:
+        from .resources.app_installation import AppInstallationResourceWithStreamingResponse
+
+        return AppInstallationResourceWithStreamingResponse(self._client.app_installation)
+
 
 class AsyncDodoPaymentsWithStreamedResponse:
     _client: AsyncDodoPayments
@@ -1492,6 +1524,12 @@ class AsyncDodoPaymentsWithStreamedResponse:
         from .resources.moderation import AsyncModerationResourceWithStreamingResponse
 
         return AsyncModerationResourceWithStreamingResponse(self._client.moderation)
+
+    @cached_property
+    def app_installation(self) -> app_installation.AsyncAppInstallationResourceWithStreamingResponse:
+        from .resources.app_installation import AsyncAppInstallationResourceWithStreamingResponse
+
+        return AsyncAppInstallationResourceWithStreamingResponse(self._client.app_installation)
 
 
 Client = DodoPayments

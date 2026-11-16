@@ -67,6 +67,9 @@ class InvoiceUpdateParams(TypedDict, total=False):
     Values can be string, integer, number, or boolean.
     """
 
+    payment_method_id: Optional[str]
+    """A saved card of the customer. `null` removes the card from the draft."""
+
     payment_terms: Optional[PaymentTerms]
 
     review_required: Optional[bool]

@@ -97,6 +97,7 @@ class InvoicesResource(SyncAPIResource):
         dunning: Optional[invoice_create_params.Dunning] | Omit = omit,
         memo: Optional[str] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         payment_terms: Optional[invoice_create_params.PaymentTerms] | Omit = omit,
         review_required: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -131,6 +132,8 @@ class InvoicesResource(SyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          payment_method_id: A saved card of the customer. The new subscriptions of the invoice charge it.
+
           payment_terms: Do not send it with `due_at`.
 
           review_required: `true` keeps a renewal draft for review before it finalises.
@@ -160,6 +163,7 @@ class InvoicesResource(SyncAPIResource):
                     "dunning": dunning,
                     "memo": memo,
                     "metadata": metadata,
+                    "payment_method_id": payment_method_id,
                     "payment_terms": payment_terms,
                     "review_required": review_required,
                     "tax_id": tax_id,
@@ -222,6 +226,7 @@ class InvoicesResource(SyncAPIResource):
         items: Optional[Iterable[invoice_update_params.Item]] | Omit = omit,
         memo: Optional[str] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         payment_terms: Optional[invoice_update_params.PaymentTerms] | Omit = omit,
         review_required: Optional[bool] | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -250,6 +255,8 @@ class InvoicesResource(SyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          payment_method_id: A saved card of the customer. `null` removes the card from the draft.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -277,6 +284,7 @@ class InvoicesResource(SyncAPIResource):
                     "items": items,
                     "memo": memo,
                     "metadata": metadata,
+                    "payment_method_id": payment_method_id,
                     "payment_terms": payment_terms,
                     "review_required": review_required,
                     "tax_id": tax_id,
@@ -450,8 +458,8 @@ class InvoicesResource(SyncAPIResource):
     ) -> InvoiceCreateHostedLinkResponse:
         """Returns the page where the customer pays.
 
-        A copied link counts as a send, so the
-        first call sets `sent_at`.
+        The first call sets `sent_at` and
+        records a `link_shared` event. It sends no email and no `invoice.sent` webhook.
 
         Args:
           extra_headers: Send extra headers
@@ -642,6 +650,7 @@ class InvoicesResource(SyncAPIResource):
         dunning: Optional[invoice_preview_params.Dunning] | Omit = omit,
         memo: Optional[str] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         payment_terms: Optional[invoice_preview_params.PaymentTerms] | Omit = omit,
         review_required: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -678,6 +687,8 @@ class InvoicesResource(SyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          payment_method_id: A saved card of the customer. The new subscriptions of the invoice charge it.
+
           payment_terms: Do not send it with `due_at`.
 
           review_required: `true` keeps a renewal draft for review before it finalises.
@@ -707,6 +718,7 @@ class InvoicesResource(SyncAPIResource):
                     "dunning": dunning,
                     "memo": memo,
                     "metadata": metadata,
+                    "payment_method_id": payment_method_id,
                     "payment_terms": payment_terms,
                     "review_required": review_required,
                     "tax_id": tax_id,
@@ -960,6 +972,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         dunning: Optional[invoice_create_params.Dunning] | Omit = omit,
         memo: Optional[str] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         payment_terms: Optional[invoice_create_params.PaymentTerms] | Omit = omit,
         review_required: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -994,6 +1007,8 @@ class AsyncInvoicesResource(AsyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          payment_method_id: A saved card of the customer. The new subscriptions of the invoice charge it.
+
           payment_terms: Do not send it with `due_at`.
 
           review_required: `true` keeps a renewal draft for review before it finalises.
@@ -1023,6 +1038,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
                     "dunning": dunning,
                     "memo": memo,
                     "metadata": metadata,
+                    "payment_method_id": payment_method_id,
                     "payment_terms": payment_terms,
                     "review_required": review_required,
                     "tax_id": tax_id,
@@ -1085,6 +1101,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         items: Optional[Iterable[invoice_update_params.Item]] | Omit = omit,
         memo: Optional[str] | Omit = omit,
         metadata: Optional[MetadataParam] | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         payment_terms: Optional[invoice_update_params.PaymentTerms] | Omit = omit,
         review_required: Optional[bool] | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -1113,6 +1130,8 @@ class AsyncInvoicesResource(AsyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          payment_method_id: A saved card of the customer. `null` removes the card from the draft.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1140,6 +1159,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
                     "items": items,
                     "memo": memo,
                     "metadata": metadata,
+                    "payment_method_id": payment_method_id,
                     "payment_terms": payment_terms,
                     "review_required": review_required,
                     "tax_id": tax_id,
@@ -1313,8 +1333,8 @@ class AsyncInvoicesResource(AsyncAPIResource):
     ) -> InvoiceCreateHostedLinkResponse:
         """Returns the page where the customer pays.
 
-        A copied link counts as a send, so the
-        first call sets `sent_at`.
+        The first call sets `sent_at` and
+        records a `link_shared` event. It sends no email and no `invoice.sent` webhook.
 
         Args:
           extra_headers: Send extra headers
@@ -1505,6 +1525,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         dunning: Optional[invoice_preview_params.Dunning] | Omit = omit,
         memo: Optional[str] | Omit = omit,
         metadata: MetadataParam | Omit = omit,
+        payment_method_id: Optional[str] | Omit = omit,
         payment_terms: Optional[invoice_preview_params.PaymentTerms] | Omit = omit,
         review_required: bool | Omit = omit,
         tax_id: Optional[str] | Omit = omit,
@@ -1541,6 +1562,8 @@ class AsyncInvoicesResource(AsyncAPIResource):
 
           metadata: Arbitrary key-value metadata. Values can be string, integer, number, or boolean.
 
+          payment_method_id: A saved card of the customer. The new subscriptions of the invoice charge it.
+
           payment_terms: Do not send it with `due_at`.
 
           review_required: `true` keeps a renewal draft for review before it finalises.
@@ -1570,6 +1593,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
                     "dunning": dunning,
                     "memo": memo,
                     "metadata": metadata,
+                    "payment_method_id": payment_method_id,
                     "payment_terms": payment_terms,
                     "review_required": review_required,
                     "tax_id": tax_id,
