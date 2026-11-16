@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.127.0](https://github.com/dodopayments/dodopayments-python/compare/v1.126.0...v1.127.0) (2026-11-16)
+
+
+### Features
+
+* **api:** trial subscriptions and app installation settings; sync spec to prod 1.124.0 ([bdf2451](https://github.com/dodopayments/dodopayments-python/commit/bdf24511cdbaa11f3ae1d742087fabb53747d8ca))
+* **api:** trial subscriptions and app installation settings; sync spec to prod 1.124.0 ([6d4658d](https://github.com/dodopayments/dodopayments-python/commit/6d4658d886e11f3209a10ce001a28db94fb44698))
+
 ## [1.126.0](https://github.com/dodopayments/dodopayments-python/compare/v1.125.0...v1.126.0) (2026-11-10)
 
 
