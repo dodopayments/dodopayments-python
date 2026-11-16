@@ -17,10 +17,13 @@ from .emails import (
     AsyncEmailsResourceWithStreamingResponse,
 )
 from ...types import (
+    Currency,
+    CountryCode,
     customer_list_params,
     customer_create_params,
     customer_update_params,
     customer_list_entitlement_grants_params,
+    customer_retrieve_payment_methods_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
@@ -50,7 +53,9 @@ from .wallets.wallets import (
     WalletsResourceWithStreamingResponse,
     AsyncWalletsResourceWithStreamingResponse,
 )
+from ...types.currency import Currency
 from ...types.customer import Customer
+from ...types.country_code import CountryCode
 from ...types.metadata_param import MetadataParam
 from ...types.entitlements.entitlement_grant import EntitlementGrant
 from ...types.customer_list_entitlements_response import CustomerListEntitlementsResponse
@@ -445,6 +450,8 @@ class CustomersResource(SyncAPIResource):
         self,
         customer_id: str,
         *,
+        billing_country: CountryCode | Omit = omit,
+        currency: Currency | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -454,6 +461,8 @@ class CustomersResource(SyncAPIResource):
     ) -> CustomerRetrievePaymentMethodsResponse:
         """
         Args:
+          billing_country: ISO country code alpha2 variant
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -467,7 +476,17 @@ class CustomersResource(SyncAPIResource):
         return self._get(
             path_template("/customers/{customer_id}/payment-methods", customer_id=customer_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "billing_country": billing_country,
+                        "currency": currency,
+                    },
+                    customer_retrieve_payment_methods_params.CustomerRetrievePaymentMethodsParams,
+                ),
             ),
             cast_to=CustomerRetrievePaymentMethodsResponse,
         )
@@ -858,6 +877,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         customer_id: str,
         *,
+        billing_country: CountryCode | Omit = omit,
+        currency: Currency | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -867,6 +888,8 @@ class AsyncCustomersResource(AsyncAPIResource):
     ) -> CustomerRetrievePaymentMethodsResponse:
         """
         Args:
+          billing_country: ISO country code alpha2 variant
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -880,7 +903,17 @@ class AsyncCustomersResource(AsyncAPIResource):
         return await self._get(
             path_template("/customers/{customer_id}/payment-methods", customer_id=customer_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "billing_country": billing_country,
+                        "currency": currency,
+                    },
+                    customer_retrieve_payment_methods_params.CustomerRetrievePaymentMethodsParams,
+                ),
             ),
             cast_to=CustomerRetrievePaymentMethodsResponse,
         )
