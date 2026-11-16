@@ -486,7 +486,7 @@ wheels = [
 
 [[package]]
 name = "dodopayments"
-version = "1.122.0"
+version = "1.126.0"
 source = { editable = "." }
 dependencies = [
     { name = "anyio", version = "4.12.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10' or (extra == 'group-12-dodopayments-pydantic-v1' and extra == 'group-12-dodopayments-pydantic-v2')" },
