@@ -45,7 +45,9 @@ iniconfig==2.1.0 ; python_full_version < '3.10'
     # via pytest
 iniconfig==2.3.0 ; python_full_version >= '3.10'
     # via pytest
-librt==0.16.0 ; platform_python_implementation != 'PyPy'
+librt==0.16.0 ; python_full_version < '3.10' and platform_python_implementation != 'PyPy'
+    # via mypy
+librt==0.17.0 ; python_full_version >= '3.10' and platform_python_implementation != 'PyPy'
     # via mypy
 markdown-it-py==3.0.0 ; python_full_version < '3.10'
     # via rich
@@ -54,8 +56,12 @@ markdown-it-py==4.0.0 ; python_full_version >= '3.10'
 mdurl==0.1.2
     # via markdown-it-py
 mypy==1.19.1
-mypy-extensions==1.1.0
+mypy-extensions==1.1.0 ; python_full_version < '3.10'
     # via mypy
+mypy-extensions==1.2.0 ; python_full_version >= '3.10'
+    # via
+    #   librt
+    #   mypy
 nodeenv==1.10.0
     # via pyright
 packaging==25.0
